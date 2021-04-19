@@ -1,0 +1,75 @@
+[id="windows-containers-release-notes-3-x"]
+= Windows Container Support for Red Hat OpenShift release notes
+include::modules/common-attributes.adoc[]
+:context: windows-containers-release-notes
+
+toc::[]
+
+[id="about-windows-containers"]
+== About Windows Container Support for Red Hat OpenShift
+
+Windows Container Support for Red Hat OpenShift is a feature providing the ability to run Windows compute nodes in an {product-title} cluster. This is possible by using the Red Hat Windows Machine Config Operator (WMCO) to install and manage Windows nodes. With Windows nodes available, you can run Windows container workloads in {product-title}.
+
+The release notes for Red Hat OpenShift for Windows Containers tracks the development of the WMCO, which provides all Windows container workload capabilities in {product-title}.
+
+[id="getting-support"]
+== Getting support
+
+You must have a subscription to receive support for the Red Hat WMCO. Deploying Windows container workloads in production clusters is not supported without a subscription. If you do not have a subscription, you can use the community WMCO, a distribution that lacks official support. Request support through the link:http://access.redhat.com/[Red Hat Customer Portal].
+
+[id="wmco-3-0-0"]
+== Release notes for Red Hat Windows Machine Config Operator 3.0.0
+
+This release of the WMCO provides bug fixes and enhancements for running Windows compute nodes in an {product-title} cluster. The components of the WMCO 3.0.0 were released in link:https://access.redhat.com/errata/RHBA-2021:xxxx[RHBA-2021:xxxx].
+
+include::modules/wmco-prerequisites.adoc[leveloffset=+1]
+
+[IMPORTANT]
+====
+Running Windows container workloads is not supported for clusters in a restricted network or disconnected environment.
+====
+
+Version 3.x of the WMCO is only compatible with {product-title} 4.8.
+
+[id="wmco-3-0-0-improvements"]
+=== New features and improvements
+
+This release adds the following new features and improvements.
+
+// Addresses Github #32620 - https://github.com/openshift/openshift-docs/pull/32620
+==== Clarified limits on custom VXLAN port selection
+
+Users may not select a custom VXLAN port when using the latest version of Windows server.
+
+// Addresses WINC-551 - https://github.com/openshift/windows-machine-config-operator/pull/279
+==== Added support for autoscaling Windows nodes
+
+In this release, Windows nodes now support cluster autoscaling. Cluster autoscaling automatically scales up or down the number of machines cluster to meet its current deployment needs, keeping workloads available and pruning unused resources when possible.
+
+[id="wmco-3-0-0-bug-fixes"]
+=== Bug fixes
+
+* Previously, The load balancer service would become unstable when you would scale additional Windows nodes. Now, the load balancer service has been stabilized to allow for adding multiple Windows nodes without erratic performance. (link:https://bugzilla.redhat.com/show_bug.cgi?id=1905950[**BZ#1905950**])
+
+* (link:https://bugzilla.redhat.com/show_bug.cgi?id=1919391[**BZ#1919391**])
+
+* (link:https://bugzilla.redhat.com/show_bug.cgi?id=1924559[**BZ#1924559**])
+
+* Previously, when you replaced a cloud-private-key secret with a new private key, the WMCO patched pub-key-has with an annotation to the Linux node as well as the master and worker node. Now, when you change this private key, no annotation is added. (link:https://bugzilla.redhat.com/show_bug.cgi?id=1930791[**BZ#1930791**])
+
+* Previously, the kube-proxy service would terminate unexpectedly after the load balancer is created if you created the load balancer after the Windows pods begin running. Now, the kube-proxy service does not crash when recreating the load balancer service. (link:https://bugzilla.redhat.com/show_bug.cgi?id=1939968[**BZ#1939968**])
+
+* Previously, the `windows_exporter` component reported various metrics as `windows_*`. This error caused some of the node-level metrics that provide insight into the nodes through telemetry services to go unreported. Now, the componets export correctly showing all of the expected metrics. (link:https://bugzilla.redhat.com/show_bug.cgi?id=1948037[**BZ#1948037**])
+
+* Previously, empty IP address values in the load balancer's ingress would break the data path and the Windows service would be unreachable. This issue was due to the kube-proxy component considering empty IP address values in the ingress as invalid. Now, the Windows service is reachable even if the IP address value is empty. (link:https://bugzilla.redhat.com/show_bug.cgi?id=1946538[**BZ#1946538**])
+
+* Previously, when the WMCO configured Windows instances, if the hybrid-overlay or kube-proxy components failed, the node might report itself as `Ready`. Now, the error is detected and the node reports itself as `NotReady`. (link:https://bugzilla.redhat.com/show_bug.cgi?id=1971745[**BZ#1971745**])
+
+* Previously, when you created a Windows pod with a projected volume, the pod would remain stuck in the "ContainerCreating" phase. Now, the Windows pod creation successfully proceeds to the "Running" phase. (link:https://bugzilla.redhat.com/show_bug.cgi?id=1953692[**BZ#1953692**])
+
+=== RHSA-2021:76465-04 - Windows Container support for {product-title} security update
+
+[id="wmco-3-0-0-known-issues"]
+=== Known issues
+
+// Fill in any known issues, which typically arise closer to release.
