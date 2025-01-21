@@ -11,9 +11,14 @@ toc::[]
 
 The following list highlights some of the most commonly used {openshift-networking} features available on your cluster:
 
+ifndef::openshift-rosa,openshift-rosa-hcp[]
+- Primary cluster network provided by ither of the following Container Network Interface (CNI) plugins:
+  * xref:../networking/ovn_kubernetes_network_provider/about-ovn-kubernetes.adoc#about-ovn-kubernetes[OVN-Kubernetes network plugin], the default plugin.
+endif::openshift-rosa,openshift-rosa-hcp[]
+ifdef::openshift-rosa,openshift-rosa-hcp[]
 - Primary cluster network provided by either of the following Container Network Interface (CNI) plugins:
-  * xref:../networking/ovn_kubernetes_network_provider/about-ovn-kubernetes.adoc#about-ovn-kubernetes[OVN-Kubernetes network plugin], the default plugin
-  * xref:../networking/ovn_kubernetes_network_provider/about-ovn-kubernetes.adoc#about-ovn-kubernetes[About the OVN-Kubernetes network plugin]
+  * link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/networking/ovn-kubernetes-network-plugin#about-ovn-kubernetes[OVN-Kubernetes network plugin], the default plugin.
+endif::openshift-rosa,openshift-rosa-hcp[]
 - Certified 3rd-party alternative primary network plugins
 - Cluster Network Operator for network plugin management
 - Ingress Operator for TLS encrypted web traffic
