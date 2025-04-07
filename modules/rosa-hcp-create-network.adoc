@@ -1,0 +1,129 @@
+// Module included in the following assemblies:
+//
+// * rosa_hcp/rosa-hcp-sts-creating-a-cluster-quickly.adoc
+
+ifeval::["{context}" == "rosa-hcp-egress-lockdown-install"]
+:egress-lockdown-rosa:
+endif::[]
+
+:_mod-docs-content-type: PROCEDURE
+[id="rosa-hcp-create-network_{context}"]
+= Creating a Virtual Private Cloud using the ROSA CLI
+
+The `rosa create network` command is available in v.1.2.48 or later of the ROSA command-line interface (CLI). The command uses AWS CloudFormation to create a VPC and the other networking components used to install a ROSA cluster. CloudFormation is a native AWS infrastructure-as-code tool and is compatible with the AWS CLI. For more information on AWS CloudFormation, see the additional resources.
+
+If you do not specify a template, CloudFormation uses a default template that creates the following parameters:
+
+[cols="2a,3a",options="header"]
+|===
+|VPC parameter
+|Value
+
+| Availability zones
+| 1
+
+| Region 
+| `us-east-1`
+  
+| VPC CIDR 
+| `10.0.0.0/16` 
+|===
+
+You can create and customize CloudFormation templates to use with the `rosa create network` command. See the additional resources for information on the default VPC template.
+
+.Prerequisites
+
+* You have configured your AWS account
+* You have configured your Red Hat accounts
+* You have installed the ROSA CLI and configured it to the latest version
+
+.Procedure
+. Create an AWS VPC using the default CloudFormations template by running the following command:
++
+[source,terminal]
+----
+$ rosa create network
+----
+
+. Optional: If you want to modify a parameter, you can specify the parameter using optional argument flags such as `--param Param1=Value1` and `--param Param2=Value2`. For example, if you wanted to modify the region, name, availability zone (AZ) count, and VPC's CIDR parameters, you could run:
++
+[source,terminal]
+----
+$ rosa create network --param Region=us-west-2 --param Name=quickstart-stack --param AvailabilityZoneCount=1 --param VpcCidr=10.0.0.0/16
+----
+
+. The full list of parameters is available in the default template.
++
+.Example template
++
+[source,yaml]
+----
+Parameters:
+  AvailabilityZoneCount:
+    Type: Number
+    Description: "Number of Availability Zones to use"
+    Default: 1
+    MinValue: 1
+    MaxValue: 3
+  Region:
+    Type: String
+    Description: "AWS Region"
+    Default: "us-west-2"
+  Name:
+    Type: String
+    Description: "Name prefix for resources"
+  VpcCidr:
+    Type: String
+    Description: CIDR block for the VPC
+    Default: '10.0.0.0/16'
+----
++
+The command takes about 5 minutes to run and provides regular status updates from AWS as resources are created. If there is an issue with CloudFormation, a rollback is attempted. For all other errors are encountered, please follow the error message instructions or contact AWS support.
+
+. When completed, you receive a summary of the created resources:
++
+[source,terminal]
+----
+INFO[0140] Resources created in stack:                  
+INFO[0140] Resource: AttachGateway, Type: AWS::EC2::VPCGatewayAttachment, ID: <gateway-id> 
+INFO[0140] Resource: EC2VPCEndpoint, Type: AWS::EC2::VPCEndpoint, ID: <vpce-id> 
+INFO[0140] Resource: EcrApiVPCEndpoint, Type: AWS::EC2::VPCEndpoint, ID: <vpce-id>
+INFO[0140] Resource: EcrDkrVPCEndpoint, Type: AWS::EC2::VPCEndpoint, ID: <vpce-id> 
+INFO[0140] Resource: ElasticIP1, Type: AWS::EC2::EIP, ID: <IP>
+INFO[0140] Resource: ElasticIP2, Type: AWS::EC2::EIP, ID: <IP> 
+INFO[0140] Resource: InternetGateway, Type: AWS::EC2::InternetGateway, ID: igw-016e1a71b9812464e 
+INFO[0140] Resource: KMSVPCEndpoint, Type: AWS::EC2::VPCEndpoint, ID: <vpce-id> 
+INFO[0140] Resource: NATGateway1, Type: AWS::EC2::NatGateway, ID: <nat-gateway-id> 
+INFO[0140] Resource: PrivateRoute, Type: AWS::EC2::Route, ID: <route-id> 
+INFO[0140] Resource: PrivateRouteTable, Type: AWS::EC2::RouteTable, ID: <route-id> 
+INFO[0140] Resource: PrivateSubnetRouteTableAssociation1, Type: AWS::EC2::SubnetRouteTableAssociation, ID: <route-id>
+INFO[0140] Resource: PublicRoute, Type: AWS::EC2::Route, ID: <route-id> 
+INFO[0140] Resource: PublicRouteTable, Type: AWS::EC2::RouteTable, ID: <route-id> 
+INFO[0140] Resource: PublicSubnetRouteTableAssociation1, Type: AWS::EC2::SubnetRouteTableAssociation, ID: <route-id> 
+INFO[0140] Resource: S3VPCEndpoint, Type: AWS::EC2::VPCEndpoint, ID: <vpce-id> 
+INFO[0140] Resource: STSVPCEndpoint, Type: AWS::EC2::VPCEndpoint, ID: <vpce-id> 
+INFO[0140] Resource: SecurityGroup, Type: AWS::EC2::SecurityGroup, ID: <security-group-id> 
+INFO[0140] Resource: SubnetPrivate1, Type: AWS::EC2::Subnet, ID: <subnet-id-1> \ <1>
+INFO[0140] Resource: SubnetPublic1, Type: AWS::EC2::Subnet, ID: <subnet-id-1> \ <1>
+INFO[0140] Resource: VPC, Type: AWS::EC2::VPC, ID: <vpc-id>
+INFO[0140] Stack rosa-network-stack-5555 created \ <2>
+----
+<1> These two subnet IDs are used to create your cluster when using the `rosa create cluster` command.
+<2> The network stack name is used to delete the resource later.
++
+[NOTE]
+====
+Optional: You can add the created network stack to your compute security IDs by selecting the network stack when prompted as follows:
+[source,terminal]
+----
+? Additional 'Compute' Security Group IDs (optional):  [Use arrows to move, space to select, <right> to all, <left> to none, type to filter, ? for more help]
+> [ ]  sg-<security-group-id> ('rosa-network-stack-5555-SecurityGroup-aaa')
+----
+====
+
+. Delete the CloudFormation stack by running the following command:
++
+[source,terminal]
+----
+$ aws cloudformation delete-stack --stack-name [Name] 
+----

@@ -1,0 +1,25 @@
+// Module included in the following assemblies:
+//
+// * rosa_hcp/rosa-hcp-sts-creating-a-cluster-quickly.adoc
+
+:_mod-docs-content-type: PROCEDURE
+[id="rosa-hcp-custom-create-network_{context}"]
+= Configuring and using custom CloudFormation templates
+
+You can use a custom CloudFormation template by specifying a new directory with `--template-dir` and then specifying a template name when you use `rosa create network`. You can also use the AWS CloudFormation command directly when using custom CloudFormation templates.
+
+.Procedure
+
+* Run the following command to use a CloudFormation template stored locally at `/rosa/templates/customtemplatename/cloudformation.yaml`:
++
+[source,terminal]
+----
+$ rosa create network customtemplatename --template-dir='/rosa/templates'
+----
++
+[NOTE]
+====
+The default directory is `/cmd/create/network/templates/rosa/`.
+
+As with any ROSA VPC, the VPC is not managed by ROSA, and ROSA is not aware of its dependency on this VPC. If you manipulate the VPC while a ROSA cluster is running within it, you could introduce risk to the cluster.
+====
