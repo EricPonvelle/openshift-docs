@@ -1,17 +1,17 @@
 // Module included in the following assemblies:
 //
-// * rosa_hcp/rosa-hcp-sts-creating-a-cluster-quickly.adoc
-// * rosa_install_access_delete_clusters/rosa-sts-creating-a-cluster-quickly.adoc
 // * rosa_getting_started/rosa-quickstart-guide-ui.adoc
+// * rosa_hcp/terraform/rosa-hcp-creating-a-cluster-quickly-terraform.adoc
+// * rosa_hcp/rosa-hcp-quickstart-guide.adoc
+// * rosa_hcp/rosa-hcp-sts-creating-a-cluster-quickly.adoc
+// * rosa_install_access_delete_clusters/terraform/rosa-classic-creating-a-cluster-quickly-terraform.adoc
+// * rosa_install_access_delete_clusters/rosa-sts-creating-a-cluster-quickly.adoc
 
 ifeval::["{context}" == "rosa-classic-creating-a-cluster-quickly-terraform"]
 :tf-classic:
 endif::[]
 ifeval::["{context}" == "rosa-hcp-creating-a-cluster-quickly-terraform"]
 :tf-hcp:
-endif::[]
-ifeval::["{context}" == "rosa-hcp-sts-creating-a-cluster-quickly"]
-:hcp-rosa:
 endif::[]
 
 :_mod-docs-content-type: CONCEPT
@@ -48,9 +48,16 @@ ifdef::tf-classic,tf-hcp[]
 * Default IAM role prefix: `rosa-<6-digit-alphanumeric-string>`
 endif::tf-classic,tf-hcp[]
 ifndef::tf-classic,tf-hcp[]
+ifdef::openshift-rosa[]
 * Default IAM role prefix: `ManagedOpenShift`
+endif::openshift-rosa[]
+ifdef::openshift-rosa-hcp[]
+* Default IAM role prefix: `HCP-ROSA`
+endif::openshift-rosa-hcp[]
 endif::tf-classic,tf-hcp[]
+ifndef::openshift-rosa-hcp[]
 * No cluster admin role created
+endif::openshift-rosa-hcp[]
 
 |Cluster settings
 |
@@ -70,29 +77,32 @@ ifdef::openshift-rosa-hcp[]
 * Default AWS region for installations using the ROSA CLI (`rosa`): Defined by your `aws` CLI configuration
 * Default EC2 IMDS endpoints (both v1 and v2) are enabled
 endif::openshift-rosa-hcp[]
-* Availability: Single zone for the data plane
 endif::tf-classic,tf-hcp[]
-ifndef::rosa-hcp,tf-hcp[]
+ifndef::openshift-rosa-hcp,tf-hcp[]
 * EC2 Instance Metadata Service (IMDS) is enabled and allows the use of IMDSv1 or IMDSv2 (token optional)
-endif::rosa-hcp,tf-hcp[]
+endif::openshift-rosa-hcp,tf-hcp[]
+* Availability: Single zone for the data plane
 * Monitoring for user-defined projects: Enabled
-ifndef::openshift-rosa-hcp,hcp-rosa[]
+ifdef::openshift-rosa-hcp[]
+* No cluster admin role created
+endif::openshift-rosa-hcp[]
+ifndef::openshift-rosa-hcp[]
 |Encryption
 |* Cloud storage is encrypted at rest
 * Additional etcd encryption is not enabled
 * The default AWS Key Management Service (KMS) key is used as the encryption key for persistent data
-endif::openshift-rosa-hcp,hcp-rosa[]
+endif::openshift-rosa-hcp[]
 
 ifdef::openshift-rosa,openshift-rosa-hcp,tf-classic[]
 |Control plane node configuration
 |* Control plane node instance type: m5.2xlarge (8 vCPU, 32 GiB RAM)
 * Control plane node count: 3
 endif::openshift-rosa,openshift-rosa-hcp,tf-classic[]
-ifndef::openshift-rosa-hcp,hcp-rosa[]
+ifndef::openshift-rosa-hcp[]
 |Infrastructure node configuration
 |* Infrastructure node instance type: r5.xlarge (4 vCPU, 32 GiB RAM)
 * Infrastructure node count: 2
-endif::openshift-rosa-hcp,hcp-rosa[]
+endif::openshift-rosa-hcp[]
 
 |Compute node machine pool
 |* Compute node instance type: m5.xlarge (4 vCPU 16, GiB RAM)
@@ -174,8 +184,5 @@ ifeval::["{context}" == "rosa-classic-creating-a-cluster-quickly-terraform"]
 endif::[]
 ifeval::["{context}" == "rosa-hcp-creating-a-cluster-quickly-terraform"]
 :!tf-hcp:
-endif::[]
-ifeval::["{context}" == "rosa-hcp-sts-creating-a-cluster-quickly"]
-:!hcp-rosa:
 endif::[]
 
