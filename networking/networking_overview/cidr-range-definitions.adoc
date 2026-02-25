@@ -1,13 +1,12 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="cidr-range-definitions"]
 = CIDR range definitions
-include::_attributes/common-attributes.adoc[]
+include::includes/common-attributes.adoc[]
 ifdef::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
-include::_attributes/attributes-openshift-dedicated.adoc[]
+include::includes/attributes-openshift-dedicated.adoc[]
 endif::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 :context: cidr-range-definitions
 
-toc::[]
 
 [role="_abstract"]
 To ensure stable and accurate network routing in {product-title} clusters that use OVN-Kubernetes, define non-overlapping Classless Inter-Domain Routing (CIDR) subnet ranges. Establishing unique ranges prevents IP address conflicts so that internal traffic reaches its intended destination without interference.
@@ -60,7 +59,7 @@ ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 * xref:../../networking/ovn_kubernetes_network_provider/configure-ovn-kubernetes-subnets.adoc#configure-ovn-kubernetes-subnets[Configuring OVN-Kubernetes internal IP address subnets]
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
-include::modules/machine-cidr-description.adoc[leveloffset=+1]
+include::includes/machine-cidr-description.adoc[leveloffset=+1]
 
 ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 [role="_additional-resources"]
@@ -69,9 +68,9 @@ ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 * xref:../../networking/networking_operators/cluster-network-operator.adoc#nw-operator-cr_cluster-network-operator[Cluster Network Operator configuration]
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
-include::modules/service-cidr-description.adoc[leveloffset=+1]
+include::includes/service-cidr-description.adoc[leveloffset=+1]
 
-include::modules/pod-cidr-description.adoc[leveloffset=+1]
+include::includes/pod-cidr-description.adoc[leveloffset=+1]
 
 ifdef::openshift-enterprise[]
 [role="_additional-resources"]
@@ -80,7 +79,7 @@ ifdef::openshift-enterprise[]
 * xref:../../networking/configuring_network_settings/configuring-cluster-network-range.adoc#configuring-cluster-network-range[Configuring the cluster network range]
 endif::openshift-enterprise[]
 
-include::modules/host-prefix-description.adoc[leveloffset=+1]
+include::includes/host-prefix-description.adoc[leveloffset=+1]
 
 // CIDR ranges for HCP
 ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]

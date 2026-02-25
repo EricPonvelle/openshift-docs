@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>Registry</title>
+<date>2026-02-25</date>
+<title>Registry</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="registry-overview">
+<title>OpenShift image registry overview</title>
+<simpara role="_abstract">OpenShift Container Platform can build images from your source code, deploy them, and manage their lifecycle. OpenShift Container Platform provides an internal, integrated container image registry that can be deployed in your OpenShift Container Platform environment to locally manage images. The overview section includes OpenShift image registry reference information and links for registries commonly used with OpenShift Container Platform.</simpara>
+<section xml:id="openshift-registry-common-terms_registry-overview">
+<title>Glossary of common terms for OpenShift image registry</title>
+<simpara role="_abstract">This glossary defines the common terms that are used in the registry content.</simpara>
+<variablelist>
+<varlistentry>
+<term>container</term>
+<listitem>
+<simpara>Lightweight and executable images that consist of software and all its dependencies. Because containers virtualize the operating system, you can run containers in a data center, a public or private cloud, or your local host.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>image repository</term>
+<listitem>
+<simpara>An image repository is a collection of related container images and tags identifying images.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>mirror registry</term>
+<listitem>
+<simpara>The mirror registry is a registry that holds the mirror of OpenShift Container Platform images.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>namespace</term>
+<listitem>
+<simpara>A namespace isolates groups of resources within a single cluster.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>pod</term>
+<listitem>
+<simpara>The pod is the smallest logical unit in Kubernetes. A pod consists of one or more containers to run in a compute node.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>private registry</term>
+<listitem>
+<simpara>A registry is a server that implements the container image registry API. A private registry is a registry that requires authentication so that users can access the content of the registry.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>public registry</term>
+<listitem>
+<simpara>A registry is a server that implements the container image registry API. A public registry is a registry that serves its content publicly.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Quay.io</term>
+<listitem>
+<simpara>A public Red&#160;Hat Quay Container Registry instance provided and maintained by Red Hat, which serves most of the container images and Operators to OpenShift Container Platform clusters.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>OpenShift image registry</term>
+<listitem>
+<simpara>OpenShift image registry is the registry provided by OpenShift Container Platform to manage images.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>registry authentication</term>
+<listitem>
+<simpara>To push and pull images to and from private image repositories, the registry needs to authenticate its users with credentials.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>route</term>
+<listitem>
+<simpara>Exposes a service to allow for network access to pods from users and applications outside the OpenShift Container Platform instance.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>scale down</term>
+<listitem>
+<simpara>To decrease the number of replicas.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>scale up</term>
+<listitem>
+<simpara>To increase the number of replicas.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>service</term>
+<listitem>
+<simpara>A service exposes a running application on a set of pods.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section xml:id="registry-integrated-openshift-registry_registry-overview">
+<title>Integrated OpenShift image registry</title>
+<simpara role="_abstract">OpenShift Container Platform provides a built-in container image registry that runs as a standard workload on the cluster. The registry is configured and managed by an infrastructure Operator. The registry provides an out-of-the-box solution that runs on top of existing cluster infrastructure, so that you can manage the images that run workloads.</simpara>
+<simpara>You can scale the registry up or down like any other cluster workload and the registry does not require specific infrastructure provisioning. The registry also integrates into the cluster user authentication and authorization system, which means that defining user permissions on image resources controls access to create and retrieve images.</simpara>
+<simpara>The registry is typically used as a publication target for images built on the cluster and as a source of images for workloads running on the cluster. When you push a new image to the registry, a notification gets sent to the cluster of the new image so that other components can react to and consume the updated image.</simpara>
+<simpara>Image data is stored in two locations. The actual image data is stored in a configurable storage location, such as cloud storage or a filesystem volume. The image metadata, which is exposed by the standard cluster APIs and is used to perform access control, is stored as standard API resources, specifically images and image streams.</simpara>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara><link linkend="configuring-registry-operator">Image Registry Operator in OpenShift Container Platform</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="pruning-images_registry-overview">
+<title>Automatically pruning images</title>
+<simpara role="_abstract">Images from the OpenShift image registry that are no longer required by the system because of age, status, or exceed limits being automatically pruned. As a cluster administrator, can configure or suspend the pruning Custom Resource (CR).</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have access to an OpenShift Container Platform cluster using an account with <literal>dedicated-admin</literal> permissions.</simpara>
+</listitem>
+<listitem>
+<simpara>Install the <literal>oc</literal> CLI.</simpara>
+</listitem>
+</itemizedlist>
+<important>
+<simpara>The behavior of the Image Registry Operator for managing the pruner is independent to the <literal>managementState</literal> specified on the <literal>ClusterOperator</literal> object of the Image Registry Operator. If the Image Registry Operator is not in the <literal>Managed</literal> state, the image pruner can still be configured and managed by the Pruning Custom Resource.</simpara>
+<simpara>However, the <literal>managementState</literal> of the Image Registry Operator alters the behavior of the deployed image pruner job:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>Managed</literal>: the <literal>--prune-registry</literal> flag for the image pruner is set to <literal>true</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>Removed</literal>: the <literal>--prune-registry</literal> flag for the image pruner is set to <literal>false</literal>, meaning it only prunes image metadata in etcd.</simpara>
+</listitem>
+</itemizedlist>
+</important>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>Verify that the object named <literal>imagepruners.imageregistry.operator.openshift.io/cluster</literal> contains the following <literal>spec</literal> and <literal>status</literal> fields:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">spec:
+  schedule: 0 0 * * *
+  suspend: false
+  keepTagRevisions: 3
+  keepYoungerThanDuration: 60m
+  keepYoungerThan: 3600000000000
+  resources: {}
+  affinity: {}
+  nodeSelector: {}
+  tolerations: []
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+status:
+  observedGeneration: 2
+  conditions:
+  - type: Available
+    status: "True"
+    lastTransitionTime: 2019-10-09T03:13:45
+    reason: Ready
+    message: "Periodic image pruner has been created."
+  - type: Scheduled
+    status: "True"
+    lastTransitionTime: 2019-10-09T03:13:45
+    reason: Scheduled
+    message: "Image pruner job has been scheduled."
+  - type: Failed
+    staus: "False"
+    lastTransitionTime: 2019-10-09T03:13:45
+    reason: Succeeded
+    message: "Most recent image pruning job succeeded."</programlisting>
+</listitem>
+<listitem>
+<simpara><literal>schedule</literal>: <literal>CronJob</literal> formatted schedule. This is an optional field, default is daily at midnight.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>suspend</literal>: If set to <literal>true</literal>, the <literal>CronJob</literal> running pruning is suspended. This is an optional field, default is <literal>false</literal>. The initial value on new clusters is <literal>false</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>keepTagRevisions</literal>: The number of revisions per tag to keep. This is an optional field, default is <literal>3</literal>. The initial value is <literal>3</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>keepYoungerThanDuration</literal>: Retain images younger than this duration. This is an optional field. If a value is not specified, either <literal>keepYoungerThan</literal> or the default value <literal>60m</literal> (60 minutes) is used.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>keepYoungerThan</literal>: Deprecated. The same as <literal>keepYoungerThanDuration</literal>, but the duration is specified as an integer in nanoseconds. This is an optional field. When <literal>keepYoungerThanDuration</literal> is set, this field is ignored.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>resources</literal>: Standard pod resource requests and limits. This is an optional field.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>affinity</literal>: Standard pod affinity. This is an optional field.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>nodeSelector</literal>: Standard pod node selector. This is an optional field.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>tolerations</literal>: Standard pod tolerations. This is an optional field.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>successfulJobsHistoryLimit</literal>: The maximum number of successful jobs to retain. Must be greater than or equal to <literal>1</literal> to ensure metrics are reported. This is an optional field, default is <literal>3</literal>. The initial value is <literal>3</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>failedJobsHistoryLimit</literal>: The maximum number of failed jobs to retain. Must be greater than or equal <literal>1</literal> to ensure metrics are reported. This is an optional field, default is <literal>3</literal>. The initial value is <literal>3</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>observedGeneration</literal>: The generation observed by the Operator.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>conditions</literal>: The standard condition objects with the following types:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>Available</literal>: Indicates if the pruning job has been created. Reasons can be <literal>Ready</literal> or <literal>Error</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>Scheduled</literal>: Indicates if the next pruning job has been scheduled. Reasons can be <literal>Scheduled</literal>, <literal>Suspended</literal>, or <literal>Error</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>Failed</literal>: Indicates if the most recent pruning job failed.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="registry-third-party-registries_registry-overview">
+<title>Creating containers by using images from third-party registries</title>
+<simpara role="_abstract">Some container image registries require access authorization. Podman is an open source tool for managing containers and container images and interacting with image registries. You can use Podman to authenticate your credentials, pull the registry image, and store local images in a local file system. The procedure provides a generic example of authenticating the registry with Podman.</simpara>
+<simpara>OpenShift Container Platform can communicate with registries to access private image repositories by using credentials supplied by the user. This allows OpenShift Container Platform to push and pull images to and from private repositories.</simpara>
+<simpara>OpenShift Container Platform can create containers by using images from third-party registries, but these registries unlikely offer the same image notification support as the integrated OpenShift image registry.In this situation, OpenShift Container Platform fetches tags from the remote registry upon image stream creation. To refresh the fetched tags, run <literal>oc import-image &lt;stream&gt;</literal>. When new images are detected, the previously described build and deployment reactions occur.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Use the <link xlink:href="https://catalog.redhat.com/software/containers/explore">Red Hat Ecosystem Catalog</link> to search for specific container images from the Red Hat Repository and select the required image.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Get this image</emphasis> to find the command for your container image.</simpara>
+</listitem>
+<listitem>
+<simpara>Log in by running the following command and entering your username and password to authenticate. Example output is shown for demonstrative purposes.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ podman login registry.redhat.io</programlisting>
+<programlisting language="terminal" linenumbering="unnumbered"> Username:&lt;your_registry_account_username&gt;
+ Password:&lt;your_registry_account_password&gt;</programlisting>
+</listitem>
+<listitem>
+<simpara>Download the image and save it locally by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ podman pull registry.redhat.io/&lt;repository_name&gt;</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="registry-quay-overview_registry-overview">
+<title>Red&#160;Hat Quay registries</title>
+<simpara role="_abstract">If you need an enterprise-quality container image registry, Red&#160;Hat Quay is available both as a hosted service and as software that you can install in your own data center or cloud environment. Advanced features in Red&#160;Hat Quay include geo-replication, image scanning, and the ability to roll back images.</simpara>
+<simpara>Visit the <link xlink:href="https://quay.io">Quay.io</link> site to set up your own hosted Quay registry account. After
+that, follow the Quay Tutorial to log in to the Quay registry and start managing your images.</simpara>
+<simpara>You can access your Red&#160;Hat Quay registry from OpenShift Container Platform, similar to any remote container image registry.</simpara>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/">Red&#160;Hat Quay product documentation</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="registry-authentication-enabled-registry-overview_registry-overview">
+<title>Authentication enabled Red Hat registry</title>
+<simpara role="_abstract">All container images available through the Container images section of the Red Hat Ecosystem Catalog are hosted on an image registry, <literal>registry.redhat.io</literal>. The registry, <literal>registry.redhat.io</literal>, requires authentication for access to images and hosted content on OpenShift Container Platform.</simpara>
+<note>
+<simpara>OpenShift Container Platform pulls images from <literal>registry.redhat.io</literal>, so you must configure your cluster to use it.</simpara>
+</note>
+<simpara>The new registry uses standard OAuth mechanisms for authentication, with the following methods:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Authentication token.</emphasis>  Tokens, which are generated by administrators, are service accounts that give systems the ability to authenticate against the container image registry. Service accounts are not affected by changes in user accounts, so the token authentication method is reliable and resilient. This is the only supported authentication option for production clusters.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Web username and password.</emphasis> This is the standard set of credentials you use to log in to resources such as <literal>access.redhat.com</literal>. While you could use this authentication method with OpenShift Container Platform, Red Hat does not support the method for production deployments. Restrict this authentication method to standalone projects outside OpenShift Container Platform.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>You can use <literal>podman login</literal> with your credentials, either username and password or authentication token, to access content on the new registry.</simpara>
+<simpara>All image streams point to the new registry, which uses the installation pull secret to authenticate.</simpara>
+<simpara>You must place your credentials in either of the following places:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong"><literal>openshift</literal> namespace</emphasis>. Your credentials must exist in the <literal>openshift</literal> namespace so that the image streams in the <literal>openshift</literal> namespace can import.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Your host</emphasis>. Your credentials must exist on your host because Kubernetes uses the credentials from your host when it goes to pull images.</simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://access.redhat.com/terms-based-registry/">Registry service accounts</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="configuring-registry-operator">
+<title>Image Registry Operator in OpenShift Container Platform</title>
+<section xml:id="image-registry-on-cloud" role="_abstract">
+<title>Image Registry on OpenShift Container Platform</title>
+<simpara>The Image Registry Operator installs a single instance of the OpenShift image registry and manages all registry configuration, including setting up registry storage.</simpara>
+<simpara>After the control plane deploys in the management cluster, the Operator creates a default <literal>configs.imageregistry.operator.openshift.io</literal> custom resource (CR) instance based on configuration detected in the cluster.</simpara>
+<simpara>If insufficient information is available to define a complete <literal>configs.imageregistry.operator.openshift.io</literal> CR, the incomplete resource is defined and the Operator updates the resource status with information about what is missing.</simpara>
+</section>
+</chapter>
+<chapter xml:id="accessing-the-registry">
+<title>Accessing the registry</title>
+<simpara role="_abstract">In OpenShift Container Platform, Red Hat Site Reliability Engineering (SRE) manages the registry for you. However, you can check the status of the registry pods and view the registry logs.</simpara>
+<section xml:id="checking-the-status-of-registry-pods_accessing-the-registry">
+<title>Checking the status of the registry pods</title>
+<simpara role="_abstract">As an administrator with the <literal>dedicated-admin</literal> role,
+you can list the image registry pods running in the <literal>openshift-image-registry</literal> project and check their status.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have access to the cluster as a user with the <literal>dedicated-admin</literal> role.</simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>List the pods in the <literal>openshift-image-registry</literal> project and view their status. Example output provided for demonstrative purposes.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc get pods -n openshift-image-registry</programlisting>
+<programlisting language="terminal" linenumbering="unnumbered">NAME READY STATUS RESTARTS AGE
+image-registry-79fb4469f6-llrln 1/1 Running 0 77m
+node-ca-hjksc 1/1 Running 0 73m
+node-ca-tftj6 1/1 Running 0 77m
+node-ca-wb6ht 1/1 Running 0 77m
+node-ca-zvt9q 1/1 Running 0 74m</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="registry-viewing-logs_accessing-the-registry">
+<title>Viewing registry logs</title>
+<simpara role="_abstract">You can view the logs for the registry by using the <literal>oc logs</literal> command.</simpara>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>Use the <literal>oc logs</literal> command with deployments to view the logs for the container image registry. Example output provided for demonstrative purposes.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc logs deployments/image-registry -n openshift-image-registry</programlisting>
+<programlisting language="terminal" linenumbering="unnumbered">2015-05-01T19:48:36.300593110Z time="2015-05-01T19:48:36Z" level=info msg="version=v2.0.0+unknown"
+2015-05-01T19:48:36.303294724Z time="2015-05-01T19:48:36Z" level=info msg="redis not configured" instance.id=9ed6c43d-23ee-453f-9a4b-031fea646002
+2015-05-01T19:48:36.303422845Z time="2015-05-01T19:48:36Z" level=info msg="using inmemory layerinfo cache" instance.id=9ed6c43d-23ee-453f-9a4b-031fea646002
+2015-05-01T19:48:36.303433991Z time="2015-05-01T19:48:36Z" level=info msg="Using OpenShift Auth handler"
+2015-05-01T19:48:36.303439084Z time="2015-05-01T19:48:36Z" level=info msg="listening on :5000" instance.id=9ed6c43d-23ee-453f-9a4b-031fea646002</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+</book>

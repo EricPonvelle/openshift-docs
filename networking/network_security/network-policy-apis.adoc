@@ -1,10 +1,9 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="network-policy-apis"]
 = Understanding network policy APIs
-include::_attributes/common-attributes.adoc[]
+include::includes/common-attributes.adoc[]
 :context: network-policy-apis
 
-toc::[]
 
 Network policy is defined using both cluster-scoped and namespace-scoped network policy APIs. By defining network policy across these different levels, you can create sophisticated network security configurations for your clusters, including full multi-tenant isolation.
 
@@ -45,4 +44,4 @@ image::615_OpenShift_OVN-K_ACLs_0324.png[OVN-Kubernetes Access Control List (ACL
 // Tier 1 evaluates `AdminNetworkPolicy` (ANP) objects. Tier 2 evaluates `NetworkPolicy` objects. Tier 3 evaluates `BaselineAdminNetworkPolicy` (BANP) objects.
 // ANPs are evaluated first. When the match is an ANP `allow` or `deny` rule, any existing `NetworkPolicy` and `BaselineAdminNetworkPolicy` (BANP) objects in the cluster are skipped from evaluation. When the match is an ANP `pass` rule, then evaluation moves from tier 1 of the ACL to tier 2 where the `NetworkPolicy` policy is evaluated. If no `NetworkPolicy` matches the traffic then evaluation moves from tier 2 ACLs to tier 3 ACLs where BANP is evaluated.
 
-include::modules/nw-anp-np-reference.adoc[leveloffset=+1]
+include::includes/nw-anp-np-reference.adoc[leveloffset=+1]

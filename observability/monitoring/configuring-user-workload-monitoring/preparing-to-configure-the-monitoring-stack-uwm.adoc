@@ -1,10 +1,9 @@
 :_mod-docs-content-type: ASSEMBLY
-include::_attributes/common-attributes.adoc[]
+include::../includes/common-attributes.adoc[]
 [id="preparing-to-configure-the-monitoring-stack-uwm"]
 = Preparing to configure the user workload monitoring stack
 :context: preparing-to-configure-the-monitoring-stack-uwm
 
-toc::[]
 
 This section explains which user-defined monitoring components can be configured
 ifndef::openshift-dedicated,openshift-rosa[]
@@ -15,7 +14,7 @@ and how to prepare for configuring the user workload monitoring stack.
 [IMPORTANT]
 ====
 * Not all configuration parameters for the monitoring stack are exposed.
-Only the parameters and fields listed in the xref:../../../observability/monitoring/config-map-reference-for-the-cluster-monitoring-operator.adoc#cluster-monitoring-operator-configuration-reference[Config map reference for the {cmo-full}] are supported for configuration.
+Only the parameters and fields listed in the xref:cluster-monitoring-operator-configuration-reference[Config map reference for the {cmo-full}] are supported for configuration.
 
 ifndef::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 * The monitoring stack imposes additional resource requirements. Consult the computing resources recommendations in xref:../../../scalability_and_performance/recommended-performance-scale-practices/recommended-infrastructure-practices.adoc#scaling-cluster-monitoring-operator_recommended-infrastructure-practices[Scaling the {cmo-full}] and verify that you have sufficient resources.
@@ -23,7 +22,7 @@ endif::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 ====
 
 // Configurable monitoring components
-include::modules/monitoring-configurable-monitoring-components.adoc[leveloffset=+1,tags=**;!CPM;UWM]
+include::../includes/monitoring-configurable-monitoring-components.adoc[leveloffset=+1,tags=**;!CPM;UWM]
 
 ifndef::openshift-dedicated,openshift-rosa[]
 // Enabling monitoring for user-defined projects
@@ -45,26 +44,26 @@ include::modules/monitoring-granting-users-permission-to-configure-monitoring-fo
 endif::openshift-dedicated,openshift-rosa[]
 
 // Enabling alert routing for user-defined projects
-include::modules/monitoring-enabling-alert-routing-for-user-defined-projects.adoc[leveloffset=+1]
+include::../includes/monitoring-enabling-alert-routing-for-user-defined-projects.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
 .Additional resources
 
-* xref:../../../observability/monitoring/about-ocp-monitoring/key-concepts.adoc#understanding-alert-routing-for-user-defined-projects_key-concepts[Understanding alert routing for user-defined projects]
+* xref:understanding-alert-routing-for-user-defined-projects_key-concepts[Understanding alert routing for user-defined projects]
 
 // Enabling the platform Alertmanager instance for user-defined alert routing
 ifndef::openshift-dedicated,openshift-rosa[]
 include::modules/monitoring-enabling-the-platform-alertmanager-instance-for-user-defined-alert-routing.adoc[leveloffset=+2]
 endif::openshift-dedicated,openshift-rosa[]
 
-include::modules/monitoring-enabling-a-separate-alertmanager-instance-for-user-defined-alert-routing.adoc[leveloffset=+2]
+include::../includes/monitoring-enabling-a-separate-alertmanager-instance-for-user-defined-alert-routing.adoc[leveloffset=+2]
 
-include::modules/monitoring-granting-users-permission-to-configure-alert-routing-for-user-defined-projects.adoc[leveloffset=+2]
+include::../includes/monitoring-granting-users-permission-to-configure-alert-routing-for-user-defined-projects.adoc[leveloffset=+2]
 
 [role="_additional-resources"]
 .Additional resources
 
-* xref:../../../observability/monitoring/configuring-user-workload-monitoring/configuring-alerts-and-notifications-uwm.adoc#configuring-alert-notifications_configuring-alerts-and-notifications-uwm[Configuring alert notifications]
+* xref:configuring-alert-notifications_configuring-alerts-and-notifications-uwm[Configuring alert notifications]
 
 ifndef::openshift-dedicated,openshift-rosa[]
 // Granting users permissions for monitoring for user-defined projects

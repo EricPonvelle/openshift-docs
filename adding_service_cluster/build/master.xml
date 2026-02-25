@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>Add-on services</title>
+<date>2026-02-25</date>
+<title>Add-on services</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="adding-service">
+<title>Adding services to a cluster using Red Hat OpenShift Cluster Manager console</title>
+<simpara>You can add, access, and remove add-on services for your OpenShift Container Platform
+cluster by using Red Hat OpenShift Cluster Manager.</simpara>
+<section xml:id="adding-service-existing_adding-service">
+<title>Adding an add-on service to a cluster</title>
+<simpara>You can add an add-on service to an existing OpenShift Container Platform
+cluster by using Red Hat OpenShift Cluster Manager.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have created and provisioned a cluster for OpenShift Container Platform.</simpara>
+</listitem>
+<listitem>
+<simpara>Your cluster meets all of the prerequisites for the service that you want to add on to your cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>For paid add-on services, note the following considerations:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>If the organization has sufficient quota, and if the service is compatible with the cluster, the service appears in OpenShift Cluster Manager.</simpara>
+</listitem>
+<listitem>
+<simpara>If the organization has never had quota, or if the cluster is not compatible, then the service does not display.</simpara>
+</listitem>
+<listitem>
+<simpara>If the organization had quota in the past, but the quota is currently <literal>0</literal>, the service is still visible but disabled in OpenShift Cluster Manager until you get more quota.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>To add a service to a cluster, you must be the cluster owner.</simpara>
+</note>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Navigate to the <emphasis role="strong">Cluster List</emphasis> page in  <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the cluster you want to add a service to.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Add-ons</emphasis> tab.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the service option you want to add, click <emphasis role="strong">Install</emphasis>. An installing icon appears, indicating that the service has begun installing.</simpara>
+<simpara>A green check mark appears in the service option when the installation is complete. You might have to refresh your browser to see the installation status.</simpara>
+</listitem>
+<listitem>
+<simpara>When the service is <emphasis role="strong">Installed</emphasis>, click <emphasis role="strong">View in console</emphasis> to access the service.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="access-service_adding-service">
+<title>Accessing installed add-on services on your cluster</title>
+<simpara>After you successfully install an add-on service on your OpenShift Container Platform
+cluster, you can access the service by using the OpenShift web console.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have successfully installed a service on your OpenShift Container Platform cluster.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Navigate to the <emphasis role="strong">Cluster List</emphasis> page in <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the cluster with an installed service you want to access.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the <emphasis role="strong">Add-ons</emphasis> tab, and locate the installed service that you want to access.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">View on console</emphasis> from the service option to open the OpenShift web console.</simpara>
+</listitem>
+<listitem>
+<simpara>Enter your credentials to log in to the OpenShift web console.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Red Hat Applications</emphasis> menu by clicking the three-by-three matrix icon in the upper right corner of the main screen.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the service you want to open from the drop-down menu. A new browser tab opens and you are required to authenticate through Red Hat Single Sign-On.</simpara>
+</listitem>
+</orderedlist>
+<simpara>You have now accessed your service and can begin using it.</simpara>
+</section>
+<section xml:id="deleting-service_adding-service">
+<title>Deleting an add-on service using Red Hat OpenShift Cluster Manager</title>
+<simpara>You can delete an add-on service from your OpenShift Container Platform
+cluster by using Red Hat OpenShift Cluster Manager.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Navigate to the <emphasis role="strong">Cluster List</emphasis> page in <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the cluster with the installed service that you want to delete.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the <emphasis role="strong">Add-ons</emphasis> tab, and locate the installed service that you want to delete.</simpara>
+</listitem>
+<listitem>
+<simpara>From the installed service option, click the menu and select <emphasis role="strong">Uninstall add-on</emphasis> from the drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>You must type the name of the service that you want to delete in the confirmation message that appears.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Uninstall</emphasis>. You are returned to the <emphasis role="strong">Add-ons</emphasis> tab and an uninstalling state icon is present on the service option you deleted.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</chapter>
+<chapter xml:id="available-services">
+<title>Add-on services available for OpenShift Container Platform</title>
+<simpara>You can add services to your existing OpenShift Container Platform cluster using the <link linkend="adding-service">Red Hat OpenShift Cluster Manager console</link>.</simpara>
+<section xml:id="osd-rhoam_available-services">
+<title>Red&#160;Hat OpenShift API Management</title>
+<simpara>The Red&#160;Hat OpenShift API Management (OpenShift API Management) service is available as an add-on to your OpenShift Container Platform on AWS cluster. OpenShift API Management is a managed API traffic control and API program management solution. It is based on the 3scale API Management platform and implements single sign-on for Red&#160;Hat solutions to secure and protect your APIs.</simpara>
+<simpara>This OpenShift API Management entitlement provides:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Availability to any cluster that meets the resource requirements listed in the OpenShift Container Platform service definition.</simpara>
+</listitem>
+<listitem>
+<simpara>Full production-level support.</simpara>
+</listitem>
+<listitem>
+<simpara>No time limits on usage.</simpara>
+</listitem>
+<listitem>
+<simpara>100K quota, or calls per day. Customers have the option to pay for an OpenShift API Management subscription with higher quotas.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+</book>

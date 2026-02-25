@@ -1,11 +1,10 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="persistent-storage-csi-gcp-pd"]
 = GCP PD CSI Driver Operator
-include::_attributes/common-attributes.adoc[]
-include::_attributes/attributes-openshift-dedicated.adoc[]
+include::../includes/common-attributes.adoc[]
+include::../includes/attributes-openshift-dedicated.adoc[]
 :context: persistent-storage-csi-gcp-pd
 
-toc::[]
 
 == Overview
 
@@ -13,11 +12,11 @@ toc::[]
 
 :FeatureName: GCP PD CSI Driver Operator
 
-Familiarity with xref:../../storage/understanding-persistent-storage.adoc#understanding-persistent-storage[persistent storage] and xref:../../storage/container_storage_interface/persistent-storage-csi.adoc#persistent-storage-csi[configuring CSI volumes] is recommended when working with a Container Storage Interface (CSI) Operator and driver.
+Familiarity with xref:understanding-persistent-storage[persistent storage] and xref:persistent-storage-csi[configuring CSI volumes] is recommended when working with a Container Storage Interface (CSI) Operator and driver.
 
 To create CSI-provisioned persistent volumes (PVs) that mount to GCP PD storage assets, {product-title} installs the GCP PD CSI Driver Operator and the GCP PD CSI driver by default in the `openshift-cluster-csi-drivers` namespace.
 
-* *GCP PD CSI Driver Operator*: By default, the Operator provides a storage class that you can use to create PVCs. You can disable this default storage class if desired (see xref:../../storage/container_storage_interface/persistent-storage-csi-sc-manage.adoc#persistent-storage-csi-sc-manage[Managing the default storage class]). You also have the option to create the GCP PD storage class as described in xref:../../storage/persistent_storage/persistent-storage-gce.adoc#persistent-storage-using-gce[Persistent storage using GCE Persistent Disk].
+* *GCP PD CSI Driver Operator*: By default, the Operator provides a storage class that you can use to create PVCs. You can disable this default storage class if desired (see xref:persistent-storage-csi-sc-manage[Managing the default storage class]). You also have the option to create the GCP PD storage class as described in xref:persistent-storage-using-gce[Persistent storage using GCE Persistent Disk].
 
 * *GCP PD driver*: The driver enables you to create and mount GCP PD PVs.
 //
@@ -31,22 +30,22 @@ ifndef::openshift-dedicated[]
 ====
 endif::openshift-dedicated[]
 
-include::modules/persistent-storage-csi-about.adoc[leveloffset=+1]
+include::../includes/persistent-storage-csi-about.adoc[leveloffset=+1]
 
-include::modules/persistent-storage-csi-gcp-pd-reduce-permissions.adoc[leveloffset=+1]
+include::../includes/persistent-storage-csi-gcp-pd-reduce-permissions.adoc[leveloffset=+1]
 
-include::modules/persistent-storage-csi-gcp-pd-storage-class-ref.adoc[leveloffset=+1]
+include::../includes/persistent-storage-csi-gcp-pd-storage-class-ref.adoc[leveloffset=+1]
 
 [id="c3-instance-type-for-bare-metal-and-n4-machine-series"]
 == C3 instance type for bare metal and N4 machine series
 
-include::modules/persistent-storage-csi-gcp-hyperdisk-limitations.adoc[leveloffset=+2]
+include::../includes/persistent-storage-csi-gcp-hyperdisk-limitations.adoc[leveloffset=+2]
 
-include::modules/persistent-storage-csi-gcp-hyperdisk-storage-pools-overview.adoc[leveloffset=+2]
+include::../includes/persistent-storage-csi-gcp-hyperdisk-storage-pools-overview.adoc[leveloffset=+2]
 
-To set up storage pools, see xref:../../storage/container_storage_interface/persistent-storage-csi-gcp-pd.adoc#persistent-storage-csi-gcp-hyperdisk-storage-pools-procedure_persistent-storage-csi-gcp-pd[Setting up hyperdisk-balanced disks].
+To set up storage pools, see xref:persistent-storage-csi-gcp-hyperdisk-storage-pools-procedure_persistent-storage-csi-gcp-pd[Setting up hyperdisk-balanced disks].
 
-include::modules/persistent-storage-csi-gcp-hyperdisk-storage-pools-procedure.adoc[leveloffset=+2]
+include::../includes/persistent-storage-csi-gcp-hyperdisk-storage-pools-procedure.adoc[leveloffset=+2]
 
 ifndef::openshift-dedicated[]
 [id="resources-for-gcp-c3-n4-instances"]
@@ -55,7 +54,7 @@ ifndef::openshift-dedicated[]
 * xref:../../installing/installing_gcp/installing-gcp-customizations.adoc#installing-gcp-customizations[Installing a cluster on GCP with customizations]
 endif::openshift-dedicated[]
 
-include::modules/persistent-storage-csi-gcp-pd-encrypted-pv.adoc[leveloffset=+1]
+include::../includes/persistent-storage-csi-gcp-pd-encrypted-pv.adoc[leveloffset=+1]
 
 ifndef::openshift-rosa,openshift-dedicated[]
 include::modules/persistent-storage-byok.adoc[leveloffset=+1]
@@ -66,5 +65,5 @@ endif::openshift-rosa,openshift-dedicated[]
 [id="resources-for-gcp"]
 [role="_additional-resources"]
 == Additional resources
-* xref:../../storage/persistent_storage/persistent-storage-gce.adoc#persistent-storage-using-gce[Persistent storage using GCE Persistent Disk]
-* xref:../../storage/container_storage_interface/persistent-storage-csi.adoc#persistent-storage-csi[Configuring CSI volumes]
+* xref:persistent-storage-using-gce[Persistent storage using GCE Persistent Disk]
+* xref:persistent-storage-csi[Configuring CSI volumes]

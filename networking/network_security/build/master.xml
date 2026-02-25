@@ -1,0 +1,1563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>Network security</title>
+<date>2026-02-25</date>
+<title>Network security</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="network-policy-apis">
+<title>Understanding network policy APIs</title>
+<simpara>Network policy is defined using both cluster-scoped and namespace-scoped network policy APIs. By defining network policy across these different levels, you can create sophisticated network security configurations for your clusters, including full multi-tenant isolation.</simpara>
+<bridgehead xml:id="_network-policies-and-their-scope" renderas="sect2">Network policies and their scope</bridgehead>
+<variablelist>
+<varlistentry>
+<term>Cluster-scoped network policy</term>
+<listitem>
+<simpara>Cluster and network administrators can use the AdminNetworkPolicy to define network policy at the cluster level. The AdminNetworkPolicy feature consists of two APIs: the <literal>AdminNetworkPolicy</literal> API and <literal>BaselineAdminNetworkPolicy</literal> API. These APIs are used to set rules that can be applied to the entire cluster, or delegated to the namespace-scoped <literal>NetworkPolicy</literal>.</simpara>
+<simpara>Policies defined using the <literal>AdminNetworkPolicy</literal> API take precedence over all other policy types when set to "Allow" or "Deny". However, administrators can also use "Pass" to delegate responsibility for a given policy to the namespace-scoped <literal>NetworkPolicy</literal> to allow application developers and namespace tenants to control specific aspects of network security for their projects.</simpara>
+<simpara>Policies defined using the <literal>BaselineAdminNetworkPolicy</literal> API apply only when no other network policy overrides them. When you use the <literal>AdminNetworkPolicy</literal> API to delegate an aspect of network policy to the namespace-scoped <literal>NetworkPolicy</literal>, you should also define a sensible minimum restriction in the <literal>BaselineAdminNetworkPolicy</literal>. This ensures a baseline level of network security at the cluster level in case the <literal>NetworkPolicy</literal> for a namespace does not provide sufficient protection.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Namespace-scoped network policy</term>
+<listitem>
+<simpara>Application developers and namespace tenants can use the <literal>NetworkPolicy</literal> API to define network policy rules for a specific namespace. Rules in the <literal>NetworkPolicy</literal> for a namespace take precedence over cluster-wide rules configured using the BaselineAdminNetworkPolicy API, or for a cluster-wide rule that has been delegated or "passed" from the cluster-wide <literal>AdminNetworkPolicy</literal> API.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<bridgehead xml:id="_how-network-policy-is-evaluated-and-applied" renderas="sect2">How network policy is evaluated and applied</bridgehead>
+<simpara>When a network connection is established, the network provider (default: OVN-Kubernetes) checks the connection details against network policy rules to determine how to handle the connection.</simpara>
+<simpara>OVN-Kubernetes evaluates connections against network policy objects in the following order:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check for matches in the AdminNetworkPolicy tier.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>If a connection matches an <literal>Allow</literal> or <literal>Deny</literal> rule, follow that rule and stop evaluating.</simpara>
+</listitem>
+<listitem>
+<simpara>If a connection matches a <literal>Pass</literal> rule, move to the NetworkPolicy tier.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Check for matches in the NetworkPolicy tier.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>If a connection matches a rule, follow that rule and stop evaluating.</simpara>
+</listitem>
+<listitem>
+<simpara>If no match is found, move to the BaselineAdminNetworkPolicy tier.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Follow a matching rule in the BaselineAdminNetworkPolicy tier.</simpara>
+</listitem>
+</orderedlist>
+<figure xml:id="img-ovn-kubernetes-network-policy-evaluation">
+<title>Evaluation of network policies by OVN-Kubernetes</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/615_OpenShift_OVN-K_ACLs_0324.png"/>
+</imageobject>
+<textobject><phrase>OVN-Kubernetes Access Control List (ACL)</phrase></textobject>
+</mediaobject>
+</figure>
+<section xml:id="nw-anp-differences-networkpolicy_network-policy-apis">
+<title>Key differences between AdminNetworkPolicy and NetworkPolicy custom resources</title>
+<simpara>The following table explains key differences between the cluster scoped <literal>AdminNetworkPolicy</literal> API and the namespace scoped <literal>NetworkPolicy</literal> API.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="33.3333*"/>
+<colspec colname="col_2" colwidth="33.3333*"/>
+<colspec colname="col_3" colwidth="33.3334*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Policy elements</entry>
+<entry align="left" valign="top">AdminNetworkPolicy</entry>
+<entry align="left" valign="top">NetworkPolicy</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Applicable user</simpara></entry>
+<entry align="left" valign="top"><simpara>Cluster administrator or equivalent</simpara></entry>
+<entry align="left" valign="top"><simpara>Namespace owners</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Scope</simpara></entry>
+<entry align="left" valign="top"><simpara>Cluster</simpara></entry>
+<entry align="left" valign="top"><simpara>Namespace</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Drop traffic</simpara></entry>
+<entry align="left" valign="top"><simpara>Supported with an explicit <literal>Deny</literal> action set as a rule.</simpara></entry>
+<entry align="left" valign="top"><simpara>Supported via implicit <literal>Deny</literal> isolation at policy creation time.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Delegate traffic</simpara></entry>
+<entry align="left" valign="top"><simpara>Supported with an <literal>Pass</literal> action set as a rule.</simpara></entry>
+<entry align="left" valign="top"><simpara>Not applicable.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Allow traffic</simpara></entry>
+<entry align="left" valign="top"><simpara>Supported with an explicit <literal>Allow</literal> action set as a rule.</simpara></entry>
+<entry align="left" valign="top"><simpara>The default action for all rules is to allow.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Rule precedence within the policy</simpara></entry>
+<entry align="left" valign="top"><simpara>Depends on the order in which they appear within an ANP. The higher the rule&#8217;s position the higher the precedence.</simpara></entry>
+<entry align="left" valign="top"><simpara>Rules are additive.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Policy precedence</simpara></entry>
+<entry align="left" valign="top"><simpara>Among ANPs the <literal>priority</literal> field sets the order for evaluation. The lower the priority number higher the policy precedence.</simpara></entry>
+<entry align="left" valign="top"><simpara>There is no policy ordering between policies.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Feature precedence</simpara></entry>
+<entry align="left" valign="top"><simpara>Evaluated first via tier 1 ACL and BANP is evaluated last via tier 3 ACL.</simpara></entry>
+<entry align="left" valign="top"><simpara>Enforced after ANP and before BANP, they are evaluated in tier 2 of the ACL.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Matching pod selection</simpara></entry>
+<entry align="left" valign="top"><simpara>Can apply different rules across namespaces.</simpara></entry>
+<entry align="left" valign="top"><simpara>Can apply different rules across pods in single namespace.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Cluster egress traffic</simpara></entry>
+<entry align="left" valign="top"><simpara>Supported via <literal>nodes</literal> and <literal>networks</literal> peers</simpara></entry>
+<entry align="left" valign="top"><simpara>Supported through <literal>ipBlock</literal> field along with accepted CIDR syntax.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Cluster ingress traffic</simpara></entry>
+<entry align="left" valign="top"><simpara>Not supported.</simpara></entry>
+<entry align="left" valign="top"><simpara>Not supported.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Fully qualified domain names (FQDN) peer support</simpara></entry>
+<entry align="left" valign="top"><simpara>Not supported.</simpara></entry>
+<entry align="left" valign="top"><simpara>Not supported.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Namespace selectors</simpara></entry>
+<entry align="left" valign="top"><simpara>Supports advanced selection of Namespaces with the use of <literal>namespaces.matchLabels</literal> field.</simpara></entry>
+<entry align="left" valign="top"><simpara>Supports label based namespace selection with the use of <literal>namespaceSelector</literal> field.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+</chapter>
+<chapter xml:id="_network-policy">
+<title>Network policy</title>
+<section xml:id="about-network-policy">
+<title>About network policy</title>
+<simpara>As a developer, you can define network policies that restrict traffic to pods in your cluster.</simpara>
+<section xml:id="nw-networkpolicy-about_about-network-policy">
+<title>About network policy</title>
+<simpara>By default, all pods in a project are accessible from other pods and network endpoints. To isolate one or more pods in a project, you can create <literal>NetworkPolicy</literal> objects in that project to indicate the allowed incoming connections. Project administrators can create and delete <literal>NetworkPolicy</literal> objects within their own project.</simpara>
+<simpara>If a pod is matched by selectors in one or more <literal>NetworkPolicy</literal> objects, then the pod will accept only connections that are allowed by at least one of those <literal>NetworkPolicy</literal> objects. A pod that is not selected by any <literal>NetworkPolicy</literal> objects is fully accessible.</simpara>
+<simpara>A network policy applies to only the Transmission Control Protocol (TCP), User Datagram Protocol (UDP), Internet Control Message Protocol (ICMP), and Stream Control Transmission Protocol (SCTP) protocols. Other protocols are not affected.</simpara>
+<warning>
+<itemizedlist>
+<listitem>
+<simpara>A network policy does not apply to the host network namespace. Pods with host networking enabled are unaffected by network policy rules. However, pods connecting to the host-networked pods might be affected by the network policy rules.</simpara>
+</listitem>
+<listitem>
+<simpara>Using the <literal>namespaceSelector</literal> field without the <literal>podSelector</literal> field set to <literal>{}</literal> will not include <literal>hostNetwork</literal> pods. You must use the <literal>podSelector</literal> set to <literal>{}</literal> with the <literal>namespaceSelector</literal> field in order to target <literal>hostNetwork</literal> pods when creating network policies.</simpara>
+</listitem>
+<listitem>
+<simpara>Network policies cannot block traffic from localhost or from their resident nodes.</simpara>
+</listitem>
+<listitem>
+<simpara>When creating a network policy, do not apply the <literal>network.openshift.io/policy-group: ingress</literal> label to custom namespace or projects. This label is Operator-managed and reserved for OpenShift Container Platform networking functions. It should not be altered on system-created namespaces.</simpara>
+<simpara>Using this label can result in intermittent network connectivity drops, unintended application of system <literal>NetworkPolicies</literal> resource, or configuration drift as the operator attempts to reconcile the state. For custom traffic grouping, always use unique, user-defined labels as shown in the following procedure.</simpara>
+</listitem>
+</itemizedlist>
+</warning>
+<simpara>The following example <literal>NetworkPolicy</literal> objects demonstrate supporting different scenarios:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Deny all traffic:</simpara>
+<simpara>To make a project deny by default, add a <literal>NetworkPolicy</literal> object that matches all pods but accepts no traffic:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: deny-by-default
+spec:
+  podSelector: {}
+  ingress: []</programlisting>
+</listitem>
+<listitem>
+<simpara>Only allow connections from the OpenShift Container Platform Ingress Controller:</simpara>
+<simpara>To make a project allow only connections from the OpenShift Container Platform Ingress Controller, add the following <literal>NetworkPolicy</literal> object.</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-openshift-ingress
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          policy-group.network.openshift.io/ingress: ""
+  podSelector: {}
+  policyTypes:
+  - Ingress</programlisting>
+</listitem>
+<listitem>
+<simpara>Only accept connections from pods within a project:</simpara>
+<important>
+<simpara>To allow ingress connections from <literal>hostNetwork</literal> pods in the same namespace, you need to apply the <literal>allow-from-hostnetwork</literal> policy together with the <literal>allow-same-namespace</literal> policy.</simpara>
+</important>
+<simpara>To make pods accept connections from other pods in the same project, but reject all other connections from pods in other projects, add the following <literal>NetworkPolicy</literal> object:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-same-namespace
+spec:
+  podSelector: {}
+  ingress:
+  - from:
+    - podSelector: {}</programlisting>
+</listitem>
+<listitem>
+<simpara>Only allow HTTP and HTTPS traffic based on pod labels:</simpara>
+<simpara>To enable only HTTP and HTTPS access to the pods with a specific label (<literal>role=frontend</literal> in following example), add a <literal>NetworkPolicy</literal> object similar to the following:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-http-and-https
+spec:
+  podSelector:
+    matchLabels:
+      role: frontend
+  ingress:
+  - ports:
+    - protocol: TCP
+      port: 80
+    - protocol: TCP
+      port: 443</programlisting>
+</listitem>
+<listitem>
+<simpara>Accept connections by using both namespace and pod selectors:</simpara>
+<simpara>To match network traffic by combining namespace and pod selectors, you can use a <literal>NetworkPolicy</literal> object similar to the following:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-pod-and-namespace-both
+spec:
+  podSelector:
+    matchLabels:
+      name: test-pods
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            project: project_name
+        podSelector:
+          matchLabels:
+            name: test-pods</programlisting>
+</listitem>
+</itemizedlist>
+<simpara><literal>NetworkPolicy</literal> objects are additive, which means you can combine multiple <literal>NetworkPolicy</literal> objects together to satisfy complex network requirements.</simpara>
+<simpara>For example, for the <literal>NetworkPolicy</literal> objects defined in previous samples, you can define both <literal>allow-same-namespace</literal> and <literal>allow-http-and-https</literal> policies within the same project. Thus allowing the pods with the label <literal>role=frontend</literal>, to accept any connection allowed by each policy. That is, connections on any port from pods in the same namespace, and connections on ports <literal>80</literal> and <literal>443</literal> from pods in any namespace.</simpara>
+<section xml:id="nw-networkpolicy-allow-from-router_about-network-policy">
+<title>Using the allow-from-router network policy</title>
+<simpara>Use the following <literal>NetworkPolicy</literal> to allow external traffic regardless of the router configuration:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-router
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          policy-group.network.openshift.io/ingress: ""<co xml:id="CO1-1"/>
+  podSelector: {}
+  policyTypes:
+  - Ingress</programlisting>
+<calloutlist>
+<callout arearefs="CO1-1">
+<para><literal>policy-group.network.openshift.io/ingress:""</literal> label supports OVN-Kubernetes.</para>
+</callout>
+</calloutlist>
+</section>
+<section xml:id="nw-networkpolicy-allow-from-hostnetwork_about-network-policy">
+<title>Using the allow-from-hostnetwork network policy</title>
+<simpara>Add the following <literal>allow-from-hostnetwork</literal> <literal>NetworkPolicy</literal> object to direct traffic from the host network pods.</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-hostnetwork
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          policy-group.network.openshift.io/host-network: ""
+  podSelector: {}
+  policyTypes:
+  - Ingress</programlisting>
+</section>
+</section>
+<section xml:id="nw-networkpolicy-optimize-ovn_about-network-policy">
+<title>Optimizations for network policy with OVN-Kubernetes network plugin</title>
+<simpara role="_abstract">Learn how to optimize OVN-Kubernetes network policies to reduce flow count and ensure external IP traffic is allowed when needed.</simpara>
+<simpara>When designing your network policy, refer to the following guidelines:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>For network policies with the same <literal>spec.podSelector</literal> spec, it is more efficient to use one network policy with multiple <literal>ingress</literal> or <literal>egress</literal> rules, than multiple network policies with subsets of <literal>ingress</literal> or <literal>egress</literal> rules.</simpara>
+</listitem>
+<listitem>
+<simpara>Every <literal>ingress</literal> or <literal>egress</literal> rule based on the <literal>podSelector</literal> or <literal>namespaceSelector</literal> spec generates the number of OVS flows proportional to <literal>number of pods selected by network policy + number of pods selected by ingress or egress rule</literal>. Therefore, it is preferable to use the <literal>podSelector</literal> or <literal>namespaceSelector</literal> spec that can select as many pods as you need in one rule, instead of creating individual rules for every pod.</simpara>
+<simpara>For example, the following policy contains two rules:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-network-policy
+spec:
+  podSelector: {}
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: frontend
+  - from:
+    - podSelector:
+        matchLabels:
+          role: backend</programlisting>
+<simpara>The following policy expresses those same two rules as one:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-network-policy
+spec:
+  podSelector: {}
+  ingress:
+  - from:
+    - podSelector:
+        matchExpressions:
+        - {key: role, operator: In, values: [frontend, backend]}</programlisting>
+<simpara>The same guideline applies to the <literal>spec.podSelector</literal> spec. If you have the same <literal>ingress</literal> or <literal>egress</literal> rules for different network policies, it might be more efficient to create one network policy with a common <literal>spec.podSelector</literal> spec. For example, the following two policies have different rules:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: policy1
+spec:
+  podSelector:
+    matchLabels:
+      role: db
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: frontend
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: policy2
+spec:
+  podSelector:
+    matchLabels:
+      role: client
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: frontend</programlisting>
+<simpara>The following network policy expresses those same two rules as one:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: policy3
+spec:
+  podSelector:
+    matchExpressions:
+    - {key: role, operator: In, values: [db, client]}
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: frontend</programlisting>
+<simpara>You can apply this optimization when only multiple selectors are expressed as one. In cases where selectors are based on different labels, it may not be possible to apply this optimization. In those cases, consider applying some new labels for network policy optimization specifically.</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="nw-networkpolicy-external-ip-ovn_about-network-policy">
+<title>NetworkPolicy CR and external IPs in OVN-Kubernetes</title>
+<simpara>In OVN-Kubernetes, the <literal>NetworkPolicy</literal> custom resource (CR) enforces strict isolation rules. If a service is exposed using an external IP, a network policy can block access from other namespaces unless explicitly configured to allow traffic.</simpara>
+<simpara>To allow access to external IPs across namespaces, create a <literal>NetworkPolicy</literal> CR that explicitly permits ingress from the required namespaces and ensures traffic is allowed to the designated service ports. Without allowing traffic to the required ports, access might still be restricted.</simpara>
+<formalpara>
+<title>Example output</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">  apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+    name: &lt;policy_name&gt;
+    namespace: openshift-ingress
+  spec:
+    ingress:
+    - ports:
+      - port: 80
+        protocol: TCP
+    - ports:
+      - port: 443
+        protocol: TCP
+    - from:
+      - namespaceSelector:
+          matchLabels:
+          kubernetes.io/metadata.name: &lt;my_namespace&gt;
+    podSelector: {}
+    policyTypes:
+    - Ingress</programlisting>
+</para>
+</formalpara>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>&lt;policy_name&gt;</literal></term>
+<listitem>
+<simpara>Specifies your name for the policy.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>&lt;my_namespace&gt;</literal></term>
+<listitem>
+<simpara>Specifies the name of the namespace where the policy is deployed.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>For more details, see "About network policy".</simpara>
+</section>
+</section>
+<section xml:id="about-network-policy-next-steps">
+<title>Next steps</title>
+<itemizedlist>
+<listitem>
+<simpara><link linkend="creating-network-policy">Creating a network policy</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="creating-network-policy">
+<title>Creating a network policy</title>
+<simpara role="_abstract">As a cluster administrator, you can create a network policy for a namespace.</simpara>
+<section xml:id="nw-networkpolicy-object_creating-network-policy">
+<title>Example NetworkPolicy object</title>
+<simpara role="_abstract">The following configuration annotates an example NetworkPolicy object:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-27107
+spec:
+  podSelector:
+    matchLabels:
+      app: mongodb
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: app
+    ports:
+    - protocol: TCP
+      port: 27017</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>name</literal></term>
+<listitem>
+<simpara>The name of the NetworkPolicy object.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>spec.podSelector</literal></term>
+<listitem>
+<simpara>A selector that describes the pods to which the policy applies.
+The policy object can only select pods in the project that defines the NetworkPolicy object.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>ingress.from.podSelector</literal></term>
+<listitem>
+<simpara>A selector that matches the pods from which the policy object allows ingress traffic. The selector matches pods in the same namespace as the NetworkPolicy.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>ingress.ports</literal></term>
+<listitem>
+<simpara>A list of one or more destination ports on which to accept traffic.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section xml:id="nw-networkpolicy-create-cli_creating-network-policy">
+<title>Creating a network policy using the CLI</title>
+<simpara role="_abstract">To define granular rules describing ingress or egress network traffic allowed for namespaces in your cluster, you can create a network policy.</simpara>
+<note>
+<simpara>If you log in with a user with the <literal>cluster-admin</literal> role, then you can create a network policy in any namespace in the cluster.</simpara>
+</note>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Your cluster uses a network plugin that supports <literal>NetworkPolicy</literal> objects, such as the OVN-Kubernetes network plugin, with <literal>mode: NetworkPolicy</literal> set.</simpara>
+</listitem>
+<listitem>
+<simpara>You installed the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+<listitem>
+<simpara>You logged in to the cluster with a user with <literal>admin</literal> privileges.</simpara>
+</listitem>
+<listitem>
+<simpara>You are working in the namespace that the network policy applies to.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create a policy rule.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Create a <literal>&lt;policy_name&gt;.yaml</literal> file:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ touch &lt;policy_name&gt;.yaml</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>&lt;policy_name&gt;</literal></term>
+<listitem>
+<simpara>Specifies the network policy file name.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<simpara>Define a network policy in the created file. The following example denies ingress traffic from all pods in all namespaces. This is a fundamental policy, blocking all cross-pod networking other than cross-pod traffic allowed by the configuration of other Network Policies.</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  ingress: []</programlisting>
+<simpara>The following example configuration allows ingress traffic  from all pods in the same namespace:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-same-namespace
+spec:
+  podSelector:
+  ingress:
+  - from:
+    - podSelector: {}
+# ...</programlisting>
+<simpara>The following example allows ingress traffic to one pod from a particular namespace. This policy allows traffic to pods that have the <literal>pod-a</literal> label from pods running in <literal>namespace-y</literal>.</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-traffic-pod
+spec:
+  podSelector:
+   matchLabels:
+      pod: pod-a
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+           kubernetes.io/metadata.name: namespace-y
+# ...</programlisting>
+<simpara>The following example configuration restricts traffic to a service. This policy when applied ensures every pod with both labels <literal>app=bookstore</literal> and <literal>role=api</literal> can only be accessed by pods with label <literal>app=bookstore</literal>. In this example the application could be a REST API server, marked with labels <literal>app=bookstore</literal> and <literal>role=api</literal>.</simpara>
+<simpara>This example configuration addresses the following use cases:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Restricting the traffic to a service to only the other microservices that need to use it.</simpara>
+</listitem>
+<listitem>
+<simpara>Restricting the connections to a database to only permit the application using it.</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: api-allow
+spec:
+  podSelector:
+    matchLabels:
+      app: bookstore
+      role: api
+  ingress:
+  - from:
+      - podSelector:
+          matchLabels:
+            app: bookstore
+# ...</programlisting>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>To create the network policy object, enter the following command. Successful output lists the name of the policy object and the <literal>created</literal> status.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc apply -f &lt;policy_name&gt;.yaml -n &lt;namespace&gt;</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>&lt;policy_name&gt;</literal></term>
+<listitem>
+<simpara>Specifies the network policy file name.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>&lt;namespace&gt;</literal></term>
+<listitem>
+<simpara>Optional parameter. If you defined the object in a different namespace than the current namespace, the parameter specifices the namespace.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>Successful output lists the name of the policy object and the <literal>created</literal> status.</simpara>
+<note>
+<simpara>If you log in to the web console with <literal>cluster-admin</literal> privileges, you have a choice of creating a network policy in any namespace in the cluster directly in YAML or from a form in the web console.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="nw-networkpolicy-deny-all-multi-network-policy_creating-network-policy">
+<title>Creating a default deny all network policy</title>
+<simpara role="_abstract">The default deny all network policy blocks all cross-pod networking other than network traffic allowed by the configuration of other deployed network policies and traffic between host-networked pods. This procedure enforces a strong deny policy by applying a <literal>deny-by-default</literal> policy in the <literal>my-project</literal> namespace.</simpara>
+<warning>
+<simpara>Without configuring a <literal>NetworkPolicy</literal> custom resource (CR) that allows traffic communication, the following policy might cause communication problems across your cluster.</simpara>
+</warning>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Your cluster uses a network plugin that supports <literal>NetworkPolicy</literal> objects, such as the OVN-Kubernetes network plugin, with <literal>mode: NetworkPolicy</literal> set.</simpara>
+</listitem>
+<listitem>
+<simpara>You installed the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+<listitem>
+<simpara>You logged in to the cluster with a user with <literal>admin</literal> privileges.</simpara>
+</listitem>
+<listitem>
+<simpara>You are working in the namespace that the network policy applies to.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create the following YAML that defines a <literal>deny-by-default</literal> policy to deny ingress from all pods in all namespaces. Save the YAML in the <literal>deny-by-default.yaml</literal> file:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: deny-by-default
+  namespace: my-project
+spec:
+  podSelector: {}
+  ingress: []</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>namespace</literal></term>
+<listitem>
+<simpara>Specifies the namespace in which to deploy the policy. For example, the <literal>my-project</literal> namespace.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>podSelector</literal></term>
+<listitem>
+<simpara>If this field is empty, the configuration matches all the pods. Therefore, the policy applies to all pods in the <literal>my-project</literal> namespace.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>ingress</literal></term>
+<listitem>
+<simpara>Where <literal>[]</literal> indicates that no <literal>ingress</literal> rules are specified. This causes incoming traffic to be dropped to all pods.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<simpara>Apply the policy by entering the following command. Successful output lists the name of the policy object and the <literal>created</literal> status.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc apply -f deny-by-default.yaml</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="nw-networkpolicy-allow-external-clients_creating-network-policy">
+<title>Creating a network policy to allow traffic from external clients</title>
+<simpara role="_abstract">With the <literal>deny-by-default</literal> policy in place you can proceed to configure a policy that allows traffic from external clients to a pod with the label <literal>app=web</literal>.</simpara>
+<note>
+<simpara>If you log in with a user with the <literal>cluster-admin</literal> role, then you can create a network policy in any namespace in the cluster.</simpara>
+</note>
+<simpara>Follow this procedure to configure a policy that allows external service from the public Internet directly or by using a Load Balancer to access the pod. Traffic is only allowed to a pod with the label <literal>app=web</literal>.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Your cluster uses a network plugin that supports <literal>NetworkPolicy</literal> objects, such as the OVN-Kubernetes network plugin, with <literal>mode: NetworkPolicy</literal> set.</simpara>
+</listitem>
+<listitem>
+<simpara>You installed the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+<listitem>
+<simpara>You logged in to the cluster with a user with <literal>admin</literal> privileges.</simpara>
+</listitem>
+<listitem>
+<simpara>You are working in the namespace that the network policy applies to.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create a policy that allows traffic from the public Internet directly or by using a load balancer to access the pod. Save the YAML in the <literal>web-allow-external.yaml</literal> file:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+spec:
+  policyTypes:
+  - Ingress
+  podSelector:
+    matchLabels:
+      app: web
+  ingress:
+    - {}</programlisting>
+</listitem>
+<listitem>
+<simpara>Apply the policy by entering the following command. Successful output lists the name of the policy object and the <literal>created</literal> status.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc apply -f web-allow-external.yaml</programlisting>
+<simpara>This policy allows traffic from all resources, including external traffic as illustrated in the following diagram:</simpara>
+<informalfigure>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/292_OpenShift_Configuring_multi-network_policy_1122.png"/>
+</imageobject>
+<textobject><phrase>Allow traffic from external clients</phrase></textobject>
+</mediaobject>
+</informalfigure>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="nw-networkpolicy-allow-traffic-from-all-applications_creating-network-policy">
+<title>Creating a network policy allowing traffic to an application from all namespaces</title>
+<simpara role="_abstract">You can configure a policy that allows traffic from all pods in all namespaces to a particular application.</simpara>
+<note>
+<simpara>If you log in with a user with the <literal>cluster-admin</literal> role, then you can create a network policy in any namespace in the cluster.</simpara>
+</note>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Your cluster uses a network plugin that supports <literal>NetworkPolicy</literal> objects, such as the OVN-Kubernetes network plugin, with <literal>mode: NetworkPolicy</literal> set.</simpara>
+</listitem>
+<listitem>
+<simpara>You installed the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+<listitem>
+<simpara>You logged in to the cluster with a user with <literal>admin</literal> privileges.</simpara>
+</listitem>
+<listitem>
+<simpara>You are working in the namespace that the network policy applies to.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create a policy that allows traffic from all pods in all namespaces to a particular application. Save the YAML in the <literal>web-allow-all-namespaces.yaml</literal> file:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+spec:
+  podSelector:
+    matchLabels:
+      app: web
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector: {}</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>app</literal></term>
+<listitem>
+<simpara>Applies the policy only to <literal>app:web</literal> pods in default namespace.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>namespaceSelector</literal></term>
+<listitem>
+<simpara>Selects all pods in all namespaces.</simpara>
+<note>
+<simpara>By default, if you do not specify a <literal>namespaceSelector</literal> parameter in the policy object, no namespaces get selected. This means the policy allows traffic only from the namespace where the network policy deployes.</simpara>
+</note>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<simpara>Apply the policy by entering the following command. Successful output lists the name of the policy object and the <literal>created</literal> status.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc apply -f web-allow-all-namespaces.yaml</programlisting>
+</listitem>
+</orderedlist>
+<orderedlist numeration="arabic">
+<title>Verification</title>
+<listitem>
+<simpara>Start a web service in the <literal>default</literal> namespace by entering the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc run web --namespace=default --image=nginx --labels="app=web" --expose --port=80</programlisting>
+</listitem>
+<listitem>
+<simpara>Run the following command to deploy an <literal>alpine</literal> image in the <literal>secondary</literal> namespace and to start a shell:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc run test-$RANDOM --namespace=secondary --rm -i -t --image=alpine -- sh</programlisting>
+</listitem>
+<listitem>
+<simpara>Run the following command in the shell and observe that the service allows the request:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered"># wget -qO- --timeout=2 http://web.default</programlisting>
+<programlisting language="terminal" linenumbering="unnumbered">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="nw-networkpolicy-allow-traffic-from-a-namespace_creating-network-policy">
+<title>Creating a network policy allowing traffic to an application from a namespace</title>
+<simpara role="_abstract">You can configure a policy that allows traffic to a pod with the label <literal>app=web</literal> from a particular namespace. This configuration is useful in the following use cases:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Restrict traffic to a production database only to namespaces that have production workloads deployed.</simpara>
+</listitem>
+<listitem>
+<simpara>Enable monitoring tools deployed to a particular namespace to scrape metrics from the current namespace.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>If you log in with a user with the <literal>cluster-admin</literal> role, then you can create a network policy in any namespace in the cluster.</simpara>
+</note>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Your cluster uses a network plugin that supports <literal>NetworkPolicy</literal> objects, such as the OVN-Kubernetes network plugin, with <literal>mode: NetworkPolicy</literal> set.</simpara>
+</listitem>
+<listitem>
+<simpara>You installed the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+<listitem>
+<simpara>You logged in to the cluster with a user with <literal>admin</literal> privileges.</simpara>
+</listitem>
+<listitem>
+<simpara>You are working in the namespace that the network policy applies to.</simpara>
+</listitem>
+</itemizedlist>
+<warning>
+<simpara>Do not apply the <literal>network.openshift.io/policy-group: ingress</literal> label to custom namespace or projects. This label is Operator-managed and reserved for OpenShift Container Platform networking functions. It should not be altered on system-created namespaces.</simpara>
+<simpara>Using this label can result in intermittent network connectivity drops, unintended application of system <literal>NetworkPolicies</literal> resource, or configuration drift as the operator attempts to reconcile the state. For custom traffic grouping, always use unique, user-defined labels as shown in the following procedure.</simpara>
+</warning>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create a policy that allows traffic from all pods in a particular namespaces with a label <literal>purpose=production</literal>. Save the YAML in the <literal>web-allow-prod.yaml</literal> file:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: web-allow-prod
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: web
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          purpose: production</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>app</literal></term>
+<listitem>
+<simpara>Applies the policy only to <literal>app:web</literal> pods in the default namespace.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>purpose</literal></term>
+<listitem>
+<simpara>Restricts traffic to only pods in namespaces that have the label <literal>purpose=production</literal>.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<simpara>Apply the policy by entering the following command. Successful output lists the name of the policy object and the <literal>created</literal> status.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc apply -f web-allow-prod.yaml</programlisting>
+</listitem>
+</orderedlist>
+<orderedlist numeration="arabic">
+<title>Verification</title>
+<listitem>
+<simpara>Start a web service in the <literal>default</literal> namespace by entering the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc run web --namespace=default --image=nginx --labels="app=web" --expose --port=80</programlisting>
+</listitem>
+<listitem>
+<simpara>Run the following command to create the <literal>prod</literal> namespace:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc create namespace prod</programlisting>
+</listitem>
+<listitem>
+<simpara>Run the following command to label the <literal>prod</literal> namespace:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc label namespace/prod purpose=production</programlisting>
+</listitem>
+<listitem>
+<simpara>Run the following command to create the <literal>dev</literal> namespace:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc create namespace dev</programlisting>
+</listitem>
+<listitem>
+<simpara>Run the following command to label the <literal>dev</literal> namespace:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc label namespace/dev purpose=testing</programlisting>
+</listitem>
+<listitem>
+<simpara>Run the following command to deploy an <literal>alpine</literal> image in the <literal>dev</literal> namespace and to start a shell:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc run test-$RANDOM --namespace=dev --rm -i -t --image=alpine -- sh</programlisting>
+</listitem>
+<listitem>
+<simpara>Run the following command in the shell and observe the reason for the blocked request. For example, expected output states <literal>wget: download timed out</literal>.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered"># wget -qO- --timeout=2 http://web.default</programlisting>
+</listitem>
+<listitem>
+<simpara>Run the following command to deploy an <literal>alpine</literal> image in the <literal>prod</literal> namespace and start a shell:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc run test-$RANDOM --namespace=prod --rm -i -t --image=alpine -- sh</programlisting>
+</listitem>
+<listitem>
+<simpara>Run the following command in the shell and observe that the request is allowed:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered"># wget -qO- --timeout=2 http://web.default</programlisting>
+<programlisting language="terminal" linenumbering="unnumbered">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="nw-networkpolicy-create-ocm_creating-network-policy">
+<title>Creating a network policy using OpenShift Cluster Manager</title>
+<simpara>To define granular rules describing the ingress or egress network traffic allowed for namespaces in your cluster, you can create a network policy.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You logged in to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You created an OpenShift Container Platform cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>You configured an identity provider for your cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>You added your user account to the configured identity provider.</simpara>
+</listitem>
+<listitem>
+<simpara>You created a project within your OpenShift Container Platform cluster.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>From <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>, click on the cluster you want to access.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Open console</emphasis> to navigate to the OpenShift web console.</simpara>
+</listitem>
+<listitem>
+<simpara>Click on your identity provider and provide your credentials to log in to the cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>From the administrator perspective, under <emphasis role="strong">Networking</emphasis>, click <emphasis role="strong">NetworkPolicies</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Create NetworkPolicy</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Provide a name for the policy in the <emphasis role="strong">Policy name</emphasis> field.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: You can provide the label and selector for a specific pod if this policy applies only to one or more specific pods. If you do not select a specific pod, then this policy will be applicable to all pods on the cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: You can block all ingress and egress traffic by using the <emphasis role="strong">Deny all ingress traffic</emphasis> or <emphasis role="strong">Deny all egress traffic</emphasis> checkboxes.</simpara>
+</listitem>
+<listitem>
+<simpara>You can also add any combination of ingress and egress rules, allowing you to specify the port, namespace, or IP blocks you want to approve.</simpara>
+</listitem>
+<listitem>
+<simpara>Add ingress rules to your policy:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select <emphasis role="strong">Add ingress rule</emphasis> to configure a new rule. This action creates a new <emphasis role="strong">Ingress rule</emphasis> row with an <emphasis role="strong">Add allowed source</emphasis> drop-down menu that enables you to specify how you want to limit inbound traffic. The drop-down menu offers three options to limit your ingress traffic:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Allow pods from the same namespace</emphasis> limits traffic to pods within the same namespace. You can specify the pods in a namespace, but leaving this option blank allows all of the traffic from pods in the namespace.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Allow pods from inside the cluster</emphasis> limits traffic to pods within the same cluster as the policy. You can specify namespaces and pods from which you want to allow inbound traffic. Leaving this option blank allows inbound traffic from all namespaces and pods within this cluster.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Allow peers by IP block</emphasis> limits traffic from a specified Classless Inter-Domain Routing (CIDR) IP block. You can block certain IPs with the exceptions option. Leaving the CIDR field blank allows all inbound traffic from all external sources.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>You can restrict all of your inbound traffic to a port. If you do not add any ports then all ports are accessible to traffic.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Add egress rules to your network policy:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select <emphasis role="strong">Add egress rule</emphasis> to configure a new rule. This action creates a new <emphasis role="strong">Egress rule</emphasis> row with an <emphasis role="strong">Add allowed destination</emphasis>"* drop-down menu that enables you to specify how you want to limit outbound traffic. The drop-down menu offers three options to limit your egress traffic:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Allow pods from the same namespace</emphasis> limits outbound traffic to pods within the same namespace. You can specify the pods in a namespace, but leaving this option blank allows all of the traffic from pods in the namespace.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Allow pods from inside the cluster</emphasis> limits traffic to pods within the same cluster as the policy. You can specify namespaces and pods from which you want to allow outbound traffic. Leaving this option blank allows outbound traffic from all namespaces and pods within this cluster.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Allow peers by IP block</emphasis> limits traffic from a specified CIDR IP block. You can block certain IPs with the exceptions option. Leaving the CIDR field blank allows all outbound traffic from all external sources.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>You can restrict all of your outbound traffic to a port. If you do not add any ports then all ports are accessible to traffic.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="viewing-network-policy">
+<title>Viewing a network policy</title>
+<simpara role="_abstract">As a cluster administrator, you can view a network policy for a namespace.</simpara>
+<section xml:id="nw-networkpolicy-object_viewing-network-policy">
+<title>Example NetworkPolicy object</title>
+<simpara role="_abstract">The following configuration annotates an example NetworkPolicy object:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-27107
+spec:
+  podSelector:
+    matchLabels:
+      app: mongodb
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: app
+    ports:
+    - protocol: TCP
+      port: 27017</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>name</literal></term>
+<listitem>
+<simpara>The name of the NetworkPolicy object.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>spec.podSelector</literal></term>
+<listitem>
+<simpara>A selector that describes the pods to which the policy applies.
+The policy object can only select pods in the project that defines the NetworkPolicy object.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>ingress.from.podSelector</literal></term>
+<listitem>
+<simpara>A selector that matches the pods from which the policy object allows ingress traffic. The selector matches pods in the same namespace as the NetworkPolicy.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>ingress.ports</literal></term>
+<listitem>
+<simpara>A list of one or more destination ports on which to accept traffic.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section xml:id="nw-networkpolicy-view-cli_viewing-network-policy">
+<title>Viewing network policies using the CLI</title>
+<simpara role="_abstract">You can examine the network policies in a namespace.</simpara>
+<note>
+<simpara>If you log in with <literal>cluster-admin</literal> privileges, you can edit network policies in any namespace in the cluster.</simpara>
+</note>
+<note>
+<simpara>If you log in with <literal>cluster-admin</literal> privileges, you can edit network policies in any namespace in the cluster. In the web console, you can edit policies directly in YAML or by using the <emphasis role="strong">Actions</emphasis> menu.</simpara>
+</note>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You installed the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+<listitem>
+<simpara>You are logged in to the cluster with a user with <literal>admin</literal> privileges.</simpara>
+</listitem>
+<listitem>
+<simpara>You are working in the namespace where the network policy exists.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>List network policies in a namespace.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>To view network policy objects defined in a namespace enter the following
+command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc get networkpolicy</programlisting>
+</listitem>
+<listitem>
+<simpara>Optional: To examine a specific network policy enter the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc describe networkpolicy &lt;policy_name&gt; -n &lt;namespace&gt;</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>&lt;policy_name&gt;</literal></term>
+<listitem>
+<simpara>Specifies the name of the network policy to inspect.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>&lt;namespace&gt;</literal></term>
+<listitem>
+<simpara>Optional: Specifies the namespace if the object is defined in a different namespace than the current namespace.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc describe networkpolicy allow-same-namespace</programlisting>
+<programlisting language="text" linenumbering="unnumbered">Name:         allow-same-namespace
+Namespace:    ns1
+Created on:   2021-05-24 22:28:56 -0400 EDT
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+Spec:
+  PodSelector:     &lt;none&gt; (Allowing the specific traffic to all pods in this namespace)
+  Allowing ingress traffic:
+    To Port: &lt;any&gt; (traffic allowed to all ports)
+    From:
+      PodSelector: &lt;none&gt;
+  Not affecting egress traffic
+  Policy Types: Ingress</programlisting>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</orderedlist>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="nw-networkpolicy-view-ocm_viewing-network-policy">
+<title>Viewing network policies using OpenShift Cluster Manager</title>
+<simpara role="_abstract">You can view the configuration details of your network policy in Red Hat OpenShift Cluster Manager.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You logged in to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You created a OpenShift Container Platform cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>You configured an identity provider for your cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>You added your user account to the configured identity provider.</simpara>
+</listitem>
+<listitem>
+<simpara>You created a network policy.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>From the <emphasis role="strong">Administrator</emphasis> perspective in the OpenShift Cluster Manager web console, under <emphasis role="strong">Networking</emphasis>, click <emphasis role="strong">NetworkPolicies</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the desired network policy to view.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">Network Policy</emphasis> details page, you can view all of the associated ingress and egress rules.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">YAML</emphasis> on the network policy details to view the policy configuration in YAML format.</simpara>
+<note>
+<simpara>You can only view the details of these policies. You cannot edit these policies.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="deleting-network-policy">
+<title>Deleting a network policy</title>
+<simpara role="_abstract">As a cluster administrator, you can delete a network policy from a namespace.</simpara>
+<section xml:id="nw-networkpolicy-delete-cli_deleting-network-policy">
+<title>Deleting a network policy using the CLI</title>
+<simpara role="_abstract">You can delete a network policy in a namespace.</simpara>
+<note>
+<simpara>If you log in with <literal>cluster-admin</literal> privileges, you can delete network policies in any namespace in the cluster.</simpara>
+</note>
+<note>
+<simpara>If you log in with <literal>cluster-admin</literal> privileges, you can delete network policies in any namespace in the cluster. In the web console, you can delete policies directly in YAML or by using the <emphasis role="strong">Actions</emphasis> menu.</simpara>
+</note>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Your cluster uses a network plugin that supports <literal>NetworkPolicy</literal> objects, such as the OVN-Kubernetes network plugin, with <literal>mode: NetworkPolicy</literal> set.</simpara>
+</listitem>
+<listitem>
+<simpara>You installed the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+<listitem>
+<simpara>You logged in to the cluster with a user with <literal>admin</literal> privileges.</simpara>
+</listitem>
+<listitem>
+<simpara>You are working in the namespace where the network policy exists.</simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>To delete a network policy object, enter the following command. Successful output lists the name of the policy object and the <literal>deleted</literal> status.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc delete networkpolicy &lt;policy_name&gt; -n &lt;namespace&gt;</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>&lt;policy_name&gt;</literal></term>
+<listitem>
+<simpara>Specifies the name of the network policy.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>&lt;namespace&gt;</literal></term>
+<listitem>
+<simpara>Optional parameter. If you defined the object in a different namespace than the current namespace, the parameter specifices the namespace.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nw-networkpolicy-delete-ocm_deleting-network-policy">
+<title>Deleting a network policy using OpenShift Cluster Manager</title>
+<simpara role="_abstract">You can delete a network policy in a namespace.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You logged in to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You created a OpenShift Container Platform cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>You configured an identity provider for your cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>You added your user account to the configured identity provider.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>From the <emphasis role="strong">Administrator</emphasis> perspective in the OpenShift Cluster Manager web console, under <emphasis role="strong">Networking</emphasis>, click <emphasis role="strong">NetworkPolicies</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Use one of the following methods for deleting your network policy:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Delete the policy from the <emphasis role="strong">Network Policies</emphasis> table:</simpara>
+<orderedlist numeration="lowerroman">
+<listitem>
+<simpara>From the <emphasis role="strong">Network Policies</emphasis> table, select the stack menu on the row of the network policy you want to delete and then, click <emphasis role="strong">Delete NetworkPolicy</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Delete the policy using the <emphasis role="strong">Actions</emphasis> drop-down menu from the individual network policy details:</simpara>
+<orderedlist numeration="lowerroman">
+<listitem>
+<simpara>Click on <emphasis role="strong">Actions</emphasis> drop-down menu for your network policy.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Delete NetworkPolicy</emphasis> from the menu.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+</orderedlist>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="multitenant-network-policy">
+<title>Configuring multitenant isolation with network policy</title>
+<simpara>As a cluster administrator, you can configure your network policies to provide multitenant network isolation.</simpara>
+<note>
+<simpara>Configuring network policies as described in this section provides network isolation similar to the multitenant mode of OpenShift SDN in previous versions of OpenShift Container Platform.</simpara>
+</note>
+<section xml:id="nw-networkpolicy-multitenant-isolation_multitenant-network-policy">
+<title>Configuring multitenant isolation by using network policy</title>
+<simpara>You can configure your project to isolate it from pods and services in other
+project namespaces.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Your cluster uses a network plugin that supports <literal>NetworkPolicy</literal> objects, such as the OVN-Kubernetes network plugin, with <literal>mode: NetworkPolicy</literal> set.</simpara>
+</listitem>
+<listitem>
+<simpara>You installed the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+<listitem>
+<simpara>You are logged in to the cluster with a user with <literal>admin</literal> privileges.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create the following <literal>NetworkPolicy</literal> objects:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>A policy named <literal>allow-from-openshift-ingress</literal>.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ cat &lt;&lt; EOF| oc create -f -
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-openshift-ingress
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          policy-group.network.openshift.io/ingress: ""
+  podSelector: {}
+  policyTypes:
+  - Ingress
+EOF</programlisting>
+<note>
+<simpara><literal>policy-group.network.openshift.io/ingress: ""</literal> is the preferred namespace selector label for OVN-Kubernetes.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>A policy named <literal>allow-from-openshift-monitoring</literal>:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ cat &lt;&lt; EOF| oc create -f -
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-openshift-monitoring
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          network.openshift.io/policy-group: monitoring
+  podSelector: {}
+  policyTypes:
+  - Ingress
+EOF</programlisting>
+</listitem>
+<listitem>
+<simpara>A policy named <literal>allow-same-namespace</literal>:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ cat &lt;&lt; EOF| oc create -f -
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-same-namespace
+spec:
+  podSelector:
+  ingress:
+  - from:
+    - podSelector: {}
+EOF</programlisting>
+</listitem>
+<listitem>
+<simpara>A policy named <literal>allow-from-kube-apiserver-operator</literal>:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ cat &lt;&lt; EOF| oc create -f -
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-kube-apiserver-operator
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: openshift-kube-apiserver-operator
+      podSelector:
+        matchLabels:
+          app: kube-apiserver-operator
+  policyTypes:
+  - Ingress
+EOF</programlisting>
+<simpara>For more details, see <link xlink:href="https://access.redhat.com/solutions/6964520">New <literal>kube-apiserver-operator</literal> webhook controller validating health of webhook</link>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Optional: To confirm that the network policies exist in your current project, enter the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc describe networkpolicy</programlisting>
+<formalpara>
+<title>Example output</title>
+<para>
+<programlisting language="text" linenumbering="unnumbered">Name:         allow-from-openshift-ingress
+Namespace:    example1
+Created on:   2020-06-09 00:28:17 -0400 EDT
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+Spec:
+  PodSelector:     &lt;none&gt; (Allowing the specific traffic to all pods in this namespace)
+  Allowing ingress traffic:
+    To Port: &lt;any&gt; (traffic allowed to all ports)
+    From:
+      NamespaceSelector: policy-group.network.openshift.io/ingress:
+  Not affecting egress traffic
+  Policy Types: Ingress
+
+
+Name:         allow-from-openshift-monitoring
+Namespace:    example1
+Created on:   2020-06-09 00:29:57 -0400 EDT
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+Spec:
+  PodSelector:     &lt;none&gt; (Allowing the specific traffic to all pods in this namespace)
+  Allowing ingress traffic:
+    To Port: &lt;any&gt; (traffic allowed to all ports)
+    From:
+      NamespaceSelector: network.openshift.io/policy-group: monitoring
+  Not affecting egress traffic
+  Policy Types: Ingress</programlisting>
+</para>
+</formalpara>
+</listitem>
+</orderedlist>
+</section>
+</section>
+</chapter>
+<chapter xml:id="osd-network-verification_multitenant-network-policy">
+<title>Network verification for OpenShift Container Platform clusters</title>
+<simpara>Network verification checks run automatically when you deploy
+an OpenShift Container Platform
+cluster into an existing Virtual Private Cloud (VPC) or create an additional machine pool with a subnet that is new to your cluster. The checks validate your network configuration and highlight errors, enabling you to resolve configuration issues before cluster deployment.</simpara>
+<simpara>You can also run the network verification checks manually to validate the configuration for an existing cluster.</simpara>
+<section xml:id="osd-understanding-network-verification_network-verification">
+<title>Understanding network verification for OpenShift Container Platform clusters</title>
+<simpara>When you deploy
+an OpenShift Container Platform
+cluster into an existing Virtual Private Cloud (VPC) or create an additional machine pool with a subnet that is new to your cluster, network verification runs automatically. This helps you identify and resolve configuration issues before cluster deployment.</simpara>
+<simpara>When you prepare to install your cluster by using Red Hat OpenShift Cluster Manager, the automatic checks run after you input a subnet into a subnet ID field on the <emphasis role="strong">Virtual Private Cloud (VPC) subnet settings</emphasis> page.</simpara>
+<simpara>When you add a machine pool with a subnet that is new to your cluster, the automatic network verification checks the subnet to ensure that network connectivity is available before the machine pool is provisioned.</simpara>
+<simpara>After automatic network verification completes, a record is sent to the service log. The record provides the results of the verification check, including any network configuration errors. You can resolve the identified issues before a deployment and the deployment has a greater chance of success.</simpara>
+<simpara>You can also run the network verification manually for an existing cluster. This enables you to verify the network configuration for your cluster after making configuration changes. For steps to run the network verification checks manually, see <emphasis>Running the network verification manually</emphasis>.</simpara>
+</section>
+<section xml:id="scope-of-the-network-verification-checks_network-verification">
+<title>Scope of the network verification checks</title>
+<simpara>The network verification includes checks for each of the following requirements:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The parent Virtual Private Cloud (VPC) exists.</simpara>
+</listitem>
+<listitem>
+<simpara>All specified subnets belong to the VPC.</simpara>
+</listitem>
+<listitem>
+<simpara>The VPC has <literal>enableDnsSupport</literal> enabled.</simpara>
+</listitem>
+<listitem>
+<simpara>The VPC has <literal>enableDnsHostnames</literal> enabled.</simpara>
+</listitem>
+<listitem>
+<simpara>Egress is available to the required domain and port combinations that are specified in the <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#osd-aws-privatelink-firewall-prerequisites_aws-ccs">AWS firewall prerequisites</link> section.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="automatic-network-verification-bypassing_network-verification">
+<title>Automatic network verification bypassing</title>
+<simpara>You can bypass the automatic network verification if you want to deploy
+an OpenShift Container Platform
+cluster with known network configuration issues into an existing Virtual Private Cloud (VPC).</simpara>
+<simpara>If you bypass the network verification when you create a cluster, the cluster has a limited support status. After installation, you can resolve the issues and then manually run the network verification. The limited support status is removed after the verification succeeds.</simpara>
+<simpara>When you install a cluster into an existing VPC by using Red Hat OpenShift Cluster Manager, you can bypass the automatic verification by selecting <emphasis role="strong">Bypass network verification</emphasis> on the <emphasis role="strong">Virtual Private Cloud (VPC) subnet settings</emphasis> page.</simpara>
+</section>
+<section xml:id="running-network-verification-manually-ocm_network-verification">
+<title>Running the network verification manually</title>
+<simpara>You can manually run the network verification checks for an existing OpenShift Container Platform cluster by using Red Hat OpenShift Cluster Manager.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have an existing OpenShift Container Platform cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>You are the cluster owner or you have the cluster editor role.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Navigate to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link> and select your cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Verify networking</emphasis> from the <emphasis role="strong">Actions</emphasis> drop-down menu.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</chapter>
+</book>

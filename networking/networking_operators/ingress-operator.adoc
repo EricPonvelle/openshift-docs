@@ -5,11 +5,10 @@ ifdef::openshift-enterprise[]
 include::_attributes/common-attributes.adoc[]
 endif::openshift-enterprise[]
 ifdef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
-include::_attributes/attributes-openshift-dedicated.adoc[]
+include::includes/attributes-openshift-dedicated.adoc[]
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 :context: configuring-ingress
 
-toc::[]
 
 The Ingress Operator implements the `IngressController` API and is the component responsible for enabling external access to {product-title} cluster services.
 
@@ -17,7 +16,7 @@ ifdef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 This Operator is installed on {product-title} clusters by default.
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
-include::modules/nw-ne-openshift-ingress.adoc[leveloffset=+1]
+include::includes/nw-ne-openshift-ingress.adoc[leveloffset=+1]
 
 ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 include::modules/nw-installation-ingress-config-asset.adoc[leveloffset=+1]
@@ -40,13 +39,13 @@ include::modules/nw-mutual-tls-auth.adoc[leveloffset=+3]
 
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
-include::modules/nw-ingress-view.adoc[leveloffset=+1]
+include::includes/nw-ingress-view.adoc[leveloffset=+1]
 
-include::modules/nw-ingress-operator-status.adoc[leveloffset=+1]
+include::includes/nw-ingress-operator-status.adoc[leveloffset=+1]
 
-include::modules/nw-ingress-operator-logs.adoc[leveloffset=+1]
+include::includes/nw-ingress-operator-logs.adoc[leveloffset=+1]
 
-include::modules/nw-ingress-controller-status.adoc[leveloffset=+1]
+include::includes/nw-ingress-controller-status.adoc[leveloffset=+1]
 
 ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 include::modules/nw-create-custom-ingress-controller.adoc[leveloffset=+1]
@@ -136,7 +135,7 @@ include::modules/nw-ingress-setting-max-connections.adoc[leveloffset=+2]
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
 ifdef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
-include::modules/sd-ingress-responsibilities.adoc[leveloffset=+1]
+include::includes/sd-ingress-responsibilities.adoc[leveloffset=+1]
 
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 

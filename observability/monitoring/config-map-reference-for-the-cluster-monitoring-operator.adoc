@@ -6,10 +6,9 @@
 :_mod-docs-content-type: REFERENCE
 [id="config-map-reference-for-the-cluster-monitoring-operator"]
 = Config map reference for the Cluster Monitoring Operator
-include::_attributes/common-attributes.adoc[]
+include::includes/common-attributes.adoc[]
 :context: config-map-reference-for-the-cluster-monitoring-operator
 
-toc::[]
 
 [id="cluster-monitoring-operator-configuration-reference"]
 == Cluster Monitoring Operator configuration reference
@@ -20,11 +19,11 @@ The API is accessible by setting parameters defined in various config maps.
 
 ifndef::openshift-dedicated,openshift-rosa[]
 * To configure monitoring components, edit the `ConfigMap` object named `cluster-monitoring-config` in the `openshift-monitoring` namespace.
-These configurations are defined by link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration].
+These configurations are defined by xref:clustermonitoringconfiguration[ClusterMonitoringConfiguration].
 endif::openshift-dedicated,openshift-rosa[]
 
 * To configure monitoring components that monitor user-defined projects, edit the `ConfigMap` object named `user-workload-monitoring-config` in the `openshift-user-workload-monitoring` namespace.
-These configurations are defined by link:#userworkloadconfiguration[UserWorkloadConfiguration].
+These configurations are defined by xref:userworkloadconfiguration[UserWorkloadConfiguration].
 
 The configuration file is always defined under the `config.yaml` key in the config map data.
 
@@ -32,7 +31,7 @@ The configuration file is always defined under the `config.yaml` key in the conf
 ====
 * Not all configuration parameters for the monitoring stack are exposed.
 Only the parameters and fields listed in this reference are supported for configuration.
-For more information about supported configurations, see xref:../../observability/monitoring/getting-started/maintenance-and-support-for-monitoring.adoc#maintenance-and-support-for-monitoring[Maintenance and support for monitoring].
+For more information about supported configurations, see xref:maintenance-and-support-for-monitoring[Maintenance and support for monitoring].
 
 * Configuring cluster monitoring is optional.
 * If a configuration does not exist or is empty, default values are used.
@@ -48,9 +47,9 @@ The `AdditionalAlertmanagerConfig` resource defines settings for how a component
 === Required
 * `apiVersion`
 
-Appears in: link:#prometheusk8sconfig[PrometheusK8sConfig],
-link:#prometheusrestrictedconfig[PrometheusRestrictedConfig],
-link:#thanosrulerconfig[ThanosRulerConfig]
+Appears in: xref:prometheusk8sconfig[PrometheusK8sConfig],
+xref:prometheusrestrictedconfig[PrometheusRestrictedConfig],
+xref:thanosrulerconfig[ThanosRulerConfig]
 
 [options="header"]
 |===
@@ -67,7 +66,7 @@ link:#thanosrulerconfig[ThanosRulerConfig]
 
 |timeout|*string|Defines the timeout value used when sending alerts.
 
-|tlsConfig|link:#tlsconfig[TLSConfig]|Defines the TLS settings to use for Alertmanager connections.
+|tlsConfig|xref:tlsconfig[TLSConfig]|Defines the TLS settings to use for Alertmanager connections.
 
 |===
 
@@ -77,7 +76,7 @@ link:#thanosrulerconfig[ThanosRulerConfig]
 
 The `AlertmanagerMainConfig` resource defines settings for the Alertmanager component in the `openshift-monitoring` namespace.
 
-Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
+Appears in: xref:clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 [options="header"]
 |===
@@ -108,7 +107,7 @@ Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 The `AlertmanagerUserWorkloadConfig` resource defines the settings for the Alertmanager instance used for user-defined projects.
 
-Appears in: link:#userworkloadconfiguration[UserWorkloadConfiguration]
+Appears in: xref:userworkloadconfiguration[UserWorkloadConfiguration]
 
 [options="header"]
 |===
@@ -142,31 +141,31 @@ The `ClusterMonitoringConfiguration` resource defines settings that customize th
 [options="header"]
 |===
 | Property | Type | Description
-|alertmanagerMain|*link:#alertmanagermainconfig[AlertmanagerMainConfig]|`AlertmanagerMainConfig` defines settings for the Alertmanager component in the `openshift-monitoring` namespace.
+|alertmanagerMain|*xref:alertmanagermainconfig[AlertmanagerMainConfig]|`AlertmanagerMainConfig` defines settings for the Alertmanager component in the `openshift-monitoring` namespace.
 
 |enableUserWorkload|*bool|`UserWorkloadEnabled` is a Boolean flag that enables monitoring for user-defined projects.
 
-|userWorkload|*link:#userworkloadconfig[UserWorkloadConfig]|`UserWorkload` defines settings for the monitoring of user-defined projects.
+|userWorkload|*xref:userworkloadconfig[UserWorkloadConfig]|`UserWorkload` defines settings for the monitoring of user-defined projects.
 
-|kubeStateMetrics|*link:#kubestatemetricsconfig[KubeStateMetricsConfig]|`KubeStateMetricsConfig` defines settings for the `kube-state-metrics` agent.
+|kubeStateMetrics|*xref:kubestatemetricsconfig[KubeStateMetricsConfig]|`KubeStateMetricsConfig` defines settings for the `kube-state-metrics` agent.
 
-|metricsServer|*link:#metricsserverconfig[MetricsServerConfig]|`MetricsServer` defines settings for the Metrics Server component.
+|metricsServer|*xref:metricsserverconfig[MetricsServerConfig]|`MetricsServer` defines settings for the Metrics Server component.
 
-|prometheusK8s|*link:#prometheusk8sconfig[PrometheusK8sConfig]|`PrometheusK8sConfig` defines settings for the Prometheus component.
+|prometheusK8s|*xref:prometheusk8sconfig[PrometheusK8sConfig]|`PrometheusK8sConfig` defines settings for the Prometheus component.
 
-|prometheusOperator|*link:#prometheusoperatorconfig[PrometheusOperatorConfig]|`PrometheusOperatorConfig` defines settings for the Prometheus Operator component.
+|prometheusOperator|*xref:prometheusoperatorconfig[PrometheusOperatorConfig]|`PrometheusOperatorConfig` defines settings for the Prometheus Operator component.
 
-|prometheusOperatorAdmissionWebhook|*link:#prometheusoperatoradmissionwebhookconfig[PrometheusOperatorAdmissionWebhookConfig]|`PrometheusOperatorAdmissionWebhookConfig` defines settings for the admission webhook component of Prometheus Operator.
+|prometheusOperatorAdmissionWebhook|*xref:prometheusoperatoradmissionwebhookconfig[PrometheusOperatorAdmissionWebhookConfig]|`PrometheusOperatorAdmissionWebhookConfig` defines settings for the admission webhook component of Prometheus Operator.
 
-|openshiftStateMetrics|*link:#openshiftstatemetricsconfig[OpenShiftStateMetricsConfig]|`OpenShiftMetricsConfig` defines settings for the `openshift-state-metrics` agent.
+|openshiftStateMetrics|*xref:openshiftstatemetricsconfig[OpenShiftStateMetricsConfig]|`OpenShiftMetricsConfig` defines settings for the `openshift-state-metrics` agent.
 
-|telemeterClient|*link:#telemeterclientconfig[TelemeterClientConfig]|`TelemeterClientConfig` defines settings for the Telemeter Client component.
+|telemeterClient|*xref:telemeterclientconfig[TelemeterClientConfig]|`TelemeterClientConfig` defines settings for the Telemeter Client component.
 
-|thanosQuerier|*link:#thanosquerierconfig[ThanosQuerierConfig]|`ThanosQuerierConfig` defines settings for the Thanos Querier component.
+|thanosQuerier|*xref:thanosquerierconfig[ThanosQuerierConfig]|`ThanosQuerierConfig` defines settings for the Thanos Querier component.
 
-|nodeExporter|link:#nodeexporterconfig[NodeExporterConfig]|`NodeExporterConfig` defines settings for the `node-exporter` agent.
+|nodeExporter|xref:nodeexporterconfig[NodeExporterConfig]|`NodeExporterConfig` defines settings for the `node-exporter` agent.
 
-|monitoringPlugin|*link:#monitoringpluginconfig[MonitoringPluginConfig]|`MonitoringPluginConfig` defines settings for the monitoring `console-plugin` component.
+|monitoringPlugin|*xref:monitoringpluginconfig[MonitoringPluginConfig]|`MonitoringPluginConfig` defines settings for the monitoring `console-plugin` component.
 
 |===
 
@@ -176,7 +175,7 @@ The `ClusterMonitoringConfiguration` resource defines settings that customize th
 
 The `KubeStateMetricsConfig` resource defines settings for the `kube-state-metrics` agent.
 
-Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
+Appears in: xref:clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 [options="header"]
 |===
@@ -197,7 +196,7 @@ Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 The `MetricsServerConfig` resource defines settings for the Metrics Server component.
 
-Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
+Appears in: xref:clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 [options="header"]
 |===
@@ -222,7 +221,7 @@ Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 The `MonitoringPluginConfig` resource defines settings for the web console plugin component in the `openshift-monitoring` namespace.
 
-Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
+Appears in: xref:clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 [options="header"]
 |===
@@ -243,7 +242,7 @@ Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 The `NodeExporterCollectorBuddyInfoConfig` resource works as an on/off switch for the `buddyinfo` collector of the `node-exporter` agent. By default, the `buddyinfo` collector is disabled.
 
-Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
+Appears in: xref:nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 [options="header"]
 |===
@@ -258,28 +257,28 @@ Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 The `NodeExporterCollectorConfig` resource defines settings for individual collectors of the `node-exporter` agent.
 
-Appears in: link:#nodeexporterconfig[NodeExporterConfig]
+Appears in: xref:nodeexporterconfig[NodeExporterConfig]
 
 [options="header"]
 |===
 | Property | Type | Description
-|cpufreq|link:#nodeexportercollectorcpufreqconfig[NodeExporterCollectorCpufreqConfig]|Defines the configuration of the `cpufreq` collector, which collects CPU frequency statistics. Disabled by default.
+|cpufreq|xref:nodeexportercollectorcpufreqconfig[NodeExporterCollectorCpufreqConfig]|Defines the configuration of the `cpufreq` collector, which collects CPU frequency statistics. Disabled by default.
 
-|tcpstat|link:#nodeexportercollectortcpstatconfig[NodeExporterCollectorTcpStatConfig]|Defines the configuration of the `tcpstat` collector, which collects TCP connection statistics. Disabled by default.
+|tcpstat|xref:nodeexportercollectortcpstatconfig[NodeExporterCollectorTcpStatConfig]|Defines the configuration of the `tcpstat` collector, which collects TCP connection statistics. Disabled by default.
 
-|netdev|link:#nodeexportercollectornetdevconfig[NodeExporterCollectorNetDevConfig]|Defines the configuration of the `netdev` collector, which collects network devices statistics. Enabled by default.
+|netdev|xref:nodeexportercollectornetdevconfig[NodeExporterCollectorNetDevConfig]|Defines the configuration of the `netdev` collector, which collects network devices statistics. Enabled by default.
 
-|netclass|link:#nodeexportercollectornetclassconfig[NodeExporterCollectorNetClassConfig]|Defines the configuration of the `netclass` collector, which collects information about network devices. Enabled by default.
+|netclass|xref:nodeexportercollectornetclassconfig[NodeExporterCollectorNetClassConfig]|Defines the configuration of the `netclass` collector, which collects information about network devices. Enabled by default.
 
-|buddyinfo|link:#nodeexportercollectorbuddyinfoconfig[NodeExporterCollectorBuddyInfoConfig]|Defines the configuration of the `buddyinfo` collector, which collects statistics about memory fragmentation from the `node_buddyinfo_blocks` metric. This metric collects data from `/proc/buddyinfo`. Disabled by default.
+|buddyinfo|xref:nodeexportercollectorbuddyinfoconfig[NodeExporterCollectorBuddyInfoConfig]|Defines the configuration of the `buddyinfo` collector, which collects statistics about memory fragmentation from the `node_buddyinfo_blocks` metric. This metric collects data from `/proc/buddyinfo`. Disabled by default.
 
-|mountstats|link:#nodeexportercollectormountstatsconfig[NodeExporterCollectorMountStatsConfig]|Defines the configuration of the `mountstats` collector, which collects statistics about NFS volume I/O activities. Disabled by default.
+|mountstats|xref:nodeexportercollectormountstatsconfig[NodeExporterCollectorMountStatsConfig]|Defines the configuration of the `mountstats` collector, which collects statistics about NFS volume I/O activities. Disabled by default.
 
-|ksmd|link:#nodeexportercollectorksmdconfig[NodeExporterCollectorKSMDConfig]|Defines the configuration of the `ksmd` collector, which collects statistics from the kernel same-page merger daemon. Disabled by default.
+|ksmd|xref:nodeexportercollectorksmdconfig[NodeExporterCollectorKSMDConfig]|Defines the configuration of the `ksmd` collector, which collects statistics from the kernel same-page merger daemon. Disabled by default.
 
-|processes|link:#nodeexportercollectorprocessesconfig[NodeExporterCollectorProcessesConfig]|Defines the configuration of the `processes` collector, which collects statistics from processes and threads running in the system. Disabled by default.
+|processes|xref:nodeexportercollectorprocessesconfig[NodeExporterCollectorProcessesConfig]|Defines the configuration of the `processes` collector, which collects statistics from processes and threads running in the system. Disabled by default.
 
-|systemd|link:#nodeexportercollectorsystemdconfig[NodeExporterCollectorSystemdConfig]|Defines the configuration of the `systemd` collector, which collects statistics on the systemd daemon and its managed services. Disabled by default.
+|systemd|xref:nodeexportercollectorsystemdconfig[NodeExporterCollectorSystemdConfig]|Defines the configuration of the `systemd` collector, which collects statistics on the systemd daemon and its managed services. Disabled by default.
 
 |===
 
@@ -289,7 +288,7 @@ Appears in: link:#nodeexporterconfig[NodeExporterConfig]
 
 Use the `NodeExporterCollectorCpufreqConfig` resource to enable or disable the `cpufreq` collector of the `node-exporter` agent. By default, the `cpufreq` collector is disabled. Under certain circumstances, enabling the `cpufreq` collector increases CPU usage on machines with many cores. If you enable this collector and have machines with many cores, monitor your systems closely for excessive CPU usage.
 
-Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
+Appears in: xref:nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 [options="header"]
 |===
@@ -304,7 +303,7 @@ Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 Use the `NodeExporterCollectorKSMDConfig` resource to enable or disable the `ksmd` collector of the `node-exporter` agent. By default, the `ksmd` collector is disabled.
 
-Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
+Appears in: xref:nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 [options="header"]
 |===
@@ -319,7 +318,7 @@ Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 Use the `NodeExporterCollectorMountStatsConfig` resource to enable or disable the `mountstats` collector of the `node-exporter` agent. By default, the `mountstats` collector is disabled. If you enable the collector, the following metrics become available: `node_mountstats_nfs_read_bytes_total`, `node_mountstats_nfs_write_bytes_total`, and `node_mountstats_nfs_operations_requests_total`. Be aware that these metrics can have a high cardinality. If you enable this collector, closely monitor any increases in memory usage for the `prometheus-k8s` pods.
 
-Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
+Appears in: xref:nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 [options="header"]
 |===
@@ -334,7 +333,7 @@ Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 Use the `NodeExporterCollectorNetClassConfig` resource to enable or disable the `netclass` collector of the `node-exporter` agent. By default, the `netclass` collector is enabled. If you disable this collector, these metrics become unavailable: `node_network_info`, `node_network_address_assign_type`, `node_network_carrier`, `node_network_carrier_changes_total`, `node_network_carrier_up_changes_total`, `node_network_carrier_down_changes_total`, `node_network_device_id`, `node_network_dormant`, `node_network_flags`, `node_network_iface_id`, `node_network_iface_link`, `node_network_iface_link_mode`, `node_network_mtu_bytes`, `node_network_name_assign_type`, `node_network_net_dev_group`, `node_network_speed_bytes`, `node_network_transmit_queue_length`, and `node_network_protocol_type`.
 
-Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
+Appears in: xref:nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 [options="header"]
 |===
@@ -351,7 +350,7 @@ Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 Use the `NodeExporterCollectorNetDevConfig` resource to enable or disable the `netdev` collector of the `node-exporter` agent. By default, the `netdev` collector is enabled. If disabled, these metrics become unavailable: `node_network_receive_bytes_total`, `node_network_receive_compressed_total`, `node_network_receive_drop_total`, `node_network_receive_errs_total`, `node_network_receive_fifo_total`, `node_network_receive_frame_total`, `node_network_receive_multicast_total`, `node_network_receive_nohandler_total`, `node_network_receive_packets_total`, `node_network_transmit_bytes_total`, `node_network_transmit_carrier_total`, `node_network_transmit_colls_total`, `node_network_transmit_compressed_total`, `node_network_transmit_drop_total`, `node_network_transmit_errs_total`, `node_network_transmit_fifo_total`, and `node_network_transmit_packets_total`.
 
-Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
+Appears in: xref:nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 [options="header"]
 |===
@@ -366,7 +365,7 @@ Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 Use the `NodeExporterCollectorProcessesConfig` resource to enable or disable the `processes` collector of the `node-exporter` agent. If the collector is enabled, the following metrics become available: `node_processes_max_processes`, `node_processes_pids`, `node_processes_state`, `node_processes_threads`, `node_processes_threads_state`. The metric `node_processes_state` and `node_processes_threads_state` can have up to five series each, depending on the state of the processes and threads. The possible states of a process or a thread are: `D` (UNINTERRUPTABLE_SLEEP), `R` (RUNNING & RUNNABLE), `S` (INTERRUPTABLE_SLEEP), `T` (STOPPED), or `Z` (ZOMBIE). By default, the `processes` collector is disabled.
 
-Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
+Appears in: xref:nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 [options="header"]
 |===
@@ -381,7 +380,7 @@ Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 Use the `NodeExporterCollectorSystemdConfig` resource to enable or disable the `systemd` collector of the `node-exporter` agent. By default, the `systemd` collector is disabled. If enabled, the following metrics become available: `node_systemd_system_running`, `node_systemd_units`, `node_systemd_version`. If the unit uses a socket, it also generates the following metrics: `node_systemd_socket_accepted_connections_total`, `node_systemd_socket_current_connections`, `node_systemd_socket_refused_connections_total`.  You can use the `units` parameter to select the `systemd` units to be included by the `systemd` collector. The selected units are used to generate the `node_systemd_unit_state` metric, which shows the state of each `systemd` unit. However, this metric's cardinality might be high (at least five series per unit per node). If you enable this collector with a long list of selected units, closely monitor the `prometheus-k8s` deployment for excessive memory usage. Note that the `node_systemd_timer_last_trigger_seconds` metric is only shown if you have configured the value of the `units` parameter as `logrotate.timer`.
 
-Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
+Appears in: xref:nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 [options="header"]
 |===
@@ -398,7 +397,7 @@ Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 The `NodeExporterCollectorTcpStatConfig` resource works as an on/off switch for the `tcpstat` collector of the `node-exporter` agent. By default, the `tcpstat` collector is disabled.
 
-Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
+Appears in: xref:nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 [options="header"]
 |===
@@ -413,12 +412,12 @@ Appears in: link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]
 
 The `NodeExporterConfig` resource defines settings for the `node-exporter` agent.
 
-Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
+Appears in: xref:clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 [options="header"]
 |===
 | Property | Type | Description
-|collectors|link:#nodeexportercollectorconfig[NodeExporterCollectorConfig]|Defines which collectors are enabled and their additional configuration parameters.
+|collectors|xref:nodeexportercollectorconfig[NodeExporterCollectorConfig]|Defines which collectors are enabled and their additional configuration parameters.
 
 |maxProcs|uint32|The target number of CPUs on which the node-exporter's process will run. The default value is `0`, which means that node-exporter runs on all CPUs. If a kernel deadlock occurs or if performance degrades when reading from `sysfs` concurrently, you can change this value to `1`, which limits node-exporter to running on one CPU. For nodes with a high CPU count, you can set the limit to a low number, which  saves resources by preventing Go routines from being scheduled to run on all CPUs. However, I/O performance degrades if the `maxProcs` value is set too low and there are many metrics to collect.
 
@@ -434,7 +433,7 @@ Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 The `OpenShiftStateMetricsConfig` resource defines settings for the `openshift-state-metrics` agent.
 
-Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
+Appears in: xref:clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 [options="header"]
 |===
@@ -455,12 +454,12 @@ Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 The `PrometheusK8sConfig` resource defines settings for the Prometheus component.
 
-Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
+Appears in: xref:clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 [options="header"]
 |===
 | Property | Type | Description
-|additionalAlertmanagerConfigs|[]link:#additionalalertmanagerconfig[AdditionalAlertmanagerConfig]|Configures additional Alertmanager instances that receive alerts from the Prometheus component. By default, no additional Alertmanager instances are configured.
+|additionalAlertmanagerConfigs|[]xref:additionalalertmanagerconfig[AdditionalAlertmanagerConfig]|Configures additional Alertmanager instances that receive alerts from the Prometheus component. By default, no additional Alertmanager instances are configured.
 
 |enforcedBodySizeLimit|string|Enforces a body size limit for Prometheus scraped metrics. If a scraped target's body response is larger than the limit, the scrape will fail. The following values are valid: an empty value to specify no limit, a numeric value in Prometheus size format (such as `64MB`), or the string `automatic`, which indicates that the limit will be automatically calculated based on cluster capacity. The default value is empty, which indicates no limit.
 
@@ -472,7 +471,7 @@ Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 |queryLogFile|string|Specifies the file to which PromQL queries are logged. This setting can be either a filename, in which case the queries are saved to an `emptyDir` volume at `/var/log/prometheus`, or a full path to a location where an `emptyDir` volume will be mounted and the queries saved. Writing to `/dev/stderr`, `/dev/stdout` or `/dev/null` is supported, but writing to any other `/dev/` path is not supported. Relative paths are also not supported. By default, PromQL queries are not logged.
 
-|remoteWrite|[]link:#remotewritespec[RemoteWriteSpec]|Defines the remote write configuration, including URL, authentication, and relabeling settings.
+|remoteWrite|[]xref:remotewritespec[RemoteWriteSpec]|Defines the remote write configuration, including URL, authentication, and relabeling settings.
 
 |resources|*v1.ResourceRequirements|Defines resource requests and limits for the `Prometheus` container.
 
@@ -496,8 +495,8 @@ Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 The `PrometheusOperatorConfig` resource defines settings for the Prometheus Operator component.
 
-Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration],
-link:#userworkloadconfiguration[UserWorkloadConfiguration]
+Appears in: xref:clustermonitoringconfiguration[ClusterMonitoringConfiguration],
+xref:userworkloadconfiguration[UserWorkloadConfiguration]
 
 [options="header"]
 |===
@@ -520,7 +519,7 @@ link:#userworkloadconfiguration[UserWorkloadConfiguration]
 
 The `PrometheusOperatorAdmissionWebhookConfig` resource defines settings for the admission webhook workload for Prometheus Operator.
 
-Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
+Appears in: xref:clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 [options="header"]
 |===
@@ -538,7 +537,7 @@ Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 The `PrometheusRestrictedConfig` resource defines the settings for the Prometheus component that monitors user-defined projects.
 
-Appears in: link:#userworkloadconfiguration[UserWorkloadConfiguration]
+Appears in: xref:userworkloadconfiguration[UserWorkloadConfiguration]
 
 [options="header"]
 |===
@@ -547,7 +546,7 @@ Appears in: link:#userworkloadconfiguration[UserWorkloadConfiguration]
 
 |evaluationInterval|string|Configures the default interval between rule evaluations in case the `PrometheusRule` resource does not specify any value. The interval must be set between 5 seconds and 5 minutes. The value can be expressed in: seconds (for example `30s`), minutes (for example `1m`) or a mix of minutes and seconds (for example `1m30s`). It only applies to `PrometheusRule` resources with the `openshift.io/prometheus-rule-evaluation-scope=\"leaf-prometheus\"` label. The default value is `30s`.
 
-|additionalAlertmanagerConfigs|[]link:#additionalalertmanagerconfig[AdditionalAlertmanagerConfig]|Configures additional Alertmanager instances that receive alerts from the Prometheus component. By default, no additional Alertmanager instances are configured.
+|additionalAlertmanagerConfigs|[]xref:additionalalertmanagerconfig[AdditionalAlertmanagerConfig]|Configures additional Alertmanager instances that receive alerts from the Prometheus component. By default, no additional Alertmanager instances are configured.
 
 |enforcedLabelLimit|*uint64|Specifies a per-scrape limit on the number of labels accepted for a sample. If the number of labels exceeds this limit after metric relabeling, the entire scrape is treated as failed. The default value is `0`, which means that no limit is set.
 
@@ -567,7 +566,7 @@ Appears in: link:#userworkloadconfiguration[UserWorkloadConfiguration]
 
 |queryLogFile|string|Specifies the file to which PromQL queries are logged. This setting can be either a filename, in which case the queries are saved to an `emptyDir` volume at `/var/log/prometheus`, or a full path to a location where an `emptyDir` volume will be mounted and the queries saved. Writing to `/dev/stderr`, `/dev/stdout` or `/dev/null` is supported, but writing to any other `/dev/` path is not supported. Relative paths are also not supported. By default, PromQL queries are not logged.
 
-|remoteWrite|[]link:#remotewritespec[RemoteWriteSpec]|Defines the remote write configuration, including URL, authentication, and relabeling settings.
+|remoteWrite|[]xref:remotewritespec[RemoteWriteSpec]|Defines the remote write configuration, including URL, authentication, and relabeling settings.
 
 |resources|*v1.ResourceRequirements|Defines resource requests and limits for the Prometheus container.
 
@@ -592,8 +591,8 @@ The `RemoteWriteSpec` resource defines the settings for remote write storage.
 === Required
 * `url`
 
-Appears in: link:#prometheusk8sconfig[PrometheusK8sConfig],
-link:#prometheusrestrictedconfig[PrometheusRestrictedConfig]
+Appears in: xref:prometheusk8sconfig[PrometheusK8sConfig],
+xref:prometheusrestrictedconfig[PrometheusRestrictedConfig]
 
 [options="header"]
 |===
@@ -640,7 +639,7 @@ The `TLSConfig` resource configures the settings for TLS connections.
 === Required
 * `insecureSkipVerify`
 
-Appears in: link:#additionalalertmanagerconfig[AdditionalAlertmanagerConfig]
+Appears in: xref:additionalalertmanagerconfig[AdditionalAlertmanagerConfig]
 
 [options="header"]
 |===
@@ -667,7 +666,7 @@ Appears in: link:#additionalalertmanagerconfig[AdditionalAlertmanagerConfig]
 * `nodeSelector`
 * `tolerations`
 
-Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
+Appears in: xref:clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 [options="header"]
 |===
@@ -688,7 +687,7 @@ Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 The `ThanosQuerierConfig` resource defines settings for the Thanos Querier component.
 
-Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
+Appears in: xref:clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 [options="header"]
 |===
@@ -715,12 +714,12 @@ Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 The `ThanosRulerConfig` resource defines configuration for the Thanos Ruler instance for user-defined projects.
 
-Appears in: link:#userworkloadconfiguration[UserWorkloadConfiguration]
+Appears in: xref:userworkloadconfiguration[UserWorkloadConfiguration]
 
 [options="header"]
 |===
 | Property | Type | Description
-|additionalAlertmanagerConfigs|[]link:#additionalalertmanagerconfig[AdditionalAlertmanagerConfig]|Configures how the Thanos Ruler component communicates with additional Alertmanager instances. The Cluster Monitoring Operator reads the cluster-wide proxy settings and configures the appropriate proxy URL for the Alertmanager endpoints. All Alertmanager endpoints in this group are expected to use the same proxy URL. Endpoints that bypass the cluster proxy should be placed in a separate group. The default value is `nil`.
+|additionalAlertmanagerConfigs|[]xref:additionalalertmanagerconfig[AdditionalAlertmanagerConfig]|Configures how the Thanos Ruler component communicates with additional Alertmanager instances. The Cluster Monitoring Operator reads the cluster-wide proxy settings and configures the appropriate proxy URL for the Alertmanager endpoints. All Alertmanager endpoints in this group are expected to use the same proxy URL. Endpoints that bypass the cluster proxy should be placed in a separate group. The default value is `nil`.
 
 |evaluationInterval|string|Configures the default interval between Prometheus rule evaluations in case the `PrometheusRule` resource does not specify any value. The interval must be set between 5 seconds and 5 minutes. The value can be expressed in: seconds (for example `30s`), minutes (for example `1m`) or a mix of minutes and seconds (for example `1m30s`). It applies to `PrometheusRule` resources without the `openshift.io/prometheus-rule-evaluation-scope=\"leaf-prometheus\"` label. The default value is `15s`.
 
@@ -746,7 +745,7 @@ Appears in: link:#userworkloadconfiguration[UserWorkloadConfiguration]
 
 The `UserWorkloadConfig` resource defines settings for the monitoring of user-defined projects.
 
-Appears in: link:#clustermonitoringconfiguration[ClusterMonitoringConfiguration]
+Appears in: xref:clustermonitoringconfiguration[ClusterMonitoringConfiguration]
 
 [options="header"]
 |===
@@ -764,13 +763,13 @@ The `UserWorkloadConfiguration` resource defines the settings responsible for us
 [options="header"]
 |===
 | Property | Type | Description
-|alertmanager|*link:#alertmanageruserworkloadconfig[AlertmanagerUserWorkloadConfig]|Defines the settings for the Alertmanager component in user workload monitoring.
+|alertmanager|*xref:alertmanageruserworkloadconfig[AlertmanagerUserWorkloadConfig]|Defines the settings for the Alertmanager component in user workload monitoring.
 
-|prometheus|*link:#prometheusrestrictedconfig[PrometheusRestrictedConfig]|Defines the settings for the Prometheus component in user workload monitoring.
+|prometheus|*xref:prometheusrestrictedconfig[PrometheusRestrictedConfig]|Defines the settings for the Prometheus component in user workload monitoring.
 
-|prometheusOperator|*link:#prometheusoperatorconfig[PrometheusOperatorConfig]|Defines the settings for the Prometheus Operator component in user workload monitoring.
+|prometheusOperator|*xref:prometheusoperatorconfig[PrometheusOperatorConfig]|Defines the settings for the Prometheus Operator component in user workload monitoring.
 
-|thanosRuler|*link:#thanosrulerconfig[ThanosRulerConfig]|Defines the settings for the Thanos Ruler component in user workload monitoring.
+|thanosRuler|*xref:thanosrulerconfig[ThanosRulerConfig]|Defines the settings for the Thanos Ruler component in user workload monitoring.
 
 |namespacesWithoutLabelEnforcement|[]string|Defines the list of namespaces for which Prometheus and Thanos Ruler in user-defined monitoring do not enforce the `namespace` label value in `PrometheusRule` objects.
 

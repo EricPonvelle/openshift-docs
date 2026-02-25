@@ -2,9 +2,8 @@
 :context: nodes-cluster-overcommit
 [id="nodes-cluster-overcommit"]
 = Configuring your cluster to place pods on overcommitted nodes
-include::_attributes/common-attributes.adoc[]
+include::../includes/common-attributes.adoc[]
 
-toc::[]
 
 ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 [role="_abstract"]
@@ -68,9 +67,9 @@ include::modules/nodes-cluster-overcommit-node-disable.adoc[leveloffset=+2]
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
 //ROSA and Dedicated can only do the following, so no ifndef on these
-include::modules/nodes-cluster-project-overcommit.adoc[leveloffset=+1]
+include::../includes/nodes-cluster-project-overcommit.adoc[leveloffset=+1]
 
-include::modules/nodes-cluster-overcommit-project-disable.adoc[leveloffset=+2]
+include::../includes/nodes-cluster-overcommit-project-disable.adoc[leveloffset=+2]
 
 [role="_additional-resources"]
 [id="nodes-cluster-overcommit-addtl-resources"]
@@ -85,7 +84,7 @@ ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 * xref:../../nodes/nodes/nodes-nodes-resources-configuring.adoc#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring[Allocating resources for nodes]
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 ifdef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
-* xref:../../nodes/clusters/nodes-cluster-limit-ranges.adoc#nodes-cluster-limit-ranges[Restrict resource consumption with limit ranges]
+* xref:nodes-cluster-limit-ranges[Restrict resource consumption with limit ranges]
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 // TODO: Add this xref to ROSA HCP when the Support book is added.
 ifndef::openshift-rosa-hcp,openshift-enterprise,openshift-dedicated[]

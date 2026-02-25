@@ -2,28 +2,27 @@
 :context: nodes-cma-autoscaling-custom-rn-past
 [id="nodes-cma-autoscaling-custom-rn-past"]
 = Release notes for past releases of the Custom Metrics Autoscaler Operator
-include::_attributes/common-attributes.adoc[]
+include::../../includes/common-attributes.adoc[]
 
-toc::[]
 
 [role="_abstract"]
 You can review the following release notes to learn about changes in previous versions of the Custom Metrics Autoscaler Operator.
 
-For the current version, see xref:../../../nodes/cma/nodes-cma-rn/nodes-cma-autoscaling-custom-rn.adoc#nodes-cma-autoscaling-custom-rn[Custom Metrics Autoscaler Operator release notes].
+For the current version, see xref:nodes-cma-autoscaling-custom-rn[Custom Metrics Autoscaler Operator release notes].
 
-include::modules/nodes-pods-autoscaling-custom-rn-2181.adoc[leveloffset=+1]
+include::../../includes/nodes-pods-autoscaling-custom-rn-2181.adoc[leveloffset=+1]
 
-include::modules/nodes-pods-autoscaling-custom-rn-2172-2.adoc[leveloffset=+1]
+include::../../includes/nodes-pods-autoscaling-custom-rn-2172-2.adoc[leveloffset=+1]
 
-include::modules/nodes-pods-autoscaling-custom-rn-2172.adoc[leveloffset=+1]
+include::../../includes/nodes-pods-autoscaling-custom-rn-2172.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
 .Additional resources
-* xref:../../../nodes/cma/nodes-cma-autoscaling-custom-install.adoc#nodes-cma-autoscaling-keda-controller-edit_nodes-cma-autoscaling-custom-install[Editing the Keda Controller CR]
+* xref:nodes-cma-autoscaling-keda-controller-edit_nodes-cma-autoscaling-custom-install[Editing the Keda Controller CR]
 * xref:../../../nodes/cma/nodes-cma-autoscaling-custom-trigger#nodes-cma-autoscaling-custom-trigger-workload_nodes-cma-autoscaling-custom-trigger[Understanding the Kubernetes workload trigger]
-* xref:../../../nodes/cma/nodes-cma-autoscaling-custom-trigger-auth.adoc#nodes-cma-autoscaling-custom-trigger-auth[Understanding custom metrics autoscaler trigger authentications]
+* xref:nodes-cma-autoscaling-custom-trigger-auth[Understanding custom metrics autoscaler trigger authentications]
 
-include::modules/nodes-pods-autoscaling-custom-rn-2151-4.adoc[leveloffset=+1]
+include::../../includes/nodes-pods-autoscaling-custom-rn-2151-4.adoc[leveloffset=+1]
 
 [id="nodes-pods-autoscaling-custom-rn-2141-467_{context}"]
 == Custom Metrics Autoscaler Operator 2.14.1-467 release notes
@@ -58,7 +57,7 @@ Before installing this version of the Custom Metrics Autoscaler Operator, remove
 
 The Custom Metrics Autoscaler Operator can now use the Cron trigger to scale pods based on an hourly schedule. When your specified time frame starts, the Custom Metrics Autoscaler Operator scales pods to your desired amount. When the time frame ends, the Operator scales back down to the previous level.
 
-For more information, see xref:../../../nodes/cma/nodes-cma-autoscaling-custom-trigger.adoc#nodes-cma-autoscaling-custom-trigger-cron_nodes-cma-autoscaling-custom-trigger[Understanding the Cron trigger].
+For more information, see xref:nodes-cma-autoscaling-custom-trigger-cron_nodes-cma-autoscaling-custom-trigger[Understanding the Cron trigger].
 
 [id="nodes-pods-autoscaling-custom-rn-2141-bugs_{context}"]
 === Bug fixes
@@ -83,7 +82,7 @@ Before installing this version of the Custom Metrics Autoscaler Operator, remove
 
 The Custom Metrics Autoscaler Operator can now use custom service CA certificates to connect securely to TLS-enabled metrics sources, such as an external Kafka cluster or an external Prometheus service. By default, the Operator uses automatically-generated service certificates to connect to on-cluster services only. There is a new field in the `KedaController` object that allows you to load custom server CA certificates for connecting to external services by using config maps. 
 
-For more information, see xref:../../../nodes/cma/nodes-cma-autoscaling-custom.adoc#nodes-cma-autoscaling-custom-ca_nodes-cma-autoscaling-custom[Custom CA certificates for the Custom Metrics Autoscaler].
+For more information, see xref:nodes-cma-autoscaling-custom-ca_nodes-cma-autoscaling-custom[Custom CA certificates for the Custom Metrics Autoscaler].
 
 [id="nodes-pods-autoscaling-custom-rn-2.13.1-bugs_{context}"]
 === Bug fixes
@@ -228,7 +227,7 @@ Before installing this version of the Custom Metrics Autoscaler Operator, remove
 The Custom Metrics Autoscaler Operator is now generally available as of Custom Metrics Autoscaler Operator version 2.10.1.
 
 :FeatureName: Scaling by using a scaled job
-include::snippets/technology-preview.adoc[]
+include::../../includes/technology-preview.adoc[]
 
 [id="nodes-pods-autoscaling-custom-rn-210-metrics_{context}"]
 ==== Performance metrics

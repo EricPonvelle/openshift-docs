@@ -1,0 +1,1595 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>Ingress and load balancing</title>
+<date>2026-02-25</date>
+<title>Ingress and load balancing</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="_routes">
+<title>Routes</title>
+<section xml:id="creating-basic-routes">
+<title>Creating basic routes</title>
+<simpara role="_abstract">If you have unencrypted HTTP, you can create a basic route with a route object.</simpara>
+<section xml:id="nw-creating-a-route_creating-basic-routes">
+<title>Creating an HTTP-based route</title>
+<simpara role="_abstract">You can use the following procedure to create a simple HTTP-based route to a web application, using the <literal>hello-openshift</literal> application as an example.</simpara>
+<simpara>You can create a route to host your application at a public URL. The route can either be secure or unsecured, depending on the network security configuration of your application. An HTTP-based route is an unsecured route that uses the basic HTTP routing protocol and exposes a service on an unsecured application port.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You installed the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+<listitem>
+<simpara>You are logged in as an administrator.</simpara>
+</listitem>
+<listitem>
+<simpara>You have a web application that exposes a port and a TCP endpoint listening for traffic on the port.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create a project called <literal>hello-openshift</literal> by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc new-project hello-openshift</programlisting>
+</listitem>
+<listitem>
+<simpara>Create a pod in the project by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc create -f https://raw.githubusercontent.com/openshift/origin/master/examples/hello-openshift/hello-pod.json</programlisting>
+</listitem>
+<listitem>
+<simpara>Create a service called <literal>hello-openshift</literal> by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc expose pod/hello-openshift</programlisting>
+</listitem>
+<listitem>
+<simpara>Create an unsecured route to the <literal>hello-openshift</literal> application by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc expose svc hello-openshift</programlisting>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>To verify that the <literal>route</literal> resource that you created, run the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc get routes -o yaml hello-openshift</programlisting>
+<formalpara>
+<title>Example YAML definition of the created unsecured route</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: hello-openshift
+spec:
+  host: www.example.com
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: hello-openshift</programlisting>
+</para>
+</formalpara>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>host</literal></term>
+<listitem>
+<simpara>Specifies an alias DNS record that points to the service. This field can be any valid DNS name, such as <literal>www.example.com</literal>. The DNS name must follow DNS952 subdomain conventions. If not specified, a route name is automatically generated.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>targetPort</literal></term>
+<listitem>
+<simpara>Specifies the target port on pods that is selected by the service that this route points to.</simpara>
+<note>
+<simpara>To display your default ingress domain, run the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc get ingresses.config/cluster -o jsonpath={.spec.domain}</programlisting>
+</note>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nw-path-based-routes_creating-basic-routes">
+<title>Path-based routes</title>
+<simpara role="_abstract">To serve multiple applications by using a single hostname, configure path-based routes. This HTTP-based configuration directs traffic to specific services by comparing the URL path component, ensuring requests match the most specific route defined.</simpara>
+<simpara>The following table shows example routes and their accessibility:</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>Route availability</title>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="33.3333*"/>
+<colspec colname="col_2" colwidth="33.3333*"/>
+<colspec colname="col_3" colwidth="33.3334*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Route</entry>
+<entry align="left" valign="top">When compared to</entry>
+<entry align="left" valign="top">Accessible</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top" morerows="1"><simpara><emphasis>www.example.com/test</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis>www.example.com/test</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Yes</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><emphasis>www.example.com</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>No</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top" morerows="1"><simpara><emphasis>www.example.com/test</emphasis> and <emphasis>www.example.com</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis>www.example.com/test</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Yes</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><emphasis>www.example.com</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Yes</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top" morerows="1"><simpara><emphasis>www.example.com</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis>www.example.com/text</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Yes (Matched by the host, not the route)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><emphasis>www.example.com</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Yes</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<formalpara>
+<title>Example of an unsecured route with a path</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: route-unsecured
+spec:
+  host: www.example.com
+  path: "/test"
+  to:
+    kind: Service
+    name: service-name</programlisting>
+</para>
+</formalpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>spec.host</literal>: Specifies the path attribute for a path-based route.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>Path-based routing is not available when using passthrough TLS, as the router does not terminate TLS in that case and cannot read the contents of the request.</simpara>
+</note>
+</section>
+<section xml:id="networking-ingress-label-propagation-about_creating-basic-routes">
+<title>About label propagation from Ingress to Route resources</title>
+<simpara role="_abstract">You can opt-in to a feature that enables the Ingress Operator to automatically propagate labels. This allows you to add metadata that helps track or manage resources, or to control specific behaviors that depend on labels.</simpara>
+<simpara>By default, the managed <literal>Route</literal> object does not inherit labels from the <literal>Ingress</literal> resource. When you enable the propagation feature, the Operator actively reconciles the labels on the generated <literal>Route</literal> resource to match the labels on the parent <literal>Ingress</literal> resource.</simpara>
+<note>
+<simpara>When label propagation is enabled, the Ingress Operator replaces all labels on the managed <literal>Route</literal> resource with the exact set of labels from the parent <literal>Ingress</literal> resource. Any labels that were manually added to the <literal>Route</literal> resource are removed.</simpara>
+</note>
+<simpara>The propagation behavior is controlled by the <literal>route.openshift.io/reconcile-labels</literal> annotation on the <literal>Ingress</literal> resource. The Operator&#8217;s behavior changes depending on the state of this annotation:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Annotation not present (default): The Operator does not sync labels from the <literal>Ingress</literal> resource to the <literal>Route</literal> resource. Any existing labels on the <literal>Route</literal> are preserved.</simpara>
+</listitem>
+<listitem>
+<simpara>Annotation enabled (<literal>route.openshift.io/reconcile-labels: "true"</literal>): The Operator enables label propagation. On the next reconciliation (triggered by the <literal>Ingress</literal> create or update event), the Operator replaces all labels on the generated <literal>Route</literal> resource with the labels from the <literal>Ingress</literal> resource.</simpara>
+</listitem>
+<listitem>
+<simpara>Annotation disabled (removed or value set to non-"true"): The Operator disables label propagation. The labels that currently exist on the <literal>Route</literal> resource are kept as-is, but the Operator no longer syncs them with the <literal>Ingress</literal> resource.</simpara>
+</listitem>
+<listitem>
+<simpara>Annotation re-enabled: The Operator resumes propagation. It will again replace all labels on the <literal>Route</literal> resource with the current labels from the <literal>Ingress</literal> resource.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="networking-ingress-label-propagation-enabling_creating-basic-routes">
+<title>Enabling label propagation from Ingress to Route resources</title>
+<simpara role="_abstract">You can enable the Ingress Operator to automatically propagate labels from an <literal>Ingress</literal> resource to the <literal>Route</literal> resource it manages. To enable this, you must add the <literal>reconcile-labels</literal> annotation to an <literal>Ingress</literal> resource.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have access to an OpenShift Container Platform cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>You have the <literal>cluster-admin</literal> role or permissions to create and edit <literal>Ingress</literal> resources in a project.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create or edit an <literal>Ingress</literal> resource manifest.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <literal>metadata.annotations</literal> section, add <literal>route.openshift.io/reconcile-labels: "true"</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <literal>metadata.labels</literal> section, add the labels you want to propagate.</simpara>
+<simpara>Example <literal>Ingress</literal> resource with label propagation enabled:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    route.openshift.io/reconcile-labels: "true"
+  labels:
+    app: my-app
+    owner: dev-team
+spec:
+  ingressClassName: openshift-default
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: example-service
+            port:
+              number: 27017
+        path: "/"
+        pathType: "Prefix"</programlisting>
+</listitem>
+<listitem>
+<simpara>Apply the manifest to your cluster:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc apply -f &lt;example-ingress-manifest.yaml&gt;</programlisting>
+<simpara>Replace <literal>&lt;example-ingress-manifest.yaml&gt;</literal> with the name of your specific manifest file.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify that the labels from the <literal>Ingress</literal> resource have propagated to the generated <literal>Route</literal> resource:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc get route -l app=my-app --show-labels</programlisting>
+<simpara>Example output:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">NAME          HOST/PORT     PATH   SERVICES          PORT    TERMINATION   WILDCARD   LABELS
+example-rt    example.com   /      example-service   8080                  None       app=my-app,owner=dev-team</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="securing-routes">
+<title>Securing routes</title>
+<simpara role="_abstract">You can secure a route with HTTP strict transport security (HSTS).</simpara>
+<section xml:id="nw-enabling-hsts_securing-routes">
+<title>HTTP Strict Transport Security</title>
+<simpara role="_abstract">To enhance security and optimize website performance, use the HTTP Strict Transport Security (HSTS) policy. This mechanism signals browsers to use only HTTPS traffic on the route host, eliminating the need for HTTP redirects and speeding up user interactions.</simpara>
+<simpara>When HSTS policy is enforced, HSTS adds a Strict Transport Security header to HTTP and HTTPS responses from the site. You can use the <literal>insecureEdgeTerminationPolicy</literal> value in a route to redirect HTTP to HTTPS. When HSTS is enforced, the client changes all requests from the HTTP URL to HTTPS before the request is sent, eliminating the need for a redirect.</simpara>
+<simpara>Cluster administrators can configure HSTS to do the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Enable HSTS per-route</simpara>
+</listitem>
+<listitem>
+<simpara>Disable HSTS per-route</simpara>
+</listitem>
+<listitem>
+<simpara>Enforce HSTS per-domain, for a set of domains, or use namespace labels in combination with domains</simpara>
+</listitem>
+</itemizedlist>
+<important>
+<simpara>HSTS works only with secure routes, either edge-terminated or re-encrypt. The configuration is ineffective on HTTP or passthrough routes.</simpara>
+</important>
+<section xml:id="nw-enabling-hsts-per-route_securing-routes">
+<title>Enabling HTTP Strict Transport Security per-route</title>
+<simpara role="_abstract">To enforce secure HTTPS connections for specific applications, enable HTTP Strict Transport Security (HSTS) on a per-route basis. Applying the <literal>haproxy.router.openshift.io/hsts_header</literal> annotation to edge and re-encrypt routes ensures that browsers reject unencrypted traffic.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You are logged in to the cluster with a user with administrator privileges for the project.</simpara>
+</listitem>
+<listitem>
+<simpara>You installed the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>To enable HSTS on a route, add the <literal>haproxy.router.openshift.io/hsts_header</literal> value to the edge-terminated or re-encrypt route. You can use the <literal>oc annotate</literal> tool to do this by running the following command. To properly run the command, ensure that the semicolon (<literal>;</literal>) in the <literal>haproxy.router.openshift.io/hsts_header</literal> route annotation is also surrounded by double quotation marks (<literal>""</literal>).</simpara>
+<formalpara>
+<title>Example <literal>annotate</literal> command that sets the maximum age to <literal>31536000</literal> ms (approximately 8.5 hours)</title>
+<para>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc annotate route &lt;route_name&gt; -n &lt;namespace&gt; --overwrite=true "haproxy.router.openshift.io/hsts_header=max-age=31536000;\
+includeSubDomains;preload"</programlisting>
+</para>
+</formalpara>
+<formalpara>
+<title>Example route configured with an annotation</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    haproxy.router.openshift.io/hsts_header: max-age=31536000;includeSubDomains;preload
+# ...
+spec:
+  host: def.abc.com
+  tls:
+    termination: "reencrypt"
+    ...
+  wildcardPolicy: "Subdomain"
+# ...</programlisting>
+</para>
+</formalpara>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>max-age</literal></term>
+<listitem>
+<simpara>Specifies the measurement of the length of time, in seconds, for the HSTS policy. If set to <literal>0</literal>, it negates the policy.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>includeSubDomains</literal></term>
+<listitem>
+<simpara>Specifies that all subdomains of the host must have the same HSTS policy as the host. Optional parameter.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>preload</literal></term>
+<listitem>
+<simpara>Specifies that the site is included in the HSTS preload list when <literal>max-age</literal> is greater than <literal>0</literal>. For example, sites such as Google can construct a list of sites that have <literal>preload</literal> set. Browsers can then use these lists to determine which sites they can communicate with over HTTPS, even before they have interacted with the site. Without <literal>preload</literal> set, browsers must have interacted with the site over HTTPS, at least once, to get the header. Optional parameter.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nw-disabling-hsts_securing-routes">
+<title>Disabling HTTP Strict Transport Security per-route</title>
+<simpara role="_abstract">To allow unencrypted connections or troubleshoot access issues, disable HTTP Strict Transport Security (HSTS) for a specific route. Setting the <literal>max-age</literal> route annotation to <literal>0</literal> instructs browsers to stop enforcing HTTPS requirements on the route host.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You are logged in to the cluster with a user with administrator privileges for the project.</simpara>
+</listitem>
+<listitem>
+<simpara>You installed the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>To disable HSTS, enter the following to set the <literal>max-age</literal> value in the route annotation to <literal>0</literal>:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc annotate route &lt;route_name&gt; -n &lt;namespace&gt; --overwrite=true "haproxy.router.openshift.io/hsts_header"="max-age=0"</programlisting>
+<tip>
+<simpara>You can alternatively apply the following YAML to create the config map:</simpara>
+<formalpara>
+<title>Example of disabling HSTS per-route</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    haproxy.router.openshift.io/hsts_header: max-age=0</programlisting>
+</para>
+</formalpara>
+</tip>
+</listitem>
+<listitem>
+<simpara>To disable HSTS for every route in a namespace, enter the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc annotate route --all -n &lt;namespace&gt; --overwrite=true "haproxy.router.openshift.io/hsts_header"="max-age=0"</programlisting>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>To query the annotation for all routes, enter the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc get route  --all-namespaces -o go-template='{{range .items}}{{if .metadata.annotations}}{{$a := index .metadata.annotations "haproxy.router.openshift.io/hsts_header"}}{{$n := .metadata.name}}{{with $a}}Name: {{$n}} HSTS: {{$a}}{{"\n"}}{{else}}{{""}}{{end}}{{end}}{{end}}'</programlisting>
+<formalpara>
+<title>Example output</title>
+<para>
+<programlisting language="terminal" linenumbering="unnumbered">Name: routename HSTS: max-age=0</programlisting>
+</para>
+</formalpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nw-enforcing-hsts-per-domain_securing-routes">
+<title>Enforcing HTTP Strict Transport Security per-domain</title>
+<simpara>To enforce HTTP Strict Transport Security (HSTS) per-domain for secure routes, add a <literal>requiredHSTSPolicies</literal> record to the Ingress spec to capture the configuration of the HSTS policy.</simpara>
+<simpara>If you configure a <literal>requiredHSTSPolicy</literal> to enforce HSTS, then any newly created route must be configured with a compliant HSTS policy annotation.</simpara>
+<note>
+<simpara>To handle upgraded clusters with non-compliant HSTS routes, you can update the manifests at the source and apply the updates.</simpara>
+</note>
+<note>
+<simpara>You cannot use <literal>oc expose route</literal> or <literal>oc create route</literal> commands to add a route in a domain that enforces HSTS, because the API for these commands does not accept annotations.</simpara>
+</note>
+<important>
+<simpara>HSTS cannot be applied to insecure, or non-TLS routes, even if HSTS is requested for all routes globally.</simpara>
+</important>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You are logged in to the cluster with a user with administrator privileges for the project.</simpara>
+</listitem>
+<listitem>
+<simpara>You installed the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Edit the Ingress configuration YAML by running the following command and updating fields as needed:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc edit ingresses.config.openshift.io/cluster</programlisting>
+<formalpara>
+<title>Example HSTS policy</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: config.openshift.io/v1
+kind: Ingress
+metadata:
+  name: cluster
+spec:
+  domain: 'hello-openshift-default.apps.username.devcluster.openshift.com'
+  requiredHSTSPolicies: <co xml:id="CO1-1"/>
+  - domainPatterns: <co xml:id="CO1-2"/>
+    - '*hello-openshift-default.apps.username.devcluster.openshift.com'
+    - '*hello-openshift-default2.apps.username.devcluster.openshift.com'
+    namespaceSelector: <co xml:id="CO1-3"/>
+      matchLabels:
+        myPolicy: strict
+    maxAge: <co xml:id="CO1-4"/>
+      smallestMaxAge: 1
+      largestMaxAge: 31536000
+    preloadPolicy: RequirePreload <co xml:id="CO1-5"/>
+    includeSubDomainsPolicy: RequireIncludeSubDomains <co xml:id="CO1-6"/>
+  - domainPatterns:
+    - 'abc.example.com'
+    - '*xyz.example.com'
+    namespaceSelector:
+      matchLabels: {}
+    maxAge: {}
+    preloadPolicy: NoOpinion
+    includeSubDomainsPolicy: RequireNoIncludeSubDomains</programlisting>
+</para>
+</formalpara>
+<calloutlist>
+<callout arearefs="CO1-1">
+<para>Required. <literal>requiredHSTSPolicies</literal> are validated in order, and the first matching <literal>domainPatterns</literal> applies.</para>
+</callout>
+<callout arearefs="CO1-2">
+<para>Required. You must specify at least one <literal>domainPatterns</literal> hostname. Any number of domains can be listed. You can include multiple sections of enforcing options for different <literal>domainPatterns</literal>.</para>
+</callout>
+<callout arearefs="CO1-3">
+<para>Optional. If you include <literal>namespaceSelector</literal>, it must match the labels of the project where the routes reside, to enforce the set HSTS policy on the routes. Routes that only match the <literal>namespaceSelector</literal> and not the <literal>domainPatterns</literal> are not validated.</para>
+</callout>
+<callout arearefs="CO1-4">
+<para>Required. <literal>max-age</literal> measures the length of time, in seconds, that the HSTS policy is in effect. This policy setting allows for a smallest and largest <literal>max-age</literal> to be enforced.</para>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>largestMaxAge</literal> value must be between <literal>0</literal> and <literal>2147483647</literal>. It can be left unspecified, which means no upper limit is enforced.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>smallestMaxAge</literal> value must be between <literal>0</literal> and <literal>2147483647</literal>. Enter <literal>0</literal> to disable HSTS for troubleshooting, otherwise enter <literal>1</literal> if you never want HSTS to be disabled. It can be left unspecified, which means no lower limit is enforced.</simpara>
+</listitem>
+</itemizedlist>
+</callout>
+<callout arearefs="CO1-5">
+<para>Optional. Including <literal>preload</literal> in <literal>haproxy.router.openshift.io/hsts_header</literal> allows external services to include this site in their HSTS preload lists. Browsers can then use these lists to determine which sites they can communicate with over HTTPS, before they have interacted with the site. Without <literal>preload</literal> set, browsers need to interact at least once with the site to get the header. <literal>preload</literal> can be set with one of the following:</para>
+<itemizedlist>
+<listitem>
+<simpara><literal>RequirePreload</literal>: <literal>preload</literal> is required by the <literal>RequiredHSTSPolicy</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>RequireNoPreload</literal>: <literal>preload</literal> is forbidden by the <literal>RequiredHSTSPolicy</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>NoOpinion</literal>: <literal>preload</literal> does not matter to the <literal>RequiredHSTSPolicy</literal>.</simpara>
+</listitem>
+</itemizedlist>
+</callout>
+<callout arearefs="CO1-6">
+<para>Optional. <literal>includeSubDomainsPolicy</literal> can be set with one of the following:</para>
+<itemizedlist>
+<listitem>
+<simpara><literal>RequireIncludeSubDomains</literal>: <literal>includeSubDomains</literal> is required by the <literal>RequiredHSTSPolicy</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>RequireNoIncludeSubDomains</literal>: <literal>includeSubDomains</literal> is forbidden by the <literal>RequiredHSTSPolicy</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>NoOpinion</literal>: <literal>includeSubDomains</literal> does not matter to the <literal>RequiredHSTSPolicy</literal>.</simpara>
+</listitem>
+</itemizedlist>
+</callout>
+</calloutlist>
+</listitem>
+<listitem>
+<simpara>You can apply HSTS to all routes in the cluster or in a particular namespace by entering the <literal>oc annotate command</literal>.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>To apply HSTS to all routes in the cluster, enter the <literal>oc annotate command</literal>. For example:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc annotate route --all --all-namespaces --overwrite=true "haproxy.router.openshift.io/hsts_header"="max-age=31536000"</programlisting>
+</listitem>
+<listitem>
+<simpara>To apply HSTS to all routes in a particular namespace, enter the <literal>oc annotate command</literal>. For example:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc annotate route --all -n my-namespace --overwrite=true "haproxy.router.openshift.io/hsts_header"="max-age=31536000"</programlisting>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+<formalpara>
+<title>Verification</title>
+<para>You can review the HSTS policy you configured. For example:</para>
+</formalpara>
+<itemizedlist>
+<listitem>
+<simpara>To review the <literal>maxAge</literal> set for required HSTS policies, enter the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc get clusteroperator/ingress -n openshift-ingress-operator -o jsonpath='{range .spec.requiredHSTSPolicies[*]}{.spec.requiredHSTSPolicies.maxAgePolicy.largestMaxAge}{"\n"}{end}'</programlisting>
+</listitem>
+<listitem>
+<simpara>To review the HSTS annotations on all routes, enter the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc get route  --all-namespaces -o go-template='{{range .items}}{{if .metadata.annotations}}{{$a := index .metadata.annotations "haproxy.router.openshift.io/hsts_header"}}{{$n := .metadata.name}}{{with $a}}Name: {{$n}} HSTS: {{$a}}{{"\n"}}{{else}}{{""}}{{end}}{{end}}{{end}}'</programlisting>
+<formalpara>
+<title>Example output</title>
+<para>
+<programlisting language="terminal" linenumbering="unnumbered">Name: &lt;_routename_&gt; HSTS: max-age=31536000;preload;includeSubDomains</programlisting>
+</para>
+</formalpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+</section>
+<section xml:id="nw-configuring-routes">
+<title>Configuring routes</title>
+<simpara role="_abstract">To customise route configuration for specific traffic behaviors, apply annotations, headers, and cookies. By using these mechanisms, you can define granular routing rules, extending standard capabilities to meet complex application requirements.</simpara>
+<section xml:id="nw-configuring-route-timeouts_configuring-routes">
+<title>Configuring route timeouts</title>
+<simpara role="_abstract">You can configure the default timeouts for an existing route when you have services in need of a low timeout, which is required for Service Level Availability (SLA) purposes, or a high timeout, for cases with a slow back end.</simpara>
+<important>
+<simpara>If you configured a user-managed external load balancer in front of your OpenShift Container Platform cluster, ensure that the timeout value for the user-managed external load balancer is higher than the timeout value for the route. This configuration prevents network congestion issues over the network that your cluster uses.</simpara>
+</important>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You deployed an Ingress Controller on a running cluster.</simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>Using the <literal>oc annotate</literal> command, add the timeout to the route:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc annotate route &lt;route_name&gt; \
+    --overwrite haproxy.router.openshift.io/timeout=&lt;timeout&gt;&lt;time_unit&gt;</programlisting>
+</listitem>
+<listitem>
+<simpara><literal>&lt;timeout&gt;</literal>: Supported time units are microseconds (us), milliseconds (ms), seconds (s), minutes (m), hours (h), or days (d).</simpara>
+<simpara>The following example sets a timeout of two seconds on a route named <literal>myroute</literal>:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc annotate route myroute --overwrite haproxy.router.openshift.io/timeout=2s</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nw-http-header-configuration_configuring-routes">
+<title>HTTP header configuration</title>
+<simpara role="_abstract">To customize request and response headers for your applications, configure the Ingress Controller or apply specific route annotations. Understanding the interaction between these configuration methods ensures you effectively manage global and route-specific header policies.</simpara>
+<simpara>You can also set certain headers by using route annotations. The various ways of configuring headers can present challenges when working together.</simpara>
+<note>
+<simpara>You can only set or delete headers within an <literal>IngressController</literal> or <literal>Route</literal> CR, you cannot append them. If an HTTP header is set with a value, that value must be complete and not require appending in the future. In situations where it makes sense to append a header, such as the X-Forwarded-For header, use the <literal>spec.httpHeaders.forwardedHeaderPolicy</literal> field, instead of <literal>spec.httpHeaders.actions</literal>.</simpara>
+</note>
+<variablelist>
+<varlistentry>
+<term>Order of precedence</term>
+<listitem>
+<simpara>When the same HTTP header is modified both in the Ingress Controller and in a route, HAProxy prioritizes the actions in certain ways depending on whether it is a request or response header.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>For HTTP response headers, actions specified in the Ingress Controller are executed after the actions specified in a route. This means that the actions specified in the Ingress Controller take precedence.</simpara>
+</listitem>
+<listitem>
+<simpara>For HTTP request headers, actions specified in a route are executed after the actions specified in the Ingress Controller. This means that the actions specified in the route take precedence.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>For example, a cluster administrator sets the X-Frame-Options response header with the value <literal>DENY</literal> in the Ingress Controller using the following configuration:</simpara>
+<formalpara>
+<title>Example <literal>IngressController</literal> spec</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: operator.openshift.io/v1
+kind: IngressController
+# ...
+spec:
+  httpHeaders:
+    actions:
+      response:
+      - name: X-Frame-Options
+        action:
+          type: Set
+          set:
+            value: DENY</programlisting>
+</para>
+</formalpara>
+<simpara>A route owner sets the same response header that the cluster administrator set in the Ingress Controller, but with the value <literal>SAMEORIGIN</literal> using the following configuration:</simpara>
+<formalpara>
+<title>Example <literal>Route</literal> spec</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: route.openshift.io/v1
+kind: Route
+# ...
+spec:
+  httpHeaders:
+    actions:
+      response:
+      - name: X-Frame-Options
+        action:
+          type: Set
+          set:
+            value: SAMEORIGIN</programlisting>
+</para>
+</formalpara>
+<simpara>When both the <literal>IngressController</literal> spec and <literal>Route</literal> spec are configuring the X-Frame-Options response header, then the value set for this header at the global level in the Ingress Controller takes precedence, even if a specific route allows frames. For a request header, the <literal>Route</literal> spec value overrides the <literal>IngressController</literal> spec value.</simpara>
+<simpara>This prioritization occurs because the <literal>haproxy.config</literal> file uses the following logic, where the Ingress Controller is considered the front end and individual routes are considered the back end. The header value <literal>DENY</literal> applied to the front end configurations overrides the same header with the value <literal>SAMEORIGIN</literal> that is set in the back end:</simpara>
+<programlisting language="text" linenumbering="unnumbered">frontend public
+  http-response set-header X-Frame-Options 'DENY'
+
+frontend fe_sni
+  http-response set-header X-Frame-Options 'DENY'
+
+frontend fe_no_sni
+  http-response set-header X-Frame-Options 'DENY'
+
+backend be_secure:openshift-monitoring:alertmanager-main
+  http-response set-header X-Frame-Options 'SAMEORIGIN'</programlisting>
+<simpara>Additionally, any actions defined in either the Ingress Controller or a route override values set using route annotations.</simpara>
+<variablelist>
+<varlistentry>
+<term>Special case headers</term>
+<listitem>
+<simpara>The following headers are either prevented entirely from being set or deleted, or allowed under specific circumstances:</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<table frame="all" rowsep="1" colsep="1">
+<title>Special case header configuration options</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Header name</entry>
+<entry align="left" valign="top">Configurable using <literal>IngressController</literal> spec</entry>
+<entry align="left" valign="top">Configurable using <literal>Route</literal> spec</entry>
+<entry align="left" valign="top">Reason for disallowment</entry>
+<entry align="left" valign="top">Configurable using another method</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>proxy</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>No</simpara></entry>
+<entry align="left" valign="top"><simpara>No</simpara></entry>
+<entry align="left" valign="top"><simpara>The <literal>proxy</literal> HTTP request header can be used to exploit vulnerable CGI applications by injecting the header value into the <literal>HTTP_PROXY</literal> environment variable. The <literal>proxy</literal> HTTP request header is also non-standard and prone to error during configuration.</simpara></entry>
+<entry align="left" valign="top"><simpara>No</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>host</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>No</simpara></entry>
+<entry align="left" valign="top"><simpara>Yes</simpara></entry>
+<entry align="left" valign="top"><simpara>When the <literal>host</literal> HTTP request header is set using the <literal>IngressController</literal> CR, HAProxy can fail when looking up the correct route.</simpara></entry>
+<entry align="left" valign="top"><simpara>No</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>strict-transport-security</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>No</simpara></entry>
+<entry align="left" valign="top"><simpara>No</simpara></entry>
+<entry align="left" valign="top"><simpara>The <literal>strict-transport-security</literal> HTTP response header is already handled using route annotations and does not need a separate implementation.</simpara></entry>
+<entry align="left" valign="top"><simpara>Yes: the <literal>haproxy.router.openshift.io/hsts_header</literal> route annotation</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>cookie</literal> and <literal>set-cookie</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>No</simpara></entry>
+<entry align="left" valign="top"><simpara>No</simpara></entry>
+<entry align="left" valign="top"><simpara>The cookies that HAProxy sets are used for session tracking to map client connections to particular back-end servers. Allowing these headers to be set could interfere with HAProxy&#8217;s session affinity and restrict HAProxy&#8217;s ownership of a cookie.</simpara></entry>
+<entry align="left" valign="top"><simpara>Yes:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>the <literal>haproxy.router.openshift.io/disable_cookie</literal> route annotation</simpara>
+</listitem>
+<listitem>
+<simpara>the <literal>haproxy.router.openshift.io/cookie_name</literal> route annotation</simpara>
+</listitem>
+</itemizedlist></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+<section xml:id="nw-route-set-or-delete-http-headers_configuring-routes">
+<title>Setting or deleting HTTP request and response headers in a route</title>
+<simpara role="_abstract">You can set or delete certain HTTP request and response headers for compliance purposes or other reasons. You can set or delete these headers either for all routes served by an Ingress Controller or for specific routes.</simpara>
+<simpara>For example, you might want to enable a web application to serve content in alternate locations for specific routes if that content is written in multiple languages, even if there is a default global location specified by the Ingress Controller serving the routes.</simpara>
+<simpara>The following procedure creates a route that sets the Content-Location HTTP request header so that the URL associated with the application, <literal>https://app.example.com</literal>, directs to the location <literal>https://app.example.com/lang/en-us</literal>. Directing application traffic to this location means that anyone using that specific route is accessing web content written in American English.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have installed the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+<listitem>
+<simpara>You are logged into an OpenShift Container Platform cluster as a project administrator.</simpara>
+</listitem>
+<listitem>
+<simpara>You have a web application that exposes a port and an HTTP or TLS endpoint listening for traffic on the port.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create a route definition and save it in a file called <literal>app-example-route.yaml</literal>:</simpara>
+<formalpara>
+<title>YAML definition of the created route with HTTP header directives</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: route.openshift.io/v1
+kind: Route
+# ...
+spec:
+  host: app.example.com
+  tls:
+    termination: edge
+  to:
+    kind: Service
+    name: app-example
+  httpHeaders:
+    actions:
+      response:
+      - name: Content-Location
+        action:
+          type: Set
+          set:
+            value: /lang/en-us
+# ...</programlisting>
+</para>
+</formalpara>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>actions</literal></term>
+<listitem>
+<simpara>Specifies the list of actions you want to perform on the HTTP headers.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>response</literal></term>
+<listitem>
+<simpara>Specifies the type of header you want to change. In this case, a response header.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>response.name</literal></term>
+<listitem>
+<simpara>Specifies the name of the header you want to change. For a list of available headers you can set or delete, see <emphasis>HTTP header configuration</emphasis>.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>action.type</literal></term>
+<listitem>
+<simpara>Specifies the type of action being taken on the header. This field can have the value <literal>Set</literal> or <literal>Delete</literal>.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>set.value</literal></term>
+<listitem>
+<simpara>When setting HTTP headers, you must provide a <literal>value</literal>. The value can be a string from a list of available directives for that header, for example <literal>DENY</literal>, or it can be a dynamic value that will be interpreted using HAProxy&#8217;s dynamic value syntax. In this case, the value is set to the relative location of the content.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<simpara>Create a route to your existing web application using the newly created route definition:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc -n app-example create -f app-example-route.yaml</programlisting>
+<simpara>For HTTP request headers, the actions specified in the route definitions are executed after any actions performed on HTTP request headers in the Ingress Controller. This means that any values set for those request headers in a route will take precedence over the ones set in the Ingress Controller. For more information on the processing order of HTTP headers, see <emphasis>HTTP header configuration</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="nw-using-cookies-keep-route-statefulness_configuring-routes">
+<title>Using cookies to keep route statefulness</title>
+<simpara role="_abstract">To maintain stateful application traffic during pod restarts or scaling events, configure sticky sessions by using cookies. By using this method, you ensure that all incoming traffic reaches the same endpoint, preventing state loss even if the specific endpoint pod changes.</simpara>
+<simpara>OpenShift Container Platform can use cookies to configure session persistence. The Ingress Controller selects an endpoint to handle any user requests, and creates a cookie for the session. The cookie is passed back in the response to the request and the user sends the cookie back with the next request in the session. The cookie tells the Ingress Controller which endpoint is handling the session, ensuring that client requests use the cookie so that they are routed to the same pod.</simpara>
+<note>
+<simpara>Cookies cannot be set on passthrough routes, because the HTTP traffic cannot be seen. Instead, a number is calculated based on the source IP address, which determines the backend.</simpara>
+<simpara>If backends change, the traffic can be directed to the wrong server, making it less sticky. If you are using a load balancer, which hides source IP, the same number is set for all connections and traffic is sent to the same pod.</simpara>
+</note>
+<section xml:id="nw-annotating-a-route-with-a-cookie-name_configuring-routes">
+<title>Annotating a route with a cookie</title>
+<simpara role="_abstract">To enable applications to manage session persistence and load distribution, annotate the route with a custom cookie name. Overwriting the default cookie allows the backend application to identify and delete the specific cookie, forcing endpoint re-selection when necessary.</simpara>
+<simpara>When a server is overloaded, the server tries to remove the requests from the client and redistribute the requests to other endpoints.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Annotate the route with the specified cookie name:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc annotate route &lt;route_name&gt; router.openshift.io/cookie_name="&lt;cookie_name&gt;"</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>&lt;route_name&gt;</literal></term>
+<listitem>
+<simpara>Specifies the name of the route.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>&lt;cookie_name&gt;</literal></term>
+<listitem>
+<simpara>Specifies the name for the cookie.</simpara>
+<simpara>For example, to annotate the route <literal>my_route</literal> with the cookie name <literal>my_cookie</literal>:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc annotate route my_route router.openshift.io/cookie_name="my_cookie"</programlisting>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<simpara>Capture the route hostname in a variable:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ ROUTE_NAME=$(oc get route &lt;route_name&gt; -o jsonpath='{.spec.host}')</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>&lt;route_name&gt;</literal></term>
+<listitem>
+<simpara>Specifies the name of the route.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<simpara>Save the cookie, and then access the route:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ curl $ROUTE_NAME -k -c /tmp/cookie_jar</programlisting>
+<simpara>Use the cookie saved by the previous command when connecting to the route:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ curl $ROUTE_NAME -k -b /tmp/cookie_jar</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="nw-route-specific-annotations_configuring-routes">
+<title>Route-specific annotations</title>
+<simpara>The Ingress Controller can set the default options for all the routes it exposes. An individual route can override some of these defaults by providing specific configurations in its annotations. Red Hat does not support adding a route annotation to an operator-managed route.</simpara>
+<important>
+<simpara>To create an allow list with multiple source IPs or subnets, use a space-delimited list. Any other delimiter type causes the list to be ignored without a warning or error message.</simpara>
+</important>
+<table frame="all" rowsep="1" colsep="1">
+<title>Route annotations</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Variable</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>haproxy.router.openshift.io/balance</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Sets the load-balancing algorithm. Available options are <literal>random</literal>, <literal>source</literal>, <literal>roundrobin</literal>[<superscript>1</superscript>], and <literal>leastconn</literal>.  The default value is <literal>source</literal> for TLS passthrough routes. For all other routes, the default is <literal>random</literal>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>haproxy.router.openshift.io/disable_cookies</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Disables the use of cookies to track related connections. If set to <literal>'true'</literal> or <literal>'TRUE'</literal>, the balance algorithm is used to choose which back-end serves connections for each incoming HTTP request.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>router.openshift.io/cookie_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies an optional cookie to use for
+this route. The name must consist of any combination of upper and lower case letters, digits, "_",
+and "-". The default is the hashed internal key name for the route.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>haproxy.router.openshift.io/pod-concurrent-connections</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Sets the maximum number of connections that are allowed to a backing pod from a router.<?asciidoc-br?>
+Note: If there are multiple pods, each can have this many connections.  If you have multiple routers, there is no coordination among them, each may connect this many times. If not set, or set to 0, there is no limit.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>haproxy.router.openshift.io/rate-limit-connections</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Setting <literal>'true'</literal> or <literal>'TRUE'</literal> enables rate limiting functionality which is implemented through stick-tables on the specific backend per route.<?asciidoc-br?>
+Note: Using this annotation provides basic protection against denial-of-service attacks.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>haproxy.router.openshift.io/rate-limit-connections.concurrent-tcp</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Limits the number of concurrent TCP connections made through the same source IP address. It accepts a numeric value.<?asciidoc-br?>
+Note: Using this annotation provides basic protection against denial-of-service attacks.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>haproxy.router.openshift.io/rate-limit-connections.rate-http</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Limits the rate at which a client with the same source IP address can make HTTP requests. It accepts a numeric value. <?asciidoc-br?>
+Note: Using this annotation provides basic protection against denial-of-service attacks.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>haproxy.router.openshift.io/rate-limit-connections.rate-tcp</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Limits the rate at which a client with the same source IP address can make TCP connections. It accepts a numeric value. <?asciidoc-br?></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>router.openshift.io/haproxy.health.check.interval</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Sets the interval for the back-end health checks. (TimeUnits)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>haproxy.router.openshift.io/ip_allowlist</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Sets an allowlist for the route. The allowlist is a space-separated list of IP addresses and CIDR ranges for the approved source addresses. Requests from IP addresses that are not in the allowlist are dropped.</simpara><simpara>The maximum number of IP addresses and CIDR ranges directly visible in the <literal>haproxy.config</literal> file is 61. [<superscript>2</superscript>]</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>haproxy.router.openshift.io/hsts_header</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Sets a Strict-Transport-Security header for the edge terminated or re-encrypt route.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>haproxy.router.openshift.io/rewrite-target</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Sets the rewrite path of the request on the backend.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>router.openshift.io/cookie-same-site</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Sets a value to restrict cookies. The values are:</simpara><simpara><literal>Lax</literal>: the browser does not send cookies on cross-site requests, but does send cookies when users navigate to the origin site from an external site. This is the default browser behavior when the <literal>SameSite</literal> value is not specified.</simpara><simpara><literal>Strict</literal>: the browser sends cookies only for same-site requests.</simpara><simpara><literal>None</literal>: the browser sends cookies for both cross-site and same-site requests.</simpara><simpara>This value is applicable to re-encrypt and edge routes only. For more information, see the <link xlink:href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">SameSite cookies documentation</link>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>haproxy.router.openshift.io/set-forwarded-headers</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Sets the policy for handling the <literal>Forwarded</literal> and <literal>X-Forwarded-For</literal> HTTP headers per route. The values are:</simpara><simpara><literal>append</literal>: appends the header, preserving any existing header. This is the default value.</simpara><simpara><literal>replace</literal>: sets the header, removing any existing header.</simpara><simpara><literal>never</literal>: never sets the header, but preserves any existing header.</simpara><simpara><literal>if-none</literal>: sets the header if it is not already set.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<para role="small">
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>By default, the router reloads every 5 s which resets the balancing connection across pods from the beginning. As a result, the <literal>roundrobin</literal> state is not preserved across reloads. This algorithm works best when pods have nearly identical computing capabilites and storage capacity. If your application or service has continuously changing endpoints, for example, due to the use of a CI/CD pipeline, uneven balancing can result. In this case, use a different algorithm.</simpara>
+</listitem>
+<listitem>
+<simpara>If the number of IP addresses and CIDR ranges in an allowlist exceeds 61, they are written into a separate file that is then referenced from the <literal>haproxy.config</literal> file. This file is stored in the <literal>/var/lib/haproxy/router/allowlists</literal> folder.</simpara>
+<note>
+<simpara>To ensure that the addresses are written to the allowlist, check that the full list of CIDR ranges are listed in the Ingress Controller configuration file. The etcd object size limit restricts how large a route annotation can be. Because of this, it creates a threshold for the maximum number of IP addresses and CIDR ranges that you can include in an allowlist.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</para>
+<formalpara>
+<title>A route that allows only one specific IP address</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">metadata:
+  annotations:
+    haproxy.router.openshift.io/ip_allowlist: 192.168.1.10</programlisting>
+</para>
+</formalpara>
+<formalpara>
+<title>A route that allows several IP addresses</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">metadata:
+  annotations:
+    haproxy.router.openshift.io/ip_allowlist: 192.168.1.10 192.168.1.11 192.168.1.12</programlisting>
+</para>
+</formalpara>
+<formalpara>
+<title>A route that allows an IP address CIDR network</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">metadata:
+  annotations:
+    haproxy.router.openshift.io/ip_allowlist: 192.168.1.0/24</programlisting>
+</para>
+</formalpara>
+<formalpara>
+<title>A route that allows both IP an address and IP address CIDR networks</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">metadata:
+  annotations:
+    haproxy.router.openshift.io/ip_allowlist: 180.5.61.153 192.168.1.0/24 10.0.0.0/8</programlisting>
+</para>
+</formalpara>
+<formalpara>
+<title>A route specifying a rewrite target</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: / <co xml:id="CO2-1"/>
+...</programlisting>
+</para>
+</formalpara>
+<calloutlist>
+<callout arearefs="CO2-1">
+<para>Sets <literal>/</literal> as rewrite path of the request on the backend.</para>
+</callout>
+</calloutlist>
+<simpara>Setting the <literal>haproxy.router.openshift.io/rewrite-target</literal> annotation on a route specifies that the Ingress Controller should rewrite paths in HTTP requests using this route before forwarding the requests to the backend application.
+The part of the request path that matches the path specified in <literal>spec.path</literal> is replaced with the rewrite target specified in the annotation.</simpara>
+<simpara>The following table provides examples of the path rewriting behavior for various combinations of <literal>spec.path</literal>, request path, and rewrite target.</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>rewrite-target examples</title>
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="25*"/>
+<colspec colname="col_3" colwidth="25*"/>
+<colspec colname="col_4" colwidth="25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Route.spec.path</entry>
+<entry align="left" valign="top">Request path</entry>
+<entry align="left" valign="top">Rewrite target</entry>
+<entry align="left" valign="top">Forwarded request path</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>/foo</simpara></entry>
+<entry align="left" valign="top"><simpara>/foo</simpara></entry>
+<entry align="left" valign="top"><simpara>/</simpara></entry>
+<entry align="left" valign="top"><simpara>/</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>/foo</simpara></entry>
+<entry align="left" valign="top"><simpara>/foo/</simpara></entry>
+<entry align="left" valign="top"><simpara>/</simpara></entry>
+<entry align="left" valign="top"><simpara>/</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>/foo</simpara></entry>
+<entry align="left" valign="top"><simpara>/foo/bar</simpara></entry>
+<entry align="left" valign="top"><simpara>/</simpara></entry>
+<entry align="left" valign="top"><simpara>/bar</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>/foo</simpara></entry>
+<entry align="left" valign="top"><simpara>/foo/bar/</simpara></entry>
+<entry align="left" valign="top"><simpara>/</simpara></entry>
+<entry align="left" valign="top"><simpara>/bar/</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>/foo</simpara></entry>
+<entry align="left" valign="top"><simpara>/foo</simpara></entry>
+<entry align="left" valign="top"><simpara>/bar</simpara></entry>
+<entry align="left" valign="top"><simpara>/bar</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>/foo</simpara></entry>
+<entry align="left" valign="top"><simpara>/foo/</simpara></entry>
+<entry align="left" valign="top"><simpara>/bar</simpara></entry>
+<entry align="left" valign="top"><simpara>/bar/</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>/foo</simpara></entry>
+<entry align="left" valign="top"><simpara>/foo/bar</simpara></entry>
+<entry align="left" valign="top"><simpara>/baz</simpara></entry>
+<entry align="left" valign="top"><simpara>/baz/bar</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>/foo</simpara></entry>
+<entry align="left" valign="top"><simpara>/foo/bar/</simpara></entry>
+<entry align="left" valign="top"><simpara>/baz</simpara></entry>
+<entry align="left" valign="top"><simpara>/baz/bar/</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>/foo/</simpara></entry>
+<entry align="left" valign="top"><simpara>/foo</simpara></entry>
+<entry align="left" valign="top"><simpara>/</simpara></entry>
+<entry align="left" valign="top"><simpara>N/A (request path does not match route path)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>/foo/</simpara></entry>
+<entry align="left" valign="top"><simpara>/foo/</simpara></entry>
+<entry align="left" valign="top"><simpara>/</simpara></entry>
+<entry align="left" valign="top"><simpara>/</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>/foo/</simpara></entry>
+<entry align="left" valign="top"><simpara>/foo/bar</simpara></entry>
+<entry align="left" valign="top"><simpara>/</simpara></entry>
+<entry align="left" valign="top"><simpara>/bar</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara>Certain special characters in <literal>haproxy.router.openshift.io/rewrite-target</literal> require special handling because they must be escaped properly. Refer to the following table to understand how these characters are handled.</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>Special character handling</title>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="33.3333*"/>
+<colspec colname="col_2" colwidth="33.3333*"/>
+<colspec colname="col_3" colwidth="33.3334*"/>
+<thead>
+<row>
+<entry align="left" valign="top">For character</entry>
+<entry align="left" valign="top">Use characters</entry>
+<entry align="left" valign="top">Notes</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>#</simpara></entry>
+<entry align="left" valign="top"><simpara>\#</simpara></entry>
+<entry align="left" valign="top"><simpara>Avoid # because it terminates the rewrite expression</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>%</simpara></entry>
+<entry align="left" valign="top"><simpara>% or %%</simpara></entry>
+<entry align="left" valign="top"><simpara>Avoid odd sequences such as %%%</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>‘</simpara></entry>
+<entry align="left" valign="top"><simpara>\’</simpara></entry>
+<entry align="left" valign="top"><simpara>Avoid ‘ because it is ignored</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara>All other valid URL characters can be used without escaping.</simpara>
+</section>
+<section xml:id="nw-throughput-troubleshoot_configuring-routes">
+<title>Throughput issue troubleshooting methods</title>
+<simpara role="_abstract">To diagnose and resolve network throughput issues, such as unusually high latency between specific services, apply troubleshooting methods. Identifying connectivity bottlenecks helps ensure stable application performance within OpenShift Container Platform.</simpara>
+<simpara>If pod logs do not reveal any cause of the problem, use the following methods to analyze performance issues:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Use a packet analyzer, such as <literal>ping</literal> or <literal>tcpdump</literal> to analyze traffic between a pod and its node.</simpara>
+<simpara>For example, <link xlink:href="https://access.redhat.com/solutions/4569211">run the <literal>tcpdump</literal> tool on each pod</link> while reproducing the behavior that led to the issue. Review the captures on both sides to compare send and receive timestamps to analyze the latency of traffic to and from a pod. Latency can occur in OpenShift Container Platform if a node interface is overloaded with traffic from other pods, storage devices, or the data plane.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ tcpdump -s 0 -i any -w /tmp/dump.pcap host &lt;podip 1&gt; &amp;&amp; host &lt;podip 2&gt; <co xml:id="CO3-1"/></programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>podip</literal></term>
+<listitem>
+<simpara>Specifies the IP address for the pod. Run the <literal>oc get pod &lt;pod_name&gt; -o wide</literal> command to get the IP address of a pod.</simpara>
+<simpara>The <literal>tcpdump</literal> command generates a file at <literal>/tmp/dump.pcap</literal> containing all traffic between these two pods. You can run the analyzer shortly before the issue is reproduced and stop the analyzer shortly after the issue is finished reproducing to minimize the size of the file. You can also <link xlink:href="https://access.redhat.com/solutions/5074041">run a packet analyzer between the nodes</link> with:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ tcpdump -s 0 -i any -w /tmp/dump.pcap port 4789</programlisting>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<simpara>Use a bandwidth measuring tool, such as <link xlink:href="https://access.redhat.com/solutions/6129701"><literal>iperf</literal></link>, to measure streaming throughput and UDP throughput. Locate any bottlenecks by running the tool from the pods first, and then running it from the nodes.</simpara>
+</listitem>
+<listitem>
+<simpara>In some cases, the cluster might mark the node with the router pod as unhealthy due to latency issues. Use worker latency profiles to adjust the frequency that the cluster waits for a status update from the node before taking action.</simpara>
+</listitem>
+<listitem>
+<simpara>If your cluster has designated lower-latency and higher-latency nodes, configure the <literal>spec.nodePlacement</literal> field in the Ingress Controller to control the placement of the router pod.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="creating-advanced-routes">
+<title>Creating advanced routes</title>
+<simpara role="_abstract">To secure application traffic and serve custom certificates to clients, configure routes by using edge, passthrough, or re-encrypt TLS termination. By using these methods, you can define granular encryption rules, ensuring that traffic is decrypted and re-encrypted according to your specific security requirements.</simpara>
+<section xml:id="nw-ingress-creating-an-edge-route-with-a-custom-certificate_creating-advanced-routes">
+<title>Creating an edge route with a custom certificate</title>
+<simpara role="_abstract">To secure traffic by using a custom certificate, configure a route with edge TLS termination by running the <literal>oc create route</literal> command. This configuration terminates encryption at the Ingress Controller before forwarding traffic to the destination pod.</simpara>
+<simpara>The route specifies the TLS certificate and key that the Ingress Controller uses for the route.</simpara>
+<simpara>The procedure creates a <literal>Route</literal> resource with a custom certificate and edge TLS termination. The procedure assumes that the certificate/key pair are in the <literal>tls.crt</literal> and <literal>tls.key</literal> files in the current working directory. You may also specify a CA certificate if needed to complete the certificate chain. Substitute the actual path names for <literal>tls.crt</literal>, <literal>tls.key</literal>, and (optionally) <literal>ca.crt</literal>. Substitute the name of the service that you want to expose for <literal>frontend</literal>. Substitute the appropriate hostname for <literal>www.example.com</literal>.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You must have a certificate/key pair in PEM-encoded files, where the certificate is valid for the route host.</simpara>
+</listitem>
+<listitem>
+<simpara>You might have a separate CA certificate in a PEM-encoded file that completes the certificate chain.</simpara>
+</listitem>
+<listitem>
+<simpara>You must have a service that you want to expose.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>Password protected key files are not supported. To remove a passphrase from a key file, use the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ openssl rsa -in password_protected_tls.key -out tls.key</programlisting>
+</note>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>Create a secure <literal>Route</literal> resource using edge TLS termination and a custom certificate.</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc create route edge --service=frontend --cert=tls.crt --key=tls.key --ca-cert=ca.crt --hostname=www.example.com</programlisting>
+<simpara>If you examine the resulting <literal>Route</literal> resource, the resource should have a configuration similar to the following example:</simpara>
+<formalpara>
+<title>YAML Definition of the Secure Route</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: frontend
+spec:
+  host: www.example.com
+  to:
+    kind: Service
+    name: frontend
+  tls:
+    termination: edge
+    key: |-
+      -----BEGIN PRIVATE KEY-----
+      [...]
+      -----END PRIVATE KEY-----
+    certificate: |-
+      -----BEGIN CERTIFICATE-----
+      [...]
+      -----END CERTIFICATE-----
+    caCertificate: |-
+      -----BEGIN CERTIFICATE-----
+      [...]
+      -----END CERTIFICATE-----
+# ...</programlisting>
+</para>
+</formalpara>
+<simpara>See <literal>oc create route edge --help</literal> for more options.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nw-ingress-creating-a-reencrypt-route-with-a-custom-certificate_creating-advanced-routes">
+<title>Creating a re-encrypt route with a custom certificate</title>
+<simpara role="_abstract">To secure traffic by using a custom certificate, configure a route with re-encrypt TLS termination by running the <literal>oc create route</literal> command. This configuration enables the Ingress Controller to decrypt traffic, and then re-encrypt traffic before forwarding the traffic to the destination pod.</simpara>
+<simpara>The procedure creates a <literal>Route</literal> resource with a custom certificate and reencrypt TLS termination. The procedure assumes that the certificate/key pair are in the <literal>tls.crt</literal> and <literal>tls.key</literal> files in the current working directory. You must also specify a destination CA certificate to enable the Ingress Controller to trust the service&#8217;s certificate. You may also specify a CA certificate if needed to complete the certificate chain. Substitute the actual path names for <literal>tls.crt</literal>, <literal>tls.key</literal>, <literal>cacert.crt</literal>, and (optionally) <literal>ca.crt</literal>. Substitute the name of the <literal>Service</literal> resource that you want to expose for <literal>frontend</literal>. Substitute the appropriate hostname for <literal>www.example.com</literal>.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You must have a certificate/key pair in PEM-encoded files, where the certificate is valid for the route host.</simpara>
+</listitem>
+<listitem>
+<simpara>You may have a separate CA certificate in a PEM-encoded file that completes the certificate chain.</simpara>
+</listitem>
+<listitem>
+<simpara>You must have a separate destination CA certificate in a PEM-encoded file.</simpara>
+</listitem>
+<listitem>
+<simpara>You must have a service that you want to expose.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>Password protected key files are not supported. To remove a passphrase from a key file, use the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ openssl rsa -in password_protected_tls.key -out tls.key</programlisting>
+</note>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>Create a secure <literal>Route</literal> resource using reencrypt TLS termination and a custom certificate:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc create route reencrypt --service=frontend --cert=tls.crt --key=tls.key --dest-ca-cert=destca.crt --ca-cert=ca.crt --hostname=www.example.com</programlisting>
+<simpara>If you examine the resulting <literal>Route</literal> resource, the resource should have a configuration similar to the following example:</simpara>
+<formalpara>
+<title>YAML Definition of the Secure Route</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: frontend
+spec:
+  host: www.example.com
+  to:
+    kind: Service
+    name: frontend
+  tls:
+    termination: reencrypt
+    key: |-
+      -----BEGIN PRIVATE KEY-----
+      [...]
+      -----END PRIVATE KEY-----
+    certificate: |-
+      -----BEGIN CERTIFICATE-----
+      [...]
+      -----END CERTIFICATE-----
+    caCertificate: |-
+      -----BEGIN CERTIFICATE-----
+      [...]
+      -----END CERTIFICATE-----
+    destinationCACertificate: |-
+      -----BEGIN CERTIFICATE-----
+      [...]
+      -----END CERTIFICATE-----
+# ...</programlisting>
+</para>
+</formalpara>
+<simpara>See <literal>oc create route reencrypt --help</literal> for more options.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nw-ingress-creating-a-passthrough-route_creating-advanced-routes">
+<title>Creating a passthrough route</title>
+<simpara role="_abstract">To send encrypted traffic directly to the destination without decryption at the router, configure a route with passthrough termination by running the <literal>oc create route</literal> command. This configuration requires no key or certificate on the route, as the destination pod handles TLS termination.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You must have a service that you want to expose.</simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>Create a <literal>Route</literal> resource:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc create route passthrough route-passthrough-secured --service=frontend --port=8080</programlisting>
+<simpara>If you examine the resulting <literal>Route</literal> resource, it should look similar to the following:</simpara>
+<formalpara>
+<title>A Secured Route Using Passthrough Termination</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: route-passthrough-secured
+spec:
+  host: www.example.com
+  port:
+    targetPort: 8080
+  tls:
+    termination: passthrough
+    insecureEdgeTerminationPolicy: None
+  to:
+    kind: Service
+    name: frontend</programlisting>
+</para>
+</formalpara>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>metadata.name</literal></term>
+<listitem>
+<simpara>Specifies the name of the object, which is limited to 63 characters.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>tls.termination</literal></term>
+<listitem>
+<simpara>Specifies the <literal>termination</literal> field is set to <literal>passthrough</literal>. This is the only required <literal>tls</literal> field.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>tls.insecureEdgeTerminationPolicy</literal></term>
+<listitem>
+<simpara>Specifies the type of edge termination policy. Optional parameter. The only valid values are <literal>None</literal>, <literal>Redirect</literal>, or empty for disabled.</simpara>
+<simpara>The destination pod is responsible for serving certificates for the traffic at the endpoint. This is currently the only method that can support requiring client certificates, also known as two-way authentication.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nw-ingress-re-encrypt-route-custom-cert_creating-advanced-routes">
+<title>Creating a route using the destination CA certificate in the Ingress annotation</title>
+<simpara role="_abstract">To define a route with a custom destination CA certificate, apply the <literal>route.openshift.io/destination-ca-certificate-secret</literal> annotation to an Ingress object. This configuration ensures the Ingress Controller uses the specified secret to verify the identity of the destination service.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have a certificate/key pair in PEM-encoded files, where the certificate is valid for the route host.</simpara>
+</listitem>
+<listitem>
+<simpara>You have a separate CA certificate in a PEM-encoded file that completes the certificate chain.</simpara>
+</listitem>
+<listitem>
+<simpara>You have a separate destination CA certificate in a PEM-encoded file.</simpara>
+</listitem>
+<listitem>
+<simpara>You have a service that you want to expose.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create a secret for the destination CA certificate by entering the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc create secret generic dest-ca-cert --from-file=tls.crt=&lt;file_path&gt;</programlisting>
+<simpara>For example:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc -n test-ns create secret generic dest-ca-cert --from-file=tls.crt=tls.crt</programlisting>
+<formalpara>
+<title>Example output</title>
+<para>
+<programlisting language="terminal" linenumbering="unnumbered">secret/dest-ca-cert created</programlisting>
+</para>
+</formalpara>
+</listitem>
+<listitem>
+<simpara>Add the <literal>route.openshift.io/destination-ca-certificate-secret</literal> to the Ingress annotations:</simpara>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend
+  annotations:
+    route.openshift.io/termination: "reencrypt"
+    route.openshift.io/destination-ca-certificate-secret: secret-ca-cert
+...</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>destination-ca-certificate-secret</literal></term>
+<listitem>
+<simpara>Specifies the <literal>route.openshift.io/destination-ca-certificate-secret</literal> annotation. The annotation references a Kubernetes secret.</simpara>
+<simpara>The Ingress Controller inserts a secret that is referenced in the annotation into the generated route.</simpara>
+<formalpara>
+<title>Example output</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: frontend
+  annotations:
+    route.openshift.io/termination: reencrypt
+    route.openshift.io/destination-ca-certificate-secret: secret-ca-cert
+spec:
+...
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: reencrypt
+    destinationCACertificate: |
+      -----BEGIN CERTIFICATE-----
+      [...]
+      -----END CERTIFICATE-----
+...</programlisting>
+</para>
+</formalpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="nw-ingress-route-secret-load-external-cert_creating-advanced-routes">
+<title>Creating a route with externally managed certificates</title>
+<simpara role="_abstract">You can configure OpenShift Container Platform routes with third-party certificate management solutions by using the <literal>.spec.tls.externalCertificate</literal> field of the route API. You can reference externally managed TLS certificates via secrets, eliminating the need for manual certificate management.</simpara>
+<simpara>By using the externally managed certificate, you can reduce errors to ensure a smoother rollout of certificate updates and enable the OpenShift router to serve renewed certificates promptly. You can use externally managed certificates with both edge routes and re-encrypt routes.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You must have a secret containing a valid certificate or key pair in PEM-encoded format of type <literal>kubernetes.io/tls</literal>, which includes both <literal>tls.key</literal> and <literal>tls.crt</literal> keys. Example command: <literal>$ oc create secret tls myapp-tls --cert=server.crt --key=server.key</literal>.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create a <literal>role</literal> object in the same namespace as the secret to allow the router service account read access by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc create role secret-reader --verb=get,list,watch --resource=secrets --resource-name=&lt;secret-name&gt; \
+--namespace=&lt;current-namespace&gt;</programlisting>
+<itemizedlist>
+<listitem>
+<simpara><literal>&lt;secret-name&gt;</literal>: Specify the actual name of your secret.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>&lt;current-namespace&gt;</literal>: Specify the namespace where both your secret and route reside.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Create a <literal>rolebinding</literal> object in the same namespace as the secret and bind the router service account to the newly created role by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc create rolebinding secret-reader-binding --role=secret-reader --serviceaccount=openshift-ingress:router --namespace=&lt;current-namespace&gt;</programlisting>
+<itemizedlist>
+<listitem>
+<simpara><literal>&lt;current-namespace&gt;</literal>: Specify the namespace where both your secret and route reside.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Create a YAML file that defines the <literal>route</literal> and specifies the secret containing your certificate using the following example.</simpara>
+<formalpara>
+<title>YAML definition of the secure route</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: myedge
+  namespace: test
+spec:
+  host: myedge-test.apps.example.com
+  tls:
+    externalCertificate:
+      name: &lt;secret-name&gt;
+    termination: edge
+    [...]
+[...]</programlisting>
+</para>
+</formalpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>&lt;secret-name&gt;</literal>: Specify the actual name of your secret.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Create a <literal>route</literal> resource by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc apply -f &lt;route.yaml&gt;</programlisting>
+<itemizedlist>
+<listitem>
+<simpara><literal>&lt;route.yaml&gt;</literal>: Specify the generated YAML filename.</simpara>
+<simpara>If the secret exists and has a certificate/key pair, the router will serve the generated certificate if all prerequisites are met.</simpara>
+<note>
+<simpara>If <literal>.spec.tls.externalCertificate</literal> is not provided, the router uses default generated certificates.</simpara>
+<simpara>You cannot provide the <literal>.spec.tls.certificate</literal> field  or the <literal>.spec.tls.key</literal> field when using the <literal>.spec.tls.externalCertificate</literal> field.</simpara>
+</note>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="nw-ingress-edge-route-default-certificate_creating-advanced-routes">
+<title>Creating a route using the default certificate through an Ingress object</title>
+<simpara role="_abstract">To generate a secure, edge-terminated route that uses the default ingress certificate, specify an empty TLS configuration in the Ingress object. This configuration overrides the default behavior, preventing the creation of an insecure route.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have a service that you want to expose.</simpara>
+</listitem>
+<listitem>
+<simpara>You have access to the OpenShift CLI (<literal>oc</literal>).</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create a YAML file for the Ingress object. In the following example, the file is called <literal>example-ingress.yaml</literal>:</simpara>
+<formalpara>
+<title>YAML definition of an Ingress object</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend
+  ...
+spec:
+  rules:
+    ...
+  tls:
+  - {}</programlisting>
+</para>
+</formalpara>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>spec.tls</literal></term>
+<listitem>
+<simpara>Specifies the TLS configuration. Use the exact syntax shown to specify TLS without specifying a custom certificate.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<simpara>Create the Ingress object by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc create -f example-ingress.yaml</programlisting>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>Verify that OpenShift Container Platform has created the expected route for the Ingress object by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc get routes -o yaml</programlisting>
+<formalpara>
+<title>Example output</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: v1
+items:
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    name: frontend-j9sdd
+# ...
+  spec:
+  ...
+    tls:
+      insecureEdgeTerminationPolicy: Redirect
+      termination: edge
+# ...</programlisting>
+</para>
+</formalpara>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>metadata.name</literal></term>
+<listitem>
+<simpara>Specifies the name of the route, which includes the name of the Ingress object followed by a random suffix.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>spec.tls</literal></term>
+<listitem>
+<simpara>To use the default certificate, the route should not specify <literal>spec.certificate</literal>.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>tls.termination</literal></term>
+<listitem>
+<simpara>Specifies the termination policy for the route. The route should specify the <literal>edge</literal> termination policy.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+</chapter>
+</book>

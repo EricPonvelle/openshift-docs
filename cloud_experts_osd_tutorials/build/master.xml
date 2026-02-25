@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>Tutorials</title>
+<date>2026-02-25</date>
+<title>Tutorials</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="osd-tutorials-overview">
+<title>Tutorials overview</title>
+<simpara role="_abstract">Use the step-by-step tutorials from Red&#160;Hat experts to get the most out of your Managed OpenShift cluster.</simpara>
+<important>
+<simpara>This content is authored by Red Hat experts but has not yet been tested on every supported configuration.</simpara>
+</important>
+</chapter>
+<chapter xml:id="cloud-experts-osd-update-component-routes">
+<title>Tutorial: Updating component routes with custom domains and TLS certificates</title>
+<simpara role="_abstract">This guide demonstrates how to modify the hostname and TLS certificate of the Web console, OAuth server, and Downloads component routes in OpenShift Container Platform on Google Cloud version 4.14 and above.{fn-supported-versions}</simpara>
+<simpara>The changes that we make to the component routes{fn-term-component-routes} in this guide are described in greater detail in the <link xlink:href="https://docs.openshift.com/container-platform/latest/authentication/configuring-internal-oauth.html#customizing-the-oauth-server-url_configuring-internal-oauth">Customing the internal OAuth server URL</link>, <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/web_console/customizing-web-console#customizing-the-console-route_customizing-web-console">Customing the console route</link>, and <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/web_console/customizing-web-console#customizing-the-download-route_customizing-web-console">Customing the download route</link> OpenShift Container Platform documentation.</simpara>
+<section xml:id="prerequisites_cloud-experts-osd-update-component-routes">
+<title>Prerequisites</title>
+<itemizedlist>
+<listitem>
+<simpara>OCM CLI (<literal>ocm</literal>) version 1.0.5 or higher</simpara>
+</listitem>
+<listitem>
+<simpara>gcloud CLI (<literal>gcloud</literal>)</simpara>
+</listitem>
+<listitem>
+<simpara>An OpenShift Container Platform on Google Cloud cluster version 4.14 or higher</simpara>
+</listitem>
+<listitem>
+<simpara>OpenShift CLI (<literal>oc</literal>)</simpara>
+</listitem>
+<listitem>
+<simpara><literal>jq</literal> CLI</simpara>
+</listitem>
+<listitem>
+<simpara>Access to the cluster as a user with the <literal>cluster-admin</literal> role.</simpara>
+</listitem>
+<listitem>
+<simpara>OpenSSL (for generating the demonstration SSL/TLS certificates)</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="cloud-experts-osd-update-component-routes-environment-setup_cloud-experts-osd-update-component-routes">
+<title>Setting up your environment</title>
+<simpara role="_abstract">Before you can update components, you must log in to your cluster as an admin user.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Log in to your cluster using an account with <literal>cluster-admin</literal> privileges.</simpara>
+</listitem>
+<listitem>
+<simpara>Configure an environment variable for your cluster name:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ export CLUSTER_NAME=$(oc get infrastructure cluster -o=jsonpath="{.status.infrastructureName}"  | sed 's/-[a-z0-9]\{5\}$//')</programlisting>
+</listitem>
+<listitem>
+<simpara>Ensure all fields output correctly before moving to the next section:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ echo "Cluster: ${CLUSTER_NAME}"</programlisting>
+<formalpara>
+<title>Example output</title>
+<para>
+<programlisting language="text" linenumbering="unnumbered">Cluster: my-osd-cluster</programlisting>
+</para>
+</formalpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="cloud-experts-osd-update-component-routes-find-current-component-routes_cloud-experts-osd-update-component-routes">
+<title>Find the current routes</title>
+<simpara role="_abstract">You need to use the OpenShift CLI (<literal>oc</literal>) tool to find the base hostname of your cluster routes.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Verify that you can reach the component routes on their default hostnames. You can find the hostnames by querying the lists of routes in the <literal>openshift-console</literal> and <literal>openshift-authentication</literal> projects.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">$ oc get routes -n openshift-console
+$ oc get routes -n openshift-authentication</programlisting>
+<formalpara>
+<title>Example output</title>
+<para>
+<programlisting language="text" linenumbering="unnumbered">NAME        HOST/PORT                                                                          PATH       SERVICES    PORT    TERMINATION          WILDCARD
+console     console-openshift-console.apps.my-example-cluster-gcp.z9a9.p2.openshiftapps.com    ... 1 more  console    https   reencrypt/Redirect   None
+downloads   downloads-openshift-console.apps.my-example-cluster-gcp.z9a9.p2.openshiftapps.com  ... 1 more  downloads  http    edge/Redirect        None
+NAME              HOST/PORT                                                             PATH        SERVICES          PORT   TERMINATION            WILDCARD
+oauth-openshift   oauth-openshift.apps.my-example-cluster-gcp.z9a9.p2.openshiftapps.com ... 1 more  oauth-openshift   6443   passthrough/Redirect   None</programlisting>
+</para>
+</formalpara>
+<simpara>From this output you can see that our base hostname is <literal>z9a9.p2.openshiftapps.com</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Get the ID of the default ingress by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">$ export INGRESS_ID=$(ocm list ingress -c ${CLUSTER_NAME} -o json | jq -r '.[] | select(.default == true) | .id')</programlisting>
+</listitem>
+<listitem>
+<simpara>Ensure all fields output correctly before moving to the next section:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ echo "Ingress ID: ${INGRESS_ID}"</programlisting>
+<formalpara>
+<title>Example output</title>
+<para>
+<programlisting language="text" linenumbering="unnumbered">Ingress ID: r3l6</programlisting>
+</para>
+</formalpara>
+<simpara>By running these commands you can see that the default component routes for our cluster are:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>console-openshift-console.apps.my-example-cluster-gcp.z9a9.p2.openshiftapps.com</literal> for Console</simpara>
+</listitem>
+<listitem>
+<simpara><literal>downloads-openshift-console.apps.my-example-cluster-gcp.z9a9.p2.openshiftapps.com</literal> for Downloads</simpara>
+</listitem>
+<listitem>
+<simpara><literal>oauth-openshift.apps.my-example-cluster-gcp.z9a9.p2.openshiftapps.com</literal> for OAuth</simpara>
+<simpara>We can use the <literal>ocm edit ingress</literal> command to change the hostname of each service and add a TLS certificate for all of our component routes. The relevant parameters are shown in this excerpt of the command-line help for the <literal>ocm edit ingress</literal> command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">$ ocm edit ingress -h
+Edit a cluster ingress for a cluster. Usage:
+  ocm edit ingress ID [flags]
+  [...]
+  --component-routes string                Component routes settings. Available keys [oauth, console, downloads]. For each key a pair of hostname and tlsSecretRef is expected to be supplied. Format should be a comma separate list 'oauth: hostname=example-hostname;tlsSecretRef=example-secret-ref,downloads:...'</programlisting>
+<simpara>For this example, we&#8217;ll use the following custom component routes:</simpara>
+</listitem>
+<listitem>
+<simpara><literal>console.my-new-domain.dev</literal> for Console</simpara>
+</listitem>
+<listitem>
+<simpara><literal>downloads.my-new-domain.dev</literal> for Downloads</simpara>
+</listitem>
+<listitem>
+<simpara><literal>oauth.my-new-domain.dev</literal> for OAuth</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="cloud-experts-osd-update-component-routes-create-tls-certificates_cloud-experts-osd-update-component-routes">
+<title>Creating a valid TLS certificate for each component route</title>
+<simpara role="_abstract">In this section, we create three separate self-signed certificate key pairs and then trust them to verify that we can access our new component routes using a real web browser.</simpara>
+<warning>
+<simpara>This is for demonstration purposes only, and is not recommended as a solution for production workloads. Consult your certificate authority to understand how to create certificates with similar attributes for your production workloads.</simpara>
+</warning>
+<important>
+<simpara>To prevent issues with HTTP/2 connection coalescing, you must use a separate individual certificate for each endpoint. Using a wildcard or SAN certificate is not supported.</simpara>
+</important>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>Generate a certificate for each component route, taking care to set our certificate&#8217;s subject (<literal>-subj</literal>) to the custom domain of the component route we want to use:</simpara>
+<simpara><emphasis role="strong">Example</emphasis>:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">$ openssl req -newkey rsa:2048 -new -nodes -x509 -days 365 -keyout key-console.pem -out cert-console.pem -subj "/CN=console.my-new-domain.dev"
+$ openssl req -newkey rsa:2048 -new -nodes -x509 -days 365 -keyout key-downloads.pem -out cert-downloads.pem -subj "/CN=downloads.my-new-domain.dev"
+$ openssl req -newkey rsa:2048 -new -nodes -x509 -days 365 -keyout key-oauth.pem -out cert-oauth.pem -subj "/CN=oauth.my-new-domain.dev"</programlisting>
+<simpara>This generates three pairs of <literal>.pem</literal> files, <literal>key-&lt;component&gt;.pem</literal> and <literal>cert-&lt;component&gt;.pem</literal>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="cloud-experts-osd-update-component-routes-add-certificates-as-secrets_cloud-experts-osd-update-component-routes">
+<title>Adding the certificates to the cluster as secrets</title>
+<simpara role="_abstract">You can use the OpenShift CLI (<literal>oc</literal>) tool to add the certificates to your created cluster as secrets.</simpara>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>Create three TLS secrets in the <literal>openshift-config</literal> namespace.</simpara>
+<simpara>These become your secret reference when you update the component routes later in this guide.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">$ oc create secret tls console-tls --cert=cert-console.pem --key=key-console.pem -n openshift-config
+$ oc create secret tls downloads-tls --cert=cert-downloads.pem --key=key-downloads.pem -n openshift-config
+$ oc create secret tls oauth-tls --cert=cert-oauth.pem --key=key-oauth.pem -n openshift-config</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="cloud-experts-osd-update-component-routes-find-lb-hostname_cloud-experts-osd-update-component-routes">
+<title>Finding the load balancer IP of the load balancer in your cluster</title>
+<simpara role="_abstract">When you create a cluster, the service creates a load balancer and generates a load balancer IP for that load balancer. We need to know the load balancer IP in order to create DNS records for our cluster.</simpara>
+<simpara>You can find the load balancer IP by running the <literal>oc get svc</literal> command against the <literal>openshift-ingress</literal> namespace. The load balancer IP of the load balancer is the <literal>EXTERNAL-IP</literal> associated with the <literal>router-default</literal> service in the <literal>openshift-ingress</literal> namespace.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">$ oc get svc -n openshift-ingress
+NAME            TYPE          CLUSTER-IP     EXTERNAL-IP        PORT(S)                     AGE
+router-default  LoadBalancer  172.30.237.88  34.85.169.230      80:31175/TCP,443:31554/TCP  76d</programlisting>
+<simpara>In our case, the load balancer IP is <literal>34.85.169.230</literal>.</simpara>
+<simpara>Save this value for later, as we will need it to configure DNS records for our new component route hostnames.</simpara>
+</section>
+<section xml:id="cloud-experts-osd-update-component-routes-add-component-routes-to-dns_cloud-experts-osd-update-component-routes">
+<title>Adding component route DNS records to your hosting provider</title>
+<simpara role="_abstract">Create an A record in your DNS settings, pointing the domain to the IP address of the router-default&#8217;s load balancer.</simpara>
+</section>
+<section xml:id="cloud-experts-osd-update-component-routes-tls-using-ocm-cli_cloud-experts-osd-update-component-routes">
+<title>Updating the component routes and TLS secret using the OCM CLI</title>
+<simpara role="_abstract">When your DNS records have been updated, you can use the OCM CLI to change the component routes.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Use the <literal>ocm edit ingress</literal> command to update your default ingress route with the new base domain and the secret reference associated with it, taking care to update the hostnames for each component route.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">$ ocm edit ingress -c ${CLUSTER_NAME} ${INGRESS_ID} --component-routes 'console: hostname=console.my-new-domain.dev;tlsSecretRef=console-tls,downloads: hostname=downloads.my-new-domain.dev;tlsSecretRef=downloads-tls,oauth: hostname=oauth.my-new-domain.dev;tlsSecretRef=oauth-tls'</programlisting>
+<note>
+<simpara>You can also edit only a subset of the component routes by leaving the component routes you do not want to change set to an empty string. For example, if you only want to change the Console and OAuth server hostnames and TLS certificates, you would run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">$ ocm edit ingress -c ${CLUSTER_NAME} ${INGRESS_ID} --component-routes 'console: hostname=console.my-new-domain.dev;tlsSecretRef=console-tls,downloads: hostname="";tlsSecretRef="", oauth: hostname=oauth.my-new-domain.dev;tlsSecretRef=oauth-tls'</programlisting>
+</note>
+</listitem>
+<listitem>
+<simpara>Run the <literal>ocm list ingress</literal> command to verify that your changes were successfully made:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">$ ocm list ingress -c ${CLUSTER_NAME} -ojson | jq ".[] | select(.id == \"${INGRESS_ID}\") | .component_routes"</programlisting>
+<formalpara>
+<title>Example output</title>
+<para>
+<programlisting language="text" linenumbering="unnumbered">{
+  "console": {
+    "kind": "ComponentRoute",
+    "hostname": "console.my-new-domain.dev",
+    "tls_secret_ref": "console-tls"
+  },
+  "downloads": {
+    "kind": "ComponentRoute",
+    "hostname": "downloads.my-new-domain.dev",
+    "tls_secret_ref": "downloads-tls"
+  },
+  "oauth": {
+    "kind": "ComponentRoute",
+    "hostname": "oauth.my-new-domain.dev",
+    "tls_secret_ref": "oauth-tls"
+  }
+}</programlisting>
+</para>
+</formalpara>
+</listitem>
+<listitem>
+<simpara>Add your certificate to the truststore on your local system, then confirm that you can access your components at their new routes using your local web browser.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="cloud-experts-osd-update-component-routes-reset-component-routes-to-default_cloud-experts-osd-update-component-routes">
+<title>Resetting the component routes to the default using the OCM CLI</title>
+<simpara role="_abstract">You can use the OpenShift CLI (<literal>oc</literal>) tool to to reset the component routes to the default configuration.</simpara>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>Run the following command to reset your component routes:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">$ ocm edit ingress -c ${CLUSTER_NAME} ${INGRESS_ID} --component-routes 'console: hostname="";tlsSecretRef="",downloads: hostname="";tlsSecretRef="", oauth: hostname="";tlsSecretRef=""'</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="cloud-experts-osd-limit-egress-ngfw">
+<title>Tutorial: Limit egress with Google Cloud Next Generation Firewall</title>
+<simpara role="_abstract">Use this guide to implement egress restrictions for OpenShift Container Platform on Google Cloud by using Google Cloud&#8217;s Next Generation Firewall (NGFW). NGFW is a fully distributed firewall service that allows fully qualified domain name (FQDN) objects in firewall policy rules. This is necessary for many of the external endpoints that OpenShift Container Platform relies on.</simpara>
+<section xml:id="cloud-experts-osd-limit-egress-ngfw-prereqs_cloud-experts-osd-limit-egress-ngfw">
+<title>Reviewing your prerequisites</title>
+<simpara role="_abstract">The following prerequisites must be met before starting this tutorial.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have the Google Cloud Command Line Interface (<literal>gcloud</literal>) installed.</simpara>
+</listitem>
+<listitem>
+<simpara>You are logged into the Google Cloud CLI and have selected the Google Cloud project where you plan to deploy OpenShift Container Platform.</simpara>
+</listitem>
+<listitem>
+<simpara>You have the minimum necessary permissions in Google Cloud, including:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>Compute Network Admin</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>DNS Administrator</literal></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>You have enabled certain services by running the following commands in your terminal:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud services enable networksecurity.googleapis.com</programlisting>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud services enable networkservices.googleapis.com</programlisting>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud services enable servicenetworking.googleapis.com</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="cloud-experts-osd-limit-egress-ngfw-setup-environ_cloud-experts-osd-limit-egress-ngfw">
+<title>Setting up your environment</title>
+<simpara role="_abstract">You can use environment variables to ensure consistency across the commands within this lab.</simpara>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>In your terminal, configure the following environment variables:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">export project_id=$(gcloud config list --format="value(core.project)")
+export region=us-east1
+export prefix=osd-ngfw
+export service_cidr="172.30.0.0/16"
+export machine_cidr="10.0.0.0/22"
+export pod_cidr="10.128.0.0/14"</programlisting>
+<simpara>This example uses <literal>us-east1</literal> as the region to deploy into and the prefix <literal>osd-ngfw</literal> for the cluster&#8217;s resources. The  default CIDR ranges are assigned for the service and pod networks. The machine CIDR is based on the subnet ranges that will be set later in this tutorial. Modify the parameters to meet your needs.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="cloud-experts-osd-limit-egress-ngfw-create-subnets_cloud-experts-osd-limit-egress-ngfw">
+<title>Creating the VPC and subnets</title>
+<simpara role="_abstract">Before you can deploy a Google Cloud NGFW, you must first create the Virtual Private Cloud (VPC) and subnets that you will use for OpenShift Container Platform:</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create the VPC by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute networks create ${prefix}-vpc --subnet-mode=custom</programlisting>
+</listitem>
+<listitem>
+<simpara>Create the worker subnets by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute networks subnets create ${prefix}-worker \
+    --range=10.0.2.0/23 \
+    --network=${prefix}-vpc \
+    --region=${region} \
+    --enable-private-ip-google-access</programlisting>
+</listitem>
+<listitem>
+<simpara>Create the control plane subnets by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute networks subnets create ${prefix}-control-plane \
+    --range=10.0.0.0/25 \
+    --network=${prefix}-vpc \
+    --region=${region} \
+    --enable-private-ip-google-access</programlisting>
+</listitem>
+<listitem>
+<simpara>Create the PSC subnets by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute networks subnets create ${prefix}-psc \
+    --network=${prefix}-vpc \
+    --region=${region} \
+    --stack-type=IPV4_ONLY \
+    --range=10.0.0.128/29 \
+    --purpose=PRIVATE_SERVICE_CONNECT</programlisting>
+<simpara>These examples use the subnet ranges of 10.0.2.0/23 for the worker subnet, 10.0.0.0/25 for the control plane subnet, and 10.0.0.128/29 for the PSC subnet. Modify the parameters to meet your needs. Ensure the parameter values are contained within the machine CIDR you set earlier in this tutorial.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="cloud-experts-osd-limit-egress-ngfw-deploy-policy_cloud-experts-osd-limit-egress-ngfw">
+<title>Deploying a global network firewall policy</title>
+<simpara role="_abstract">You can use the <literal>gcloud</literal> CLI tool to create network firewall policies for your cluster.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create a global network firewall policy by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute network-firewall-policies create \
+    ${prefix} \
+    --description "OpenShift Dedicated Egress Firewall" \
+    --global</programlisting>
+</listitem>
+<listitem>
+<simpara>Associate the newly created global network firewall policy to the VPC you created above by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute network-firewall-policies associations create \
+    --firewall-policy ${prefix} \
+    --network ${prefix}-vpc \
+    --global-firewall-policy</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="cloud-experts-osd-limit-egress-ngfw-create-a-cloud-router_cloud-experts-osd-limit-egress-ngfw">
+<title>Creating a Cloud Router and a Cloud Network Address Translation gateway</title>
+<simpara role="_abstract">The Network Address Translation (NAT) gateway enables internet connectivity for your private VMs by masquerading all their traffic under a single public IP address. As the designated exit point, it translates their internal IPs for any outbound requests, such as fetching updates. This process effectively grants them access to the internet without ever exposing their private addresses.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Reserve an IP address for Cloud NAT by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute addresses create ${prefix}-${region}-cloudnatip \
+    --region=${region}</programlisting>
+</listitem>
+<listitem>
+<simpara>Create a Cloud Router by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute routers create ${prefix}-router \
+    --region=${region} \
+    --network=${prefix}-vpc</programlisting>
+</listitem>
+<listitem>
+<simpara>Create a Cloud NAT by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute routers nats create ${prefix}-cloudnat-${region} \
+    --router=${prefix}-router --router-region ${region} \
+    --nat-all-subnet-ip-ranges \
+    --nat-external-ip-pool=${prefix}-${region}-cloudnatip</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="cloud-experts-osd-limit-egress-ngfw-create-private-DNS_cloud-experts-osd-limit-egress-ngfw">
+<title>Creating private Domain Name System records for Private Google Access</title>
+<simpara role="_abstract">The private Domain Name System (DNS) zone optimizes how your resources connect to Google APIs by ensuring traffic never travels over the public internet. It functions by intercepting DNS requests for Google services and resolving them to private IP addresses, forcing the connection onto Google&#8217;s internal network for a faster, more secure data exchange.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create a private DNS zone for the googleapis.com domain by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud dns managed-zones create ${prefix}-googleapis \
+    --visibility=private \
+    --networks=https://www.googleapis.com/compute/v1/projects/${project_id}/global/networks/${prefix}-vpc \
+    --description="Private Google Access" \
+    --dns-name=googleapis.com</programlisting>
+</listitem>
+<listitem>
+<simpara>Begin a record set transaction by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud dns record-sets transaction start \
+    --zone=${prefix}-googleapis</programlisting>
+</listitem>
+<listitem>
+<simpara>Stage the DNS records for Google APIs under the googleapis.com domain by running the following commands:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud dns record-sets transaction add --name="*.googleapis.com." \
+    --type=CNAME restricted.googleapis.com. \
+    --zone=${prefix}-googleapis \
+    --ttl=300</programlisting>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud dns record-sets transaction add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 \
+    --name=restricted.googleapis.com. \
+    --type=A \
+    --zone=${prefix}-googleapis \
+    --ttl=300</programlisting>
+</listitem>
+<listitem>
+<simpara>Apply the staged record set transaction you started above by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud dns record-sets transaction execute \
+    --zone=$prefix-googleapis</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="cloud-experts-osd-limit-egress-ngfw-create-firewall-rules_cloud-experts-osd-limit-egress-ngfw">
+<title>Creating the firewall rules</title>
+<simpara role="_abstract">You need to create some firewall rules to allow your cluster to access the Web.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Create a blanket allow rule for private IP (RFC 1918) address space by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute network-firewall-policies rules create 500 \
+    --description "Allow egress to private IP ranges" \
+    --action=allow \
+    --firewall-policy=${prefix} \
+    --global-firewall-policy \
+    --direction=EGRESS \
+    --layer4-configs all \
+    --dest-ip-ranges=10.0.0.0/8,172.16.0.0/12,192.168.0.0/16</programlisting>
+</listitem>
+<listitem>
+<simpara>Create an allow rule for HTTPS (tcp/443) domains required for OpenShift Container Platform by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute network-firewall-policies rules create 600 \
+    --description "Allow egress to OpenShift Dedicated required domains (tcp/443)" \
+    --action=allow \
+    --firewall-policy=${prefix} \
+    --global-firewall-policy \
+    --direction=EGRESS \
+    --layer4-configs tcp:443 \
+    --dest-fqdns accounts.google.com,pull.q1w2.quay.rhcloud.com,http-inputs-osdsecuritylogs.splunkcloud.com,nosnch.in,api.deadmanssnitch.com,events.pagerduty.com,api.pagerduty.com,api.openshift.com,mirror.openshift.com,observatorium.api.openshift.com,observatorium-mst.api.openshift.com,console.redhat.com,infogw.api.openshift.com,api.access.redhat.com,cert-api.access.redhat.com,catalog.redhat.com,sso.redhat.com,registry.connect.redhat.com,registry.access.redhat.com,cdn01.quay.io,cdn02.quay.io,cdn03.quay.io,cdn04.quay.io,cdn05.quay.io,cdn06.quay.io,cdn.quay.io,quay.io,registry.redhat.io,quayio-production-s3.s3.amazonaws.com</programlisting>
+<important>
+<simpara>If there is not a matching rule that allows the traffic, it will be blocked by the firewall. To allow access to other resources, such as internal networks or other external endpoints, create additional rules with a priority of less than 1000. For more information on how to create firewall rules, see  <link xlink:href="https://cloud.google.com/firewall/docs/use-network-firewall-policies">Use global network firewall policies and rules</link>.</simpara>
+</important>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="cloud-experts-osd-limit-egress-ngfw-create-osd-gcp-cluster_cloud-experts-osd-limit-egress-ngfw">
+<title>Creating your cluster</title>
+<simpara role="_abstract">You are now ready to create your OpenShift Container Platform on Google Cloud cluster. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/openshift_dedicated_clusters_on_google_cloud/osd-creating-a-cluster-on-gcp-with-workload-identity-federation">Creating a cluster on Google Cloud with Workload Identity Federation authentication</link>.</simpara>
+</section>
+<section xml:id="cloud-experts-osd-limit-egress-ngfw-delete-osd-gcp-cluster_cloud-experts-osd-limit-egress-ngfw">
+<title>Deleting your cluster</title>
+<simpara role="_abstract">To delete your cluster, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/openshift_dedicated_clusters_on_google_cloud/osd-deleting-a-cluster">Deleting an OpenShift Dedicated cluster on Google Cloud</link>.</simpara>
+</section>
+<section xml:id="cloud-experts-osd-limit-egress-ngfw-clean-resource_cloud-experts-osd-limit-egress-ngfw">
+<title>Cleaning up resources</title>
+<simpara role="_abstract">To prevent ongoing charges, after you delete your cluster you must manually delete the Google Cloud networking infrastructure you created as part of this tutorial. Deleting the cluster will not automatically remove these underlying resources. You can clean up these resources using a combination of gcloud CLI commands and actions within the Google Cloud console.</simpara>
+<simpara>Before you begin the process of cleaning up the resources you created for this tutorial, run the following commands and complete any prompts.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>To authenticate your identity run the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud init</programlisting>
+</listitem>
+<listitem>
+<simpara>To log in to your Google Cloud account, run the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud auth application-default login</programlisting>
+</listitem>
+<listitem>
+<simpara>To log in to the OpenShift Cluster Manager CLI tool, run the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ ocm login --use-auth-code</programlisting>
+<simpara>You are now ready to clean up the resources you created as part of this tutorial. To respect resource dependencies, delete them in the reverse order of their creation.</simpara>
+</listitem>
+<listitem>
+<simpara>Delete the firewall policy&#8217;s association with the VPC by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute network-firewall-policies associations delete \
+    --firewall-policy=${prefix} \
+    --network=${prefix}-vpc \
+    --global-firewall-policy</programlisting>
+</listitem>
+<listitem>
+<simpara>Delete the global network firewall policy by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute network-firewall-policies delete ${prefix} --global</programlisting>
+</listitem>
+<listitem>
+<simpara>A managed DNS zone in Google Cloud cannot be deleted until all user-defined record sets are removed. Define variables to target the specific Google Cloud project and the managed DNS zone being cleaned up by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ cat /tmp/delete_records.sh
+PROJECT_ID=&lt;your-project-id&gt;
+ZONE_NAME=&lt;your-managed-zone-name&gt;</programlisting>
+</listitem>
+<listitem>
+<simpara>List the record sets that are included within the Private DNS zone by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud \
+    dns record-sets list \
+    --project=$PROJECT_ID \
+    --zone=$ZONE_NAME \
+    --filter="type!=NS AND type!=SOA" \
+    --format="value(name,type)" | while read name type;</programlisting>
+</listitem>
+<listitem>
+<simpara>Delete the record sets that are included within that Private DNS Zone by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud --project=$PROJECT_ID dns record-sets delete "$name" --zone=$ZONE_NAME --type="$type"</programlisting>
+</listitem>
+<listitem>
+<simpara>Delete the Private DNS Zone by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud dns managed-zones delete ${prefix}-googleapis</programlisting>
+</listitem>
+<listitem>
+<simpara>Delete the Cloud NAT gateway:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute routers nats delete ${prefix}-cloudnat-${region} \
+    --router=${prefix}-router \
+    --router-region=${region}</programlisting>
+</listitem>
+<listitem>
+<simpara>Delete the Cloud Router by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute routers delete ${prefix}-router --region=${region}</programlisting>
+</listitem>
+<listitem>
+<simpara>Delete the reserved IP address by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute addresses delete ${prefix}-${region}-cloudnatip --region=${region}</programlisting>
+</listitem>
+<listitem>
+<simpara>Delete the worker subnet by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute networks subnets delete ${prefix}-worker --region=${region}</programlisting>
+</listitem>
+<listitem>
+<simpara>Delete the control plane subnet by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute networks subnets delete ${prefix}-control-plane --region=${region}</programlisting>
+</listitem>
+<listitem>
+<simpara>Delete the PSC subnet by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute networks subnets delete ${prefix}-psc --region=${region}</programlisting>
+</listitem>
+<listitem>
+<simpara>Delete the VPC by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud compute networks delete ${prefix}-vpc</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</chapter>
+</book>

@@ -1,0 +1,1764 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>Cluster administration</title>
+<date>2026-02-25</date>
+<title>Cluster administration</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="osd-cluster-notifications">
+<title>Cluster notifications</title>
+<simpara>Cluster notifications (sometimes referred to as service logs) are messages about the status, health, or performance of your cluster.</simpara>
+<simpara>Cluster notifications are the primary way that Red Hat Site Reliability Engineering (SRE) communicates with you about the health of your managed cluster. Red Hat SRE may also use cluster notifications to prompt you to perform an action in order to resolve or prevent an issue with your cluster.</simpara>
+<simpara>Cluster owners and administrators must regularly review and action cluster notifications to ensure clusters remain healthy and supported.</simpara>
+<simpara>You can view cluster notifications in the Red Hat Hybrid Cloud Console, in the <emphasis role="strong">Cluster history</emphasis> tab for your cluster. By default, only the cluster owner receives cluster notifications as emails. If other users need to receive cluster notification emails, add each user as a notification contact for your cluster.</simpara>
+<section xml:id="_additional-resources" role="_additional-resources">
+<title>Additional resources</title>
+<itemizedlist>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#notifications_policy-process-security">Customer responsibilities: Review and action cluster notifications</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="cluster-notification-emails_osd-cluster-notifications">Cluster notification emails</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="troubleshoot_osd-cluster-notifications">Troubleshooting: Cluster notifications</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="expectations_osd-cluster-notifications">
+<title>What to expect from cluster notifications</title>
+<simpara>As a cluster administrator, you need to be aware of when and why cluster notifications are sent, as well as their types and severity levels, in order to effectively understand the health and administration needs of your cluster.</simpara>
+<section xml:id="managed-cluster-notification-policy_osd-cluster-notifications">
+<title>Cluster notification policy</title>
+<simpara role="_abstract">Cluster notifications are designed to keep you informed about the health of your cluster and high impact events that affect it.</simpara>
+<simpara>Most cluster notifications are generated and sent automatically to ensure that you are immediately informed of problems or important changes to the state of your cluster.</simpara>
+<simpara>In certain situations, Red&#160;Hat Site Reliability Engineering (SRE) creates and sends cluster notifications to provide additional context and guidance for a complex issue.</simpara>
+<simpara>Cluster notifications are not sent for low-impact events, low-risk security updates, routine operations and maintenance, or minor, transient issues that are quickly resolved by Red&#160;Hat SRE.</simpara>
+<simpara>Red&#160;Hat services automatically send notifications when:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Remote health monitoring or environment verification checks detect an issue in your cluster, for example, when a worker node has low disk space.</simpara>
+</listitem>
+<listitem>
+<simpara>Significant cluster life cycle events occur, for example, when scheduled maintenance or upgrades begin, or cluster operations are impacted by an event, but do not require customer intervention.</simpara>
+</listitem>
+<listitem>
+<simpara>Significant cluster management changes occur, for example, when cluster ownership or administrative control is transferred from one user to another.</simpara>
+</listitem>
+<listitem>
+<simpara>Your cluster subscription is changed or updated, for example, when Red&#160;Hat makes updates to subscription terms or features available to your cluster.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>SRE creates and sends notifications when:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>An incident results in a degradation or outage that impacts your cluster&#8217;s availability or performance, for example, your cloud provider has a regional outage. SRE sends subsequent notifications to inform you of incident resolution progress, and when the incident is resolved.</simpara>
+</listitem>
+<listitem>
+<simpara>A security vulnerability, security breach, or unusual activity is detected on your cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>Red&#160;Hat detects that changes you have made are creating or may result in cluster instability.</simpara>
+</listitem>
+<listitem>
+<simpara>Red&#160;Hat detects that your workloads are causing performance degradation or instability in your cluster.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="managed-cluster-notification-severity_osd-cluster-notifications">
+<title>Cluster notification severity levels</title>
+<simpara>Each cluster notification has an associated severity level to help you identify notifications with the greatest impact to your business. You can filter cluster notifications according to these severity levels in the Red Hat Hybrid Cloud Console, in the <emphasis role="strong">Cluster history</emphasis> tab for your cluster.</simpara>
+<simpara>Red&#160;Hat uses the following severity levels for cluster notifications, from most to least severe:</simpara>
+<variablelist>
+<varlistentry>
+<term>Critical</term>
+<listitem>
+<simpara>Immediate action is required. One or more key functions of a service or cluster is not working, or will stop working soon. A critical alert is important enough to page on-call staff and interrupt regular workflows.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Major</term>
+<listitem>
+<simpara>Immediate action is strongly recommended. One or more key functions of the cluster will soon stop working. A major issue may lead to a critical issue if it is not addressed in a timely manner.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Warning</term>
+<listitem>
+<simpara>Action is required as soon as possible. One or more key functions of the cluster are not working optimally and may degrade further, but do not pose an immediate danger to the functioning of the cluster.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Info</term>
+<listitem>
+<simpara>No action necessary. This severity does not describe problems that need to be addressed, only important information about meaningful or important life cycle, service, or cluster events.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Debug</term>
+<listitem>
+<simpara>No action necessary. Debug notifications provide low-level information about less important lifecycle, service, or cluster events to aid in debugging unexpected behavior.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section xml:id="managed-cluster-notification-types_osd-cluster-notifications">
+<title>Cluster notification types</title>
+<simpara>Each cluster notification has an associated notification type to help you identify notifications that are relevant to your role and responsibilities. You can filter cluster notifications according to these types in the Red Hat Hybrid Cloud Console, in the <emphasis role="strong">Cluster history</emphasis> tab for your cluster.</simpara>
+<simpara>Red&#160;Hat uses the following notification types to indicate notification relevance.</simpara>
+<variablelist>
+<varlistentry>
+<term>Capacity management</term>
+<listitem>
+<simpara>Notifications for events related to updating, creating, or deleting node pools, machine pools, compute replicas or quotas (load balancer, storage, etc.).</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Cluster access</term>
+<listitem>
+<simpara>Notifications for events related to adding or deleting groups, roles or identity providers, for example, when SRE cannot access your cluster because STS credentials have expired, when there is a configuration problem with your AWS roles, or when you add or remove identity providers.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Cluster add-ons</term>
+<listitem>
+<simpara>Notifications for events related to add-on management or upgrade maintenance for add-ons, for example, when an add-on is installed, upgraded, or removed, or cannot be installed due to unmet requirements.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Cluster configuration</term>
+<listitem>
+<simpara>Notifications for cluster tuning events, workload monitoring, and inflight checks.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Cluster lifecycle</term>
+<listitem>
+<simpara>Notifications for cluster or cluster resource creation, deletion, and registration, or change in cluster or resource status (for example, ready or hibernating).</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Cluster networking</term>
+<listitem>
+<simpara>Notifications related to cluster networking, including HTTP/S proxy, router, and ingress state.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Cluster ownership</term>
+<listitem>
+<simpara>Notifications related to cluster ownership transfer from one user to another.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Cluster scaling</term>
+<listitem>
+<simpara>Notifications related to updating, creating, or deleting node pools, machine pools, compute replicas or quota.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Cluster security</term>
+<listitem>
+<simpara>Events related to cluster security, for example, an increased number of failed access attempts, updates to trust bundles, or software updates with security impact.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Cluster subscription</term>
+<listitem>
+<simpara>Cluster expiration, trial cluster notifications, or switching from free to paid.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Cluster updates</term>
+<listitem>
+<simpara>Anything relating to upgrades, such as upgrade maintenance or enablement.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Customer support</term>
+<listitem>
+<simpara>Updates on support case status.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>General notification</term>
+<listitem>
+<simpara>The default notification type. This is only used for notifications that do not have a more specific category.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+</section>
+<section xml:id="managed-cluster-notification-view-hcc_osd-cluster-notifications">
+<title>Viewing cluster notifications using the Red Hat Hybrid Cloud Console</title>
+<simpara role="_abstract">Cluster notifications provide important information about the health of your cluster. You can view notifications that have been sent to your cluster in the <emphasis role="strong">Cluster history</emphasis> tab on the Red Hat Hybrid Cloud Console.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You are logged in to the Hybrid Cloud Console.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Navigate to the <link xlink:href="https://console.redhat.com/openshift">Clusters</link> page of the Hybrid Cloud Console.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the name of your cluster to go to the cluster details page.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Cluster history</emphasis> tab.</simpara>
+<simpara>Cluster notifications appear under the Cluster history heading.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Filter for relevant cluster notifications</simpara>
+<simpara>Use the filter controls to hide cluster notifications that are not relevant to you, so that you can focus on your area of expertise or on resolving a critical issue. You can filter notifications based on text in the notification description, severity level, notification type, when the notification was received, and which system or person triggered the notification.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="cluster-notification-emails_osd-cluster-notifications">
+<title>Cluster notification emails</title>
+<simpara>By default, when a cluster notification is sent to the cluster, it is also sent as an email to the cluster owner. You can configure additional recipients for notification emails to ensure that all appropriate users remain informed about the state of the cluster.</simpara>
+<section xml:id="add-notification-contact_osd-cluster-notifications">
+<title>Adding notification contacts to your cluster</title>
+<simpara>Notification contacts receive emails when cluster notifications are sent to the cluster.
+By default, only the cluster owner receives cluster notification emails. You can configure other cluster users as additional notification contacts in your cluster support settings.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Your cluster is deployed and registered to the Red Hat Hybrid Cloud Console.</simpara>
+</listitem>
+<listitem>
+<simpara>You are logged in to the Hybrid Cloud Console as the cluster owner or as a user with the cluster editor role.</simpara>
+</listitem>
+<listitem>
+<simpara>The intended notification recipient has a Red&#160;Hat Customer Portal account associated with the same organization as the cluster owner.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Navigate to the Clusters page of the Hybrid Cloud Console.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the name of your cluster to go to the cluster details page.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Support</emphasis> tab.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Support</emphasis> tab, find the <emphasis role="strong">Notification contacts</emphasis> section.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Add notification contact</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">Red&#160;Hat username or email</emphasis> field, enter the email address or the user name of the new recipient.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Add contact</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification steps</title>
+<listitem>
+<simpara>The "Notification contact added successfully" message displays.</simpara>
+</listitem>
+</itemizedlist>
+<variablelist>
+<title>Troubleshooting</title>
+<varlistentry>
+<term>The <emphasis role="strong">Add notification contact</emphasis> button is disabled</term>
+<listitem>
+<simpara>This button is disabled for users who do not have permission to add a notification contact. Log in to an account with the cluster owner, cluster editor, or cluster administrator role and try again.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Error: <literal>Could not find any account identified by &lt;username&gt;</literal> or <literal>&lt;email-address&gt;</literal></term>
+<listitem>
+<simpara>This error occurs when the intended notification recipient is not part of the same Red&#160;Hat account organization as the cluster owner. Contact your organization administrator to add the intended recipient to the relevant organization and try again.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section xml:id="remove-notification-contact_osd-cluster-notifications">
+<title>Removing notification contacts from your cluster</title>
+<simpara>Notification contacts receive emails when cluster notifications are sent to the cluster.</simpara>
+<simpara>You can remove notification contacts in your cluster support settings to prevent them from receiving notification emails.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Your cluster is deployed and registered to the Red Hat Hybrid Cloud Console.</simpara>
+</listitem>
+<listitem>
+<simpara>You are logged in to the Hybrid Cloud Console as the cluster owner or as a user with the cluster editor role.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Navigate to the Clusters page of the Hybrid Cloud Console.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the name of your cluster to go to the cluster details page.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Support</emphasis> tab.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Support</emphasis> tab, find the <emphasis role="strong">Notification contacts</emphasis> section.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the options menu (<emphasis role="strong">&#9881;</emphasis>) beside the recipient you want to remove.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Delete</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification steps</title>
+<listitem>
+<simpara>The "Notification contact deleted successfully" message displays.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="troubleshoot_osd-cluster-notifications">
+<title>Troubleshooting</title>
+<itemizedlist>
+<title>If you are not receiving cluster notification emails</title>
+<listitem>
+<simpara>Ensure that emails sent from <literal>@redhat.com</literal> addresses are not filtered out of your email inbox.</simpara>
+</listitem>
+<listitem>
+<simpara>Ensure that your correct email address is listed as a notification contact for the cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>Ask the cluster owner or administrator to add you as a notification contact:
+<link linkend="cluster-notification-emails_osd-cluster-notifications">Cluster notification emails</link>.</simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<title>If your cluster does not receive notifications</title>
+<listitem>
+<simpara>Ensure that your cluster can access resources at <literal>api.openshift.com</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Ensure that your firewall is configured according to the documented prerequisites: <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#osd-aws-privatelink-firewall-prerequisites_aws-ccs">AWS firewall prerequisites</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="_configuring-private-connections">
+<title>Configuring private connections</title>
+<section xml:id="aws-private-connections">
+<title>Configuring private connections for AWS</title>
+<section xml:id="enable-aws-access">
+<title>Understanding AWS cloud infrastructure access</title>
+<note>
+<simpara>AWS cloud infrastructure access does not apply to the Customer Cloud Subscription (CCS) infrastructure type that is chosen when you create a cluster because CCS clusters are deployed onto your account.</simpara>
+</note>
+<simpara>Amazon Web Services (AWS) infrastructure access permits <link xlink:href="https://access.redhat.com/node/3610411">Customer Portal Organization Administrators</link> and cluster owners to enable AWS Identity and Access Management (IAM) users to have federated access to the AWS Management Console for their OpenShift Container Platform cluster. AWS access can be granted for customer AWS users, and private cluster access can be implemented to suit the needs of your OpenShift Container Platform environment.</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Get started with configuring AWS infrastructure access for your OpenShift Container Platform cluster. By creating an AWS user and account and providing that user with access to the OpenShift Container Platform AWS account.</simpara>
+</listitem>
+<listitem>
+<simpara>After you have access to the OpenShift Container Platform AWS account, use one or more of the following methods to establish a private connection to your cluster:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Configuring AWS VPC peering: Enable VPC peering to route network traffic between two private IP addresses.</simpara>
+</listitem>
+<listitem>
+<simpara>Configuring AWS VPN: Establish a Virtual Private Network to securely connect your private network to your Amazon Virtual Private Cloud.</simpara>
+</listitem>
+<listitem>
+<simpara>Configuring AWS Direct Connect: Configure AWS Direct Connect to establish a dedicated network connection between your private network and an AWS Direct Connect location.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+<simpara>After configuring your cloud infrastructure access, learn more about Configuring a private cluster.</simpara>
+</section>
+<section xml:id="config-aws-access_aws-private-connections">
+<title>Configuring AWS infrastructure access</title>
+<simpara>Amazon Web Services (AWS) infrastructure access allows <link xlink:href="https://access.redhat.com/node/3610411">Customer Portal Organization Administrators</link> and cluster owners to enable AWS Identity and Access Management (IAM) users to have federated access to the AWS Management Console for their OpenShift Container Platform cluster. Administrators can select between <literal>Network Management</literal> or <literal>Read-only</literal> access options.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>An AWS account with IAM permissions.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Log in to your AWS account. If necessary, you can create a new AWS account by following the <link xlink:href="https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/">AWS documentation</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Create an IAM user with <literal>STS:AllowAssumeRole</literal> permissions within the AWS account.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Open the <link xlink:href="https://console.aws.amazon.com/iam/home#/home">IAM dashboard</link> of the AWS Management Console.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">Policies</emphasis> section, click <emphasis role="strong">Create Policy</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the <emphasis role="strong">JSON</emphasis> tab and replace the existing text with the following:</simpara>
+<programlisting language="json" linenumbering="unnumbered">{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Effect": "Allow",
+          "Action": "sts:AssumeRole",
+          "Resource": "*"
+      }
+  ]
+}</programlisting>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next:Tags</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Add tags. Click <emphasis role="strong">Next:Review</emphasis></simpara>
+</listitem>
+<listitem>
+<simpara>Provide an appropriate name and description, then click <emphasis role="strong">Create Policy</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">Users</emphasis> section, click <emphasis role="strong">Add user</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Provide an appropriate user name.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">AWS Management Console access</emphasis> as the AWS access type.</simpara>
+</listitem>
+<listitem>
+<simpara>Adjust the password requirements as necessary for your organization, then click <emphasis role="strong">Next:Permissions</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Attach existing policies directly</emphasis> option. Search for and check the policy created in previous steps.</simpara>
+<note>
+<simpara>It is not recommended to set a permissions boundary.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next: Tags</emphasis>, then click <emphasis role="strong">Next: Review</emphasis>. Confirm the configuration is correct.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Create user</emphasis>, a success page appears.</simpara>
+</listitem>
+<listitem>
+<simpara>Gather the IAM user’s Amazon Resource Name (ARN). The ARN will have the following format: <literal>arn:aws:iam::000111222333:user/username</literal>. Click <emphasis role="strong">Close</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Open <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link> in your browser and select the cluster you want to allow AWS infrastructure access.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the <emphasis role="strong">Access control</emphasis> tab, and scroll to the <emphasis role="strong">AWS Infrastructure Access</emphasis> section.</simpara>
+</listitem>
+<listitem>
+<simpara>Paste the <emphasis role="strong">AWS IAM ARN</emphasis> and select <emphasis role="strong">Network Management</emphasis> or <emphasis role="strong">Read-only</emphasis> permissions, then click <emphasis role="strong">Grant role</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy the <emphasis role="strong">AWS OSD console URL</emphasis> to your clipboard.</simpara>
+</listitem>
+<listitem>
+<simpara>Sign in to your AWS account with your Account ID or alias, IAM user name, and password.</simpara>
+</listitem>
+<listitem>
+<simpara>In a new browser tab, paste the AWS OSD Console URL that will be used to route to the AWS Switch Role page.</simpara>
+</listitem>
+<listitem>
+<simpara>Your account number and role will be filled in already. Choose a display name if necessary, then click <emphasis role="strong">Switch Role</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>You now see <emphasis role="strong">VPC</emphasis> under <emphasis role="strong">Recently visited services</emphasis>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="aws-vpc_aws-private-connections">
+<title>Configuring AWS VPC peering</title>
+<simpara>A Virtual Private Cloud (VPC) peering connection is a networking connection between two VPCs that enables you to route traffic between them using private IPv4 addresses or IPv6 addresses. You can configure an Amazon Web Services (AWS) VPC containing an OpenShift Container Platform cluster to peer with another AWS VPC network.</simpara>
+<warning>
+<simpara>Before you attempt to uninstall a cluster, you must remove any VPC peering connections from the cluster&#8217;s VPC. Failure to do so might result in a cluster not completing the uninstall process.</simpara>
+<simpara>AWS supports inter-region VPC peering between all commercial regions <link xlink:href="https://aws.amazon.com/vpc/faqs/#Peering_Connections">excluding China</link>.</simpara>
+</warning>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Gather the following information about the Customer VPC that is required to initiate the peering request:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Customer AWS account number</simpara>
+</listitem>
+<listitem>
+<simpara>Customer VPC ID</simpara>
+</listitem>
+<listitem>
+<simpara>Customer VPC Region</simpara>
+</listitem>
+<listitem>
+<simpara>Customer VPC CIDR</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Check the CIDR block used by the OpenShift Container Platform Cluster VPC. If it overlaps or matches the CIDR block for the Customer VPC, then peering between these two VPCs is not possible; see the Amazon VPC <link xlink:href="https://docs.aws.amazon.com/vpc/latest/peering/invalid-peering-configurations.html">Unsupported VPC peering configurations</link> documentation for details. If the CIDR blocks do not overlap, you can proceed with the procedure.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara><link xlink:href="https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html#create-vpc-peering-connection-local">Initiate the VPC peering request</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html#accept-vpc-peering-connection">Accept the VPC peering request</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-routing.html">Update your Route tables for the VPC peering connection</link>.</simpara>
+</listitem>
+</orderedlist>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara>For more information and troubleshooting help, see the <link xlink:href="https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html">AWS VPC</link> guide.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="aws-vpn_aws-private-connections">
+<title>Configuring an AWS VPN</title>
+<simpara>You can configure an Amazon Web Services (AWS) OpenShift Container Platform cluster to use a customer’s on-site hardware Virtual Private Network (VPN) device. By default, instances that you launch into an AWS Virtual Private Cloud (VPC) cannot communicate with your own (remote) network. You can enable access to your remote network from your VPC by creating an AWS Site-to-Site VPN connection, and configuring routing to pass traffic through the connection.</simpara>
+<note>
+<simpara>AWS VPN does not currently provide a managed option to apply NAT to VPN traffic. See the <link xlink:href="https://aws.amazon.com/premiumsupport/knowledge-center/configure-nat-for-vpn-traffic/">AWS Knowledge Center</link> for more details.</simpara>
+<simpara>Routing all traffic, for example <literal>0.0.0.0/0</literal>, through a private connection is not supported. This requires deleting the internet gateway, which disables SRE management traffic.</simpara>
+</note>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Hardware VPN gateway device model and software version, for example Cisco ASA running version 8.3. See the <link xlink:href="https://docs.aws.amazon.com/vpc/latest/adminguide/Introduction.html#DevicesTested">AWS documentation</link> to confirm whether your gateway device is supported by AWS.</simpara>
+</listitem>
+<listitem>
+<simpara>Public, static IP address for the VPN gateway device.</simpara>
+</listitem>
+<listitem>
+<simpara>BGP or static routing: if BGP, the ASN is required. If static routing, you must
+configure at least one static route.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: IP and port/protocol of a reachable service to test the VPN connection.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara><link xlink:href="https://docs.aws.amazon.com/vpn/latest/s2svpn/SetUpVPNConnections.html#vpn-create-cgw">Create a customer gateway</link> to configure the VPN connection.</simpara>
+</listitem>
+<listitem>
+<simpara>If you do not already have a Virtual Private Gateway attached to the intended VPC, <link xlink:href="https://docs.aws.amazon.com/vpn/latest/s2svpn/SetUpVPNConnections.html#vpn-create-target-gateway">create and attach</link> a Virtual Private Gateway.</simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.aws.amazon.com/vpn/latest/s2svpn/SetUpVPNConnections.html#vpn-configure-route-tables">Configure routing and enable VPN route propagation</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.aws.amazon.com/vpn/latest/s2svpn/SetUpVPNConnections.html#vpn-configure-security-groups">Update your security group</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.aws.amazon.com/vpn/latest/s2svpn/SetUpVPNConnections.html#vpn-create-vpn-connection">Establish the Site-to-Site VPN connection</link>.</simpara>
+<note>
+<simpara>Note the VPC subnet information, which you must add to your configuration as the remote network.</simpara>
+</note>
+</listitem>
+</orderedlist>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara>For more information and troubleshooting help, see the <link xlink:href="https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html">AWS VPN</link> guide.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="aws-direct-connect_aws-private-connections">
+<title>Configuring AWS Direct Connect</title>
+<simpara>Amazon Web Services (AWS) Direct Connect requires a hosted Virtual Interface (VIF) connected to a Direct Connect Gateway (DXGateway), which is in turn associated to a Virtual Gateway (VGW) or a Transit Gateway in order to access a remote Virtual Private Cloud (VPC) in the same or another account.</simpara>
+<simpara>If you do not have an existing DXGateway, the typical process involves creating the hosted VIF, with the DXGateway and VGW being created in your AWS account.</simpara>
+<simpara>If you have an existing DXGateway connected to one or more existing VGWs, the process involves your AWS account sending an Association Proposal to the DXGateway owner. The DXGateway owner must ensure that the proposed CIDR will not conflict with any other VGWs they have associated.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Confirm the CIDR range of the OpenShift Container Platform VPC will not conflict with any other VGWs you have associated.</simpara>
+</listitem>
+<listitem>
+<simpara>Gather the following information:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The Direct Connect Gateway ID.</simpara>
+</listitem>
+<listitem>
+<simpara>The AWS Account ID associated with the virtual interface.</simpara>
+</listitem>
+<listitem>
+<simpara>The BGP ASN assigned for the DXGateway. Optional: the Amazon default ASN may also be used.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara><link xlink:href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/create-vif.html">Create a VIF</link> or <link xlink:href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/viewvifdetails.html">view your existing VIFs</link> to determine the type of direct connection you need to create.</simpara>
+</listitem>
+<listitem>
+<simpara>Create your gateway.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>If the Direct Connect VIF type is <emphasis role="strong">Private</emphasis>, <link xlink:href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/virtualgateways.html#create-virtual-private-gateway">create a virtual private gateway</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>If the Direct Connect VIF is <emphasis role="strong">Public</emphasis>, <link xlink:href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-gateways-intro.html#create-direct-connect-gateway">create a Direct Connect gateway</link>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>If you have an existing gateway you want to use, <link xlink:href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/multi-account-associate-vgw.html">create an association proposal</link> and send the proposal to the DXGateway owner for approval.</simpara>
+<warning>
+<simpara>When connecting to an existing DXGateway, you are responsible for the <link xlink:href="https://aws.amazon.com/directconnect/pricing/">costs</link>.</simpara>
+</warning>
+</listitem>
+</orderedlist>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara>For more information and troubleshooting help, see the <link xlink:href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html">AWS Direct Connect</link> guide.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="private-cluster">
+<title>Configuring a private cluster</title>
+<simpara role="_abstract">An OpenShift Container Platform cluster can be made private so that internal applications can be hosted inside a corporate network. In addition, private clusters can be configured to have only internal API endpoints for increased security.</simpara>
+<simpara>OpenShift Container Platform administrators can choose between public and private cluster configuration from within <emphasis role="strong">OpenShift Cluster Manager</emphasis>. Privacy settings can be configured during cluster creation or after a cluster is established.</simpara>
+<section xml:id="enable-private-cluster-new_private-cluster">
+<title>Enabling a private cluster during cluster creation</title>
+<simpara>You can enable private cluster settings when creating a new cluster.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>The following private connections must be configured to allow private access:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>VPC Peering</simpara>
+</listitem>
+<listitem>
+<simpara>Cloud VPN</simpara>
+</listitem>
+<listitem>
+<simpara>DirectConnect (AWS only)</simpara>
+</listitem>
+<listitem>
+<simpara>TransitGateway (AWS only)</simpara>
+</listitem>
+<listitem>
+<simpara>Cloud Interconnect (Google Cloud only)</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Log in to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Create cluster</emphasis> &#8594; <emphasis role="strong">OpenShift Container Platform</emphasis> &#8594; <emphasis role="strong">Create cluster</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Configure your cluster details.</simpara>
+</listitem>
+<listitem>
+<simpara>When selecting your preferred network configuration, select <emphasis role="strong">Advanced</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Private</emphasis>.</simpara>
+<warning>
+<simpara>When set to <emphasis role="strong">Private</emphasis>, you cannot access your cluster unless you have configured the private connections in your cloud provider as outlined in the prerequisites.</simpara>
+</warning>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Create cluster</emphasis>. The cluster creation process begins and takes about 30-40 minutes to complete.</simpara>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>The <emphasis role="strong">Installing cluster</emphasis> heading, under the <emphasis role="strong">Overview</emphasis> tab, indicates that the cluster is installing and you can view the installation logs from this heading. The <emphasis role="strong">Status</emphasis> indicator under the <emphasis role="strong">Details</emphasis> heading indicates when your cluster is <emphasis role="strong">Ready</emphasis> for use.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="enable-private-cluster-existing_private-cluster">
+<title>Enabling an existing cluster to be private</title>
+<simpara>After a cluster has been created, you can later enable the cluster to be private.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>The following private connections must be configured to allow private access:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>VPC Peering</simpara>
+</listitem>
+<listitem>
+<simpara>Cloud VPN</simpara>
+</listitem>
+<listitem>
+<simpara>DirectConnect (AWS only)</simpara>
+</listitem>
+<listitem>
+<simpara>TransitGateway (AWS only)</simpara>
+</listitem>
+<listitem>
+<simpara>Cloud Interconnect (Google Cloud only)</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Log in to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the public cluster you would like to make private.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Networking</emphasis> tab, select <emphasis role="strong">Make API private</emphasis> under <emphasis role="strong">Control Plane API endpoint</emphasis>.</simpara>
+<warning>
+<simpara>When set to <emphasis role="strong">Private</emphasis>, you cannot access your cluster unless you have configured the private connections in your cloud provider as outlined in the prerequisites.</simpara>
+</warning>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Change settings</emphasis>.</simpara>
+<note>
+<simpara>Transitioning your cluster between private and public can take several minutes to complete.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="enable-public-cluster_private-cluster">
+<title>Enabling an existing private cluster to be public</title>
+<simpara>After a private cluster has been created, you can later enable the cluster to be public.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Log in to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the private cluster you would like to make public.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Networking</emphasis> tab, deselect <emphasis role="strong">Make API private</emphasis> under <emphasis role="strong">Control Plane API endpoint</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Change settings</emphasis>.</simpara>
+<note>
+<simpara>Transitioning your cluster between private and public can take several minutes to complete.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</section>
+</section>
+</chapter>
+<chapter xml:id="osd-cluster-autoscaling">
+<title>Cluster autoscaling</title>
+<simpara>Applying autoscaling to OpenShift Container Platform clusters involves configuring a cluster autoscaler and then configuring a machine autoscaler for at least one machine pool in your cluster.</simpara>
+<important>
+<simpara>You can configure the cluster autoscaler only in clusters where the machine API is operational.</simpara>
+<simpara>Only one cluster autoscaler can be created per cluster.</simpara>
+</important>
+<section xml:id="cluster-autoscaler-about_osd-cluster-autoscaling">
+<title>About the cluster autoscaler</title>
+<simpara role="_abstract">The cluster autoscaler adjusts the size of an OpenShift Container Platform cluster to meet its current deployment needs. It uses declarative, Kubernetes-style arguments to provide infrastructure management that does not rely on objects of a specific cloud provider. The cluster autoscaler has a cluster scope, and is not associated with a particular namespace.</simpara>
+<simpara>The cluster autoscaler increases the size of the cluster when there are pods that fail to schedule on any of the current worker nodes due to insufficient resources or when another node is necessary to meet deployment needs. The cluster autoscaler does not increase the cluster resources beyond the limits that you specify.</simpara>
+<simpara>The cluster autoscaler computes the total
+memory and CPU
+on all nodes the cluster, even though it does not manage the control plane nodes. These values are not single-machine oriented. They are an aggregation of all the resources in the entire cluster. For example, if you set the maximum memory resource limit, the cluster autoscaler includes all the nodes in the cluster when calculating the current memory usage. That calculation is then used to determine if the cluster autoscaler has the capacity to add more worker resources.</simpara>
+<important>
+<simpara>Ensure that the <literal>maxNodesTotal</literal> value in the <literal>ClusterAutoscaler</literal> custom resource (CR) that you create is large enough to account for the total possible number of machines in your cluster. This value must encompass the number of control plane machines and the possible number of compute machines that you might scale to.</simpara>
+</important>
+<section xml:id="cluster-autoscaler-scale-down_osd-cluster-autoscaling">
+<title>Automatic node removal</title>
+<simpara>Every 10 seconds, the cluster autoscaler checks which nodes are unnecessary in the cluster and removes them. The cluster autoscaler considers a node for removal if the following conditions apply:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The node utilization is less than the <emphasis>node utilization level</emphasis> threshold for the cluster. The node utilization level is the sum of the requested resources divided by the allocated resources for the node. If you do not specify a value in the <literal>ClusterAutoscaler</literal> custom resource, the cluster autoscaler uses a default value of <literal>0.5</literal>, which corresponds to 50% utilization.</simpara>
+</listitem>
+<listitem>
+<simpara>The cluster autoscaler can move all pods running on the node to the other nodes. The Kubernetes scheduler is responsible for scheduling pods on the nodes.</simpara>
+</listitem>
+<listitem>
+<simpara>The cluster autoscaler does not have scale down disabled annotation.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>If the following types of pods are present on a node, the cluster autoscaler will not remove the node:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Pods with restrictive pod disruption budgets (PDBs).</simpara>
+</listitem>
+<listitem>
+<simpara>Kube-system pods that do not run on the node by default.</simpara>
+</listitem>
+<listitem>
+<simpara>Kube-system pods that do not have a PDB or have a PDB that is too restrictive.</simpara>
+</listitem>
+<listitem>
+<simpara>Pods that are not backed by a controller object such as a deployment, replica set, or stateful set.</simpara>
+</listitem>
+<listitem>
+<simpara>Pods with local storage.</simpara>
+</listitem>
+<listitem>
+<simpara>Pods that cannot be moved elsewhere because of a lack of resources, incompatible node selectors or affinity, matching anti-affinity, and so on.</simpara>
+</listitem>
+<listitem>
+<simpara>Unless they also have a <literal>"cluster-autoscaler.kubernetes.io/safe-to-evict": "true"</literal> annotation, pods that have a <literal>"cluster-autoscaler.kubernetes.io/safe-to-evict": "false"</literal> annotation.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>For example, you set the maximum CPU limit to 64 cores and configure the cluster autoscaler to only create machines that have 8 cores each. If your cluster starts with 30 cores, the cluster autoscaler can add up to 4 more nodes with 32 cores, for a total of 62.</simpara>
+<note>
+<simpara>By default, when the cluster autoscaler removes a node, it does not cordon the node when draining the pods from the node. You can configure the cluster autoscaler to cordon the node before draining and moving the pods by setting the <literal>spec.scaleDown.cordonNodeBeforeTerminating</literal> parameter to <literal>enabled</literal> in the <literal>ClusterAutoscaler</literal> CR. This parameter is disabled by default. It is recommended to enable this parameter in production clusters because of the risk of data loss, application errors, pods getting stuck in the terminating state, or other issues if the cluster autoscaler removes a node when the parameter is disabled. Leaving this parameter disabled, which can result in faster node removal, might be appropriate in clusters that run only stateless workloads.</simpara>
+</note>
+</section>
+<section xml:id="cluster-autoscaler-limitations_osd-cluster-autoscaling">
+<title>Limitations</title>
+<simpara>If you configure the cluster autoscaler, additional usage restrictions apply:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Do not modify the nodes that are in autoscaled node groups directly. All nodes within the same node group have the same capacity and labels and run the same system pods.</simpara>
+</listitem>
+<listitem>
+<simpara>Specify requests for your pods.</simpara>
+</listitem>
+<listitem>
+<simpara>If you have to prevent pods from being deleted too quickly, configure appropriate PDBs.</simpara>
+</listitem>
+<listitem>
+<simpara>Confirm that your cloud provider quota is large enough to support the maximum node pools that you configure.</simpara>
+</listitem>
+<listitem>
+<simpara>Do not run additional node group autoscalers, especially the ones offered by your cloud provider.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>The cluster autoscaler only adds nodes in autoscaled node groups if doing so would result in a schedulable pod.
+If the available node types cannot meet the requirements for a pod request, or if the node groups that could meet these requirements are at their maximum size, the cluster autoscaler cannot scale up.</simpara>
+</note>
+</section>
+<section xml:id="cluster-autoscaler-interaction_osd-cluster-autoscaling">
+<title>Interaction with other scheduling features</title>
+<simpara>The horizontal pod autoscaler (HPA) and the cluster autoscaler modify cluster resources in different ways. The HPA changes the deployment&#8217;s or replica set&#8217;s number of replicas based on the current CPU load. If the load increases, the HPA creates new replicas, regardless of the amount of resources available to the cluster. If there are not enough resources, the cluster autoscaler adds resources so that the HPA-created pods can run. If the load decreases, the HPA stops some replicas. If this action causes some nodes to be underutilized or completely empty, the cluster autoscaler deletes the unnecessary nodes.</simpara>
+<simpara>The cluster autoscaler takes pod priorities into account. The Pod Priority and Preemption feature enables scheduling pods based on priorities if the cluster does not have enough resources, but the cluster autoscaler ensures that the cluster has resources to run all pods. To honor the intention of both features, the cluster autoscaler includes a priority cutoff function. You can use this cutoff to schedule "best-effort" pods, which do not cause the cluster autoscaler to increase resources but instead run only when spare resources are available.</simpara>
+<simpara>Pods with priority lower than the cutoff value do not cause the cluster to scale up or prevent the cluster from scaling down. No new nodes are added to run the pods, and nodes running these pods might be deleted to free resources.</simpara>
+</section>
+</section>
+<section xml:id="rosa-enable-cluster-autoscale-ui-during_osd-cluster-autoscaling">
+<title>Enable autoscaling during cluster creation with OpenShift Cluster Manager</title>
+<simpara>You can use OpenShift Cluster Manager to autoscale during cluster creation.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>During cluster creation, check the <emphasis role="strong">Enable autoscaling</emphasis> box. The <emphasis role="strong">Edit cluster autoscaling settings</emphasis> button becomes selectable.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>You can also choose the minimum or maximum amount of nodes to autoscale.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Edit cluster autoscaling settings</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Edit any settings you want and then click <emphasis role="strong">Close</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="rosa-enable-cluster-autoscale-ui-after_osd-cluster-autoscaling">
+<title>Enable autoscaling after cluster creation with OpenShift Cluster Manager</title>
+<simpara>You can use OpenShift Cluster Manager to autoscale after cluster creation.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>In OpenShift Cluster Manager, click the name of the cluster you want to autoscale. The Overview page for the cluster has a <emphasis role="strong">Autoscaling</emphasis> item that indicates if it is enabled or disabled.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Machine Pools</emphasis> tab.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Edit cluster autoscaling</emphasis> button. The <emphasis role="strong">Edit cluster autoscaling</emphasis> settings window is shown.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Autoscale cluster</emphasis> toggle at the top of the window. All the settings are now editable.</simpara>
+</listitem>
+<listitem>
+<simpara>Edit any settings you want and then click <emphasis role="strong">Save</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">x</emphasis> at the top right of the screen to close the settings window.</simpara>
+</listitem>
+</orderedlist>
+<simpara>To revert all autoscaling settings to the defaults if they have been changed, click the <emphasis role="strong">Revert all to defaults</emphasis> button.</simpara>
+</section>
+<section xml:id="rosa-cluster-autoscale-settings_osd-cluster-autoscaling">
+<title>Cluster autoscaling settings using OpenShift Cluster Manager</title>
+<simpara>The tables explain all the configurable UI settings when using cluster autoscaling with OpenShift Cluster Manager.</simpara>
+<section xml:id="_general-settings">
+<title>General settings</title>
+<table frame="all" rowsep="1" colsep="1">
+<title>Configurable general settings for cluster autoscaling when using the OpenShift Cluster Manager</title>
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="25*"/>
+<colspec colname="col_3" colwidth="25*"/>
+<colspec colname="col_4" colwidth="25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Setting</entry>
+<entry align="left" valign="top">Description</entry>
+<entry align="left" valign="top">Type or Range</entry>
+<entry align="left" valign="top">Default</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>log-verbosity</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Sets the autoscaler log level. The default value is 1. Level 4 is recommended for debugging. Level 6 enables almost everything.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>integer</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>skip-nodes-with-local-storage</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>If <literal>true</literal>, the cluster autoscaler never deletes nodes with pods with local storage, e.g. EmptyDir or HostPath.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>boolean</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>true</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>max-pod-grace-period</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Gives pods graceful termination time in seconds before scaling down.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>integer</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>600</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>max-node-provision-time</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Maximum time the cluster autoscaler waits for nodes to be provisioned.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>string</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>15m</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>pod-priority-threshold</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Allows users to schedule "best-effort" pods, which are not expected to trigger cluster autoscaler actions. These pods only run when spare resources are available.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>integer</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>-10</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>ignore-daemonsets-utilization</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Determines whether the cluster autoscaler ignores daemon set pods when calculating resource utilization for scaling down.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>boolean</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>false</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>balance-similar-node-groups</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>If <literal>true</literal>, this setting automatically identifies node groups with the same instance type and the same set of labels and tries to keep the respective sizes of those node groups balanced.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>boolean</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>false</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>balancing-ignored-labels</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>This option specifies labels that the cluster autoscaler should ignore when considering node group similarity. This option cannot contain spaces.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>array (string)</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Format should be a comma-separated list of labels.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+<section xml:id="_resource-limits">
+<title>Resource limits</title>
+<table frame="all" rowsep="1" colsep="1">
+<title>Configurable resource limit settings for cluster autoscaling when using the OpenShift Cluster Manager</title>
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="25*"/>
+<colspec colname="col_3" colwidth="25*"/>
+<colspec colname="col_4" colwidth="25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Setting</entry>
+<entry align="left" valign="top">Description</entry>
+<entry align="left" valign="top">Type or Range</entry>
+<entry align="left" valign="top">Default</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>cores-total-min</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Minimum number of cores in cluster. The cluster autoscaler does not scale the cluster less than this number.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>object</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>cores-total-max</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Maximum number of cores in cluster. The cluster autoscaler does not scale the cluster greater than this number.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>object</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>180 * 64 (11520)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>memory-total-min</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Minimum number of gigabytes of memory in cluster. The cluster autoscaler does not scale the cluster less than this number.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>object</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>memory-total-max</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Maximum number of gigabytes of memory in cluster. The cluster autoscaler does not scale the cluster greater than this number.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>object</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>180 * 64 * 20 (230400)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>max-nodes-total</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Maximum number of nodes in all node groups. Includes all nodes, not just automatically scaled nodes. The cluster autoscaler does not grow the cluster greater than this number.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>integer</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>180</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>GPUs</simpara></entry>
+<entry align="left" valign="top"><simpara>Minimum and maximum number of different GPUs in cluster. The cluster autoscaler does not scale the cluster less than or greater than these numbers.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>array</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Format should be a comma-separated list of "&lt;gpu_type&gt;:&lt;min&gt;:&lt;max&gt;".</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+<section xml:id="_scale-down-configuration">
+<title>Scale down configuration</title>
+<table frame="all" rowsep="1" colsep="1">
+<title>Configurable scale down settings for cluster autoscaling when using the OpenShift Cluster Manager</title>
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="25*"/>
+<colspec colname="col_3" colwidth="25*"/>
+<colspec colname="col_4" colwidth="25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Setting</entry>
+<entry align="left" valign="top">Description</entry>
+<entry align="left" valign="top">Type or Range</entry>
+<entry align="left" valign="top">Default</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>scale-down-enabled</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Should the cluster autoscaler scale down the cluster.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>boolean</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>true</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>scale-down-utilization-threshold</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Node utilization level, defined as the sum of the requested resources divided by capacity, below which a node can be considered for scale down.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>float</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>0.5</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>scale-down-unneeded-time</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>How long a node should be unneeded before it is eligible for scale down.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>string</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>10m</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>scale-down-delay-after-add</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>How long after scale up that scale-down evaluation resumes.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>string</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>10m</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>scale-down-delay-after-delete</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>How long after node deletion that scale-down evaluation resumes.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>string</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>0s</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>scale-down-delay-after-failure</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>How long after scale down failure that scale-down evaluation resumes.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>string</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>3m</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+</section>
+</chapter>
+<chapter xml:id="_managing-compute-nodes-using-machine-pools">
+<title>Managing compute nodes using machine pools</title>
+<section xml:id="osd-machinepools-about">
+<title>About machine pools</title>
+<simpara>OpenShift Container Platform uses machine pools as an elastic, dynamic provisioning method on top of your cloud infrastructure.</simpara>
+<simpara>The primary resources are machines, machine sets, and machine pools.</simpara>
+<important>
+<simpara>As of OpenShift Container Platform 4.11, the default per-pod PID limit is <literal>4096</literal>. If you want to enable this PID limit, you must upgrade your OpenShift Container Platform clusters to this version or later. OpenShift Container Platform clusters running versions earlier than 4.11 use a default PID limit of <literal>1024</literal>.</simpara>
+<simpara>You cannot configure the per-pod PID limit on any OpenShift Container Platform cluster.</simpara>
+</important>
+<section xml:id="_machines">
+<title>Machines</title>
+<simpara>A machine is a fundamental unit that describes the host for a worker node.</simpara>
+</section>
+<section xml:id="_machine-sets">
+<title>Machine sets</title>
+<simpara><literal>MachineSet</literal> resources are groups of compute machines. If you need more machines or must scale them down, change the number of replicas in the machine pool to which the compute machine sets belong.</simpara>
+</section>
+<section xml:id="_machine-pools">
+<title>Machine pools</title>
+<simpara>Machine pools are a higher level construct to compute machine sets.</simpara>
+<simpara>A machine pool creates compute machine sets that are all clones of the same configuration across availability zones. Machine pools perform all of the host node provisioning management actions on a worker node. If you need more machines or must scale them down, change the number of replicas in the machine pool to meet your compute needs. You can manually configure scaling or set autoscaling.</simpara>
+<simpara>By default, a cluster is created with one machine pool. You can add additional machine pools to an existing cluster, modify the default machine pool, and delete machine pools.</simpara>
+<simpara>Multiple machine pools can exist on a single cluster, and they can each have different types or different size nodes.</simpara>
+</section>
+<section xml:id="_machine-pools-in-multiple-zone-clusters">
+<title>Machine pools in multiple zone clusters</title>
+<simpara>By default, when you create a machine pool in a multiple availability zone (Multi-AZ) cluster, that one machine pool has 3 zones. The machine pool, in turn, creates a total of 3 compute machine sets - one for each zone in the cluster. Each of those compute machine sets manages one or more machines in its respective availability zone.</simpara>
+<simpara>If you create a new Multi-AZ cluster, the machine pools are replicated to those zones automatically. If you add a machine pool to an existing Multi-AZ, the new pool is automatically created in those zones. Similarly, deleting a machine pool will delete it from all zones.
+Due to this multiplicative effect, using machine pools in Multi-AZ cluster can consume more of your project&#8217;s quota for a specific region when creating machine pools.</simpara>
+<section xml:id="_deploying-a-machine-pool-in-a-single-availability-zone-within-a-multi-az-cluster">
+<title>Deploying a machine pool in a single availability zone within a Multi-AZ cluster</title>
+<simpara>OpenShift Container Platform on Google Cloud users can deploy a single machine pool in a specific availability zone that is part of a Multi-AZ cluster using the OpenShift Cluster Manager CLI (<literal>ocm</literal>). This option is especially useful in situations where a desired instance type is not available in all availability zones of a specific region as well as when your cluster does not need more than one of the desired instance types.</simpara>
+<important>
+<simpara>You cannot assign the default machine pool to a single availability zone during the provisioning of a Multi-AZ cluster.</simpara>
+</important>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You installed the <link xlink:href="https://console.redhat.com/openshift/downloads">OpenShift Cluster Manager API command-line interface (<literal>ocm</literal>)</link>.</simpara>
+</listitem>
+</itemizedlist>
+<important>
+<simpara>OpenShift Cluster Manager API command-line interface (<literal>ocm</literal>) is a Developer Preview feature only.
+For more information about the support scope of Red Hat Developer Preview features, see <link xlink:href="https://access.redhat.com/support/offerings/devpreview/">Developer Preview Support Scope</link>.</simpara>
+</important>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>Deploy a machine pool to a specific availability zone by running the following command:</simpara>
+</listitem>
+</itemizedlist>
+<programlisting language="terminal" linenumbering="unnumbered">ocm create machine-pool \
+  --cluster &lt;cluster_name|cluster_id&gt; \ <co xml:id="CO1-1"/>
+  --instance-type &lt;instance_type&gt; \ <co xml:id="CO1-2"/>
+  --replicas &lt;number_of_replicas&gt; \ <co xml:id="CO1-3"/>
+  --availability-zone &lt;availability_zone&gt; \ <co xml:id="CO1-4"/>
+    [flags] \ <co xml:id="CO1-5"/>
+   &lt;machine_pool_id&gt; <co xml:id="CO1-6"/></programlisting>
+<calloutlist>
+<callout arearefs="CO1-1">
+<para>Replace <literal>&lt;cluster_name|cluster_id&gt;</literal> with the name or ID of the cluster that you want to add the machine pool to.</para>
+</callout>
+<callout arearefs="CO1-2">
+<para>Replace <literal>&lt;instance_type&gt;</literal> with the instance type you want to deploy to the single availability zone.</para>
+</callout>
+<callout arearefs="CO1-3">
+<para>Replace <literal>&lt;replicas&gt;</literal> with the number of replicas of the selected instance type you want to include in the machine pool.</para>
+</callout>
+<callout arearefs="CO1-4">
+<para>Replace <literal>&lt;availability_zone&gt;</literal> with the availability zone you want to add the machine pool to.</para>
+</callout>
+<callout arearefs="CO1-5">
+<para>Optional: Replace [flags] with any additional flags available for machine pool creation.</para>
+</callout>
+<callout arearefs="CO1-6">
+<para>Replace <literal>&lt;machine_pool_id&gt;</literal> with an ID for your machine pool.</para>
+</callout>
+</calloutlist>
+<note>
+<simpara>To view the additional flags available for machine pool creation, run the <literal>ocm create machine-pool --help</literal> command.</simpara>
+</note>
+<simpara>For more information about Google Cloud instance types and availability zones, see the <emphasis>Additional resources</emphasis> section.</simpara>
+</section>
+</section>
+<section xml:id="_additional-resources-2" role="_additional-resources">
+<title>Additional resources</title>
+<itemizedlist>
+<listitem>
+<simpara><link linkend="osd-nodes-about-autoscaling-nodes">About autoscaling</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#gcp-compute-types_osd-service-definition">Google Cloud instance types</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#gcp-regions-availability-zones_osd-service-definition">Google Cloud regions and availability zones</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="osd-managing-worker-nodes">
+<title>Managing compute nodes</title>
+<simpara>This document describes how to manage compute (also known as worker) nodes with OpenShift Container Platform.</simpara>
+<simpara>The majority of changes for compute nodes are configured on machine pools. A machine pool is a group of compute nodes in a cluster that have the same configuration, providing ease of management.</simpara>
+<simpara>You can edit machine pool configuration options such as scaling, adding node labels, and adding taints.</simpara>
+<section xml:id="creating_machine_pools_ocm_osd-managing-worker-nodes">
+<title>Creating a machine pool</title>
+<simpara role="_abstract">A machine pool is created when you install an OpenShift Container Platform cluster. After installation, you can create additional machine pools for your cluster by using OpenShift Cluster Manager.</simpara>
+<important>
+<simpara>The compute (also known as worker) node instance types, autoscaling options, and node counts that are available depend on your
+OpenShift Container Platform
+subscriptions, resource quotas and deployment scenario. For more information, contact your sales representative or Red&#160;Hat support.</simpara>
+</important>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You created an OpenShift Container Platform cluster.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Navigate to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link> and select your cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>Under the <emphasis role="strong">Machine pools</emphasis> tab, click <emphasis role="strong">Add machine pool</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Add a <emphasis role="strong">Machine pool name</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a <emphasis role="strong">Compute node instance type</emphasis> from the list. The instance type defines the vCPU and memory allocation for each compute node in the machine pool.</simpara>
+<note>
+<simpara>You cannot change the instance type for a machine pool after the pool is created.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Optional: Configure autoscaling for the machine pool:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select <emphasis role="strong">Enable autoscaling</emphasis> to automatically scale the number of machines in your machine pool to meet the deployment needs.</simpara>
+<note>
+<simpara>The <emphasis role="strong">Enable autoscaling</emphasis> option is only available for OpenShift Container Platform if you have the <literal>capability.cluster.autoscale_clusters</literal> subscription. For more information, contact your sales representative or Red&#160;Hat support.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Set the minimum and maximum node count limits for autoscaling. The cluster autoscaler does not reduce or increase the machine pool node count beyond the limits that you specify.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>If you deployed your cluster using a single availability zone, set the <emphasis role="strong">Minimum and maximum node count</emphasis>. This defines the minimum and maximum compute node limits in the availability zone.</simpara>
+</listitem>
+<listitem>
+<simpara>If you deployed your cluster using multiple availability zones, set the <emphasis role="strong">Minimum nodes per zone</emphasis> and <emphasis role="strong">Maximum nodes per zone</emphasis>. This defines the minimum and maximum compute node limits per zone.</simpara>
+<note>
+<simpara>Alternatively, you can set your autoscaling preferences for the machine pool after the machine pool is created.</simpara>
+</note>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>If you did not enable autoscaling, select a compute node count:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>If you deployed your cluster using a single availability zone, select a <emphasis role="strong">Compute node count</emphasis> from the drop-down menu. This defines the number of compute nodes to provision to the machine pool for the zone.</simpara>
+</listitem>
+<listitem>
+<simpara>If you deployed your cluster using multiple availability zones, select a <emphasis role="strong">Compute node count (per zone)</emphasis> from the drop-down menu. This defines the number of compute nodes to provision to the machine pool per zone.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Optional: Add node labels and taints for your machine pool:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Expand the <emphasis role="strong">Edit node labels and taints</emphasis> menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Under <emphasis role="strong">Node labels</emphasis>, add <emphasis role="strong">Key</emphasis> and <emphasis role="strong">Value</emphasis> entries for your node labels.</simpara>
+</listitem>
+<listitem>
+<simpara>Under <emphasis role="strong">Taints</emphasis>, add <emphasis role="strong">Key</emphasis> and <emphasis role="strong">Value</emphasis> entries for your taints.</simpara>
+<note>
+<simpara>Creating a machine pool with taints is only possible if the cluster already has at least one machine pool without a taint.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>For each taint, select an <emphasis role="strong">Effect</emphasis> from the drop-down menu. Available options include <literal>NoSchedule</literal>, <literal>PreferNoSchedule</literal>, and <literal>NoExecute</literal>.</simpara>
+<note>
+<simpara>Alternatively, you can add the node labels and taints after you create the machine pool.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Optional: Select additional custom security groups to use for nodes in this machine pool. You must have already created the security groups and associated them with the VPC that you selected for this cluster. You cannot add or edit security groups after you create the machine pool.
+For more information, see the requirements for security groups in the "Additional resources" section.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: If you deployed OpenShift Container Platform on AWS using the Customer Cloud Subscription (CCS) model, use Amazon EC2 Spot Instances if you want to configure your machine pool to deploy machines as non-guaranteed AWS Spot Instances:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select <emphasis role="strong">Use Amazon EC2 Spot Instances</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Leave <emphasis role="strong">Use On-Demand instance price</emphasis> selected to use the on-demand instance price. Alternatively, select <emphasis role="strong">Set maximum price</emphasis> to define a maximum hourly price for a Spot Instance.</simpara>
+<simpara>For more information about Amazon EC2 Spot Instances, see the <link xlink:href="https://aws.amazon.com/ec2/spot/">AWS documentation</link>.</simpara>
+<important>
+<simpara>Your Amazon EC2 Spot Instances might be interrupted at any time. Use Amazon EC2 Spot Instances only for workloads that can tolerate interruptions.</simpara>
+</important>
+<note>
+<simpara>If you select <emphasis role="strong">Use Amazon EC2 Spot Instances</emphasis> for a machine pool, you cannot disable the option after the machine pool is created.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Optional: By default, OpenShift Container Platform on Google Cloud instances in the machine pools inherit the Shielded VM settings at the cluster level. You can override the cluster level Shielded VM settings at the machine pool level by selecting or clearing the <emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> checkbox.</simpara>
+<important>
+<simpara>Once a machine pool is created, the <emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> setting cannot be changed.</simpara>
+</important>
+<important>
+<simpara><emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> is not supported for OpenShift Container Platform on Google Cloud clusters created using bare-metal instance types. For more information, see <link xlink:href="https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#limitations">Limitations</link> in the Google Cloud documentation.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Add machine pool</emphasis> to create the machine pool.</simpara>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>Verify that the machine pool is visible on the <emphasis role="strong">Machine pools</emphasis> page and the configuration is as expected.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="deleting-machine-pools_osd-managing-worker-nodes">
+<title>Deleting a machine pool</title>
+<simpara>You can delete a machine pool in the event that your workload requirements have changed and your current machine pools no longer meet your needs.</simpara>
+<simpara>You can delete machine pools using
+Red Hat OpenShift Cluster Manager.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have created an OpenShift Container Platform cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>The cluster is in the ready state.</simpara>
+</listitem>
+<listitem>
+<simpara>You have an existing machine pool without any taints and with at least two replicas for a Single-AZ cluster or three replicas for a Multi-AZ cluster.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>From <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>, navigate to the <emphasis role="strong">Cluster List</emphasis> page and select the cluster that contains the machine pool that you want to delete.</simpara>
+</listitem>
+<listitem>
+<simpara>On the selected cluster, select the <emphasis role="strong">Machine pools</emphasis> tab.</simpara>
+</listitem>
+<listitem>
+<simpara>Under the <emphasis role="strong">Machine pools</emphasis> tab, click the Options menu <inlinemediaobject>
+<imageobject>
+<imagedata fileref="images/kebab.png"/>
+</imageobject>
+<textobject><phrase>kebab</phrase></textobject>
+</inlinemediaobject> for the machine pool that you want to delete.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Delete</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+<simpara>The selected machine pool is deleted.</simpara>
+</section>
+<section xml:id="rosa-scaling-worker-nodes_osd-managing-worker-nodes">
+<title>Scaling compute nodes manually</title>
+<simpara>If you have not enabled autoscaling for your machine pool, you can manually scale the number of compute (also known as worker) nodes in the pool to meet your deployment needs.</simpara>
+<simpara>You must scale each machine pool separately.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You created an OpenShift Container Platform cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>You have an existing machine pool.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Navigate to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link> and select your cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>Under the <emphasis role="strong">Machine pools</emphasis> tab, click the Options menu <inlinemediaobject>
+<imageobject>
+<imagedata fileref="images/kebab.png"/>
+</imageobject>
+<textobject><phrase>kebab</phrase></textobject>
+</inlinemediaobject> for the machine pool that you want to scale.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Scale</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Specify the node count:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>If you deployed your cluster using a single availability zone, specify the <emphasis role="strong">Node count</emphasis> in the drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>If you deployed your cluster using multiple availability zones, specify the <emphasis role="strong">Node count per zone</emphasis> in the drop-down menu.</simpara>
+<note>
+<simpara>Your subscription determines the number of nodes that you can select.</simpara>
+</note>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Apply</emphasis> to scale the machine pool.</simpara>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>Under the <emphasis role="strong">Machine pools</emphasis> tab, verify that the <emphasis role="strong">Node count</emphasis> for your machine pool is as expected.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="rosa-osd-node-label-about_osd-managing-worker-nodes">
+<title>Node labels</title>
+<simpara>A label is a key-value pair applied to a <literal>Node</literal> object. You can use labels to organize sets of objects and control the scheduling of pods.</simpara>
+<simpara>You can add labels during cluster creation or after. Labels can be modified or updated at any time.</simpara>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara>For more information about labels, see <link xlink:href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">Kubernetes Labels and Selectors overview</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>For more information about custom additional security group requirements, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#osd-security-groups-custom_aws-ccs">Additional custom security groups</link>.</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="rosa-adding-node-labels_osd-managing-worker-nodes">
+<title>Adding node labels to a machine pool</title>
+<simpara>Add or edit labels for compute (also known as worker) nodes at any time to manage the nodes in a manner that is relevant to you. For example, you can assign types of workloads to specific nodes.</simpara>
+<simpara>Labels are assigned as key-value pairs. Each key must be unique to the object it is assigned to.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You created an OpenShift Container Platform cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>You have an existing machine pool.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Navigate to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link> and select your cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>Under the <emphasis role="strong">Machine pools</emphasis> tab, click the Options menu <inlinemediaobject>
+<imageobject>
+<imagedata fileref="images/kebab.png"/>
+</imageobject>
+<textobject><phrase>kebab</phrase></textobject>
+</inlinemediaobject> for the machine pool that you want to add a label to.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Edit labels</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>If you have existing labels in the machine pool that you want to remove, select <emphasis role="strong">x</emphasis> next to the label to delete it.</simpara>
+</listitem>
+<listitem>
+<simpara>Add a label using the format <literal>&lt;key&gt;=&lt;value&gt;</literal> and press enter. For example, add <literal>app=db</literal> and then press Enter. If the format is correct, the key value pair is then highlighted.</simpara>
+</listitem>
+<listitem>
+<simpara>Repeat the previous step if you want to add additional labels.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Save</emphasis> to apply the labels to the machine pool.</simpara>
+</listitem>
+</orderedlist>
+<orderedlist numeration="arabic">
+<title>Verification</title>
+<listitem>
+<simpara>Under the <emphasis role="strong">Machine pools</emphasis> tab, select <emphasis role="strong">&gt;</emphasis> next to your machine pool to expand the view.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify that your labels are listed under <emphasis role="strong">Labels</emphasis> in the expanded view.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="rosa-adding-taints_osd-managing-worker-nodes">
+<title>Adding taints to a machine pool</title>
+<simpara>You can add taints for compute (also known as worker) nodes in a machine pool to control which pods are scheduled to them. When you apply a taint to a machine pool, the scheduler cannot place a pod on the nodes in the pool unless the pod specification includes a toleration for the taint.</simpara>
+<note>
+<simpara>A cluster must have at least one machine pool that does not contain any taints.</simpara>
+</note>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You created an OpenShift Container Platform cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>You have an existing machine pool that does not contain any taints and contains at least two instances.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Navigate to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link> and select your cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>Under the <emphasis role="strong">Machine pools</emphasis> tab, click the Options menu <inlinemediaobject>
+<imageobject>
+<imagedata fileref="images/kebab.png"/>
+</imageobject>
+<textobject><phrase>kebab</phrase></textobject>
+</inlinemediaobject> for the machine pool that you want to add a taint to.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Edit taints</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Add <emphasis role="strong">Key</emphasis> and <emphasis role="strong">Value</emphasis> entries for your taint.</simpara>
+</listitem>
+<listitem>
+<simpara>Select an <emphasis role="strong">Effect</emphasis> for your taint from the list. Available options include <literal>NoSchedule</literal>, <literal>PreferNoSchedule</literal>, and <literal>NoExecute</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Add taint</emphasis> if you want to add more taints to the machine pool.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Save</emphasis> to apply the taints to the machine pool.</simpara>
+</listitem>
+</orderedlist>
+<orderedlist numeration="arabic">
+<title>Verification</title>
+<listitem>
+<simpara>Under the <emphasis role="strong">Machine pools</emphasis> tab, select <emphasis role="strong">&gt;</emphasis> next to your machine pool to expand the view.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify that your taints are listed under <emphasis role="strong">Taints</emphasis> in the expanded view.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_additional-resources-3" role="_additional-resources">
+<title>Additional resources</title>
+<itemizedlist>
+<listitem>
+<simpara><link linkend="osd-machinepools-about">About machine pools</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="osd-nodes-enabling-autoscaling-nodes">Enabling autoscaling</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="osd-nodes-disabling-autoscaling-nodes">Disabling autoscaling</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#osd-service-definition">OpenShift Container Platform service definition</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="osd-nodes-about-autoscaling-nodes">
+<title>About autoscaling nodes on a cluster</title>
+<important>
+<simpara>Autoscaling is available only on clusters that were purchased through Google Cloud Marketplace.</simpara>
+</important>
+<simpara>The autoscaler option can be configured to automatically scale the number of machines in a cluster.</simpara>
+<simpara>The cluster autoscaler increases the size of the cluster when there are pods that failed to schedule on any of the current nodes due to insufficient resources or when another node is necessary to meet deployment needs. The cluster autoscaler does not increase the cluster resources beyond the limits that you specify.</simpara>
+<simpara>Additionally, the cluster autoscaler decreases the size of the cluster when some nodes are consistently not needed for a significant period, such as when it has low resource use and all of its important pods can fit on other nodes.</simpara>
+<simpara>When you enable autoscaling, you must also set a minimum and maximum number of worker nodes.</simpara>
+<note>
+<simpara>Only cluster owners and organization admins can scale or delete a cluster.</simpara>
+</note>
+<section xml:id="osd-nodes-enabling-autoscaling-nodes">
+<title>Enabling autoscaling nodes on a cluster</title>
+<simpara>You can enable autoscaling on worker nodes to increase or decrease the number of nodes available by editing the machine pool definition for an existing cluster.</simpara>
+<section xml:id="ocm-enabling-autoscaling_osd-nodes-about-autoscaling-nodes">
+<title>Enabling autoscaling nodes in an existing cluster using Red Hat OpenShift Cluster Manager</title>
+<simpara>Enable autoscaling for worker nodes in the machine pool definition from OpenShift Cluster Manager console.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>From <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>, navigate to the <emphasis role="strong">Cluster List</emphasis> page and select the cluster that you want to enable autoscaling for.</simpara>
+</listitem>
+<listitem>
+<simpara>On the selected cluster, select the <emphasis role="strong">Machine pools</emphasis> tab.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the Options menu <inlinemediaobject>
+<imageobject>
+<imagedata fileref="images/kebab.png"/>
+</imageobject>
+<textobject><phrase>kebab</phrase></textobject>
+</inlinemediaobject> at the end of the machine pool that you want to enable autoscaling for and select <emphasis role="strong">Edit</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Edit machine pool</emphasis> dialog, select the <emphasis role="strong">Enable autoscaling</emphasis> checkbox.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Save</emphasis> to save these changes and enable autoscaling for the machine pool.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="osd-nodes-disabling-autoscaling-nodes">
+<title>Disabling autoscaling nodes on a cluster</title>
+<simpara>You can disable autoscaling on worker nodes to increase or decrease the number of nodes available by editing the machine pool definition for an existing cluster.</simpara>
+<simpara>You can disable autoscaling on a cluster using OpenShift Cluster Manager console.</simpara>
+<section xml:id="ocm-disabling-autoscaling_osd-nodes-about-autoscaling-nodes">
+<title>Disabling autoscaling nodes in an existing cluster using Red Hat OpenShift Cluster Manager</title>
+<simpara>Disable autoscaling for worker nodes in the machine pool definition from OpenShift Cluster Manager.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>From <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>, navigate to the <emphasis role="strong">Cluster List</emphasis> page and select the cluster with autoscaling that must be disabled.</simpara>
+</listitem>
+<listitem>
+<simpara>On the selected cluster, select the <emphasis role="strong">Machine pools</emphasis> tab.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the Options menu <inlinemediaobject>
+<imageobject>
+<imagedata fileref="images/kebab.png"/>
+</imageobject>
+<textobject><phrase>kebab</phrase></textobject>
+</inlinemediaobject> at the end of the machine pool with autoscaling and select <emphasis role="strong">Edit</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Edit machine pool</emphasis> dialog, deselect the <emphasis role="strong">Enable autoscaling</emphasis> checkbox.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Save</emphasis> to save these changes and disable autoscaling from the machine pool.</simpara>
+</listitem>
+</orderedlist>
+<simpara>Applying autoscaling to an OpenShift Container Platform cluster involves deploying a cluster autoscaler and then deploying machine autoscalers for each machine type in your cluster.</simpara>
+<important>
+<simpara>You can configure the cluster autoscaler only in clusters where the Machine API is operational.</simpara>
+</important>
+</section>
+</section>
+<section xml:id="cluster-autoscaler-about_osd-nodes-about-autoscaling-nodes">
+<title>About the cluster autoscaler</title>
+<simpara role="_abstract">The cluster autoscaler adjusts the size of an OpenShift Container Platform cluster to meet its current deployment needs. It uses declarative, Kubernetes-style arguments to provide infrastructure management that does not rely on objects of a specific cloud provider. The cluster autoscaler has a cluster scope, and is not associated with a particular namespace.</simpara>
+<simpara>The cluster autoscaler increases the size of the cluster when there are pods that fail to schedule on any of the current worker nodes due to insufficient resources or when another node is necessary to meet deployment needs. The cluster autoscaler does not increase the cluster resources beyond the limits that you specify.</simpara>
+<simpara>The cluster autoscaler computes the total
+memory and CPU
+on all nodes the cluster, even though it does not manage the control plane nodes. These values are not single-machine oriented. They are an aggregation of all the resources in the entire cluster. For example, if you set the maximum memory resource limit, the cluster autoscaler includes all the nodes in the cluster when calculating the current memory usage. That calculation is then used to determine if the cluster autoscaler has the capacity to add more worker resources.</simpara>
+<important>
+<simpara>Ensure that the <literal>maxNodesTotal</literal> value in the <literal>ClusterAutoscaler</literal> custom resource (CR) that you create is large enough to account for the total possible number of machines in your cluster. This value must encompass the number of control plane machines and the possible number of compute machines that you might scale to.</simpara>
+</important>
+<section xml:id="cluster-autoscaler-scale-down_osd-nodes-about-autoscaling-nodes">
+<title>Automatic node removal</title>
+<simpara>Every 10 seconds, the cluster autoscaler checks which nodes are unnecessary in the cluster and removes them. The cluster autoscaler considers a node for removal if the following conditions apply:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The node utilization is less than the <emphasis>node utilization level</emphasis> threshold for the cluster. The node utilization level is the sum of the requested resources divided by the allocated resources for the node. If you do not specify a value in the <literal>ClusterAutoscaler</literal> custom resource, the cluster autoscaler uses a default value of <literal>0.5</literal>, which corresponds to 50% utilization.</simpara>
+</listitem>
+<listitem>
+<simpara>The cluster autoscaler can move all pods running on the node to the other nodes. The Kubernetes scheduler is responsible for scheduling pods on the nodes.</simpara>
+</listitem>
+<listitem>
+<simpara>The cluster autoscaler does not have scale down disabled annotation.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>If the following types of pods are present on a node, the cluster autoscaler will not remove the node:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Pods with restrictive pod disruption budgets (PDBs).</simpara>
+</listitem>
+<listitem>
+<simpara>Kube-system pods that do not run on the node by default.</simpara>
+</listitem>
+<listitem>
+<simpara>Kube-system pods that do not have a PDB or have a PDB that is too restrictive.</simpara>
+</listitem>
+<listitem>
+<simpara>Pods that are not backed by a controller object such as a deployment, replica set, or stateful set.</simpara>
+</listitem>
+<listitem>
+<simpara>Pods with local storage.</simpara>
+</listitem>
+<listitem>
+<simpara>Pods that cannot be moved elsewhere because of a lack of resources, incompatible node selectors or affinity, matching anti-affinity, and so on.</simpara>
+</listitem>
+<listitem>
+<simpara>Unless they also have a <literal>"cluster-autoscaler.kubernetes.io/safe-to-evict": "true"</literal> annotation, pods that have a <literal>"cluster-autoscaler.kubernetes.io/safe-to-evict": "false"</literal> annotation.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>For example, you set the maximum CPU limit to 64 cores and configure the cluster autoscaler to only create machines that have 8 cores each. If your cluster starts with 30 cores, the cluster autoscaler can add up to 4 more nodes with 32 cores, for a total of 62.</simpara>
+<note>
+<simpara>By default, when the cluster autoscaler removes a node, it does not cordon the node when draining the pods from the node. You can configure the cluster autoscaler to cordon the node before draining and moving the pods by setting the <literal>spec.scaleDown.cordonNodeBeforeTerminating</literal> parameter to <literal>enabled</literal> in the <literal>ClusterAutoscaler</literal> CR. This parameter is disabled by default. It is recommended to enable this parameter in production clusters because of the risk of data loss, application errors, pods getting stuck in the terminating state, or other issues if the cluster autoscaler removes a node when the parameter is disabled. Leaving this parameter disabled, which can result in faster node removal, might be appropriate in clusters that run only stateless workloads.</simpara>
+</note>
+</section>
+<section xml:id="cluster-autoscaler-limitations_osd-nodes-about-autoscaling-nodes">
+<title>Limitations</title>
+<simpara>If you configure the cluster autoscaler, additional usage restrictions apply:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Do not modify the nodes that are in autoscaled node groups directly. All nodes within the same node group have the same capacity and labels and run the same system pods.</simpara>
+</listitem>
+<listitem>
+<simpara>Specify requests for your pods.</simpara>
+</listitem>
+<listitem>
+<simpara>If you have to prevent pods from being deleted too quickly, configure appropriate PDBs.</simpara>
+</listitem>
+<listitem>
+<simpara>Confirm that your cloud provider quota is large enough to support the maximum node pools that you configure.</simpara>
+</listitem>
+<listitem>
+<simpara>Do not run additional node group autoscalers, especially the ones offered by your cloud provider.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>The cluster autoscaler only adds nodes in autoscaled node groups if doing so would result in a schedulable pod.
+If the available node types cannot meet the requirements for a pod request, or if the node groups that could meet these requirements are at their maximum size, the cluster autoscaler cannot scale up.</simpara>
+</note>
+</section>
+<section xml:id="cluster-autoscaler-interaction_osd-nodes-about-autoscaling-nodes">
+<title>Interaction with other scheduling features</title>
+<simpara>The horizontal pod autoscaler (HPA) and the cluster autoscaler modify cluster resources in different ways. The HPA changes the deployment&#8217;s or replica set&#8217;s number of replicas based on the current CPU load. If the load increases, the HPA creates new replicas, regardless of the amount of resources available to the cluster. If there are not enough resources, the cluster autoscaler adds resources so that the HPA-created pods can run. If the load decreases, the HPA stops some replicas. If this action causes some nodes to be underutilized or completely empty, the cluster autoscaler deletes the unnecessary nodes.</simpara>
+<simpara>The cluster autoscaler takes pod priorities into account. The Pod Priority and Preemption feature enables scheduling pods based on priorities if the cluster does not have enough resources, but the cluster autoscaler ensures that the cluster has resources to run all pods. To honor the intention of both features, the cluster autoscaler includes a priority cutoff function. You can use this cutoff to schedule "best-effort" pods, which do not cause the cluster autoscaler to increase resources but instead run only when spare resources are available.</simpara>
+<simpara>Pods with priority lower than the cutoff value do not cause the cluster to scale up or prevent the cluster from scaling down. No new nodes are added to run the pods, and nodes running these pods might be deleted to free resources.</simpara>
+</section>
+</section>
+<section xml:id="nodes-about-autoscaling-nodes-additional-resources" role="_additional-resources">
+<title>Additional resources</title>
+<itemizedlist>
+<listitem>
+<simpara><link linkend="osd-machinepools-about">About machinepools</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+</chapter>
+</book>
