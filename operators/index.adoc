@@ -1,12 +1,11 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="operators-overview"]
 = Operators overview
-include::_attributes/common-attributes.adoc[]
+include::includes/common-attributes.adoc[]
 :context: operators-overview
 
-toc::[]
 
-include::modules/operators-overview.adoc[leveloffset=+1]
+include::includes/operators-overview.adoc[leveloffset=+1]
 
 [id="operators-overview-developer-tasks_{context}"]
 == For developers
@@ -16,7 +15,7 @@ As an Operator author, you can perform the following development tasks for OLM-b
 ifndef::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 ** xref:../operators/user/olm-installing-operators-in-namespace.adoc#olm-installing-operators-in-namespace[Install and subscribe an Operator to your namespace].
 endif::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
-** xref:../operators/user/olm-creating-apps-from-installed-operators.adoc#olm-creating-apps-from-installed-operators[Create an application from an installed Operator through the web console].
+** xref:olm-creating-apps-from-installed-operators[Create an application from an installed Operator through the web console].
 
 // This xref could be relevant for OSD/ROSA, but the target doesn't currently exist in the OSD/ROSA docs.
 ifndef::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
@@ -36,7 +35,7 @@ ifdef::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 As an administrator with the `dedicated-admin` role, you can perform the following Operator tasks:
 endif::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 
-** xref:../operators/admin/olm-managing-custom-catalogs.adoc#olm-managing-custom-catalogs[Manage custom catalogs].
+** xref:olm-managing-custom-catalogs[Manage custom catalogs].
 ifndef::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 ** xref:../operators/admin/olm-creating-policy.adoc#olm-creating-policy[Allow non-cluster administrators to install Operators].
 endif::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
@@ -44,13 +43,13 @@ ifndef::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 ** xref:../operators/user/olm-installing-operators-in-namespace.adoc#olm-installing-operators-in-namespace[Install an Operator from the software catalog].
 endif::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 ifdef::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
-** xref:../operators/admin/olm-adding-operators-to-cluster.adoc#olm-installing-operators-from-software-catalog_olm-adding-operators-to-a-cluster[Install an Operator from the software catalog].
+** xref:olm-installing-operators-from-software-catalog_olm-adding-operators-to-a-cluster[Install an Operator from the software catalog].
 endif::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
-** xref:../operators/admin/olm-status.adoc#olm-status[View Operator status].
-** xref:../operators/admin/olm-managing-operatorconditions.adoc#olm-managing-operatorconditions[Manage Operator conditions].
-** xref:../operators/admin/olm-upgrading-operators.adoc#olm-upgrading-operators[Upgrade installed Operators].
-** xref:../operators/admin/olm-deleting-operators-from-cluster.adoc#olm-deleting-operators-from-a-cluster[Delete installed Operators].
-** xref:../operators/admin/olm-configuring-proxy-support.adoc#olm-configuring-proxy-support[Configure proxy support].
+** xref:olm-status[View Operator status].
+** xref:olm-managing-operatorconditions[Manage Operator conditions].
+** xref:olm-upgrading-operators[Upgrade installed Operators].
+** xref:olm-deleting-operators-from-a-cluster[Delete installed Operators].
+** xref:olm-configuring-proxy-support[Configure proxy support].
 ifndef::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 ** xref:../disconnected/using-olm.adoc#olm-restricted-networks[Using Operator Lifecycle Manager in disconnected environments].
 
@@ -62,4 +61,4 @@ endif::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 [id="operators-overview-next-steps"]
 == Next steps
 
-* xref:../operators/understanding/olm-what-operators-are.adoc#olm-what-operators-are[What are Operators?]
+* xref:olm-what-operators-are[What are Operators?]

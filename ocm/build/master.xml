@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>Red Hat OpenShift Cluster Manager</title>
+<date>2026-02-25</date>
+<title>Red Hat OpenShift Cluster Manager</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="ocm-overview">
+<title>Red Hat OpenShift Cluster Manager</title>
+<simpara role="_abstract">Red Hat OpenShift Cluster Manager is a managed service where you can install, modify, operate, and upgrade your Red Hat OpenShift clusters. This service allows you to work with all of your organization’s clusters from a single dashboard.</simpara>
+<simpara>OpenShift Cluster Manager guides you to install OpenShift Container Platform, Red Hat OpenShift Service on AWS (classic architecture), Red Hat OpenShift Service on AWS, and OpenShift Dedicated clusters. It is also responsible for both OpenShift Container Platform clusters after self-installation as well as your Red Hat OpenShift Service on AWS (classic architecture), Red Hat OpenShift Service on AWS, and OpenShift Dedicated clusters.</simpara>
+<simpara>You can use OpenShift Cluster Manager to do the following actions:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Create clusters</simpara>
+</listitem>
+<listitem>
+<simpara>View cluster details and metrics</simpara>
+</listitem>
+<listitem>
+<simpara>Manage your clusters with tasks such as scaling, changing node labels, networking, authentication</simpara>
+</listitem>
+<listitem>
+<simpara>Manage access control</simpara>
+</listitem>
+<listitem>
+<simpara>Monitor clusters</simpara>
+</listitem>
+<listitem>
+<simpara>Schedule upgrades</simpara>
+</listitem>
+</itemizedlist>
+<simpara>For more information about OpenShift Cluster Manager, see the entire <link xlink:href="https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html-single/managing_clusters/index">OpenShift Cluster Manager documentation</link>.</simpara>
+<section xml:id="accessing-ocm_ocm-overview">
+<title>Accessing Red Hat OpenShift Cluster Manager</title>
+<simpara role="_abstract">You can access OpenShift Cluster Manager with your configured OpenShift account.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have an account that is part of an OpenShift organization.</simpara>
+</listitem>
+<listitem>
+<simpara>If you are creating a cluster, your organization has a specified quota.</simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>Log in to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link> using your login credentials.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="ocm-general-actions_ocm-overview">
+<title>General actions</title>
+<simpara role="_abstract">On the top right of the cluster page, there are some actions that a user can perform on the entire cluster:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Open console</emphasis> launches a web console so that the cluster owner can issue commands to the cluster.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Actions</emphasis> drop-down menu allows the cluster owner to rename the display name of the cluster, edit the machine pools, and delete the cluster.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Refresh</emphasis> icon forces a refresh of the cluster.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="ocm-cluster-tabs_ocm-overview">
+<title>Cluster tabs</title>
+<simpara role="_abstract">Selecting an active, installed cluster shows tabs associated with that cluster. The following tabs display after the cluster&#8217;s installation completes:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Overview</simpara>
+</listitem>
+<listitem>
+<simpara>Access control</simpara>
+</listitem>
+<listitem>
+<simpara>Add-ons</simpara>
+</listitem>
+<listitem>
+<simpara>Cluster history</simpara>
+</listitem>
+<listitem>
+<simpara>Networking</simpara>
+</listitem>
+<listitem>
+<simpara>Machine pools</simpara>
+</listitem>
+<listitem>
+<simpara>Support</simpara>
+</listitem>
+<listitem>
+<simpara>Settings</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="ocm-overview-tab_ocm-overview">
+<title>Overview tab</title>
+<simpara role="_abstract">The <emphasis role="strong">Overview</emphasis> tab provides information about how the cluster was configured:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Cluster ID</emphasis> is the unique identification for the created cluster. This ID can be used when issuing commands to the cluster from the command line.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Domain prefix</emphasis> is the prefix that is used throughout the cluster. The default value is the cluster&#8217;s name.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Type</emphasis> shows the type of cluster, for example Red Hat OpenShift Service on AWS (classic architecture), Red Hat OpenShift Service on AWS, or OpenShift Dedicated.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Control plane type</emphasis> is the architecture type of the cluster. The field only displays if the cluster uses a hosted control plane architecture.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Region</emphasis> is the server region.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Channel group</emphasis> shows the update channel for the cluster, such as stable or eus. Support for channel groups varies by cluster version. If support channel editing is available, this field can be changed by clicking the pencil icon.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Version</emphasis> is the OpenShift version that is installed on the cluster. If there is an update available, you can update from this field.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Created at</emphasis> shows the date and time that the cluster was created.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Owner</emphasis> identifies who created the cluster and has owner rights.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Delete Protection: &lt;status&gt;</emphasis> shows whether or not the cluster&#8217;s delete protection is enabled.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Total vCPU</emphasis> shows the total available virtual CPU for this cluster.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Total memory</emphasis> shows the total available memory for this cluster.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Infrastructure AWS account</emphasis> displays the AWS account that is responsible for cluster creation and maintenance.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Nodes</emphasis> shows the actual and desired nodes on the cluster. These numbers might not match due to cluster scaling.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Network</emphasis> field shows the address and prefixes for network connectivity.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">OIDC configuration</emphasis> field shows the Open ID Connect configuration for the cluster.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Resource usage</emphasis> section of the tab displays the resources in use with a graph.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Advisor recommendations</emphasis> section gives insight in relation to security, performance, availability, and stability. This section requires the use of remote health functionality. See <emphasis>Using Red&#160;Hat Lightspeed to identify issues with the cluster</emphasis> in the <emphasis>Additional resources</emphasis> section.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="ocm-accesscontrol-tab_ocm-overview">
+<title>Access control tab</title>
+<simpara role="_abstract">The <emphasis role="strong">Access control</emphasis> tab allows the cluster owner to set up an identity provider, grant elevated permissions, and grant roles to other users.</simpara>
+<section xml:id="ocm-accesscontrol-tab-identity-providers_ocm-overview">
+<title>Identity providers</title>
+<simpara role="_abstract">You can create your cluster&#8217;s identity provider in this section. See the <emphasis>Additional resources</emphasis> for more information.</simpara>
+</section>
+<section xml:id="ocm-accesscontrol-tab-cluster-roles-access_ocm-overview">
+<title>Cluster roles and access</title>
+<simpara role="_abstract">You can create a <literal>dedicated-admins</literal> role for OpenShift Dedicated clusters or <literal>cluster-admins</literal> role for Red Hat OpenShift Service on AWS or Red Hat OpenShift Service on AWS (classic architecture) clusters.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Click the <emphasis role="strong">Add user</emphasis> button.</simpara>
+</listitem>
+<listitem>
+<simpara>Enter the ID of the user you want to grant cluster admin access.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the appropriate group for your user. Either <literal>dedicated-admins</literal> for OpenShift Dedicated clusters, or <literal>cluster-admins</literal> for
+clusters.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="ocm-accesscontrol-tab-ocm-roles-access_ocm-overview">
+<title>OCM roles and access</title>
+<simpara role="_abstract">Use the following procedure to grant roles on the cluster.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You must be the cluster owner or have the correct permissions to grant roles.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Click the <emphasis role="strong">Grant role</emphasis> button.</simpara>
+</listitem>
+<listitem>
+<simpara>Enter the Red Hat account login for the user that you want to grant a role on the cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the role from following options:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Cluster editor</emphasis> allows users or groups to manage or configure the cluster.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Cluster viewer</emphasis> allows users or groups to view cluster details only.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Identity provider editor</emphasis> allows users or groups to manage and configure the identity providers.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Machine pool editor</emphasis> allows users or groups to manage and configure the machine pools.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Grant role</emphasis> button on the dialog box.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="ocm-addons-tab_ocm-overview">
+<title>Add-ons tab</title>
+
+</section>
+<section xml:id="ocm-cluster-history-tab_ocm-overview" role="_abstract">
+<title>Cluster history tab</title>
+<simpara role="_abstract">The <emphasis role="strong">Cluster history</emphasis> tab shows every change to the cluster from creation onward for each version. You can specify date ranges for your cluster history and use filters to search based on the description of the notification, the severity of the notification, the type of notification, and which role logged it. You may download your cluster history as a JSON or CSV file.</simpara>
+</section>
+<section xml:id="ocm-networking-tab_ocm-overview">
+<title>Networking tab</title>
+<simpara role="_abstract">The <emphasis role="strong">Networking</emphasis> tab provides a control plane API endpoint as well as the default application router. Both the control plane API endpoint and the default application router can be made private by selecting the respective box below label. If applicable, you can also find your virtual private cloud (VPC) details on this tab.</simpara>
+<important>
+<simpara>Red Hat OpenShift Cluster Manager does not support the networking tab for a Google Cloud, non-CCS cluster running in a Red Hat Google Cloud project.</simpara>
+</important>
+<section xml:id="ocm-networking-tab-adding-ingress_ocm-overview">
+<title>Adding a network Ingress to your OpenShift Container Platform cluster</title>
+<simpara role="_abstract">You can add a network Ingress to your cluster from the <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link> web UI.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have a Red Hat account.</simpara>
+</listitem>
+<listitem>
+<simpara>You have the required permissions to make changes to your cluster in OpenShift Cluster Manager.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>From the <emphasis role="strong">Networking</emphasis> tab in OpenShift Cluster Manager, click the <emphasis role="strong">Additional application router</emphasis> toggle to enable the Ingress. There are two options you can add to the additional router:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara><emphasis role="strong">Make router private</emphasis>: This checkbox allows you to control cluster privacy. By default, your Ingress router is publicly exposed and allows anyone access. You can limit access to applications or websites you run on your cluster by selecting this checkbox. For example, if you only want internal employees to access this cluster, then using this option requires a private connection, such as a virtual private network (VPN) or virtual private cloud (VPC) peering connection.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Label match for additional router</emphasis>: This field provides a way to target the specific route you want exposed in this additional Ingress router. By default, the router exposes all routes. If you leave this field blank, these routes stay exposed.</simpara>
+<simpara>A commonly used setup has a private default router, which means any applications deployed require a VPN or VPC peering to access. You can create an additional public router with a label match of  <literal>route=external</literal>. Then, if you add the <literal>route=external</literal> label to additional routes, the additional router matches this label and exposes it for public use.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Change settings</emphasis> to confirm that you want to add the network Ingress.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="ocm-machinepools-tab_ocm-overview">
+<title>Machine pools tab</title>
+<simpara role="_abstract">The <emphasis role="strong">Machine pools</emphasis> tab allows the cluster owner to create new machine pools if there is enough available quota, or edit an existing machine pool.</simpara>
+<simpara>Selecting the <inlinemediaobject>
+<imageobject>
+<imagedata fileref="images/kebab.png"/>
+</imageobject>
+<textobject><phrase>kebab</phrase></textobject>
+</inlinemediaobject> &gt; <emphasis role="strong">Edit</emphasis> option opens the "Edit machine pool" dialog. In this dialog, you can change the node count per availability zone, edit node labels and taints, and view any associated AWS security groups.</simpara>
+</section>
+<section xml:id="ocm-support-tab_ocm-overview">
+<title>Support tab</title>
+<simpara role="_abstract">In the <emphasis role="strong">Support</emphasis> tab, you can add notification contacts for individuals that should receive cluster notifications. The username or email address that you provide must relate to a user account in the Red Hat organization where the cluster is deployed.
+For the steps to add a notification contact, see <emphasis>Adding cluster notification contacts</emphasis>.</simpara>
+<simpara>Also from this tab, you can open a support case to request technical support for your cluster.</simpara>
+</section>
+<section xml:id="ocm-settings-tab_ocm-overview">
+<title>Settings tab</title>
+<simpara role="_abstract">The <emphasis role="strong">Settings</emphasis> tab provides a few options for the cluster owner:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Update strategy</emphasis> allows you to determine if the cluster automatically updates on a certain day of the week at a specified time or if all updates are scheduled manually.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Update status</emphasis> shows the current version and if there are any updates available.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="ocm-additional-resources">
+<title>Additional resources</title>
+<itemizedlist>
+<listitem>
+<simpara><link xlink:href="https://access.redhat.com/documentation/en-us/openshift_cluster_manager/2022/html-single/managing_clusters/index">OpenShift Cluster Manager documentation</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/monitoring/#understanding-the-monitoring-stack_monitoring-stack-architecture">Understanding the monitoring stack</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/support/#using-insights-to-identify-issues-with-your-cluster">Using Red&#160;Hat Lightspeed to identify issues with your cluster</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/cluster_administration/#add-notification-contact_osd-cluster-notifications">Adding cluster notification contacts</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+</book>

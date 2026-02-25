@@ -1,10 +1,9 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="olm-configuring-proxy-support"]
 = Configuring proxy support in Operator Lifecycle Manager
-include::_attributes/common-attributes.adoc[]
+include::../includes/common-attributes.adoc[]
 :context: olm-configuring-proxy-support
 
-toc::[]
 
 If a global proxy is configured on your {product-title} cluster, Operator Lifecycle Manager (OLM) automatically configures Operators that it manages with the cluster-wide proxy. However, you can also configure installed Operators to override the global proxy or inject a custom CA certificate.
 
@@ -16,7 +15,7 @@ ifndef::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 * xref:../../networking/configuring_network_settings/enable-cluster-wide-proxy.adoc#enable-cluster-wide-proxy[Configuring the cluster-wide proxy]
 endif::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 ifdef::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
-* xref:../../networking/ovn_kubernetes_network_provider/configuring-cluster-wide-proxy.adoc#configuring-cluster-wide-proxy[Configuring a cluster-wide proxy]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/ovn-kubernetes_network_plugin/#configuring-cluster-wide-proxy[Configuring a cluster-wide proxy]
 endif::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 
 // This xref points to a topic that is not currently included in the OSD and ROSA docs.
@@ -24,9 +23,9 @@ ifndef::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 * xref:../../networking/configuring_network_settings/configuring-a-custom-pki.adoc#configuring-a-custom-pki[Configuring a custom PKI] (custom CA certificate)
 endif::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 
-include::modules/olm-overriding-proxy-settings.adoc[leveloffset=+1]
+include::../includes/olm-overriding-proxy-settings.adoc[leveloffset=+1]
 
-include::modules/olm-injecting-custom-ca.adoc[leveloffset=+1]
+include::../includes/olm-injecting-custom-ca.adoc[leveloffset=+1]
 
 ifndef::openshift-dedicated,openshift-rosa,openshift-rosa-hcp[]
 [role="_additional-resources"]

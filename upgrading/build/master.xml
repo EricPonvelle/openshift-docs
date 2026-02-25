@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>Upgrading</title>
+<date>2026-02-25</date>
+<title>Upgrading</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="osd-upgrades">
+<title>OpenShift Container Platform cluster upgrades</title>
+<simpara role="_abstract">You can schedule automatic or manual upgrade policies to update the version of your OpenShift Container Platform clusters. Upgrading OpenShift Container Platform clusters can be done through Red Hat OpenShift Cluster Manager or OpenShift Cluster Manager CLI.</simpara>
+<simpara>Red Hat Site Reliability Engineers (SREs) monitor upgrade progress and remedy any issues encountered.</simpara>
+<section xml:id="osd-lifecycle-policy_osd-upgrades">
+<title>Life cycle policies and planning</title>
+<simpara role="_abstract">To plan an upgrade, review the <emphasis>OpenShift Container Platform update life cycle</emphasis> guide in the "Additional resources" section. The life cycle page includes release definitions, support and upgrade requirements, installation policy information, and life cycle dates.</simpara>
+<simpara>You can use update channels to decide which Red Hat OpenShift Container Platform minor version to update your clusters to. OpenShift Container Platform supports updates only through the <literal>stable</literal> channel. To learn more about OpenShift update channels and releases, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/updating_clusters/understanding-openshift-updates-1#understanding-update-channels-releases">Understanding update channels and releases</link>.</simpara>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#osd-life-cycle_life-cycle-overview">OpenShift Container Platform update life cycle</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="upgrade_osd-upgrades">
+<title>Understanding OpenShift Container Platform cluster upgrades</title>
+<simpara role="_abstract">When upgrades are made available for your OpenShift Container Platform cluster, you can upgrade to the newest version through Red Hat OpenShift Cluster Manager or OpenShift Cluster Manager CLI. You can set your upgrade policies on existing clusters or during cluster creation, and upgrades can be scheduled to occur automatically or manually.</simpara>
+<important>
+<simpara>Before upgrading a Workload Identity Federation (WIF)-enabled OpenShift Container Platform on Google Cloud cluster, you must update the wif-config. For more information, see "Cluster upgrades with Workload Identity Federation (WIF)".</simpara>
+</important>
+<simpara>Red Hat Site Reliability Engineers (SRE) will provide a curated list of available versions for your OpenShift Container Platform clusters. For each cluster you will be able to review the full list of available releases, as well as the corresponding release notes. OpenShift Cluster Manager will enable installation of clusters at the latest supported versions, and upgrades can be canceled at any time.</simpara>
+<simpara>You can also set a grace period for how long <literal>PodDisruptionBudget</literal> protected workloads are respected during upgrades. After this grace period, any workloads protected by  <literal>PodDisruptionBudget</literal> that have not been successfully drained from a node, will be forcibly deleted.</simpara>
+<note>
+<simpara>All Kubernetes objects and PVs in each OpenShift Container Platform cluster are backed up as part of the OpenShift Container Platform service. Application and application data backups are not a part of the OpenShift Container Platform service. Ensure you have a backup policy in place for your applications and application data prior to scheduling upgrades.</simpara>
+</note>
+<note>
+<simpara>When following a scheduled upgrade policy, there might be a delay of an hour or more before the upgrade process begins, even if it is an immediate upgrade. Additionally, the duration of the upgrade might vary based on your workload configuration.</simpara>
+</note>
+<section xml:id="upgrade-automatic_osd-upgrades">
+<title>Recurring upgrades</title>
+<simpara>Upgrades can be scheduled to occur automatically on a day and time specified by the cluster owner or administrator. Upgrades occur on a weekly basis, unless an upgrade is unavailable for that week.</simpara>
+<simpara>If you select recurring updates for your cluster, you must provide an administrator’s acknowledgment. OpenShift Cluster Manager does not start scheduled y-stream updates for minor versions without receiving an administrator’s acknowledgment.</simpara>
+<note>
+<simpara>Recurring upgrade policies are optional and if they are not set, the upgrade policies default to individual.</simpara>
+</note>
+</section>
+<section xml:id="upgrade-manual_upgrades_osd-upgrades">
+<title>Individual upgrades</title>
+<simpara>If you opt for individual upgrades, you are responsible for updating your cluster. If you select an update version that requires approval, you must provide an administrator’s acknowledgment.</simpara>
+<simpara>If your cluster version becomes outdated, it will transition to a limited support status. For more information on OpenShift life cycle policies, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#osd-life-cycle">OpenShift Container Platform update life cycle</link>.</simpara>
+</section>
+<section xml:id="upgrade-notifications_osd-upgrades">
+<title>Upgrade notifications</title>
+<simpara>From OpenShift Cluster Manager console you can view your cluster&#8217;s history from the <emphasis role="strong">Overview</emphasis> tab. The Upgrade states can be viewed in the service log under the <emphasis role="strong">Cluster history</emphasis> heading.</simpara>
+<simpara>Every change of state also triggers an email notification to the cluster owner and subscribed users. You will receive email notifications for the following events:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>An upgrade has been scheduled.</simpara>
+</listitem>
+<listitem>
+<simpara>An upgrade has started.</simpara>
+</listitem>
+<listitem>
+<simpara>An upgrade has completed.</simpara>
+</listitem>
+<listitem>
+<simpara>An upgrade has been canceled.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>For recurring upgrades, you will also receive email notifications before the upgrade occurs based on the following cadence:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>2 week notice</simpara>
+</listitem>
+<listitem>
+<simpara>1 week notice</simpara>
+</listitem>
+<listitem>
+<simpara>1 day notice</simpara>
+</listitem>
+</itemizedlist>
+</note>
+</section>
+<section xml:id="wif-upgrades_osd-upgrades">
+<title>Cluster upgrades with Workload Identity Federation (WIF)</title>
+<simpara>Before upgrading an OpenShift Container Platform on Google Cloud cluster with WIF authentication type to a newer y-stream version, you must update the WIF configuration to that version as well. Failure to do so before attempting to upgrade the cluster version will result in an error.
+For more information on how to update a WIF configuration, see the  <emphasis>Additional resources</emphasis> section.</simpara>
+<note>
+<simpara>The update path to a brand new release of OpenShift Container Platform is not available in the stable channel until 45 to 90 days after the initial GA of a newer y-stream version.</simpara>
+</note>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/cluster_administration/#managed-cluster-notification-view-hcc_osd-cluster-notifications">Accessing cluster notifications in Red Hat Hybrid Cloud Console</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/openshift_dedicated_clusters_on_google_cloud/#wif-configuration-update_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">Updating a WIF configuration</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="upgrade-auto_osd-upgrades">
+<title>Scheduling recurring upgrades for your cluster</title>
+<simpara role="_abstract">You can use OpenShift Cluster Manager to schedule recurring, automatic upgrades for z-stream patch versions for your OpenShift Container Platform cluster. Based on upstream changes, there might be times when no updates are released. Therefore, no upgrade occurs for that week.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>From <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>, select your cluster from the clusters list.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Upgrade settings</emphasis> tab to access the upgrade operator.</simpara>
+</listitem>
+<listitem>
+<simpara>To schedule recurring upgrades, select <emphasis role="strong">Recurring updates</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Provide an administrator’s acknowledgment and click <emphasis role="strong">Approve and continue</emphasis>. OpenShift Cluster Manager does not start scheduled y-stream updates for minor versions without receiving an administrator’s acknowledgment.</simpara>
+<important>
+<simpara>Before upgrading a Workload Identity Federation (WIF)-enabled OpenShift Container Platform on Google Cloud cluster, you must update the wif-config. For more information, see "Cluster upgrades with Workload Identity Federation (WIF)".</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>Specify the day of the week and the time you want your cluster to upgrade.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Save</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Set a grace period for <emphasis role="strong">Node draining</emphasis> by selecting a designated amount of time from the drop down list. A <emphasis role="strong">1 hour</emphasis> grace period is set by default.</simpara>
+</listitem>
+<listitem>
+<simpara>To edit an existing recurring upgrade policy, edit the preferred day or start time from the <emphasis role="strong">Upgrade Settings</emphasis> tab. Click <emphasis role="strong">Save</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>To cancel a recurring upgrade policy, switch the upgrade method to individual from the <emphasis role="strong">Upgrade Settings</emphasis> tab. Click <emphasis role="strong">Save</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>On the <emphasis role="strong">Upgrade settings</emphasis> tab, the <emphasis role="strong">Upgrade status</emphasis> box indicates that an upgrade is scheduled. The date and time of the next scheduled update is listed.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="upgrade-manual_osd-upgrades">
+<title>Scheduling individual upgrades for your cluster</title>
+<simpara role="_abstract">You can use OpenShift Cluster Manager to manually upgrade your OpenShift Container Platform cluster one time.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>From <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>, select your cluster from the clusters list.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Upgrade settings</emphasis> tab to access the upgrade operator. You can also update your cluster from the <emphasis role="strong">Overview</emphasis> tab by clicking <emphasis role="strong">Update</emphasis> next to the cluster version under the <emphasis role="strong">Details</emphasis> heading.</simpara>
+</listitem>
+<listitem>
+<simpara>To schedule an individual upgrade, select <emphasis role="strong">Individual updates</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Update</emphasis> in the <emphasis role="strong">Update Status</emphasis> box.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the version you want to upgrade your cluster to. Recommended cluster upgrades appear in the UI. To learn more about each available upgrade version, click <emphasis role="strong">View release notes</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>If you select an update version that requires approval, provide an administrator&#8217;s acknowledgment and click <emphasis role="strong">Approve and continue</emphasis>.</simpara>
+<important>
+<simpara>Before upgrading a Workload Identity Federation (WIF)-enabled OpenShift Container Platform on Google Cloud cluster, you must update the wif-config. For more information, see "Cluster upgrades with Workload Identity Federation (WIF)".</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>To schedule your upgrade:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Click <emphasis role="strong">Upgrade now</emphasis> to upgrade within the next hour.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Schedule a different time</emphasis> and specify the date and time that you want the cluster to upgrade.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Review the upgrade policy and click <emphasis role="strong">Confirm upgrade</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>A confirmation appears when the cluster upgrade has been scheduled. Click <emphasis role="strong">Close</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Set a grace period for <emphasis role="strong">Node draining</emphasis> by selecting a designated amount of time from the drop down list. A <emphasis role="strong">1 hour</emphasis> grace period is set by default.</simpara>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>From the <emphasis role="strong">Overview</emphasis> tab, next to the cluster version, the UI notates that the upgrade has been scheduled.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Click <emphasis role="strong">View details</emphasis> to view the upgrade details. If you need to cancel the scheduled upgrade, you can click <emphasis role="strong">Cancel this upgrade</emphasis> from the <emphasis role="strong">View Details</emphasis> pop-up.</simpara>
+</listitem>
+<listitem>
+<simpara>The same upgrade details are available on the <emphasis role="strong">Upgrade settings</emphasis> tab under the <emphasis role="strong">Upgrade status</emphasis> box. If you need to cancel the scheduled upgrade, you can click <emphasis role="strong">Cancel this upgrade</emphasis> from the <emphasis role="strong">Upgrade status</emphasis> box.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<warning>
+<simpara>In the event that a CVE or other critical issue to OpenShift Container Platform is found, all clusters are upgraded within 48 hours of the fix being released. You are notified when the fix is available and informed that the cluster will be automatically upgraded at your latest preferred start time before the 48 hour window closes. You can also upgrade manually at any time before the recurring upgrade starts.</simpara>
+</warning>
+</section>
+</chapter>
+</book>

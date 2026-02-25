@@ -1,9 +1,8 @@
 :_mod-docs-content-type: ASSEMBLY
-include::_attributes/attributes-openshift-dedicated.adoc[]
+include::../includes/attributes-openshift-dedicated.adoc[]
 [id="osd-managing-worker-nodes"]
 = Managing compute nodes
 :context: osd-managing-worker-nodes
-toc::[]
 
 This document describes how to manage compute (also known as worker) nodes with {product-title}.
 
@@ -11,12 +10,12 @@ The majority of changes for compute nodes are configured on machine pools. A mac
 
 You can edit machine pool configuration options such as scaling, adding node labels, and adding taints.
 
-include::modules/creating-a-machine-pool-ocm.adoc[leveloffset=+1]
-include::modules/deleting-machine-pools.adoc[leveloffset=+1]
+include::../includes/creating-a-machine-pool-ocm.adoc[leveloffset=+1]
+include::../includes/deleting-machine-pools.adoc[leveloffset=+1]
 //include::modules/deleting-machine-pools-ocm.adoc[leveloffset=+2]
-include::modules/rosa-scaling-worker-nodes.adoc[leveloffset=+1]
+include::../includes/rosa-scaling-worker-nodes.adoc[leveloffset=+1]
 
-include::modules/rosa-osd-node-label-about.adoc[leveloffset=+1]
+include::../includes/rosa-osd-node-label-about.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
 .Additional resources
@@ -24,12 +23,12 @@ include::modules/rosa-osd-node-label-about.adoc[leveloffset=+1]
 * link:https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/[Kubernetes Labels and Selectors overview]
 * xref:../../osd_planning/aws-ccs.adoc#osd-security-groups-custom_aws-ccs[Additional custom security groups]
 
-include::modules/rosa-adding-node-labels.adoc[leveloffset=+2]
-include::modules/rosa-adding-taints.adoc[leveloffset=+1]
+include::../includes/rosa-adding-node-labels.adoc[leveloffset=+2]
+include::../includes/rosa-adding-taints.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
 == Additional resources
-* xref:../../osd_cluster_admin/osd_nodes/osd-nodes-machinepools-about.adoc#osd-machinepools-about[About machine pools]
-* xref:../../osd_cluster_admin/osd_nodes/osd-nodes-about-autoscaling-nodes.adoc#osd-nodes-enabling-autoscaling-nodes[Enabling autoscaling]
-* xref:../../osd_cluster_admin/osd_nodes/osd-nodes-about-autoscaling-nodes.adoc#osd-nodes-disabling-autoscaling-nodes[Disabling autoscaling]
-* xref:../../osd_architecture/osd_policy/osd-service-definition.adoc#osd-service-definition[{product-title} service definition]
+* xref:osd-machinepools-about[About machine pools]
+* xref:osd-nodes-enabling-autoscaling-nodes[Enabling autoscaling]
+* xref:osd-nodes-disabling-autoscaling-nodes[Disabling autoscaling]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#osd-service-definition[{product-title} service definition]

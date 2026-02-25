@@ -1,0 +1,611 @@
+[
+  {
+    "webhookName": "clusterlogging-validation",
+    "rules": [
+      {
+        "operations": [
+          "CREATE",
+          "UPDATE"
+        ],
+        "apiGroups": [
+          "logging.openshift.io"
+        ],
+        "apiVersions": [
+          "v1"
+        ],
+        "resources": [
+          "clusterloggings"
+        ],
+        "scope": "Namespaced"
+      }
+    ],
+    "documentString": "Managed OpenShift Customers may set log retention outside the allowed range of 0-7 days"
+  },
+  {
+    "webhookName": "clusterrolebindings-validation",
+    "rules": [
+      {
+        "operations": [
+          "DELETE"
+        ],
+        "apiGroups": [
+          "rbac.authorization.k8s.io"
+        ],
+        "apiVersions": [
+          "v1"
+        ],
+        "resources": [
+          "clusterrolebindings"
+        ],
+        "scope": "Cluster"
+      }
+    ],
+    "documentString": "Managed OpenShift Customers may not delete the cluster role bindings under the managed namespaces: (^openshift-.*|kube-system)"
+  },
+  {
+    "webhookName": "clusterroles-validation",
+    "rules": [
+      {
+        "operations": [
+          "DELETE"
+        ],
+        "apiGroups": [
+          "rbac.authorization.k8s.io"
+        ],
+        "apiVersions": [
+          "v1"
+        ],
+        "resources": [
+          "clusterroles"
+        ],
+        "scope": "Cluster"
+      }
+    ],
+    "documentString": "Managed OpenShift Customers may not delete protected ClusterRoles including cluster-admin, view, edit, admin, specific system roles (system:admin, system:node, system:node-proxier, system:kube-scheduler, system:kube-controller-manager), and backplane-* roles"
+  },
+  {
+    "webhookName": "customresourcedefinitions-validation",
+    "rules": [
+      {
+        "operations": [
+          "CREATE",
+          "UPDATE",
+          "DELETE"
+        ],
+        "apiGroups": [
+          "apiextensions.k8s.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "customresourcedefinitions"
+        ],
+        "scope": "Cluster"
+      }
+    ],
+    "documentString": "Managed OpenShift Customers may not change CustomResourceDefinitions managed by Red Hat."
+  },
+  {
+    "webhookName": "hiveownership-validation",
+    "rules": [
+      {
+        "operations": [
+          "UPDATE",
+          "DELETE"
+        ],
+        "apiGroups": [
+          "quota.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "clusterresourcequotas"
+        ],
+        "scope": "Cluster"
+      }
+    ],
+    "webhookObjectSelector": {
+      "matchLabels": {
+        "hive.openshift.io/managed": "true"
+      }
+    },
+    "documentString": "Managed OpenShift customers may not edit certain managed resources. A managed resource has a \"hive.openshift.io/managed\": \"true\" label."
+  },
+  {
+    "webhookName": "imagecontentpolicies-validation",
+    "rules": [
+      {
+        "operations": [
+          "CREATE",
+          "UPDATE"
+        ],
+        "apiGroups": [
+          "config.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "imagedigestmirrorsets",
+          "imagetagmirrorsets"
+        ],
+        "scope": "Cluster"
+      },
+      {
+        "operations": [
+          "CREATE",
+          "UPDATE"
+        ],
+        "apiGroups": [
+          "operator.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "imagecontentsourcepolicies"
+        ],
+        "scope": "Cluster"
+      }
+    ],
+    "documentString": "Managed OpenShift customers may not create ImageContentSourcePolicy, ImageDigestMirrorSet, or ImageTagMirrorSet resources that configure mirrors that would conflict with system registries (e.g. quay.io, registry.redhat.io, registry.access.redhat.com, etc). For more details, see https://docs.openshift.com/"
+  },
+  {
+    "webhookName": "ingress-config-validation",
+    "rules": [
+      {
+        "operations": [
+          "CREATE",
+          "UPDATE",
+          "DELETE"
+        ],
+        "apiGroups": [
+          "config.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "ingresses"
+        ],
+        "scope": "Cluster"
+      }
+    ],
+    "documentString": "Managed OpenShift customers may not modify ingress config resources because it can can degrade cluster operators and can interfere with OpenShift SRE monitoring."
+  },
+  {
+    "webhookName": "ingresscontroller-validation",
+    "rules": [
+      {
+        "operations": [
+          "CREATE",
+          "UPDATE"
+        ],
+        "apiGroups": [
+          "operator.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "ingresscontroller",
+          "ingresscontrollers"
+        ],
+        "scope": "Namespaced"
+      }
+    ],
+    "documentString": "Managed OpenShift Customer may create IngressControllers without necessary taints. This can cause those workloads to be provisioned on master nodes."
+  },
+  {
+    "webhookName": "namespace-validation",
+    "rules": [
+      {
+        "operations": [
+          "CREATE",
+          "UPDATE",
+          "DELETE"
+        ],
+        "apiGroups": [
+          ""
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "namespaces"
+        ],
+        "scope": "Cluster"
+      }
+    ],
+    "documentString": "Managed OpenShift Customers may not modify namespaces specified in the [openshift-monitoring/managed-namespaces openshift-monitoring/ocp-namespaces] ConfigMaps because customer workloads should be placed in customer-created namespaces. Customers may not create namespaces identified by this regular expression (^com$|^io$|^in$) because it could interfere with critical DNS resolution. Additionally, customers may not set or change the values of these Namespace labels [managed.openshift.io/storage-pv-quota-exempt managed.openshift.io/service-lb-quota-exempt]."
+  },
+  {
+    "webhookName": "network-operator-validation",
+    "rules": [
+      {
+        "operations": [
+          "UPDATE"
+        ],
+        "apiGroups": [
+          "operator.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "network",
+          "networks"
+        ],
+        "scope": "Cluster"
+      }
+    ],
+    "documentString": "Managed OpenShift customers may not modify critical fields in the network.operator CRD (such as spec.migration.networkType) because it can disrupt Cluster Network Operator operations and CNI migrations. Even cluster-admin users are blocked from modifying these critical fields."
+  },
+  {
+    "webhookName": "networkpolicies-validation",
+    "rules": [
+      {
+        "operations": [
+          "CREATE",
+          "UPDATE",
+          "DELETE"
+        ],
+        "apiGroups": [
+          "networking.k8s.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "networkpolicies"
+        ],
+        "scope": "Namespaced"
+      }
+    ],
+    "documentString": "Managed OpenShift Customers may not create NetworkPolicies in namespaces managed by Red Hat."
+  },
+  {
+    "webhookName": "node-validation-osd",
+    "rules": [
+      {
+        "operations": [
+          "CREATE",
+          "UPDATE",
+          "DELETE"
+        ],
+        "apiGroups": [
+          ""
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "nodes",
+          "nodes/*"
+        ],
+        "scope": "*"
+      }
+    ],
+    "documentString": "Managed OpenShift customers may not alter Node objects."
+  },
+  {
+    "webhookName": "pod-validation",
+    "rules": [
+      {
+        "operations": [
+          "*"
+        ],
+        "apiGroups": [
+          "v1"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "pods"
+        ],
+        "scope": "Namespaced"
+      }
+    ],
+    "documentString": "Managed OpenShift Customers may use tolerations on Pods that could cause those Pods to be scheduled on infra or master nodes."
+  },
+  {
+    "webhookName": "podimagespec-mutation",
+    "rules": [
+      {
+        "operations": [
+          "CREATE"
+        ],
+        "apiGroups": [
+          ""
+        ],
+        "apiVersions": [
+          "v1"
+        ],
+        "resources": [
+          "pods"
+        ],
+        "scope": "Namespaced"
+      }
+    ],
+    "documentString": "OpenShift debugging tools on Managed OpenShift clusters must be available even if internal image registry is removed."
+  },
+  {
+    "webhookName": "prometheusrule-validation",
+    "rules": [
+      {
+        "operations": [
+          "CREATE",
+          "UPDATE",
+          "DELETE"
+        ],
+        "apiGroups": [
+          "monitoring.coreos.com"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "prometheusrules"
+        ],
+        "scope": "Namespaced"
+      }
+    ],
+    "documentString": "Managed OpenShift Customers may not create PrometheusRule in namespaces managed by Red Hat."
+  },
+  {
+    "webhookName": "regular-user-validation",
+    "rules": [
+      {
+        "operations": [
+          "*"
+        ],
+        "apiGroups": [
+          "cloudcredential.openshift.io",
+          "machine.openshift.io",
+          "admissionregistration.k8s.io",
+          "addons.managed.openshift.io",
+          "cloudingress.managed.openshift.io",
+          "managed.openshift.io",
+          "ocmagent.managed.openshift.io",
+          "splunkforwarder.managed.openshift.io",
+          "upgrade.managed.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "*/*"
+        ],
+        "scope": "*"
+      },
+      {
+        "operations": [
+          "*"
+        ],
+        "apiGroups": [
+          "autoscaling.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "clusterautoscalers",
+          "machineautoscalers"
+        ],
+        "scope": "*"
+      },
+      {
+        "operations": [
+          "*"
+        ],
+        "apiGroups": [
+          "config.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "clusterversions",
+          "clusterversions/status",
+          "schedulers",
+          "apiservers",
+          "proxies"
+        ],
+        "scope": "*"
+      },
+      {
+        "operations": [
+          "CREATE",
+          "UPDATE",
+          "DELETE"
+        ],
+        "apiGroups": [
+          ""
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "configmaps"
+        ],
+        "scope": "*"
+      },
+      {
+        "operations": [
+          "*"
+        ],
+        "apiGroups": [
+          "machineconfiguration.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "machineconfigs",
+          "machineconfigpools"
+        ],
+        "scope": "*"
+      },
+      {
+        "operations": [
+          "*"
+        ],
+        "apiGroups": [
+          "operator.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "kubeapiservers",
+          "openshiftapiservers"
+        ],
+        "scope": "*"
+      },
+      {
+        "operations": [
+          "*"
+        ],
+        "apiGroups": [
+          "managed.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "subjectpermissions",
+          "subjectpermissions/*"
+        ],
+        "scope": "*"
+      },
+      {
+        "operations": [
+          "*"
+        ],
+        "apiGroups": [
+          "network.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "netnamespaces",
+          "netnamespaces/*"
+        ],
+        "scope": "*"
+      }
+    ],
+    "documentString": "Managed OpenShift customers may not manage any objects in the following APIGroups [splunkforwarder.managed.openshift.io autoscaling.openshift.io ocmagent.managed.openshift.io upgrade.managed.openshift.io config.openshift.io machineconfiguration.openshift.io operator.openshift.io network.openshift.io cloudcredential.openshift.io machine.openshift.io admissionregistration.k8s.io addons.managed.openshift.io cloudingress.managed.openshift.io managed.openshift.io], nor may Managed OpenShift customers alter the APIServer, KubeAPIServer, OpenShiftAPIServer, ClusterVersion, Proxy or SubjectPermission objects."
+  },
+  {
+    "webhookName": "scc-validation",
+    "rules": [
+      {
+        "operations": [
+          "UPDATE",
+          "DELETE"
+        ],
+        "apiGroups": [
+          "security.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "securitycontextconstraints"
+        ],
+        "scope": "Cluster"
+      }
+    ],
+    "documentString": "Managed OpenShift Customers may not modify the following default SCCs: [anyuid hostaccess hostmount-anyuid hostnetwork hostnetwork-v2 node-exporter nonroot nonroot-v2 privileged restricted restricted-v2]"
+  },
+  {
+    "webhookName": "sdn-migration-validation",
+    "rules": [
+      {
+        "operations": [
+          "UPDATE"
+        ],
+        "apiGroups": [
+          "config.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "networks"
+        ],
+        "scope": "Cluster"
+      }
+    ],
+    "documentString": "Managed OpenShift customers may not modify the network config type because it can can degrade cluster operators and can interfere with OpenShift SRE monitoring."
+  },
+  {
+    "webhookName": "service-mutation",
+    "rules": [
+      {
+        "operations": [
+          "CREATE",
+          "UPDATE"
+        ],
+        "apiGroups": [
+          ""
+        ],
+        "apiVersions": [
+          "v1"
+        ],
+        "resources": [
+          "services"
+        ],
+        "scope": "Namespaced"
+      }
+    ],
+    "documentString": "LoadBalancer-type services on Managed OpenShift clusters must contain an additional annotation for managed policy compliance."
+  },
+  {
+    "webhookName": "serviceaccount-validation",
+    "rules": [
+      {
+        "operations": [
+          "DELETE"
+        ],
+        "apiGroups": [
+          ""
+        ],
+        "apiVersions": [
+          "v1"
+        ],
+        "resources": [
+          "serviceaccounts"
+        ],
+        "scope": "Namespaced"
+      }
+    ],
+    "documentString": "Managed OpenShift Customers may not delete the service accounts under the managed namespaces。"
+  },
+  {
+    "webhookName": "techpreviewnoupgrade-validation",
+    "rules": [
+      {
+        "operations": [
+          "CREATE",
+          "UPDATE"
+        ],
+        "apiGroups": [
+          "config.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "featuregates"
+        ],
+        "scope": "Cluster"
+      }
+    ],
+    "documentString": "Managed OpenShift Customers may not use TechPreviewNoUpgrade FeatureGate that could prevent any future ability to do a y-stream upgrade to their clusters."
+  }
+]

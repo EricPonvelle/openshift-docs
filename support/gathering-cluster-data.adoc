@@ -2,13 +2,12 @@
 [id="gathering-cluster-data"]
 = Gathering data about your cluster
 
-include::_attributes/common-attributes.adoc[]
+include::includes/common-attributes.adoc[]
 ifdef::openshift-rosa,openshift-dedicated[]
-include::_attributes/attributes-openshift-dedicated.adoc[]
+include::includes/attributes-openshift-dedicated.adoc[]
 endif::[]
 :context: gathering-cluster-data
 
-toc::[]
 
 [role="_abstract"]
 When opening a support case, it is helpful to provide debugging information about your cluster to Red Hat Support. You can use tools such as `must-gather`, `sosreport`, and cluster node journal logs to collect diagnostic data.
@@ -19,8 +18,8 @@ information about your cluster to Red Hat Support.
 
 It is recommended to provide:
 
-* xref:../support/gathering-cluster-data.adoc#support_gathering_data_gathering-cluster-data[Data gathered using the `oc adm must-gather` command]
-* The  xref:../support/gathering-cluster-data.adoc#support-get-cluster-id_gathering-cluster-data[unique cluster ID]
+* xref:support_gathering_data_gathering-cluster-data[Data gathered using the `oc adm must-gather` command]
+* The  xref:support-get-cluster-id_gathering-cluster-data[unique cluster ID]
 endif::openshift-origin[]
 
 ifdef::openshift-origin[]
@@ -28,23 +27,23 @@ You can use the following tools to get debugging information about your {product
 endif::openshift-origin[]
 
 // About the must-gather tool
-include::modules/about-must-gather.adoc[leveloffset=+1]
+include::includes/about-must-gather.adoc[leveloffset=+1]
 
 ifndef::openshift-origin[]
 // Gathering data about your cluster for Red Hat Support
-include::modules/support-gather-data.adoc[leveloffset=+2]
+include::includes/support-gather-data.adoc[leveloffset=+2]
 
 endif::openshift-origin[]
 
 ifndef::openshift-origin[]
 // Reducing the size of must-gather output
-include::modules/support-must-gather-targeted-collection.adoc[leveloffset=+1]
+include::includes/support-must-gather-targeted-collection.adoc[leveloffset=+1]
 
 endif::openshift-origin[]
 
 ifndef::openshift-origin[]
 // Gathering data for specific resources
-include::modules/support-must-gather-targeted-collection-gathering-data.adoc[leveloffset=+2]
+include::includes/support-must-gather-targeted-collection-gathering-data.adoc[leveloffset=+2]
 
 endif::openshift-origin[]
 
@@ -56,12 +55,12 @@ endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
 ifndef::openshift-origin[]
 // Table of must-gather flags
-include::modules/must-gather-flags.adoc[leveloffset=+2]
+include::includes/must-gather-flags.adoc[leveloffset=+2]
 
 endif::openshift-origin[]
 
 // Gathering data about specific features
-include::modules/gathering-data-specific-features.adoc[leveloffset=+2]
+include::includes/gathering-data-specific-features.adoc[leveloffset=+2]
 
 [role="_additional-resources"]
 == Additional resources
@@ -80,42 +79,42 @@ ifdef::openshift-rosa-hcp[]
 endif::openshift-rosa-hcp[]
 
 ifdef::openshift-dedicated[]
-* xref:../osd_architecture/osd_policy/osd-life-cycle.html[{product-title} update life cycle]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#update-life-cycle[{product-title} update life cycle]
 endif::openshift-dedicated[]
 
 // Gathering network logs
-include::modules/gathering-data-network-logs.adoc[leveloffset=+2]
+include::includes/gathering-data-network-logs.adoc[leveloffset=+2]
 
 //Changing the must-gather storage limit
-include::modules/must-gather-storage-limit.adoc[leveloffset=+2]
+include::includes/must-gather-storage-limit.adoc[leveloffset=+2]
 
 // support log gather overview
-include::modules/support-log-gather-overview.adoc[leveloffset=+1]
+include::includes/support-log-gather-overview.adoc[leveloffset=+1]
 
 // Support log gather installation
-include::modules/support-log-gather-install-console.adoc[leveloffset=+2]
+include::includes/support-log-gather-install-console.adoc[leveloffset=+2]
 
-include::modules/support-log-gather-install-cli.adoc[leveloffset=+2]
+include::includes/support-log-gather-install-cli.adoc[leveloffset=+2]
 
 //Support log gather configuration
-include::modules/support-log-gather-configure-cli.adoc[leveloffset=+2]
+include::includes/support-log-gather-configure-cli.adoc[leveloffset=+2]
 
 [role="_additional-resources"]
 == Additional resources
 
-* xref:../authentication/understanding-and-creating-service-accounts.adoc#understanding-and-creating-service-accounts[Understanding and creating service accounts]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/authentication_and_authorization/#understanding-and-creating-service-accounts[Understanding and creating service accounts]
 
-include::modules/support-log-gather-config-params.adoc[leveloffset=+2]
+include::includes/support-log-gather-config-params.adoc[leveloffset=+2]
 
 
 //Support log gather uninstallation
-include::modules/support-log-gather-uninstall-console.adoc[leveloffset=+2]
+include::includes/support-log-gather-uninstall-console.adoc[leveloffset=+2]
 
-include::modules/support-log-gather-remove-resources-console.adoc[leveloffset=+2]
+include::includes/support-log-gather-remove-resources-console.adoc[leveloffset=+2]
 
 ifndef::openshift-origin[]
 // Obtain your cluster identifier
-include::modules/support-get-cluster-id.adoc[leveloffset=+1]
+include::includes/support-get-cluster-id.adoc[leveloffset=+1]
 
 endif::openshift-origin[]
 
@@ -135,39 +134,39 @@ include::modules/querying-bootstrap-node-journal-logs.adoc[leveloffset=+1]
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
 // Querying cluster node journal logs
-include::modules/querying-cluster-node-journal-logs.adoc[leveloffset=+1]
+include::includes/querying-cluster-node-journal-logs.adoc[leveloffset=+1]
 
 ifndef::openshift-origin[]
 // Network trace methods
-include::modules/support-network-trace-methods.adoc[leveloffset=+1]
+include::includes/support-network-trace-methods.adoc[leveloffset=+1]
 
 // Collecting a host network trace
-include::modules/support-collecting-host-network-trace.adoc[leveloffset=+1]
+include::includes/support-collecting-host-network-trace.adoc[leveloffset=+1]
 
 // Collecting a network trace from an {product-title} node or container
-include::modules/support-collecting-network-trace.adoc[leveloffset=+1]
+include::includes/support-collecting-network-trace.adoc[leveloffset=+1]
 
 endif::openshift-origin[]
 
 ifdef::openshift-origin[]
 // Collecting a host network trace
-include::modules/support-collecting-host-network-trace.adoc[leveloffset=+1]
+include::includes/support-collecting-host-network-trace.adoc[leveloffset=+1]
 
 endif::openshift-origin[]
 
 ifndef::openshift-origin[]
 // Providing diagnostic data to Red Hat Support
-include::modules/support-providing-diagnostic-data-to-red-hat.adoc[leveloffset=+1]
+include::includes/support-providing-diagnostic-data-to-red-hat.adoc[leveloffset=+1]
 
 endif::openshift-origin[]
 
 // About `toolbox`
-include::modules/about-toolbox.adoc[leveloffset=+1]
+include::includes/about-toolbox.adoc[leveloffset=+1]
 
 // Installing packages to a toolbox container
 
-include::modules/support-installing-packages-to-a-toolbox-container.adoc[leveloffset=+2]
+include::includes/support-installing-packages-to-a-toolbox-container.adoc[leveloffset=+2]
 
 // Starting an alternative image with toolbox
 
-include::modules/support-starting-an-alternative-image-with-toolbox.adoc[leveloffset=+2]
+include::includes/support-starting-an-alternative-image-with-toolbox.adoc[leveloffset=+2]

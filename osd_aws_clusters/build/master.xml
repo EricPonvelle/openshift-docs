@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>OpenShift Dedicated clusters on AWS</title>
+<date>2026-02-25</date>
+<title>OpenShift Dedicated clusters on AWS</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="osd-creating-a-cluster-on-aws">
+<title>Creating a cluster on AWS</title>
+<simpara role="_abstract">You can deploy OpenShift Container Platform on Amazon Web Services (AWS) by using your own AWS account through the Customer Cloud Subscription (CCS) model or by using an AWS infrastructure account that is owned by Red&#160;Hat.</simpara>
+<section xml:id="osd-creating-a-cluster-on-aws-prerequisites_osd-creating-a-cluster-on-aws">
+<title>Prerequisites</title>
+<itemizedlist>
+<listitem>
+<simpara>You reviewed the <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#osd-understanding">introduction to OpenShift Container Platform</link> and the documentation on <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/architecture/#architecture-overview">architecture concepts</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You reviewed the <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/getting_started/#osd-understanding-your-cloud-deployment-options">OpenShift Container Platform cloud deployment options</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="osd-create-aws-cluster-ccs_osd-creating-a-cluster-on-aws">
+<title>Creating a cluster on AWS</title>
+<simpara role="_abstract">By using the Customer Cloud Subscription (CCS) billing model, you can create an OpenShift Container Platform cluster in an existing
+Amazon Web Services (AWS) account that you own.</simpara>
+<simpara>You can also select the Red&#160;Hat cloud account infrastructure type to deploy OpenShift Container Platform in a cloud provider account that is owned by Red&#160;Hat.</simpara>
+<simpara>Complete the following prerequisites to use the CCS model to deploy and manage OpenShift Container Platform into your AWS account.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have configured your AWS account for use with OpenShift Container Platform.</simpara>
+</listitem>
+<listitem>
+<simpara>You have not deployed any services in your AWS account.</simpara>
+</listitem>
+<listitem>
+<simpara>You have configured the AWS account quotas and limits that are required to support the desired cluster size.</simpara>
+</listitem>
+<listitem>
+<simpara>You have an <literal>osdCcsAdmin</literal> AWS Identity and Access Management (IAM) user with the <literal>AdministratorAccess</literal> policy attached.</simpara>
+</listitem>
+<listitem>
+<simpara>You have set up a service control policy (SCP) in your AWS organization. For more information, see <emphasis>Minimum required service control policy (SCP)</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Consider having <emphasis role="strong">Business Support</emphasis> or higher from AWS.</simpara>
+</listitem>
+<listitem>
+<simpara>If you are configuring a cluster-wide proxy, you have verified that the proxy is accessible from the VPC that the cluster is being installed into. The proxy must also be accessible from the private subnets of the VPC.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Log in to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Overview</emphasis> page, select <emphasis role="strong">Create cluster</emphasis> in the <emphasis role="strong">Red Hat OpenShift Dedicated</emphasis> card.</simpara>
+</listitem>
+<listitem>
+<simpara>Under <emphasis role="strong">Billing model</emphasis>, configure the subscription type and infrastructure type:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select a subscription type. For information about OpenShift Container Platform subscription options, see <link xlink:href="https://access.redhat.com/documentation/en-us/openshift_cluster_manager/1-latest/html-single/managing_clusters/index#assembly-cluster-subscriptions">Cluster subscriptions and registration</link> in the OpenShift Cluster Manager documentation.</simpara>
+<note>
+<simpara>The subscription types that are available to you depend on your OpenShift Container Platform subscriptions and resource quotas. For more information, contact your sales representative or Red Hat support.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Select the <emphasis role="strong">Customer Cloud Subscription</emphasis> infrastructure type to deploy OpenShift Container Platform in an existing cloud provider account that you own or select <emphasis role="strong">Red Hat cloud account</emphasis> infrastructure type to deploy OpenShift Container Platform in a cloud provider account that is owned by Red Hat.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Run on Amazon Web Services</emphasis>. If you are provisioning your cluster in an AWS account, complete the following substeps:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Review and complete the listed <emphasis role="strong">Prerequisites</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the checkbox to acknowledge that you have read and completed all of the prerequisites.</simpara>
+</listitem>
+<listitem>
+<simpara>Provide your AWS account details:</simpara>
+<orderedlist numeration="lowerroman">
+<listitem>
+<simpara>Enter your <emphasis role="strong">AWS account ID</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Enter your <emphasis role="strong">AWS access key ID</emphasis> and <emphasis role="strong">AWS secret access key</emphasis> for your AWS IAM user account.</simpara>
+<note>
+<simpara>Revoking these credentials in AWS results in a loss of access to any cluster created with these credentials.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Optional: You can select <emphasis role="strong">Bypass AWS service control policy (SCP) checks</emphasis> to disable the SCP checks.</simpara>
+<note>
+<simpara>Some AWS SCPs can cause the installation to fail, even if you have the required permissions. Disabling the SCP checks allows an installation to proceed. The SCP is still enforced even if the checks are bypassed.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis> to validate your cloud provider account and go to the <emphasis role="strong">Cluster details</emphasis> page.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Cluster details</emphasis> page, provide a name for your cluster and specify the cluster details:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Add a <emphasis role="strong">Cluster name</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Cluster creation generates a domain prefix as a subdomain for your provisioned cluster on <literal>openshiftapps.com</literal>. If the cluster name is less than or equal to 15 characters, that name is used for the domain prefix. If the cluster name is longer than 15 characters, the domain prefix is randomly generated to a 15 character string.</simpara>
+<simpara>To customize the subdomain, select the <emphasis role="strong">Create customize domain prefix</emphasis> checkbox, and enter your domain prefix name in the <emphasis role="strong">Domain prefix</emphasis> field. The domain prefix cannot be longer than 15 characters, must be unique within your organization, and cannot be changed after cluster creation.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a cluster version from the <emphasis role="strong">Version</emphasis> drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a cloud provider region from the <emphasis role="strong">Region</emphasis> drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a <emphasis role="strong">Single zone</emphasis> or <emphasis role="strong">Multi-zone</emphasis> configuration.</simpara>
+</listitem>
+<listitem>
+<simpara>Leave <emphasis role="strong">Enable user workload monitoring</emphasis> selected to monitor your own projects in isolation from Red Hat Site Reliability Engineer (SRE) platform metrics. This option is enabled by default.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Expand <emphasis role="strong">Advanced Encryption</emphasis> to make changes to encryption settings.</simpara>
+<orderedlist numeration="lowerroman">
+<listitem>
+<simpara>Accept the default setting <emphasis role="strong">Use default KMS Keys</emphasis> to use your default AWS KMS key, or select <emphasis role="strong">Use Custom KMS keys</emphasis> to use a custom KMS key.</simpara>
+<orderedlist numeration="upperalpha">
+<listitem>
+<simpara>With <emphasis role="strong">Use Custom KMS keys</emphasis> selected, enter the AWS Key Management Service (KMS) custom key Amazon Resource Name (ARN) ARN in the <emphasis role="strong">Key ARN</emphasis> field.
+The key is used for encrypting all control plane, infrastructure, worker node root volumes, and persistent volumes in your cluster.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Optional: Select <emphasis role="strong">Enable FIPS cryptography</emphasis> if you require your cluster to be FIPS validated.</simpara>
+<note>
+<simpara>If <emphasis role="strong">Enable FIPS cryptography</emphasis> is selected, <emphasis role="strong">Enable additional etcd encryption</emphasis> is enabled by default and cannot be disabled. You can select <emphasis role="strong">Enable additional etcd encryption</emphasis> without selecting <emphasis role="strong">Enable FIPS cryptography</emphasis>.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Optional: Select <emphasis role="strong">Enable additional etcd encryption</emphasis> if you require etcd key value encryption. With this option, the etcd key values are encrypted, but the keys are not. This option is in addition to the control plane storage encryption that encrypts the etcd volumes in OpenShift Container Platform clusters by default.</simpara>
+<note>
+<simpara>By enabling etcd encryption for the key values in etcd, you will incur a performance overhead of approximately 20%. The overhead is a result of introducing this second layer of encryption, in addition to the default control plane storage encryption that encrypts the etcd volumes. Consider enabling etcd encryption only if you specifically require it for your use case.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Default machine pool</emphasis> page, select a <emphasis role="strong">Compute node instance type</emphasis> from the drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Select the <emphasis role="strong">Enable autoscaling</emphasis> checkbox to enable autoscaling.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Click <emphasis role="strong">Edit cluster autoscaling settings</emphasis> to make changes to the autoscaling settings.</simpara>
+</listitem>
+<listitem>
+<simpara>Once you have made your desired changes, click <emphasis role="strong">Close</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a minimum and maximum node count. Node counts can be selected by engaging the available plus and minus signs or inputting the desired node count into the number input field.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Select a <emphasis role="strong">Compute node count</emphasis> from the drop-down menu.</simpara>
+<note>
+<simpara>After your cluster is created, you can change the number of compute nodes in your cluster, but you cannot change the compute node instance type in a machine pool. The number and types of nodes available to you depend on your OpenShift Container Platform subscription.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Choose your preference for the Instance Metadata Service (IMDS) type, either using both IMDSv1 and IMDSv2 types or requiring your EC2 instances to use only IMDSv2. You can access instance metadata from a running instance in two ways:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Instance Metadata Service Version 1 (IMDSv1) - a request/response method</simpara>
+</listitem>
+<listitem>
+<simpara>Instance Metadata Service Version 2 (IMDSv2) - a session-oriented method</simpara>
+<important>
+<simpara>The Instance Metadata Service settings cannot be changed after your cluster is created.</simpara>
+</important>
+<note>
+<simpara>IMDSv2 uses session-oriented requests. With session-oriented requests, you create a session token that defines the session duration, which can range from a minimum of one second to a maximum of six hours. During the specified duration, you can use the same session token for subsequent requests. After the specified duration expires, you must create a new session token to use for future requests.</simpara>
+</note>
+<simpara>For more information regarding IMDS, see <link xlink:href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance metadata and user data</link> in the AWS documentation.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Optional: Expand <emphasis role="strong">Edit node labels</emphasis> to add labels to your nodes. Click <emphasis role="strong">Add label</emphasis> to add more node labels and select <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Network configuration</emphasis> page, select <emphasis role="strong">Public</emphasis> or <emphasis role="strong">Private</emphasis> to use either public or private API endpoints and application routes for your cluster.</simpara>
+<important>
+<simpara>If you are using private API endpoints, you cannot access your cluster until you update the network settings in your cloud provider account.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>Optional: To install the cluster in an existing AWS Virtual Private Cloud (VPC):</simpara>
+<note>
+<simpara role="_abstract">Installing a new OpenShift Container Platform cluster into a VPC that was automatically created by the installer for a different cluster is not supported.</simpara>
+</note>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select <emphasis role="strong">Install into an existing VPC</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>If you are installing into an existing VPC and opted to use private API endpoints, you can select <emphasis role="strong">Use a PrivateLink</emphasis>. This option enables connections to the cluster by Red Hat Site Reliability Engineering (SRE) using only AWS PrivateLink endpoints.</simpara>
+<note>
+<simpara>The <emphasis role="strong">Use a PrivateLink</emphasis> option cannot be changed after a cluster is created.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>If you are installing into an existing VPC and you want to enable an HTTP or HTTPS proxy for your cluster, select <emphasis role="strong">Configure a cluster-wide proxy</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>If you opted to install the cluster in an existing AWS VPC, provide your <emphasis role="strong">Virtual Private Cloud (VPC) subnet settings</emphasis> and select <emphasis role="strong">Next</emphasis>.
+You must have created the Cloud network address translation (NAT) and a Cloud router. See the "Additional resources" section for information about Cloud NATs and Google VPCs.</simpara>
+<note>
+<simpara>You must ensure that your VPC is configured with a public and a private subnet for each availability zone that you want the cluster installed into. If you opted to use PrivateLink, only private subnets are required.</simpara>
+</note>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Optional: Expand <emphasis role="strong">Additional security groups</emphasis> and select additional custom security groups to apply to nodes in the machine pools that are created by default. You must have already created the security groups and associated them with the VPC that you selected for this cluster. You cannot add or edit security groups to the default machine pools after you create the cluster.</simpara>
+<simpara>By default, the security groups you specify are added for all node types. Clear the <emphasis role="strong">Apply the same security groups to all node types</emphasis> checkbox to apply different security groups for each node type.</simpara>
+<simpara>For more information, see the requirements for <emphasis>Security groups</emphasis> under <emphasis>Additional resources</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Accept the default application ingress settings, or to create your own custom settings, select <emphasis role="strong">Custom Settings</emphasis>.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Optional: Provide route selector.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Provide excluded namespaces.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a namespace ownership policy.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a wildcard policy.</simpara>
+<simpara>For more information about custom application ingress settings, click the information icon provided for each setting.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>If you opted to configure a cluster-wide proxy, provide your proxy configuration details on the <emphasis role="strong">Cluster-wide proxy</emphasis> page:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Enter a value in at least one of the following fields:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Specify a valid <emphasis role="strong">HTTP proxy URL</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Specify a valid <emphasis role="strong">HTTPS proxy URL</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">Additional trust bundle</emphasis> field, provide a PEM encoded X.509 certificate bundle. The bundle is added to the trusted certificate store for the cluster nodes. An additional trust bundle file is required if you use a TLS-inspecting proxy unless the identity certificate for the proxy is signed by an authority from the Red Hat Enterprise Linux CoreOS (RHCOS) trust bundle. This requirement applies regardless of whether the proxy is transparent or requires explicit configuration using the <literal>http-proxy</literal> and <literal>https-proxy</literal> arguments.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+<simpara>For more information about configuring a proxy with OpenShift Container Platform, see <emphasis>Configuring a cluster-wide proxy</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">CIDR ranges</emphasis> dialog, configure custom classless inter-domain routing (CIDR) ranges or use the defaults that are provided.</simpara>
+<note>
+<simpara>If you are installing into a VPC, the <emphasis role="strong">Machine CIDR</emphasis> range must match the VPC subnets.</simpara>
+</note>
+<important>
+<simpara>CIDR configurations cannot be changed later. Confirm your selections with your network administrator before proceeding.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Cluster update strategy</emphasis> page, configure your update preferences:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Choose a cluster update method:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Select <emphasis role="strong">Individual updates</emphasis> if you want to schedule each update individually. This is the default option.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Recurring updates</emphasis> to update your cluster on your preferred day and start time, when updates are available.</simpara>
+<note>
+<simpara>You can review the end-of-life dates in the update lifecycle documentation for OpenShift Container Platform. For more information, see <link xlink:href="https://access.redhat.com/documentation/en-us/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#osd-life-cycle">OpenShift Dedicated update life cycle</link>.</simpara>
+</note>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>If you opted for recurring updates, select a preferred day of the week and upgrade start time in UTC from the drop-down menus.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: You can set a grace period for <emphasis role="strong">Node draining</emphasis> during cluster upgrades. A <emphasis role="strong">1 hour</emphasis> grace period is set by default.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+<note>
+<simpara>If critical security concerns that significantly impact the security or stability of a cluster occur, Red Hat Site Reliability Engineering (SRE) might schedule automatic updates to the latest z-stream version that is not impacted. The updates are applied within 48 hours after customer notifications are provided. For a description of the critical impact security rating, see <link xlink:href="https://access.redhat.com/security/updates/classification">Understanding Red Hat security ratings</link>.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Review the summary of your selections and click <emphasis role="strong">Create cluster</emphasis> to start the cluster installation. The installation takes approximately 30-40 minutes to complete.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: On the <emphasis role="strong">Overview</emphasis> tab, you can enable the delete protection feature by selecting <emphasis role="strong">Enable</emphasis>, which is located directly under <emphasis role="strong">Delete Protection: Disabled</emphasis>. This will prevent your cluster from being deleted. To disable delete protection, select <emphasis role="strong">Disable</emphasis>.
+By default, clusters are created with the delete protection feature disabled.</simpara>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>You can monitor the progress of the installation in the <emphasis role="strong">Overview</emphasis> page for your cluster. You can view the installation logs on the same page. Your cluster is ready when the <emphasis role="strong">Status</emphasis> in the <emphasis role="strong">Details</emphasis> section of the page is listed as <emphasis role="strong">Ready</emphasis>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="additional-resources_osd-creating-a-cluster-on-aws">
+<title>Additional resources</title>
+<itemizedlist>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/ovn-kubernetes_network_plugin/#configuring-a-cluster-wide-proxy">Configuring a cluster-wide proxy</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#ccs-aws-scp_aws-ccs">Minimum required service control policy (SCP)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#sdpolicy-storage_osd-service-definition">Storage</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#load-balancers_osd-service-definition">Load balancers</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#etcd-encryption_osd-service-definition">etcd encryption</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#osd-life-cycle">OpenShift Container Platform update life cycle</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#osd-security-groups-custom_aws-ccs">Additional custom security groups</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/authentication_and_authorization/#sd-configuring-identity-providers">Configuring identity providers</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/authentication_and_authorization/#osd-revoking-cluster-privileges">Revoking privileges and access to an OpenShift Container Platform cluster</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="osd-deleting-a-cluster">
+<title>Deleting an OpenShift Container Platform cluster on AWS</title>
+<simpara role="_abstract">As cluster owner, you can delete your OpenShift Container Platform clusters.</simpara>
+<section xml:id="deleting-cluster_aws_osd-deleting-a-cluster-aws">
+<title>Deleting your cluster</title>
+<simpara role="_abstract">You can delete your OpenShift Container Platform cluster in Red Hat OpenShift Cluster Manager.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You logged in to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You created an OpenShift Container Platform cluster.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>From <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>, click on the cluster you want to delete.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Delete cluster</emphasis> from the <emphasis role="strong">Actions</emphasis> list.</simpara>
+</listitem>
+<listitem>
+<simpara>Type the name of the cluster highlighted in bold, then click <emphasis role="strong">Delete</emphasis>. Cluster deletion occurs automatically.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</chapter>
+</book>

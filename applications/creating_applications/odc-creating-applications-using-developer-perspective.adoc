@@ -1,15 +1,14 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="odc-creating-applications-using-developer-perspective"]
 = Creating applications by using the Developer perspective
-include::_attributes/common-attributes.adoc[]
+include::../includes/common-attributes.adoc[]
 :context: odc-creating-applications-using-developer-perspective
 
-toc::[]
 
 The *Developer* perspective in the web console provides you the following options from the *+Add* view to create applications and associated services and deploy them on {product-title}:
 
 ifndef::openshift-enterprise,openshift-webscale[]
-include::snippets/snip-unified-perspective-web-console.adoc[]
+include::../includes/snip-unified-perspective-web-console.adoc[]
 endif::[]
 
 * *Getting started resources*: Use these resources to help you get started with Developer Console. You can choose to hide the header using the Options menu {kebab}.
@@ -57,7 +56,7 @@ ifdef::openshift-enterprise,openshift-webscale[]
 Note that certain options, such as *Pipelines*, *Event Source*, and *Import Virtual Machines*, are displayed only when the link:https://docs.openshift.com/pipelines/latest/install_config/installing-pipelines.html#op-installing-pipelines-operator-in-web-console_installing-pipelines[OpenShift Pipelines Operator], link:https://docs.openshift.com/serverless/1.28/install/install-serverless-operator.html#serverless-install-web-console_install-serverless-operator[{ServerlessOperatorName}], and xref:../../virt/install/installing-virt.adoc#virt-subscribing-cli_installing-virt[OpenShift Virtualization Operator] are installed, respectively.
 endif::[]
 // dedicated-admin cannot install the Serverless or Virtualization operators, cannot create namespace.
-// xref: ../../cicd/pipelines/installing-pipelines.adoc#op-installing-pipelines-operator-in-web-console_installing-pipelines[OpenShift Pipelines Operator]
+// Removed commented line that contains an xref
 ifdef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 Note that the *Pipelines* option is displayed only when the OpenShift Pipelines Operator is installed.
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
@@ -73,7 +72,7 @@ ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 ifdef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 * You have logged in to the web console.
-// * You have created a project or have access to a project with the appropriate xref:  ../../authentication/using-rbac.adoc#default-roles_using-rbac[roles and permissions] to create applications and other workloads in {product-title}.
+// Removed commented line that contains an xref
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
 // dedicated-admin cannot install the Serverless operator. This ifdef should cover this.
@@ -86,19 +85,19 @@ To create serverless applications, in addition to the preceding prerequisites, e
 
 endif::[]
 
-include::modules/odc-creating-sample-applications.adoc[leveloffset=+1]
+include::../includes/odc-creating-sample-applications.adoc[leveloffset=+1]
 
-include::modules/odc-using-quickstarts.adoc[leveloffset=+1]
+include::../includes/odc-using-quickstarts.adoc[leveloffset=+1]
 
-include::modules/odc-importing-codebase-from-git-to-create-application.adoc[leveloffset=+1]
+include::../includes/odc-importing-codebase-from-git-to-create-application.adoc[leveloffset=+1]
 
-include::modules/odc-deploying-container-image.adoc[leveloffset=+1]
+include::../includes/odc-deploying-container-image.adoc[leveloffset=+1]
 
-include::modules/odc-deploying-java-applications.adoc[leveloffset=+1]
+include::../includes/odc-deploying-java-applications.adoc[leveloffset=+1]
 
-include::modules/odc-using-the-devfile-registry.adoc[leveloffset=+1]
+include::../includes/odc-using-the-devfile-registry.adoc[leveloffset=+1]
 
-include::modules/odc-using-the-developer-catalog-to-add-services-or-components.adoc[leveloffset=+1]
+include::../includes/odc-using-the-developer-catalog-to-add-services-or-components.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
 [id="additional-resources_odc-creating-applications-using-developer-perspective"]
@@ -107,5 +106,5 @@ include::modules/odc-using-the-developer-catalog-to-add-services-or-components.a
 * For more information about Knative routing settings for {ServerlessProductName}, see link:https://docs.openshift.com/serverless/1.28/knative-serving/external-ingress-routing/routing-overview.html#routing-overview[Routing].
 * For more information about domain mapping settings for {ServerlessProductName}, see link:https://docs.openshift.com/serverless/1.28/knative-serving/config-custom-domains/serverless-custom-domains.html#serverless-custom-domains[Configuring a custom domain for a Knative service].
 * For more information about Knative autoscaling settings for {ServerlessProductName}, see link:https://docs.openshift.com/serverless/1.28/knative-serving/autoscaling/serverless-autoscaling-developer.html#serverless-autoscaling-developer[Autoscaling].
-* For more information about adding a new user to a project, see xref:../../applications/projects/working-with-projects.adoc#odc-providing-project-permissions-using-developer-perspective_projects[Working with projects].
-* For more information about creating a Helm Chart repository, see xref:../../applications/working_with_helm_charts/configuring-custom-helm-chart-repositories.adoc#odc-creating-helm-releases-using-developer-perspective_configuring-custom-helm-chart-repositories[Creating Helm Chart repositories].
+* For more information about adding a new user to a project, see xref:odc-providing-project-permissions-using-developer-perspective_projects[Working with projects].
+* For more information about creating a Helm Chart repository, see xref:odc-creating-helm-releases-using-developer-perspective_configuring-custom-helm-chart-repositories[Creating Helm Chart repositories].

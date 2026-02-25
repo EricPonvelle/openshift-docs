@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>Networking Operators</title>
+<date>2026-02-25</date>
+<title>Networking Operators</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="dns-operator">
+<title>DNS Operator in OpenShift Container Platform</title>
+<simpara role="_abstract">In OpenShift Container Platform, the DNS Operator deploys and manages a CoreDNS instance to provide a name resolution service to pods inside the cluster, enables DNS-based Kubernetes Service discovery, and resolves internal <literal>cluster.local</literal> names.</simpara>
+<simpara>This Operator is installed on OpenShift Container Platform clusters by default.</simpara>
+<section xml:id="nw-dns-forward_dns-operator">
+<title>Using DNS forwarding</title>
+<simpara role="_abstract">Configure DNS forwarding servers and upstream resolvers for the cluster.</simpara>
+<simpara>You can use DNS forwarding to override the default forwarding configuration in the <literal>/etc/resolv.conf</literal> file in the following ways:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Specify name servers (<literal>spec.servers</literal>) for every zone. If the forwarded zone is the ingress domain managed by OpenShift Container Platform, then the upstream name server must be authorized for the domain.</simpara>
+<important>
+<simpara>You must specify at least one zone. Otherwise, your cluster can lose functionality.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>Provide a list of upstream DNS servers (<literal>spec.upstreamResolvers</literal>).</simpara>
+</listitem>
+<listitem>
+<simpara>Change the default forwarding policy.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>A DNS forwarding configuration for the default domain can have both the default servers specified in the <literal>/etc/resolv.conf</literal> file and the upstream DNS servers.</simpara>
+<important>
+<simpara>During pod creation, Kubernetes uses the <literal>/etc/resolv.conf</literal> file that exists on a node. If you modify the <literal>/etc/resolv.conf</literal> file on a host node, the changes do not propagate to the <literal>/etc/resolv.conf</literal> file that exists in a container. You must re-create the container for changes to take effect.</simpara>
+</important>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>Modify the DNS Operator object named <literal>default</literal>:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc edit dns.operator/default</programlisting>
+<simpara>After you issue the previous command, the Operator creates and updates the config map named <literal>dns-default</literal> with additional server configuration blocks based on <literal>spec.servers</literal>.</simpara>
+<important>
+<simpara>When specifying values for the <literal>zones</literal> parameter, ensure that you only forward to specific zones, such as your intranet. You must specify at least one zone. Otherwise, your cluster can lose functionality.</simpara>
+</important>
+<simpara>If none of the servers have a zone that matches the query, then name resolution falls back to the upstream DNS servers.</simpara>
+<formalpara>
+<title>Configuring DNS forwarding</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: operator.openshift.io/v1
+kind: DNS
+metadata:
+  name: default
+spec:
+  cache:
+    negativeTTL: 0s
+    positiveTTL: 0s
+  logLevel: Normal
+  nodePlacement: {}
+  operatorLogLevel: Normal
+  servers:
+  - name: example-server
+    zones:
+    - example.com
+    forwardPlugin:
+      policy: Random
+      upstreams:
+      - 1.1.1.1
+      - 2.2.2.2:5353
+  upstreamResolvers:
+    policy: Random
+    protocolStrategy: ""
+    transportConfig: {}
+    upstreams:
+    - type: SystemResolvConf
+    - type: Network
+      address: 1.2.3.4
+      port: 53
+    status:
+      clusterDomain: cluster.local
+      clusterIP: x.y.z.10
+      conditions:
+...</programlisting>
+</para>
+</formalpara>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>spec.servers.name</literal></term>
+<listitem>
+<simpara>Must comply with the <literal>rfc6335</literal> service name syntax.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>spec.servers.zones</literal></term>
+<listitem>
+<simpara>Must conform to the <literal>rfc1123</literal> subdomain syntax. The cluster domain <literal>cluster.local</literal> is invalid for <literal>zones</literal>.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>spec.servers.forwardPlugin.policy</literal></term>
+<listitem>
+<simpara>Specifies the upstream selection policy. Defaults to <literal>Random</literal>; allowed values are <literal>RoundRobin</literal> and <literal>Sequential</literal>.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>spec.servers.forwardPlugin.upstreams</literal></term>
+<listitem>
+<simpara>Must provide no more than 15 <literal>upstreams</literal> entries per <literal>forwardPlugin</literal>.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>spec.upstreamResolvers.upstreams</literal></term>
+<listitem>
+<simpara>Specifies an <literal>upstreamResolvers</literal> to override the default forwarding policy and forward DNS resolution to the specified DNS resolvers (upstream resolvers) for the default domain. You can use this field when you need custom upstream resolvers; otherwise queries use the servers declared in  <literal>/etc/resolv.conf</literal>.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>spec.upstreamResolvers.policy</literal></term>
+<listitem>
+<simpara>Specifies the upstream selection order. Defaults to <literal>Sequential</literal>; allowed values are <literal>Random</literal>, <literal>RoundRobin</literal>, and <literal>Sequential</literal>.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>spec.upstreamResolvers.protocolStrategy</literal></term>
+<listitem>
+<simpara>Specify <literal>TCP</literal> to force the protocol to use for upstream DNS requests, even if the request uses UDP. Valid values are <literal>TCP</literal> and omitted. When omitted, the platform chooses a default, normally the protocol of the original client request.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>spec.upstreamResolvers.transportConfig</literal></term>
+<listitem>
+<simpara>Specifies the transport type, server name, and optional custom CA or CA bundle to use when forwarding DNS requests to an upstream resolver.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>spec.upstreamResolvers.upstreams.type</literal></term>
+<listitem>
+<simpara>Specifies two types of <literal>upstreams</literal>: <literal>SystemResolvConf</literal> or <literal>Network</literal>. <literal>SystemResolvConf</literal> configures the upstream to use <literal>/etc/resolv.conf</literal> and <literal>Network</literal> defines a <literal>Networkresolver</literal>. You can specify one or both.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>spec.upstreamResolvers.upstreams.address</literal></term>
+<listitem>
+<simpara>Specifies a valid IPv4 or IPv6 address when type is <literal>Network</literal>.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>spec.upstreamResolvers.upstreams.port</literal></term>
+<listitem>
+<simpara>Specifies an optional field to provide a port number. Valid values are between <literal>1</literal> and <literal>65535</literal>; defaults to 853 when omitted.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</itemizedlist>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://coredns.io/plugins/forward/">CoreDNS forward documentation</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="configuring-ingress">
+<title>Ingress Operator in OpenShift Container Platform</title>
+<simpara>The Ingress Operator implements the <literal>IngressController</literal> API and is the component responsible for enabling external access to OpenShift Container Platform cluster services.</simpara>
+<simpara>This Operator is installed on OpenShift Container Platform clusters by default.</simpara>
+<section xml:id="nw-ne-openshift-ingress_configuring-ingress">
+<title>OpenShift Container Platform Ingress Operator</title>
+<simpara>When you create your OpenShift Container Platform cluster, pods and services running on the cluster are each allocated their own IP addresses. The IP addresses are accessible to other pods and services running nearby but are not accessible to outside clients.</simpara>
+<simpara>The Ingress Operator makes it possible for external clients to access your service by deploying and managing one or more HAProxy-based <link xlink:href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/">Ingress Controllers</link> to handle routing.</simpara>
+<simpara>Red Hat Site Reliability Engineers (SRE) manage the Ingress Operator for OpenShift Container Platform clusters. While you cannot alter the settings for the Ingress Operator, you may view the default Ingress Controller configurations, status, and logs as well as the Ingress Operator status.</simpara>
+</section>
+<section xml:id="nw-ingress-view_configuring-ingress">
+<title>View the default Ingress Controller</title>
+<simpara>The Ingress Operator is a core feature of OpenShift Container Platform and is enabled out of the
+box.</simpara>
+<simpara>Every new OpenShift Container Platform installation has an <literal>ingresscontroller</literal> named default. It
+can be supplemented with additional Ingress Controllers. If the default
+<literal>ingresscontroller</literal> is deleted, the Ingress Operator will automatically recreate it
+within a minute.</simpara>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>View the default Ingress Controller:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc describe --namespace=openshift-ingress-operator ingresscontroller/default</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nw-ingress-operator-status_configuring-ingress">
+<title>View Ingress Operator status</title>
+<simpara>You can view and inspect the status of your Ingress Operator.</simpara>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>View your Ingress Operator status:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc describe clusteroperators/ingress</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nw-ingress-operator-logs_configuring-ingress">
+<title>View Ingress Controller logs</title>
+<simpara>You can view your Ingress Controller logs.</simpara>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>View your Ingress Controller logs:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc logs --namespace=openshift-ingress-operator deployments/ingress-operator -c &lt;container_name&gt;</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nw-ingress-controller-status_configuring-ingress">
+<title>View Ingress Controller status</title>
+<simpara>Your can view the status of a particular Ingress Controller.</simpara>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>View the status of an Ingress Controller:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ oc describe --namespace=openshift-ingress-operator ingresscontroller/&lt;name&gt;</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="sd-ingress-responsibility-matrix_configuring-ingress">
+<title>Management of <literal>default</literal> Ingress Controller functions</title>
+<simpara>The following table details the components of the <literal>default</literal> Ingress Controller managed by the Ingress Operator and whether Red Hat Site Reliability Engineering (SRE) maintains this component on OpenShift Container Platform clusters.</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>Ingress Operator Responsibility Chart</title>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="42.8571*"/>
+<colspec colname="col_2" colwidth="28.5714*"/>
+<colspec colname="col_3" colwidth="28.5715*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Ingress component</entry>
+<entry align="left" valign="top">Managed by</entry>
+<entry align="left" valign="top">Default configuration?</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Scaling Ingress Controller</simpara></entry>
+<entry align="left" valign="top"><simpara>SRE</simpara></entry>
+<entry align="left" valign="top"><simpara>Yes</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Ingress Operator thread count</simpara></entry>
+<entry align="left" valign="top"><simpara>SRE</simpara></entry>
+<entry align="left" valign="top"><simpara>Yes</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Ingress Controller access logging</simpara></entry>
+<entry align="left" valign="top"><simpara>SRE</simpara></entry>
+<entry align="left" valign="top"><simpara>Yes</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Ingress Controller sharding</simpara></entry>
+<entry align="left" valign="top"><simpara>SRE</simpara></entry>
+<entry align="left" valign="top"><simpara>Yes</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Ingress Controller route admission policy</simpara></entry>
+<entry align="left" valign="top"><simpara>SRE</simpara></entry>
+<entry align="left" valign="top"><simpara>Yes</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Ingress Controller wildcard routes</simpara></entry>
+<entry align="left" valign="top"><simpara>SRE</simpara></entry>
+<entry align="left" valign="top"><simpara>Yes</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Ingress Controller X-Forwarded headers</simpara></entry>
+<entry align="left" valign="top"><simpara>SRE</simpara></entry>
+<entry align="left" valign="top"><simpara>Yes</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Ingress Controller route compression</simpara></entry>
+<entry align="left" valign="top"><simpara>SRE</simpara></entry>
+<entry align="left" valign="top"><simpara>Yes</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+</chapter>
+</book>

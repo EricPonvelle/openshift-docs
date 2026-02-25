@@ -1,5 +1,5 @@
 :_mod-docs-content-type: ASSEMBLY
-include::_attributes/attributes-openshift-dedicated.adoc[]
+include::includes/attributes-openshift-dedicated.adoc[]
 [id="osd-creating-a-cluster-on-gcp-with-workload-identity-federation"]
 = Creating a cluster on {gcp-short} with Workload Identity Federation authentication
 :context: osd-creating-a-cluster-on-gcp-with-workload-identity-federation
@@ -7,17 +7,16 @@ include::_attributes/attributes-openshift-dedicated.adoc[]
 [role="_abstract"]
 As a system administrator or cloud engineer, you can provision an {product-title} cluster on {GCP} using Workload Identity Federation (WIF). This feature establishes a trust relationship that allows your cluster's control plane and workloads to securely assume the necessary {GCP} roles and access required services. This approach eliminates the security risk and operational overhead associated with managing and rotating long-lived {GCP} service account keys.
 
-toc::[]
 
-include::modules/wif-overview.adoc[leveloffset=+1]
+include::includes/wif-overview.adoc[leveloffset=+1]
 
 [id="osd-creating-a-cluster-on-gcp-prerequisites1_{context}"]
 == Prerequisites
 
 * You have confirmed your {gcp-full} account has the necessary resource quotas and limits to support your desired cluster size according to the cluster resource requirements. For more information regarding resource quotas and limits, see _Additional resources_.
-* You have reviewed the xref:../osd_architecture/osd-understanding.adoc#osd-understanding[introduction to {product-title}] and the documentation on xref:../architecture/index.adoc#architecture-overview[architecture concepts].
-* You have reviewed the xref:../osd_getting_started/osd-understanding-your-cloud-deployment-options.adoc#osd-understanding-your-cloud-deployment-options[{product-title} cloud deployment options].
-* You have read and completed the xref:../osd_planning/gcp-ccs.adoc#ccs-gcp-customer-procedure_gcp-ccs[Required customer procedure].
+* You have reviewed the link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#osd-understanding[introduction to {product-title}] and the documentation on link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/architecture/#architecture-overview[architecture concepts].
+* You have reviewed the link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/getting_started/#osd-understanding-your-cloud-deployment-options[{product-title} cloud deployment options].
+* You have read and completed the link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#ccs-gcp-customer-procedure_gcp-ccs[Required customer procedure].
 * You have downloaded the latest version of the {cluster-manager} CLI (`ocm`) for your operating system from the link:https://console.redhat.com/openshift/downloads[Downloads] page on {cluster-manager}.
 +
 [IMPORTANT]
@@ -32,33 +31,33 @@ For more information about the support scope of Red Hat Developer Preview featur
 [NOTE]
 ====
 WIF supports the deployment of a private {product-title} on {GCP} cluster with Private Service Connect (PSC). Red{nbsp}Hat recommends using PSC when deploying private clusters.
-For more information about the prerequisites for PSC, see xref:../osd_gcp_clusters/creating-a-gcp-psc-enabled-private-cluster.adoc#private-service-connect-prereqs[Prerequisites for Private Service Connect].
+For more information about the prerequisites for PSC, see xref:private-service-connect-prereqs[Prerequisites for Private Service Connect].
 ====
 
-include::modules/create-wif-configuration.adoc[leveloffset=+1]
-include::modules/create-wif-cluster-ocm.adoc[leveloffset=+1]
+include::includes/create-wif-configuration.adoc[leveloffset=+1]
+include::includes/create-wif-cluster-ocm.adoc[leveloffset=+1]
 
 .Additional resources
 
-* xref:../ocm/ocm-overview.adoc#accessing_ocm[Accessing {cluster-manager}]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/red_hat_openshift_cluster_manager/#accessing_ocm[Accessing {cluster-manager}]
 
-include::modules/create-wif-cluster-cli.adoc[leveloffset=+1]
-include::modules/ocm-cli-list-wif-commands.adoc[leveloffset=+1]
-include::modules/wif-configuration-update.adoc[leveloffset=+1]
-include::modules/wif-removing-stale-deployer-permissions.adoc[leveloffset=+2]
-include::modules/wif-removing-stale-support-permissions.adoc[leveloffset=+2]
-include::modules/ocm-cli-verify-wif-commands.adoc[leveloffset=+1]
+include::includes/create-wif-cluster-cli.adoc[leveloffset=+1]
+include::includes/ocm-cli-list-wif-commands.adoc[leveloffset=+1]
+include::includes/wif-configuration-update.adoc[leveloffset=+1]
+include::includes/wif-removing-stale-deployer-permissions.adoc[leveloffset=+2]
+include::includes/wif-removing-stale-support-permissions.adoc[leveloffset=+2]
+include::includes/ocm-cli-verify-wif-commands.adoc[leveloffset=+1]
 
 
 [role="_additional-resources"]
 == Additional resources
 
-* xref:../osd_planning/gcp-ccs.adoc#ccs-gcp-customer-requirements_gcp-ccs[Customer requirements]
-* xref:../applications/quotas/quotas-setting-per-project.adoc#quotas-setting-per-project[Resource quotas per project]
-* xref:../osd_planning/gcp-ccs.adoc#gcp-limits_gcp-ccs[{gcp-short} account limits]
-* xref:../osd_planning/gcp-ccs.adoc#ccs-gcp-customer-procedure_gcp-ccs[Required customer procedure]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#ccs-gcp-customer-requirements_gcp-ccs[Customer requirements]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/building_applications/#quotas-setting-per-project[Resource quotas per project]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#gcp-limits_gcp-ccs[{gcp-short} account limits]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#ccs-gcp-customer-procedure_gcp-ccs[Required customer procedure]
 * link:https://cloud.google.com/iam/docs/manage-workload-identity-pools-providers[Manage workload identity pools and providers]
 * link:https://cloud.google.com/iam/docs/roles-overview[Roles and permissions]
-* xref:../osd_planning/osd-limits-scalability.adoc#tested-cluster-maximums-sd_osd-limits-scalability[Cluster maximums]
-* xref:../authentication/sd-configuring-identity-providers.adoc#sd-configuring-identity-providers[Configuring identity providers]
-* xref:../authentication/osd-revoking-cluster-privileges.adoc#osd-revoking-cluster-privileges[Revoking privileges and access to an {product-title} cluster]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#tested-cluster-maximums-sd_osd-limits-scalability[Cluster maximums]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/authentication_and_authorization/#sd-configuring-identity-providers[Configuring identity providers]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/authentication_and_authorization/#osd-revoking-cluster-privileges[Revoking privileges and access to an {product-title} cluster]

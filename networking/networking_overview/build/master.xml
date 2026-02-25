@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>Networking overview</title>
+<date>2026-02-25</date>
+<title>Networking overview</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="about-managed-networking">
+<title>About networking</title>
+<simpara role="_abstract">To optimize network traffic management and security across hybrid clusters, configure Red Hat OpenShift Networking.</simpara>
+<simpara>The Red Hat OpenShift Networking ecosystem of networking capabilities integrates ingress, egress, load balancing, high-performance throughput, security, and inter- and intra-cluster traffic management. The Red Hat OpenShift Networking ecosystem also provides role-based observability tooling to reduce its natural complexities.</simpara>
+<simpara>The following list details some of the most commonly used Red Hat OpenShift Networking features available on your cluster:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Cluster Network Operator for network plugin management.</simpara>
+</listitem>
+<listitem>
+<simpara>Primary cluster network provided by either of the following Container Network Interface (CNI) plugins:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/ovn-kubernetes_network_plugin/#about-ovn-kubernetes">OVN-Kubernetes network plugin</link>, which is the default CNI plugin.</simpara>
+</listitem>
+<listitem>
+<simpara>OpenShift SDN network plugin, which was deprecated in OpenShift 4.16 and removed in OpenShift 4.17.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<important>
+<simpara>Before upgrading OpenShift Container Platform clusters that are configured with the OpenShift SDN network plugin to version 4.17, you must migrate to the OVN-Kubernetes network plugin. For more information, see <emphasis>Migrating from the OpenShift SDN network plugin to the OVN-Kubernetes network plugin</emphasis>.</simpara>
+</important>
+<section xml:id="additional-resources_about-managed-networking" role="_additional-resources">
+<title>Additional resources</title>
+<itemizedlist>
+<listitem>
+<simpara><link xlink:href="https://access.redhat.com/articles/7065170">OpenShift SDN CNI removal in OCP 4.17</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/ovn-kubernetes_network_plugin/#migrate-from-openshift-sdn-osd">Migrating from the OpenShift SDN network plugin to the OVN-Kubernetes network plugin</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="cidr-range-definitions">
+<title>CIDR range definitions</title>
+<simpara role="_abstract">To ensure stable and accurate network routing in OpenShift Container Platform clusters that use OVN-Kubernetes, define non-overlapping Classless Inter-Domain Routing (CIDR) subnet ranges. Establishing unique ranges prevents IP address conflicts so that internal traffic reaches its intended destination without interference.</simpara>
+<important>
+<simpara>For OpenShift Container Platform 4.17 and later versions, clusters use <literal>169.254.0.0/17</literal> for IPv4 and <literal>fd69::/112</literal> for IPv6 as the default masquerade subnet. You must avoid these ranges. For upgraded clusters, there is no change to the default masquerade subnet.</simpara>
+</important>
+<tip>
+<simpara>You can use the <link xlink:href="https://access.redhat.com/labs/ocpnc/">Red Hat OpenShift Network Calculator</link> to decide your networking needs before setting CIDR range during cluster creation.</simpara>
+<simpara>You must have a Red Hat account to use the calculator.</simpara>
+</tip>
+<simpara>The following subnet types are mandatory for a cluster that uses OVN-Kubernetes:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Join: Uses a join switch to connect gateway routers to distributed routers. A join switch reduces the number of IP addresses for a distributed router. For a cluster that uses the OVN-Kubernetes plugin, an IP address from a dedicated subnet is assigned to any logical port that attaches to the join switch.</simpara>
+</listitem>
+<listitem>
+<simpara>Masquerade: Prevents collisions for identical source and destination IP addresses that are sent from a node as hairpin traffic to the same node after a load balancer makes a routing decision.</simpara>
+</listitem>
+<listitem>
+<simpara>Transit: A transit switch is a type of distributed switch that spans across all nodes in the cluster. A transit switch routes traffic between different zones. For a cluster that uses the OVN-Kubernetes plugin, an IP address from a dedicated subnet is assigned to any logical port that attaches to the transit switch.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>You can change the join, masquerade, and transit CIDR ranges for your cluster as a postinstallation task.</simpara>
+</note>
+<simpara>When specifying subnet CIDR ranges, ensure that the subnet CIDR range is within the defined Machine CIDR. You must verify that the subnet CIDR ranges allow for enough IP addresses for all intended workloads depending on which platform the cluster is hosted.</simpara>
+<simpara>OVN-Kubernetes, the default network provider in OpenShift Container Platform 4.14 and later versions, internally uses the following IP address subnet ranges:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>V4JoinSubnet</literal>: <literal>100.64.0.0/16</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>V6JoinSubnet</literal>: <literal>fd98::/64</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>V4TransitSwitchSubnet</literal>: <literal>100.88.0.0/16</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>V6TransitSwitchSubnet</literal>: <literal>fd97::/64</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>defaultV4MasqueradeSubnet</literal>: <literal>169.254.0.0/17</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>defaultV6MasqueradeSubnet</literal>: <literal>fd69::/112</literal></simpara>
+</listitem>
+</itemizedlist>
+<important>
+<simpara>The earlier list includes join, transit, and masquerade IPv4 and IPv6 address subnets. If your cluster uses OVN-Kubernetes, do not include any of these IP address subnet ranges in any other CIDR definitions in your cluster or infrastructure.</simpara>
+</important>
+<section xml:id="machine-cidr-description_cidr-range-definitions">
+<title>Machine CIDR</title>
+<simpara role="_abstract">To establish the network scope for cluster nodes in OpenShift Container Platform, specify an IP address range in the Machine Classless Inter-Domain Routing (CIDR) parameter. Defining this range ensures that all machines within the environment have valid, routable addresses for internal cluster communication.</simpara>
+<note>
+<simpara>You cannot change Machine CIDR ranges after you create your cluster.</simpara>
+</note>
+<simpara>This range must encompass all CIDR address ranges for your virtual private cloud (VPC) subnets. Subnets must be contiguous. A minimum range of 128 IP addresses, using the subnet prefix <literal>/25</literal>, is supported for single availability zone deployments. A minimum address range of 256 addresses, using the subnet prefix <literal>/24</literal>, is supported for deployments that use multiple availability zones.</simpara>
+<simpara>The default is <literal>10.0.0.0/16</literal>. This range must not conflict with any connected networks.</simpara>
+</section>
+<section xml:id="service-cidr-description_cidr-range-definitions">
+<title>Service CIDR</title>
+<simpara role="_abstract">To allocate IP addresses for cluster services in OpenShift Container Platform, specify an IP address range in the Service Classless Inter-Domain Routing (CIDR) parameter. Defining this range ensures that internal services have a dedicated block of addresses for reliable communication without overlapping with node or pod networks.</simpara>
+<simpara>Red&#160;Hat recommends, but this task is not mandatory, that the address block is the same between clusters. This does not create IP address conflicts.</simpara>
+<simpara>The range must be large enough to accommodate your workload. The address block must not overlap with any external service accessed from within the cluster. The default is <literal>172.30.0.0/16</literal>.</simpara>
+</section>
+<section xml:id="pod-cidr-description_cidr-range-definitions">
+<title>Pod CIDR</title>
+<simpara role="_abstract">To allocate internal network addresses for cluster workloads in OpenShift Container Platform, specify an IP address range in the pod Classless Inter-Domain Routing (CIDR) field. Defining this range ensures that pods can communicate with each other reliably without overlapping with the node or service networks.</simpara>
+<simpara>Red&#160;Hat recommends, but this task is not mandatory, that the address block is the same between clusters. This does not create IP address conflicts.
+The range must be large enough to accommodate your workload. The address block must not overlap with any external service accessed from within the cluster. The default is <literal>10.128.0.0/14</literal>.</simpara>
+</section>
+<section xml:id="host-prefix-description_cidr-range-definitions">
+<title>Host prefix</title>
+<simpara role="_abstract">To allocate a dedicated pool of IP addresses for pods on each node in OpenShift Container Platform, specify the subnet prefix length in the hostPrefix parameter. Defining an appropriate prefix ensures that every machine has sufficient unique addresses to support its scheduled workloads without exhausting the cluster&#8217;s network resources.</simpara>
+<simpara>For example, if you set the <literal>hostPrefix</literal> parameter to <literal>/23</literal>, each machine is assigned a <literal>/23</literal> subnet from the pod CIDR address range. The default is <literal>/23</literal>, allowing 512 cluster nodes and 512 pods per node. Note that where 512 cluster nodes and 512 pods are beyond the maximum supported.</simpara>
+<simpara>For example, if the host prefix is set to <literal>/23</literal>, each machine is assigned a <literal>/23</literal> subnet from the pod CIDR address range. The default is <literal>/23</literal>, allowing 510 cluster nodes and 510 pod IP addresses per node.</simpara>
+<simpara>Consider another example where you set the <literal>clusterNetwork.cidr</literal> parameter to <literal>10.128.0.0/16</literal>, you define the complete address space for the cluster. This assigns a pool of 65,536 IP addresses to your cluster. If you then set the <literal>hostPrefix</literal> parameter to <literal>/23</literal>, you define a subnet slice to each node in the cluster, where the <literal>/23</literal> slice becomes a subnet of the <literal>/16</literal> subnet network. This assigns 512 IP addresses to each node, where 2 IP addresses get reserved for networking and broadcasting purposes. The following example calculation uses these IP address figures to determine the maximum number of nodes that you can create for your cluster:</simpara>
+<programlisting language="text" linenumbering="unnumbered">65536 / 512 = 128</programlisting>
+<simpara>You can use the <link xlink:href="https://access.redhat.com/labs/ocpnc/">Red Hat OpenShift Network Calculator</link> to calculate the maximum number of nodes for your cluster.</simpara>
+</section>
+</chapter>
+</book>

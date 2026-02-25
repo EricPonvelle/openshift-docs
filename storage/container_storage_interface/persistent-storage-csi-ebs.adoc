@@ -1,20 +1,19 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="persistent-storage-csi-ebs"]
 = AWS Elastic Block Store CSI Driver Operator
-include::_attributes/common-attributes.adoc[]
+include::../includes/common-attributes.adoc[]
 :context: persistent-storage-csi-ebs
 
-toc::[]
 
 == Overview
 
 {product-title} is capable of provisioning persistent volumes (PVs) using the link:https://github.com/openshift/aws-ebs-csi-driver[AWS EBS CSI driver].
 
-Familiarity with xref:../../storage/understanding-persistent-storage.adoc#understanding-persistent-storage[persistent storage] and xref:../../storage/container_storage_interface/persistent-storage-csi.adoc#persistent-storage-csi[configuring CSI volumes] is recommended when working with a Container Storage Interface (CSI) Operator and driver.
+Familiarity with xref:understanding-persistent-storage[persistent storage] and xref:persistent-storage-csi[configuring CSI volumes] is recommended when working with a Container Storage Interface (CSI) Operator and driver.
 
 To create CSI-provisioned PVs that mount to AWS EBS storage assets, {product-title} installs the link:https://github.com/openshift/aws-ebs-csi-driver-operator[AWS EBS CSI Driver Operator] (a Red Hat operator) and the AWS EBS CSI driver by default in the `openshift-cluster-csi-drivers` namespace.
 
-* The _AWS EBS CSI Driver Operator_ provides a StorageClass by default that you can use to create PVCs. You can disable this default storage class if desired (see xref:../../storage/container_storage_interface/persistent-storage-csi-sc-manage.adoc#persistent-storage-csi-sc-manage[Managing the default storage class]). You also have the option to create the AWS EBS StorageClass as described in xref:../../storage/persistent_storage/persistent-storage-aws.adoc#persistent-storage-aws[Persistent storage using Amazon Elastic Block Store].
+* The _AWS EBS CSI Driver Operator_ provides a StorageClass by default that you can use to create PVCs. You can disable this default storage class if desired (see xref:persistent-storage-csi-sc-manage[Managing the default storage class]). You also have the option to create the AWS EBS StorageClass as described in xref:persistent-storage-aws[Persistent storage using Amazon Elastic Block Store].
 
 * The _AWS EBS CSI driver_ enables you to create and mount AWS EBS PVs.
 
@@ -25,14 +24,14 @@ If you installed the AWS EBS CSI Operator and driver on an {product-title} 4.5 c
 ====
 endif::openshift-rosa,openshift-dedicated,openshift-rosa-hcp[]
 
-include::modules/persistent-storage-csi-about.adoc[leveloffset=+1]
+include::../includes/persistent-storage-csi-about.adoc[leveloffset=+1]
 
 [IMPORTANT]
 ====
 {product-title} defaults to using the CSI plugin to provision Amazon Elastic Block Store (Amazon EBS) storage.
 ====
 
-For information about dynamically provisioning AWS EBS persistent volumes in {product-title}, see xref:../../storage/persistent_storage/persistent-storage-aws.adoc#persistent-storage-aws[Persistent storage using Amazon Elastic Block Store].
+For information about dynamically provisioning AWS EBS persistent volumes in {product-title}, see xref:persistent-storage-aws[Persistent storage using Amazon Elastic Block Store].
 
 ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 include::modules/persistent-storage-byok.adoc[leveloffset=+1]
@@ -47,5 +46,5 @@ endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
 [role="_additional-resources"]
 .Additional resources
-* xref:../../storage/persistent_storage/persistent-storage-aws.adoc#persistent-storage-aws[Persistent storage using Amazon Elastic Block Store]
-* xref:../../storage/container_storage_interface/persistent-storage-csi.adoc#persistent-storage-csi[Configuring CSI volumes]
+* xref:persistent-storage-aws[Persistent storage using Amazon Elastic Block Store]
+* xref:persistent-storage-csi[Configuring CSI volumes]

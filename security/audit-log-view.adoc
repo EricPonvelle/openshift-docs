@@ -2,27 +2,26 @@
 [id="audit-log-view"]
 = Viewing audit logs
 
-include::_attributes/common-attributes.adoc[]
+include::includes/common-attributes.adoc[]
 ifdef::openshift-rosa,openshift-dedicated[]
-include::_attributes/attributes-openshift-dedicated.adoc[]
+include::includes/attributes-openshift-dedicated.adoc[]
 endif::openshift-rosa,openshift-dedicated[]
 :context: audit-log-view
 
-toc::[]
 
 [role="_abstract"]
 {product-title} auditing provides a security-relevant chronological set of records documenting the sequence of activities that have affected the system by individual users, administrators, or other components of the system.
 
-include::modules/nodes-nodes-audit-log-basic.adoc[leveloffset=+1]
+include::includes/nodes-nodes-audit-log-basic.adoc[leveloffset=+1]
 
 // Viewing the audit log
-include::modules/nodes-nodes-audit-log-basic-viewing.adoc[leveloffset=+1]
+include::includes/nodes-nodes-audit-log-basic-viewing.adoc[leveloffset=+1]
 
 // Filtering audit logs
-include::modules/security-audit-log-filtering.adoc[leveloffset=+1]
+include::includes/security-audit-log-filtering.adoc[leveloffset=+1]
 
 // Gathering audit logs
-include::modules/gathering-data-audit-logs.adoc[leveloffset=+1]
+include::includes/gathering-data-audit-logs.adoc[leveloffset=+1]
 
 //removed xrefs for hcp migration local test builds. Will update conditionals once hcp docs can be tested with live builds.
 ifndef::openshift-rosa-hcp[]
@@ -30,7 +29,7 @@ ifndef::openshift-rosa-hcp[]
 [role="_additional-resources"]
 == Additional resources
 
-* xref:../support/gathering-cluster-data.adoc#about-must-gather_gathering-cluster-data[Must-gather tool]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/support/#about-must-gather_gathering-cluster-data[Must-gather tool]
 ifndef::openshift-rosa,openshift-dedicated[]
 * link:https://github.com/kubernetes/apiserver/blob/master/pkg/apis/audit/v1/types.go#L72[API audit log event structure]
 * xref:../security/audit-log-policy-config.adoc#audit-log-policy-config[Configuring the audit log policy]

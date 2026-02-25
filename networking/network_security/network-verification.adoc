@@ -1,11 +1,10 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="osd-network-verification_{context}"]
 = Network verification for {product-title} clusters
-include::_attributes/common-attributes.adoc[]
-include::_attributes/attributes-openshift-dedicated.adoc[]
+include::includes/common-attributes.adoc[]
+include::includes/attributes-openshift-dedicated.adoc[]
 :context: network-verification
 
-toc::[]
 
 Network verification checks run automatically when you deploy
 ifdef::openshift-dedicated[]
@@ -18,7 +17,7 @@ cluster into an existing Virtual Private Cloud (VPC) or create an additional mac
 
 You can also run the network verification checks manually to validate the configuration for an existing cluster.
 
-include::modules/understanding-network-verification.adoc[leveloffset=+1]
+include::includes/understanding-network-verification.adoc[leveloffset=+1]
 
 [id="scope-of-the-network-verification-checks_{context}"]
 == Scope of the network verification checks
@@ -30,24 +29,24 @@ The network verification includes checks for each of the following requirements:
 * The VPC has `enableDnsSupport` enabled.
 * The VPC has `enableDnsHostnames` enabled.
 ifdef::openshift-dedicated[]
-* Egress is available to the required domain and port combinations that are specified in the xref:../../osd_planning/aws-ccs.adoc#osd-aws-privatelink-firewall-prerequisites_aws-ccs[AWS firewall prerequisites] section.
+* Egress is available to the required domain and port combinations that are specified in the link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#osd-aws-privatelink-firewall-prerequisites_aws-ccs[AWS firewall prerequisites] section.
 endif::openshift-dedicated[]
 //ifdef::openshift-rosa[]
 //Commenting out the following xref because it's breaking the networking and potentially other PRs. Pre- or post-publish HCP pruning task. 
 //ifdef::openshift-rosa,openshift-rosa-hcp[]
-//* Egress is available to the required domain and port combinations that are specified in the xref:../../rosa_planning/rosa-classic-aws-prereqs.adoc#rosa-classic-firewall-prerequisites_rosa-classic-aws-prereqs[AWS firewall prerequisites] section.
+// Removed commented line that contains an xref
 // This link needs to reamin hidden until the HCP migration is published
-// * Egress is available to the required domain and port combinations that are specified in the xref:../../rosa_planning/rosa-sts-aws-prereqs.adoc#rosa-classic-firewall-prerequisites_rosa-sts-aws-prereqs[AWS firewall prerequisites] section.
+// Removed commented line that contains an xref
 //endif::openshift-rosa,openshift-rosa-hcp[]
 
-include::modules/automatic-network-verification-bypassing.adoc[leveloffset=+1]
+include::includes/automatic-network-verification-bypassing.adoc[leveloffset=+1]
 
 ifdef::openshift-rosa[]
 include::modules/running-network-verification-manually.adoc[leveloffset=+1]
 
 endif::openshift-rosa[]
 ifdef::openshift-rosa,openshift-dedicated[]
-include::modules/running-network-verification-manually-ocm.adoc[leveloffset=+1]
+include::includes/running-network-verification-manually-ocm.adoc[leveloffset=+1]
 
 endif::openshift-rosa,openshift-dedicated[]
 ifdef::openshift-rosa,openshift-rosa-hcp[]

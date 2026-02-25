@@ -1,0 +1,2006 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>Architecture</title>
+<date>2026-02-25</date>
+<title>Architecture</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="architecture-overview">
+<title>Architecture overview</title>
+<simpara>OpenShift Container Platform is a cloud-based Kubernetes container platform.
+The foundation of OpenShift Container Platform is based on Kubernetes and therefore shares the same technology.
+To learn more about OpenShift Container Platform and Kubernetes, see <link linkend="architecture">product architecture</link>.</simpara>
+<section xml:id="openshift-architecture-common-terms_architecture-overview">
+<title>Glossary of common terms for OpenShift Container Platform architecture</title>
+<simpara>This glossary defines common terms that are used in the architecture content.</simpara>
+<variablelist>
+<varlistentry>
+<term>access policies</term>
+<listitem>
+<simpara>A set of roles that dictate how users, applications, and entities within a cluster interact with one another. An access policy increases cluster security.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>admission plugins</term>
+<listitem>
+<simpara>Admission plugins enforce security policies, resource limitations, or configuration requirements.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>authentication</term>
+<listitem>
+<simpara>To control access to an OpenShift Container Platform cluster, an administrator with the <literal>dedicated-admin</literal> role can configure user authentication to ensure only approved users access the cluster. To interact with an OpenShift Container Platform cluster, you must authenticate with the OpenShift Container Platform API. You can authenticate by providing an OAuth access token or an X.509 client certificate in your requests to the OpenShift Container Platform API.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>bootstrap</term>
+<listitem>
+<simpara>A temporary machine that runs minimal Kubernetes and deploys the OpenShift Container Platform control plane.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>certificate signing requests (CSRs)</term>
+<listitem>
+<simpara>A resource requests a denoted signer to sign a certificate. This request might get approved or denied.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Cluster Version Operator (CVO)</term>
+<listitem>
+<simpara>An Operator that checks with the OpenShift Container Platform Update Service to see the valid updates and update paths based on current component versions and information in the graph.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>compute nodes</term>
+<listitem>
+<simpara>Nodes that are responsible for executing workloads for cluster users. Compute nodes are also known as worker nodes.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>configuration drift</term>
+<listitem>
+<simpara>A situation where the configuration on a node does not match what the machine config specifies.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>containers</term>
+<listitem>
+<simpara>Lightweight and executable images that consist of software and all of its dependencies. Because containers virtualize the operating system, you can run containers anywhere, such as data centers, public or private clouds, and local hosts.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>container orchestration engine</term>
+<listitem>
+<simpara>Software that automates the deployment, management, scaling, and networking of containers.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>container workloads</term>
+<listitem>
+<simpara>Applications that are packaged and deployed in containers.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>control groups (cgroups)</term>
+<listitem>
+<simpara>Partitions sets of processes into groups to manage and limit the resources processes consume.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>control plane</term>
+<listitem>
+<simpara>A container orchestration layer that exposes the API and interfaces to define, deploy, and manage the life cycle of containers. Control planes are also known as control plane machines.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>CRI-O</term>
+<listitem>
+<simpara>A Kubernetes native container runtime implementation that integrates with the operating system to deliver an efficient Kubernetes experience.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>deployment</term>
+<listitem>
+<simpara>A Kubernetes resource object that maintains the life cycle of an application.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Dockerfile</term>
+<listitem>
+<simpara>A text file that contains the user commands to perform on a terminal to assemble the image.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>hybrid cloud deployments</term>
+<listitem>
+<simpara>Deployments that deliver a consistent platform across bare metal, virtual, private, and public cloud environments. This offers speed, agility, and portability.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Ignition</term>
+<listitem>
+<simpara>A utility that RHCOS uses to manipulate disks during initial configuration. It completes common disk tasks, including partitioning disks, formatting partitions, writing files, and configuring users.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>installer-provisioned infrastructure</term>
+<listitem>
+<simpara>The installation program deploys and configures the infrastructure that the cluster runs on.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kubelet</term>
+<listitem>
+<simpara>A primary node agent that runs on each node in the cluster to ensure that containers are running in a pod.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kubernetes manifest</term>
+<listitem>
+<simpara>Specifications of a Kubernetes API object in a JSON or YAML format. A configuration file can include deployments, config maps, secrets, daemon sets.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Machine Config Daemon (MCD)</term>
+<listitem>
+<simpara>A daemon that regularly checks the nodes for configuration drift.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Machine Config Operator (MCO)</term>
+<listitem>
+<simpara>An Operator that applies the new configuration to your cluster machines.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>machine config pools (MCP)</term>
+<listitem>
+<simpara>A group of machines, such as control plane components or user workloads, that are based on the resources that they handle.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>metadata</term>
+<listitem>
+<simpara>Additional information about cluster deployment artifacts.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>microservices</term>
+<listitem>
+<simpara>An approach to writing software. Applications can be separated into the smallest components, independent from each other by using microservices.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>mirror registry</term>
+<listitem>
+<simpara>A registry that holds the mirror of OpenShift Container Platform images.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>monolithic applications</term>
+<listitem>
+<simpara>Applications that are self-contained, built, and packaged as a single piece.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>namespaces</term>
+<listitem>
+<simpara>A namespace isolates specific system resources that are visible to all processes. Inside a namespace, only processes that are members of that namespace can see those resources.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>networking</term>
+<listitem>
+<simpara>Network information of OpenShift Container Platform cluster.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>node</term>
+<listitem>
+<simpara>A worker machine in the OpenShift Container Platform cluster. A node is either a virtual machine (VM) or a physical machine.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>OpenShift CLI (<literal>oc</literal>)</term>
+<listitem>
+<simpara>A command-line tool to run OpenShift Container Platform commands on the terminal.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>OpenShift Update Service (OSUS)</term>
+<listitem>
+<simpara>For clusters with internet access, Red&#160;Hat Enterprise Linux (RHEL) provides over-the-air updates by using an OpenShift update service as a hosted service located behind public APIs.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>OpenShift image registry</term>
+<listitem>
+<simpara>A registry provided by OpenShift Container Platform to manage images.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Operator</term>
+<listitem>
+<simpara>The preferred method of packaging, deploying, and managing a Kubernetes application in
+an
+OpenShift Container Platform cluster. An Operator takes human operational knowledge and encodes it into software that is packaged and shared with customers.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>OperatorHub</term>
+<listitem>
+<simpara>A platform that contains various OpenShift Container Platform Operators to install.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Operator Lifecycle Manager (OLM)</term>
+<listitem>
+<simpara>OLM helps you to install, update, and manage the lifecycle of Kubernetes native applications. OLM is an open source toolkit designed to manage Operators in an effective, automated, and scalable way.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>OSTree</term>
+<listitem>
+<simpara>An upgrade system for Linux-based operating systems that performs atomic upgrades of complete file system trees. OSTree tracks meaningful changes to the file system tree using an addressable object store, and is designed to complement existing package management systems.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>over-the-air (OTA) updates</term>
+<listitem>
+<simpara>The OpenShift Container Platform Update Service (OSUS) provides over-the-air updates to OpenShift Container Platform, including Red Hat Enterprise Linux CoreOS (RHCOS).</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>pod</term>
+<listitem>
+<simpara>One or more containers with shared resources, such as volume and IP addresses, running in your OpenShift Container Platform cluster. A pod is the smallest compute unit defined, deployed, and managed.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>private registry</term>
+<listitem>
+<simpara>OpenShift Container Platform can use any server implementing the container image registry API as a source of the image which allows the developers to push and pull their private container images.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>public registry</term>
+<listitem>
+<simpara>OpenShift Container Platform can use any server implementing the container image registry API as a source of the image which allows the developers to push and pull their public container images.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>RHEL OpenShift Container Platform Cluster Manager</term>
+<listitem>
+<simpara>A managed service where you can install, modify, operate, and upgrade your OpenShift Container Platform clusters.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>RHEL Quay Container Registry</term>
+<listitem>
+<simpara>A Quay.io container registry that serves most of the container images and Operators to OpenShift Container Platform clusters.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>replication controllers</term>
+<listitem>
+<simpara>An asset that indicates how many pod replicas are required to run at a time.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>role-based access control (RBAC)</term>
+<listitem>
+<simpara>A key security control to ensure that cluster users and workloads have only access to resources required to execute their roles.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>route</term>
+<listitem>
+<simpara>Routes expose a service to allow for network access to pods from users and applications outside the OpenShift Container Platform instance.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>scaling</term>
+<listitem>
+<simpara>The increasing or decreasing of resource capacity.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>service</term>
+<listitem>
+<simpara>A service exposes a running application on a set of pods.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Source-to-Image (S2I) image</term>
+<listitem>
+<simpara>An image created based on the programming language of the application source code in OpenShift Container Platform to deploy applications.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>storage</term>
+<listitem>
+<simpara>OpenShift Container Platform supports many types of storage for cloud providers. You can manage container storage for persistent and non-persistent data in an OpenShift Container Platform cluster.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Telemetry</term>
+<listitem>
+<simpara>A component to collect information such as size, health, and status of OpenShift Container Platform.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>template</term>
+<listitem>
+<simpara>A template describes a set of objects that can be parameterized and processed to produce a list of objects for creation by OpenShift Container Platform.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>web console</term>
+<listitem>
+<simpara>A user interface (UI) to manage OpenShift Container Platform.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>worker node</term>
+<listitem>
+<simpara>Nodes that are responsible for executing workloads for cluster users. Worker nodes are also known as compute nodes.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara>For more information on storage, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/storage/#index">OpenShift Container Platform storage</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>For more information on authentication, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/authentication_and_authorization/#index">OpenShift Container Platform authentication</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>For more information on Operator Lifecycle Manager (OLM), see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/operators/#olm-understanding-olm">OLM</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="sd-vs-ocp_architecture-overview">
+<title>Understanding how OpenShift Container Platform differs from OpenShift Container Platform</title>
+<simpara>OpenShift Container Platform uses the same code base as OpenShift Container Platform but is installed in an opinionated way to be optimized for performance, scalability, and security. OpenShift Container Platform is a fully managed service; therefore, many of the OpenShift Container Platform components and settings that you manually set up in OpenShift Container Platform are set up for you by default.</simpara>
+<simpara>Review the following differences between OpenShift Container Platform and a standard installation of OpenShift Container Platform on your own infrastructure:</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">OpenShift Container Platform</entry>
+<entry align="left" valign="top">OpenShift Container Platform</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>The customer installs and configures OpenShift Container Platform.</simpara></entry>
+<entry align="left" valign="top"><simpara>OpenShift Container Platform is installed through Red Hat OpenShift Cluster Manager and in a standardized way that is optimized for performance, scalability, and security.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Customers can choose their computing resources.</simpara></entry>
+<entry align="left" valign="top"><simpara>OpenShift Container Platform is hosted and managed in a public cloud (Amazon Web Services or Google Cloud) either owned by Red&#160;Hat or provided by the customer.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Customers have top-level administrative access to the infrastructure.</simpara></entry>
+<entry align="left" valign="top"><simpara>Customers have a built-in administrator group (<literal>dedicated-admin</literal>), though the top-level administration access is available when cloud accounts are provided by the customer.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Customers can use all supported features and configuration settings available in OpenShift Container Platform.</simpara></entry>
+<entry align="left" valign="top"><simpara>Some OpenShift Container Platform features and configuration settings might not be available or changeable in OpenShift Container Platform.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>You set up control plane components such as the API server and etcd on machines that get the <literal>control</literal> role. You can modify the control plane components, but are responsible for backing up, restoring, and making control plane data highly available.</simpara></entry>
+<entry align="left" valign="top"><simpara>Red Hat sets up the control plane and manages the control plane components for you. The control plane is highly available.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>You are responsible for updating the underlying infrastructure for the control plane and worker nodes. You can use the OpenShift web console to update OpenShift Container Platform versions.</simpara></entry>
+<entry align="left" valign="top"><simpara>Red&#160;Hat automatically notifies the customer when updates are available. You can manually or automatically schedule updates in OpenShift Cluster Manager.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Support is provided based on the terms of your Red Hat subscription or cloud provider.</simpara></entry>
+<entry align="left" valign="top"><simpara>Engineered, operated, and supported by Red Hat with a 99.95% uptime SLA and 24x7 coverage. For details, see <link xlink:href="https://www.redhat.com/licenses/Appendix-4-Red-Hat-Online-Services-20230523.pdf">Red Hat Enterprise Agreement Appendix 4 (Online Subscription Services)</link>.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="about-control-planes">
+<title>About the control plane</title>
+<simpara>The <link linkend="control-plane">control plane</link> manages the worker nodes and the pods in your cluster. You can configure nodes with the use of machine config pools (MCPs).
+MCPs are groups of machines, such as control plane components or user workloads, that are based on the resources that they handle.
+OpenShift Container Platform assigns different roles to hosts. These roles define the function of a machine in a cluster.
+The cluster contains definitions for the standard control plane and worker role types.</simpara>
+<simpara>You can use Operators to package, deploy, and manage services on the control plane.
+Operators are important components in OpenShift Container Platform because they provide the following services:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Perform health checks</simpara>
+</listitem>
+<listitem>
+<simpara>Provide ways to watch applications</simpara>
+</listitem>
+<listitem>
+<simpara>Manage over-the-air updates</simpara>
+</listitem>
+<listitem>
+<simpara>Ensure applications stay in the specified state</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="about-containerized-applications-for-developers">
+<title>About containerized applications for developers</title>
+<simpara>As a developer, you can use different tools, methods, and formats to <link linkend="understanding-development">develop your containerized application</link> based on your unique requirements, for example:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Use various build-tool, base-image, and registry options to build a simple container application.</simpara>
+</listitem>
+<listitem>
+<simpara>Use supporting components such as the software catalog and templates to develop your application.</simpara>
+</listitem>
+<listitem>
+<simpara>Package and deploy your application as an Operator.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>You can also create a Kubernetes manifest and store it in a Git repository.
+Kubernetes works on basic units called pods. A pod is a single instance of a running process in your cluster. Pods can contain one or more containers.
+You can create a service by grouping a set of pods and their access policies.
+Services provide permanent internal IP addresses and host names for other applications to use as pods are created and destroyed. Kubernetes defines workloads based on the type of your application.</simpara>
+</section>
+<section xml:id="about-admission-plug-ins">
+<title>About admission plugins</title>
+<simpara>You can use <link linkend="admission-plug-ins">admission plugins</link> to regulate how OpenShift Container Platform functions. After a resource request is authenticated and authorized, admission plugins intercept the resource request to the master API to validate resource requests and to ensure that scaling policies are adhered to. Admission plugins are used to enforce security policies, resource limitations, configuration requirements, and other settings.</simpara>
+</section>
+<section xml:id="architecture-about-cgroup-v2_architecture-overview">
+<title>About Linux cgroup version 2</title>
+<simpara>OpenShift Container Platform uses <link xlink:href="https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html">Linux control group version 2</link> (cgroup v2) in your cluster.</simpara>
+<simpara>cgroup v2 offers several improvements over cgroup v1, including a unified hierarchy, safer sub-tree delegation, features such as <link xlink:href="https://www.kernel.org/doc/html/latest/accounting/psi.html">Pressure Stall Information</link>, and enhanced resource management and isolation. However, cgroup v2 has different CPU, memory, and I/O management characteristics than cgroup v1. Therefore, some workloads might experience slight differences in memory or CPU usage on clusters that run cgroup v2.</simpara>
+<note>
+<itemizedlist>
+<listitem>
+<simpara>If you run third-party monitoring and security agents that depend on the cgroup file system, update the agents to a version that supports cgroup v2.</simpara>
+</listitem>
+<listitem>
+<simpara>If you have configured cgroup v2 and run cAdvisor as a stand-alone daemon set for monitoring pods and containers, update cAdvisor to v0.43.0 or later.</simpara>
+</listitem>
+<listitem>
+<simpara>If you deploy Java applications, use versions that fully support cgroup v2, such as the following packages:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>OpenJDK / HotSpot: jdk8u372, 11.0.16, 15 and later</simpara>
+</listitem>
+<listitem>
+<simpara>NodeJs 20.3.0 and later</simpara>
+</listitem>
+<listitem>
+<simpara>IBM Semeru Runtimes: jdk8u345-b01, 11.0.16.0, 17.0.4.0, 18.0.2.0 and later</simpara>
+</listitem>
+<listitem>
+<simpara>IBM SDK Java Technology Edition Version (IBM Java): 8.0.7.15 and later</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</note>
+</section>
+</chapter>
+<chapter xml:id="architecture">
+<title>OpenShift Container Platform architecture</title>
+<section xml:id="architecture-platform-introduction_architecture">
+<title>Introduction to OpenShift Container Platform</title>
+<simpara>OpenShift Container Platform is a platform for developing and running containerized applications. It is designed to allow applications and the data centers that support them to expand from just a few machines and applications to thousands of machines that serve millions of clients.</simpara>
+<simpara>With its foundation in Kubernetes, OpenShift Container Platform incorporates the same technology that serves as the engine for massive telecommunications, streaming video, gaming, banking, and other applications. Its implementation in open
+Red&#160;Hat technologies lets you extend your containerized applications beyond a single cloud to on-premise and multi-cloud environments.</simpara>
+<informalfigure>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/525-OpenShift-arch-012025.png"/>
+</imageobject>
+<textobject><phrase>Red Hat OpenShift Kubernetes Engine</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<section xml:id="architecture-kubernetes-introduction_architecture">
+<title>About Kubernetes</title>
+<simpara>Although container images and the containers that run from them are the
+primary building blocks for modern application development, to run them at scale
+requires a reliable and flexible distribution system. Kubernetes is the
+defacto standard for orchestrating containers.</simpara>
+<simpara>Kubernetes is an open source container orchestration engine for automating
+deployment, scaling, and management of containerized applications. The general
+concept of Kubernetes is fairly simple:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Start with one or more worker nodes to run the container workloads.</simpara>
+</listitem>
+<listitem>
+<simpara>Manage the deployment of those workloads from one or more control plane nodes.</simpara>
+</listitem>
+<listitem>
+<simpara>Wrap containers in a deployment unit called a pod. Using pods provides extra
+metadata with the container and offers the ability to group several containers
+in a single deployment entity.</simpara>
+</listitem>
+<listitem>
+<simpara>Create special kinds of assets. For example, services are represented by a
+set of pods and a policy that defines how they are accessed. This policy
+allows containers to connect to the services that they need even if they do not
+have the specific IP addresses for the services. Replication controllers are
+another special asset that indicates how many pod replicas are required to run
+at a time. You can use this capability to automatically scale your application
+to adapt to its current demand.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>In only a few years, Kubernetes has seen massive cloud and on-premise adoption.
+The open source development model allows many people to extend Kubernetes
+by implementing different technologies for components such as networking,
+storage, and authentication.</simpara>
+</section>
+<section xml:id="architecture-container-application-benefits_architecture">
+<title>The benefits of containerized applications</title>
+<simpara>Using containerized applications offers many advantages over using traditional deployment methods. Where applications were once expected to be installed on operating systems that included all their dependencies, containers let an application carry their dependencies with them. Creating containerized applications offers many benefits.</simpara>
+<section xml:id="operating-system-benefits_architecture">
+<title>Operating system benefits</title>
+<simpara>Containers use small, dedicated Linux operating systems without a kernel. Their file system, networking, cgroups, process tables, and namespaces are separate from the host Linux system, but the containers can integrate with the hosts seamlessly when necessary. Being based on Linux allows containers to use all the advantages that come with the open source development model of rapid innovation.</simpara>
+<simpara>Because each container uses a dedicated operating system, you can deploy applications that require conflicting software dependencies on the same host. Each container carries its own dependent software and manages its own interfaces, such as networking and file systems, so applications never need to compete for those assets.</simpara>
+</section>
+<section xml:id="deployment-scaling-benefits_architecture">
+<title>Deployment and scaling benefits</title>
+<simpara>If you employ rolling upgrades between major releases of your application, you can continuously improve your applications without downtime and still maintain compatibility with the current release.</simpara>
+<simpara>You can also deploy and test a new version of an application alongside the existing version. If the container passes your tests, simply deploy more new containers and remove the old ones. </simpara>
+<simpara>Since all the software dependencies for an application are resolved within the container itself, you can use a standardized operating system on each host in your data center. You do not need to configure a specific operating system for each application host. When your data center needs more capacity, you can deploy another generic host system.</simpara>
+<simpara>Similarly, scaling containerized applications is simple. OpenShift Container Platform offers a simple, standard way of scaling any containerized service. For example, if you build applications as a set of microservices rather than large, monolithic applications, you can scale the individual microservices individually to meet demand. This capability allows you to scale only the required services instead of the entire application, which can allow you to meet application demands while using minimal resources.</simpara>
+</section>
+</section>
+<section xml:id="architecture-platform-benefits_architecture">
+<title>OpenShift Container Platform overview</title>
+<simpara>OpenShift Container Platform provides enterprise-ready enhancements to Kubernetes, including the following enhancements:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Integrated Red Hat technology. Major components in OpenShift Container Platform come from Red&#160;Hat Enterprise Linux (RHEL) and related Red Hat technologies. OpenShift Container Platform benefits from the intense testing and certification initiatives for Red Hat&#8217;s enterprise quality software.</simpara>
+</listitem>
+<listitem>
+<simpara>Open source development model. Development is completed in the open, and the source code is available from public software repositories. This open collaboration fosters rapid innovation and development.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Although Kubernetes excels at managing your applications, it does not specify
+or manage platform-level requirements or deployment processes. Powerful and
+flexible platform management tools and processes are important benefits that
+OpenShift Container Platform 4.16 offers. The following sections describe some
+unique features and benefits of OpenShift Container Platform.</simpara>
+<section xml:id="architecture-custom-os_architecture">
+<title>Custom operating system</title>
+<simpara>OpenShift Container Platform uses Red&#160;Hat Enterprise Linux CoreOS (RHCOS) as the operating system for all control plane and worker nodes.</simpara>
+<simpara>RHCOS includes:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Ignition, which OpenShift Container Platform uses as a firstboot system configuration for initially bringing up and configuring machines.</simpara>
+</listitem>
+<listitem>
+<simpara>CRI-O, a Kubernetes native container runtime implementation that integrates closely with the operating system to deliver an efficient and optimized Kubernetes experience. CRI-O provides facilities for running, stopping, and restarting containers. It fully replaces the Docker Container Engine, which was used in OpenShift Container Platform 3.</simpara>
+</listitem>
+<listitem>
+<simpara>Kubelet, the primary node agent for Kubernetes that is responsible for
+launching and monitoring containers.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="architecture-platform-management_architecture">
+<title>Simplified update process</title>
+<simpara>Updating, or upgrading, OpenShift Container Platform is a simple, highly-automated process. Because OpenShift Container Platform completely controls the systems and services that run on each machine, including the operating system itself, from a central control plane, upgrades are designed to become automatic events.</simpara>
+</section>
+<section xml:id="architecture-key-features_architecture">
+<title>Other key features</title>
+<simpara>Operators are both the fundamental unit of the OpenShift Container Platform 4.16
+code base and a convenient way to deploy applications and software components
+for your applications to use. In OpenShift Container Platform, Operators serve as the platform foundation and remove the need for manual upgrades of operating systems and control plane applications. OpenShift Container Platform Operators such as the
+Cluster Version Operator and Machine Config Operator allow simplified,
+cluster-wide management of those critical components.</simpara>
+<simpara>Operator Lifecycle Manager (OLM) and the software catalog provide facilities for
+storing and distributing Operators to people developing and deploying applications.</simpara>
+<simpara>The Red&#160;Hat Quay Container Registry is a Quay.io container registry that serves
+most of the container images and Operators to OpenShift Container Platform clusters.
+Quay.io is a public registry version of Red&#160;Hat Quay that stores millions of images
+and tags.</simpara>
+<simpara>Other enhancements to Kubernetes in OpenShift Container Platform include improvements in
+software defined networking (SDN), authentication, log aggregation, monitoring,
+and routing. OpenShift Container Platform also offers a comprehensive web console and the
+custom OpenShift CLI (<literal>oc</literal>) interface.</simpara>
+</section>
+</section>
+</section>
+</chapter>
+<chapter xml:id="osd-architecture-models-gcp">
+<title>OpenShift Container Platform on Google Cloud architecture models</title>
+<simpara role="_abstract">With OpenShift Container Platform on Google Cloud, you can create clusters that are accessible over public or private networks.</simpara>
+<section xml:id="osd-gcp-architecture_osd-architecture-models-gcp">
+<title>Private OpenShift Container Platform on Google Cloud architecture on public and private networks</title>
+<simpara role="_abstract">You can customize the access patterns for your API server endpoint and Red Hat SRE management by choosing one of the following network configuration types:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Private cluster with Private Service Connect (PSC).</simpara>
+</listitem>
+<listitem>
+<simpara>Private cluster without PSC</simpara>
+</listitem>
+<listitem>
+<simpara>Public cluster</simpara>
+</listitem>
+</itemizedlist>
+<important>
+<simpara>Red Hat recommends using PSC when deploying a private OpenShift Container Platform cluster on Google Cloud. PSC ensures there is a secured, private connectivity between Red Hat infrastructure, Site Reliability Engineering (SRE), and private OpenShift clusters.</simpara>
+</important>
+</section>
+<section xml:id="osd-understanding-private-service-connect_osd-architecture-models-gcp">
+<title>Understanding Private Service Connect</title>
+<simpara role="_abstract">Private Service Connect (PSC), a capability of Google Cloud networking, enables private communication between services across different projects or organizations within Google Cloud. Users that implement PSC as part of their network connectivity can deploy OpenShift Container Platform clusters in a private and secured environment within Google Cloud without any public facing cloud resources.</simpara>
+<simpara>For more information about PSC, see <link xlink:href="https://cloud.google.com/vpc/docs/private-service-connect">Private Service Connect</link>.</simpara>
+<important>
+<simpara>PSC is only available on OpenShift Container Platform version 4.17 and later, and is only supported by the Customer Cloud Subscription (CCS) infrastructure type.</simpara>
+</important>
+<section xml:id="psc-architecture_osd-architecture-models-gcp">
+<title>Private Service Connect architecture</title>
+<simpara role="_abstract">The Private Service Connect (PSC) architecture includes producer services and consumer services. Using PSC, the consumers can access producer services privately from inside their VPC network. Similarly, it allows producers to host services in their own separate VPC networks and offer a private connect to their consumers.</simpara>
+<simpara>The following image depicts how Red HAT SREs and other internal resources access and support clusters created using PSC.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>A unique PSC service attachment is created for each OSD cluster in the customer Google Cloud project. The PSC service attachment points to the cluster API server load balancer created in the customer Google Cloud project.</simpara>
+</listitem>
+<listitem>
+<simpara>Similar to service attachments, a unique PSC endpoint is created in the Red Hat Management Google Cloud project for each OSD cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>A dedicated subnet for Google Cloud Private Service Connect is created in the cluster’s network within the customer Google Cloud project. This is a special subnet type where the producer services are published via PSC service attachments. This subnet is used to Source NAT (SNAT) incoming requests to the cluster API server. Additionally, the PSC subnet must be within the Machine CIDR range and cannot be used in more than one service attachment.</simpara>
+</listitem>
+<listitem>
+<simpara>Red Hat internal resources and SREs access private OSD clusters using the connectivity between a PSC endpoint and service attachment. Even though the traffic transits multiple VPC networks, it remains entirely within Google Cloud.</simpara>
+</listitem>
+<listitem>
+<simpara>Access to PSC service attachments is possible only via the Red Hat Management project.</simpara>
+</listitem>
+</itemizedlist>
+<figure>
+<title>PSC architecture overview</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/psc_arch_2.png"/>
+</imageobject>
+<textobject><phrase>PSC architecture overview</phrase></textobject>
+</mediaobject>
+</figure>
+</section>
+</section>
+<section xml:id="osd-private-psc-architecture-model-gcp_osd-architecture-models-gcp">
+<title>Private OpenShift Container Platform on Google Cloud with Private Service Connect architecture model</title>
+<simpara role="_abstract">With a private Google Cloud Private Service Connect (PSC) network configuration, your cluster API server endpoint and application routes are private. Public subnets or NAT gateways are not required in your VPC for egress.
+Red Hat SRE management access the cluster over the Google Cloud PSC-enabled private connectivity. The default ingress controller are private. Additional ingress controllers can be public or private. The following diagram shows network connectivity of a private cluster with PSC.</simpara>
+<figure>
+<title>OpenShift Container Platform on Google Cloud deployed on a private network with PSC</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/484_a_OpenShift_osd_gcp_private_psc_arch_0525.png"/>
+</imageobject>
+<textobject><phrase>Private with PSC architecture model</phrase></textobject>
+</mediaobject>
+</figure>
+</section>
+<section xml:id="osd-private-architecture-model_osd-architecture-models-gcp">
+<title>Private OpenShift Container Platform on Google Cloud without Private Service Connect (PSC) architecture model</title>
+<simpara role="_abstract">With a private network configuration, your cluster API server endpoint and application routes are private. Private OpenShift Container Platform on Google Cloud clusters use some public subnets, but no control plane or worker nodes are deployed in public subnets.</simpara>
+<important>
+<simpara>Red Hat recommends using Private Service Connect (PSC) when deploying a private OpenShift Container Platform cluster on Google Cloud. PSC ensures there is a secured, private connectivity between Red Hat infrastructure, Site Reliability Engineering (SRE), and private OpenShift clusters.</simpara>
+</important>
+<simpara>Red Hat SRE management access the cluster through a public load balancer endpoint that are restricted to Red Hat IPs. The API server endpoint is private. A separate Red Hat API server endpoint is public (but restricted to Red Hat trusted IP addresses). The default ingress controller can be public or private. The following image shows network connectivity of a private cluster without Private Service Connect (PSC).</simpara>
+<figure>
+<title>OpenShift Container Platform on Google Cloud deployed on a private network without PSC</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/484_b_Openshift_osd_gcp_private_no_psc_arch_0525.png"/>
+</imageobject>
+<textobject><phrase>Private without PSC architecture model</phrase></textobject>
+</mediaobject>
+</figure>
+</section>
+<section xml:id="osd-public-architecture-model-gcp_osd-architecture-models-gcp">
+<title>Public OpenShift Container Platform on Google Cloud architecture model</title>
+<simpara role="_abstract">With a public network configuration, your cluster API server endpoint and application routes are internet-facing. The default ingress controller can be public or private. The following image shows the network connectivity of a public cluster.</simpara>
+<figure>
+<title>OpenShift Container Platform on Google Cloud deployed on a public network</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/484_c_Openshift_osd_gcp_public_arch_0525.png"/>
+</imageobject>
+<textobject><phrase>Public architecture model</phrase></textobject>
+</mediaobject>
+</figure>
+</section>
+<section xml:id="osd-architecture-models-additional-resources" role="_additional-resources">
+<title>Additional resources</title>
+<itemizedlist>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/openshift_dedicated_clusters_on_google_cloud/#creating-a-gcp-psc-enabled-private-cluster">Private Service Connect overview</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/openshift_dedicated_clusters_on_google_cloud/#osd-creating-a-cluster-on-gcp-with-workload-identity-federation">Creating a cluster on Google Cloud with Workload Identity Federation authentication</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/openshift_dedicated_clusters_on_google_cloud/#osd-creating-a-cluster-on-gcp-sa">Creating a cluster on Google Cloud with Service Account authentication</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="control-plane">
+<title>Control plane architecture</title>
+<simpara>The <emphasis>control plane</emphasis>, which is composed of control plane machines, manages the OpenShift Container Platform cluster.
+The control plane machines manage workloads on the compute machines, which are also known as worker machines.
+The cluster itself manages all upgrades to the machines by the actions of the Cluster Version Operator (CVO),
+and a set of individual Operators.</simpara>
+<section xml:id="architecture-machine-roles_control-plane">
+<title>Machine roles in OpenShift Container Platform</title>
+<simpara>OpenShift Container Platform assigns hosts different roles. These roles define the function of the machine within the cluster. The cluster contains definitions for the standard <literal>master</literal> and <literal>worker</literal> role types.</simpara>
+<section xml:id="defining-workers_control-plane">
+<title>Cluster workers</title>
+<simpara>In a Kubernetes cluster, worker nodes run and manage the actual workloads requested by Kubernetes users. The worker nodes advertise their capacity and the scheduler, which is a control plane service, determines on which nodes to start pods and containers. The following important services run on each worker node:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>CRI-O, which is the container engine.</simpara>
+</listitem>
+<listitem>
+<simpara>kubelet, which is the service that accepts and fulfills requests for running and stopping container workloads.</simpara>
+</listitem>
+<listitem>
+<simpara>A service proxy, which manages communication for pods across workers.</simpara>
+</listitem>
+<listitem>
+<simpara>The crun or runC low-level container runtime, which creates and runs containers.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>For information about how to enable runC instead of the default crun, see the documentation for creating a <literal>ContainerRuntimeConfig</literal> CR.</simpara>
+</note>
+<simpara>In OpenShift Container Platform, compute machine sets control the compute machines, which are assigned the <literal>worker</literal> machine role. Machines with the <literal>worker</literal> role drive compute workloads that are governed by a specific machine pool that autoscales them. Because OpenShift Container Platform has the capacity to support multiple machine types, the machines with the <literal>worker</literal> role are classed as <emphasis>compute</emphasis> machines. In this release, the terms <emphasis>worker machine</emphasis> and <emphasis>compute machine</emphasis> are used interchangeably because the only default type of compute machine is the worker machine. In future versions of OpenShift Container Platform, different types of compute machines, such as infrastructure machines, might be used by default.</simpara>
+<note>
+<simpara>Compute machine sets are groupings of compute machine resources under the <literal>machine-api</literal> namespace. Compute machine sets are configurations that are designed to start new compute machines on a specific cloud provider. Conversely, machine config pools (MCPs) are part of the Machine Config Operator (MCO) namespace. An MCP is used to group machines together so the MCO can manage their configurations and facilitate their upgrades.</simpara>
+</note>
+</section>
+<section xml:id="defining-masters_control-plane">
+<title>Cluster control planes</title>
+<simpara>In a Kubernetes cluster, the <emphasis>master</emphasis> nodes run services that are required to control the Kubernetes cluster. In OpenShift Container Platform, the control plane is comprised of control plane machines that have a <literal>master</literal> machine role. They contain more than just the Kubernetes services for managing the OpenShift Container Platform cluster.</simpara>
+<simpara>For most OpenShift Container Platform clusters, control plane machines are defined by a series of standalone machine API resources.
+Control planes are managed with control plane machine sets.
+Extra controls apply to control plane machines to prevent you from deleting all of the control plane machines and breaking your cluster.</simpara>
+<note>
+<simpara>Single availability zone clusters and multiple availability zone clusters require a minimum of three control plane nodes.</simpara>
+</note>
+<simpara>Services that fall under the Kubernetes category on the control plane include the Kubernetes API server, etcd, the Kubernetes controller manager, and the Kubernetes scheduler.</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>Kubernetes services that run on the control plane</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="33.3333*"/>
+<colspec colname="col_2" colwidth="66.6667*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Component</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Kubernetes API server</simpara></entry>
+<entry align="left" valign="top"><simpara>The Kubernetes API server validates and configures the data for pods, services,
+and replication controllers. It also provides a focal point for the shared state of the cluster.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>etcd</simpara></entry>
+<entry align="left" valign="top"><simpara>etcd stores the persistent control plane state while other components watch etcd for
+changes to bring themselves into the specified state.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Kubernetes controller manager</simpara></entry>
+<entry align="left" valign="top"><simpara>The Kubernetes controller manager watches etcd for changes to objects such as
+replication, namespace, and service account controller objects, and then uses the
+API to enforce the specified state. Several such processes create a cluster with
+one active leader at a time.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Kubernetes scheduler</simpara></entry>
+<entry align="left" valign="top"><simpara>The Kubernetes scheduler watches for newly created pods without an assigned node and selects the best node to host the pod.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara>There are also OpenShift services that run on the control plane, which include the OpenShift API server, OpenShift controller manager, OpenShift OAuth API server, and OpenShift OAuth server.</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>OpenShift services that run on the control plane</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="33.3333*"/>
+<colspec colname="col_2" colwidth="66.6667*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Component</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>OpenShift API server</simpara></entry>
+<entry align="left" valign="top"><simpara>The OpenShift API server validates and configures the data for OpenShift resources, such as projects, routes, and templates.</simpara><simpara>The OpenShift API server is managed by the OpenShift API Server Operator.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>OpenShift controller manager</simpara></entry>
+<entry align="left" valign="top"><simpara>The OpenShift controller manager watches etcd for changes to OpenShift objects, such as project, route, and template controller objects, and then uses the API to enforce the specified state.</simpara><simpara>The OpenShift controller manager is managed by the OpenShift Controller Manager Operator.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>OpenShift OAuth API server</simpara></entry>
+<entry align="left" valign="top"><simpara>The OpenShift OAuth API server validates and configures the data to authenticate to OpenShift Container Platform, such as users, groups, and OAuth tokens.</simpara><simpara>The OpenShift OAuth API server is managed by the Cluster Authentication Operator.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>OpenShift OAuth server</simpara></entry>
+<entry align="left" valign="top"><simpara>Users request tokens from the OpenShift OAuth server to authenticate themselves to the API.</simpara><simpara>The OpenShift OAuth server is managed by the Cluster Authentication Operator.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara>Some of these services on the control plane machines run as systemd services, while others run as static pods.</simpara>
+<simpara>Systemd services are appropriate for services that you need to always come up on that particular system shortly after it starts. For control plane machines, those include sshd, which allows remote login. It also includes services such as:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The CRI-O container engine (crio), which runs and manages the containers. OpenShift Container Platform 4.16 uses CRI-O instead of the Docker Container Engine.</simpara>
+</listitem>
+<listitem>
+<simpara>Kubelet (kubelet), which accepts requests for managing containers on the machine from control plane services.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>CRI-O and Kubelet must run directly on the host as systemd services because they need to be running before you can run other containers.</simpara>
+<simpara>The <literal>installer-*</literal> and <literal>revision-pruner-*</literal> control plane pods must run with root permissions because they write to the <literal>/etc/kubernetes</literal> directory, which is owned by the root user. These pods are in the following namespaces:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>openshift-etcd</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>openshift-kube-apiserver</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>openshift-kube-controller-manager</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>openshift-kube-scheduler</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="operators-overview_control-plane">
+<title>Operators in OpenShift Container Platform</title>
+<simpara>Operators are among the most important components of OpenShift Container Platform. They are the preferred method of packaging, deploying, and managing services on the control plane. They can also provide advantages to applications that users run.</simpara>
+<simpara>Operators integrate with Kubernetes APIs and CLI tools such as <literal>kubectl</literal> and the OpenShift CLI (<literal>oc</literal>). They provide the means of monitoring applications, performing health checks, managing over-the-air (OTA) updates, and ensuring that applications remain in your specified state.</simpara>
+<simpara>Operators also offer a more granular configuration experience. You configure each component by modifying the API that the Operator exposes instead of modifying a global configuration file.</simpara>
+<simpara>Because CRI-O and the Kubelet run on every node, almost every other cluster function can be managed on the control plane by using Operators. Components that are added to the control plane by using Operators include critical networking and credential services.</simpara>
+<simpara>While both follow similar Operator concepts and goals, Operators in OpenShift Container Platform are managed by two different systems, depending on their purpose:</simpara>
+<variablelist>
+<varlistentry>
+<term>Cluster Operators</term>
+<listitem>
+<simpara>Managed by the Cluster Version Operator (CVO) and installed by default to perform cluster functions.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Optional add-on Operators</term>
+<listitem>
+<simpara>Managed by Operator Lifecycle Manager (OLM) and can be made accessible for users to run in their applications. Also known as <emphasis>OLM-based Operators</emphasis>.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<section xml:id="olm-operators_control-plane">
+<title>Add-on Operators</title>
+<simpara>Operator Lifecycle Manager (OLM) and the software catalog are default components in OpenShift Container Platform that help manage Kubernetes-native applications as Operators. Together they provide the system for discovering, installing, and managing the optional add-on Operators available on the cluster.</simpara>
+<simpara>Using the software catalog in the OpenShift Container Platform web console,
+administrators with the <literal>dedicated-admin</literal> role
+and authorized users can select Operators to install from catalogs of Operators. After installing an Operator from the software catalog, it can be made available globally or in specific namespaces to run in user applications.</simpara>
+<simpara>Default catalog sources are available that include Red Hat Operators, certified Operators, and community Operators.
+Administrators with the <literal>dedicated-admin</literal> role
+can also add their own custom catalog sources, which can contain a custom set of Operators.</simpara>
+<note>
+<simpara>All Operators listed in the Operator Hub marketplace should be available for installation. These Operators are considered customer workloads, and are not monitored by Red Hat Site Reliability Engineering (SRE).</simpara>
+</note>
+<note>
+<simpara>OLM does not manage the cluster Operators that comprise the OpenShift Container Platform architecture.</simpara>
+</note>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/operators/#olm-understanding-olm">Operator Lifecycle Manager (OLM) concepts and resources</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/operators/#olm-understanding-software-catalog">Understanding the software catalog</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="etcd-overview_control-plane">
+<title>Overview of etcd</title>
+<simpara>etcd is a consistent, distributed key-value store that holds small amounts of data that can fit entirely in memory. Although etcd is a core component of many projects, it is the primary data store for Kubernetes, which is the standard system for container orchestration.</simpara>
+<section xml:id="etcd-benefits_control-plane">
+<title>Benefits of using etcd</title>
+<simpara>By using etcd, you can benefit in several ways:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Maintain consistent uptime for your cloud-native applications, and keep them working even if individual servers fail</simpara>
+</listitem>
+<listitem>
+<simpara>Store and replicate all cluster states for Kubernetes</simpara>
+</listitem>
+<listitem>
+<simpara>Distribute configuration data to provide redundancy and resiliency for the configuration of nodes</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="etcd-architecture_control-plane">
+<title>How etcd works</title>
+<simpara>To ensure a reliable approach to cluster configuration and management, etcd uses the etcd Operator. The Operator simplifies the use of etcd on a Kubernetes container platform like OpenShift Container Platform. With the etcd Operator, you can create or delete etcd members, resize clusters, perform backups, and upgrade etcd.</simpara>
+<simpara>The etcd Operator observes, analyzes, and acts:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>It observes the cluster state by using the Kubernetes API.</simpara>
+</listitem>
+<listitem>
+<simpara>It analyzes differences between the current state and the state that you want.</simpara>
+</listitem>
+<listitem>
+<simpara>It fixes the differences through the etcd cluster management APIs, the Kubernetes API, or both.</simpara>
+</listitem>
+</orderedlist>
+<simpara>etcd holds the cluster state, which is constantly updated. This state is continuously persisted, which leads to a high number of small changes at high frequency.
+As a result, Red Hat Site Reliability Engineering (SRE) backs the etcd cluster member with fast, low-latency I/O.</simpara>
+</section>
+</section>
+<section xml:id="cpmso-feat-auto-update_control-plane">
+<title>Automatic updates to the control plane configuration</title>
+<simpara>On OpenShift Container Platform clusters, control plane machine sets automatically propagate changes to your control plane configuration.
+When a control plane machine needs to be replaced, the Control Plane Machine Set Operator creates a replacement machine based on the configuration specified by the <literal>ControlPlaneMachineSet</literal> custom resource (CR). When the new control plane machine is ready, the Operator safely drains and terminates the old control plane machine in a way that mitigates any potential negative effects on cluster API or workload availability.</simpara>
+<important>
+<simpara>You cannot request that control plane machine replacements happen only during maintenance windows. The Control Plane Machine Set Operator acts to ensure cluster stability. Waiting for a maintenance window could result in cluster stability being compromised.</simpara>
+</important>
+<simpara>A control plane machine can be marked for replacement at any time, typically because the machine has fallen out of spec or entered an unhealthy state. Such replacements are a normal part of a cluster&#8217;s lifecycle and not a cause for concern. SRE will be alerted to the issue automatically if any part of a control plane node replacement fails.</simpara>
+<note>
+<simpara>Depending on when the OpenShift Container Platform cluster was originally created, the introduction of control plane machine sets might leave one or two control plane nodes with labels or machine names that are inconsistent with the other control plane nodes. For example <literal>clustername-master-0</literal>, <literal>clustername-master-1</literal>,and <literal>clustername-master-2-abcxyz</literal>. Such naming inconsistencies do not affect the workings of the cluster and are not a cause for concern.</simpara>
+</note>
+</section>
+<section xml:id="cpmso-control-plane-recovery_control-plane">
+<title>Recovery of failed control plane machines</title>
+<simpara>The Control Plane Machine Set Operator automates the recovery of control plane machines. When a control plane machine is deleted, the Operator creates a replacement with the configuration that is specified in the <literal>ControlPlaneMachineSet</literal> custom resource (CR).</simpara>
+</section>
+</chapter>
+<chapter xml:id="nvidia-gpu-architecture-overview">
+<title>NVIDIA GPU architecture overview</title>
+<simpara>NVIDIA supports the use of graphics processing unit (GPU) resources on OpenShift Container Platform. OpenShift Container Platform is a security-focused and hardened Kubernetes platform developed and supported by Red Hat for deploying and managing Kubernetes clusters at scale. OpenShift Container Platform includes enhancements to Kubernetes so that users can easily configure and use NVIDIA GPU resources to accelerate workloads.</simpara>
+<simpara>The NVIDIA GPU Operator leverages the Operator framework within OpenShift Container Platform to manage the full lifecycle of NVIDIA software components required to run GPU-accelerated workloads.</simpara>
+<simpara>These components include the NVIDIA drivers (to enable CUDA), the Kubernetes device plugin for GPUs, the NVIDIA Container Toolkit, automatic node tagging using GPU feature discovery (GFD), DCGM-based monitoring, and others.</simpara>
+<note>
+<simpara>The NVIDIA GPU Operator is only supported by NVIDIA. For more information about obtaining support from NVIDIA, see <link xlink:href="https://access.redhat.com/solutions/5174941">Obtaining Support from NVIDIA</link>.</simpara>
+</note>
+<section xml:id="nvidia-gpu-prerequisites_nvidia-gpu-architecture-overview">
+<title>NVIDIA GPU prerequisites</title>
+<itemizedlist>
+<listitem>
+<simpara>A working OpenShift cluster with at least one GPU worker node.</simpara>
+</listitem>
+<listitem>
+<simpara>Access to the OpenShift cluster as a <literal>cluster-admin</literal> to perform the required steps.</simpara>
+</listitem>
+<listitem>
+<simpara>OpenShift CLI (<literal>oc</literal>) is installed.</simpara>
+</listitem>
+<listitem>
+<simpara>The node feature discovery (NFD) Operator is installed and a <literal>nodefeaturediscovery</literal> instance is created.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nvidia-gpu-csps_nvidia-gpu-architecture-overview">
+<title>GPUs and OpenShift Container Platform</title>
+<simpara>You can deploy OpenShift Container Platform on NVIDIA GPU instance types.</simpara>
+<simpara>It is important that this compute instance is a GPU-accelerated compute instance and that the GPU type matches the list of supported GPUs from NVIDIA AI Enterprise. For example, T4, V100, and A100 are part of this list.</simpara>
+<simpara>You can choose one of the following methods to access the containerized GPUs:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>GPU passthrough to access and use GPU hardware within a virtual machine (VM).</simpara>
+</listitem>
+<listitem>
+<simpara>GPU (vGPU) time slicing when the entire GPU is not required.</simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://docs.nvidia.com/ai-enterprise/deployment-guide-cloud/0.1.0/aws-redhat-openshift.html">Red Hat Openshift in the Cloud</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nvidia-gpu-sharing-methods_nvidia-gpu-architecture-overview">
+<title>GPU sharing methods</title>
+<simpara>Red&#160;Hat and NVIDIA have developed GPU concurrency and sharing mechanisms to simplify GPU-accelerated computing on an enterprise-level OpenShift Container Platform cluster.</simpara>
+<simpara>Applications typically have different compute requirements that can leave GPUs underutilized. Providing the right amount of compute resources for each workload is critical to reduce deployment cost and maximize GPU utilization.</simpara>
+<simpara>Concurrency mechanisms for improving GPU utilization exist that range from programming model APIs to system software and hardware partitioning, including virtualization. The following list shows the GPU concurrency mechanisms:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Compute Unified Device Architecture (CUDA) streams</simpara>
+</listitem>
+<listitem>
+<simpara>Time-slicing</simpara>
+</listitem>
+<listitem>
+<simpara>CUDA Multi-Process Service (MPS)</simpara>
+</listitem>
+<listitem>
+<simpara>Multi-instance GPU (MIG)</simpara>
+</listitem>
+<listitem>
+<simpara>Virtualization with vGPU</simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://developer.nvidia.com/blog/improving-gpu-utilization-in-kubernetes/">Improving GPU Utilization</link></simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="nvidia-gpu-cuda-streams_nvidia-gpu-architecture-overview">
+<title>CUDA streams</title>
+<simpara>Compute Unified Device Architecture (CUDA) is a parallel computing platform and programming model developed by NVIDIA for general computing on GPUs.</simpara>
+<simpara>A stream is a sequence of operations that executes in issue-order on the GPU. CUDA commands are typically executed sequentially in a default stream and a task does not start until a preceding task has completed.</simpara>
+<simpara>Asynchronous processing of operations across different streams allows for parallel execution of tasks. A task issued in one stream runs before, during, or after another task is issued into another stream. This allows the GPU to run multiple tasks simultaneously in no prescribed order, leading to improved performance.</simpara>
+<itemizedlist>
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#asynchronous-concurrent-execution">Asynchronous Concurrent Execution</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nvidia-gpu-time-slicing_nvidia-gpu-architecture-overview">
+<title>Time-slicing</title>
+<simpara>GPU time-slicing interleaves workloads scheduled on overloaded GPUs when you are running multiple CUDA applications.</simpara>
+<simpara>You can enable time-slicing of GPUs on Kubernetes by defining a set of replicas for a GPU, each of which can be independently distributed to a pod to run workloads on. Unlike multi-instance GPU (MIG), there is no memory or fault isolation between replicas, but for some workloads this is better than not sharing at all. Internally, GPU time-slicing is used to multiplex workloads from replicas of the same underlying GPU.</simpara>
+<simpara>You can apply a cluster-wide default configuration for time-slicing. You can also apply node-specific configurations. For example, you can apply a time-slicing configuration only to nodes with Tesla T4 GPUs and not modify nodes with other GPU models.</simpara>
+<simpara>You can combine these two approaches by applying a cluster-wide default configuration and then labeling nodes to give those nodes a node-specific configuration.</simpara>
+</section>
+<section xml:id="nvidia-gpu-cuda-mps_nvidia-gpu-architecture-overview">
+<title>CUDA Multi-Process Service</title>
+<simpara>CUDA Multi-Process Service (MPS) allows a single GPU to use multiple CUDA processes. The processes run in parallel on the GPU, eliminating saturation of the GPU compute resources. MPS also enables concurrent execution, or overlapping, of kernel operations and memory copying from different processes to
+enhance utilization.</simpara>
+<itemizedlist>
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://docs.nvidia.com/deploy/mps/index.html">CUDA MPS</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nvidia-gpu-mig-gpu_nvidia-gpu-architecture-overview">
+<title>Multi-instance GPU</title>
+<simpara>Using Multi-instance GPU (MIG), you can split GPU compute units and memory into multiple MIG instances. Each of these instances represents a standalone GPU device from a system perspective and can be connected to any application, container, or virtual machine running on the node. The software that uses the GPU treats each of these MIG instances as an individual GPU.</simpara>
+<simpara>MIG is useful when you have an application that does not require the full power of an entire GPU. The MIG feature of the new NVIDIA Ampere architecture enables you to split your hardware resources into multiple GPU instances, each of which is available to the operating system as an independent CUDA-enabled GPU.</simpara>
+<simpara>NVIDIA GPU Operator version 1.7.0 and higher provides MIG support for the A100 and A30 Ampere cards. These GPU instances are designed to support up to seven multiple independent CUDA applications so that they operate completely isolated with dedicated hardware resources.</simpara>
+<itemizedlist>
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://docs.nvidia.com/datacenter/tesla/mig-user-guide/">NVIDIA Multi-Instance GPU User Guide</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="nvidia-gpu-virtualization-with-gpu_nvidia-gpu-architecture-overview">
+<title>Virtualization with vGPU</title>
+<simpara>Virtual machines (VMs) can directly access a single physical GPU using NVIDIA vGPU. You can create virtual GPUs that can be shared by VMs across the enterprise and accessed by other devices.</simpara>
+<simpara>This capability combines the power of GPU performance with the management and security benefits provided by vGPU. Additional benefits provided by vGPU includes proactive management and monitoring for your VM environment, workload balancing for mixed VDI and compute workloads, and resource sharing across multiple VMs.</simpara>
+<itemizedlist>
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://www.nvidia.com/en-us/data-center/virtual-solutions/">Virtual GPUs</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="nvidia-gpu-features_nvidia-gpu-architecture-overview">
+<title>NVIDIA GPU features for OpenShift Container Platform</title>
+<variablelist>
+<varlistentry>
+<term>NVIDIA Container Toolkit</term>
+<listitem>
+<simpara>NVIDIA Container Toolkit enables you to create and run GPU-accelerated containers. The toolkit includes a container runtime library and utilities to automatically configure containers to use NVIDIA GPUs.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>NVIDIA AI Enterprise</term>
+<listitem>
+<simpara>NVIDIA AI Enterprise is an end-to-end, cloud-native suite of AI and data analytics software optimized, certified, and supported with NVIDIA-Certified systems.</simpara>
+<simpara>NVIDIA AI Enterprise includes support for Red Hat OpenShift Container Platform. The following installation methods are supported:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>OpenShift Container Platform on bare metal or VMware vSphere with GPU Passthrough.</simpara>
+</listitem>
+<listitem>
+<simpara>OpenShift Container Platform on VMware vSphere with NVIDIA vGPU.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>GPU Feature Discovery</term>
+<listitem>
+<simpara>NVIDIA GPU Feature Discovery for Kubernetes is a software component that enables you to automatically generate labels for the GPUs available on a node. GPU Feature Discovery uses node feature discovery (NFD) to perform this labeling.</simpara>
+<simpara>The Node Feature Discovery Operator (NFD) manages the discovery of hardware features and configurations in an OpenShift Container Platform cluster by labeling nodes with hardware-specific information. NFD labels the host with node-specific attributes, such as PCI cards, kernel, OS version, and so on.</simpara>
+<simpara>You can find the NFD Operator in the Operator Hub by searching for “Node Feature Discovery”.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>NVIDIA GPU Operator with OpenShift Virtualization</term>
+<listitem>
+<simpara>Up until this point, the GPU Operator only provisioned worker nodes to run GPU-accelerated containers. Now, the GPU Operator can also be used to provision worker nodes for running GPU-accelerated virtual machines (VMs).</simpara>
+<simpara>You can configure the GPU Operator to deploy different software components to worker nodes depending on which GPU workload is configured to run on those nodes.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>GPU Monitoring dashboard</term>
+<listitem>
+<simpara>You can install a monitoring dashboard to display GPU usage information on the cluster <emphasis role="strong">Observe</emphasis> page in the OpenShift Container Platform web console. GPU utilization information includes the number of available GPUs, power consumption (in watts), temperature (in degrees Celsius), utilization (in percent), and other metrics for each GPU.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://docs.nvidia.com/ngc/ngc-deploy-on-premises/nvidia-certified-systems/index.html">NVIDIA-Certified Systems</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.nvidia.com/ai-enterprise/index.html#deployment-guides">NVIDIA AI Enterprise</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/overview.html#">NVIDIA Container Toolkit</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/enable-gpu-monitoring-dashboard.html">Enabling the GPU Monitoring Dashboard</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/mig-ocp.html">MIG Support in OpenShift Container Platform</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/time-slicing-gpus-in-openshift.html">Time-slicing NVIDIA GPUs in OpenShift</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/mirror-gpu-ocp-disconnected.html">Deploy GPU Operators in a disconnected or airgapped environment</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="understanding-development">
+<title>Understanding OpenShift Container Platform development</title>
+<simpara>To fully leverage the capability of containers when developing and running
+enterprise-quality applications, ensure your environment is supported by tools
+that allow containers to be:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Created as discrete microservices that can be connected to other
+containerized, and non-containerized, services. For example, you might want to
+join your application with a database or attach a monitoring application to it.</simpara>
+</listitem>
+<listitem>
+<simpara>Resilient, so if a server crashes or needs to go down for maintenance or to be
+decommissioned, containers can start on another machine.</simpara>
+</listitem>
+<listitem>
+<simpara>Automated to pick up code changes automatically and then start and deploy new
+versions of themselves.</simpara>
+</listitem>
+<listitem>
+<simpara>Scaled up, or replicated, to have more instances serving clients as demand
+increases and then spun down to fewer instances as demand declines.</simpara>
+</listitem>
+<listitem>
+<simpara>Run in different ways, depending on the type of application. For example, one
+application might run once a month to produce a report and then exit. Another
+application might need to run constantly and be highly available to clients.</simpara>
+</listitem>
+<listitem>
+<simpara>Managed so you can watch the state of your application and react when
+something goes wrong.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Containers’ widespread acceptance, and the resulting requirements for tools and
+methods to make them enterprise-ready, resulted in many options for them.</simpara>
+<simpara>The rest of this section explains options for
+assets you can create when you build and deploy containerized Kubernetes
+applications in OpenShift Container Platform. It also describes which approaches you might
+use for different kinds of applications and development requirements.</simpara>
+<section xml:id="developing-containerized-applications">
+<title>About developing containerized applications</title>
+<simpara>You can approach application development with containers in many ways, and
+different approaches might be more appropriate for different situations. To
+illustrate some of this variety, the series of approaches that is presented
+starts with developing a single container and ultimately deploys that container
+as a mission-critical application for a large enterprise. These approaches
+show different tools, formats, and methods that you can employ with containerized
+application development. This topic describes:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Building a simple container and storing it in a registry</simpara>
+</listitem>
+<listitem>
+<simpara>Creating a Kubernetes manifest and saving it to a Git repository</simpara>
+</listitem>
+<listitem>
+<simpara>Making an Operator to share your application with others</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="building-simple-container">
+<title>Building a simple container</title>
+<simpara>You have an idea for an application and you want to containerize it.</simpara>
+<simpara>First you require a tool for building a container, like buildah or docker,
+and a file that describes what goes in your container, which is typically a
+<link xlink:href="https://docs.docker.com/engine/reference/builder/">Dockerfile</link>.</simpara>
+<simpara>Next, you require a location to push the resulting container image so you can
+pull it to run anywhere you want it to run. This location is a container
+registry.</simpara>
+<simpara>Some examples of each of these components are installed by default on most
+Linux operating systems, except for the Dockerfile, which you provide yourself.</simpara>
+<simpara>The following diagram displays the process of building and pushing an image:</simpara>
+<figure>
+<title>Create a simple containerized application and push it to a registry</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/create-push-app.png"/>
+</imageobject>
+<textobject><phrase>Creating and pushing a containerized application</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>If you use a computer that runs Red&#160;Hat Enterprise Linux (RHEL) as the operating
+system, the process of creating a containerized application requires the
+following steps:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Install container build tools: RHEL contains a set of tools that includes
+podman, buildah, and skopeo that you use to build and manage containers.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a Dockerfile to combine base image and software: Information about
+building your container goes into a file that is named <literal>Dockerfile</literal>. In that
+file, you identify the base image you build from, the software packages you
+install, and the software you copy into the container. You also identify
+parameter values like network ports that you expose outside the container and
+volumes that you mount inside the container. Put your Dockerfile and the
+software you want to containerize in a directory on your RHEL system.</simpara>
+</listitem>
+<listitem>
+<simpara>Run buildah or docker build: Run the <literal>buildah build-using-dockerfile</literal> or
+the <literal>docker build</literal> command to pull your chosen base image to the local system and
+create a container image that is stored locally. You can also build container images
+without a Dockerfile by using buildah.</simpara>
+</listitem>
+<listitem>
+<simpara>Tag and push to a registry: Add a tag to your new container image that
+identifies the location of the registry in which you want to store and share
+your container. Then push that image to the registry by running the
+<literal>podman push</literal> or <literal>docker push</literal> command.</simpara>
+</listitem>
+<listitem>
+<simpara>Pull and run the image: From any system that has a container client tool,
+such as podman or docker, run a command that identifies your new image.
+For example, run the <literal>podman run &lt;image_name&gt;</literal> or <literal>docker run &lt;image_name&gt;</literal>
+command. Here <literal>&lt;image_name&gt;</literal> is the name of your new container image, which
+resembles <literal>quay.io/myrepo/myapp:latest</literal>. The registry might require credentials
+to push and pull images.</simpara>
+</listitem>
+</orderedlist>
+<section xml:id="container-build-tool-options">
+<title>Container build tool options</title>
+<simpara>Building and managing containers with buildah, podman, and skopeo results in industry standard container images that include features specifically tuned for deploying containers in OpenShift Container Platform or other Kubernetes environments. These tools are daemonless and can run without root privileges, requiring less overhead to run them.</simpara>
+<important>
+<simpara>Support for Docker Container Engine as a container runtime is deprecated in Kubernetes 1.20 and will be removed in a future release. However, Docker-produced images will continue to work in your cluster with all runtimes, including CRI-O. For more information, see the <link xlink:href="https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/">Kubernetes blog announcement</link>.</simpara>
+</important>
+<simpara>When you ultimately run your containers in OpenShift Container Platform, you use the
+<link xlink:href="https://cri-o.io/">CRI-O</link> container engine. CRI-O runs on every worker and
+control plane machine in an OpenShift Container Platform cluster, but CRI-O is not yet supported as
+a standalone runtime outside of OpenShift Container Platform.</simpara>
+</section>
+<section xml:id="base-image-options">
+<title>Base image options</title>
+<simpara>The base image you choose to build your application on contains a set of
+software that resembles a Linux system to your application. When you build your
+own image, your software is placed into that file system and sees that file
+system as though it were looking at its operating system. Choosing this base
+image has major impact on how secure, efficient and upgradeable your container
+is in the future.</simpara>
+<simpara>Red Hat provides a new set of base images referred to as
+<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/getting_started_with_containers/index#using_red_hat_base_container_images_standard_and_minimal">Red Hat Universal Base Images</link> (UBI).
+These images are based on Red Hat Enterprise Linux and are similar to base
+images that Red Hat has offered in the past, with one major difference: they
+are freely redistributable without a Red Hat subscription. As a result, you can
+build your application on UBI images without having to worry about how they
+are shared or the need to create different images for different environments.</simpara>
+<simpara>These UBI images have standard, init, and minimal versions. You can also use the
+<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_software_collections/3/html-single/using_red_hat_software_collections_container_images/index">Red Hat Software Collections</link>
+images as a foundation for applications that rely on specific runtime
+environments such as Node.js, Perl, or Python. Special versions of some of
+these runtime base images are referred to as Source-to-Image (S2I) images. With
+S2I images, you can insert your code into a base image environment that is ready
+to run that code.</simpara>
+<simpara>S2I images are available for you to use directly from the OpenShift Container Platform web UI. In the Developer perspective, navigate to the <emphasis role="strong">+Add</emphasis> view and in the <emphasis role="strong">Developer Catalog</emphasis> tile, view all of the available services in the Developer Catalog.</simpara>
+<figure>
+<title>Choose S2I base images for apps that need specific runtimes</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/developer-catalog.png"/>
+</imageobject>
+<textobject><phrase>OpenShift Container Platform Developer Catalog</phrase></textobject>
+</mediaobject>
+</figure>
+</section>
+<section xml:id="understanding-development-registry-options">
+<title>Registry options</title>
+<simpara>Container registries are where you store container images so you can share them
+with others and make them available to the platform where they ultimately run.
+You can select large, public container registries that offer free accounts or a
+premium version that offer more storage and special features. You can also
+install your own registry that can be exclusive to your organization or
+selectively shared with others.</simpara>
+<simpara>To get Red Hat images and certified partner images, you can draw from the
+Red Hat Registry. The Red Hat Registry is represented by two locations:
+<literal>registry.access.redhat.com</literal>, which is unauthenticated and deprecated, and
+<literal>registry.redhat.io</literal>, which requires authentication. You can learn about the Red
+Hat and partner images in the Red Hat Registry from the
+<link xlink:href="https://catalog.redhat.com/software/containers/explore">Container images section of the Red Hat Ecosystem Catalog</link>.
+Besides listing Red Hat container images, it also shows extensive information
+about the contents and quality of those images, including health scores that are
+based on applied security updates.</simpara>
+<simpara>Large, public registries include <link xlink:href="https://hub.docker.com/">Docker Hub</link> and
+<link xlink:href="https://quay.io/">Quay.io</link>. The Quay.io registry is owned and managed by Red
+Hat. Many of the components used in OpenShift Container Platform are stored in Quay.io,
+including container images and the Operators that are used to deploy
+OpenShift Container Platform itself. Quay.io also offers the means of storing other types of
+content, including Helm charts.</simpara>
+<simpara>If you want your own, private container registry, OpenShift Container Platform itself
+includes a private container registry that is installed with OpenShift Container Platform
+and runs on its cluster. Red Hat also offers a private version of the Quay.io
+registry called <link xlink:href="https://access.redhat.com/products/red-hat-quay">Red&#160;Hat Quay</link>.
+Red&#160;Hat Quay includes geo replication, Git build triggers, Clair image scanning,
+and many other features.</simpara>
+<simpara>All of the registries mentioned here can require credentials to download images
+from those registries. Some of those credentials are presented on a cluster-wide
+basis from OpenShift Container Platform, while other credentials can be assigned to individuals.</simpara>
+</section>
+</section>
+<section xml:id="creating-kubernetes-manifest-openshift">
+<title>Creating a Kubernetes manifest for OpenShift Container Platform</title>
+<simpara>While the container image is the basic building block for a containerized
+application, more information is required to manage and deploy that application
+in a Kubernetes environment such as OpenShift Container Platform. The typical next steps after
+you create an image are to:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Understand the different resources you work with in Kubernetes manifests</simpara>
+</listitem>
+<listitem>
+<simpara>Make some decisions about what kind of an application you are running</simpara>
+</listitem>
+<listitem>
+<simpara>Gather supporting components</simpara>
+</listitem>
+<listitem>
+<simpara>Create a manifest and store that manifest in a Git repository so you can store
+it in a source versioning system, audit it, track it, promote and deploy it
+to the next environment, roll it back to earlier versions, if necessary, and
+share it with others</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="understanding-kubernetes-pods">
+<title>About Kubernetes pods and services</title>
+<simpara>While the container image is the basic unit with docker, the basic units that
+Kubernetes works with are called
+<link xlink:href="https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/">pods</link>.
+Pods represent the next step in building out an application. A pod can contain
+one or more than one container. The key is that the pod is the single unit
+that you deploy, scale, and manage.</simpara>
+<simpara>Scalability and namespaces are probably the main items to consider when determining
+what goes in a pod. For ease of deployment, you might want to deploy a container
+in a pod and include its own logging and monitoring container in the pod. Later,
+when you run the pod and need to scale up an additional instance, those other
+containers are scaled up with it. For namespaces, containers in a pod share the
+same network interfaces, shared storage volumes, and resource limitations,
+such as memory and CPU, which makes it easier to manage the contents of the pod
+as a single unit. Containers in a pod can also communicate with each other by
+using standard inter-process communications, such as System V semaphores or
+POSIX shared memory.</simpara>
+<simpara>While individual pods represent a scalable unit in Kubernetes, a
+<link xlink:href="https://kubernetes.io/docs/concepts/services-networking/service/">service</link>
+provides a means of grouping together a set of pods to create a complete, stable
+application that can complete tasks such as load balancing. A service is also
+more permanent than a pod because the service remains available from the same
+IP address until you delete it. When the service is in use, it is requested by
+name and the OpenShift Container Platform cluster resolves that name into the IP addresses
+and ports where you can reach the pods that compose the service.</simpara>
+<simpara>By their nature, containerized applications are separated from the operating
+systems where they run and, by extension, their users. Part of your Kubernetes
+manifest describes how to expose the application to internal and external
+networks by defining
+<link xlink:href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">network policies</link>
+that allow fine-grained control over communication with your containerized
+applications. To connect incoming requests for HTTP, HTTPS, and other services
+from outside your cluster to services inside your cluster, you can use an
+<link xlink:href="https://kubernetes.io/docs/concepts/services-networking/ingress/"><literal>Ingress</literal></link>
+resource.</simpara>
+<simpara>If your container requires on-disk storage instead of database storage, which
+might be provided through a service, you can add
+<link xlink:href="https://kubernetes.io/docs/concepts/storage/volumes/">volumes</link>
+to your manifests to make that storage available to your pods. You can configure
+the manifests to create persistent volumes (PVs) or dynamically create volumes that
+are added to your <literal>Pod</literal> definitions.</simpara>
+<simpara>After you define a group of pods that compose your application, you can define
+those pods in
+<link xlink:href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"><literal>Deployment</literal></link>
+and
+<literal>DeploymentConfig</literal> objects.</simpara>
+</section>
+<section xml:id="application-types">
+<title>Application types</title>
+<simpara>Next, consider how your application type influences how to run it.</simpara>
+<simpara>Kubernetes defines different types of workloads that are appropriate for
+different kinds of applications. To determine the appropriate workload for your
+application, consider if the application is:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Meant to run to completion and be done. An example is an application that
+starts up to produce a report and exits when the report is complete. The
+application might not run again then for a month. Suitable OpenShift Container Platform
+objects for these types of applications include
+<link xlink:href="https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/"><literal>Job</literal></link>
+and <link xlink:href="https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/"><literal>CronJob</literal></link> objects.</simpara>
+</listitem>
+<listitem>
+<simpara>Expected to run continuously. For long-running applications, you can write a
+deployment.</simpara>
+</listitem>
+<listitem>
+<simpara>Required to be highly available. If your application requires high
+availability, then you want to size your deployment to have more than one
+instance. A <literal>Deployment</literal> or <literal>DeploymentConfig</literal> object can incorporate a
+<link xlink:href="https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/">replica set</link>
+for that type of application. With replica sets, pods run across multiple nodes
+to make sure the application is always available, even if a worker goes down.</simpara>
+</listitem>
+<listitem>
+<simpara>Need to run on every node. Some types of Kubernetes applications are intended
+to run in the cluster itself on every master or worker node. DNS and monitoring
+applications are examples of applications that need to run continuously on every
+node. You can run this type of application as a
+<link xlink:href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/">daemon set</link>.
+You can also run a daemon set on a subset of nodes, based on node labels.</simpara>
+</listitem>
+<listitem>
+<simpara>Require life-cycle management. When you want to hand off your application so
+that others can use it, consider creating an
+<link xlink:href="https://www.openshift.com/learn/topics/operators">Operator</link>. Operators let you build in
+intelligence, so it can handle things like backups and upgrades automatically.
+Coupled with the Operator Lifecycle Manager (OLM), cluster managers can expose
+Operators to selected namespaces so that users in the cluster can run them.</simpara>
+</listitem>
+<listitem>
+<simpara>Have identity or numbering requirements. An application might have identity
+requirements or numbering requirements. For example, you might be
+required to run exactly three instances of the application and to name the
+instances <literal>0</literal>, <literal>1</literal>, and <literal>2</literal>. A
+<link xlink:href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/">stateful set</link>
+is suitable for this application. Stateful sets are most useful for applications
+that require independent storage, such as databases and zookeeper clusters.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="supporting-components">
+<title>Available supporting components</title>
+<simpara>The application you write might need supporting components, like a database or
+a logging component. To fulfill that need, you might be able to obtain the
+required component from the following Catalogs that are available in the
+OpenShift Container Platform web console:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The software catalog, which is available in each OpenShift Container Platform 4.16
+cluster. The software catalog makes Operators available from Red Hat,
+certified Red Hat partners, and community members to the cluster operator. The
+cluster operator can make those Operators available in all or selected
+namespaces in the cluster, so developers can launch them and configure them
+with their applications.</simpara>
+</listitem>
+<listitem>
+<simpara>Templates, which are useful for a one-off type of application, where the
+lifecycle of a component is not important after it is installed. A template provides an easy
+way to get started developing a Kubernetes application with minimal overhead.
+A template can be a list of resource definitions, which could be <literal>Deployment</literal>,
+<literal>Service</literal>, <literal>Route</literal>, or other objects. If you want to change names or resources,
+you can set these values as parameters in the template.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>You can configure the supporting Operators and
+templates to the specific needs of your development team and then make them
+available in the namespaces in which your developers work. Many people add
+shared templates to the <literal>openshift</literal> namespace because it is accessible from all
+other namespaces.</simpara>
+</section>
+<section xml:id="applying-manifest">
+<title>Applying the manifest</title>
+<simpara>Kubernetes manifests let you create a more complete picture of the components
+that make up your Kubernetes applications. You write these manifests as YAML
+files and deploy them by applying them to the cluster, for example, by running
+the <literal>oc apply</literal> command.</simpara>
+</section>
+<section xml:id="manifest-next-steps">
+<title>Next steps</title>
+<simpara>At this point, consider ways to automate your container development process.
+Ideally, you have some sort of CI pipeline that builds the images and pushes
+them to a registry. In particular, a GitOps pipeline integrates your container
+development with the Git repositories that you use to store the software that
+is required to build your applications.</simpara>
+<simpara>The workflow to this point might look like:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Day 1: You write some YAML. You then run the <literal>oc apply</literal> command to apply that
+YAML to the cluster and test that it works.</simpara>
+</listitem>
+<listitem>
+<simpara>Day 2: You put your YAML container configuration file into your own Git
+repository. From there, people who want to install that app, or help you improve
+it, can pull down the YAML and apply it to their cluster to run the app.</simpara>
+</listitem>
+<listitem>
+<simpara>Day 3: Consider writing an Operator for your application.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="develop-for-operators">
+<title>Develop for Operators</title>
+<simpara>Packaging and deploying your application as an Operator might be preferred
+if you make your application available for others to run. As noted earlier,
+Operators add a lifecycle component to your application that acknowledges that
+the job of running an application is not complete as soon as it is installed.</simpara>
+<simpara>When you create an application as an Operator, you can build in your own
+knowledge of how to run and maintain the application. You can build in features
+for upgrading the application, backing it up, scaling it, or keeping track of
+its state. If you configure the application correctly, maintenance tasks,
+like updating the Operator, can happen automatically and invisibly to the
+Operator&#8217;s users.</simpara>
+<simpara>An example of a useful Operator is one that is set up to automatically back up
+data at particular times. Having an Operator manage an application&#8217;s backup at
+set times can save a system administrator from remembering to do it.</simpara>
+<simpara>Any application maintenance that has traditionally been completed manually,
+like backing up data or rotating certificates, can be completed automatically
+with an Operator.</simpara>
+</section>
+</chapter>
+<chapter xml:id="admission-plug-ins">
+<title>Admission plugins</title>
+<simpara>Admission plugins are used to help regulate how OpenShift Container Platform functions.</simpara>
+<section xml:id="admission-plug-ins-about_admission-plug-ins">
+<title>About admission plugins</title>
+<simpara>Admission plugins intercept requests to the master API to validate resource requests. After a request is authenticated and authorized, the admission plugins ensure that any associated policies are followed. For example, they are commonly used to enforce security policy, resource limitations or configuration requirements.</simpara>
+<simpara>Admission plugins run in sequence as an admission chain. If any admission plugin in the sequence rejects a request, the whole chain is aborted and an error is returned.</simpara>
+<simpara>OpenShift Container Platform has a default set of admission plugins enabled for each resource type. These are required for proper functioning of the cluster. Admission plugins ignore resources that they are not responsible for.</simpara>
+<simpara>In addition to the defaults, the admission chain can be extended dynamically through webhook admission plugins that call out to custom webhook servers. There are two types of webhook admission plugins: a mutating admission plugin and a validating admission plugin. The mutating admission plugin runs first and can both modify resources and validate requests. The validating admission plugin validates requests and runs after the mutating admission plugin so that modifications triggered by the mutating admission plugin can also be validated.</simpara>
+<simpara>Calling webhook servers through a mutating admission plugin can produce side effects on resources related to the target object. In such situations, you must take steps to validate that the end result is as expected.</simpara>
+<warning>
+<simpara>Dynamic admission should be used cautiously because it impacts cluster control plane operations. When calling webhook servers through webhook admission plugins in OpenShift Container Platform 4.16, ensure that you have read the documentation fully and tested for side effects of mutations. Include steps to restore resources back to their original state prior to mutation, in the event that a request does not pass through the entire admission chain.</simpara>
+</warning>
+</section>
+<section xml:id="admission-plug-ins-default_admission-plug-ins">
+<title>Default admission plugins</title>
+<simpara>Default validating and admission plugins are enabled in OpenShift Container Platform 4.16. These default plugins contribute to fundamental control plane functionality, such as ingress policy, cluster resource limit override and quota policy.</simpara>
+<important>
+<simpara>Do not run workloads in or share access to default projects. Default projects are reserved for running core cluster components.</simpara>
+<simpara>The following default projects are considered highly privileged: <literal>default</literal>, <literal>kube-public</literal>, <literal>kube-system</literal>, <literal>openshift</literal>, <literal>openshift-infra</literal>, <literal>openshift-node</literal>, and other system-created projects that have the <literal>openshift.io/run-level</literal> label set to <literal>0</literal> or <literal>1</literal>. Functionality that relies on admission plugins, such as pod security admission, security context constraints, cluster resource quotas, and image reference resolution, does not work in highly privileged projects.</simpara>
+</important>
+<simpara>The following lists contain the default admission plugins:</simpara>
+<example>
+<title>Validating admission plugins</title>
+<itemizedlist>
+<listitem>
+<simpara><literal>LimitRanger</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>ServiceAccount</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>PodNodeSelector</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>Priority</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>PodTolerationRestriction</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>OwnerReferencesPermissionEnforcement</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>PersistentVolumeClaimResize</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>RuntimeClass</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>CertificateApproval</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>CertificateSigning</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>CertificateSubjectRestriction</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>autoscaling.openshift.io/ManagementCPUsOverride</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>authorization.openshift.io/RestrictSubjectBindings</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>scheduling.openshift.io/OriginPodNodeEnvironment</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>network.openshift.io/ExternalIPRanger</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>network.openshift.io/RestrictedEndpointsAdmission</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>image.openshift.io/ImagePolicy</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>security.openshift.io/SecurityContextConstraint</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>security.openshift.io/SCCExecRestrictions</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>route.openshift.io/IngressAdmission</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>config.openshift.io/ValidateAPIServer</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>config.openshift.io/ValidateAuthentication</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>config.openshift.io/ValidateFeatureGate</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>config.openshift.io/ValidateConsole</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>operator.openshift.io/ValidateDNS</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>config.openshift.io/ValidateImage</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>config.openshift.io/ValidateOAuth</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>config.openshift.io/ValidateProject</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>config.openshift.io/DenyDeleteClusterConfiguration</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>config.openshift.io/ValidateScheduler</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>quota.openshift.io/ValidateClusterResourceQuota</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>security.openshift.io/ValidateSecurityContextConstraints</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>authorization.openshift.io/ValidateRoleBindingRestriction</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>config.openshift.io/ValidateNetwork</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>operator.openshift.io/ValidateKubeControllerManager</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>ValidatingAdmissionWebhook</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>ResourceQuota</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>quota.openshift.io/ClusterResourceQuota</literal></simpara>
+</listitem>
+</itemizedlist>
+</example>
+<example>
+<title>Mutating admission plugins</title>
+<itemizedlist>
+<listitem>
+<simpara><literal>NamespaceLifecycle</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>LimitRanger</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>ServiceAccount</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>NodeRestriction</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>TaintNodesByCondition</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>PodNodeSelector</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>Priority</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>DefaultTolerationSeconds</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>PodTolerationRestriction</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>DefaultStorageClass</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>StorageObjectInUseProtection</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>RuntimeClass</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>DefaultIngressClass</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>autoscaling.openshift.io/ManagementCPUsOverride</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>scheduling.openshift.io/OriginPodNodeEnvironment</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>image.openshift.io/ImagePolicy</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>security.openshift.io/SecurityContextConstraint</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>security.openshift.io/DefaultSecurityContextConstraints</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>MutatingAdmissionWebhook</literal></simpara>
+</listitem>
+</itemizedlist>
+</example>
+</section>
+<section xml:id="admission-webhooks-about_admission-plug-ins">
+<title>Webhook admission plugins</title>
+<simpara>In addition to OpenShift Container Platform default admission plugins, dynamic admission can be implemented through webhook admission plugins that call webhook servers, to extend the functionality of the admission chain. Webhook servers are called over HTTP at defined endpoints.</simpara>
+<simpara>There are two types of webhook admission plugins in OpenShift Container Platform:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>During the admission process, the <emphasis>mutating admission plugin</emphasis> can perform tasks, such as injecting affinity labels.</simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem>
+<simpara>At the end of the admission process, the <emphasis>validating admission plugin</emphasis> can be used to make sure an object is configured properly, for example ensuring affinity labels are as expected. If the validation passes, OpenShift Container Platform schedules the object as configured.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>When an API request comes in, mutating or validating admission plugins use the list of external webhooks in the configuration and call them in parallel:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>If all of the webhooks approve the request, the admission chain continues.</simpara>
+</listitem>
+<listitem>
+<simpara>If any of the webhooks deny the request, the admission request is denied and the reason for doing so is based on the first denial.</simpara>
+</listitem>
+<listitem>
+<simpara>If more than one webhook denies the admission request, only the first denial reason is returned to the user.</simpara>
+</listitem>
+<listitem>
+<simpara>If an error is encountered when calling a webhook, the request is either denied or the webhook is ignored depending on the error policy set. If the error policy is set to <literal>Ignore</literal>, the request is unconditionally accepted in the event of a failure. If the policy is set to <literal>Fail</literal>, failed requests are denied. Using <literal>Ignore</literal> can result in unpredictable behavior for all clients.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>The following diagram illustrates the sequential admission chain process within which multiple webhook servers are called.</simpara>
+<figure>
+<title>API admission chain with mutating and validating admission plugins</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/api-admission-chain.png" align="center"/>
+</imageobject>
+<textobject><phrase>API admission stage</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>An example webhook admission plugin use case is where all pods must have a common set of labels. In this example, the mutating admission plugin can inject labels and the validating admission plugin can check that labels are as expected. OpenShift Container Platform would subsequently schedule pods that include required labels and reject those that do not.</simpara>
+<simpara>Some common webhook admission plugin use cases include:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Namespace reservation.</simpara>
+</listitem>
+<listitem>
+<simpara>Limiting custom network resources managed by the SR-IOV network device plugin.</simpara>
+</listitem>
+<listitem>
+<simpara>Pod priority class validation.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>The maximum default webhook timeout value in OpenShift Container Platform is 13 seconds, and it cannot be changed.</simpara>
+</note>
+</section>
+<section xml:id="admission-webhook-types_admission-plug-ins">
+<title>Types of webhook admission plugins</title>
+<simpara>Cluster administrators can call out to webhook servers through the mutating admission plugin or the validating admission plugin in the API server admission chain.</simpara>
+<section xml:id="mutating-admission-plug-in_admission-plug-ins">
+<title>Mutating admission plugin</title>
+<simpara>The mutating admission plugin is invoked during the mutation phase of the admission process, which allows modification of resource content before it is persisted. One example webhook that can be called through the mutating admission plugin is the Pod Node Selector feature, which uses an annotation on a namespace to find a label selector and add it to the pod specification.</simpara>
+<formalpara xml:id="mutating-admission-plug-in-config_admission-plug-ins">
+<title>Sample mutating admission plugin configuration</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingWebhookConfiguration <co xml:id="CO1-1"/>
+metadata:
+  name: &lt;webhook_name&gt; <co xml:id="CO1-2"/>
+webhooks:
+- name: &lt;webhook_name&gt; <co xml:id="CO1-3"/>
+  clientConfig: <co xml:id="CO1-4"/>
+    service:
+      namespace: default <co xml:id="CO1-5"/>
+      name: kubernetes <co xml:id="CO1-6"/>
+      path: &lt;webhook_url&gt; <co xml:id="CO1-7"/>
+    caBundle: &lt;ca_signing_certificate&gt; <co xml:id="CO1-8"/>
+  rules: <co xml:id="CO1-9"/>
+  - operations: <co xml:id="CO1-10"/>
+    - &lt;operation&gt;
+    apiGroups:
+    - ""
+    apiVersions:
+    - "*"
+    resources:
+    - &lt;resource&gt;
+  failurePolicy: &lt;policy&gt; <co xml:id="CO1-11"/>
+  sideEffects: None</programlisting>
+</para>
+</formalpara>
+<calloutlist>
+<callout arearefs="CO1-1">
+<para>Specifies a mutating admission plugin configuration.</para>
+</callout>
+<callout arearefs="CO1-2">
+<para>The name for the <literal>MutatingWebhookConfiguration</literal> object. Replace <literal>&lt;webhook_name&gt;</literal> with the appropriate value.</para>
+</callout>
+<callout arearefs="CO1-3">
+<para>The name of the webhook to call. Replace <literal>&lt;webhook_name&gt;</literal> with the appropriate value.</para>
+</callout>
+<callout arearefs="CO1-4">
+<para>Information about how to connect to, trust, and send data to the webhook server.</para>
+</callout>
+<callout arearefs="CO1-5">
+<para>The namespace where the front-end service is created.</para>
+</callout>
+<callout arearefs="CO1-6">
+<para>The name of the front-end service.</para>
+</callout>
+<callout arearefs="CO1-7">
+<para>The webhook URL used for admission requests. Replace <literal>&lt;webhook_url&gt;</literal> with the appropriate value.</para>
+</callout>
+<callout arearefs="CO1-8">
+<para>A PEM-encoded CA certificate that signs the server certificate that is used by the webhook server.  Replace <literal>&lt;ca_signing_certificate&gt;</literal> with the appropriate certificate in base64 format.</para>
+</callout>
+<callout arearefs="CO1-9">
+<para>Rules that define when the API server should use this webhook admission plugin.</para>
+</callout>
+<callout arearefs="CO1-10">
+<para>One or more operations that trigger the API server to call this webhook admission plugin. Possible values are <literal>create</literal>, <literal>update</literal>, <literal>delete</literal> or <literal>connect</literal>. Replace <literal>&lt;operation&gt;</literal> and <literal>&lt;resource&gt;</literal> with the appropriate values.</para>
+</callout>
+<callout arearefs="CO1-11">
+<para>Specifies how the policy should proceed if the webhook server is unavailable.
+Replace <literal>&lt;policy&gt;</literal> with either <literal>Ignore</literal> (to unconditionally accept the request in the event of a failure) or <literal>Fail</literal> (to deny the failed request). Using <literal>Ignore</literal> can result in unpredictable behavior for all clients.</para>
+</callout>
+</calloutlist>
+<important>
+<simpara>In OpenShift Container Platform 4.16, objects created by users or control loops through a mutating admission plugin might return unexpected results, especially if values set in an initial request are overwritten, which is not recommended.</simpara>
+</important>
+</section>
+<section xml:id="validating-admission-plug-in_admission-plug-ins">
+<title>Validating admission plugin</title>
+<simpara>A validating admission plugin is invoked during the validation phase of the admission process. This phase allows the enforcement of invariants on particular API resources to ensure that the resource does not change again. The Pod Node Selector is also an example of a webhook which is called by the validating admission plugin, to ensure that all <literal>nodeSelector</literal> fields are constrained by the node selector restrictions on the namespace.</simpara>
+<formalpara xml:id="validating-admission-plug-in-config_admission-plug-ins">
+<title>Sample validating admission plugin configuration</title>
+<para>
+<programlisting language="yaml" linenumbering="unnumbered">apiVersion: admissionregistration.k8s.io/v1beta1
+kind: ValidatingWebhookConfiguration <co xml:id="CO2-1"/>
+metadata:
+  name: &lt;webhook_name&gt; <co xml:id="CO2-2"/>
+webhooks:
+- name: &lt;webhook_name&gt; <co xml:id="CO2-3"/>
+  clientConfig: <co xml:id="CO2-4"/>
+    service:
+      namespace: default  <co xml:id="CO2-5"/>
+      name: kubernetes <co xml:id="CO2-6"/>
+      path: &lt;webhook_url&gt; <co xml:id="CO2-7"/>
+    caBundle: &lt;ca_signing_certificate&gt; <co xml:id="CO2-8"/>
+  rules: <co xml:id="CO2-9"/>
+  - operations: <co xml:id="CO2-10"/>
+    - &lt;operation&gt;
+    apiGroups:
+    - ""
+    apiVersions:
+    - "*"
+    resources:
+    - &lt;resource&gt;
+  failurePolicy: &lt;policy&gt; <co xml:id="CO2-11"/>
+  sideEffects: Unknown</programlisting>
+</para>
+</formalpara>
+<calloutlist>
+<callout arearefs="CO2-1">
+<para>Specifies a validating admission plugin configuration.</para>
+</callout>
+<callout arearefs="CO2-2">
+<para>The name for the <literal>ValidatingWebhookConfiguration</literal> object. Replace <literal>&lt;webhook_name&gt;</literal> with the appropriate value.</para>
+</callout>
+<callout arearefs="CO2-3">
+<para>The name of the webhook to call. Replace <literal>&lt;webhook_name&gt;</literal> with the appropriate value.</para>
+</callout>
+<callout arearefs="CO2-4">
+<para>Information about how to connect to, trust, and send data to the webhook server.</para>
+</callout>
+<callout arearefs="CO2-5">
+<para>The namespace where the front-end service is created.</para>
+</callout>
+<callout arearefs="CO2-6">
+<para>The name of the front-end service.</para>
+</callout>
+<callout arearefs="CO2-7">
+<para>The webhook URL used for admission requests. Replace <literal>&lt;webhook_url&gt;</literal> with the appropriate value.</para>
+</callout>
+<callout arearefs="CO2-8">
+<para>A PEM-encoded CA certificate that signs the server certificate that is used by the webhook server.  Replace <literal>&lt;ca_signing_certificate&gt;</literal> with the appropriate certificate in base64 format.</para>
+</callout>
+<callout arearefs="CO2-9">
+<para>Rules that define when the API server should use this webhook admission plugin.</para>
+</callout>
+<callout arearefs="CO2-10">
+<para>One or more operations that trigger the API server to call this webhook admission plugin. Possible values are <literal>create</literal>, <literal>update</literal>, <literal>delete</literal> or <literal>connect</literal>. Replace <literal>&lt;operation&gt;</literal> and <literal>&lt;resource&gt;</literal> with the appropriate values.</para>
+</callout>
+<callout arearefs="CO2-11">
+<para>Specifies how the policy should proceed if the webhook server is unavailable.
+Replace <literal>&lt;policy&gt;</literal> with either <literal>Ignore</literal> (to unconditionally accept the request in the event of a failure) or <literal>Fail</literal> (to deny the failed request). Using <literal>Ignore</literal> can result in unpredictable behavior for all clients.</para>
+</callout>
+</calloutlist>
+</section>
+</section>
+<section xml:id="admission-plug-ins-additional-resources" role="_additional-resources">
+<title>Additional resources</title>
+<itemizedlist>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/nodes/#admin-guide-priority-preemption-names_nodes-pods-priority">Pod priority names</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+</book>

@@ -1,0 +1,2676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>Planning your environment</title>
+<date>2026-02-25</date>
+<title>Planning your environment</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="osd-limits-scalability">
+<title>Limits and scalability</title>
+<simpara role="_abstract">This document details the tested cluster maximums for OpenShift Container Platform clusters, along with information about the test environment and configuration used to test the maximums. Information about control plane and infrastructure node sizing and scaling is also provided.</simpara>
+<section xml:id="tested-cluster-maximums-sd_osd-limits-scalability">
+<title>Cluster maximums</title>
+<simpara role="_abstract">Consider the following tested object maximums when you plan
+an OpenShift Container Platform
+cluster installation. The table specifies the maximum limits for each tested type in
+an OpenShift Container Platform
+cluster.</simpara>
+<simpara>These guidelines are based on a cluster of 249 compute (also known as worker) nodes in a multiple availability zone configuration. For smaller clusters, the maximums are lower.</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>Tested cluster maximums</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Maximum type</entry>
+<entry align="left" valign="top">4.x tested maximum</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Number of pods <superscript>[1]</superscript></simpara></entry>
+<entry align="left" valign="top"><simpara>25,000</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Number of pods per node</simpara></entry>
+<entry align="left" valign="top"><simpara>250</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Number of pods per core</simpara></entry>
+<entry align="left" valign="top"><simpara>There is no default value</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Number of namespaces <superscript>[2]</superscript></simpara></entry>
+<entry align="left" valign="top"><simpara>5,000</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Number of pods per namespace <superscript>[3]</superscript></simpara></entry>
+<entry align="left" valign="top"><simpara>25,000</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Number of services <superscript>[4]</superscript></simpara></entry>
+<entry align="left" valign="top"><simpara>10,000</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Number of services per namespace</simpara></entry>
+<entry align="left" valign="top"><simpara>5,000</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Number of back ends per service</simpara></entry>
+<entry align="left" valign="top"><simpara>5,000</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Number of deployments per namespace <superscript>[3]</superscript></simpara></entry>
+<entry align="left" valign="top"><simpara>2,000</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<para role="small">
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>The pod count displayed here is the number of test pods. The actual number of pods depends on the memory, CPU, and storage requirements of the application.</simpara>
+</listitem>
+<listitem>
+<simpara>When there are a large number of active projects, etcd can suffer from poor performance if the keyspace grows excessively large and exceeds the space quota. Periodic maintenance of etcd, including defragmentation, is highly recommended to make etcd storage available.</simpara>
+</listitem>
+<listitem>
+<simpara>There are several control loops in the system that must iterate over all objects in a given namespace as a reaction to some changes in state. Having a large number of objects of a type, in a single namespace, can make those loops expensive and slow down processing the state changes. The limit assumes that the system has enough CPU, memory, and disk to satisfy the application requirements.</simpara>
+</listitem>
+<listitem>
+<simpara>Each service port and each service back end has a corresponding entry in <literal>iptables</literal>. The number of back ends of a given service impacts the size of the endpoints objects, which then impacts the size of data sent throughout the system.</simpara>
+</listitem>
+</orderedlist>
+</para>
+</section>
+<section xml:id="planning-cluster-maximums-environment-sd_osd-limits-scalability">
+<title>OpenShift Container Platform testing environment and configuration</title>
+<simpara role="_abstract">The following table lists the OpenShift Container Platform environment and configuration on which the cluster maximums are tested for the AWS cloud platform.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="8">
+<colspec colname="col_1" colwidth="12.5*"/>
+<colspec colname="col_2" colwidth="12.5*"/>
+<colspec colname="col_3" colwidth="12.5*"/>
+<colspec colname="col_4" colwidth="12.5*"/>
+<colspec colname="col_5" colwidth="12.5*"/>
+<colspec colname="col_6" colwidth="12.5*"/>
+<colspec colname="col_7" colwidth="12.5*"/>
+<colspec colname="col_8" colwidth="12.5*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Node</entry>
+<entry align="left" valign="top">Type</entry>
+<entry align="left" valign="top">vCPU</entry>
+<entry align="left" valign="top">RAM(GiB)</entry>
+<entry align="left" valign="top">Disk type</entry>
+<entry align="left" valign="top">Disk size(GiB)/IOPS</entry>
+<entry align="left" valign="top">Count</entry>
+<entry align="left" valign="top">Region</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Control plane/etcd <superscript>[1]</superscript></simpara></entry>
+<entry align="left" valign="top"><simpara>m5.4xlarge</simpara></entry>
+<entry align="left" valign="top"><simpara>16</simpara></entry>
+<entry align="left" valign="top"><simpara>64</simpara></entry>
+<entry align="left" valign="top"><simpara>gp3</simpara></entry>
+<entry align="left" valign="top"><simpara>350 / 1,000</simpara></entry>
+<entry align="left" valign="top"><simpara>3</simpara></entry>
+<entry align="left" valign="top"><simpara>us-west-2</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Infrastructure nodes <superscript>[2]</superscript></simpara></entry>
+<entry align="left" valign="top"><simpara>r5.2xlarge</simpara></entry>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>64</simpara></entry>
+<entry align="left" valign="top"><simpara>gp3</simpara></entry>
+<entry align="left" valign="top"><simpara>300 / 900</simpara></entry>
+<entry align="left" valign="top"><simpara>3</simpara></entry>
+<entry align="left" valign="top"><simpara>us-west-2</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Workload <superscript>[3]</superscript></simpara></entry>
+<entry align="left" valign="top"><simpara>m5.2xlarge</simpara></entry>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>32</simpara></entry>
+<entry align="left" valign="top"><simpara>gp3</simpara></entry>
+<entry align="left" valign="top"><simpara>350 / 900</simpara></entry>
+<entry align="left" valign="top"><simpara>3</simpara></entry>
+<entry align="left" valign="top"><simpara>us-west-2</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Compute nodes</simpara></entry>
+<entry align="left" valign="top"><simpara>m5.2xlarge</simpara></entry>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>32</simpara></entry>
+<entry align="left" valign="top"><simpara>gp3</simpara></entry>
+<entry align="left" valign="top"><simpara>350 / 900</simpara></entry>
+<entry align="left" valign="top"><simpara>102</simpara></entry>
+<entry align="left" valign="top"><simpara>us-west-2</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<para role="small">
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>io1 disks are used for control plane/etcd nodes in all versions prior to 4.10.</simpara>
+</listitem>
+<listitem>
+<simpara>Infrastructure nodes are used to host monitoring components because Prometheus can claim a large amount of memory, depending on usage patterns.</simpara>
+</listitem>
+<listitem>
+<simpara>Workload nodes are dedicated to run performance and scalability workload generators.</simpara>
+</listitem>
+</orderedlist>
+</para>
+<simpara>Larger cluster sizes and higher object counts might be reachable. However, the sizing of the infrastructure nodes limits the amount of memory that is available to Prometheus. When creating, modifying, or deleting objects, Prometheus stores the metrics in its memory for roughly 3 hours prior to persisting the metrics on disk. If the rate of creation, modification, or deletion of objects is too high, Prometheus can become overwhelmed and fail due to the lack of memory resources.</simpara>
+</section>
+<section xml:id="control-plane-and-infra-node-sizing-and-scaling-sd_osd-limits-scalability">
+<title>Control plane and infrastructure node sizing and scaling</title>
+<simpara role="_abstract">When you install
+an OpenShift Container Platform
+cluster, the sizing of the control plane and infrastructure nodes are automatically determined by the compute node count.</simpara>
+<simpara>If you change the number of compute nodes in your cluster after installation, the Red&#160;Hat Site Reliability Engineering (SRE) team scales the control plane and infrastructure nodes as required to maintain cluster stability.</simpara>
+<section xml:id="node-sizing-during-installation_osd-limits-scalability">
+<title>Node sizing during installation</title>
+<simpara>During the installation process, the sizing of the control plane and infrastructure nodes are dynamically calculated. The sizing calculation is based on the number of compute nodes in a cluster.</simpara>
+<simpara>The following
+tables list
+the control plane and infrastructure node sizing that is applied during installation.</simpara>
+<simpara>AWS control plane and infrastructure node size:</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="33.3333*"/>
+<colspec colname="col_2" colwidth="33.3333*"/>
+<colspec colname="col_3" colwidth="33.3334*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Number of compute nodes</entry>
+<entry align="left" valign="top">Control plane size</entry>
+<entry align="left" valign="top">Infrastructure node size</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>1 to 25</simpara></entry>
+<entry align="left" valign="top"><simpara>m5.2xlarge</simpara></entry>
+<entry align="left" valign="top"><simpara>r5.xlarge</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>26 to 100</simpara></entry>
+<entry align="left" valign="top"><simpara>m5.4xlarge</simpara></entry>
+<entry align="left" valign="top"><simpara>r5.2xlarge</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>101 to 249</simpara></entry>
+<entry align="left" valign="top"><simpara>m5.8xlarge</simpara></entry>
+<entry align="left" valign="top"><simpara>r5.4xlarge</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<simpara>Google Cloud control plane and infrastructure node size:</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="33.3333*"/>
+<colspec colname="col_2" colwidth="33.3333*"/>
+<colspec colname="col_3" colwidth="33.3334*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Number of compute nodes</entry>
+<entry align="left" valign="top">Control plane size</entry>
+<entry align="left" valign="top">Infrastructure node size</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>1 to 25</simpara></entry>
+<entry align="left" valign="top"><simpara>custom-8-32768</simpara></entry>
+<entry align="left" valign="top"><simpara>custom-4-32768-ext</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>26 to 100</simpara></entry>
+<entry align="left" valign="top"><simpara>custom-16-65536</simpara></entry>
+<entry align="left" valign="top"><simpara>custom-8-65536-ext</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>101 to 249</simpara></entry>
+<entry align="left" valign="top"><simpara>custom-32-131072</simpara></entry>
+<entry align="left" valign="top"><simpara>custom-16-131072-ext</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<simpara>Google Cloud control plane and infrastructure node size for clusters created on or after 21 June 2024:</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="33.3333*"/>
+<colspec colname="col_2" colwidth="33.3333*"/>
+<colspec colname="col_3" colwidth="33.3334*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Number of compute nodes</entry>
+<entry align="left" valign="top">Control plane size</entry>
+<entry align="left" valign="top">Infrastructure node size</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>1 to 25</simpara></entry>
+<entry align="left" valign="top"><simpara>n2-standard-8</simpara></entry>
+<entry align="left" valign="top"><simpara>n2-highmem-4</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>26 to 100</simpara></entry>
+<entry align="left" valign="top"><simpara>n2-standard-16</simpara></entry>
+<entry align="left" valign="top"><simpara>n2-highmem-8</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>101 to 249</simpara></entry>
+<entry align="left" valign="top"><simpara>n2-standard-32</simpara></entry>
+<entry align="left" valign="top"><simpara>n2-highmem-16</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<note>
+<simpara>The maximum number of compute nodes on
+OpenShift Container Platform
+clusters version 4.14.14 and later is 249. For earlier versions, the limit is 180.</simpara>
+</note>
+</section>
+<section xml:id="node-scaling-after-installation_osd-limits-scalability">
+<title>Node scaling after installation</title>
+<simpara>If you change the number of compute nodes after installation, the control plane and infrastructure nodes are scaled by the Red&#160;Hat Site Reliability Engineering (SRE) team as required. The nodes are scaled to maintain platform stability.</simpara>
+<simpara>Postinstallation scaling requirements for control plane and infrastructure nodes are assessed on a case-by-case basis. Node resource consumption and received alerts are taken into consideration.</simpara>
+<formalpara>
+<title>Rules for control plane node resizing alerts</title>
+<para>The resizing alert is triggered for the control plane nodes in a cluster when the following occurs:</para>
+</formalpara>
+<itemizedlist>
+<listitem>
+<simpara>Control plane nodes sustain over 66% utilization on average in a cluster.</simpara>
+<note>
+<simpara>The maximum number of compute nodes on
+OpenShift Container Platform
+is 180.</simpara>
+</note>
+</listitem>
+</itemizedlist>
+<formalpara>
+<title>Rules for infrastructure node resizing alerts</title>
+<para>Resizing alerts are triggered for the infrastructure nodes in a cluster when it has high-sustained CPU or memory utilization. This high-sustained utilization status is:</para>
+</formalpara>
+<itemizedlist>
+<listitem>
+<simpara>Infrastructure nodes sustain over 50% utilization on average in a cluster with a single availability zone using 2 infrastructure nodes.</simpara>
+</listitem>
+<listitem>
+<simpara>Infrastructure nodes sustain over 66% utilization on average in a cluster with multiple availability zones using 3 infrastructure nodes.</simpara>
+<note>
+<simpara>The maximum number of compute nodes on
+OpenShift Container Platform
+cluster versions 4.14.14 and later is 249. For earlier versions, the limit is 180.</simpara>
+<simpara>The resizing alerts only appear after sustained periods of high utilization. Short usage spikes, such as a node temporarily going down causing the other node to scale up, do not trigger these alerts.</simpara>
+</note>
+</listitem>
+</itemizedlist>
+<simpara>The SRE team might scale the control plane and infrastructure nodes for additional reasons, for example to manage an increase in resource consumption on the nodes.</simpara>
+</section>
+<section xml:id="sizing-considerations-for-larger-clusters_osd-limits-scalability">
+<title>Sizing considerations for larger clusters</title>
+<simpara>For larger clusters, infrastructure node sizing can become a significant impacting factor to scalability. There are many factors that influence the stated thresholds, including the etcd version or storage data format.</simpara>
+<simpara>Exceeding these limits does not necessarily mean that the cluster will fail. In most cases, exceeding these numbers results in lower overall performance.</simpara>
+</section>
+</section>
+</chapter>
+<chapter xml:id="gcp-ccs">
+<title>Customer Cloud Subscriptions on Google Cloud</title>
+<simpara role="_abstract">OpenShift Container Platform provides a Customer Cloud Subscription (CCS) model that allows Red Hat to deploy and manage clusters in a customer’s existing Google Cloud account.</simpara>
+<section xml:id="ccs-gcp-understand_gcp-ccs">
+<title>Understanding Customer Cloud Subscriptions on Google Cloud</title>
+<simpara role="_abstract">Red&#160;Hat OpenShift Container Platform provides a Customer Cloud Subscription (CCS) model that allows Red&#160;Hat to deploy and manage OpenShift Container Platform into a customer&#8217;s existing Google Cloud account. Red&#160;Hat requires several prerequisites be met in order to provide this service.</simpara>
+<simpara>OpenShift Container Platform <link xlink:href="https://console.cloud.google.com/redhat-openshift/verify">cluster prerequisite integration</link> is available within the Google Cloud console. This integration allows Google Cloud users to discover and validate cluster prerequisites directly from the Google Cloud interface. The prerequisites validation ensures your environment is ready before you transition to the Red Hat Hybrid Cloud Console for cluster creation.</simpara>
+<simpara>Red&#160;Hat recommends the usage of a Google Cloud project, managed by the customer, to organize all of your Google Cloud resources. A project consists of a set of users and APIs, as well as billing, authentication, and monitoring settings for those APIs.</simpara>
+<simpara>It is recommended for the OpenShift Container Platform cluster using a CCS model to be hosted in a Google Cloud project within a Google Cloud organization. The organization resource is the root node of the Google Cloud resource hierarchy and all resources that belong to an organization are grouped under the organization node. Customers have the choice of using service account keys or Workload Identity Federation (WIF) when creating the roles and credentials necessary to access Google Cloud resources within a Google Cloud project.</simpara>
+<simpara>Red&#160;Hat and Google Cloud recommend using WIF as the authentication type as it provides enhanced security through the use of short-lived credentials, whereas service account authentication uses long-lived credentials which are less secure.</simpara>
+<simpara>For more information about creating and managing organization resources within Google Cloud, see <link xlink:href="https://cloud.google.com/resource-manager/docs/creating-managing-organization">Creating and managing organization resources</link>.</simpara>
+</section>
+<section xml:id="ccs-gcp-customer-requirements_gcp-ccs">
+<title>Customer requirements</title>
+<simpara role="_abstract">OpenShift Container Platform clusters using a Customer Cloud Subscription (CCS) model on Google Cloud must meet several prerequisites before they can be deployed.</simpara>
+<simpara>As a Google Cloud user, you can validate many of these requirements directly within the <link xlink:href="https://console.cloud.google.com/redhat-openshift/landing">Google Cloud console</link> before deployment.</simpara>
+<section xml:id="ccs-gcp-requirements-account_gcp-ccs">
+<title>Account</title>
+<itemizedlist>
+<listitem>
+<simpara>The customer ensures that <link xlink:href="https://cloud.google.com/storage/quotas">Google Cloud limits</link> and <link xlink:href="https://cloud.google.com/compute/resource-usage">allocation quotas that apply to Compute Engine</link> are sufficient to support OpenShift Container Platform provisioned within the customer-provided Google Cloud account.</simpara>
+</listitem>
+<listitem>
+<simpara>The customer-provided Google Cloud account should be in the customer&#8217;s Google Cloud Organization.</simpara>
+</listitem>
+<listitem>
+<simpara>The customer-provided Google Cloud account must not be transferable to Red&#160;Hat.</simpara>
+</listitem>
+<listitem>
+<simpara>The customer may not impose Google Cloud usage restrictions on Red&#160;Hat activities. Imposing restrictions severely hinders Red&#160;Hat&#8217;s ability to respond to incidents.</simpara>
+</listitem>
+<listitem>
+<simpara>Red&#160;Hat deploys monitoring into Google Cloud to alert Red&#160;Hat when a highly privileged account, such as a root account, logs into the customer-provided Google Cloud account.</simpara>
+</listitem>
+<listitem>
+<simpara>The customer can deploy native Google Cloud services within the same customer-provided Google Cloud account.</simpara>
+<note>
+<simpara>Customers are encouraged, but not mandated, to deploy resources in a Virtual Private Cloud (VPC) separate from the VPC hosting OpenShift Container Platform and other Red&#160;Hat supported services.</simpara>
+</note>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="ccs-gcp-requirements-access_gcp-ccs">
+<title>Access requirements</title>
+<itemizedlist>
+<listitem>
+<simpara>To appropriately manage the OpenShift Container Platform service, Red&#160;Hat must have the <literal>AdministratorAccess</literal> policy applied to the administrator role at all times.</simpara>
+<note>
+<simpara>This policy only provides Red&#160;Hat with permissions and capabilities to change resources in the customer-provided Google Cloud account.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Red&#160;Hat must have Google Cloud console access to the customer-provided Google Cloud account. This access is protected and managed by Red&#160;Hat.</simpara>
+</listitem>
+<listitem>
+<simpara>The customer must not utilize the Google Cloud account to elevate their permissions within the OpenShift Container Platform cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>Actions available in the <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link> must not be directly performed in the customer-provided Google Cloud account.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="ccs-gcp-requirements-support_gcp-ccs">
+<title>Support requirements</title>
+<itemizedlist>
+<listitem>
+<simpara>Red&#160;Hat recommends that the customer have at least <link xlink:href="https://cloud.google.com/support">Enhanced Support</link> from Google Cloud.</simpara>
+</listitem>
+<listitem>
+<simpara>Red&#160;Hat has authority from the customer to request Google Cloud support on their behalf.</simpara>
+</listitem>
+<listitem>
+<simpara>Red&#160;Hat has authority from the customer to request Google Cloud resource limit increases on the customer-provided account.</simpara>
+</listitem>
+<listitem>
+<simpara>Red&#160;Hat manages the restrictions, limitations, expectations, and defaults for all OpenShift Container Platform clusters in the same manner, unless otherwise specified in this requirements section.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="ccs-gcp-requirements-security_gcp-ccs">
+<title>Security requirements</title>
+<itemizedlist>
+<listitem>
+<simpara>The customer-provided IAM credentials must be unique to the customer-provided Google Cloud account and must not be stored anywhere in the customer-provided Google Cloud account.</simpara>
+</listitem>
+<listitem>
+<simpara>Volume snapshots will remain within the customer-provided Google Cloud account and customer-specified region.</simpara>
+</listitem>
+<listitem>
+<simpara>To manage, monitor, and troubleshoot OpenShift Container Platform clusters, Red&#160;Hat must have direct access to the cluster&#8217;s API server. You must not restrict or otherwise prevent Red&#160;Hat&#8217;s access to the OpenShift Container Platform cluster&#8217;s API server.</simpara>
+<note>
+<simpara>SRE uses various methods to access clusters, depending on network configuration. Access to private clusters is restricted to Red&#160;Hat trusted IP addresses only. These access restrictions are managed automatically by Red&#160;Hat.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>OpenShift Container Platform requires egress access to certain endpoints over the internet. Only clusters deployed with Private Service Connect can use a firewall to control egress traffic. For additional information, see the <emphasis>Google Cloud firewall prerequisites</emphasis> section.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="ccs-gcp-customer-procedure_gcp-ccs">
+<title>Required customer procedure</title>
+<simpara role="_abstract">The Customer Cloud Subscription (CCS) model allows Red&#160;Hat to deploy and manage OpenShift Container Platform into a customer&#8217;s Google Cloud project. Red&#160;Hat requires several prerequisites to be completed before providing these services.</simpara>
+<note>
+<simpara>The following requirements in this topic apply to OpenShift Container Platform on Google Cloud clusters created using both the Workload Identity Federation (WIF) and service account authentication types.
+Red&#160;Hat recommends using WIF as the authentication type for installing and interacting with an OpenShift Container Platform cluster deployed on Google Cloud because WIF provides enhanced security.</simpara>
+<simpara>For information about creating a cluster using the WIF authentication type, see <emphasis>Additional resources</emphasis>.</simpara>
+<simpara>For additional requirements that apply to the WIF authentication type only, see <emphasis>Workload Identity Federation authentication type procedure</emphasis>.
+For additional requirements that apply to the service account authentication type only, see <emphasis>Service account authentication type procedure</emphasis>.</simpara>
+</note>
+<formalpara>
+<title>Prerequisites</title>
+<para>Before using OpenShift Container Platform in your Google Cloud project, confirm that the following organizational policy constraints are configured correctly where applicable:</para>
+</formalpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>constraints/iam.allowedPolicyMemberDomains</literal></simpara>
+<itemizedlist>
+<listitem>
+<simpara>This policy constraint is supported only if Red&#160;Hat&#8217;s Directory Customer ID&#8217;s <literal>C02k0l5e8</literal> and <literal>C04j7mbwl</literal> are included in the allowlist.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><literal>constraints/compute.restrictLoadBalancerCreationForTypes</literal></simpara>
+<itemizedlist>
+<listitem>
+<simpara>This organization policy constraint restricts the types of Google Cloud load balancer types that can be created within a project. Certain load balancer types are required depending on the type of OpenShift Container Platform cluster you are creating.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>For private Workload Identity Federation (WIF)-enabled OpenShift Container Platform clusters with Google Cloud Private Service Connect (PSC), you must ensure the <literal>INTERNAL_TCP_UDP</literal> load balancer type is included in your organization&#8217;s allowlist or excluded from the denylist.</simpara>
+</listitem>
+<listitem>
+<simpara>For public WIF-enabled OpenShift Container Platform clusters, you must ensure the <literal>INTERNAL_TCP_UDP</literal>, <literal>EXTERNAL_TCP_PROXY</literal>, and <literal>EXTERNAL_NETWORK_TCP_UDP</literal> load balancer types are permitted in your organization&#8217;s allowlist or excluded from the denylist.</simpara>
+<important>
+<simpara>Although the <literal>EXTERNAL_NETWORK_TCP_UDP</literal> load balancer type is not required when creating a private cluster with PSC, disallowing it with this constraint will prevent the cluster from being able to create externally accessible load balancers.</simpara>
+</important>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><literal>constraints/compute.requireShieldedVm</literal></simpara>
+<itemizedlist>
+<listitem>
+<simpara>This policy constraint is supported only if the cluster is created with <emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> selected during the initial cluster creation.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><literal>constraints/compute.vmExternalIpAccess</literal></simpara>
+<itemizedlist>
+<listitem>
+<simpara>This policy constraint is supported only when creating a private cluster with Google Cloud Private Service Connect (PSC). For all other cluster types, this policy constraint is supported only after cluster creation.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><literal>constraints/compute.trustedImageProjects</literal></simpara>
+<itemizedlist>
+<listitem>
+<simpara>This policy constraint is supported only when the projects <literal>redhat-marketplace-public</literal>, <literal>rhel-cloud</literal>, and <literal>rhcos-cloud</literal> are included in the allowlist. If this policy constraint is enabled and these projects are not included in the allowlist, cluster creation will fail.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<simpara>For more information about configuring Google Cloud organization policy constraints, see <link xlink:href="https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints">Organization policy constraints</link>.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara><link xlink:href="https://cloud.google.com/resource-manager/docs/creating-managing-projects">Create a Google Cloud project</link> to host the OpenShift Container Platform cluster.</simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://cloud.google.com/service-usage/docs/enable-disable#enabling">Enable</link> the following required APIs in the project that hosts your OpenShift Container Platform cluster:</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>Required API services</title>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="37.5*"/>
+<colspec colname="col_3" colwidth="37.5*"/>
+<thead>
+<row>
+<entry align="left" valign="top">API service</entry>
+<entry align="left" valign="top">Console service name</entry>
+<entry align="left" valign="top">Purpose</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/deployment-manager/docs/apis#google-cloud-deployment-manager-v2-api">Cloud Deployment Manager V2 API</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>deploymentmanager.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used for automated deployment and management of infrastructure resources.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/compute/docs/reference/rest/v1">Compute Engine API</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>compute.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used for creating and managing virtual machines, firewalls, networks, persistent disk volumes, and load balancers.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/apis/docs/overview">Google Cloud APIs</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>cloudapis.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used for managing Google Cloud services and resources.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/resource-manager/reference/rest">Cloud Resource Manager API</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>cloudresourcemanager.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used for getting projects, getting or setting an IAM policy for projects, validating required permissions, and tagging.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/dns/docs/reference/rest/v1">Cloud DNS API</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>dns.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used for creating DNS zones and managing DNS records for the cluster domains.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/firewall/docs/reference/network-security/rest">Network Security API</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>networksecurity.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used for creating, managing, and enforcing network security policies for your applications and resources within Google Cloud.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/iam/docs/reference/credentials/rest">IAM Service Account Credentials API</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>iamcredentials.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used for creating short-lived credentials for impersonating IAM service accounts.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/iam/docs/reference/rest">Identity and Access Management (IAM) API</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>iam.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used for managing the IAM configuration for the cluster.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/service-infrastructure/docs/service-management/reference/rest">Service Management API</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>servicemanagement.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used indirectly to fetch quota information for Google Cloud resources.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/service-usage/docs/reference/rest">Service Usage API</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>serviceusage.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used for determining what services are available in the customer’s Google Cloud account.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/storage/docs/json_api">Cloud Storage JSON API</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>storage-api.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used for accessing Cloud Storage for the image registry, ignition, and cluster backups (if applicable).</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/storage/docs/apis">Cloud Storage</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>storage-component.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used for managing Cloud Storage for the image registry, ignition, and cluster backups (if applicable).</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/resource-manager/docs/reference/orgpolicy/rest">Organization Policy API</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>orgpolicy.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used to identify governance rules applied to customer’s Google Cloud that might impact cluster creation or management.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://docs.cloud.google.com/marketplace/docs/reference/consumerprocurement/rest">Cloud Commerce Consumer Procurement API</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>cloudcommerceconsumerprocurement.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Enables users to procure products from the Google Cloud  Marketplace. Specifically, this permission is required to validate through this API that customers have accepted the  Marketplace terms and conditions for OpenShift Container Platform.</simpara>
+<simpara>This API is required when transacting through the Google Cloud Marketplace.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://cloud.google.com/iap/docs/reference/rest">Cloud Identity-Aware Proxy API</link></simpara></entry>
+<entry align="left" valign="top"><simpara><literal>iap.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Used in emergency situations to troubleshoot cluster nodes that are otherwise inaccessible.</simpara>
+<simpara>This API is required for clusters deployed with Private Service Connect.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="ccs-gcp-permissions-marketplace-billing_gcp-ccs">
+<title>Roles required for Google Cloud Marketplace billing</title>
+<simpara role="_abstract">To deploy an OpenShift Container Platform cluster using Google Cloud Marketplace-based billing, your Google Cloud account must first be prepared. This involves accepting the Google Cloud Marketplace terms and agreements for the OpenShift Dedicated product listing. Contact your Google Cloud administrator who has the <literal>Consumer Procurement Entitlement Manager</literal> role to enable OpenShift Container Platform cluster deployments in your Google Cloud project.</simpara>
+<simpara>To automate the checking and acceptance of these terms and agreements during OpenShift Dedicated cluster creation, you must grant the <literal>Consumer Procurement Entitlement Viewer</literal> role to the Google Cloud identity (user or service account) that is creating the cluster. The <literal>Consumer Procurement Entitlement Viewer</literal> role includes the necessary permissions to check for existing consent to the Google Cloud terms and agreements and grants consent if that has not yet been given.</simpara>
+<simpara>The following table lists the permissions that are included in the <literal>Consumer Procurement Entitlement Viewer</literal> role.</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>Required permissions in the Consumer Procurement Entitlement Viewer role</title>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="37.5*"/>
+<colspec colname="col_3" colwidth="37.5*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Role and description</entry>
+<entry align="left" valign="top">Console role name</entry>
+<entry align="left" valign="top">Permissions</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><link xlink:href="https://docs.cloud.google.com/iam/docs/roles-permissions/consumerprocurement">Consumer Procurement Entitlement Viewer</link></simpara>
+<simpara>Allows for the inspecting of entitlements and service states for a consumer project.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>consumerprocurement.entitlementViewer</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>commerceoffercatalog.offers.get
+consumerprocurement.consents.check
+consumerprocurement.consents.list
+consumerprocurement.entitlements.get
+consumerprocurement.entitlements.list
+consumerprocurement.freeTrials.get
+consumerprocurement.freeTrials.list
+orgpolicy.policy.get
+resourcemanager.projects.get
+resourcemanager.projects.list
+serviceusage.consumerpolicy.analyze
+serviceusage.consumerpolicy.get
+serviceusage.effectivepolicy.get
+serviceusage.groups.list
+serviceusage.groups.listExpandedMembers
+serviceusage.groups.listMembers
+serviceusage.services.get
+serviceusage.services.list
+serviceusage.values.test</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara>For more information about Google Cloud Marketplace roles and permissions, see <link xlink:href="https://docs.cloud.google.com/marketplace/docs/access-control">Access control with IAM</link> in the Google Cloud documentation.</simpara>
+</section>
+<section xml:id="ccs-gcp-customer-procedure-wif_gcp-ccs">
+<title>Workload Identity Federation authentication type procedure</title>
+<simpara role="_abstract">Besides the required customer procedures listed in <emphasis>Required customer procedure</emphasis>, there are other specific actions that you must take when creating an OpenShift Container Platform cluster on Google Cloud using Workload Identity Federation (WIF) as the authentication type.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Assign the following roles to the <link xlink:href="https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource">service account</link> of the user implementing the WIF authentication type:</simpara>
+<important>
+<simpara>The following roles are only required when creating, updating, or deleting WIF configurations.</simpara>
+</important>
+<table frame="all" rowsep="1" colsep="1">
+<title>Required roles</title>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="38.4615*"/>
+<colspec colname="col_2" colwidth="23.0769*"/>
+<colspec colname="col_3" colwidth="38.4616*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Role and description</entry>
+<entry align="left" valign="top">Console role name</entry>
+<entry align="left" valign="top">Permissions</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Role Admin</simpara>
+<simpara>Required by the Google Cloud client in the OCM CLI for creating custom role.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.roleAdmin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>iam.roles.create</simpara>
+<simpara>iam.roles.delete</simpara>
+<simpara>iam.roles.get</simpara>
+<simpara>iam.roles.list</simpara>
+<simpara>iam.roles.undelete</simpara>
+<simpara>iam.roles.update</simpara>
+<simpara>resourcemanager.projects.get
+resourcemanager.projects.getIamPolicy</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Service Account Admin</simpara>
+<simpara>Required for the pre-creation of the service accounts used by the deployer, support, and Operators.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.serviceAccountAdmin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>iam.serviceAccountApiKeyBindings.create
+iam.serviceAccountApiKeyBindings.delete
+iam.serviceAccountApiKeyBindings.undelete
+iam.serviceAccounts.create
+iam.serviceAccounts.create
+iam.serviceAccounts.create
+iam.serviceAccounts.createTagBinding
+iam.serviceAccounts.delete
+iam.serviceAccounts.deleteTagBinding
+iam.serviceAccounts.disable
+iam.serviceAccounts.enable
+iam.serviceAccounts.get
+iam.serviceAccounts.getIamPolicy
+iam.serviceAccounts.list
+iam.serviceAccounts.listEffectiveTags
+iam.serviceAccounts.listTagBindings
+iam.serviceAccounts.setIamPolicy
+iam.serviceAccounts.undelete
+iam.serviceAccounts.update
+resourcemanager.projects.get
+resourcemanager.projects.list</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Workload Identity Pool Admin</simpara>
+<simpara>Required to create and configure the workload identity pool.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.workloadIdentityPoolAdmin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>iam.googleapis.com/workloadIdentityPoolProviderKeys.create
+iam.googleapis.com/workloadIdentityPoolProviderKeys.delete
+iam.googleapis.com/workloadIdentityPoolProviderKeys.get
+iam.googleapis.com/workloadIdentityPoolProviderKeys.list
+iam.googleapis.com/workloadIdentityPoolProviderKeys.undelete
+iam.googleapis.com/workloadIdentityPoolProviders.create
+iam.googleapis.com/workloadIdentityPoolProviders.delete
+iam.googleapis.com/workloadIdentityPoolProviders.get
+iam.googleapis.com/workloadIdentityPoolProviders.list
+iam.googleapis.com/workloadIdentityPoolProviders.undelete
+iam.googleapis.com/workloadIdentityPoolProviders.up
+iam.googleapis.com/workloadIdentityPools.delete
+iam.googleapis.com/workloadIdentityPools.get
+iam.googleapis.com/workloadIdentityPools.list
+iam.googleapis.com/workloadIdentityPools.undelete
+iam.googleapis.com/workloadIdentityPools.update
+iam.workloadIdentityPools.createPolicyBinding
+iam.workloadIdentityPools.deletePolicyBinding
+iam.workloadIdentityPools.searchPolicyBindings
+iam.workloadIdentityPools.updatePolicyBinding
+resourcemanager.projects.get
+resourcemanager.projects.list</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Project IAM Admin</simpara>
+<simpara>Required for assigning roles to the service account and giving permissions to those roles that are necessary to perform operations on cloud resources.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/resourcemanager.projectIamAdmin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>iam.policybindings.get
+iam.policybindings.list
+resourcemanager.projects.createPolicyBinding
+resourcemanager.projects.deletePolicyBinding
+resourcemanager.projects.get
+resourcemanager.projects.getIamPolicy
+resourcemanager.projects.searchPolicyBindings
+resourcemanager.projects.setIamPolicy
+resourcemanager.projects.updatePolicyBinding</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem>
+<simpara>Install the <link xlink:href="https://console.redhat.com/openshift/downloads">OpenShift Cluster Manager API command-line interface (<literal>ocm</literal>)</link>.</simpara>
+<important>
+<simpara>The OpenShift Cluster Manager API command-line interface (<literal>ocm</literal>) is a Developer Preview feature only.
+For more information about the support scope of Red Hat Developer Preview features, see <link xlink:href="https://access.redhat.com/support/offerings/devpreview/">Developer Preview Support Scope</link>.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>To authenticate against your Red Hat OpenShift Cluster Manager account, run one of the following commands.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>If your system supports a web-based browser, run the Red&#160;Hat single sign-on (SSO) authorization code command for secure authentication:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ ocm login --use-auth-code</programlisting>
+<simpara>Running this command will redirect you to the Red Hat SSO login. Log in with your Red&#160;Hat login or email.</simpara>
+</listitem>
+<listitem>
+<simpara>If you are working with containers, remote hosts, and other environments without a web browser, run the Red&#160;Hat single sign-on (SSO) device code command for secure authentication:</simpara>
+<formalpara>
+<title>Syntax</title>
+<para>
+<programlisting language="terminal" linenumbering="unnumbered">$ ocm login --use-device-code</programlisting>
+</para>
+</formalpara>
+<simpara>Running this command will redirect you to the Red&#160;Hat SSO login and provide a log in code.</simpara>
+<simpara>To switch accounts, logout from <link xlink:href="https://sso.redhat.com">https://sso.redhat.com</link> and run the <literal>ocm logout</literal> command in your terminal before attempting to login again.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Install the <link xlink:href="https://cloud.google.com/sdk/docs/install">gcloud CLI</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Authenticate the gcloud CLI with the <link xlink:href="https://cloud.google.com/docs/authentication/provide-credentials-adc">Application Default Credentials (ADC)</link>.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="ccs-gcp-customer-procedure-sa_gcp-ccs">
+<title>Service account authentication type procedure</title>
+<simpara role="_abstract">Besides the required customer procedures listed in <emphasis>Required customer procedure</emphasis>, there are other specific actions that you must take when creating an OpenShift Container Platform cluster on Google Cloud using a service account as the authentication type.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>To ensure that Red Hat can perform necessary actions, you must create an <literal>osd-ccs-admin</literal> IAM <link xlink:href="https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account">service account</link> user within the Google Cloud project.</simpara>
+<simpara>The following roles must be <link xlink:href="https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource">granted to the service account</link>:</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>Required roles</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="40*"/>
+<colspec colname="col_2" colwidth="60*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Role</entry>
+<entry align="left" valign="top">Console role name</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Compute Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/compute.admin</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>DNS Administrator</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/dns.admin</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Organization Policy Viewer</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/orgpolicy.policyViewer</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Service Management Administrator</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/servicemanagement.admin</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Service Usage Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/serviceusage.serviceUsageAdmin</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Storage Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/storage.admin</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Compute Load Balancer Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/compute.loadBalancerAdmin</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Role Viewer</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/viewer</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Role Administrator</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.roleAdmin</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Security Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.securityAdmin</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Service Account Key Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.serviceAccountKeyAdmin</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Service Account Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.serviceAccountAdmin</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Service Account User</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.serviceAccountUser</literal></simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys">Create the service account key</link> for the <literal>osd-ccs-admin</literal> IAM service account. Export the key to a file named <literal>osServiceAccount.json</literal>; this JSON file will be uploaded in Red Hat OpenShift Cluster Manager when you create your cluster.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="ccs-gcp-iam_gcp-ccs">
+<title>Red Hat managed Google Cloud resources</title>
+<simpara role="_abstract">Red Hat is responsible for creating and managing the following IAM Google Cloud resources.</simpara>
+<important>
+<simpara>The <emphasis>IAM service account and roles</emphasis> and <emphasis>IAM group and roles</emphasis> topics are only applicable to clusters created using the service account authentication type.</simpara>
+</important>
+<section xml:id="ccs-gcp-iam-service-account-roles_gcp-ccs">
+<title>IAM service account and roles</title>
+<simpara>The <literal>osd-managed-admin</literal> IAM service account is created immediately after taking control of the customer-provided Google Cloud account. This is the user that will perform the OpenShift Container Platform cluster installation.</simpara>
+<simpara>The following roles are attached to the service account:</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>IAM roles for osd-managed-admin</title>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="28.5714*"/>
+<colspec colname="col_2" colwidth="42.8571*"/>
+<colspec colname="col_3" colwidth="28.5715*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Role</entry>
+<entry align="left" valign="top">Console role name</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Compute Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/compute.admin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Provides full control of all Compute Engine resources.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>DNS Administrator</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/dns.admin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Provides read-write access to all Cloud DNS resources.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Security Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.securityAdmin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Security admin role, with permissions to get and set any IAM policy.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Storage Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/storage.admin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Grants full control of objects and buckets.</simpara>
+<simpara>When applied to an individual <emphasis role="strong">bucket</emphasis>, control applies only to the specified bucket and objects within the bucket.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Service Account Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.serviceAccountAdmin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Create and manage service accounts.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Service Account Key Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.serviceAccountKeyAdmin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Create and manage (and rotate) service account keys.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Service Account User</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.serviceAccountUser</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Run operations as the service account.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Role Administrator</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.roleAdmin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Provides access to all custom roles in the project.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+<section xml:id="ccs-gcp-iam-group-roles_gcp-ccs">
+<title>IAM group and roles</title>
+<simpara>The <literal>sd-sre-platform-gcp-access</literal> Google group is granted access to the Google Cloud project to allow Red Hat Site Reliability Engineering (SRE) access to the console for emergency troubleshooting purposes.</simpara>
+<note>
+<itemizedlist>
+<listitem>
+<simpara>For information regarding the roles within the <literal>sd-sre-platform-gcp-access</literal>  group that are specific to clusters created when using the Workload Identity Federation (WIF) authentication type, see <link xlink:href="https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.19/vanilla.yaml">managed-cluster-config</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>For information about creating a cluster using the Workload Identity Federation authentication type, see <emphasis>Additional resources</emphasis>.</simpara>
+</listitem>
+</itemizedlist>
+</note>
+<simpara>The following roles are attached to the group:</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>IAM roles for sd-sre-platform-gcp-access</title>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="28.5714*"/>
+<colspec colname="col_2" colwidth="42.8571*"/>
+<colspec colname="col_3" colwidth="28.5715*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Role</entry>
+<entry align="left" valign="top">Console role name</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Compute Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/compute.admin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Provides full control of all Compute Engine resources.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Editor</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/editor</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Provides all viewer permissions, plus permissions for actions that modify state.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Organization Policy Viewer</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/orgpolicy.policyViewer</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Provides access to view Organization Policies on resources.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Project IAM Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/resourcemanager.projectIamAdmin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Provides permissions to administer IAM policies on projects.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Quota Administrator</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/servicemanagement.quotaAdmin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Provides access to administer service quotas.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Role Administrator</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.roleAdmin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Provides access to all custom roles in the project.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Service Account Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/iam.serviceAccountAdmin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Create and manage service accounts.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Service Usage Admin</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/serviceusage.serviceUsageAdmin</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Ability to enable, disable, and inspect service states, inspect operations, and consume quota and billing for a consumer project.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Tech Support Editor</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>roles/cloudsupport.techSupportEditor</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Provides full read-write access to technical support cases.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+</section>
+<section xml:id="ccs-gcp-provisioned_gcp-ccs">
+<title>Provisioned Google Cloud Infrastructure</title>
+<simpara role="_abstract">This is an overview of the provisioned Google Cloud components on a deployed OpenShift Container Platform cluster. For a more detailed listing of all provisioned Google Cloud components, see the <link xlink:href="https://access.redhat.com/documentation/en-us/openshift_container_platform/">OpenShift Container Platform documentation</link>.</simpara>
+<section xml:id="gcp-policy-instances_gcp-ccs">
+<title>Compute instances</title>
+<simpara>Google Cloud compute instances are required to deploy the control plane and data plane functions of OpenShift Container Platform in Google Cloud. Instance types might vary for control plane and infrastructure nodes depending on worker node count.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Single availability zone</simpara>
+<itemizedlist>
+<listitem>
+<simpara>2 infra nodes  (n2-highmem-4 machine type: 4 vCPU and 32 GB RAM)</simpara>
+</listitem>
+<listitem>
+<simpara>3 control plane nodes  (n2-standard-8 machine type: 8 vCPU and 32 GB RAM)</simpara>
+</listitem>
+<listitem>
+<simpara>2 worker nodes (default n2-standard-4 machine type: 4 vCPU and 16 GB RAM)</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Multiple availability zones</simpara>
+<itemizedlist>
+<listitem>
+<simpara>3 infra nodes  (n2-highmem-4 machine type: 4 vCPU and 32 GB RAM)</simpara>
+</listitem>
+<listitem>
+<simpara>3 control plane nodes (n2-standard-8 machine type: 8 vCPU and 32 GB RAM)</simpara>
+</listitem>
+<listitem>
+<simpara>3 worker nodes (default n2-standard-4 machine type: 4 vCPU and 16 GB RAM)</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="gcp-policy-storage_gcp-ccs">
+<title>Storage</title>
+<itemizedlist>
+<listitem>
+<simpara>Infrastructure volumes:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>300 GB SSD persistent disk (deleted on instance deletion)</simpara>
+</listitem>
+<listitem>
+<simpara>110 GB  Standard persistent disk (kept on instance deletion)</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Worker volumes:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>300 GB SSD persistent disk  (deleted on instance deletion)</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Control plane volumes:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>350 GB SSD persistent disk  (deleted on instance deletion)</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="gcp-policy-vpc_gcp-ccs">
+<title>Installing a new cluster into an existing VPC</title>
+<simpara>You must have at least one VPC network within the Google Cloud project where the OpenShift Container Platform cluster is being installed. The VPC network must include the following subnets within the same region as the cluster:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>A control plane subnet for the OpenShift control plane.</simpara>
+</listitem>
+<listitem>
+<simpara>A compute subnet for user workloads.</simpara>
+</listitem>
+<listitem>
+<simpara>A Private Service Connect (PSC) subnet when a private cluster is deployed using PSC.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>Installing a new OpenShift Container Platform cluster into a VPC that was automatically created by the installer for a different cluster is not supported.</simpara>
+<simpara>IPv6 and dual-stack (IPv4 and IPv6) address ranges are not supported within the OpenShift Container Platform cluster.</simpara>
+</note>
+</section>
+<section xml:id="gcp-policy-services_gcp-ccs">
+<title>Services</title>
+<simpara>For a list of services that must be enabled on a Google Cloud CCS cluster, see the <emphasis>Required API services</emphasis> table.</simpara>
+</section>
+</section>
+<section xml:id="gcp-limits_gcp-ccs">
+<title>Google Cloud account limits</title>
+<simpara>The OpenShift Container Platform cluster uses a number of Google Cloud components, but the default <link xlink:href="https://cloud.google.com/docs/quota">quotas</link> do not affect your ability to install an OpenShift Container Platform cluster.</simpara>
+<simpara>A standard OpenShift Container Platform cluster uses the following resources. Note that some resources are required only during the bootstrap process and are removed after the cluster deploys.</simpara>
+<note>
+<simpara>3 subnets are required to deploy a private cluster with Private Service Connect (PSC). These subnets are a control plane subnet, a worker subnet, and a subnet used for the PSC service attachment with the purpose set to Private Service Connect.</simpara>
+<simpara>48 vCPUs for a default multi-AZ OpenShift Container Platform cluster consists of 3 compute nodes (4 vCPUs each, one per availability zone), 3 infra nodes (4 vCPU each), and 3 control plane nodes (8 vCPU each).</simpara>
+<simpara>40 vCPUs for a default single-AZ OpenShift Container Platform cluster consists of 2 compute nodes (4 vCPUs each), 2 infra nodes (4 vCPU each) and 3 control plane nodes (8 vCPU each).</simpara>
+</note>
+<table frame="all" rowsep="1" colsep="1">
+<title>Google Cloud resources used in a default cluster</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Service</entry>
+<entry align="left" valign="top">Component</entry>
+<entry align="left" valign="top">Location</entry>
+<entry align="left" valign="top">Total resources required</entry>
+<entry align="left" valign="top">Resources removed after bootstrap</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Service account</simpara></entry>
+<entry align="left" valign="top"><simpara>IAM</simpara></entry>
+<entry align="left" valign="top"><simpara>Global</simpara></entry>
+<entry align="left" valign="top"><simpara>10</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Firewall Rules</simpara></entry>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>Global</simpara></entry>
+<entry align="left" valign="top"><simpara>11</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Forwarding Rules</simpara></entry>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>Global</simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>In-use global IP addresses</simpara></entry>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>Global</simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Health checks</simpara></entry>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>Global</simpara></entry>
+<entry align="left" valign="top"><simpara>3</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Images</simpara></entry>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>Global</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Networks</simpara></entry>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>Global</simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Static IP addresses</simpara></entry>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>Region</simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Routers</simpara></entry>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>Global</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Routes</simpara></entry>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>Global</simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Subnetworks</simpara></entry>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>Global</simpara></entry>
+<entry align="left" valign="top"><simpara>3</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Target Pools</simpara></entry>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>Global</simpara></entry>
+<entry align="left" valign="top"><simpara>3</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>CPUs</simpara></entry>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>Region</simpara></entry>
+<entry align="left" valign="top"><simpara>48</simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Persistent Disk SSD (GB)</simpara></entry>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>Region</simpara></entry>
+<entry align="left" valign="top"><simpara>1060</simpara></entry>
+<entry align="left" valign="top"><simpara>128</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<note>
+<simpara>If any of the quotas are insufficient during installation, the installation program displays an error that states both which quota was exceeded and the region.</simpara>
+</note>
+<simpara>Be sure to consider your actual cluster size, planned cluster growth, and any usage from other clusters that are associated with your account. The CPU, Static IP addresses, and Persistent Disk SSD (Storage) quotas are the ones that are most likely to be insufficient.</simpara>
+<simpara>If you plan to deploy your cluster in one of the following regions, you will exceed the maximum storage quota and are likely to exceed the CPU quota limit:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>asia-east2</simpara>
+</listitem>
+<listitem>
+<simpara>asia-northeast2</simpara>
+</listitem>
+<listitem>
+<simpara>asia-south1</simpara>
+</listitem>
+<listitem>
+<simpara>australia-southeast1</simpara>
+</listitem>
+<listitem>
+<simpara>europe-north1</simpara>
+</listitem>
+<listitem>
+<simpara>europe-west2</simpara>
+</listitem>
+<listitem>
+<simpara>europe-west3</simpara>
+</listitem>
+<listitem>
+<simpara>europe-west6</simpara>
+</listitem>
+<listitem>
+<simpara>northamerica-northeast1</simpara>
+</listitem>
+<listitem>
+<simpara>southamerica-east1</simpara>
+</listitem>
+<listitem>
+<simpara>us-west2</simpara>
+</listitem>
+</itemizedlist>
+<simpara>You can increase resource quotas from the <link xlink:href="https://console.cloud.google.com/iam-admin/quotas">Google Cloud console</link>, but you might need to file a support ticket. Be sure to plan your cluster size early so that you can allow time to resolve the support ticket before you install your OpenShift Container Platform cluster.</simpara>
+</section>
+<section xml:id="osd-gcp-psc-firewall-prerequisites_gcp-ccs">
+<title>Google Cloud firewall prerequisites</title>
+<simpara>If you are using a firewall to control egress traffic from OpenShift Container Platform on Google Cloud, you must configure your firewall to grant access to certain domains and port combinations listed in the tables below. OpenShift Container Platform requires this access to provide a fully managed OpenShift service.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Add the following URLs that are used to install and download packages and tools to an allowlist:</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="46.1538*"/>
+<colspec colname="col_2" colwidth="7.6923*"/>
+<colspec colname="col_3" colwidth="46.1539*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Domain</entry>
+<entry align="left" valign="top">Port</entry>
+<entry align="left" valign="top">Function</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>registry.redhat.io</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>quay.io</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>cdn01.quay.io</literal></simpara><simpara> <literal>cdn02.quay.io</literal></simpara><simpara> <literal>cdn03.quay.io</literal></simpara><simpara> <literal>cdn04.quay.io</literal></simpara><simpara> <literal>cdn05.quay.io</literal></simpara><simpara> <literal>cdn06.quay.io</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>sso.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required. The <link xlink:href="https://console.redhat.com/openshift">https://console.redhat.com/openshift</link> site uses authentication from sso.redhat.com to download the pull secret and use Red Hat SaaS solutions to facilitate monitoring of your subscriptions, cluster inventory, chargeback reporting, and so on.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>quayio-production-s3.s3.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>pull.q1w2.quay.rhcloud.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>registry.access.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Hosts all the container images that are stored on the Red&#160;Hat Ecosytem Catalog. Additionally, the registry provides access to the <literal>odo</literal> CLI tool that helps developers build on OpenShift and Kubernetes.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>registry.connect.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for all third-party images and certified Operators.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>console.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required. Allows interactions between the cluster and Red Hat OpenShift Cluster Manager to enable functionality, such as scheduling upgrades.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>catalog.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>The <literal>registry.access.redhat.com</literal> and <literal><link xlink:href="https://registry.redhat.io">https://registry.redhat.io</link></literal> sites redirect through <literal>catalog.redhat.com</literal>.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</listitem>
+<listitem>
+<simpara>Add the following telemetry URLs to an allowlist:</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="46.1538*"/>
+<colspec colname="col_2" colwidth="7.6923*"/>
+<colspec colname="col_3" colwidth="46.1539*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Domain</entry>
+<entry align="left" valign="top">Port</entry>
+<entry align="left" valign="top">Function</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>cert-api.access.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for telemetry.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>api.access.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for telemetry.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>infogw.api.openshift.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for telemetry.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>console.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for telemetry and Red&#160;Hat Lightspeed.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>observatorium-mst.api.openshift.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for managed OpenShift-specific telemetry.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>observatorium.api.openshift.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for managed OpenShift-specific telemetry.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<note>
+<simpara>Managed clusters require the enabling of telemetry to allow Red Hat to react more quickly to problems, better support the customers, and better understand how product upgrades impact clusters. For more information about how remote health monitoring data is used by Red Hat, see <emphasis>About remote health monitoring</emphasis> in the <emphasis>Additional resources</emphasis> section.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Add the following OpenShift Container Platform URLs to an allowlist:</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="46.1538*"/>
+<colspec colname="col_2" colwidth="7.6923*"/>
+<colspec colname="col_3" colwidth="46.1539*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Domain</entry>
+<entry align="left" valign="top">Port</entry>
+<entry align="left" valign="top">Function</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>mirror.openshift.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to access mirrored installation content and images. This site is also a source of release image signatures.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>api.openshift.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to check if updates are available for the cluster.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</listitem>
+<listitem>
+<simpara>Add the following site reliability engineering (SRE) and management URLs to an allowlist:</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="46.1538*"/>
+<colspec colname="col_2" colwidth="7.6923*"/>
+<colspec colname="col_3" colwidth="46.1539*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Domain</entry>
+<entry align="left" valign="top">Port</entry>
+<entry align="left" valign="top">Function</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>api.pagerduty.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>This alerting service is used by the in-cluster alertmanager to send alerts notifying Red&#160;Hat SRE of an event to take action on.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>events.pagerduty.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>This alerting service is used by the in-cluster alertmanager to send alerts notifying Red&#160;Hat SRE of an event to take action on.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>api.deadmanssnitch.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Alerting service used by OpenShift Container Platform to send periodic pings that indicate whether the cluster is available and running.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>nosnch.in</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Alerting service used by OpenShift Container Platform to send periodic pings that indicate whether the cluster is available and running.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>http-inputs-osdsecuritylogs.splunkcloud.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used by the <literal>splunk-forwarder-operator</literal> as a logging forwarding endpoint to be used by Red&#160;Hat SRE for log-based alerting.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>sftp.access.redhat.com</literal> (Recommended)</simpara></entry>
+<entry align="left" valign="top"><simpara>22</simpara></entry>
+<entry align="left" valign="top"><simpara>The SFTP server used by <literal>must-gather-operator</literal> to upload diagnostic logs to help troubleshoot issues with the cluster.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</listitem>
+<listitem>
+<simpara>Add the following URLs for the Google Cloud API endpoints to an allowlist:</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="46.1538*"/>
+<colspec colname="col_2" colwidth="7.6923*"/>
+<colspec colname="col_3" colwidth="46.1539*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Domain</entry>
+<entry align="left" valign="top">Port</entry>
+<entry align="left" valign="top">Function</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>accounts.google.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to access your Google Cloud account.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>*.googleapis.com</literal></simpara><simpara>OR</simpara><simpara> <literal>storage.googleapis.com</literal></simpara><simpara> <literal>iam.googleapis.com</literal></simpara><simpara> <literal>serviceusage.googleapis.com</literal></simpara><simpara> <literal>cloudresourcemanager.googleapis.com</literal></simpara><simpara> <literal>compute.googleapis.com</literal></simpara><simpara> <literal>oauth2.googleapis.com</literal></simpara><simpara> <literal>dns.googleapis.com</literal></simpara><simpara> <literal>iamcredentials.googleapis.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to access Google Cloud services and resources. Review <link xlink:href="https://cloud.google.com/endpoints/docs">Cloud Endpoints</link> in the Google Cloud documentation to determine the endpoints to allow for your APIs.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<note>
+<simpara>Required Google APIs can be exposed using the <link xlink:href="https://cloud.google.com/vpc-service-controls/docs/restricted-vip-services">Private Google Access restricted virtual IP (VIP)</link>, with the exception of the Service Usage API (serviceusage.googleapis.com). To circumvent this, you must expose the Service Usage API using the <link xlink:href="https://cloud.google.com/vpc/docs/configure-private-google-access#domain-options">Private Google Access private VIP</link>.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="additional-resources_gcp-ccs">
+<title>Additional resources</title>
+<itemizedlist>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/support/#about-remote-health-monitoring">About remote health monitoring</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/openshift_dedicated_clusters_on_google_cloud/#osd-creating-a-cluster-on-gcp-with-workload-identity-federation">Creating a cluster on Google Cloud with Workload Identity Federation authentication</link></simpara>
+</listitem>
+<listitem>
+<simpara>For more information about the specific roles and permissions that are specific to clusters created when using the Workload Identity Federation (WIF) authentication type, see <link xlink:href="https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.19/vanilla.yaml">managed-cluster-config</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="aws-ccs">
+<title>Customer Cloud Subscriptions on AWS</title>
+<simpara role="_abstract">OpenShift Container Platform provides a Customer Cloud Subscription (CCS) model that allows Red Hat to deploy and manage clusters into a customer’s existing Amazon Web Service (AWS) account.</simpara>
+<section xml:id="ccs-aws-understand_aws-ccs">
+<title>Understanding Customer Cloud Subscriptions on AWS</title>
+<simpara role="_abstract">To deploy OpenShift Container Platform into your existing Amazon Web Services (AWS) account using the Customer Cloud Subscription (CCS) model, Red Hat requires several prerequisites be met.</simpara>
+<simpara>Red Hat recommends the usage of an AWS Organization to manage multiple AWS accounts. The AWS Organization, managed by the customer, hosts multiple AWS accounts. There is a root account in the organization that all accounts will refer to in the account hierarchy.</simpara>
+<simpara>It is recommended for the OpenShift Container Platform cluster using a CCS model to be hosted in an AWS account within an AWS Organizational Unit. A service control policy (SCP) is created and applied to the AWS Organizational Unit that manages what services the AWS sub-accounts are permitted to access. The SCP applies only to available permissions within a single AWS account for all AWS sub-accounts within the Organizational Unit. It is also possible to apply a SCP to a single AWS account. All other accounts in the customer’s AWS Organization are managed in whatever manner the customer requires. Red Hat Site Reliability Engineers (SRE) will not have any control over SCPs within the AWS Organization.</simpara>
+</section>
+<section xml:id="ccs-aws-customer-requirements_aws-ccs">
+<title>Customer requirements</title>
+<simpara role="_abstract">OpenShift Container Platform clusters using a Customer Cloud Subscription (CCS) model on Amazon Web Services (AWS) must meet several prerequisites before they can be deployed.</simpara>
+<section xml:id="ccs-requirements-account_aws-ccs">
+<title>Account</title>
+<itemizedlist>
+<listitem>
+<simpara>The customer ensures that <link xlink:href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">AWS limits</link> are sufficient to support OpenShift Container Platform provisioned within the customer-provided AWS account.</simpara>
+</listitem>
+<listitem>
+<simpara>The customer-provided AWS account should be in the customer&#8217;s AWS Organization with the applicable service control policy (SCP) applied.</simpara>
+<note>
+<simpara>It is not a requirement that the customer-provided account be within an AWS Organization or for the SCP to be applied, however Red Hat must be able to perform all the actions listed in the SCP without restriction.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>The customer-provided AWS account must not be transferable to Red Hat.</simpara>
+</listitem>
+<listitem>
+<simpara>The customer may not impose AWS usage restrictions on Red Hat activities. Imposing restrictions severely hinders Red Hat&#8217;s ability to respond to incidents.</simpara>
+</listitem>
+<listitem>
+<simpara>Red Hat deploys monitoring into AWS to alert Red Hat when a highly privileged account, such as a root account, logs into the customer-provided AWS account.</simpara>
+</listitem>
+<listitem>
+<simpara>The customer can deploy native AWS services within the same customer-provided AWS account.</simpara>
+<note>
+<simpara>Customers are encouraged, but not mandated, to deploy resources in a Virtual Private Cloud (VPC) separate from the VPC hosting OpenShift Container Platform and other Red Hat supported services.</simpara>
+</note>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="ccs-requirements-access_aws-ccs">
+<title>Access requirements</title>
+<itemizedlist>
+<listitem>
+<simpara>To appropriately manage the OpenShift Container Platform service, Red Hat must have the <literal>AdministratorAccess</literal> policy applied to the administrator role at all times.</simpara>
+<note>
+<simpara>This policy only provides Red Hat with permissions and capabilities to change resources in the customer-provided AWS account.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Red Hat must have AWS console access to the customer-provided AWS account. This access is protected and managed by Red Hat.</simpara>
+</listitem>
+<listitem>
+<simpara>The customer must not utilize the AWS account to elevate their permissions within the OpenShift Container Platform cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>Actions available in <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link> must not be directly performed in the customer-provided AWS account.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="ccs-requirements-support_aws-ccs">
+<title>Support requirements</title>
+<itemizedlist>
+<listitem>
+<simpara>Red Hat recommends that the customer have at least <link xlink:href="https://aws.amazon.com/premiumsupport/plans/">Business Support</link> from AWS.</simpara>
+</listitem>
+<listitem>
+<simpara>Red Hat has authority from the customer to request AWS support on their behalf.</simpara>
+</listitem>
+<listitem>
+<simpara>Red Hat has authority from the customer to request AWS resource limit increases on the customer-provided account.</simpara>
+</listitem>
+<listitem>
+<simpara>Red Hat manages the restrictions, limitations, expectations, and defaults for all OpenShift Container Platform clusters in the same manner, unless otherwise specified in this requirements section.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="ccs-requirements-security_aws-ccs">
+<title>Security requirements</title>
+<itemizedlist>
+<listitem>
+<simpara>The customer-provided IAM credentials must be unique to the customer-provided AWS account and must not be stored anywhere in the customer-provided AWS account.</simpara>
+</listitem>
+<listitem>
+<simpara>Volume snapshots will remain within the customer-provided AWS account and customer-specified region.</simpara>
+</listitem>
+<listitem>
+<simpara>Red Hat must have ingress access to EC2 hosts and the API server through white-listed Red Hat machines.</simpara>
+</listitem>
+<listitem>
+<simpara>Red Hat must have egress allowed to forward system and audit logs to a Red Hat managed central logging stack.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="ccs-aws-customer-procedure_aws-ccs">
+<title>Required customer procedure</title>
+<simpara role="_abstract">The Customer Cloud Subscription (CCS) model allows Red Hat to deploy and manage OpenShift Container Platform into a customer’s Amazon Web Services (AWS) account. Red Hat requires several prerequisites in order to provide these services.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>If the customer is using AWS Organizations, you must either use an AWS account within your organization or <link xlink:href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_create.html#orgs_manage_accounts_create-new">create a new one</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>To ensure that Red Hat can perform necessary actions, you must either create a service control policy (SCP) or ensure that none is applied to the AWS account.</simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html">Attach</link> the SCP to the AWS account.</simpara>
+</listitem>
+<listitem>
+<simpara>Within the AWS account, you must <link xlink:href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html">create</link> an <literal>osdCcsAdmin</literal> IAM user with the following requirements:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>This user needs at least <emphasis role="strong">Programmatic access</emphasis> enabled.</simpara>
+</listitem>
+<listitem>
+<simpara>This user must have the <literal>AdministratorAccess</literal> policy attached to it.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Provide the IAM user credentials to Red Hat.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You must provide the <emphasis role="strong">access key ID</emphasis> and <emphasis role="strong">secret access key</emphasis> in <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="ccs-aws-scp_aws-ccs">
+<title>Minimum required service control policy (SCP)</title>
+<simpara role="_abstract">Service control policy (SCP) management is the responsibility of the customer. These policies are maintained in the AWS Organization and control what services are available within the attached AWS accounts.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="25*"/>
+<colspec colname="col_3" colwidth="25*"/>
+<colspec colname="col_4" colwidth="25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Required/optional</entry>
+<entry align="left" valign="top">Service</entry>
+<entry align="left" valign="top">Actions</entry>
+<entry align="left" valign="top">Effect</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top" morerows="14"><simpara>Required</simpara></entry>
+<entry align="left" valign="top"><simpara>Amazon EC2</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Amazon EC2 Auto Scaling</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Amazon S3</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Identity And Access Management</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Elastic Load Balancing</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Elastic Load Balancing V2</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Amazon CloudWatch</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Amazon CloudWatch Events</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Amazon CloudWatch Logs</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>AWS Support</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>AWS Key Management Service</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>AWS Security Token Service</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>AWS Resource Tagging</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>AWS Route53 DNS</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>AWS Service Quotas</simpara></entry>
+<entry align="left" valign="top"><simpara>ListServices</simpara>
+<simpara>GetRequestedServiceQuotaChange</simpara>
+<simpara>GetServiceQuota</simpara>
+<simpara>RequestServiceQuotaIncrease</simpara>
+<simpara>ListServiceQuotas</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top" morerows="2"><simpara>Optional</simpara></entry>
+<entry align="left" valign="top"><simpara>AWS Billing</simpara></entry>
+<entry align="left" valign="top"><simpara>ViewAccount</simpara>
+<simpara>Viewbilling</simpara>
+<simpara>ViewUsage</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>AWS Cost and Usage Report</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>AWS Cost Explorer Services</simpara></entry>
+<entry align="left" valign="top"><simpara>All</simpara></entry>
+<entry align="left" valign="top"><simpara>Allow</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<programlisting language="json" linenumbering="unnumbered">{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "elasticloadbalancing:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "events:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "support:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "kms:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sts:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "tag:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "route53:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "servicequotas:ListServices",
+                "servicequotas:GetRequestedServiceQuotaChange",
+                "servicequotas:GetServiceQuota",
+                "servicequotas:RequestServiceQuotaIncrease",
+                "servicequotas:ListServiceQuotas"
+            ],
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+}</programlisting>
+</section>
+<section xml:id="ccs-aws-iam_aws-ccs">
+<title>Red Hat managed IAM references for AWS</title>
+<simpara role="_abstract">Red Hat is responsible for creating and managing the following Amazon Web Services (AWS) resources: IAM policies, IAM users, and IAM roles.</simpara>
+<section xml:id="aws-policy-iam-policies_aws-ccs">
+<title>IAM policies</title>
+<note>
+<simpara>IAM policies are subject to modification as the capabilities of OpenShift Container Platform change.</simpara>
+</note>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>AdministratorAccess</literal> policy is used by the administration role. This policy provides Red Hat the access necessary to administer the OpenShift Container Platform cluster in the customer-provided AWS account.</simpara>
+<programlisting language="json" linenumbering="unnumbered">{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "*",
+            "Resource": "*",
+            "Effect": "Allow"
+        }
+    ]
+}</programlisting>
+</listitem>
+<listitem>
+<simpara>The <literal>CustomerAdministratorAccess</literal> role provides the customer access to administer a subset of services within the AWS account. At this time, the following are allowed:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>VPC Peering</simpara>
+</listitem>
+<listitem>
+<simpara>VPN Setup</simpara>
+</listitem>
+<listitem>
+<simpara>Direct Connect (only available if granted through the service control policy)</simpara>
+<programlisting language="json" linenumbering="unnumbered">{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:AttachVpnGateway",
+                "ec2:DescribeVpnConnections",
+                "ec2:AcceptVpcPeeringConnection",
+                "ec2:DeleteVpcPeeringConnection",
+                "ec2:DescribeVpcPeeringConnections",
+                "ec2:CreateVpnConnectionRoute",
+                "ec2:RejectVpcPeeringConnection",
+                "ec2:DetachVpnGateway",
+                "ec2:DeleteVpnConnectionRoute",
+                "ec2:DeleteVpnGateway",
+                "ec2:DescribeVpcs",
+                "ec2:CreateVpnGateway",
+                "ec2:ModifyVpcPeeringConnectionOptions",
+                "ec2:DeleteVpnConnection",
+                "ec2:CreateVpcPeeringConnection",
+                "ec2:DescribeVpnGateways",
+                "ec2:CreateVpnConnection",
+                "ec2:DescribeRouteTables",
+                "ec2:CreateTags",
+                "ec2:CreateRoute",
+          "directconnect:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}</programlisting>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>If enabled, the <literal>BillingReadOnlyAccess</literal> role provides read-only access to view billing and usage information for the account.</simpara>
+<simpara>Billing and usage access is only granted if the root account in the AWS Organization has it enabled. This is an optional step the customer must perform to enable read-only billing and usage access and does not impact the creation of this profile and the role that uses it. If this role is not enabled, users will not see billing and usage information. See this tutorial on <link xlink:href="https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_billing.html#tutorial-billing-step1">how to enable access to billing data</link>.</simpara>
+<programlisting language="json" linenumbering="unnumbered">{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "aws-portal:ViewAccount",
+                "aws-portal:ViewBilling"
+            ],
+            "Resource": "*"
+        }
+    ]
+}</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="aws-policy-iam-users_aws-ccs">
+<title>IAM users</title>
+<simpara>The <literal>osdManagedAdmin</literal> user is created immediately after taking control of the customer-provided AWS account. This is the user that will perform the OpenShift Container Platform cluster installation.</simpara>
+</section>
+<section xml:id="aws-policy-iam-roles_aws-ccs">
+<title>IAM roles</title>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>network-mgmt</literal> role provides customer-federated administrative access to the AWS account through a separate AWS account. It also has the same access as a read-only role. The <literal>network-mgmt</literal> role only applies to non-Customer Cloud Subscription (CCS) clusters. The following policies are attached to the role:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>AmazonEC2ReadOnlyAccess</simpara>
+</listitem>
+<listitem>
+<simpara>CustomerAdministratorAccess</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>The <literal>read-only</literal> role provides customer-federated read-only access to the AWS account through a separate AWS account. The following policies are attached to the role:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>AWSAccountUsageReportAccess</simpara>
+</listitem>
+<listitem>
+<simpara>AmazonEC2ReadOnlyAccess</simpara>
+</listitem>
+<listitem>
+<simpara>AmazonS3ReadOnlyAccess</simpara>
+</listitem>
+<listitem>
+<simpara>IAMReadOnlyAccess</simpara>
+</listitem>
+<listitem>
+<simpara>BillingReadOnlyAccess</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="ccs-aws-provisioned_aws-ccs">
+<title>Provisioned AWS Infrastructure</title>
+<simpara role="_abstract">This is an overview of the provisioned Amazon Web Services (AWS) components on a deployed OpenShift Container Platform cluster. For a more detailed listing of all provisioned AWS components, see the <link xlink:href="https://access.redhat.com/documentation/en-us/openshift_container_platform/">OpenShift Container Platform documentation</link>.</simpara>
+<section xml:id="aws-policy-ec2_aws-ccs">
+<title>AWS Elastic Computing (EC2) instances</title>
+<simpara>AWS EC2 instances are required to deploy the control plane and data plane functions of OpenShift Container Platform in the AWS public cloud. Instance types might vary for control plane and infrastructure nodes depending on worker node count.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Single availability zone</simpara>
+<itemizedlist>
+<listitem>
+<simpara>3 m5.2xlarge minimum (control plane nodes)</simpara>
+</listitem>
+<listitem>
+<simpara>2 r5.xlarge minimum (infrastructure nodes)</simpara>
+</listitem>
+<listitem>
+<simpara>2 m5.xlarge minimum but highly variable (worker nodes)</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Multiple availability zones</simpara>
+<itemizedlist>
+<listitem>
+<simpara>3 m5.2xlarge minimum (control plane nodes)</simpara>
+</listitem>
+<listitem>
+<simpara>3 r5.xlarge minimum (infrastructure nodes)</simpara>
+</listitem>
+<listitem>
+<simpara>3 m5.xlarge minimum but highly variable (worker nodes)</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="aws-policy-ebs-storage_aws-ccs">
+<title>AWS Elastic Block Store (EBS) storage</title>
+<simpara>Amazon EBS block storage is used for both local node storage and persistent volume storage.</simpara>
+<simpara>Volume requirements for each EC2 instance:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Control plane volumes</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Size: 350 GB</simpara>
+</listitem>
+<listitem>
+<simpara>Type: io1</simpara>
+</listitem>
+<listitem>
+<simpara>Input/output operations per second: 1000</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Infrastructure volumes</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Size: 300 GB</simpara>
+</listitem>
+<listitem>
+<simpara>Type: gp2</simpara>
+</listitem>
+<listitem>
+<simpara>Input/output operations per second: 900</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Worker volumes</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Size: 300 GB</simpara>
+</listitem>
+<listitem>
+<simpara>Type: gp2</simpara>
+</listitem>
+<listitem>
+<simpara>Input/output operations per second: 900</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="aws-policy-elastic-load-balancers_aws-ccs">
+<title>Elastic Load Balancing (ELB) load balancers</title>
+<simpara>Up to two Network Load Balancers for API and up to two Classic Load Balancers for application router. For more information, see the <link xlink:href="https://aws.amazon.com/elasticloadbalancing/features/#Details_for_Elastic_Load_Balancing_Products">ELB documentation for AWS</link>.</simpara>
+</section>
+<section xml:id="aws-policy-s3-storage_aws-ccs">
+<title>S3 storage</title>
+<simpara>The image registry and Elastic Block Store (EBS) volume snapshots are backed by AWS S3 storage. Pruning of resources is performed regularly to optimize S3 usage and cluster performance.</simpara>
+<note>
+<simpara>Two buckets are required with a typical size of 2 TB each.</simpara>
+</note>
+</section>
+<section xml:id="aws-policy-vpc_aws-ccs">
+<title>VPC</title>
+<simpara>Customers should expect to see one VPC per cluster. Additionally, the VPC needs the following configurations:</simpara>
+<note>
+<simpara role="_abstract">Installing a new OpenShift Container Platform cluster into a VPC that was automatically created by the installer for a different cluster is not supported.</simpara>
+</note>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Subnets</emphasis>: Two subnets for a cluster with a single availability zone, or six subnets for a cluster with multiple availability zones.</simpara>
+<note>
+<simpara>A <emphasis role="strong">public subnet</emphasis> connects directly to the internet through an internet gateway. A <emphasis role="strong">private subnet</emphasis> connects to the internet through a network address translation (NAT) gateway.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Route tables</emphasis>: One route table per private subnet, and one additional table per cluster.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Internet gateways</emphasis>: One Internet Gateway per cluster.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">NAT gateways</emphasis>: One NAT Gateway per public subnet.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_sample-vpc-architecture">
+<title>Sample VPC Architecture</title>
+<informalfigure>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/VPC-Diagram.png"/>
+</imageobject>
+<textobject><phrase>VPC Reference Architecture</phrase></textobject>
+</mediaobject>
+</informalfigure>
+</section>
+<section xml:id="aws-policy-security-groups_aws-ccs">
+<title>Security groups</title>
+<simpara>AWS security groups provide security at the protocol and port-access level; they are associated with EC2 instances and Elastic Load Balancing. Each security group contains a set of rules that filter traffic coming in and out of an EC2 instance. You must ensure the ports required for the <link xlink:href="https://docs.openshift.com/container-platform/4.7/installing/installing_aws/installing-aws-user-infra.html#installation-aws-user-infra-other-infrastructure_installing-aws-user-infra">OpenShift Container Platform installation</link> are open on your network and configured to allow access between hosts.</simpara>
+</section>
+<section xml:id="osd-security-groups-custom_aws-ccs">
+<title>Additional custom security groups</title>
+<simpara>When you create a cluster by using a non-managed VPC, you can add custom security groups during cluster creation. Custom security groups are subject to the following limitations:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You must create the custom security groups in AWS before you create the cluster. For more information, see <link xlink:href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html">Amazon EC2 security groups for Linux instances</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You must associate the custom security groups with the VPC that the cluster will be installed into. Your custom security groups cannot be associated with another VPC.</simpara>
+</listitem>
+<listitem>
+<simpara>You might need to request additional quota for your VPC if you are adding additional custom security groups. For information on requesting an AWS quota increase, see <link xlink:href="https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html">Requesting a quota increase</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="aws-ccs-networking-prereqs_aws-ccs">
+<title>Networking prerequisites</title>
+<section xml:id="rosa-network-prereqs_aws-ccs">
+<title>Networking prerequisites</title>
+<simpara role="_abstract">The following sections detail the requirements to create your cluster.</simpara>
+<section xml:id="mos-network-prereqs-min-bandwidth_aws-ccs">
+<title>Minimum bandwidth</title>
+<simpara>During cluster deployment, OpenShift Container Platform requires a minimum bandwidth of 120&#160;Mbps between cluster infrastructure and the public internet or private network locations that provide deployment artifacts and resources. When network connectivity is slower than 120&#160;Mbps (for example, when connecting through a proxy) the cluster installation process times out and deployment fails.</simpara>
+<simpara>After cluster deployment, network requirements are determined by your workload. However, a minimum bandwidth of 120&#160;Mbps helps to ensure timely cluster and operator upgrades.</simpara>
+</section>
+</section>
+<section xml:id="osd-aws-privatelink-firewall-prerequisites_aws-ccs">
+<title>Firewall AllowList requirements</title>
+<simpara role="_abstract">If you are using a firewall to control egress traffic from OpenShift Container Platform, you must configure your firewall to grant access to the certain domain and port combinations below. OpenShift Container Platform requires this access to provide a fully managed OpenShift service.</simpara>
+<section xml:id="_domains-for-installation-packages-and-tools">
+<title>Domains for installation packages and tools</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="46.1538*"/>
+<colspec colname="col_2" colwidth="7.6923*"/>
+<colspec colname="col_3" colwidth="46.1539*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Domain</entry>
+<entry align="left" valign="top">Port</entry>
+<entry align="left" valign="top">Function</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>registry.redhat.io</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>quay.io</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>cdn01.quay.io</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>cdn02.quay.io</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>cdn03.quay.io</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>cdn04.quay.io</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>cdn05.quay.io</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>cdn06.quay.io</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>sso.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required. The <literal><link xlink:href="https://console.redhat.com/openshift">https://console.redhat.com/openshift</link></literal> site uses authentication from <literal>sso.redhat.com</literal> to download the pull secret and use Red&#160;Hat SaaS solutions to facilitate monitoring of your subscriptions, cluster inventory, chargeback reporting, and so on.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>quay-registry.s3.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>quayio-production-s3.s3.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>registry.access.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Hosts all the container images that are stored on the Red&#160;Hat Ecosytem Catalog. Additionally, the registry provides access to the <literal>odo</literal> CLI tool that helps developers build on OpenShift and Kubernetes.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>access.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required. Hosts a signature store that a container client requires for verifying images when pulling them from <literal>registry.access.redhat.com</literal>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>registry.connect.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for all third-party images and certified Operators.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>console.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required. Allows interactions between the cluster and OpenShift Console Manager to enable functionality, such as scheduling upgrades.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>sso.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>The <literal><link xlink:href="https://console.redhat.com/openshift">https://console.redhat.com/openshift</link></literal> site uses authentication from <literal>sso.redhat.com</literal>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>pull.q1w2.quay.rhcloud.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Provides core container images as a fallback when quay.io is not available.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>catalog.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>The <literal>registry.access.redhat.com</literal> and <literal><link xlink:href="https://registry.redhat.io">https://registry.redhat.io</link></literal> sites redirect through <literal>catalog.redhat.com</literal>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>oidc.op1.openshiftapps.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used by OpenShift Container Platform  for STS implementation with managed OIDC configuration.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_domains-for-telemetry">
+<title>Domains for telemetry</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="46.1538*"/>
+<colspec colname="col_2" colwidth="7.6923*"/>
+<colspec colname="col_3" colwidth="46.1539*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Domain</entry>
+<entry align="left" valign="top">Port</entry>
+<entry align="left" valign="top">Function</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>cert-api.access.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for telemetry.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>api.access.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for telemetry.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>infogw.api.openshift.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for telemetry.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>console.redhat.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for telemetry and Red&#160;Hat Lightspeed.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>observatorium-mst.api.openshift.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for managed OpenShift-specific telemetry.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>observatorium.api.openshift.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required for managed OpenShift-specific telemetry.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<simpara>Managed clusters require enabling telemetry to allow Red&#160;Hat to react more quickly to problems, better support the customers, and better understand how product upgrades impact clusters. For more information about how remote health monitoring data is used by Red&#160;Hat, see <emphasis>About remote health monitoring</emphasis> in the <emphasis>Additional resources</emphasis> section.</simpara>
+</section>
+<section xml:id="_domains-for-amazon-web-services-aws-apis">
+<title>Domains for Amazon Web Services (AWS) APIs</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="46.1538*"/>
+<colspec colname="col_2" colwidth="7.6923*"/>
+<colspec colname="col_3" colwidth="46.1539*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Domain</entry>
+<entry align="left" valign="top">Port</entry>
+<entry align="left" valign="top">Function</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required to access AWS services and resources.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<simpara>Alternatively, if you choose to not use a wildcard for Amazon Web Services (AWS) APIs, you must allowlist the following URLs:</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="46.1538*"/>
+<colspec colname="col_2" colwidth="7.6923*"/>
+<colspec colname="col_3" colwidth="46.1539*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Domain</entry>
+<entry align="left" valign="top">Port</entry>
+<entry align="left" valign="top">Function</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>ec2.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to install and manage clusters in an AWS environment.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>events.&lt;aws_region&gt;.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to install and manage clusters in an AWS environment.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>iam.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to install and manage clusters in an AWS environment.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>route53.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to install and manage clusters in an AWS environment.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>sts.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to install and manage clusters in an AWS environment, for clusters configured to use the global endpoint for AWS STS.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>sts.&lt;aws_region&gt;.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to install and manage clusters in an AWS environment, for clusters configured to use regionalized endpoints for AWS STS. See <link xlink:href="https://docs.aws.amazon.com/sdkref/latest/guide/feature-sts-regionalized-endpoints.html">AWS STS regionalized endpoints</link> for more information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>tagging.us-east-1.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to install and manage clusters in an AWS environment. This endpoint is always us-east-1, regardless of the region the cluster is deployed in.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>ec2.&lt;aws_region&gt;.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to install and manage clusters in an AWS environment.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>elasticloadbalancing.&lt;aws_region&gt;.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to install and manage clusters in an AWS environment.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>tagging.&lt;aws_region&gt;.amazonaws.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Allows the assignment of metadata about AWS resources in the form of tags.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_domains-for-openshift">
+<title>Domains for OpenShift</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="46.1538*"/>
+<colspec colname="col_2" colwidth="7.6923*"/>
+<colspec colname="col_3" colwidth="46.1539*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Domain</entry>
+<entry align="left" valign="top">Port</entry>
+<entry align="left" valign="top">Function</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>mirror.openshift.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to access mirrored installation content and images. This site is also a source of release image signatures.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>api.openshift.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Used to check if updates are available for the cluster.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_domains-for-your-site-reliability-engineering-sre-and-management">
+<title>Domains for your site reliability engineering (SRE) and management</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="46.1538*"/>
+<colspec colname="col_2" colwidth="7.6923*"/>
+<colspec colname="col_3" colwidth="46.1539*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Domain</entry>
+<entry align="left" valign="top">Port</entry>
+<entry align="left" valign="top">Function</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>api.pagerduty.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>This alerting service is used by the in-cluster alertmanager to send alerts notifying Red&#160;Hat SRE of an event to take action on.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>events.pagerduty.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>This alerting service is used by the in-cluster alertmanager to send alerts notifying Red&#160;Hat SRE of an event to take action on.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>api.deadmanssnitch.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Alerting service used by OpenShift Container Platform to send periodic pings that indicate whether the cluster is available and running.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>nosnch.in</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Alerting service used by OpenShift Container Platform to send periodic pings that indicate whether the cluster is available and running.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>http-inputs-osdsecuritylogs.splunkcloud.com</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>443</simpara></entry>
+<entry align="left" valign="top"><simpara>Required. Used by the <literal>splunk-forwarder-operator</literal> as a logging forwarding endpoint to be used by Red&#160;Hat SRE for log-based alerting.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>sftp.access.redhat.com</literal> (Recommended)</simpara></entry>
+<entry align="left" valign="top"><simpara>22</simpara></entry>
+<entry align="left" valign="top"><simpara>The SFTP server used by <literal>must-gather-operator</literal> to upload diagnostic logs to help troubleshoot issues with the cluster.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<itemizedlist role="_additional-resources">
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/support/#about-remote-health-monitoring">About remote health monitoring</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+</section>
+<section xml:id="aws-limits_aws-ccs">
+<title>AWS account limits</title>
+<simpara role="_abstract">The OpenShift Container Platform cluster uses a number of Amazon Web Services (AWS) components, and the default <link xlink:href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">service limits</link> affect your ability to install OpenShift Container Platform clusters. If you use certain cluster configurations, deploy your cluster in certain AWS regions, or run multiple clusters from your account, you might need to request additional resources for your AWS account.</simpara>
+<simpara>The following table summarizes the AWS components whose limits can impact your ability to install and run OpenShift Container Platform clusters.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="17.647*"/>
+<colspec colname="col_2" colwidth="17.647*"/>
+<colspec colname="col_3" colwidth="17.647*"/>
+<colspec colname="col_4" colwidth="47.059*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Component</entry>
+<entry align="left" valign="top">Number of clusters available by default</entry>
+<entry align="left" valign="top">Default AWS limit</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Instance Limits</simpara></entry>
+<entry align="left" valign="top"><simpara>Varies</simpara></entry>
+<entry align="left" valign="top"><simpara>Varies</simpara></entry>
+<entry align="left" valign="top"><simpara>At a minimum, each cluster creates the following instances:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>One bootstrap machine, which is removed after installation</simpara>
+</listitem>
+<listitem>
+<simpara>Three control plane nodes</simpara>
+</listitem>
+<listitem>
+<simpara>Two infrastructure nodes for a single availability zone; three infrascture nodes for multi-availability zones</simpara>
+</listitem>
+<listitem>
+<simpara>Two worker nodes for a single availability zone; three worker nodes for multi-availability zones</simpara>
+</listitem>
+</itemizedlist>
+<simpara>These instance type counts are within a new account&#8217;s default limit. To deploy more worker nodes, deploy large workloads, or use a different instance type, review your account limits to ensure that your cluster can deploy the machines that you need.</simpara>
+<simpara>In most regions, the bootstrap and worker machines uses an <literal>m4.large</literal> machines and the control plane machines use <literal>m4.xlarge</literal> instances. In some regions, including all regions that do not support these instance types, <literal>m5.large</literal> and <literal>m5.xlarge</literal> instances are used instead.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Elastic IPs (EIPs)</simpara></entry>
+<entry align="left" valign="top"><simpara>0 to 1</simpara></entry>
+<entry align="left" valign="top"><simpara>5 EIPs per account</simpara></entry>
+<entry align="left" valign="top"><simpara>To provision the cluster in a highly available configuration, the installation program creates a public and private subnet for each <link xlink:href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">availability zone within a region</link>. Each private subnet requires a <link xlink:href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">NAT Gateway</link>, and each NAT gateway requires a separate
+<link xlink:href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ipaddresses-eip.html">elastic IP</link>. Review the <link xlink:href="https://aws.amazon.com/about-aws/global-infrastructure/">AWS region map</link> to determine how many availability zones are in each region. To take advantage of the default high availability, install the cluster in a region with at least three availability zones. To install a cluster in a region with more than five availability zones, you must increase the EIP limit.</simpara>
+<important>
+<simpara>To use the <literal>us-east-1</literal> region, you must increase the EIP limit for your account.</simpara>
+</important></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Virtual Private Clouds (VPCs)</simpara></entry>
+<entry align="left" valign="top"><simpara>5</simpara></entry>
+<entry align="left" valign="top"><simpara>5 VPCs per region</simpara></entry>
+<entry align="left" valign="top"><simpara>Each cluster creates its own VPC.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Elastic Load Balancing (ELB)</simpara></entry>
+<entry align="left" valign="top"><simpara>3</simpara></entry>
+<entry align="left" valign="top"><simpara>20 per region</simpara></entry>
+<entry align="left" valign="top"><simpara>By default, each cluster creates internal and external Network Load Balancers for the primary API server and a single Classic Load Balancer for the router. Deploying more Kubernetes LoadBalancer Service objects will create additional <link xlink:href="https://aws.amazon.com/elasticloadbalancing/">load balancers</link>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>NAT Gateways</simpara></entry>
+<entry align="left" valign="top"><simpara>5</simpara></entry>
+<entry align="left" valign="top"><simpara>5 per availability zone</simpara></entry>
+<entry align="left" valign="top"><simpara>The cluster deploys one NAT gateway in each availability zone.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Elastic Network Interfaces (ENIs)</simpara></entry>
+<entry align="left" valign="top"><simpara>At least 12</simpara></entry>
+<entry align="left" valign="top"><simpara>350 per region</simpara></entry>
+<entry align="left" valign="top"><simpara>The default installation creates 21 ENIs and an ENI for each availability zone in your region. For example, the <literal>us-east-1</literal> region contains six availability zones, so a cluster that is deployed in that zone uses 27 ENIs. Review the <link xlink:href="https://aws.amazon.com/about-aws/global-infrastructure/">AWS region map</link> to determine how many availability zones are in each region.</simpara>
+<simpara>Additional ENIs are created for additional machines and load balancers that are created by cluster usage and deployed workloads.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>VPC Gateway</simpara></entry>
+<entry align="left" valign="top"><simpara>20</simpara></entry>
+<entry align="left" valign="top"><simpara>20 per account</simpara></entry>
+<entry align="left" valign="top"><simpara>Each cluster creates a single VPC Gateway for S3 access.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>S3 buckets</simpara></entry>
+<entry align="left" valign="top"><simpara>99</simpara></entry>
+<entry align="left" valign="top"><simpara>100 buckets per account</simpara></entry>
+<entry align="left" valign="top"><simpara>Because the installation process creates a temporary bucket and the registry component in each cluster creates a bucket, you can create only 99 OpenShift Container Platform clusters per AWS account.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Security Groups</simpara></entry>
+<entry align="left" valign="top"><simpara>250</simpara></entry>
+<entry align="left" valign="top"><simpara>2,500 per account</simpara></entry>
+<entry align="left" valign="top"><simpara>Each cluster creates 10 distinct security groups.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+</chapter>
+</book>

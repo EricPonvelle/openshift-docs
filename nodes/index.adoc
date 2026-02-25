@@ -1,10 +1,9 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="overview-of-nodes"]
 = Overview of nodes
-include::_attributes/common-attributes.adoc[]
+include::includes/common-attributes.adoc[]
 :context: overview-of-nodes
 
-toc::[]
 
 // TODO: Need some help with an intro blurb
 
@@ -57,9 +56,9 @@ endif::openshift-rosa-hcp[]
 
 The read operations allow an administrator or a developer to get information about nodes in an {product-title} cluster.
 
-* xref:../nodes/nodes/nodes-nodes-viewing.adoc#nodes-nodes-viewing-listing_nodes-nodes-viewing[List all the nodes in a cluster].
+* xref:nodes-nodes-viewing-listing_nodes-nodes-viewing[List all the nodes in a cluster].
 * Get information about a node, such as memory and CPU usage, health, status, and age.
-* xref:../nodes/nodes/nodes-nodes-viewing.adoc#nodes-nodes-viewing-listing-pods_nodes-nodes-viewing[List pods running on a node].
+* xref:nodes-nodes-viewing-listing-pods_nodes-nodes-viewing[List pods running on a node].
 
 ifndef::openshift-enterprise,openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
@@ -82,11 +81,11 @@ endif::openshift-enterprise,openshift-rosa,openshift-rosa-hcp,openshift-dedicate
 
 {product-title} allows you to do more than just access and manage nodes; as an administrator, you can perform the following tasks on nodes to make the cluster more efficient, application-friendly, and to provide a better environment for your developers.
 
-* Manage node-level tuning for high-performance applications that require some level of kernel tuning by xref:../nodes/nodes/nodes-node-tuning-operator.adoc#nodes-node-tuning-operator[using the Node Tuning Operator].
+* Manage node-level tuning for high-performance applications that require some level of kernel tuning by xref:nodes-node-tuning-operator[using the Node Tuning Operator].
 ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 * Enable TLS security profiles on the node to protect communication between the kubelet and the Kubernetes API server.
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
-* xref:../nodes/jobs/nodes-pods-daemonsets.adoc#nodes-pods-daemonsets[Run background tasks on nodes automatically with daemon sets]. You can create and use daemon sets to create shared storage, run a logging pod on every node, or deploy a monitoring agent on all nodes.
+* xref:nodes-pods-daemonsets[Run background tasks on nodes automatically with daemon sets]. You can create and use daemon sets to create shared storage, run a logging pod on every node, or deploy a monitoring agent on all nodes.
 ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 * xref:../nodes/nodes/nodes-nodes-garbage-collection.adoc#nodes-nodes-garbage-collection[Free node resources using garbage collection]. You can ensure that your nodes are running efficiently by removing terminated containers and the images not referenced by any running pods.
 * xref:../nodes/nodes/nodes-nodes-managing.adoc#nodes-nodes-kernel-arguments_nodes-nodes-managing[Add kernel arguments to a set of nodes].
@@ -103,8 +102,8 @@ A pod is one or more containers deployed together on a node. As a cluster admini
 
 As an administrator, you can get information about pods in a project through the following tasks:
 
-* xref:../nodes/pods/nodes-pods-viewing.adoc#nodes-pods-viewing-project_nodes-pods-viewing[List pods associated with a project], including information such as the number of replicas and restarts, current status, and age.
-* xref:../nodes/pods/nodes-pods-viewing.adoc#nodes-pods-viewing-usage_nodes-pods-viewing[View pod usage statistics] such as CPU, memory, and storage consumption.
+* xref:nodes-pods-viewing-project_nodes-pods-viewing[List pods associated with a project], including information such as the number of replicas and restarts, current status, and age.
+* xref:nodes-pods-viewing-usage_nodes-pods-viewing[View pod usage statistics] such as CPU, memory, and storage consumption.
 
 
 
@@ -113,20 +112,20 @@ As an administrator, you can get information about pods in a project through the
 The following list of tasks provides an overview of how an administrator can manage pods in an {product-title} cluster.
 
 * Control scheduling of pods using the advanced scheduling features available in {product-title}:
-** Node-to-pod binding rules such as xref:../nodes/scheduling/nodes-scheduler-pod-affinity.adoc#nodes-scheduler-pod-affinity-example-affinity_nodes-scheduler-pod-affinity[pod affinity], xref:../nodes/scheduling/nodes-scheduler-node-affinity.adoc#nodes-scheduler-node-affinity[node affinity], and xref:../nodes/scheduling/nodes-scheduler-pod-affinity.adoc#nodes-scheduler-pod-anti-affinity-configuring_nodes-scheduler-pod-affinity[anti-affinity].
-** xref:../nodes/scheduling/nodes-scheduler-node-selectors.adoc#nodes-scheduler-node-selectors[Node labels and selectors].
+** Node-to-pod binding rules such as xref:nodes-scheduler-pod-affinity-example-affinity_nodes-scheduler-pod-affinity[pod affinity], xref:nodes-scheduler-node-affinity[node affinity], and xref:nodes-scheduler-pod-anti-affinity-configuring_nodes-scheduler-pod-affinity[anti-affinity].
+** xref:nodes-scheduler-node-selectors[Node labels and selectors].
 ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 ** xref:../nodes/scheduling/nodes-scheduler-taints-tolerations.adoc#nodes-scheduler-taints-tolerations[Taints and tolerations].
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
-** xref:../nodes/scheduling/nodes-scheduler-pod-topology-spread-constraints.adoc#nodes-scheduler-pod-topology-spread-constraints[Pod topology spread constraints].
+** xref:nodes-scheduler-pod-topology-spread-constraints[Pod topology spread constraints].
 // Cannot create namespace to install Operator
 ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 ** xref:../nodes/scheduling/secondary_scheduler/index.adoc#nodes-secondary-scheduler-about[Secondary scheduling].
 * xref:../nodes/scheduling/descheduler/index.adoc#nodes-descheduler-about[Configure the descheduler to evict pods] based on specific strategies so that the scheduler reschedules the pods to more appropriate nodes.
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
-* xref:../nodes/pods/nodes-pods-configuring.adoc#nodes-pods-configuring-restart_nodes-pods-configuring[Configure how pods behave after a restart using pod controllers and restart policies].
-* xref:../nodes/pods/nodes-pods-configuring.adoc#nodes-pods-configuring-bandwidth_nodes-pods-configuring[Limit both egress and ingress traffic on a pod].
-* xref:../nodes/containers/nodes-containers-volumes.adoc#nodes-containers-volumes[Add and remove volumes to and from any object that has a pod template]. A volume is a mounted file system available to all the containers in a pod. Container storage is ephemeral; you can use volumes to persist container data.
+* xref:nodes-pods-configuring-restart_nodes-pods-configuring[Configure how pods behave after a restart using pod controllers and restart policies].
+* xref:nodes-pods-configuring-bandwidth_nodes-pods-configuring[Limit both egress and ingress traffic on a pod].
+* xref:nodes-containers-volumes[Add and remove volumes to and from any object that has a pod template]. A volume is a mounted file system available to all the containers in a pod. Container storage is ephemeral; you can use volumes to persist container data.
 
 
 === Enhancement operations
@@ -152,14 +151,14 @@ As a developer, use a vertical pod autoscaler to ensure your pods stay up during
 |Administrator
 |A xref:../nodes/pods/nodes-pods-plugins.adoc#nodes-pods-device[device plugin] is a gRPC service running on nodes (external to the kubelet), which manages specific hardware resources. You can xref:../nodes/pods/nodes-pods-plugins.adoc#methods-for-deploying-a-device-plugin_nodes-pods-device[deploy a device plugin] to provide a consistent and portable solution to consume hardware devices across clusters.
 
-|Provide sensitive data to pods xref:../nodes/pods/nodes-pods-secrets.adoc#nodes-pods-secrets[using the `Secret` object].
+|Provide sensitive data to pods xref:nodes-pods-secrets[using the `Secret` object].
 |Administrator
 |Some applications need sensitive information, such as passwords and usernames. You can use the `Secret` object to provide such information to an application pod.
 
 |===
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 ifdef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
-* Secrets: Some applications need sensitive information, such as passwords and usernames. An administrator can use the `Secret` object to provide sensitive data to pods xref:../nodes/pods/nodes-pods-secrets.adoc#nodes-pods-secrets[using the `Secret` object].
+* Secrets: Some applications need sensitive information, such as passwords and usernames. An administrator can use the `Secret` object to provide sensitive data to pods xref:nodes-pods-secrets[using the `Secret` object].
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
 [id="containers-overview"]
@@ -170,12 +169,12 @@ A container is the basic unit of an {product-title} application, which comprises
 Linux container technologies are lightweight mechanisms for isolating running processes and limiting access to only designated resources.
 As an administrator, You can perform various tasks on a Linux container, such as:
 
-* xref:../nodes/containers/nodes-containers-copying-files.adoc#nodes-containers-copying-files[Copy files to and from a container].
-* xref:../nodes/containers/nodes-containers-downward-api.adoc#nodes-containers-downward-api[Allow containers to consume API objects].
-* xref:../nodes/containers/nodes-containers-remote-commands.adoc#nodes-containers-remote-commands[Execute remote commands in a container].
-* xref:../nodes/containers/nodes-containers-port-forwarding.adoc#nodes-containers-port-forwarding[Use port forwarding to access applications in a container].
+* xref:nodes-containers-copying-files[Copy files to and from a container].
+* xref:nodes-containers-downward-api[Allow containers to consume API objects].
+* xref:nodes-containers-remote-commands[Execute remote commands in a container].
+* xref:nodes-containers-port-forwarding[Use port forwarding to access applications in a container].
 
-{product-title} provides specialized containers called xref:../nodes/containers/nodes-containers-init.adoc#nodes-containers-init[Init containers]. Init containers run before application containers and can contain utilities or setup scripts not present in an application image. You can use an Init container to perform tasks before the rest of a pod is deployed.
+{product-title} provides specialized containers called xref:nodes-containers-init[Init containers]. Init containers run before application containers and can contain utilities or setup scripts not present in an application image. You can use an Init container to perform tasks before the rest of a pod is deployed.
 
 Apart from performing specific tasks on nodes, pods, and containers, you can work with the overall {product-title} cluster to keep the cluster efficient and the application pods highly available.
 

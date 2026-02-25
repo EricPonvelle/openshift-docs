@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>What&#8217;s new</title>
+<date>2026-02-25</date>
+<title>What's new</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="osd-whats-new">
+<title>What&#8217;s new with OpenShift Container Platform</title>
+<simpara role="_abstract">With its foundation in Kubernetes, OpenShift Container Platform is a complete OpenShift Container Platform cluster provided as a cloud service, configured for high availability, and dedicated to a single customer.</simpara>
+<simpara>OpenShift Container Platform is professionally managed by Red&#160;Hat and hosted on Google Cloud or Amazon Web Services (AWS). Each OpenShift Container Platform cluster includes a fully managed <link xlink:href="https://access.redhat.com/documentation/en-us/openshift_container_platform/4.19/html/architecture/control-plane">control plane</link> (Control and Infrastructure nodes), application nodes, installation and management by Red&#160;Hat Site Reliability Engineers (SRE), premium Red&#160;Hat Support, and cluster services such as logging, metrics, monitoring, notifications portal, and a cluster portal.</simpara>
+<simpara>OpenShift Container Platform clusters are available on the <link xlink:href="https://console.redhat.com/openshift">Hybrid Cloud Console</link>. With the Red&#160;Hat OpenShift Cluster Manager application, you can deploy OpenShift Container Platform clusters to cloud environments.</simpara>
+<simpara>Find new additions, recent changes, and relevant updates for OpenShift Container Platform listed below in quarterly increments.</simpara>
+<section xml:id="osd-q1-2026_osd-whats-new">
+<title>Q1 2026</title>
+<simpara role="_abstract">The following items were added during the first quarter of 2026.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">OpenShift Container Platform now available in Google Cloud console.</emphasis>
+OpenShift Container Platform is now available directly within the <link xlink:href="https://console.cloud.google.com/redhat-openshift/landing">Google Cloud console</link>, making it easier to find and deploy alongside native Google Cloud services. This integration simplifies the initial setup by allowing you to validate environment prerequisites for OpenShift Container Platform cluster deployment.</simpara>
+<simpara><emphasis role="strong">Key improvements:</emphasis></simpara>
+<itemizedlist>
+<listitem>
+<simpara>Improved discoverability: Locate OpenShift Container Platform quickly within the Google Cloud console alongside Google&#8217;s native compute and container offerings, allowing you to start creating clusters immediately.</simpara>
+</listitem>
+<listitem>
+<simpara>Streamlined onboarding: Validate your Google Cloud configuration directly in the console before transitioning to a guided deployment flow in the Red Hat Hybrid Cloud Console.</simpara>
+</listitem>
+<listitem>
+<simpara>Unified billing and procurement: Use the Google Cloud Marketplace to simplify setup and apply your existing Google Cloud committed spend, negotiated discounts, or pay-as-you-go pricing.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>For more information about deploying OpenShift Container Platform on Google Cloud, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/planning_your_environment/gcp-ccs#ccs-gcp-understand_gcp-ccs">Understanding Customer Cloud Subscriptions on Google Cloud</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Cluster admins can now create multiple users with htpasswd identity providers.</emphasis> Cluster administrators can now add multiple users to an htpasswd identity providers (IDPs) for OpenShift Container Platform clusters using the command-line interface (CLI). You can add multiple users to a single htpasswd IDP, streamlining managing user identities. Using the CLI, administrators can add multiple users interactively and noninteractively. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/authentication_and_authorization/sd-configuring-identity-providers#config-htpasswd-idp_sd-configuring-identity-providers">Configuring an htpasswd identity provider</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">New version of OpenShift Container Platform available.</emphasis> OpenShift Container Platform on Google Cloud and OpenShift Container Platform on Amazon Web Services (AWS) versions 4.21 are now available for new clusters.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="osd-q4-2025_osd-whats-new">
+<title>Q4 2025</title>
+<simpara role="_abstract">The following items were added during the fourth quarter of 2025.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Support for managing workload identity pools and providers in a dedicated Google Cloud project.</emphasis>
+OpenShift Container Platform on Google Cloud now lets you update an existing Workload Identity Federation (WIF) configuration to use a dedicated project for managing workload identity pools and providers.
+For more information, see <link xlink:href="http://docs.redhat.com/en/documentation/openshift_dedicated/4/html-single/openshift_dedicated_clusters_on_google_cloud/index#wif-configuration-update_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">Updating a Workload Identity Federation configuration</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Required API services table updated.</emphasis>
+The <emphasis>Required API services</emphasis> table within the <emphasis>Required customer procedure</emphasis> guide has been updated to restore APIs that were previously removed due to a bug. These APIs are required for new OpenShift Container Platform on Google Cloud cluster creation.</simpara>
+<simpara>The APIs that were restored are:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xlink:href="https://cloud.google.com/apis/docs/overview">Google Cloud APIs</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://cloud.google.com/firewall/docs/reference/network-security/rest">Network Security API</link></simpara>
+</listitem>
+</itemizedlist>
+<simpara>For more information, see the <emphasis>Required API services</emphasis> table in the <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/planning_your_environment/gcp-ccs#ccs-gcp-customer-procedure_gcp-ccs">Required customer procedure</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">New version of OpenShift Container Platform available.</emphasis> OpenShift Container Platform on Google Cloud and OpenShift Container Platform on Amazon Web Services (AWS) versions 4.20 are now available for new clusters.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Extended Update Support (EUS) channel group now available.</emphasis>
+You can now select the EUS channel group when creating or editing your OpenShift Container Platform cluster. The EUS channel group allows you to extend the life cycle of your even-numbered version OpenShift Container Platform cluster, giving you additional time to plan and budget for future upgrades. This channel group also provides continued security patches and critical bug fixes.</simpara>
+<simpara>For additional information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#sd-life-cycle-dates_osd-life-cycle">Life cycle dates</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="osd-q3-2025_osd-whats-new">
+<title>Q3 2025</title>
+<simpara role="_abstract">The following items were added during the third quarter of 2025.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Updates to Workload Identity Federation (WIF) permissions and roles.</emphasis>
+The default IAM permissions for WIF in the <link xlink:href="https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.19/vanilla.yaml">managed-cluster-config</link> template have been updated. This means newly created WIF configurations will have fewer, less overly permissive permissions by default.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>sd-sre-platform-gcp-access@redhat.com</literal> principal no longer needs the <literal>compute.firewalls.create</literal> permission. If Red&#160;Hat site reliability engineering (SRE) ever need this permission, they will reach out through a support case.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>osd-deployer</literal> service account no longer requires the <literal>resourcemanager.projects.setIamPolicy</literal> permission, which has been removed.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>osd-deployer</literal> service account no longer uses the <literal>iam.serviceAccounts.signBlob</literal> permission. This has been replaced with the <literal>iam.serviceAccountTokenCreator</literal> role, which is now specifically assigned to the service accounts that require it.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>osd-deployer</literal> service account no longer uses the <literal>iam.serviceAccounts.actAs</literal> permission. This has been replaced with the <literal>iam.serviceAccountUser</literal> role, which is now specifically assigned to the service accounts that require it.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>If you have existing <literal>wif-config</literal> instances, you can get these new, less permissive permissions by running the <literal>ocm gcp update wif-config</literal> command. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/openshift_dedicated_clusters_on_google_cloud/osd-creating-a-cluster-on-gcp-with-workload-identity-federation#wif-configuration-update_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">Updating a Workload Identify Federation configuration</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Workload Identify Federation (WIF) is now the default authentication type for OpenShift Container Platform clusters on Google Cloud.</emphasis>
+In alignment with the principle of least privilege as well as Google Cloud&#8217;s preferred method of credential authentication, WIF is now the default authentication type when creating an OpenShift Container Platform cluster on Google Cloud. WIF greatly improves an OpenShift Container Platform cluster&#8217;s resilience against unauthorized access by using short-lived, least-privilege credentials and eliminating the need for static service account keys. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/openshift_dedicated_clusters_on_google_cloud/osd-creating-a-cluster-on-gcp-with-workload-identity-federation">Creating a cluster on Google Cloud with Workload Identity Federation authentication</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Support for managing workload identity pools and providers in a dedicated Google Cloud project.</emphasis>
+OpenShift Container Platform on Google Cloud now supports the option of creating and managing workload identity pools and providers in a specified dedicated project during the creation of a WIF configuration. Red&#160;Hat plans on offering this option for existing WIF configurations in an upcoming release. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/openshift_dedicated_clusters_on_google_cloud/osd-creating-a-cluster-on-gcp-with-workload-identity-federation#create-wif-configuration_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">Creating a Workload Identify Federation configuration</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="osd-q2-2025_osd-whats-new">
+<title>Q2 2025</title>
+<simpara role="_abstract">The following items were added during the second quarter of 2025.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Updated version requirements for migration from OpenShift SDN to OVN-Kubernetes.</emphasis>
+Your cluster version must be 4.16.43 or above to initiate live migration from the OpenShift SDN network plugin to the OVN-Kubernetes network plugin.</simpara>
+<simpara>If your cluster uses the OpenShift SDN network plugin, you cannot upgrade to future major versions of OpenShift Container Platform without migrating to OVN-Kubernetes.</simpara>
+<simpara>For more information about migrating to OVN-Kubernetes, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/ovn-kubernetes_network_plugin/migrate-from-openshift-sdn-osd">Migrating from OpenShift SDN network plugin to OVN-Kubernetes network plugin</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">New version of OpenShift Container Platform available.</emphasis> OpenShift Container Platform on Google Cloud and OpenShift Container Platform on Amazon Web Services (AWS) versions 4.19 are now available for new clusters.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Support for enabling and disabling Secure Boot for Shielded VMs on a per machine basis.</emphasis>
+OpenShift Container Platform on Google Cloud users can now enable or disable Secure Boot for Shielded VMs on a per machine basis. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/cluster_administration/managing-compute-nodes-using-machine-pools#osd-managing-worker-nodes">Managing compute nodes</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="osd-q1-2025_osd-whats-new">
+<title>Q1 2025</title>
+<simpara role="_abstract">The following items were added during the first quarter of 2025.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Support for new Google Cloud instances.</emphasis> OpenShift Container Platform version 4.18 and later now supports <literal>n4</literal> and <literal>c3</literal> instance types on Google Cloud. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#gcp-compute-types_osd-service-definition">Google Cloud compute types</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">New version of OpenShift Container Platform available.</emphasis> OpenShift Container Platform on Google Cloud and OpenShift Container Platform on Amazon Web Services (AWS) versions 4.18 are now available. For more information about upgrading to this latest version, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/upgrading/osd-upgrades">OpenShift Dedicated cluster upgrades</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Support for assigning newly created machine pools to specific availability zones within a Multi-AZ cluster.</emphasis>
+OpenShift Container Platform on Google Cloud users can now assign machine pools to specific availability zones using the OpenShift Cluster Manager command line interface (CLI) (<literal>ocm</literal>). For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/cluster_administration/managing-compute-nodes-using-machine-pools#deploying-a-machine-pool-in-a-single-availability-zone-within-a-multi-az-cluster">Deploying a machine pool in a single availability zone within a Multi-AZ cluster</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong"> Support for specifying OpenShift Container Platform versions when creating or updating a Workload Identity Federation (WIF) configuration.</emphasis>
+OpenShift Container Platform on Google Cloud users can now specify minor versions when creating or updating a WIF configuration. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/openshift_dedicated_clusters_on_google_cloud/osd-creating-a-cluster-on-gcp-with-workload-identity-federation">Creating a Workload Identity Federation cluster using the OCM CLI</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Cluster node limit update.</emphasis> OpenShift Container Platform clusters versions 4.14.14 and greater can now scale to 249 worker nodes. This is an increase from the previous limit of 180 nodes. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/planning_your_environment/osd-limits-scalability">Limits and scalability</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Initiate live migration from OpenShift SDN to OVN-Kubernetes.</emphasis>
+As part of the OpenShift Container Platform move to OVN-Kubernetes as the only supported network plugin starting with OpenShift Container Platform version 4.17, users can now initiate live migration from the OpenShift SDN network plugin to the OVN-Kubernetes network plugin.</simpara>
+<simpara>If your cluster uses the OpenShift SDN network plugin, you cannot upgrade to future major versions of OpenShift Container Platform without migrating to OVN-Kubernetes.</simpara>
+<simpara>For more information about migrating to OVN-Kubernetes, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/ovn-kubernetes_network_plugin/migrate-from-openshift-sdn-osd">Migrating from OpenShift SDN network plugin to OVN-Kubernetes network plugin</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Red&#160;Hat SRE log-based alerting endpoints have been updated.</emphasis> OpenShift Container Platform customers who are using a firewall to control egress traffic can now remove all references to <literal>*.osdsecuritylogs.splunkcloud.com:9997</literal> from your firewall allowlist. OpenShift Container Platform clusters still require the <literal>http-inputs-osdsecuritylogs.splunkcloud.com:443</literal> log-based alerting endpoint to be accessible from the cluster.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="osd-q4-2024_osd-whats-new">
+<title>Q4 2024</title>
+<simpara role="_abstract">The following items were added during the fourth quarter of 2024.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Workload Identity Federation (WIF) authentication type is now available.</emphasis> OpenShift Container Platform on Google Cloud customers can now use WIF as an authentication type when creating a cluster. WIF is a Google Cloud Identity and Access Management (IAM) feature that provides third parties a secure method to access resources on a customer&#8217;s cloud account.
+WIF is Google Cloud&#8217;s preferred method for credential authentication.</simpara>
+<simpara>For more information, see
+<link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/openshift_dedicated_clusters_on_google_cloud/osd-creating-a-cluster-on-gcp-with-workload-identity-federation">Creating a cluster on Google Cloud with Workload Identity Federation authentication</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Private Service Connect (PSC) networking feature is now available.</emphasis> You can now create a private OpenShift Container Platform cluster on Google Cloud using Google Cloud&#8217;s security-enhanced networking feature Private Service Connect (PSC).</simpara>
+<simpara>PSC is a capability of Google Cloud networking that enables private communication between services across different Google Cloud projects or organizations. Implementing PSC as part of your network connectivity allows you to deploy OpenShift Dedicated clusters in a private and secured environment within Google Cloud without using any public-facing cloud resources.</simpara>
+<simpara>For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/openshift_dedicated_clusters_on_google_cloud/creating-a-gcp-psc-enabled-private-cluster">Private Service Connect overview</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong"> Support for Google Cloud A3 instances with NVIDIA H100 80GB GPUs.</emphasis> OpenShift Container Platform on Google Cloud now supports A3 instance types with NVIDIA H100 80GB GPUs. The Google Cloud A3 instance type is available in all three zones of a Google Cloud region, which is a prerequisite for multiple Availability Zone (Multiple AZ) deployment. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#gcp-compute-types_osd-service-definition">Google Cloud instance types</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="osd-q3-2024_osd-whats-new">
+<title>Q3 2024</title>
+<simpara role="_abstract">The following items were added during the third quarter of 2024.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong"> Support for Google Cloud A2 instance types with A100 80GB GPUs.</emphasis> OpenShift Container Platform on Google Cloud now supports A2 instance types with A100 80GB GPUs. These instance types meet the specific requirements listed by IBM Watsonx.ai. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#gcp-compute-types_osd-service-definition">Google Cloud instance types</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Expanded support for Google Cloud standard instance types.</emphasis> OpenShift Container Platform on Google Cloud now supports standard instance types for control plane and infrastructure nodes.
+For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/planning_your_environment/osd-limits-scalability#control-plane-and-infra-node-sizing-and-scaling-sd_osd-limits-scalability">Control plane and infrastructure node sizing and scaling</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">OpenShift Container Platform regions added.</emphasis> OpenShift Container Platform on Google Cloud is now available in the following additional regions:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Melbourne (<literal>australia-southeast2</literal>)</simpara>
+</listitem>
+<listitem>
+<simpara>Milan (<literal>europe-west8</literal>)</simpara>
+</listitem>
+<listitem>
+<simpara>Turin (<literal>europe-west12</literal>)</simpara>
+</listitem>
+<listitem>
+<simpara>Madrid (<literal>europe-southwest1</literal>)</simpara>
+</listitem>
+<listitem>
+<simpara>Santiago (<literal>southamerica-west1</literal>)</simpara>
+</listitem>
+<listitem>
+<simpara>Doha (<literal>me-central1</literal>)</simpara>
+</listitem>
+<listitem>
+<simpara>Dammam (<literal>me-central2</literal>)</simpara>
+</listitem>
+</itemizedlist>
+<simpara>For more information about region availabilities, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#regions-availability-zones_osd-service-definition">Regions and availability zones</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="osd-q2-2024_osd-whats-new">
+<title>Q2 2024</title>
+<simpara role="_abstract">The following items were added during the second quarter of 2024.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Cluster delete protection.</emphasis> OpenShift Container Platform on Google Cloud  users can now enable the cluster delete protection option, which helps to prevent users from accidentally deleting a cluster.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">CSI Operator update.</emphasis> OpenShift Container Platform is capable of provisioning persistent volumes (PVs) using the Container Storage Interface (CSI) driver for Google Compute Platform (GCP) Filestore Storage. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/storage/using-container-storage-interface-csi#persistent-storage-csi-google-cloud-file">Google Cloud Filestore CSI Driver Operator</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Support for new Google Cloud instances.</emphasis> OpenShift Container Platform now supports more worker node types and sizes on Google Cloud. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#gcp-compute-types_osd-service-definition">Google Cloud instance types</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="osd-q1-2024_osd-whats-new">
+<title>Q1 2024</title>
+<simpara role="_abstract">The following items were added during the first quarter of 2024.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">OpenShift Container Platform regions added.</emphasis> OpenShift Container Platform on Google Cloud is now available in the Delhi, India (<literal>asia-south2</literal>) region. For more information on region availabilities, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#regions-availability-zones_osd-service-definition">Regions and availability zones</link>.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Policy constraint update.</emphasis> OpenShift Container Platform on Google Cloud users are now allowed to deploy clusters with the <literal>constraints/iam.allowedPolicyMemberDomains</literal> constraint in place. This feature allows users to restrict the set of identities that are allowed to be used in Identity and Access Management policies, further enhancing overall security for their resources.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="osd-q4-2023_osd-whats-new">
+<title>Q4 2023</title>
+<simpara role="_abstract">The following items were added during the fourth quarter of 2023.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Policy constraint update.</emphasis> OpenShift Container Platform on Google Cloud users can now enable UEFISecureBoot during cluster installation, as required by the Google Cloud ShieldVM policy. This new feature adds further protection from boot or kernel-level malware or rootkits.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Cluster install update.</emphasis> OpenShift Container Platform clusters can now be installed on Google Cloud shared VPCs.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">OpenShift Container Platform on Google Cloud Marketplace availability.</emphasis> When creating an OpenShift Container Platform cluster on Google Cloud through the Hybrid Cloud Console, customers can now select Google Cloud Marketplace as their preferred billing model. This billing model allows Red&#160;Hat customers to take advantage of their <link xlink:href="https://cloud.google.com/docs/cuds">Google Committed Use Discounts (CUD)</link> towards OpenShift Container Platform purchased through the Google Cloud Marketplace.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+</book>

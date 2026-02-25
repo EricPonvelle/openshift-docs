@@ -1,0 +1,1651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>OpenShift Dedicated clusters on Google Cloud</title>
+<date>2026-02-25</date>
+<title>OpenShift Dedicated clusters on Google Cloud</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="creating-a-gcp-psc-enabled-private-cluster">
+<title>Private Service Connect overview</title>
+<simpara role="abstract">You can create a private OpenShift Container Platform cluster on Google Cloud using Google Cloud&#8217;s security-enhanced networking feature Private Service Connect (PSC).</simpara>
+<section xml:id="osd-understanding-private-service-connect_osd-creating-a-gcp-psc-enabled-private-cluster">
+<title>Understanding Private Service Connect</title>
+<simpara role="_abstract">Private Service Connect (PSC), a capability of Google Cloud networking, enables private communication between services across different projects or organizations within Google Cloud. Users that implement PSC as part of their network connectivity can deploy OpenShift Container Platform clusters in a private and secured environment within Google Cloud without any public facing cloud resources.</simpara>
+<simpara>For more information about PSC, see <link xlink:href="https://cloud.google.com/vpc/docs/private-service-connect">Private Service Connect</link>.</simpara>
+<important>
+<simpara>PSC is only available on OpenShift Container Platform version 4.17 and later, and is only supported by the Customer Cloud Subscription (CCS) infrastructure type.</simpara>
+</important>
+</section>
+<section xml:id="private-service-connect-prereqs">
+<title>Prerequisites</title>
+<simpara role="abstract">In addition to the prerequisites that you need to complete before deploying any OpenShift Container Platform on Google Cloud cluster, you must also complete the following prerequisites to deploy a private cluster using Private Service Connect (PSC):</simpara>
+<itemizedlist>
+<listitem>
+<simpara>A pre-created Virtual Private Cloud (VPC) with the following subnets in the same Google Cloud region where your cluster will be deployed:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>A control plane subnet</simpara>
+</listitem>
+<listitem>
+<simpara>A worker subnet</simpara>
+</listitem>
+<listitem>
+<simpara>A subnet used for the PSC service attachment with the purpose set to Private Service Connect</simpara>
+<important>
+<simpara>The subnet mask for the PSC service attachment must be /29 or larger and must be dedicated to an individual OpenShift Container Platform cluster. Additionally, the subnet must be contained within the Machine CIDR range used while provisioning the OpenShift Container Platform cluster.</simpara>
+</important>
+<simpara>For information about how to create a VPC on Google Cloud, see <link xlink:href="https://cloud.google.com/vpc/docs/create-modify-vpc-networks">Create and manage VPC networks</link> in the Google Cloud documentation.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Provide a path from the OpenShift Dedicated cluster to the internet for the domains and ports listed in the <emphasis>Google Cloud firewall prerequisites</emphasis> in the <emphasis>Additional resources</emphasis> section.</simpara>
+</listitem>
+<listitem>
+<simpara>Enabled <link xlink:href="https://console.cloud.google.com/marketplace/product/google/iap.googleapis.com?q=search&amp;referrer=search&amp;hl=en&amp;project=openshift-gce-devel">Cloud Identity-Aware Proxy API</link> at the Google Cloud project level.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>In addition to the requirements listed above, clusters configured with the <emphasis role="strong">Service Account authentication type</emphasis> must grant the <literal>IAP-Secured Tunnel User</literal> role to <literal>osd-ccs-admin</literal> service account.</simpara>
+<simpara>For more information about the prerequisites that must be completed before deploying an OpenShift Container Platform on Google Cloud, see <emphasis>Customer Requirements</emphasis>.</simpara>
+<note>
+<simpara>PSC is supported with the Customer Cloud Subscription (CCS) infrastructure type only. To create an OpenShift Container Platform on Google Cloud using PSC, see <emphasis>Creating a cluster on Google Cloud with Workload Identity Federation</emphasis>.</simpara>
+</note>
+</section>
+<section xml:id="psc-architecture_osd-creating-a-gcp-psc-enabled-private-cluster">
+<title>Private Service Connect architecture</title>
+<simpara role="_abstract">The Private Service Connect (PSC) architecture includes producer services and consumer services. Using PSC, the consumers can access producer services privately from inside their VPC network. Similarly, it allows producers to host services in their own separate VPC networks and offer a private connect to their consumers.</simpara>
+<simpara>The following image depicts how Red HAT SREs and other internal resources access and support clusters created using PSC.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>A unique PSC service attachment is created for each OSD cluster in the customer Google Cloud project. The PSC service attachment points to the cluster API server load balancer created in the customer Google Cloud project.</simpara>
+</listitem>
+<listitem>
+<simpara>Similar to service attachments, a unique PSC endpoint is created in the Red Hat Management Google Cloud project for each OSD cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>A dedicated subnet for Google Cloud Private Service Connect is created in the cluster’s network within the customer Google Cloud project. This is a special subnet type where the producer services are published via PSC service attachments. This subnet is used to Source NAT (SNAT) incoming requests to the cluster API server. Additionally, the PSC subnet must be within the Machine CIDR range and cannot be used in more than one service attachment.</simpara>
+</listitem>
+<listitem>
+<simpara>Red Hat internal resources and SREs access private OSD clusters using the connectivity between a PSC endpoint and service attachment. Even though the traffic transits multiple VPC networks, it remains entirely within Google Cloud.</simpara>
+</listitem>
+<listitem>
+<simpara>Access to PSC service attachments is possible only via the Red Hat Management project.</simpara>
+</listitem>
+</itemizedlist>
+<figure>
+<title>PSC architecture overview</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/psc_arch_2.png"/>
+</imageobject>
+<textobject><phrase>PSC architecture overview</phrase></textobject>
+</mediaobject>
+</figure>
+</section>
+<section xml:id="next-steps-psc_osd-creating-a-gcp-psc-enabled-private-cluster">
+<title>Next steps</title>
+<itemizedlist>
+<listitem>
+<simpara>To learn more about OpenShift Container Platform on Google Cloud cluster prerequisites, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#ccs-gcp-customer-requirements_gcp-ccs">Customer Requirements</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>To configure your firewalls, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#osd-gcp-psc-firewall-prerequisites_gcp-ccs">Google Cloud firewall prerequisites</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>To create an OpenShift Container Platform on Google Cloud using PSC with the Workload Identity Federation authentication type, see
+<link linkend="osd-creating-a-cluster-on-gcp-with-workload-identity-federation">Creating a cluster on Google Cloud with Workload Identity Federation authentication</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="osd-creating-a-cluster-on-gcp-with-workload-identity-federation">
+<title>Creating a cluster on Google Cloud with Workload Identity Federation authentication</title>
+<simpara role="_abstract">As a system administrator or cloud engineer, you can provision an OpenShift Container Platform cluster on Google Cloud using Workload Identity Federation (WIF). This feature establishes a trust relationship that allows your cluster&#8217;s control plane and workloads to securely assume the necessary Google Cloud roles and access required services. This approach eliminates the security risk and operational overhead associated with managing and rotating long-lived Google Cloud service account keys.</simpara>
+<section xml:id="workload-identity-federation-overview_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">
+<title>Workload Identity Federation overview</title>
+<simpara role="_abstract">Workload Identity Federation (WIF) is a Google Cloud Identity and Access Management (IAM) feature that provides third parties a secure method to access resources on a customer&#8217;s cloud account. WIF eliminates the need for service account keys, and is Google Cloud&#8217;s preferred method of credential authentication.</simpara>
+<simpara>While service account keys can provide powerful access to your Google Cloud resources, they must be maintained by the user and can be a security risk if they are not managed properly. WIF does not use service keys as an access method for your Google Cloud resources. Instead, WIF grants access by using credentials from external identity providers to generate short-lived credentials for workloads. The workloads can then use these credentials to temporarily impersonate service accounts and access Google Cloud resources. This removes the burden of having to properly maintain service account keys, and removes the risk of unauthorized users gaining access to service account keys.</simpara>
+<simpara>The following bulleted items provides a basic overview of the Workload Identity Federation process:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The owner of the Google Cloud project configures a workload identity pool with an identity provider, allowing OpenShift Container Platform to  access the project&#8217;s associated service accounts using short-lived credentials.</simpara>
+</listitem>
+<listitem>
+<simpara>This workload identity pool is configured to authenticate requests using an Identity Provider (IP) that the user defines.</simpara>
+</listitem>
+<listitem>
+<simpara>For applications to get access to cloud resources, they first pass credentials to Google&#8217;s Security Token Service (STS). STS uses the specified identity provider to verify the credentials.</simpara>
+</listitem>
+<listitem>
+<simpara>Once the credentials are verified, STS returns a temporary access token to the caller, giving the application the ability to impersonate the service account bound to that identity.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Operators also need access to cloud resources. By using WIF instead of service account keys to grant this access, cluster security is further strengthened, as service account keys are no longer stored in the cluster. Instead, operators are given temporary access tokens that impersonate the service accounts. These tokens are short-lived and regularly rotated.</simpara>
+<simpara>For more information about Workload Identity Federation, see the <link xlink:href="https://cloud.google.com/iam/docs/workload-identity-federation">Google Cloud documentation</link>.</simpara>
+<important>
+<simpara>Workload Identity Federation (WIF) is only available on OpenShift Container Platform version 4.17 and later, and is only supported by the Customer Cloud Subscription (CCS) infrastructure type.</simpara>
+</important>
+</section>
+<section xml:id="osd-creating-a-cluster-on-gcp-prerequisites1_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">
+<title>Prerequisites</title>
+<itemizedlist>
+<listitem>
+<simpara>You have confirmed your Google Cloud account has the necessary resource quotas and limits to support your desired cluster size according to the cluster resource requirements. For more information regarding resource quotas and limits, see <emphasis>Additional resources</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have reviewed the <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#osd-understanding">introduction to OpenShift Container Platform</link> and the documentation on <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/architecture/#architecture-overview">architecture concepts</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have reviewed the <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/getting_started/#osd-understanding-your-cloud-deployment-options">OpenShift Container Platform cloud deployment options</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have read and completed the <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#ccs-gcp-customer-procedure_gcp-ccs">Required customer procedure</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have downloaded the latest version of the OpenShift Cluster Manager CLI (<literal>ocm</literal>) for your operating system from the <link xlink:href="https://console.redhat.com/openshift/downloads">Downloads</link> page on OpenShift Cluster Manager.</simpara>
+<important>
+<simpara>The <literal>ocm</literal> is a Developer Preview feature only.
+For more information about the support scope of Red Hat Developer Preview features, see <link xlink:href="https://access.redhat.com/support/offerings/devpreview/">Developer Preview Support Scope</link>.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>You have created a Workload Identity Federation configuration. For more information, see <emphasis>Creating a Workforce Identity Federation configuration</emphasis>.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>WIF supports the deployment of a private OpenShift Container Platform on Google Cloud cluster with Private Service Connect (PSC). Red&#160;Hat recommends using PSC when deploying private clusters.
+For more information about the prerequisites for PSC, see <link linkend="private-service-connect-prereqs">Prerequisites for Private Service Connect</link>.</simpara>
+</note>
+</section>
+<section xml:id="create-wif-configuration_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">
+<title>Creating a Workload Identity Federation configuration</title>
+<simpara role="_abstract">You can create a WIF configuration using the <literal>auto</literal> mode or the <literal>manual</literal> mode in the <literal>ocm</literal> CLI.</simpara>
+<simpara>The <literal>auto</literal> mode enables you to automatically create the service accounts for OpenShift Container Platform components as well as other IAM resources.</simpara>
+<simpara>Alternatively, you can use the <literal>manual</literal> mode. In <literal>manual</literal> mode, you are provided with commands within a <literal>script.sh</literal> file which you use to manually create the service accounts for OpenShift Container Platform components as well as other IAM resources.</simpara>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>Based on your mode preference, run one of the following commands to create a WIF configuration:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Create a WIF configuration in auto mode by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ ocm gcp create wif-config --name &lt;wif_name&gt; \ <co xml:id="CO1-1"/>
+  --project &lt;gcp_project_id&gt; \ <co xml:id="CO1-2"/>
+  --version &lt;osd_version&gt; <co xml:id="CO1-3"/>
+  --federated-project &lt;gcp_project_id&gt; <co xml:id="CO1-4"/></programlisting>
+<calloutlist>
+<callout arearefs="CO1-1">
+<para>Replace <literal>&lt;wif_name&gt;</literal> with the name of your WIF configuration.</para>
+</callout>
+<callout arearefs="CO1-2">
+<para>Replace <literal>&lt;gcp_project_id&gt;</literal> with the ID of the Google Cloud project where the WIF configuration will be implemented.</para>
+</callout>
+<callout arearefs="CO1-3">
+<para>Optional: Replace <literal>&lt;osd_version&gt;</literal> with the desired OpenShift Container Platform version the wif-config will need to support. If you do not specify a version, the wif-config will support the latest OpenShift Container Platform y-stream version as well as the last three supported OpenShift Container Platform y-stream versions (beginning with version 4.17).</para>
+</callout>
+<callout arearefs="CO1-4">
+<para>Optional: Replace <literal>&lt;gcp_project_id&gt;</literal> with the ID of the dedicated project where the workload identity pools and providers will be created and managed. If the <literal>--federated-project</literal> flag is not specified, the workload identity pools and providers will be created and managed in the project specified by the <literal>--project</literal> flag.</para>
+</callout>
+</calloutlist>
+<important>
+<simpara>Using a dedicated project to create and manage workload identity pools and providers is recommended by Google Cloud.
+Using a dedicated project helps you to establish centralized governance over the configuration of workload identity pools and providers, enforce uniform attribute mappings and conditions throughout all projects and applications, and ensure that only authorized identity providers can authenticate with WIF.</simpara>
+<simpara>Creating and managing workload identity pools and providers in a dedicated project is only allowed during initial WIF configuration creation. The <literal>--federated-project</literal> flag cannot be applied to existing <literal>wif-configs</literal>.</simpara>
+<simpara>For more information, see <link xlink:href="https://cloud.google.com/iam/docs/best-practices-for-using-workload-identity-federation#dedicated-project">Use a dedicated project to manage workload identity pools and providers</link>.</simpara>
+</important>
+<simpara><emphasis role="strong">Example output</emphasis></simpara>
+<programlisting language="terminal" linenumbering="unnumbered">2024/09/26 13:05:41 Creating workload identity configuration...
+2024/09/26 13:05:47 Workload identity pool created with name 2e1kcps6jtgla8818vqs8tbjjls4oeub
+2024/09/26 13:05:47 workload identity provider created with name oidc
+2024/09/26 13:05:48 IAM service account osd-worker-oeub created
+2024/09/26 13:05:49 IAM service account osd-control-plane-oeub created
+2024/09/26 13:05:49 IAM service account openshift-gcp-ccm-oeub created
+2024/09/26 13:05:50 IAM service account openshift-gcp-pd-csi-driv-oeub created
+2024/09/26 13:05:50 IAM service account openshift-image-registry-oeub created
+2024/09/26 13:05:51 IAM service account openshift-machine-api-gcp-oeub created
+2024/09/26 13:05:51 IAM service account osd-deployer-oeub created
+2024/09/26 13:05:52 IAM service account cloud-credential-operator-oeub created
+2024/09/26 13:05:52 IAM service account openshift-cloud-network-c-oeub created
+2024/09/26 13:05:53 IAM service account openshift-ingress-gcp-oeub created
+2024/09/26 13:05:55 Role "osd_deployer_v4.19" updated</programlisting>
+</listitem>
+<listitem>
+<simpara>Create a WIF configuration in manual mode by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ ocm gcp create wif-config --name &lt;wif_name&gt; \ <co xml:id="CO2-1"/>
+  --project &lt;gcp_project_id&gt; \ <co xml:id="CO2-2"/>
+  --mode=manual</programlisting>
+<calloutlist>
+<callout arearefs="CO2-1">
+<para>Replace <literal>&lt;wif_name&gt;</literal> with the name of your WIF configuration.</para>
+</callout>
+<callout arearefs="CO2-2">
+<para>Replace <literal>&lt;gcp_project_id&gt;</literal> with the ID  of the Google Cloud project where the WIF configuration will be implemented.</para>
+</callout>
+</calloutlist>
+<simpara>Once the WIF is configured, the following service accounts, roles, and groups are created.</simpara>
+<note>
+<simpara>Red&#160;Hat custom roles are versioned with every OpenShift y-stream release, for example 4.19.</simpara>
+</note>
+<table frame="all" rowsep="1" colsep="1">
+<title>WIF configuration service accounts, group and roles</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="40*"/>
+<colspec colname="col_2" colwidth="60*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Service Account/Group</entry>
+<entry align="left" valign="top">Google Cloud pre-defined roles and Red Hat custom roles</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>osd-deployer</simpara></entry>
+<entry align="left" valign="top"><simpara>osd_deployer_v&lt;y-stream-version&gt;</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>osd-control-plane</simpara></entry>
+<entry align="left" valign="top"><itemizedlist>
+<listitem>
+<simpara>compute.instanceAdmin</simpara>
+</listitem>
+<listitem>
+<simpara>compute.networkAdmin</simpara>
+</listitem>
+<listitem>
+<simpara>compute.securityAdmin</simpara>
+</listitem>
+<listitem>
+<simpara>compute.storageAdmin</simpara>
+</listitem>
+</itemizedlist></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>osd-worker</simpara></entry>
+<entry align="left" valign="top"><itemizedlist>
+<listitem>
+<simpara>compute.storageAdmin</simpara>
+</listitem>
+<listitem>
+<simpara>compute.viewer</simpara>
+</listitem>
+</itemizedlist></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>cloud-credential-operator-gcp-ro-creds</simpara></entry>
+<entry align="left" valign="top"><simpara>cloud_credential_operator_gcp_ro_creds_v&lt;y-stream-version&gt;</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>openshift-cloud-network-config-controller-gcp</simpara></entry>
+<entry align="left" valign="top"><simpara>openshift_cloud_network_config_controller_gcp_v&lt;y-stream-version&gt;</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>openshift-gcp-ccm</simpara></entry>
+<entry align="left" valign="top"><simpara>openshift_gcp_ccm_v&lt;y-stream-version&gt;</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>openshift-gcp-pd-csi-driver-operator</simpara></entry>
+<entry align="left" valign="top"><itemizedlist>
+<listitem>
+<simpara>compute.storageAdmin</simpara>
+</listitem>
+<listitem>
+<simpara>iam.serviceAccountUser</simpara>
+</listitem>
+<listitem>
+<simpara>resourcemanager.tagUser</simpara>
+</listitem>
+<listitem>
+<simpara>openshift_gcp_pd_csi_driver_operator_v&lt;y-stream-version&gt;</simpara>
+</listitem>
+</itemizedlist></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>openshift-image-registry-gcp</simpara></entry>
+<entry align="left" valign="top"><simpara>openshift_image_registry_gcs_v&lt;y-stream-version&gt;</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>openshift-ingress-gcp</simpara></entry>
+<entry align="left" valign="top"><simpara>openshift_ingress_gcp_v&lt;y-stream-version&gt;</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>openshift-machine-api-gcp</simpara></entry>
+<entry align="left" valign="top"><simpara>openshift_machine_api_gcp_v&lt;y-stream-version&gt;</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Access via SRE group:sd-sre-platform-gcp-access</simpara></entry>
+<entry align="left" valign="top"><simpara>sre_managed_support</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara>For the complete list of WIF configuration roles and their assigned permissions, see <link xlink:href="https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.19/vanilla.yaml">managed-cluster-config</link>.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="create-wif-cluster-ocm_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">
+<title>Creating a Workload Identity Federation cluster using OpenShift Cluster Manager</title>
+<simpara role="_abstract">Follow the steps in this procedure to create an OpenShift Container Platform cluster on Google Cloud using Workload Identity Federation (WIF) for authentication through the OpenShift Cluster Manager web console</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have created a WIF configuration. For more information, see "Creating a Workload Identity Federation configuration".</simpara>
+</listitem>
+<listitem>
+<simpara>You have access to the OpenShift Cluster Manager web console. For more information, see <emphasis>Accessing OpenShift Cluster Manager</emphasis> in the <emphasis>Additional resources</emphasis> section.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Log in to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link> and click <emphasis role="strong">Create cluster</emphasis> on the OpenShift Container Platform card.</simpara>
+</listitem>
+<listitem>
+<simpara>Under <emphasis role="strong">Billing model</emphasis>, configure the subscription type and infrastructure type.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select a subscription type. For information about OpenShift Container Platform subscription options, see <link xlink:href="https://access.redhat.com/documentation/en-us/openshift_cluster_manager/1-latest/html-single/managing_clusters/index#assembly-cluster-subscriptions">Cluster subscriptions and registration</link> in the OpenShift Cluster Manager documentation.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the <emphasis role="strong">Customer cloud subscription</emphasis> infrastructure type.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Run on Google Cloud</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Workload Identity Federation</emphasis> as the Authentication type.</simpara>
+<note>
+<simpara>Workload Identity Federation (WIF) is Google Cloud&#8217;s recommended method of authentication for OpenShift Container Platform installation. It greatly improves a cluster&#8217;s resilience by using short-lived, least-privilege credentials and eliminates the need for static service account keys.</simpara>
+</note>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Read and complete all the required prerequisites.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the checkbox indicating that you have read and completed all the required prerequisites.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Select a configured WIF configuration from the <emphasis role="strong">WIF configuration</emphasis> drop-down list.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Details</emphasis> page, provide a name for your cluster and specify the cluster details:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>In the <emphasis role="strong">Cluster name</emphasis> field, enter a name for your cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Cluster creation generates a domain prefix as a subdomain for your provisioned cluster on <literal>openshiftapps.com</literal>. If the cluster name is less than or equal to 15 characters, that name is used for the domain prefix. If the cluster name is longer than 15 characters, the domain prefix is randomly generated as a 15-character string.</simpara>
+<simpara>To customize the subdomain prefix, select the <emphasis role="strong">Create custom domain prefix</emphasis> checkbox, and enter your domain prefix name in the <emphasis role="strong">Domain prefix</emphasis> field. The domain prefix cannot be longer than 15 characters, must be unique within your organization, and cannot be changed after cluster creation.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a cluster version from the <emphasis role="strong">Version</emphasis> drop-down menu.</simpara>
+<note>
+<simpara>Workload Identity Federation (WIF) is only supported on OpenShift Container Platform version 4.17 and later.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Select a channel group from the <emphasis role="strong">Channel group</emphasis> drop-down menu.</simpara>
+<note>
+<simpara>Channel group options include <emphasis role="strong">Stable</emphasis> (default option) and <emphasis role="strong">EUS</emphasis>. For more information about the Stable and EUS channel group options, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/updating_clusters/understanding-openshift-updates-1#understanding-update-channels-releases">Understanding update channels and releases</link>.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Select a cloud provider region from the <emphasis role="strong">Region</emphasis> drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a <emphasis role="strong">Single zone</emphasis> or <emphasis role="strong">Multi-zone</emphasis> configuration.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Select <emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> to use Shielded VMs when installing your cluster. Once you create your cluster, the <emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> setting cannot be changed. For more information, see <link xlink:href="https://cloud.google.com/security/products/shielded-vm">Shielded VMs</link>.</simpara>
+<important>
+<simpara>To successfully create a cluster, you must select <emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> if your organization has the policy constraint <literal>constraints/compute.requireShieldedVm</literal> enabled. For more information regarding Google Cloud organizational policy constraints, see <link xlink:href="https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints">Organization policy constraints</link>.</simpara>
+</important>
+<important>
+<simpara><emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> is not supported for OpenShift Container Platform on Google Cloud clusters created using bare-metal instance types. For more information, see <link xlink:href="https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#limitations">Limitations</link> in the Google Cloud documentation.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>Leave <emphasis role="strong">Enable user workload monitoring</emphasis> selected to monitor your own projects in isolation from Red Hat Site Reliability Engineer (SRE) platform metrics. This option is enabled by default.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Optional: Expand <emphasis role="strong">Advanced Encryption</emphasis> to make changes to encryption settings.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select <emphasis role="strong">Use custom KMS keys</emphasis> to use custom KMS keys. If you prefer not to use custom KMS keys, leave the default setting <emphasis role="strong">Use default KMS Keys</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>With <emphasis role="strong">Use Custom KMS keys</emphasis> selected:</simpara>
+<orderedlist numeration="lowerroman">
+<listitem>
+<simpara>Select a key ring location from the <emphasis role="strong">Key ring location</emphasis> drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a key ring from the <emphasis role="strong">Key ring</emphasis> drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a key name from the <emphasis role="strong">Key name</emphasis> drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Provide the <emphasis role="strong">KMS Service Account</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Optional: Select <emphasis role="strong">Enable FIPS cryptography</emphasis> if you require your cluster to be FIPS validated.</simpara>
+<note>
+<simpara>If <emphasis role="strong">Enable FIPS cryptography</emphasis> is selected, <emphasis role="strong">Enable additional etcd encryption</emphasis> is enabled by default and cannot be disabled. You can select <emphasis role="strong">Enable additional etcd encryption</emphasis> without selecting <emphasis role="strong">Enable FIPS cryptography</emphasis>.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Optional: Select <emphasis role="strong">Enable additional etcd encryption</emphasis> if you require etcd key value encryption.
+With this option, the etcd key values are encrypted, but not the keys. This option is in addition to the control plane storage encryption that encrypts the etcd volumes in OpenShift Container Platform clusters by default.</simpara>
+<note>
+<simpara>By enabling etcd encryption for the key values in etcd, you incur a performance overhead of approximately 20%. The overhead is a result of introducing this second layer of encryption, in addition to the default control plane storage encryption that encrypts the etcd volumes. Consider enabling etcd encryption only if you specifically require it for your use case.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Machine pool</emphasis> page, select a <emphasis role="strong">Compute node instance type</emphasis> and a <emphasis role="strong">Compute node count</emphasis>. The number and types of nodes that are available depend on your OpenShift Container Platform subscription. If you are using multiple availability zones, the compute node count is per zone.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Expand <emphasis role="strong">Add node labels</emphasis> to add labels to your nodes. Click <emphasis role="strong">Add additional label</emphasis> to add more node labels.</simpara>
+<important>
+<simpara>This step refers to labels within Kubernetes, not Google Cloud. For more information regarding Kubernetes labels, see <link xlink:href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">Labels and Selectors</link>.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">Cluster privacy</emphasis> dialog, select <emphasis role="strong">Public</emphasis> or <emphasis role="strong">Private</emphasis> to use either public or private API endpoints and application routes for your cluster. If you select <emphasis role="strong">Private</emphasis>, <emphasis role="strong">Use Private Service Connect</emphasis> is selected by default, and cannot be disabled. Private Service Connect (PSC) is Google Cloud’s security-enhanced networking feature.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: To install the cluster in an existing Google Cloud Virtual Private Cloud (VPC):</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select <emphasis role="strong">Install into an existing VPC</emphasis>.</simpara>
+<important>
+<simpara>Private Service Connect is supported only with <emphasis role="strong">Install into an existing VPC</emphasis>.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>If you are installing into an existing VPC and you want to enable an HTTP or HTTPS proxy for your cluster, select <emphasis role="strong">Configure a cluster-wide proxy</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Accept the default application ingress settings, or to create your own custom settings, select <emphasis role="strong">Custom Settings</emphasis>.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Optional: Provide route selector.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Provide excluded namespaces.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a namespace ownership policy.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a wildcard policy.</simpara>
+<simpara>For more information about custom application ingress settings, click on the information icon provided for each setting.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: To install the cluster into a Google Cloud Shared VPC, follow these steps.</simpara>
+<note>
+<simpara role="_abstract">Installing a new OpenShift Container Platform cluster into a VPC that was automatically created by the installer for a different cluster is not supported.</simpara>
+</note>
+<important>
+<simpara>The VPC owner of the host project must enable a project as a host project in their Google Cloud console and add the <emphasis role="strong">Computer Network Administrator</emphasis>, <emphasis role="strong">Compute Security Administrator</emphasis>, and <emphasis role="strong">DNS Administrator</emphasis> roles to the following service accounts before cluster installation:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">osd-deployer</emphasis></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">osd-control-plane</emphasis></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">openshift-machine-api-gcp</emphasis></simpara>
+</listitem>
+</itemizedlist>
+<simpara>Failure to do so will cause the cluster go into the "Installation Waiting" state. If this occurs, you must contact the VPC owner of the host project to assign the roles to the service accounts listed above.
+The VPC owner of the host project has 30 days to grant the listed permissions before the cluster creation fails.
+For more information, see <link xlink:href="https://cloud.google.com/vpc/docs/provisioning-shared-vpc#set-up-shared-vpc">Enable a host project</link> and <link xlink:href="https://cloud.google.com/vpc/docs/provisioning-shared-vpc#migs-service-accounts">Provision Shared VPC</link>.</simpara>
+</important>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select <emphasis role="strong">Install into Google Cloud Shared VPC</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Specify the <emphasis role="strong">Host project ID</emphasis>. If the specified host project ID is incorrect, cluster creation fails.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>If you opted to install the cluster in an existing Google Cloud VPC, provide your VPC subnet settings and select <emphasis role="strong">Next</emphasis>. You must ensure that your VPC is configured to allow outbound internet access to the domains required for the OpenShift Container Platform service. This outbound access is required for the OpenShift Container Platform service to communicate with Red&#160;Hat&#8217;s management plane and SRE tooling via secure and encrypted endpoints over the public internet.</simpara>
+<note>
+<simpara>If you are installing a cluster into a Shared VPC, the VPC name and subnets are shared from the host project.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>If you opted to configure a cluster-wide proxy, provide your proxy configuration details on the <emphasis role="strong">Cluster-wide proxy</emphasis> page:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Enter a value in at least one of the following fields:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Specify a valid <emphasis role="strong">HTTP proxy URL</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Specify a valid <emphasis role="strong">HTTPS proxy URL</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">Additional trust bundle</emphasis> field, provide a PEM encoded X.509 certificate bundle. The bundle is added to the trusted certificate store for the cluster nodes. An additional trust bundle file is required if you use a TLS-inspecting proxy unless the identity certificate for the proxy is signed by an authority from the Red Hat Enterprise Linux CoreOS (RHCOS) trust bundle. This requirement applies regardless of whether the proxy is transparent or requires explicit configuration using the <literal>http-proxy</literal> and <literal>https-proxy</literal> arguments.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+<simpara>For more information about configuring a proxy with OpenShift Container Platform, see <emphasis>Configuring a cluster-wide proxy</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">CIDR ranges</emphasis> dialog, configure custom classless inter-domain routing (CIDR) ranges or use the defaults that are provided.</simpara>
+<important>
+<simpara>CIDR configurations cannot be changed later. Confirm your selections with your network administrator before proceeding.</simpara>
+<simpara>If the cluster privacy is set to <emphasis role="strong">Private</emphasis>, you cannot access your cluster until you configure private connections in your cloud provider.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Cluster update strategy</emphasis> page, configure your update preferences:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Choose a cluster update method:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Select <emphasis role="strong">Individual updates</emphasis> if you want to schedule each update individually. This is the default option.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Recurring updates</emphasis> to update your cluster on your preferred day and start time, when updates are available.</simpara>
+<note>
+<simpara>You can review the end-of-life dates in the update lifecycle documentation for OpenShift Container Platform. For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#osd-life-cycle">OpenShift Dedicated update life cycle</link>.</simpara>
+</note>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Provide administrator approval based on your cluster update method:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Individual updates: If you select an update version that requires approval, provide an administrator’s acknowledgment and click <emphasis role="strong">Approve and continue</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Recurring updates: If you selected recurring updates for your cluster, provide an administrator’s acknowledgment and click <emphasis role="strong">Approve and continue</emphasis>. OpenShift Cluster Manager does not start scheduled y-stream updates for minor versions without receiving an administrator’s acknowledgment.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>If you opted for recurring updates, select a preferred day of the week and upgrade start time in UTC from the drop-down menus.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: You can set a grace period for <emphasis role="strong">Node draining</emphasis> during cluster upgrades. A <emphasis role="strong">1 hour</emphasis> grace period is set by default.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+<note>
+<simpara>In the event of critical security concerns that significantly impact the security or stability of a cluster, Red Hat Site Reliability Engineering (SRE) might schedule automatic updates to the latest z-stream version that is not impacted. The updates are applied within 48 hours after customer notifications are provided. For a description of the critical impact security rating, see <link xlink:href="https://access.redhat.com/security/updates/classification">Understanding Red Hat security ratings</link>.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Review the summary of your selections and click <emphasis role="strong">Create cluster</emphasis> to start the cluster installation. The installation takes approximately 30-40 minutes to complete.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: On the <emphasis role="strong">Overview</emphasis> tab, you can enable the delete protection feature by selecting <emphasis role="strong">Enable</emphasis>, which is located directly under <emphasis role="strong">Delete Protection: Disabled</emphasis>. This will prevent your cluster from being deleted. To disable delete protection, select <emphasis role="strong">Disable</emphasis>.
+By default, clusters are created with the delete protection feature disabled.</simpara>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>You can monitor the progress of the installation in the <emphasis role="strong">Overview</emphasis> page for your cluster. You can view the installation logs on the same page. Your cluster is ready when the <emphasis role="strong">Status</emphasis> in the <emphasis role="strong">Details</emphasis> section of the page is listed as <emphasis role="strong">Ready</emphasis>.</simpara>
+</listitem>
+</itemizedlist>
+<important>
+<simpara>If your cluster deployment fails during installation, certain resources created during the installation process are not automatically removed from your Google Cloud account. To remove these resources from your Google Cloud account, you must delete the failed cluster.</simpara>
+</important>
+<itemizedlist>
+<title>Additional resources</title>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/red_hat_openshift_cluster_manager/#accessing_ocm">Accessing OpenShift Cluster Manager</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="create-wif-cluster-cli_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">
+<title>Creating a Workload Identity Federation cluster using the OCM CLI</title>
+<simpara role="_abstract">You can create an OpenShift Container Platform on Google Cloud cluster with Workload Identity Federation (WIF) using the OpenShift Cluster Manager CLI (<literal>ocm</literal>) in interactive or non-interactive mode.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have created a WIF configuration. For more information, see "Creating a Workload Identity Federation configuration".</simpara>
+</listitem>
+<listitem>
+<simpara>You have downloaded the latest version of the OpenShift Cluster Manager CLI (<literal>ocm</literal>) for your operating system from the <link xlink:href="https://console.redhat.com/openshift/downloads">Downloads</link> page on OpenShift Cluster Manager.</simpara>
+</listitem>
+</itemizedlist>
+<formalpara>
+<title>Procedure</title>
+<para>You can create a WIF cluster using the <literal>interactive</literal> mode or the <literal>non-interactive</literal> mode.</para>
+</formalpara>
+<simpara>In <literal>interactive</literal> mode, cluster attributes are displayed automatically as prompts during the creation of the cluster. You enter the values for those prompts based on specified requirements in the fields provided.</simpara>
+<simpara>In <literal>non-interactive</literal> mode, you specify the values for specific parameters within the command.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Based on your mode preference, run one of the following commands to create an OpenShift Container Platform cluster on Google Cloud with WIF configuration:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Create a cluster in interactive mode by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ ocm create cluster --interactive</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>--interactive</literal></term>
+<listitem>
+<simpara>Specifies that the cluster is created in interactive mode. This mode prompts you to enter the required configuration options during cluster creation. If you do not include this parameter, the cluster is created in <literal>non-interactive</literal> mode by default.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<simpara>Create a cluster in non-interactive mode by running the following command:</simpara>
+<note>
+<simpara>The following example is made up optional and required parameters and may differ from your <literal>non-interactive</literal> mode command. Parameters not identified as optional are required. For additional details about these and other parameters, run the <literal>ocm create cluster --help flag</literal> command in you terminal window.</simpara>
+</note>
+<programlisting language="terminal" linenumbering="unnumbered">$ ocm create cluster &lt;cluster_name&gt; \
+--provider=gcp \
+--ccs=true \
+--wif-config &lt;wif_name&gt; \
+--region &lt;gcp_region&gt; \
+--subscription-type=marketplace-gcp \
+--marketplace-gcp-terms=true \
+--version &lt;version&gt; \
+--multi-az=true  \
+--enable-autoscaling=true \
+--min-replicas=3 \
+--max-replicas=6 \
+--secure-boot-for-shielded-vms=true
+--channel-group &lt;channel_group_name&gt;</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>&lt;cluster_name&gt;</literal></term>
+<listitem>
+<simpara>Specifies the name of the cluster. Replace <literal>&lt;cluster_name&gt;</literal> with a name for your cluster.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--provider=gcp</literal></term>
+<listitem>
+<simpara>Specifies the cloud provider for the cluster.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--ccs=true</literal></term>
+<listitem>
+<simpara>Specifies that the cluster is a Customer Cloud Subscription (CCS) cluster.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--wif-config &lt;wif_name&gt;</literal></term>
+<listitem>
+<simpara>Specifies the name of the WIF configuration to assign to the cluster. Replace <literal>&lt;wif_name&gt;</literal> with the name of your WIF configuration.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--region &lt;gcp_region&gt;</literal></term>
+<listitem>
+<simpara>Specifies the Google Cloud region where the new cluster will be deployed. Replace <literal>&lt;gcp_region&gt;</literal> with the desired Google Cloud region.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--subscription-type=marketplace-gcp</literal></term>
+<listitem>
+<simpara>Specifies the subscription billing model for the cluster. This parameter is optional.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--marketplace-gcp-terms=true</literal></term>
+<listitem>
+<simpara>Confirms that you have accepted the Google Cloud Marketplace terms and agreements for the OpenShift Dedicated product listing. This parameter is required if you provided a value of <literal>marketplace-gcp</literal> for the <literal>subscription-type</literal> parameter.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--version &lt;version&gt;</literal></term>
+<listitem>
+<simpara>Specifies the desired OpenShift Container Platform version. This parameter is optional. However, if an OpenShift Container Platform version is specified, the version must also be supported by the assigned WIF configuration. If a version is specified that is not supported by the assigned WIF configuration, cluster creation will fail.
+If this occurs, update the assigned WIF configuration to the desired version or create a new WIF configuration with the desired version. If you do not specify a version, the cluster is created with the default version for the assigned WIF configuration.</simpara>
+<simpara>For more information about supported versions for WIF configurations, see "Creating a Workload Identity Federation configuration".</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--multi-az=true</literal></term>
+<listitem>
+<simpara>Specifies that the cluster is deployed to multiple data centers. This parameter is optional.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--enable-autoscaling=true</literal></term>
+<listitem>
+<simpara>Enables autoscaling of compute nodes. This parameter is optional.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--min-replicas=3</literal></term>
+<listitem>
+<simpara>Specifies the minimum number of compute nodes. This parameter is optional.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--max-replicas=6</literal></term>
+<listitem>
+<simpara>Specifies the maximum number of compute nodes. This parameter is optional.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--secure-boot-for-shielded-vms=true</literal></term>
+<listitem>
+<simpara>Enables Secure Boot, which allows the use of Shielded VMs in the Google Cloud. This parameter is optional.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--channel-group &lt;channel_group_name&gt;</literal></term>
+<listitem>
+<simpara>Specifies the name of the channel group you want to assign the cluster to. Channel group options include <literal>stable</literal> and <literal>eus</literal>. Replace <literal>&lt;channel_group_name&gt;</literal> with the desired channel group. This parameter is optional.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<important>
+<simpara>If your cluster deployment fails during installation, certain resources created during the installation process are not automatically removed from your Google Cloud account. To remove these resources from your Google Cloud account, you must delete the failed cluster. For more information, see "Deleting an OpenShift Container Platform cluster on Google Cloud".</simpara>
+</important>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>To verify that the cluster was created successfully, run the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ ocm get cluster &lt;cluster_name&gt;</programlisting>
+<simpara>If the cluster was created successfully, the output displays the cluster state as <literal>ready</literal>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="ocm-cli-list-wif-commands_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">
+<title>Listing Workload Identity Federation clusters</title>
+<simpara role="_abstract">You can list OpenShift Container Platform clusters that have been deployed using Workload Identity Federation (WIF) authentication by using the OpenShift Cluster Manager CLI (<literal>ocm</literal>).</simpara>
+<itemizedlist>
+<title>Procedure</title>
+<listitem>
+<simpara>To list all of your OpenShift Container Platform clusters that have been deployed using the WIF authentication type, run one of the following commands:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Using the <literal>--parameter</literal> flag with the <literal>search</literal> option:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ ocm list clusters --parameter search="gcp.authentication.wif_config_id != ''"</programlisting>
+</listitem>
+<listitem>
+<simpara>Using a specific wif-config ID to filter the clusters associated with that configuration, replacing <literal>&lt;wif_config_id&gt;</literal> with the ID of the WIF configuration:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ ocm list clusters --parameter search="gcp.authentication.wif_config_id = '&lt;wif_config_id&gt;'"</programlisting>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="wif-configuration-update_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">
+<title>Updating a Workload Identity Federation configuration</title>
+<simpara role="_abstract">You can update an existing Workload Identity Federation (WIF) configuration to support newer OpenShift Container Platform y-stream versions and to align with the latest security best practices.</simpara>
+<note>
+<simpara>Updating a WIF configuration is only applicable for y-stream updates. For an overview of the update process, including details regarding version semantics, see <link xlink:href="https://www.redhat.com/en/blog/the-ultimate-guide-to-openshift-release-and-upgrade-process-for-cluster-administrators#:~:text=Ongoing%20security%20patches%20and%20bug,is%20the%20dark%20green%20bar.">The Ultimate Guide to OpenShift Release and Upgrade Process for Cluster Administrators</link>.</simpara>
+</note>
+<simpara>Before upgrading a WIF-enabled OpenShift Container Platform cluster to a newer version, you must update the wif-config to that version as well. If you do not update the wif-config version before attempting to upgrade the cluster version, the cluster version upgrade will fail.</simpara>
+<simpara>As part of Red&#160;Hat&#8217;s ongoing commitment to the principle of least privilege, certain permissions previously assigned to the <literal>osd-deployer</literal> service account in WIF configurations have been removed. These changes help enhance the security of your clusters by ensuring that service accounts have only the permissions they need to perform their functions.</simpara>
+<simpara>For the complete list of WIF configuration roles and their assigned permissions, see <link xlink:href="https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.19/vanilla.yaml">managed-cluster-config</link>.</simpara>
+<simpara>To align your existing WIF configurations with these updated permissions, you can run the <literal>ocm gcp update wif-config</literal> command. This command updates the WIF configuration to include the latest permissions and roles required for optimal operation.</simpara>
+<simpara>When you update a wif-config or create a new one, ensure your OpenShift Cluster Manager CLI (<literal>ocm</literal>) is up to date. Not updating to the latest version of the <literal>ocm</literal> can result in error messages and service disruptions.</simpara>
+<simpara><emphasis role="strong">Example output</emphasis></simpara>
+<programlisting language="text" linenumbering="unnumbered">Error: failed to create wif-config: failed to create wif-config: status is 400, identifier is '400', code is 'CLUSTERS-MGMT-400', at '2025-10-06T15:18:37Z' and operation identifier is 'f9551d63-a58a-4e3c-b847-5f99ba1b0b74': Client version is out of date for WIF operations. Please update from vOCM-CLI/1.0.7 to v1.0.8 and try again.</programlisting>
+<simpara>You can also update an existing OpenShift Container Platform cluster that is already using WIF by adding a dedicated project to manage workload identity pools and providers using the <literal>--federated-project</literal> flag. This best-practice model separates the workload identity pools and providers into a dedicated, centralized Google Cloud project.</simpara>
+<simpara>When you update the configuration using the <literal>--federated-project</literal> flag, any associated workload identity pools move to the new federated project you specify, while the existing IAM service accounts and custom roles remain in the original cluster-associated project.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>To check the version of your <literal>ocm</literal>, run the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ ocm version</programlisting>
+</listitem>
+<listitem>
+<simpara>Optional: If your <literal>ocm</literal> version is not the latest available, download and install the latest version from the <link xlink:href="https://console.redhat.com/openshift/downloads">Downloads</link> page on OpenShift Cluster Manager.</simpara>
+</listitem>
+<listitem>
+<simpara>Update a wif-config to a specific OpenShift Container Platform version by running the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">ocm gcp update wif-config &lt;wif_name&gt; \
+--version &lt;version&gt;
+--federated-project &lt;gcp_project_id&gt;</programlisting>
+<simpara>where:</simpara>
+<variablelist>
+<varlistentry>
+<term><literal>&lt;wif_name&gt;</literal></term>
+<listitem>
+<simpara>The name of the WIF configuration you want to update.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>&lt;version&gt;</literal></term>
+<listitem>
+<simpara>Optional: The OpenShift Container Platform y-stream version you plan to update the cluster to. If you do not specify a version, the wif-config will be updated to support the latest OpenShift Container Platform y-stream version as well as the last three OpenShift Container Platform supported y-stream versions (beginning with version 4.17).</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><literal>--federated-project &lt;gcp_project_id&gt;</literal></term>
+<listitem>
+<simpara>Optional: A flag to specify a new dedicated project where the workload identity pools and providers will be created and managed. If this flag is not included, the workload identity pools and providers will remain in the project associated with the cluster.</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</orderedlist>
+<formalpara>
+<title>Next steps</title>
+<para>The stale set of permissions previously assigned to the <literal>osd-deployer</literal> service account will remain on the account after updating the wif-config. You need to manually access the roles and remove these stale permissions from them.</para>
+</formalpara>
+<simpara>Follow the instructions in the "Removing stale deployer permissions from service accounts managed by a WIF configuration" and "Removing stale support permissions from service accounts managed by a WIF configuration" guides to remove these stale permissions.</simpara>
+<simpara>In addition, if you used the <literal>--federated-project</literal> flag to move the workload identity pool to a new dedicated project, you can manually remove the stale workload identity pool from the original cluster-associated project.
+For more information, see <link xlink:href="https://docs.cloud.google.com/iam/docs/manage-workload-identity-pools-providers#delete-pool">Delete a pool</link> in the Google Cloud documentation.</simpara>
+<section xml:id="wif-removing-stale-deployer-permissions_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">
+<title>Removing stale deployer permissions from service accounts managed by a WIF configuration</title>
+<simpara role="_abstract">To remove the stale deployer permissions from service accounts managed by a WIF configuration, run the following commands on a terminal with access to the Google Cloud project hosting the service accounts.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Retrieve the existing role definition, ensuring the <literal>PROJECT_ID</literal> environment variable points to your Google Cloud project:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud iam roles describe \
+  osd_deployer_v4.18 \
+  --project $PROJECT_ID \
+  --format=yaml &gt; /tmp/role.yaml</programlisting>
+</listitem>
+<listitem>
+<simpara>Remove the unwanted permissions. You can do this by filtering out the unwanted permissions from the role definition file and saving the updated definition to a new file:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ cat /tmp/role.yaml | \
+grep -v "resourcemanager.projects.setIamPolicy" | \
+grep -v "iam.serviceAccounts.signBlob" | \
+grep -v "iam.serviceAccounts.actAs" &gt; /tmp/updated_role.yaml</programlisting>
+</listitem>
+<listitem>
+<simpara>Review the changes in the output between the original and updated role definitions to ensure only the unwanted permissions have been removed:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ diff /tmp/role.yaml /tmp/updated_role.yaml</programlisting>
+</listitem>
+<listitem>
+<simpara>Update the role in Google Cloud with the updated role definition file, ensuring the <literal>PROJECT_ID</literal> environment variable points to your Google Cloud project:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud iam roles update \
+  osd_deployer_v4.18 \
+  --project=$PROJECT_ID \
+  --file=/tmp/updated_role.yaml</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="wif-removing-stale-support-permissions_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">
+<title>Removing stale support permissions from service accounts managed by a WIF configuration</title>
+<simpara role="_abstract">To remove stale support permissions, run the following commands on a terminal with access to the Google Cloud project hosting the service accounts.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Retrieve the existing role definition, ensuring the <literal>PROJECT_ID</literal> environment variable points to your Google Cloud project:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud iam roles describe sre_managed_support --project $PROJECT_ID --format=yaml &gt; /tmp/role.yaml</programlisting>
+</listitem>
+<listitem>
+<simpara>Remove the unwanted permissions. You can do this by filtering out the unwanted permissions from the role definition file and saving the updated definition to a new file:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ cat /tmp/role.yaml | grep -v "compute.firewalls.create"  &gt; /tmp/updated_role.yaml</programlisting>
+</listitem>
+<listitem>
+<simpara>Review the changes in the output between the original and updated role definitions to ensure only the unwanted permissions have been removed:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ diff /tmp/role.yaml /tmp/updated_role.yaml</programlisting>
+</listitem>
+<listitem>
+<simpara>Update the role in Google Cloud with the updated role definition file, ensuring the <literal>PROJECT_ID</literal> environment variable points to your Google Cloud project:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ gcloud iam roles update sre_managed_support --project $PROJECT_ID --file=/tmp/updated_role.yaml</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="ocm-cli-verify-wif-commands_osd-creating-a-cluster-on-gcp-with-workload-identity-federation">
+<title>Verifying a Workload Identity Federation configuration</title>
+<simpara role="_abstract">You can verify that the configuration of resources associated with a WIF configuration are correct by running the <literal>ocm gcp verify wif-config</literal> command. If a misconfiguration is found, the output provides details about the misconfiguration and recommends that you update the WIF configuration.</simpara>
+<simpara>You need the name and ID of the WIF configuration you want to verify before verification.
+To obtain the name and ID of your active WIF configurations, run the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ ocm gcp list wif-configs</programlisting>
+<simpara>To determine if the WIF configuration you want to verify is configured correctly, run the following command:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">$ ocm gcp verify wif-config &lt;wif_config_name&gt;|&lt;wif_config_id&gt; <co xml:id="CO3-1"/></programlisting>
+<calloutlist>
+<callout arearefs="CO3-1">
+<para>Replace <literal>&lt;wif_config_name&gt;</literal> and <literal>&lt;wif_config_id&gt;</literal> with the name and ID of your WIF configuration, respectively.</para>
+</callout>
+</calloutlist>
+<simpara><emphasis role="strong">Example output</emphasis></simpara>
+<programlisting language="terminal" linenumbering="unnumbered">Error: verification failed with error: missing role 'compute.storageAdmin'.
+Running 'ocm gcp update wif-config' may fix errors related to cloud resource misconfiguration.
+exit status 1.</programlisting>
+</section>
+<section xml:id="_additional-resources" role="_additional-resources">
+<title>Additional resources</title>
+<itemizedlist>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#ccs-gcp-customer-requirements_gcp-ccs">Customer requirements</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/building_applications/#quotas-setting-per-project">Resource quotas per project</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#gcp-limits_gcp-ccs">Google Cloud account limits</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#ccs-gcp-customer-procedure_gcp-ccs">Required customer procedure</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://cloud.google.com/iam/docs/manage-workload-identity-pools-providers">Manage workload identity pools and providers</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://cloud.google.com/iam/docs/roles-overview">Roles and permissions</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#tested-cluster-maximums-sd_osd-limits-scalability">Cluster maximums</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/authentication_and_authorization/#sd-configuring-identity-providers">Configuring identity providers</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/authentication_and_authorization/#osd-revoking-cluster-privileges">Revoking privileges and access to an OpenShift Container Platform cluster</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="osd-creating-a-cluster-on-gcp-sa">
+<title>Creating a cluster on Google Cloud with Service Account authentication</title>
+<section xml:id="service-account-auth-overview_osd-creating-a-cluster-on-gcp-sa" role="_abstract">
+<title>Service Account authentication overview</title>
+<simpara role="abstract">The Service Account authentication type allows you to authenticate your OpenShift Container Platform cluster on Google Cloud using a private key for authentication purposes.</simpara>
+<simpara>Service accounts use RSA key pairs, which consist of a public and private key, with the private key being the service account key. The public portion of the key pair is stored on Google Cloud, while the private key is kept by the user. The private key allows users to authenticate as a service account and gain access to assets and resources associated with that service account.</simpara>
+<simpara>Service account keys are a security risk if not managed carefully. Users should routinely rotate their service account keys to reduce the risk of leaked or stolen keys.</simpara>
+<important>
+<simpara>Because of the potential security risk when using the Service Account authentication type, Red Hat recommends using Google Cloud Workload Identity Federation (WIF) as the authentication type for installing and interacting with the OpenShift Dedicated cluster deployed on Google Cloud because it provides enhanced security. For more information, see <emphasis>Creating a cluster on Google Cloud with Workload Identity Federation authentication</emphasis> in the <emphasis>Additional resources</emphasis> section.</simpara>
+</important>
+</section>
+<section xml:id="osd-creating-a-cluster-on-gcp-sa-prerequisites_osd-creating-a-cluster-on-gcp-sa">
+<title>Prerequisites</title>
+<itemizedlist>
+<listitem>
+<simpara>You reviewed the <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#osd-understanding">introduction to OpenShift Container Platform</link> and the documentation on <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/architecture/#architecture-overview">architecture concepts</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You reviewed the <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/getting_started/#osd-understanding-your-cloud-deployment-options">OpenShift Container Platform cloud deployment options</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You reviewed and completed the <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/planning_your_environment/#ccs-gcp-customer-procedure_gcp-ccs">Required customer procedure</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="osd-create-gcp-cluster-ccs1_osd-creating-a-cluster-on-gcp-sa">
+<title>Creating a cluster with Service Account authentication using OpenShift Cluster Manager</title>
+<simpara role="abstract">Through <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>, you can create an OpenShift Container Platform cluster on Google Cloud using a cloud provider account that you own with the Service Account authentication type.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Log in to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link> and click <emphasis role="strong">Create cluster</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Create an OpenShift cluster</emphasis> page, select <emphasis role="strong">Create cluster</emphasis> in the <emphasis role="strong">Red Hat OpenShift Dedicated</emphasis> row.</simpara>
+</listitem>
+<listitem>
+<simpara>Under <emphasis role="strong">Billing model</emphasis>, configure the subscription type and infrastructure type:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select a subscription type. For information about OpenShift Container Platform subscription options, see <link xlink:href="https://access.redhat.com/documentation/en-us/openshift_cluster_manager/1-latest/html-single/managing_clusters/index#assembly-cluster-subscriptions">Cluster subscriptions and registration</link> in the OpenShift Cluster Manager documentation.</simpara>
+<note>
+<simpara>The subscription types that are available to you depend on your OpenShift Container Platform subscriptions and resource quotas.
+Red Hat recommends deploying your cluster with the On-Demand subscription type purchased through the Google Cloud Marketplace. This option provides flexible, consumption-based billing, consuming additional capacity is frictionless, and no Red Hat intervention is required.</simpara>
+<simpara>For more information, contact your sales representative or Red Hat support.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Select the <emphasis role="strong">Customer Cloud Subscription</emphasis> infrastructure type to deploy OpenShift Container Platform in an existing cloud provider account that you own.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Run on Google Cloud</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Service Account</emphasis>  as the Authentication type.</simpara>
+<note>
+<simpara>Red Hat recommends using Workload Identity Federation as the Authentication type. For more information, see <emphasis>Creating a cluster on Google Cloud with Workload Identity Federation authentication</emphasis> in the <emphasis>Additional resources</emphasis> section.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Review and complete the listed <emphasis role="strong">Prerequisites</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the checkbox to acknowledge that you have read and completed all of the prerequisites.</simpara>
+</listitem>
+<listitem>
+<simpara>Provide your Google Cloud service account private key in JSON format. You can either click <emphasis role="strong">Browse</emphasis> to locate and attach a JSON file or add the details in the <emphasis role="strong">Service account JSON</emphasis> field.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis> to validate your cloud provider account and go to the <emphasis role="strong">Cluster details</emphasis> page.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Cluster details</emphasis> page, provide a name for your cluster and specify the cluster details:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Add a <emphasis role="strong">Cluster name</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Cluster creation generates a domain prefix as a subdomain for your provisioned cluster on <literal>openshiftapps.com</literal>. If the cluster name is less than or equal to 15 characters, that name is used for the domain prefix. If the cluster name is longer than 15 characters, the domain prefix is randomly generated to a 15 character string.</simpara>
+<simpara>To customize the subdomain, select the <emphasis role="strong">Create customize domain prefix</emphasis> checkbox, and enter your domain prefix name in the <emphasis role="strong">Domain prefix</emphasis> field. The domain prefix cannot be longer than 15 characters, must be unique within your organization, and cannot be changed after cluster creation.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a cluster version from the <emphasis role="strong">Version</emphasis> drop-down menu.</simpara>
+<important>
+<simpara>Clusters configured with Private Service Connect (PSC) are only supported on OpenShift Dedicated version 4.17 and later. For more information regarding PSC, see <emphasis>Private Service Overview</emphasis> in the <emphasis>Additional resources</emphasis> section.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>Select a channel group from the <emphasis role="strong">Channel group</emphasis> drop-down menu.</simpara>
+<note>
+<simpara>Channel group options include <emphasis role="strong">Stable</emphasis> (default option) and <emphasis role="strong">EUS</emphasis>. For more information about the Stable and EUS channel group options, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/updating_clusters/understanding-openshift-updates-1#understanding-update-channels-releases">Understanding update channels and releases</link>.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Select a cloud provider region from the <emphasis role="strong">Region</emphasis> drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a <emphasis role="strong">Single zone</emphasis> or <emphasis role="strong">Multi-zone</emphasis> configuration.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Select <emphasis role="strong">Enable Secure Boot for Shielded VMs</emphasis> to use Shielded VMs when installing your cluster. Once you create your cluster, the <emphasis role="strong">Enable Secure Boot for Shielded VMs</emphasis> setting cannot be changed. For more information, see <link xlink:href="https://cloud.google.com/security/products/shielded-vm">Shielded VMs</link>.</simpara>
+<important>
+<simpara>To successfully create a cluster, you must select <emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> if your organization has the policy constraint <literal>constraints/compute.requireShieldedVm</literal> enabled. For more information regarding Google Cloud organizational policy constraints, see <link xlink:href="https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints">Organization policy constraints</link>.</simpara>
+</important>
+<important>
+<simpara><emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> is not supported for OpenShift Container Platform on Google Cloud clusters created using bare-metal instance types. For more information, see <link xlink:href="https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#limitations">Limitations</link> in the Google Cloud documentation.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>Leave <emphasis role="strong">Enable user workload monitoring</emphasis> selected to monitor your own projects in isolation from Red Hat Site Reliability Engineer (SRE) platform metrics. This option is enabled by default.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Optional: Expand <emphasis role="strong">Advanced Encryption</emphasis> to make changes to encryption settings.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select <emphasis role="strong">Use custom KMS keys</emphasis> to use custom KMS keys. If you prefer not to use custom KMS keys, leave the default setting <emphasis role="strong">Use default KMS Keys</emphasis>.</simpara>
+<important>
+<simpara>To use custom KMS keys, the IAM service account <literal>osd-ccs-admin</literal> must be granted the <emphasis role="strong">Cloud KMS CryptoKey Encrypter/Decrypter</emphasis> role. For more information about granting roles on a resource, see <link xlink:href="https://cloud.google.com/kms/docs/iam#granting_roles_on_a_resource">Granting roles on a resource</link>.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>With <emphasis role="strong">Use Custom KMS keys</emphasis> selected:</simpara>
+<orderedlist numeration="lowerroman">
+<listitem>
+<simpara>Select a key ring location from the <emphasis role="strong">Key ring location</emphasis> drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a key ring from the <emphasis role="strong">Key ring</emphasis> drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a key name from the <emphasis role="strong">Key name</emphasis> drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Provide the <emphasis role="strong">KMS Service Account</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Optional: Select <emphasis role="strong">Enable FIPS cryptography</emphasis> if you require your cluster to be FIPS validated.</simpara>
+<note>
+<simpara>If <emphasis role="strong">Enable FIPS cryptography</emphasis> is selected, <emphasis role="strong">Enable additional etcd encryption</emphasis> is enabled by default and cannot be disabled. You can select <emphasis role="strong">Enable additional etcd encryption</emphasis> without selecting <emphasis role="strong">Enable FIPS cryptography</emphasis>.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Optional: Select <emphasis role="strong">Enable additional etcd encryption</emphasis> if you require etcd key value encryption.
+With this option, the etcd key values are encrypted, but not the keys. This option is in addition to the control plane storage encryption that encrypts the etcd volumes in OpenShift Container Platform clusters by default.</simpara>
+<note>
+<simpara>By enabling additional etcd encryption, you will incur a performance overhead of approximately 20%. The overhead is a result of introducing this second layer of encryption, in addition to the default control plane storage encryption that encrypts the etcd volumes. Consider enabling etcd encryption only if you specifically require it for your use case.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Default machine pool</emphasis> page, select a <emphasis role="strong">Compute node instance type</emphasis> from the drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Select the <emphasis role="strong">Enable autoscaling</emphasis> checkbox to enable autoscaling.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Click <emphasis role="strong">Edit cluster autoscaling settings</emphasis> to make changes to the autoscaling settings.</simpara>
+</listitem>
+<listitem>
+<simpara>Once you have made your desired changes, click <emphasis role="strong">Close</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a minimum and maximum node count. Node counts can be selected by engaging the available plus and minus signs or inputting the desired node count into the number input field.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Select a <emphasis role="strong">Compute node count</emphasis> from the drop-down menu.</simpara>
+<note>
+<simpara>If you are using multiple availability zones, the compute node count is per zone. After your cluster is created, you can change the number of compute nodes in your cluster, but you cannot change the compute node instance type in a machine pool. The number and types of nodes available to you depend on your OpenShift Container Platform subscription.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Optional: Expand <emphasis role="strong">Add node labels</emphasis> to add labels to your nodes. Click <emphasis role="strong">Add additional label</emphasis> to add an additional node label and select <emphasis role="strong">Next</emphasis>.</simpara>
+<important>
+<simpara>This step refers to labels within Kubernetes, not Google Cloud. For more information regarding Kubernetes labels, see <link xlink:href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">Labels and Selectors</link>.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Network configuration</emphasis> page, select <emphasis role="strong">Public</emphasis> or <emphasis role="strong">Private</emphasis> to use either public or private API endpoints and application routes for your cluster.</simpara>
+<simpara>If you select <emphasis role="strong">Private</emphasis> and selected OpenShift Container Platform version 4.17 or later as your cluster version, <emphasis role="strong">Use Private Service Connect</emphasis> is selected by default. Private Service Connect (PSC) is Google Cloud’s security-enhanced networking feature. You can disable PSC by clicking the <emphasis role="strong">Use Private Service Connect</emphasis> checkbox.</simpara>
+<note>
+<simpara>Red Hat recommends using Private Service Connect when deploying a private OpenShift Container Platform cluster on Google Cloud. Private Service Connect ensures there is a secured, private connectivity between Red Hat infrastructure, Site Reliability Engineering (SRE) and private OpenShift Container Platform clusters.</simpara>
+</note>
+<important>
+<simpara>If you are using private API endpoints, you cannot access your cluster until you update the network settings in your cloud provider account.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>Optional: To install the cluster in an existing Google Cloud Virtual Private Cloud (VPC):</simpara>
+<note>
+<simpara role="_abstract">Installing a new OpenShift Container Platform cluster into a VPC that was automatically created by the installer for a different cluster is not supported.</simpara>
+</note>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select <emphasis role="strong">Install into an existing VPC</emphasis>.</simpara>
+<important>
+<simpara>Private Service Connect is supported only with <emphasis role="strong">Install into an existing VPC</emphasis>.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>If you are installing into an existing VPC and you want to enable an HTTP or HTTPS proxy for your cluster, select <emphasis role="strong">Configure a cluster-wide proxy</emphasis>.</simpara>
+<important>
+<simpara>In order to configure a cluster-wide proxy for your cluster, you must first create the Cloud network address translation (NAT) and a Cloud router. See the <emphasis>Additional resources</emphasis> section for more information.</simpara>
+</important>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Accept the default application ingress settings, or to create your own custom settings, select <emphasis role="strong">Custom Settings</emphasis>.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Optional: Provide route selector.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Provide excluded namespaces.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a namespace ownership policy.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a wildcard policy.</simpara>
+<simpara>For more information about custom application ingress settings, click on the information icon provided for each setting.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: To install the cluster into a Google Cloud Shared VPC:</simpara>
+<important>
+<simpara>To install a cluster into a Shared VPC, you must use OpenShift Container Platform version 4.13.15 or later. Additionally, the VPC owner of the host project must enable a project as a host project in their Google Cloud console. For more information, see <link xlink:href="https://cloud.google.com/vpc/docs/provisioning-shared-vpc#set-up-shared-vpc">Enable a host project</link>.</simpara>
+</important>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select <emphasis role="strong">Install into Google Cloud Shared VPC</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Specify the <emphasis role="strong">Host project ID</emphasis>. If the specified host project ID is incorrect, cluster creation fails.</simpara>
+<important>
+<simpara>Once you complete the steps within the cluster configuration wizard and click <emphasis role="strong">Create Cluster</emphasis>, the cluster will go into the "Installation Waiting" state. At this point, you must contact the VPC owner of the host project, who must assign the dynamically-generated service account the following roles: <emphasis role="strong">Compute Network Administrator</emphasis>, <emphasis role="strong">Compute Security Administrator</emphasis>, <emphasis role="strong">Project IAM Admin</emphasis>, and <emphasis role="strong">DNS Administrator</emphasis>.
+The VPC owner of the host project has 30 days to grant the listed permissions before the cluster creation fails.
+For information about Shared VPC permissions, see <link xlink:href="https://cloud.google.com/vpc/docs/provisioning-shared-vpc#migs-service-accounts">Provision Shared VPC</link>.</simpara>
+</important>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>If you opted to install the cluster in an existing Google Cloud VPC, provide your <emphasis role="strong">Virtual Private Cloud (VPC) subnet settings</emphasis> and select <emphasis role="strong">Next</emphasis>. You must ensure that your VPC is configured to allow outbound internet access to the domains required for the OpenShift Container Platform service. This outbound access is required for the OpenShift Container Platform service to communicate with Red&#160;Hat&#8217;s management plane and SRE tooling via secure and encrypted endpoints over the public internet.</simpara>
+</listitem>
+<listitem>
+<simpara>If you opted to configure a cluster-wide proxy, provide your proxy configuration details on the <emphasis role="strong">Cluster-wide proxy</emphasis> page:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Enter a value in at least one of the following fields:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Specify a valid <emphasis role="strong">HTTP proxy URL</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Specify a valid <emphasis role="strong">HTTPS proxy URL</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">Additional trust bundle</emphasis> field, provide a PEM encoded X.509 certificate bundle. The bundle is added to the trusted certificate store for the cluster nodes. An additional trust bundle file is required if you use a TLS-inspecting proxy unless the identity certificate for the proxy is signed by an authority from the Red Hat Enterprise Linux CoreOS (RHCOS) trust bundle. This requirement applies regardless of whether the proxy is transparent or requires explicit configuration using the <literal>http-proxy</literal> and <literal>https-proxy</literal> arguments.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+<simpara>For more information about configuring a proxy with OpenShift Container Platform, see <emphasis>Configuring a cluster-wide proxy</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">CIDR ranges</emphasis> dialog, configure custom classless inter-domain routing (CIDR) ranges or use the defaults that are provided.</simpara>
+<note>
+<simpara>If you are installing into a VPC, the <emphasis role="strong">Machine CIDR</emphasis> range must match the VPC subnets.</simpara>
+</note>
+<important>
+<simpara>CIDR configurations cannot be changed later. Confirm your selections with your network administrator before proceeding.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Cluster update strategy</emphasis> page, configure your update preferences:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Choose a cluster update method:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Select <emphasis role="strong">Individual updates</emphasis> if you want to schedule each update individually. This is the default option.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Recurring updates</emphasis> to update your cluster on your preferred day and start time, when updates are available.</simpara>
+<note>
+<simpara>You can review the end-of-life dates in the update lifecycle documentation for OpenShift Container Platform. For more information, see <link xlink:href="https://access.redhat.com/documentation/en-us/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#osd-life-cycle">OpenShift Dedicated update life cycle</link>.</simpara>
+</note>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Provide administrator approval based on your cluster update method:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Individual updates: If you select an update version that requires approval, provide an administrator’s acknowledgment and click <emphasis role="strong">Approve and continue</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Recurring updates: If you selected recurring updates for your cluster, provide an administrator’s acknowledgment and click <emphasis role="strong">Approve and continue</emphasis>. OpenShift Cluster Manager does not start scheduled y-stream updates for minor versions without receiving an administrator’s acknowledgment.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>If you opted for recurring updates, select a preferred day of the week and upgrade start time in UTC from the drop-down menus.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: You can set a grace period for <emphasis role="strong">Node draining</emphasis> during cluster upgrades. A <emphasis role="strong">1 hour</emphasis> grace period is set by default.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+<note>
+<simpara>In the event of critical security concerns that significantly impact the security or stability of a cluster, Red Hat Site Reliability Engineering (SRE) might schedule automatic updates to the latest z-stream version that is not impacted. The updates are applied within 48 hours after customer notifications are provided. For a description of the critical impact security rating, see <link xlink:href="https://access.redhat.com/security/updates/classification">Understanding Red Hat security ratings</link>.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Review the summary of your selections and click <emphasis role="strong">Create cluster</emphasis> to start the cluster installation. The installation takes approximately 30-40 minutes to complete.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: On the <emphasis role="strong">Overview</emphasis> tab, you can enable the delete protection feature by selecting <emphasis role="strong">Enable</emphasis>, which is located directly under <emphasis role="strong">Delete Protection: Disabled</emphasis>. This will prevent your cluster from being deleted. To disable delete protection, select <emphasis role="strong">Disable</emphasis>.
+By default, clusters are created with the delete protection feature disabled.</simpara>
+<note>
+<simpara>If you delete a cluster that was installed into a Google Cloud Shared VPC, inform the VPC owner of the host project to remove the IAM policy roles granted to the service account that was referenced during cluster creation.</simpara>
+</note>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>You can monitor the progress of the installation in the <emphasis role="strong">Overview</emphasis> page for your cluster. You can view the installation logs on the same page. Your cluster is ready when the <emphasis role="strong">Status</emphasis> in the <emphasis role="strong">Details</emphasis> section of the page is listed as <emphasis role="strong">Ready</emphasis>.</simpara>
+</listitem>
+</itemizedlist>
+<important>
+<simpara>If your cluster deployment fails during installation, certain resources created during the installation process are not automatically removed from your Google Cloud account. To remove these resources from your Google Cloud account, you must delete the failed cluster.</simpara>
+</important>
+</section>
+<section xml:id="additional-resources_osd-creating-a-cluster-on-gcp-sa">
+<title>Additional resources</title>
+<itemizedlist>
+<listitem>
+<simpara><link linkend="osd-creating-a-cluster-on-gcp-with-workload-identity-federation">Creating a cluster on Google Cloud with Workload Identity Federation authentication</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="creating-a-gcp-psc-enabled-private-cluster">Private Service Connect overview</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/ovn-kubernetes_network_plugin/#configuring-a-cluster-wide-proxy">Configuring a cluster-wide proxy</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#sdpolicy-storage_osd-service-definition">Storage OpenShift Container Platform service definition</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#load-balancers_osd-service-definition">Load balancers OpenShift Container Platform service definition</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#etcd-encryption_osd-service-definition">etcd encryption service definition</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#osd-life-cycle">OpenShift Container Platform update life cycle</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://cloud.google.com/nat/docs/overview">Cloud NAT overview in the Google documentation</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://cloud.google.com/network-connectivity/docs/router/concepts/overview">Cloud Router overview in the Google documentation</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://cloud.google.com/vpc/docs/create-modify-vpc-networks">Create and manage VPC networks in the Google documentation</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/authentication_and_authorization/#sd-configuring-identity-providers">Configuring identity providers</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/authentication_and_authorization/#osd-revoking-cluster-privileges">Revoking privileges and access to an OpenShift Container Platform cluster</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="osd-creating-a-gcp-cluster-rh-account">
+<title>Creating a cluster on Google Cloud with a Red Hat cloud account</title>
+<simpara role="abstract">Through <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>, you can create an OpenShift Container Platform cluster on Google Cloud using a standard cloud provider account owned by Red&#160;Hat.</simpara>
+<section xml:id="osd-creating-a-cluster-on-gcp-prerequisites1_osd-creating-a-gcp-cluster-rh-account">
+<title>Prerequisites</title>
+<itemizedlist>
+<listitem>
+<simpara>You reviewed the <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/introduction_to_openshift_dedicated/#osd-understanding">introduction to OpenShift Container Platform</link> and the documentation on <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/architecture/#architecture-overview">architecture concepts</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You reviewed the <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/getting_started/#osd-understanding-your-cloud-deployment-options">OpenShift Container Platform cloud deployment options</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="osd-create-gcp-cluster-ccs_osd-creating-a-gcp-cluster-rh-account">
+<title>Creating a cluster on Google Cloud with a Red Hat cloud account using OpenShift Cluster Manager</title>
+<simpara role="abstract">Through <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>, you can create an OpenShift Container Platform cluster on Google Cloud using a standard cloud provider account owned by Red Hat.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Log in to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link> and click <emphasis role="strong">Create cluster</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">Cloud</emphasis> tab, click <emphasis role="strong">Create cluster</emphasis> in the <emphasis role="strong">Red Hat OpenShift Dedicated</emphasis> row.</simpara>
+</listitem>
+<listitem>
+<simpara>Under <emphasis role="strong">Billing model</emphasis>, configure the subscription type and infrastructure type:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Select the <emphasis role="strong">Annual</emphasis> subscription type. Only the <emphasis role="strong">Annual</emphasis> subscription type is available when you deploy a cluster using a Red Hat cloud account.</simpara>
+<simpara>For information about OpenShift Container Platform subscription options, see <link xlink:href="https://access.redhat.com/documentation/en-us/openshift_cluster_manager/1-latest/html-single/managing_clusters/index#assembly-cluster-subscriptions">Cluster subscriptions and registration</link> in the OpenShift Cluster Manager documentation.</simpara>
+<note>
+<simpara>You must have the required resource quota for the <emphasis role="strong">Annual</emphasis> subscription type to be available. For more information, contact your sales representative or Red Hat support.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Select the <emphasis role="strong">Red Hat cloud account</emphasis> infrastructure type to deploy OpenShift Container Platform in a cloud provider account that is owned by Red Hat.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Run on Google Cloud</emphasis> and click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Cluster details</emphasis> page, provide a name for your cluster and specify the cluster details:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Add a <emphasis role="strong">Cluster name</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Cluster creation generates a domain prefix as a subdomain for your provisioned cluster on <literal>openshiftapps.com</literal>. If the cluster name is less than or equal to 15 characters, that name is used for the domain prefix. If the cluster name is longer than 15 characters, the domain prefix is randomly generated as a 15-character string.</simpara>
+<simpara>To customize the subdomain, select the <emphasis role="strong">Create custom domain prefix</emphasis> checkbox, and enter your domain prefix name in the <emphasis role="strong">Domain prefix</emphasis> field. The domain prefix cannot be longer than 15 characters, must be unique within your organization, and cannot be changed after cluster creation.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a cluster version from the <emphasis role="strong">Version</emphasis> drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a channel group from the <emphasis role="strong">Channel group</emphasis> drop-down menu.</simpara>
+<note>
+<simpara>Channel group options include <emphasis role="strong">Stable</emphasis> (default option) and <emphasis role="strong">EUS</emphasis>. For more information about the Stable and EUS channel group options, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/updating_clusters/understanding-openshift-updates-1#understanding-update-channels-releases">Understanding update channels and releases</link>.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Select a cloud provider region from the <emphasis role="strong">Region</emphasis> drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a <emphasis role="strong">Single zone</emphasis> or <emphasis role="strong">Multi-zone</emphasis> configuration.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a <emphasis role="strong">Persistent storage</emphasis> capacity for the cluster. For more information, see the <emphasis>Storage</emphasis> section in the OpenShift Container Platform service definition.</simpara>
+</listitem>
+<listitem>
+<simpara>Specify the number of <emphasis role="strong">Load balancers</emphasis> that you require for your cluster. For more information, see the <emphasis>Load balancers</emphasis> section in the OpenShift Container Platform service definition.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: Select <emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> to use Shielded VMs when installing your cluster. Once you create your cluster, the <emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> setting cannot be changed. For more information, see <link xlink:href="https://cloud.google.com/security/products/shielded-vm">Shielded VMs</link>.</simpara>
+<important>
+<simpara>To successfully create a cluster, you must select <emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> if your organization has the policy constraint <literal>constraints/compute.requireShieldedVm</literal> enabled. For more information regarding Google Cloud organizational policy constraints, see <link xlink:href="https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints">Organization policy constraints</link>.</simpara>
+</important>
+<important>
+<simpara><emphasis role="strong">Enable Secure Boot support for Shielded VMs</emphasis> is not supported for OpenShift Container Platform on Google Cloud clusters created using bare-metal instance types. For more information, see <link xlink:href="https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#limitations">Limitations</link> in the Google Cloud documentation.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>Leave <emphasis role="strong">Enable user workload monitoring</emphasis> selected to monitor your own projects in isolation from Red Hat Site Reliability Engineer (SRE) platform metrics. This option is enabled by default.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Optional: Expand <emphasis role="strong">Advanced Encryption</emphasis> to make changes to encryption settings.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Optional: Select <emphasis role="strong">Enable FIPS cryptography</emphasis> if you require your cluster to be FIPS validated.</simpara>
+<note>
+<simpara>If <emphasis role="strong">Enable FIPS cryptography</emphasis> is selected, <emphasis role="strong">Enable additional etcd encryption</emphasis> is enabled by default and cannot be disabled. You can select <emphasis role="strong">Enable additional etcd encryption</emphasis> without selecting <emphasis role="strong">Enable FIPS cryptography</emphasis>.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Optional: Select <emphasis role="strong">Enable additional etcd encryption</emphasis> if you require etcd key value encryption. With this option, the etcd key values are encrypted, but not the keys. This option is in addition to the control plane storage encryption that encrypts the etcd volumes in OpenShift Container Platform clusters by default.</simpara>
+<note>
+<simpara>By enabling etcd encryption for the key values in etcd, you will incur a performance overhead of approximately 20%. The overhead is a result of introducing this second layer of encryption, in addition to the default control plane storage encryption that encrypts the etcd volumes. Consider enabling etcd encryption only if you specifically require it for your use case.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Default machine pool</emphasis> page, select a <emphasis role="strong">Compute node instance type</emphasis> and a <emphasis role="strong">Compute node count</emphasis>. The number and types of nodes that are available depend on your OpenShift Container Platform subscription. If you are using multiple availability zones, the compute node count is per zone.</simpara>
+<note>
+<simpara>After your cluster is created, you can change the number of compute nodes, but you cannot change the compute node instance type in a machine pool. For clusters that use the CCS model, you can add machine pools after installation that use a different instance type. The number and types of nodes available to you depend on your OpenShift Container Platform subscription.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>Optional: Expand <emphasis role="strong">Edit node labels</emphasis> to add labels to your nodes. Click <emphasis role="strong">Add label</emphasis> to add more node labels and select <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">Cluster privacy</emphasis> dialog, select <emphasis role="strong">Public</emphasis> or <emphasis role="strong">Private</emphasis> to use either public or private API endpoints and application routes for your cluster.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">CIDR ranges</emphasis> dialog, configure custom classless inter-domain routing (CIDR) ranges or use the defaults that are provided.</simpara>
+<important>
+<simpara>CIDR configurations cannot be changed later. Confirm your selections with your network administrator before proceeding.</simpara>
+<simpara>If the cluster privacy is set to <emphasis role="strong">Private</emphasis>, you cannot access your cluster until you configure private connections in your cloud provider.</simpara>
+</important>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Cluster update strategy</emphasis> page, configure your update preferences:</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Choose a cluster update method:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Select <emphasis role="strong">Individual updates</emphasis> if you want to schedule each update individually. This is the default option.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Recurring updates</emphasis> to update your cluster on your preferred day and start time, when updates are available.</simpara>
+<note>
+<simpara>You can review the end-of-life dates in the update lifecycle documentation for OpenShift Container Platform. For more information, see <link xlink:href="https://access.redhat.com/documentation/en-us/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#osd-life-cycle">OpenShift Dedicated update life cycle</link>.</simpara>
+</note>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Provide administrator approval based on your cluster update method:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Individual updates: If you select an update version that requires approval, provide an administrator&#8217;s acknowledgment and click <emphasis role="strong">Approve and continue</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Recurring updates: If you selected recurring updates for your cluster, provide an administrator&#8217;s acknowledgment and click <emphasis role="strong">Approve and continue</emphasis>. OpenShift Cluster Manager does not start scheduled y-stream updates for minor versions without receiving an administrator&#8217;s acknowledgment.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>If you opted for recurring updates, select a preferred day of the week and upgrade start time in UTC from the drop-down menus.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: You can set a grace period for <emphasis role="strong">Node draining</emphasis> during cluster upgrades. A <emphasis role="strong">1 hour</emphasis> grace period is set by default.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Next</emphasis>.</simpara>
+<note>
+<simpara>In the event of critical security concerns that significantly impact the security or stability of a cluster, Red Hat Site Reliability Engineering (SRE) might schedule automatic updates to the latest z-stream version that is not impacted. The updates are applied within 48 hours after customer notifications are provided. For a description of the critical impact security rating, see <link xlink:href="https://access.redhat.com/security/updates/classification">Understanding Red Hat security ratings</link>.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Review the summary of your selections and click <emphasis role="strong">Create cluster</emphasis> to start the cluster installation. The installation takes approximately 30-40 minutes to complete.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional: On the <emphasis role="strong">Overview</emphasis> tab, you can enable the delete protection feature by selecting <emphasis role="strong">Enable</emphasis>, which is located directly under <emphasis role="strong">Delete Protection: Disabled</emphasis>. This will prevent your cluster from being deleted. To disable delete protection, select <emphasis role="strong">Disable</emphasis>.
+By default, clusters are created with the delete protection feature disabled.</simpara>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<title>Verification</title>
+<listitem>
+<simpara>You can monitor the progress of the installation in the <emphasis role="strong">Overview</emphasis> page for your cluster. You can view the installation logs on the same page. Your cluster is ready when the <emphasis role="strong">Status</emphasis> in the <emphasis role="strong">Details</emphasis> section of the page is listed as <emphasis role="strong">Ready</emphasis>.</simpara>
+</listitem>
+</itemizedlist>
+<important>
+<simpara>If your cluster deployment fails during installation, certain resources created during the installation process are not automatically removed from your Google Cloud account. To remove these resources from your Google Cloud account, you must delete the failed cluster.</simpara>
+</important>
+</section>
+<section xml:id="next-steps-rh-account_osd-creating-a-gcp-cluster-rh-account">
+<title>Next steps</title>
+<itemizedlist>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/authentication_and_authorization/#sd-configuring-identity-providers">Configuring Identity Providers</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/getting_started/#osd-grant-admin-privileges_osd-getting-started">Granting administrator privileges to a user</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="osd-deleting-a-cluster">
+<title>Deleting an OpenShift Container Platform cluster on Google Cloud</title>
+<simpara role="_abstract">As cluster owner, you can delete your OpenShift Container Platform clusters.</simpara>
+<section xml:id="deleting-cluster_osd-deleting-a-cluster-gcp">
+<title>Deleting your cluster</title>
+<simpara role="_abstract">You can delete your OpenShift Container Platform cluster in Red Hat OpenShift Cluster Manager.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You logged in to <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You created an OpenShift Container Platform cluster.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>From <link xlink:href="https://console.redhat.com/openshift">OpenShift Cluster Manager</link>, select the cluster you want to delete.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <emphasis role="strong">Delete cluster</emphasis> from the <emphasis role="strong">Actions</emphasis> drop-down menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Type the name of the cluster highlighted in bold, then click <emphasis role="strong">Delete</emphasis>. Cluster deletion occurs automatically.</simpara>
+<note>
+<simpara>If you delete a cluster that was installed into a Google Cloud Shared VPC, inform the VPC owner of the host project to remove the IAM policy roles granted to the service account that was referenced during cluster creation.</simpara>
+</note>
+</listitem>
+</orderedlist>
+</section>
+</chapter>
+</book>

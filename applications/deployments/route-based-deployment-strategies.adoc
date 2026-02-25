@@ -1,10 +1,9 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="route-based-deployment-strategies"]
 = Using route-based deployment strategies
-include::_attributes/common-attributes.adoc[]
+include::../includes/common-attributes.adoc[]
 :context: route-based-deployment-strategies
 
-toc::[]
 
 Deployment strategies provide a way for the application to evolve. Some strategies use `Deployment` objects to make changes that are seen by users of all routes that resolve to the application. Other advanced strategies, such as the ones described in this section, use router features in conjunction with `Deployment` objects to impact specific routes.
 
@@ -27,21 +26,21 @@ A canary deployment tests the new version but when a problem is detected it quic
 
 The route-based deployment strategies do not scale the number of pods in the services. To maintain desired performance characteristics the deployment configurations might have to be scaled.
 
-include::modules/deployments-proxy-shards.adoc[leveloffset=+1]
+include::../includes/deployments-proxy-shards.adoc[leveloffset=+1]
 
-include::modules/deployments-n1-compatibility.adoc[leveloffset=+1]
+include::../includes/deployments-n1-compatibility.adoc[leveloffset=+1]
 
-include::modules/deployments-graceful-termination.adoc[leveloffset=+1]
+include::../includes/deployments-graceful-termination.adoc[leveloffset=+1]
 
-include::modules/deployments-blue-green.adoc[leveloffset=+1]
+include::../includes/deployments-blue-green.adoc[leveloffset=+1]
 
-include::modules/deployments-ab-testing.adoc[leveloffset=+1]
+include::../includes/deployments-ab-testing.adoc[leveloffset=+1]
 
-include::modules/deployments-ab-testing-lb.adoc[leveloffset=+2]
+include::../includes/deployments-ab-testing-lb.adoc[leveloffset=+2]
 
 // Remove conditionals when Networking content is in ROSA HCP
 [role="_additional-resources"]
 [id="additional-resources_{context}"]
 == Additional resources
 
-* xref:../../networking/ingress_load_balancing/routes/nw-configuring-routes.adoc#nw-route-specific-annotations[Route-specific annotations]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/ingress_and_load_balancing/#nw-route-specific-annotations[Route-specific annotations]

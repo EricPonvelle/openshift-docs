@@ -1,10 +1,9 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="pruning-objects"]
 = Pruning objects to reclaim resources
-include::_attributes/common-attributes.adoc[]
+include::includes/common-attributes.adoc[]
 :context: pruning-objects
 
-toc::[]
 
 Over time, API objects created in {product-title} can accumulate in the
 cluster's etcd data store through normal user operations, such as when building
@@ -23,13 +22,13 @@ older images and layers that are no longer in use, but are still taking up disk
 space.
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
-include::modules/pruning-basic-operations.adoc[leveloffset=+1]
+include::includes/pruning-basic-operations.adoc[leveloffset=+1]
 
-include::modules/pruning-groups.adoc[leveloffset=+1]
+include::includes/pruning-groups.adoc[leveloffset=+1]
 
-include::modules/pruning-deployments.adoc[leveloffset=+1]
+include::includes/pruning-deployments.adoc[leveloffset=+1]
 
-include::modules/pruning-builds.adoc[leveloffset=+1]
+include::includes/pruning-builds.adoc[leveloffset=+1]
 
 ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 [role="_additional-resources"]
@@ -37,7 +36,7 @@ ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 * xref:../cicd/builds/advanced-build-operations.adoc#builds-build-pruning-advanced-build-operations[Performing advanced builds -> Pruning builds]
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
-include::modules/pruning-images.adoc[leveloffset=+1]
+include::includes/pruning-images.adoc[leveloffset=+1]
 
 //cannot create resource "serviceaccounts". cannot create resource "cronjobs"
 
@@ -72,7 +71,7 @@ include::modules/pruning-hard-pruning-registry.adoc[leveloffset=+1]
 
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 
-include::modules/pruning-cronjobs.adoc[leveloffset=+1]
+include::includes/pruning-cronjobs.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
 .Additional resources
@@ -80,7 +79,7 @@ include::modules/pruning-cronjobs.adoc[leveloffset=+1]
 ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 * xref:../nodes/jobs/nodes-nodes-jobs.adoc#nodes-nodes-jobs_nodes-nodes-jobs[Running tasks in pods using jobs]
 endif::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
-* xref:../applications/quotas/quotas-setting-across-multiple-projects.adoc#setting-quotas-across-multiple-projects[Resource quotas across multiple projects]
+* xref:setting-quotas-across-multiple-projects[Resource quotas across multiple projects]
 // When the Operators book is added to ROSA/OSD, check if this link is valid.
 ifndef::openshift-rosa,openshift-rosa-hcp,openshift-dedicated[]
 * xref:../authentication/using-rbac.adoc#using-rbac[Using RBAC to define and apply permissions]

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>CI/CD overview</title>
+<date>2026-02-25</date>
+<title>CI/CD overview</title>
+<productname>OpenShift Container Platform</productname>
+<productnumber>4.16</productnumber>
+<subtitle>Enter a short description here.</subtitle>
+<abstract>
+    <para>A short overview and summary of the book's subject and purpose, traditionally no more than one paragraph long.</para>
+</abstract>
+<authorgroup>
+    <orgname>Red Hat OpenShift Documentation Team</orgname>
+</authorgroup>
+<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</info>
+<chapter xml:id="ci-cd-overview">
+<title>About CI/CD</title>
+<simpara>OpenShift Container Platform is an enterprise-ready Kubernetes platform for developers, which enables organizations to automate the application delivery process through DevOps practices, such as continuous integration (CI) and continuous delivery (CD). To meet your organizational needs, the OpenShift Container Platform provides the following CI/CD solutions:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>OpenShift Builds</simpara>
+</listitem>
+<listitem>
+<simpara>OpenShift Pipelines</simpara>
+</listitem>
+<listitem>
+<simpara>OpenShift GitOps</simpara>
+</listitem>
+<listitem>
+<simpara>Jenkins</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="openshift-builds">
+<title>OpenShift Builds</title>
+<simpara>OpenShift Builds provides you the following options to configure and run a build:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Builds using Shipwright is an extensible build framework based on the Shipwright project. You can use it to build container images on a cluster. You can build container images from source code and Dockerfile by using image build tools, such as Source-to-Image (S2I) and Buildah.</simpara>
+<simpara>For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/builds_for_red_hat_openshift">builds for Red Hat OpenShift</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Builds using <literal>BuildConfig</literal> objects is a declarative build process to create cloud-native apps. You can define the build process in a YAML file that you use to create a <literal>BuildConfig</literal> object. This definition includes attributes such as build triggers, input parameters, and source code. When deployed, the <literal>BuildConfig</literal> object builds a runnable image and pushes the image to a container image registry. With the <literal>BuildConfig</literal> object, you can create a Docker, Source-to-image (S2I), or custom build.</simpara>
+<simpara>For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/builds_using_buildconfig/#understanding-image-builds">Understanding image builds</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="openshift-pipelines">
+<title>OpenShift Pipelines</title>
+<simpara>OpenShift Pipelines provides a Kubernetes-native CI/CD framework to design and run each step of the CI/CD pipeline in its own container. It can scale independently to meet the on-demand pipelines with predictable outcomes.</simpara>
+<simpara>For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines">Red Hat OpenShift Pipelines</link>.</simpara>
+</section>
+<section xml:id="openshift-gitops">
+<title>OpenShift GitOps</title>
+<simpara>OpenShift GitOps is an Operator that uses Argo CD as the declarative GitOps engine. It enables GitOps workflows across multicluster OpenShift and Kubernetes infrastructure. Using OpenShift GitOps, administrators can consistently configure and deploy Kubernetes-based infrastructure and applications across clusters and development lifecycles.</simpara>
+<simpara>For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/red_hat_openshift_gitops">Red Hat OpenShift GitOps</link>.</simpara>
+</section>
+<section xml:id="jenkins-ci-cd">
+<title>Jenkins</title>
+<simpara>Jenkins automates the process of building, testing, and deploying applications and projects. OpenShift Developer Tools provides a Jenkins image that integrates directly with OpenShift Container Platform. Jenkins can be deployed on OpenShift by using the Samples Operator templates or certified Helm chart.</simpara>
+<simpara>For more information, see <link xlink:href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html-single/jenkins/#images-other-jenkins">Configuring Jenkins images</link>.</simpara>
+</section>
+</chapter>
+</book>
