@@ -454,8 +454,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="rosa-hcp-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
 </li>
-<li><a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a>
-</li>
 <li><a href="rosa-hcp-monitor-cluster-health_rosa-hcp-monitor-cluster-health.html">Monitor cluster health</a>
 </li>
 </ul>
@@ -464,35 +462,330 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div class="sect3">
-<h4 id="rosa-hcp-configure-log-forwarding-destinations_rosa-hcp-configure-log-forwarding-destinations">Configure log forwarding destinations</h4>
+<div class="sect4">
+<h5 id="rosa-hcp-configure-log-forwarding-destinations_rosa-hcp-configure-log-forwarding-destinations">Configure log forwarding destinations</h5>
 <div class="paragraph _abstract">
 <p>Configure your log forwarding destinations to send control plane logs to Amazon CloudWatch for real-time monitoring or Amazon S3 for long-term compliance.</p>
 </div>
+<div class="sect5">
+<h6 id="rosa-set-up-cloudwatch-log-group_rosa-hcp-configure-log-forwarding-destinations">Setting up the CloudWatch log group</h6>
+<div class="paragraph _abstract">
+<p>If you have logs that require immediate action or organization, set up an Amazon CloudWatch log group.</p>
+</div>
 <div class="ulist">
+<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p><a href="rosa-set-up-cloudwatch-log-group_rosa-hcp-configure-log-forwarding-destinations.html">Setting up the CloudWatch log group</a></p>
+<p>You have created an IAM role and policy.</p>
 </li>
 <li>
-<p><a href="rosa-set-up-s3-bucket_rosa-hcp-configure-log-forwarding-destinations.html">Setting up the S3 bucket</a></p>
-</li>
-<li>
-<p><a href="rosa-manage-control-plane-log-forwarding_rosa-hcp-configure-log-forwarding-destinations.html">Managing control plane log forwarding</a></p>
-</li>
-<li>
-<p><a href="rosa-create-cluster-ui-log-groups_rosa-hcp-configure-log-forwarding-destinations.html">Creating a Red Hat OpenShift Services on AWS cluster in the Red Hat Hybrid Cloud Console</a></p>
+<p>You have ensured that the name of you your IAM role has the prefix, <code>CustomerLogDistribution</code>.</p>
 </li>
 </ul>
 </div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create the CloudWatch log group by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws logs create-log-group --log-group-name &lt;your_log_group_name&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In your Red Hat OpenShift Services on AWS cluster, configure the log forwarder to use the CloudWatch log group by applying the following JSON sample:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "CreatePutLogs",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "&lt;your_log_group_arn&gt;:*"
+        },
+        {
+            "Sid": "DescribeLogs",
+            "Effect": "Allow",
+            "Action": [
+                "logs:DescribeLogGroups",
+                "logs:DescribeLogStreams"
+            ],
+            "Resource": "*"
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Attach the policy to the CloudWatch role by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam put-role-policy \
+    --role-name CustomerLogDistribution-RH \
+    --policy-name Allow-CloudWatch-Writes \
+    --policy-document file://cloudwatch-policy.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure your Red Hat OpenShift Services on AWS cluster to forward logs to the CloudWatch log group by applying the following sample YAML list. Specify an application, or group, or both:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">cloudwatch:
+  cloudwatch_log_role_arn: "arn:aws:iam::123456789012:role/RosaCloudWatch"
+  cloudwatch_log_group_name: "rosa-logs"
+  applications:
+    - "&lt;example_app1&gt;"
+  groups:
+    - "&lt;example_group1&gt;"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">&lt;example_app1&gt;</dt>
+<dd>
+<p>Add one or more applications. For a list of applications, see the table in "Determining what log groups to use".</p>
+</dd>
+<dt class="hdlist1">&lt;example_group1&gt;</dt>
+<dd>
+<p>Add one or more of the following groups: <code>api</code>, <code>authentication</code>, <code>controller manager</code>, <code>scheduler</code>.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Enable the log forwarder to send logs to your Red Hat OpenShift Services on AWS cluster.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>To enable control plane log forwarding on a new cluster, include the log forwarding configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create cluster --log-fwd-config="&lt;path_to_file&gt;.yaml"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To enable control plane log forwarding on an existing cluster, include the log forwarding configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create log-forwarder -c &lt;cluster&gt; --log-fwd-config="&lt;path_to_file&gt;.yaml" -o yaml</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Optional: For an example for forwarding logs to the CloudWatch log group, apply the following sample YAML:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">cloudwatch:
+  cloudwatch_log_role_arn: "cloudwatch-log-role-arn"
+  cloudwatch_log_group_name: "cloudwatch-group-name"
+  applications:
+    - "&lt;example_app1&gt;"
+  groups:
+    - "&lt;example_group1&gt;"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-set-up-s3-bucket_rosa-hcp-configure-log-forwarding-destinations">Setting up the S3 bucket</h6>
+<div class="paragraph _abstract">
+<p>If you have logs that need long-term storage or large-scale data analysis, set up an Amazon S3 bucket.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>If you want to prevent limitations for the managed keys for your S3 bucket, you must have created an IAM role and policy.</p>
+</li>
+<li>
+<p>You have ensured that the name of you your IAM role has the prefix, <code>CustomerLogDistribution</code>.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create the S3 bucket by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws s3api create-bucket \
+    --bucket &lt;your_s3_bucket_name&gt; \
+    --region &lt;your_aws_region&gt; \
+    --create-bucket-configuration LocationConstraint=&lt;cluster_aws_region&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure the policy for the S3 bucket by applying the following S3 bucket policy sample:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json"> "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowCentralLogDistributionWrite",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::859037107838:role/ROSA-CentralLogDistributionRole-241c1a86"
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::&lt;your_s3_bucket_name&gt;/*",
+            "Condition": {
+                "StringEquals": {
+                    "s3:x-amz-acl": "bucket-owner-full-control"
+                }
+            }
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Attach the policy to the S3 role by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws s3api put-bucket-policy \
+    --bucket &lt;your_s3_bucket_name&gt; \
+    --policy file://s3-bucket-policy.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure your Red Hat OpenShift Services on AWS cluster to forward logs to the S3 bucket by applying the following sample YAML list. Specify an application, or group, or both:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">s3:
+  s3_config_bucket_name: "my-log-bucket"
+  s3_config_bucket_prefix: "my-bucket-prefix"
+  applications:
+    - "&lt;example_app1&gt;"
+  groups:
+    - "&lt;example_group1&gt;"</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">&lt;example_app1&gt;</dt>
+<dd>
+<p>Add one or more applications. For a list of applications, see the table in "Determining what log groups to use".</p>
+</dd>
+<dt class="hdlist1">&lt;example_group1&gt;</dt>
+<dd>
+<p>Add one or more of the following groups: <code>api</code>, <code>authentication</code>, <code>controller manager</code>, <code>scheduler</code>.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Enable the log forwarder to send logs to your Red Hat OpenShift Services on AWS cluster.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>To enable control plane log forwarding on a new cluster, include the log forwarding configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create cluster --log-fwd-config="&lt;path_to_file&gt;.yaml"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To enable control plane log forwarding on an existing cluster, include the log forwarding configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create log-forwarder -c &lt;cluster&gt; --log-fwd-config="&lt;path_to_file&gt;.yaml" -o yaml</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Optional: For an example for forwarding logs to the S3 bucket, apply the following sample YAML:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">s3:
+  s3_config_bucket_name: "s3-bucket-name"
+  s3_config_bucket_prefix: "s3-bucket-prefix"
+  groups:
+    - "&lt;example_group1&gt;"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-manage-control-plane-log-forwarding_rosa-hcp-configure-log-forwarding-destinations">Managing control plane log forwarding</h6>
+<div class="paragraph _abstract">
+<p>After you configure the Red Hat OpenShift Services on AWS clusters to use your selected log forwarder for control plane logs, see the following commands to run based on your specific needs. For all of these commands, you must provide the <code>clusterid</code> or cluster name in the <code>--cluster</code> flag:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>rosa create log-forwarder -c &lt;cluster_name|cluster_id&gt;</code></dt>
+<dd>
+<p>Configures your Red Hat OpenShift Services on AWS cluster to use the log forwarder.</p>
+</dd>
+<dt class="hdlist1"><code>rosa list log-forwarder -c &lt;cluster_name|cluster_id&gt;</code></dt>
+<dd>
+<p>Displays all of the log forwarder configurations for a Red Hat OpenShift Services on AWS cluster.</p>
+</dd>
+<dt class="hdlist1"><code>rosa describe log-forwarder -c &lt;cluster_name|cluster_id&gt; &lt;log_fwd_id&gt;</code></dt>
+<dd>
+<p>Provides additional details for a specific log forwarder.</p>
+</dd>
+<dt class="hdlist1"><code>rosa edit log-forwarder -c &lt;cluster_name|cluster_id&gt; &lt;log_fwd_id&gt;</code></dt>
+<dd>
+<p>Changes the following log forwarder fields: groups, applications, and S3 and CloudWatch configurations.</p>
+</dd>
+<dt class="hdlist1"><code>rosa delete log-forwarder -c &lt;cluster_name|cluster_id&gt; &lt;log_fwd_id&gt;</code></dt>
+<dd>
+<p>Deletes the log forwarder configuration. Logs are no longer forwarded to your chosen destinations but are not automatically deleted. If you no longer want to store your logs in the S3 bucket or CloudWatch group, delete those logs.</p>
+<div class="paragraph">
+<p>Additionally, use this command to change the following log forwarder fields: ID, cluster ID, and the type for S3 and CloudWatch. Delete a log forwarder and re-create it with the updated values.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-create-cluster-ui-log-groups_rosa-hcp-configure-log-forwarding-destinations">Creating a Red Hat OpenShift Services on AWS cluster in the Red Hat Hybrid Cloud Console</h6>
+<div class="paragraph _abstract">
+<p>You can forward logs from your Red Hat OpenShift Services on AWS cluster to <code>CloudWatch</code>, <code>S3</code>, or both. When you forward your control plane logs, you can store them in the infrastructure that you designated, helping you meet compliance and audit requirements and workflows.</p>
+</div>
+<div class="paragraph">
+<p>In the Red Hat Hybrid Cloud Console, you set up your Red Hat OpenShift Services on AWS cluster to forward control plane logs when you create the cluster. Then, you can continue to use the web user interface (UI) to forward your control plane logs.</p>
+</div>
+<div class="paragraph">
+<p>Enable control plane log forwarding when you create the cluster to ensure a complete audit trail. If enabled later, the feature cannot capture logs generated before the activation, leaving gaps in your data.</p>
+</div>
+</div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-create-an-iam-role-policy_rosa-hcp-prepare-for-log-forwarding.html">Creating an IAM role and policy</a> | ↑ Up: <a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS</a> | Next: <a href="rosa-set-up-cloudwatch-log-group_rosa-hcp-configure-log-forwarding-destinations.html">Setting up the CloudWatch log group</a> →</p>
+<p>← Previous: <a href="rosa-hcp-prepare-for-log-forwarding_rosa-hcp-prepare-for-log-forwarding.html">Prepare for log forwarding</a> | ↑ Up: <a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-manage-and-verify-log-forwarding_rosa-hcp-manage-and-verify-log-forwarding.html">Manage and verify log forwarding</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 15:34:48 -0500
+Last updated 2026-09-04 15:53:21 -0500
 </div>
 </div>
 </body>

@@ -454,8 +454,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="rosa-hcp-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
 </li>
-<li><a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a>
-</li>
 <li><a href="rosa-hcp-monitor-cluster-health_rosa-hcp-monitor-cluster-health.html">Monitor cluster health</a>
 </li>
 </ul>
@@ -464,32 +462,263 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div class="sect3">
-<h4 id="rosa-hcp-manage-and-verify-log-forwarding_rosa-hcp-manage-and-verify-log-forwarding">Manage and verify log forwarding</h4>
+<div class="sect4">
+<h5 id="rosa-hcp-manage-and-verify-log-forwarding_rosa-hcp-manage-and-verify-log-forwarding">Manage and verify log forwarding</h5>
 <div class="paragraph _abstract">
 <p>After configuring log forwarding, verify that logs are delivered to your destination targets and manage existing log forwarding configurations.</p>
 </div>
+<div class="sect5">
+<h6 id="rosa-verify-karpenter-log-forwarding_rosa-hcp-manage-and-verify-log-forwarding">Verifying Karpenter set up for log forwarding</h6>
+<div class="paragraph _abstract">
+<p>After you configure the Red Hat OpenShift Services on AWS clusters to use your selected log forwarder, such as <code>S3</code> or <code>CloudWatch</code>, verify that Karpenter logs are arriving at your specified destination. Confirming that Karpenter log data is present ensures that your node provisioning and scaling decisions are captured, which supports troubleshooting and capacity planning for your cluster.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Verify that you have control plane log forwarders configured for your cluster by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list log-forwarder -c &lt;cluster_name|cluster_id&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Confirm that the expected forwarder has the configuration correctly set to forward logs for Karpenter by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa describe log-forwarder -c &lt;cluster_name|cluster_id&gt; &lt;log_fwd_id&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Go to your specified logging destination, and confirm that the output includes the data from your application. The output should resemble the following sample:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{"application": "karpenter", "message": "Node provisioning triggered"}
+{"application": "karpenter-operator", "message": "Reconciliation loop successful"}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-create-cluster-log-forwarding-ui_rosa-hcp-manage-and-verify-log-forwarding">Create a Red Hat OpenShift Services on AWS cluster with log forwarding</h6>
+<div class="paragraph _abstract">
+<p>You can set up control plane log forwarding when you create your Red Hat OpenShift Services on AWS cluster in the Red Hat Hybrid Cloud Console. As you create your Red Hat OpenShift Services on AWS cluster, you have the option to forward your control plane logs to an Amazon <code>S3</code> bucket, <code>CloudWatch</code> log group, or both.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In the Red Hat Hybrid Cloud Console, go to <strong>Clusters</strong> &#8594; <strong>Cluster List</strong>, then click the <strong>Create cluster</strong> button.</p>
+</li>
+<li>
+<p>On the <strong>Managed services</strong> offerings page, go to the offering, <strong>Red Hat OpenShift Service on AWS (ROSA)</strong>, and click the <strong>Create cluster</strong> button, then select <strong>With web interface</strong>.</p>
+</li>
+<li>
+<p>For <strong>Create a ROSA Cluster</strong> &#8594; <strong>Control plane</strong>, select your <strong>ROSA hosted architecture</strong>.</p>
+</li>
+<li>
+<p>For <strong>Accounts and roles</strong>, select your <strong>Associated AWS infrastructure account</strong> and <strong>AWS billing account</strong>.</p>
+</li>
+<li>
+<p>For the <strong>Cluster settings</strong> &#8594; <strong>Cluster details</strong>, complete the following text boxes:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-verify-karpenter-log-forwarding_rosa-hcp-manage-and-verify-log-forwarding.html">Verifying Karpenter set up for log forwarding</a></p>
+<p><strong>Region</strong></p>
 </li>
 <li>
-<p><a href="rosa-create-cluster-log-forwarding-ui_rosa-hcp-manage-and-verify-log-forwarding.html">Create a Red Hat OpenShift Services on AWS cluster with log forwarding</a></p>
+<p><strong>Cluster name</strong></p>
 </li>
 <li>
-<p><a href="rosa-edit-cluster-log-forwarding-ui_rosa-hcp-manage-and-verify-log-forwarding.html">Edit a Red Hat OpenShift Services on AWS cluster with log forwarding</a></p>
+<p><strong>Version</strong></p>
+</li>
+<li>
+<p><strong>Channel</strong></p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>In about 20 minutes after you complete this information, your cluster is ready to install and you can continue to configure it.</p>
+</div>
+</li>
+<li>
+<p>For <strong>Machine pool</strong> &#8594; <strong>Networking</strong> &#8594; <strong>Configuration</strong> &#8594; <strong>CIDR ranges</strong> &#8594; <strong>Cluster roles and policies</strong>, complete all of the required text boxes with the specifications that you want for your cluster.</p>
+</li>
+<li>
+<p>On the <strong>Review and create</strong> &#8594; <strong>Review your ROSA cluster</strong> page, verify that the cluster details are correct.</p>
+</li>
+<li>
+<p>Optional: If you want to forward your control plane logs to an Amazon <code>S3</code> bucket or <code>CloudWatch</code> log group, complete the following instructions:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>On the <strong>Control plane log forwarding (optional)</strong> page, click <strong>Enable Amazon S3</strong>, or <strong>Enable CloudWatch</strong>, or both.</p>
+</li>
+<li>
+<p>If you enable Amazon <code>S3</code>, complete the following fields:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Bucket name</strong>: Give it a unique identifier across all of Amazon Web Services (AWS).</p>
+</li>
+<li>
+<p><strong>Bucket prefix</strong>: Give it an optional path to organize your data.</p>
+</li>
+<li>
+<p><strong>Select groups and applications</strong> (optional): When you select a group, the log forwarder collects all of the applications and related services from that group.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If you enable <code>CloudWatch</code>, complete the following fields:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Prerequisite</strong>: Verify that you have created an <code>IAM</code> role and policy, then click the box stating that you have.</p>
+</li>
+<li>
+<p><strong>Log group name</strong>: Give it a unique identifier.</p>
+</li>
+<li>
+<p><strong>Role ARN</strong>: Give the <code>IAM</code> role ARN. For example, <code>arn:aws:iam::&lt;12-digit-account-id&gt;:role/&lt;role-name&gt;</code>.</p>
+</li>
+<li>
+<p><strong>Select groups and applications</strong>: When you select a group, the log forwarder collects all the applications and related services from that group.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>On the <strong>Review and create</strong> &#8594; <strong>Review your ROSA cluster</strong> page, verify that the cluster details are correct.</p>
+</li>
+<li>
+<p>Click the <strong>Create cluster</strong> button.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>If you want to finish completing your cluster with no designated log forwarding destination, click the <strong>Create cluster</strong> button.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>In the Red Hat Hybrid Cloud Console, go to <strong>Clusters</strong> &#8594; <strong>Cluster List</strong>.  You can see the name and status of your cluster.</p>
+</li>
+<li>
+<p>Verify that the status of your cluster is “Ready” and click the name of your cluster.</p>
+</li>
+<li>
+<p>In the <strong>Overview</strong> tab, verify that the details of your cluster are what you specified.</p>
+</li>
+<li>
+<p>Go to the <strong>Control plane log forwarding</strong> section.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If you enabled <code>Amazon S3</code>, verify that you see <strong>Amazon S3: Enabled</strong>. If you did not set it up, it shows, <strong>Amazon S3: Disabled</strong>.</p>
+</li>
+<li>
+<p>If you enabled <code>CloudWatch</code>, verify that you see <strong>CloudWatch: Enabled</strong>. If you did not set it up, it shows, <strong>CloudWatch: Disabled</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <strong>View details</strong>, which takes you to the <strong>Settings</strong> tab. Confirm all the specific details for your control plane log forwarding are correct.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-edit-cluster-log-forwarding-ui_rosa-hcp-manage-and-verify-log-forwarding">Edit a Red Hat OpenShift Services on AWS cluster with log forwarding</h6>
+<div class="paragraph _abstract">
+<p>You can verify the status of log forwarding for a cluster and edit the log forwarding configurations.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In the Red Hat Hybrid Cloud Console, go to <strong>Clusters</strong> &#8594; <strong>Cluster List</strong>, then click the name of your cluster.</p>
+</li>
+<li>
+<p>Go to the <strong>Settings</strong> tab then the <strong>Control plane log forwarding</strong> section.</p>
+</li>
+<li>
+<p>To add to your log forwarding, click the <strong>Add configuration</strong> dropdown button.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>You can add a <code>CloudWatch</code> or <code>Amazon S3</code> configuration.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To make changes to your existing log forwarding, click the three dots within your <code>CloudWatch</code> or <code>Amazon S3</code> log forwarding configuration, then select <strong>Edit configuration</strong> or <strong>Delete configuration</strong>.</p>
+</li>
+<li>
+<p>When you click <strong>Edit configuration</strong> for <code>Amazon S3</code> log forwarding, you see your configuration and can make changes to the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Bucket Name</strong></p>
+</li>
+<li>
+<p><strong>Bucket Prefix</strong></p>
+</li>
+<li>
+<p><strong>Select groups and applications</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>When you click <strong>Edit configuration</strong> for <code>CloudWatch</code> log forwarding, you see your configuration and can make changes to the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Log group name</strong></p>
+</li>
+<li>
+<p><strong>Role ARN</strong></p>
+</li>
+<li>
+<p><strong>Select groups and applications</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Make the changes to your configuration, then click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>In the <strong>Settings</strong> tab &#8594; <strong>Control plane log forwarding</strong> section, verify that you see the changes you made to your configuration. The changes you made instantly go through and appear in this section.</p>
+</li>
+</ol>
+</div>
+</div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-create-cluster-ui-log-groups_rosa-hcp-configure-log-forwarding-destinations.html">Creating a Red Hat OpenShift Services on AWS cluster in the Red Hat Hybrid Cloud Console</a> | ↑ Up: <a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS</a> | Next: <a href="rosa-verify-karpenter-log-forwarding_rosa-hcp-manage-and-verify-log-forwarding.html">Verifying Karpenter set up for log forwarding</a> →</p>
+<p>← Previous: <a href="rosa-hcp-configure-log-forwarding-destinations_rosa-hcp-configure-log-forwarding-destinations.html">Configure log forwarding destinations</a> | ↑ Up: <a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-monitor-cluster-health_rosa-hcp-monitor-cluster-health.html">Monitor cluster health</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 15:34:48 -0500
+Last updated 2026-09-04 15:53:21 -0500
 </div>
 </div>
 </body>

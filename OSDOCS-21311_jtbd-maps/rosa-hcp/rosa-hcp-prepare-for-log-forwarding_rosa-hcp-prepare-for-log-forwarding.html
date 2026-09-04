@@ -454,8 +454,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="rosa-hcp-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
 </li>
-<li><a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a>
-</li>
 <li><a href="rosa-hcp-monitor-cluster-health_rosa-hcp-monitor-cluster-health.html">Monitor cluster health</a>
 </li>
 </ul>
@@ -464,29 +462,379 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div class="sect3">
-<h4 id="rosa-hcp-prepare-for-log-forwarding_rosa-hcp-prepare-for-log-forwarding">Prepare for log forwarding</h4>
+<div class="sect4">
+<h5 id="rosa-hcp-prepare-for-log-forwarding_rosa-hcp-prepare-for-log-forwarding">Prepare for log forwarding</h5>
 <div class="paragraph _abstract">
 <p>Before you configure log forwarding, select the log groups you want to forward and grant the required AWS permissions.</p>
+</div>
+<div class="sect5">
+<h6 id="rosa-determine-log-groups_rosa-hcp-prepare-for-log-forwarding">Determining what log groups to use</h6>
+<div class="paragraph _abstract">
+<p>When you forward control plane logs to Amazon CloudWatch or S3, you must decide on what log groups you want to use. Because of the existing AWS pricing for these services, you can expect additional costs associated with forwarding and storing your logs in S3 and CloudWatch. When you determine what log group to use, consider these additional costs along with other factors, such as your log retention requirements.</p>
+</div>
+<div class="paragraph">
+<p>For each log group, you have access to different applications, and these applications can change depending on what you choose to enable and disable with your logs.</p>
+</div>
+<div class="paragraph">
+<p>When you forward log groups, you must specify a group or application. When you specify a group, the log forwarder collects all the applications in that group. Instead of selecting a group, you can select individual applications. When you set up your log forwarder, you must specify at least one group or application, but you do not need to specify both.</p>
+</div>
+<div class="paragraph">
+<p>The following table lists available log groups:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 19. Log groups</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Log group name</th>
+<th class="tableblock halign-left valign-top">Benefit of that log group</th>
+<th class="tableblock halign-left valign-top">Example applications available for that log group</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">api</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Records every request made to the cluster. Supports security by detecting unauthorized access attempts.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>audit-webhook</code></p>
+</li>
+<li>
+<p><code>kube-apiserver</code></p>
+</li>
+<li>
+<p><code>oauth-openshift</code></p>
+</li>
+<li>
+<p><code>openshift-apiserver</code></p>
+</li>
+<li>
+<p><code>openshift-oauth-apiserver</code></p>
+</li>
+<li>
+<p><code>packageserver</code></p>
+</li>
+<li>
+<p><code>validation-webhook</code></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">authentication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tracks login attempts and requests for tokens. Supports security by recording authenticated user information.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>ignition-server</code></p>
+</li>
+<li>
+<p><code>konnectivity-agent</code></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">controller manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Monitors the controllers that manage the state of your clusters. Clarifies differences among the different cluster states, for example, the <code>Current</code>, <code>Desired</code>, <code>Health</code>, and <code>Feature</code> state.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>aws-ebs-csi-driver-controller</code></p>
+</li>
+<li>
+<p><code>capi-provider-controller-manager</code></p>
+</li>
+<li>
+<p><code>catalog-operator</code></p>
+</li>
+<li>
+<p><code>cloud-controller-manager</code></p>
+</li>
+<li>
+<p><code>cloud-credential-operator</code></p>
+</li>
+<li>
+<p><code>cloud-network-config-controller</code></p>
+</li>
+<li>
+<p><code>cluster-network-operator</code></p>
+</li>
+<li>
+<p><code>cluster-node-tuning-operator</code></p>
+</li>
+<li>
+<p><code>cluster-policy-controller</code></p>
+</li>
+<li>
+<p><code>cluster-version-operator</code></p>
+</li>
+<li>
+<p><code>control-plane-operator</code></p>
+</li>
+<li>
+<p><code>control-plane-pki-operator</code></p>
+</li>
+<li>
+<p><code>csi-snapshot-controller-operator</code></p>
+</li>
+<li>
+<p><code>csi-snapshot-controller</code></p>
+</li>
+<li>
+<p><code>dns-operator</code></p>
+</li>
+<li>
+<p><code>hosted-cluster-config-operator</code></p>
+</li>
+<li>
+<p><code>ingress-operator</code></p>
+</li>
+<li>
+<p><code>kube-controller-manager</code></p>
+</li>
+<li>
+<p><code>machine-approver</code></p>
+</li>
+<li>
+<p><code>multus-admission-controller</code></p>
+</li>
+<li>
+<p><code>network-node-identity</code></p>
+</li>
+<li>
+<p><code>olm-operator</code></p>
+</li>
+<li>
+<p><code>openshift-controller-manager</code></p>
+</li>
+<li>
+<p><code>openshift-route-controller-manager</code></p>
+</li>
+<li>
+<p><code>ovnkube-control-plane</code></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">scheduler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Records the placement of each pod on every node. Shows why pods are in a <code>Running</code> or <code>Pending</code> state.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>kube-scheduler</code></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">autoscaling</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tracks the node provisioning and scaling decisions made by Karpenter workloads. This group records why nodes were created, deleted, or consolidated. It also helps administrators troubleshoot pod scheduling failures caused by insufficient compute resources.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>karpenter</code></p>
+</li>
+<li>
+<p><code>karpenter-operator</code></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not applicable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">These applications do not belong to a defined log group. To forward their logs, set these applications in the <code>applications</code> array.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>certified-operators-catalog</code></p>
+</li>
+<li>
+<p><code>cluster-api</code></p>
+</li>
+<li>
+<p><code>community-operators-catalog</code></p>
+</li>
+<li>
+<p><code>etcd</code></p>
+</li>
+<li>
+<p><code>private-router</code></p>
+</li>
+<li>
+<p><code>redhat-marketplace-catalog</code></p>
+</li>
+<li>
+<p><code>redhat-operators-catalog</code></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="rosa-create-an-iam-role-policy_rosa-hcp-prepare-for-log-forwarding">Creating an IAM role and policy</h6>
+<div class="paragraph _abstract">
+<p>When you forward your logs to an Amazon CloudWatch group or S3 bucket, those locations exist outside your control plane. You must create an Identity and Access Management (IAM) role and policy so that your log forwarder has the right permissions and capabilities to send these logs to your chosen destination, CloudWatch, or S3.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>To use a CloudWatch group, you must create an IAM role and policy.</p>
+</li>
+<li>
+<p>To use an S3 bucket, you do not need an IAM role and policy.</p>
+</li>
+<li>
+<p>The only supported Amazon S3-managed encryption method is <code>SSE-S3</code>.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have ensured that the name of you your IAM role has the prefix, <code>arn:aws:iam::*:role/CustomerLogDistribution-*</code>.</p>
+</li>
+<li>
+<p>You have installed and configured the latest ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host.</p>
+</li>
+<li>
+<p>You have installed and configured the latest Amazon Web Services (AWS) command-line interface (CLI) on your installation host.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>To enable the log forwarder delivery capability, prepare the IAM policy by creating an <code>assume-role-policy.json</code> file. Apply the following IAM policy sample:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::859037107838:role/ROSA-CentralLogDistributionRole-241c1a86"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To enable the log forwarder distribution capability, create an IAM role that must include the <code>CustomerLogDistribution</code> name by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam create-role \
+    --role-name CustomerLogDistribution-RH \
+    --assume-role-policy-document file://assume-role-policy.json</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>role_arn</code> name should be something similar to <code>arn:aws:iam::aws_account_ID:role/CustomerLogDistribution-&lt;any-name&gt;</code>. You choose the name for <code>&lt;any-name&gt;</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Next steps</div>
+<p>After you create an IAM role and policy, you must decide to send your control plane logs to either a CloudWatch log group, an S3 bucket, or both. See the following summary about CloudWatch and S3 to help you decide what you want to do:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-determine-log-groups_rosa-hcp-prepare-for-log-forwarding.html">Determining what log groups to use</a></p>
+<p>Use CloudWatch for logs requiring immediate action or organization.</p>
 </li>
 <li>
-<p><a href="rosa-create-an-iam-role-policy_rosa-hcp-prepare-for-log-forwarding.html">Creating an IAM role and policy</a></p>
+<p>Use S3 for logs requiring long-term storage or large-scale data analysis.</p>
 </li>
 </ul>
 </div>
 </div>
+</div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS</a> | Next: <a href="rosa-determine-log-groups_rosa-hcp-prepare-for-log-forwarding.html">Determining what log groups to use</a> →</p>
+<p>↑ Up: <a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-configure-log-forwarding-destinations_rosa-hcp-configure-log-forwarding-destinations.html">Configure log forwarding destinations</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 15:34:48 -0500
+Last updated 2026-09-04 15:53:21 -0500
 </div>
 </div>
 </body>

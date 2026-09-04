@@ -452,13 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel3">
 <li><a href="osd-lifecycle-policy_plan-cluster-upgrades.html">Life cycle policies and planning</a>
 </li>
-<li><a href="upgrade_plan-cluster-upgrades.html"><span class="toc-current">Understanding Openshift Dedicated cluster upgrades</span></a>
-</li>
 <li><a href="osd-upgrade-a-cluster_upgrade-a-cluster.html">Upgrade a cluster</a>
-</li>
-<li><a href="upgrade-auto_upgrade-a-cluster.html">Scheduling recurring upgrades for your cluster</a>
-</li>
-<li><a href="upgrade-manual_upgrade-a-cluster.html">Scheduling individual upgrades for your cluster</a>
 </li>
 </ul>
 </li>
@@ -468,8 +462,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div class="sect3">
-<h4 id="upgrade_plan-cluster-upgrades">Understanding Openshift Dedicated cluster upgrades</h4>
+<div class="sect4">
+<h5 id="upgrade_plan-cluster-upgrades">Understanding Openshift Dedicated cluster upgrades</h5>
 <div class="paragraph _abstract">
 <p>When upgrades are made available for your Openshift Dedicated cluster, you can upgrade to the newest version through Red Hat OpenShift Cluster Manager or OpenShift Cluster Manager CLI. You can set your upgrade policies on existing clusters or during cluster creation, and upgrades can be scheduled to occur automatically or manually.</p>
 </div>
@@ -521,36 +515,119 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </table>
 </div>
+<div class="sect5">
+<h6 id="upgrade-automatic_plan-cluster-upgrades">Recurring upgrades</h6>
+<div class="paragraph">
+<p>Upgrades can be scheduled to occur automatically on a day and time specified by the cluster owner or administrator. Upgrades occur on a weekly basis, unless an upgrade is unavailable for that week.</p>
+</div>
+<div class="paragraph">
+<p>If you select recurring updates for your cluster, you must provide an administrator&#8217;s acknowledgment. OpenShift Cluster Manager does not start scheduled y-stream updates for minor versions without receiving an administrator&#8217;s acknowledgment.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Recurring upgrade policies are optional and if they are not set, the upgrade policies default to individual.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect5">
+<h6 id="upgrade-manual_upgrades_plan-cluster-upgrades">Individual upgrades</h6>
+<div class="paragraph">
+<p>If you opt for individual upgrades, you are responsible for updating your cluster. If you select an update version that requires approval, you must provide an administrator&#8217;s acknowledgment.</p>
+</div>
+<div class="paragraph">
+<p>If your cluster version becomes outdated, it changes to a limited support status.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="upgrade-notifications_plan-cluster-upgrades">Upgrade notifications</h6>
+<div class="paragraph">
+<p>From OpenShift Cluster Manager console you can view your cluster&#8217;s history from the <strong>Overview</strong> tab. The Upgrade states can be viewed in the service log under the <strong>Cluster history</strong> heading.</p>
+</div>
+<div class="paragraph">
+<p>Every change of state also triggers an email notification to the cluster owner and subscribed users. You will receive email notifications for the following events:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="upgrade-automatic_plan-cluster-upgrades.html">Recurring upgrades</a></p>
+<p>An upgrade has been scheduled.</p>
 </li>
 <li>
-<p><a href="upgrade-manual_upgrades_plan-cluster-upgrades.html">Individual upgrades</a></p>
+<p>An upgrade has started.</p>
 </li>
 <li>
-<p><a href="upgrade-notifications_plan-cluster-upgrades.html">Upgrade notifications</a></p>
+<p>An upgrade has completed.</p>
 </li>
 <li>
-<p><a href="wif-upgrades_plan-cluster-upgrades.html">Cluster upgrades with Workload Identity Federation (WIF)</a></p>
-</li>
-<li>
-<p><a href="osd-upgrading-channels_plan-cluster-upgrades.html">Channels in Openshift Dedicated clusters</a></p>
-</li>
-<li>
-<p><a href="osd-upgrading-switch-channels_plan-cluster-upgrades.html">Switch channels to view available update options</a></p>
+<p>An upgrade has been canceled.</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For recurring upgrades, you will also receive email notifications before the upgrade occurs based on the following cadence:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>2 week notice</p>
+</li>
+<li>
+<p>1 week notice</p>
+</li>
+<li>
+<p>1 day notice</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect5">
+<h6 id="wif-upgrades_plan-cluster-upgrades">Cluster upgrades with Workload Identity Federation (WIF)</h6>
+<div class="paragraph">
+<p>Before upgrading an Openshift Dedicated on Google Cloud cluster with WIF authentication type to a newer y-stream version, you must update the WIF configuration to that version. Failure to do so before attempting to upgrade the cluster version will result in an error.
+For more information on how to update a WIF configuration, see the  <em>Additional resources</em> section.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The update path to a brand new release of Openshift Dedicated is not available in the stable channel until 45 to 90 days after the initial GA of a newer y-stream version.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="osd-lifecycle-policy_plan-cluster-upgrades.html">Life cycle policies and planning</a> | ↑ Up: <a href="_upgrade.html">Upgrade</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="upgrade-automatic_plan-cluster-upgrades.html">Recurring upgrades</a> →</p>
+<p>↑ Up: <a href="osd-lifecycle-policy_plan-cluster-upgrades.html">Life cycle policies and planning</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-upgrading-channels_plan-cluster-upgrades.html">Channels in Openshift Dedicated clusters</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 15:34:48 -0500
+Last updated 2026-09-04 15:53:21 -0500
 </div>
 </div>
 </body>
