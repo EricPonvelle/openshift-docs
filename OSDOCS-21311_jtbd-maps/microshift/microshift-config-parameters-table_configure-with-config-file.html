@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.26">
+<title>Red Hat build of MicroShift</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+</head>
+<body id="microshift-config-parameters-table_configure-with-config-file" class="book toc2 toc-left">
+<div id="header">
+<h1>Red Hat build of MicroShift</h1>
+<div id="toc" class="toc2">
+<div id="toctitle"></div>
+<p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
+<li><a href="_whats_new.html">What&#8217;s New</a>
+</li>
+<li><a href="_discover.html">Discover</a>
+</li>
+<li><a href="_plan.html">Plan</a>
+</li>
+<li><a href="_install.html">Install</a>
+</li>
+<li><a href="_upgrade.html">Upgrade</a>
+</li>
+<li><a href="_administer.html">Administer</a>
+</li>
+<li><a href="_develop.html">Develop</a>
+</li>
+<li><a href="_configure.html">Configure</a>
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
+</li>
+<li><a href="_observe.html">Observe</a>
+</li>
+<li><a href="_integrate.html">Integrate</a>
+</li>
+<li><a href="_reference.html">Reference</a>
+</li>
+<li><a href="_storage.html">Storage</a>
+</li>
+<li><a href="_cli_tools.html">CLI tools</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect4">
+<h5 id="microshift-config-parameters-table_configure-with-config-file">Parameters and values for the MicroShift config.yaml file</h5>
+<div class="paragraph _abstract">
+<p>The following table explains MicroShift configuration YAML parameters and valid values for each:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 18. MicroShift <code>config.yaml</code> parameters</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>advertiseAddress</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A string that specifies the IP address from which the API server is advertised to members of the node. The default value is calculated based on the address of the service network.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auditLog.maxFileAge</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>How long log files are stored before automatic deletion. The default value of <code>0</code> in the <code>maxFileAge</code> parameter means a log file is never deleted based on age. You can configure this value.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auditLog.maxFileSize</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>By default, when the <code>audit.log</code> file reaches the <code>maxFileSize</code> limit, the <code>audit.log</code> file is rotated and MicroShift begins writing to a new <code>audit.log</code> file. You can configure this value.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auditLog.maxFiles</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The total number of log files kept. By default, MicroShift retains 10 log files. The oldest is deleted when an excess file is created. You can configure this value.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auditLog.profile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Default</code>, <code>WriteRequestBodies</code>, <code>AllRequestBodies</code>, or <code>None</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Logs only metadata for read and write requests; does not log request bodies except for OAuth access token requests. If you do not specify this field, the <code>Default</code> profile is used.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>namedCertificates</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines externally generated certificates and domain names by using custom certificate authorities.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>namedCertificates.certPath</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The full path to the certificate.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>namedCertificates.keyPath</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The full path to the certificate key.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>namedCertificates.names</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional. Add a list of explicit DNS names. Leading wildcards are allowed. If you do not list names, the implicit names are extracted from the certificates.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjectAltNames</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fully qualified domain names (FQDNs), wildcards such as <code>*.domain.com</code>, or IP addresses.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Subject Alternative Names for API server certificates. SANs indicate all of the domain names and IP addresses that are secured by a certificate.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tls</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines the transport later protocol (TLS) used and the cipher suites allowed. Provides security for the exposed MicroShift API server and internal control plane endpoints.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tls.cipherSuites</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Lists the allowed cipher suites that the API server accepts and serves. Defaults to the cipher suites allowed with the TLS specification set in the <code>tls.minVersion</code> parameter.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tls.minVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>VersionTLS12</code> or <code>VersionTLS13</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the minimum version of TLS to serve from the API server. The default value is <code>VersionTLS12</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>debugging.logLevel</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Normal</code>, <code>Debug</code>, <code>Trace</code>, or <code>TraceAll</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Log verbosity. The default value is <code>Normal</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dns.baseDomain</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>valid domain</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Base domain of the node. All managed DNS records are subdomains of this base.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dns.hosts.status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Enabled</code>, <code>Disabled</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Default set to <code>Disabled</code> when not configured.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dns.hosts.file</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Filepath by default set to <code>/etc/hosts</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>etcd.memoryLimitMB</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>By default, <code>etcd</code> uses as much memory as needed to handle the load on the system. However, in memory constrained systems, it might be preferred or necessary to limit the amount of memory <code>etcd</code> can to use at a given time.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>groups</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Lists the device definitions to be exposed by the plugin. Each Device entry contains a 'name' and a list of groups.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>count</code>, <code>paths</code>, 'usbs'</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Lists device groups. Devices within a group comprise a pool of devices under a common name. When you request a device from that pool, you can receive a device from different defined paths.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.count</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies how many times this group of devices can be mounted concurrently. If unspecified, Count defaults to 1. Setting a high count, for example, <code>1000</code> for <code>/dev/fuse</code>, is possible because there are no inherent limits, but performance might be affected depending on the host capabilities and the nature of the device.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Lists the host device file paths. Paths can be glob patterns. For example, <code>/dev/ttyUSB</code>, in which case each matched device is schedulable Count times. This field is exclusive with usbs. You cannot define both parameters in the same device group.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths.limit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies up to how many times this device can be used in the group concurrently when other devices in the group yield more matches. For example, if one path in the group matches 5 devices and another matches 1 device, but has a limit of 10, then the group provides 5 pairs of devices. When unspecified, the limit defaults to <code>1</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths.mountPath</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The file path at which the host device should be mounted within the container. When unspecified, mountPath defaults to <code>path</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths.path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The file path of a device on the host. For example, <code>/dev/video0</code>, <code>/dev/ttyUSB*</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths.permissions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>r</code>, <code>w</code>, <code>m</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The file-system permissions given to the mounted device. Applies only to mounts of type <code>Device</code>. Can be one or more of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>r</code> allows the container to read from the specified device.</p>
+</li>
+<li>
+<p><code>w</code> allows the container to write to the specified device.</p>
+</li>
+<li>
+<p><code>m</code> allows the container to create device files that do not yet exist.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When unspecified, the value defaults to <code>mrw</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths.readOnly</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code>, <code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies whether the path should be mounted read-only. Applies only to mounts of type <code>Mount</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths.type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Device</code>, <code>Mount</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Describes what type of file-system node this <code>path</code> represents and thus how it should be mounted. When unspecified, <code>type</code> defaults to <code>Device</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.usbs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Lists the USB specifications that this device group consists of. The vendor and product IDs must always match. The serial ID must match if provided, or skipped if the ID is empty. The <code>usbs</code> field is exclusive with <code>paths</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.usbs.product</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The USB Product ID of the device to match on. For example, <code>0x7523</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.usbs.serial</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The serial number of the device to match on. A USB device must match exactly on all the given attributes to pass.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.usbs.vendor</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The USB Vendor ID of the device to match on. For example, <code>0x1a86</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A unique string representing the kind of device this specification describes. For example, <code>serial</code>, <code>video</code>, or <code>fuse</code>. This name is used in pod resource requests. For example, <code>device.microshift.io/serial</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.domain</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the domain prefix with which devices are advertised and present in the node. For example, <code>device.microshift.io/serial</code>. The default value is <code>device.microshift.io</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Enabled</code>, <code>Disabled</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the default GDP status.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.certificateSecret</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A reference to a secret that contains the default certificate that is served by the ingress controller. When routes do not specify their own certificate, <code>certificateSecret</code> is used.</p>
+</div>
+<div class="paragraph">
+<p>The secret must contain the following keys and data:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tls.crt</code>: certificate file contents</p>
+</li>
+<li>
+<p><code>tls.key</code>: key file contents</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you do not set one of these values, a wildcard certificate is automatically generated and used. The certificate is valid for the ingress controller <code>domain</code> and <code>subdomains</code> fields, and the generated CA for the certificate is automatically integrated with the truststore for the node.</p>
+</div>
+<div class="paragraph">
+<p>Any certificate in use is automatically integrated in the MicroShift OAuth server.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.clientTLS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>AllowedSubjectPatterns</code>, <code>spec.clientTLS.ClientCA</code>, <code>spec.clientTLS.clientCertificatePolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Authenticates client access to the node and services. Mutual TLS authentication is enabled when using these settings. If you do not set values for the <code>spec.clientTLS.clientCertificatePolicy</code> and <code>spec.clientTLS.ClientCA</code> required subfields, client TLS is not enabled.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.clientTLS.AllowedSubjectPatterns</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list in PCRE syntax</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional subfield which specifies a list of regular expressions that are matched against the distinguished name on a valid client certificate to filter requests. Use this parameter to cause the ingress controller to reject certificates based on the distinguished name. The Perl Compatible Regular Expressions (PCRE) syntax is required. If you configure this field, it must contain a valid expression or the MicroShift service fails. At least one pattern must match a client certificate&#8217;s distinguished name; otherwise, the ingress controller rejects the certificate and denies the connection.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.clientTLS.ClientCA</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Required subfield that specifies a config map in the <code>openshift-ingress</code> namespace. The config map must contain a CA certificate bundle.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.clientTLS.ClientCertificatePolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Required</code>, <code>Optional</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Required subfield that creates a secure route using reencrypt TLS termination with a custom certificate. You must have a certificate/key pair in PEM-encoded files, where the certificate is valid for the route host. The ingress controller only checks client certificates for edge-terminated and reencrypt TLS routes. Certificates for plain text HTTP or passthrough TLS routes are not checked with this setting.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.defaultHTTPVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Determines the default HTTP version to be used for ingress. The default value is <code>1</code>, which is the HTTP/1.1 protocol.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.forwardedHeaderPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Append</code>, <code>Replace</code>, <code>IfNone</code>, <code>Never</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies when and how the ingress controller sets the <code>Forwarded</code>, <code>X-Forwarded-For</code>, <code>X-Forwarded-Host</code>, <code>X-Forwarded-Port</code>, <code>X-Forwarded-Proto</code>, and <code>X-Forwarded-Proto-Version</code> HTTP headers. The default value is <code>Append</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Append</code> specifies that the ingress controller appends existing headers.</p>
+</li>
+<li>
+<p><code>Replace</code> specifies that the ingress controller sets the headers and replaces any existing <code>Forwarded</code> or <code>X-Forwarded-*</code> headers.</p>
+</li>
+<li>
+<p><code>IfNone</code> specifies that the ingress controller sets headers if they are not already set.</p>
+</li>
+<li>
+<p><code>Never</code> specifies that ingress controller never sets the headers, preserving any existing headers.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.httpCompression</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>object</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines a policy for HTTP traffic compression. There is no HTTP compression by default.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.httpCompression.mimeTypes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>array</code> or null</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A list of MIME types to compress. When the list is empty, the ingress controller does not apply any compression. To define a list, use the format of the Content-Type definition in RFC 1341 that specifies the type and subtype of data in the body of a message and the native encoding of the data. For example, <code>Content-Type := type \"/\" subtype *[\";\" parameter]</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The value of <code>Content-Type</code> can be one of the following types: application, audio, image, message, multipart, text, video, or a custom type preceded by <code>\"X-\"</code> and followed by a token. The token must be defined in one of the following ways:</p>
+</li>
+<li>
+<p>The token is a <code>string</code> of at least one character, and does not contain white spaces, control characters, or any of the characters in the <code>tspecials</code> set.</p>
+</li>
+<li>
+<p>The <code>tspecials</code> set contains the characters <code>()\u003c\u003e@,;:\\\"/[]?.=</code>.</p>
+</li>
+<li>
+<p>The subtype in Content-Type is also a token.</p>
+</li>
+<li>
+<p>The optional parameters following the subtype are defined as <code>token \"=\" (token / quoted-string)</code>.</p>
+</li>
+<li>
+<p>The <code>quoted-string</code>, as defined in RFC 822, is surrounded by double quotes and can contain white spaces plus any character except <code>\\</code>, <code>\"</code>, and <code>CR</code>. The <code>quoted-string</code> can also contain any single ASCII character if it is escaped by the following characters: <code>\\.",</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Not all MIME types benefit from compression, but <code>HAProxy</code> uses resources to try to compress files when compression is configured. Generally speaking, text formats such as <code>html</code>, <code>ccs</code>, and <code>js</code> benefit from compression. Spending CPU resources to compress file types that are already compressed, such as images, audio, and video, is probably not worth the limited benefit.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.httpEmptyRequestsPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Respond</code> or <code>Ignore</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default value is <code>Respond</code>. Describes how HTTP connections should be handled if the connection times out before a request is received. These connections typically come from the health probes of a load balancer service or a web browser&#8217;s speculative connections, such as a <code>preconnect</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the field is set to <code>Respond</code>, the ingress controller sends an "HTTP 400" or "408" response, logs the connection if access logging is enabled, and counts the connection in the appropriate metrics.</p>
+</li>
+<li>
+<p>If the field is set to <code>Ignore</code>, the ingress controller closes the connection without sending a response, logging the connection, or incrementing metrics. Setting this field to <code>Ignore</code> might impede detection and diagnosis of problems or intrusions, especially when timed-out connections are caused by network errors or port scans. In both cases, logging empty requests can be useful for diagnosing errors and detecting intrusion attempts.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.listenAddress</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP address, NIC name, or multiple</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Value defaults to the entire network of the host. The valid configurable value is a list that can be either a single IP address or NIC name or multiple IP addresses and NIC names.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.logEmptyRequests</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Log</code> or <code>Ignore</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default value is <code>Log</code>. Specifies how connections on which empty requests are received are logged. These connections typically come from the health probes of a load balancer service health or a web browser&#8217;s speculative connections, such as a <code>preconnect</code>. Logging typical requests might be undesirable, but requests can also be caused by network errors or port scans, in which case logging can be useful for diagnosing errors and detecting intrusion attempts.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.ports.http</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>80</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default port shown. Configurable. Valid value is a single, unique port in the <code>1-65535</code> range. The values of the <code>ports.http</code> and <code>ports.https</code> fields cannot be the same.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.ports.https</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>443</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default port shown. Configurable. Valid value is a single, unique port in the <code>1-65535</code> range. The values of the <code>ports.http</code> and <code>ports.https</code> fields cannot be the same.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.routeAdmissionPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>namespaceOwnership</code> or <code>wildcardPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines a policy for handling new route claims, such as allowing or denying claims across namespaces. By default, allows routes to claim different paths of the same hostname across namespaces.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.routeAdmissionPolicy.namespaceOwnership</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Strict</code> or <code>InterNamespaceAllowed</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Describes how hostname claims across namespaces should be handled. The default value is <code>InterNamespaceAllowed</code>. Specifying <code>Strict</code> prevents routes in different namespaces from claiming the same hostname. If the value is deleted in a customized MicroShift <code>config.yaml</code> file, the <code>InterNamespaceAllowed</code> value is automatically set.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Strict</code>: does not allow routes to claim the same hostname across namespaces.</p>
+</li>
+<li>
+<p><code>InterNamespaceAllowed</code>: allows routes to claim different paths of the same hostname across namespaces.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.routeAdmissionPolicy.wildcardPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WildcardsAllowed</code> or <code>WildcardsDisallowed</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Describes how routes with wildcard policies are handled by the ingress controller.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>WildcardsAllowed</code>: Indicates routes with any wildcard policy are admitted by the ingress controller.</p>
+</li>
+<li>
+<p><code>WildcardsDisallowed</code>: Indicates only routes with a wildcard policy of <code>None</code> are admitted by the ingress controller. Updating <code>wildcardPolicy</code> from <code>WildcardsAllowed</code> to <code>WildcardsDisallowed</code> causes admitted routes with a wildcard policy of <code>Subdomain</code> to stop working. These routes must be recreated to a wildcard policy of <code>None</code> to be readmitted by the ingress controller. <code>WildcardsDisallowed</code> is the default setting.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Managed</code> or <code>Removed</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Router status. The default is <code>Managed</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tlsSecurityProfile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>object</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies settings for ingress controllers TLS connections. If you do not set one, the default value is based on the <code>apiservers.config.openshift.io/cluster</code> resource.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tlsSecurityProfile.type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Old</code>, <code>Intermediate</code>, <code>Modern</code>, <code>Custom</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the profile type for the TLS Security. The default value is <code>Intermediate</code>.</p>
+</div>
+<div class="paragraph">
+<p>When using the <code>Old</code>, <code>Intermediate</code>, and <code>Modern</code> profile types, the effective profile configuration is subject to change between releases. For example, given a specification to use the <code>Intermediate</code> profile deployed on release <code>X.Y.Z</code>, an upgrade to release <code>X.Y.Z+1</code> might cause a new profile configuration to be applied to the ingress controller, resulting in a rollout.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tlsSecurityProfile.minTLSVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the TLS version for ingress controllers.</p>
+</div>
+<div class="paragraph">
+<p>The minimum TLS version is <code>1.1</code>, and the maximum TLS version is <code>1.3</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ciphers and the minimum TLS version of the configured security profile are reflected in the <code>TLSProfile</code> status.</p>
+</li>
+<li>
+<p>The ingress controller converts the TLS <code>1.0</code> of an <code>Old</code> or <code>Custom</code> profile to <code>1.1</code>.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objects</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies options for tuning the performance of ingress controller pods.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.clientFinTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> with format <code>duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines how long a connection is held open while waiting for a client response to the server/backend before closing the connection. The default timeout is <code>1s</code>, which is 1 second.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.clientTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> with format <code>duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines how long a connection is held open while waiting for a client response. The default timeout is <code>30s</code>, which is 30 seconds.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.headerBufferBytes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An <code>integer</code> with the <code>format</code> of <code>int32</code>; <code>16384</code> is the minimum value when HTTP/2 is enabled.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Describes how much memory in bytes must be reserved for <code>IngressController</code> connection sessions. The default value is <code>32768</code> in bytes.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Setting this field is generally not recommended because <code>headerBufferBytes</code> values that are too small can break the <code>IngressController</code> and <code>headerBufferBytes</code> values that are too large can cause the <code>IngressController</code> to use significantly more memory than necessary.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.headerBufferMaxRewriteBytes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code>, formatted <code>int32</code>; <code>4096</code> is the minimum value</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Describes how much memory in bytes must be reserved from <code>headerBufferBytes</code> for HTTP header rewriting and appending for <code>IngressController</code> connection sessions. The default value is <code>8192</code> bytes. Incoming HTTP requests are limited to the <code>headerBufferBytes</code> bytes minus the <code>headerBufferMaxRewriteBytes</code> bytes, meaning that the value of <code>headerBufferBytes</code> must be greater than the value of <code>headerBufferMaxRewriteBytes</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Setting this field is generally not recommended because <code>headerBufferMaxRewriteBytes</code> values that are too small can break the <code>IngressController</code> and <code>headerBufferMaxRewriteBytes</code> values that are too large can cause the <code>IngressController</code> to use significantly more memory than necessary.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.healthCheckInterval: ""</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> with pattern: <code>^(0|(<span class="0-9">(\\.[0-9]</span>)?(ns|us|µs|μs|ms|s|m|h))+)$</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default <code>healthCheckInterval</code> value is <code>5s</code>, which is 5 seconds. This parameter value defines how long the router waits between two consecutive health checks on the router&#8217;s configured backends. The minimum allowed value is <code>1s</code> and the maximum allowed value is <code>2147483647ms</code>, which is 24.85 days.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>This value is applied globally as a default for all routes, but can be overridden per-route by the route annotation <code>router.openshift.io/haproxy.health.check.interval</code>.</p>
+</li>
+<li>
+<p>Requires an unsigned duration string of decimal numbers, each with an optional fraction and unit suffix, such as <code>300ms</code>, <code>1.5h</code> or <code>2h45m</code>. Valid time units are <code>ns</code>, <code>us</code> (or <code>µs</code> U+00B5 or <code>μs</code> U+03BC), <code>ms</code>, <code>s</code>, <code>m</code>, <code>h</code>.</p>
+</li>
+<li>
+<p>Setting this parameter value to less than <code>5s</code> can cause excess traffic due to too frequent TCP health checks and accompanying SYN packet storms.</p>
+</li>
+<li>
+<p>Setting this parameter value too high can result in increased latency because of backend servers that are no longer available, but have not yet been detected as such.</p>
+</li>
+<li>
+<p>An empty or <code>0</code> value means "no opinion" and the ingress controller chooses a default. Note that the default value might change in future releases.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.maxConnections</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code>, valid values are: <code>empty</code>, <code>0</code>, <code>-1</code>, and the range <code>2000-2000000</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default value is <code>0</code>. defines the maximum number of simultaneous connections that can be established per <code>HAProxy</code> process. Increasing this value allows each ingress controller pod to handle more connections at the cost of additional system resources being consumed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If this field is empty or <code>0</code>, the <code>IngressController</code> uses the default value of <code>50000</code>, but the default is subject to change in future releases.</p>
+</li>
+<li>
+<p>If the value is <code>-1</code>, then <code>HAProxy</code> dynamically computes a maximum value based on the available resources set with <code>ulimit</code> values in the running container. Selecting <code>-1</code>, which means <code>auto</code>, results in a large value being computed, and therefore each <code>HAProxy</code> process incurs significant memory usage compared with the current default of <code>50000</code>.</p>
+</li>
+<li>
+<p>Setting a value that is greater than the current operating system limit prevents the <code>HAProxy</code> process from starting.</p>
+</li>
+<li>
+<p>You can monitor memory usage for router containers with the following metric:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">container_memory_working_set_bytes{container=`router`,namespace=`openshift-ingress`}`</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You can monitor memory usage of individual `HAProxy`processes in router containers with the following metric:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">container_memory_working_set_bytes{container=`router`,namespace=`openshift-ingress`}/container_processes{container=`router`,namespace=`openshift-ingress`}</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.serverFinTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> in the format <code>duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines how long a connection is held open while waiting for a server or backend response to the client before closing the connection. The default timeout is <code>1s</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.serverTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> in the format <code>duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines how long a connection is held open while waiting for a server or backend response. The default timeout is <code>30s</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.threadCount</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code> in the form <code>int32</code>; minimum value is <code>1</code>, maximum is <code>64</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines the number of threads created per <code>HAProxy</code> process. The default value is <code>4</code>. If this field is empty, the default value is used.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Setting this field is generally not recommended. Creating more threads allows each ingress controller pod to handle more connections at the cost of more system resources being used. Increasing the number of HAProxy threads allows the ingress controller pods to use more CPU time under load, potentially starving other pods if set too high. Conversely, reducing the number of threads may cause the ingress controller to perform poorly.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.tlsInspectDelay</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> in the format <code>duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines how long the router can hold data to find a matching route. Setting this interval with too short a value can cause the router to revert to the default certificate for edge-terminated clients or re-encrypt routes, even when a better-matching certificate could be used.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The default inspect delay is <code>5s</code> which is 5 seconds, which is expected to be sufficient for most cases. Increasing the value of this configuration specifically for high-latency networks can cause a delay in finishing the SSL handshake. Any configured value must be transparent to your application.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.tunnelTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> in the format <code>duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines how long a tunnel connection, including websockets, are held open while the tunnel is idle. The default timeout is <code>1h</code>, which is 1 hour.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubelet</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See the MicroShift low-latency instructions</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Parameter for passthrough configuration of the kubelet node agent. Used for low-latency configuration. The default value is null.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>manifests</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list of paths</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The locations on the file system to scan for <code>kustomization</code> files to use to load manifests. Set to a list of paths to scan only those paths. Set to an empty list to disable loading manifests. The entries in the list can be glob patterns to match multiple subdirectories. The default values are <code>/usr/lib/microshift/manifests</code>, <code>/usr/lib/microshift/manifests.d/</code>, <code>/etc/microshift/manifests</code>, and <code>/etc/microshift/manifests.d/</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network.clusterNetwork</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP address block</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A block of IP addresses from which pod IP addresses are allocated. IPv4 is the default network. Dual-stack entries are supported. The first entry in this field is immutable after MicroShift starts. The default range is <code>10.42.0.0/16</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network.cniPlugin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Deploys the Open Virtual Networking - Kubernetes (OVN-K) network plugin as the default container network interface (CNI) when empty or set to <code>"ovnk"</code>. Supported values are empty, <code>""</code> or <code>"ovnk"</code>. Setting to <code>"none"</code> removes the CNI and is not recommended. Only OVN-K is managed by MicroShift.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network.multus.status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Controls the deployment of the Multus Container Network Interface (CNI). The default status is <code>Disabled</code>. If you set the value to <code>Enabled</code>, the Multus CNI cannot be deleted.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network.serviceNetwork</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP address block</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A block of virtual IP addresses for Kubernetes services. IP address pool for services. IPv4 is the default. Dual-stack entries are supported. The first entry in this field is immutable after MicroShift starts. The default range is <code>10.43.0.0/16</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network.serviceNodePortRange</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>range</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The port range allowed for Kubernetes services of type <code>NodePort</code>. If you do not specify the range, the default range of <code>30000-32767</code> is used. Services without a <code>NodePort</code> specified are automatically allocated one from this range. This parameter can be updated after MicroShift starts.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>node.hostnameOverride</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The name of the node. The default value is the hostname. If non-empty, this string is used to identify the node instead of the hostname. This value is immutable after MicroShift starts.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>node.nodeIP</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IPv4 address</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The IPv4 address of the node. The default value is the IP address of the default route.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nodeIPv6</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IPv6 address</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The IPv6 address for the node for dual-stack configurations. Cannot be configured in single stack for either IPv4 or IPv6. The default is an empty value or null.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage.driver</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>none</code> or <code>lvms</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default value is empty. An empty value or null field defaults to LVMS deployment.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage.optionalCsiComponents</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>array</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default value is null or an empty array. A null or empty array defaults to deploying <code>snapshot-controller</code>. Expected values are <code>csi-snapshot-controller</code> or <code>none</code>. A value of <code>none</code> is mutually exclusive with all other values.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>telemetry.endpoint</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://infogw.api.openshift.com" class="bare">https://infogw.api.openshift.com</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The endpoint where telemetry data is sent. No user or private data is included in the metrics reported. The default value is <code><a href="https://infogw.api.openshift.com" class="bare">https://infogw.api.openshift.com</a></code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>telemetry.status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Telemetry status, which can be <code>Enabled</code> or <code>Disabled</code>. The default value is <code>Enabled</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph nav-footer">
+<p>← Previous: <a href="microshift-yaml-custom-settings_configure-with-config-file.html">Separate restarts</a> | ↑ Up: <a href="microshift-yaml-custom_configure-with-config-file.html">Using custom settings</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-yaml-advertiseAddress_configure-with-config-file.html">Configure the advertise address network flag</a> →</p>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2026-09-03 17:35:52 -0500
+</div>
+</div>
+<style>
+  #toc ul li.has-children > ul {
+    display: none;
+  }
+  #toc ul li.has-children.open > ul {
+    display: block;
+  }
+  .toc-toggle {
+    cursor: pointer;
+    margin-right: 4px;
+    font-size: 0.75em;
+    user-select: none;
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('#toc li').forEach(function(li) {
+      var sublist = li.querySelector(':scope > ul');
+      if (sublist) {
+        li.classList.add('has-children');
+        var toggle = document.createElement('span');
+        toggle.className = 'toc-toggle';
+        toggle.textContent = '▶';
+        li.insertBefore(toggle, li.firstChild);
+        toggle.addEventListener('click', function() {
+          li.classList.toggle('open');
+          toggle.textContent = li.classList.contains('open') ? '▼' : '▶';
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
