@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Openshift Dedicated</title>
+<title>Red Hat build of MicroShift</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,61 +438,130 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="wif-upgrades_upgrade-a-cluster" class="book toc2 toc-left">
+<body id="_troubleshooting" class="book toc2 toc-left">
 <div id="header">
-<h1>Openshift Dedicated</h1>
+<h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Openshift Dedicated</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
 <li><a href="_discover.html">Discover</a>
 </li>
+<li><a href="_plan.html">Plan</a>
+</li>
+<li><a href="_install.html">Install</a>
+</li>
 <li><a href="_upgrade.html">Upgrade</a>
-<ul class="sectlevel3">
-<li><a href="osd-lifecycle-policy_plan-cluster-upgrades.html">Life cycle policies and planning</a>
 </li>
-<li><a href="upgrade_plan-cluster-upgrades.html">Understanding Openshift Dedicated cluster upgrades</a>
+<li><a href="_administer.html">Administer</a>
 </li>
-<li><a href="osd-upgrade-a-cluster_upgrade-a-cluster.html">Upgrade a cluster</a>
+<li><a href="_develop.html">Develop</a>
+</li>
+<li><a href="_configure.html">Configure</a>
+</li>
+<li><a href="_observe.html">Observe</a>
+</li>
+<li><a href="_integrate.html">Integrate</a>
+</li>
+<li><a href="_troubleshooting.html"><span class="toc-current">Troubleshooting</span></a>
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
 </li>
 </ul>
 </li>
-<li><a href="_observe.html">Observe</a>
+<li><a href="_reference.html">Reference</a>
+</li>
+<li><a href="_networking.html">Networking</a>
+</li>
+<li><a href="_storage.html">Storage</a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect4">
-<h5 id="wif-upgrades_upgrade-a-cluster">Cluster upgrades with Workload Identity Federation (WIF)</h5>
-<div class="paragraph">
-<p>Before upgrading an Openshift Dedicated on Google Cloud cluster with WIF authentication type to a newer y-stream version, you must update the WIF configuration to that version. Failure to do so before attempting to upgrade the cluster version will result in an error.
-For more information on how to update a WIF configuration, see the  <em>Additional resources</em> section.</p>
+<div class="sect1">
+<h2 id="_troubleshooting">Troubleshooting</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a></p>
+</li>
+<li>
+<p><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a></p>
+</li>
+<li>
+<p><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a></p>
+</li>
+<li>
+<p><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a></p>
+</li>
+<li>
+<p><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a></p>
+</li>
+<li>
+<p><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a></p>
+</li>
+<li>
+<p><a href="microshift-get-support_get-support.html">Get support</a></p>
+</li>
+</ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The update path to a brand new release of Openshift Dedicated is not available in the stable channel until 45 to 90 days after the initial GA of a newer y-stream version.</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="upgrade-notifications_upgrade-a-cluster.html">Upgrade notifications</a> | ↑ Up: <a href="upgrade_upgrade-a-cluster.html">Understanding Openshift Dedicated cluster upgrades</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-upgrading-channels_upgrade-a-cluster.html">Channels in Openshift Dedicated clusters</a> →</p>
+<p>← Previous: <a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a> | ↑ Up: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 14:36:01 -0500
+Last updated 2026-09-04 15:34:47 -0500
 </div>
 </div>
+<style>
+  #toc ul li.has-children > ul {
+    display: none;
+  }
+  #toc ul li.has-children.open > ul {
+    display: block;
+  }
+  .toc-toggle {
+    cursor: pointer;
+    margin-right: 4px;
+    font-size: 0.75em;
+    user-select: none;
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('#toc li').forEach(function(li) {
+      var sublist = li.querySelector(':scope > ul');
+      if (sublist) {
+        li.classList.add('has-children');
+        var toggle = document.createElement('span');
+        toggle.className = 'toc-toggle';
+        toggle.textContent = '▶';
+        li.insertBefore(toggle, li.firstChild);
+        toggle.addEventListener('click', function() {
+          li.classList.toggle('open');
+          toggle.textContent = li.classList.contains('open') ? '▼' : '▶';
+        });
+      }
+    });
+  });
+</script>
 </body>
 </html>

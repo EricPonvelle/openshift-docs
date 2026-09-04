@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Openshift Dedicated</title>
+<title>Red Hat build of MicroShift</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,68 +438,115 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="_cluster_update_options" class="book toc2 toc-left">
+<body id="microshift-list-rpm-update-contents-intro_list-rpm-update-contents" class="book toc2 toc-left">
 <div id="header">
-<h1>Openshift Dedicated</h1>
+<h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Openshift Dedicated</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
 <li><a href="_discover.html">Discover</a>
 </li>
+<li><a href="_plan.html">Plan</a>
+</li>
+<li><a href="_install.html">Install</a>
+</li>
 <li><a href="_upgrade.html">Upgrade</a>
-<ul class="sectlevel3">
-<li><a href="osd-lifecycle-policy_plan-cluster-upgrades.html">Life cycle policies and planning</a>
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
 </li>
-<li><a href="upgrade_plan-cluster-upgrades.html">Understanding Openshift Dedicated cluster upgrades</a>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
 </li>
-<li><a href="osd-upgrade-a-cluster_upgrade-a-cluster.html">Upgrade a cluster</a>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html"><span class="toc-current">Listing RPM update package contents</span></a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
 </li>
 </ul>
 </li>
+<li><a href="_administer.html">Administer</a>
+</li>
+<li><a href="_develop.html">Develop</a>
+</li>
+<li><a href="_configure.html">Configure</a>
+</li>
 <li><a href="_observe.html">Observe</a>
+</li>
+<li><a href="_integrate.html">Integrate</a>
+</li>
+<li><a href="_troubleshooting.html">Troubleshooting</a>
+</li>
+<li><a href="_reference.html">Reference</a>
+</li>
+<li><a href="_networking.html">Networking</a>
+</li>
+<li><a href="_storage.html">Storage</a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect4">
-<h5 id="_cluster_update_options">Cluster update options</h5>
-<div class="paragraph">
-<p>The process for updating your cluster is based on the updates that are available for your current version, and what level of release you are interested in, such as z-stream or y-stream updates.</p>
+<div class="sect2">
+<h3 id="microshift-list-rpm-update-contents-intro_list-rpm-update-contents">Listing RPM update package contents</h3>
+<div class="paragraph _abstract">
+<p>You can preview the contents of a MicroShift RPM package update before installing. This helps you make sure that the update you are planning is a supported configuration of Red Hat Device Edge.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Patch (z-stream) updates</strong>: You do not need to change the channel when performing a patch update within your current minor version. For example, if you have your cluster at version 4.19.12, you can stay within your current <code>stable-4.19</code> channel, and decide to update your cluster when there are updates available, such as 4.19.13, 4.19.14, 4.19.17, 4.19.20 until you have the latest updates for that minor version.</p>
-</li>
-<li>
-<p><strong>Minor version (y-stream) updates</strong>: To update to a new minor release, you must change the channel to the next release channel.</p>
-<div class="paragraph">
-<p>For example, if you have your cluster at version 4.19.12, you can switch the channel to <code>stable-4.20</code> or <code>stable-4.21</code> and check if there is an update path available for those versions.</p>
-</div>
-<div class="paragraph">
-<p>If <code>stable-4.20</code> has an update path available, it shows you the z-stream updates for your current version, as well as the updates to the y+1 version, such as 4.19.14, 4.19.17, 4.19.20, 4.19.23, 4.19.27, 4.20.0.</p>
-</div>
-<div class="paragraph">
-<p>If you select <code>stable-4.21</code>, the available updates might be 4.19.14, 4.19.17, 4.19.20, 4.19.23, 4.19.27, 4.20.0, 4.20.3, 4.20.4, 4.20.6, 4.20.7, with all the z-stream/patch updates displayed right through to the y+2 version of 4.21.0.</p>
-</div>
+<p><a href="microshift-get-rpm-release-info_list-rpm-update-contents.html">Listing the contents of the MicroShift RPM release package</a></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>When you have set the channel and an update is initiated, the Cluster Version Operator (CVO) retrieves the target release image and begins applying the changes to the cluster.</p>
-</div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="_channel_groups_and_channels.html">Channel groups and channels</a> | ↑ Up: <a href="osd-upgrading-channels_plan-cluster-upgrades.html">Channels in Openshift Dedicated clusters</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-upgrading-switch-channels_plan-cluster-upgrades.html">Switch channels to view available update options</a> →</p>
+<p>← Previous: <a href="microshift-updates-edge-to-image-uid-drift_migrate-rhel-edge-to-image-mode.html">Work around UID and GID drift when migrating to image mode for RHEL</a> | ↑ Up: <a href="_upgrade.html">Upgrade</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-get-rpm-release-info_list-rpm-update-contents.html">Listing the contents of the MicroShift RPM release package</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 14:36:01 -0500
+Last updated 2026-09-04 15:34:47 -0500
 </div>
 </div>
+<style>
+  #toc ul li.has-children > ul {
+    display: none;
+  }
+  #toc ul li.has-children.open > ul {
+    display: block;
+  }
+  .toc-toggle {
+    cursor: pointer;
+    margin-right: 4px;
+    font-size: 0.75em;
+    user-select: none;
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('#toc li').forEach(function(li) {
+      var sublist = li.querySelector(':scope > ul');
+      if (sublist) {
+        li.classList.add('has-children');
+        var toggle = document.createElement('span');
+        toggle.className = 'toc-toggle';
+        toggle.textContent = '▶';
+        li.insertBefore(toggle, li.firstChild);
+        toggle.addEventListener('click', function() {
+          li.classList.toggle('open');
+          toggle.textContent = li.classList.contains('open') ? '▼' : '▶';
+        });
+      }
+    });
+  });
+</script>
 </body>
 </html>
