@@ -438,7 +438,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="microshift-rhde-updates_update-rhel-os-only" class="book toc2 toc-left">
+<body id="microshift-get-rpm-release-info_list-rpm-update-contents" class="book toc2 toc-left">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
@@ -454,33 +454,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
 <ul class="sectlevel2">
-<li><a href="microshift-updates-rpms-ostree-con_apply-updates-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
 </li>
-<li><a href="microshift-rpm-ostree-updates_understand-automatic-rollbacks.html">Update MicroShift on RHEL for Edge</a>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
 </li>
-<li><a href="microshift-updates-rpms-con_apply-patch-update-rpms.html">About updates using RPMs</a>
-</li>
-<li><a href="microshift-updates-rpms-con_apply-minor-version-update-rpms.html">About updates using RPMs</a>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
 </li>
 <li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
 </li>
-<li><a href="microshift-verify-system-health-con_verify-system-health.html">Verify system health</a>
-</li>
-<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
-</li>
-<li><a href="microshift-identify-potential-update-issues-con_identify-potential-update-issues.html">Identify potential update issues</a>
-</li>
-<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+<li><a href="microshift-get-rpm-release-info_list-rpm-update-contents.html"><span class="toc-current">Listing the contents of the MicroShift RPM release package</span></a>
 </li>
 <li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
 </li>
-<li><a href="microshift-simultaneous-microshift-rhel-updates_update-microshift-and-os-concurrently.html">Simultaneous MicroShift and RHEL updates</a>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
 </li>
-<li><a href="microshift-standalone-rhel-updates_update-rhel-os-only.html">Standalone RHEL updates</a>
-</li>
-<li><a href="microshift-standalone-updates_update-microshift-only.html">Standalone MicroShift updates</a>
-</li>
-<li><a href="microshift-manage-rhel-repositories_manage-rhel-repositories.html">Manage RHEL repositories for RPM updates</a>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
 </li>
 </ul>
 </li>
@@ -506,31 +494,116 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div class="sect3">
-<h4 id="microshift-rhde-updates_update-rhel-os-only">Red&#160;Hat Device Edge updates</h4>
+<div class="sect2">
+<h3 id="microshift-get-rpm-release-info_list-rpm-update-contents">Listing the contents of the MicroShift RPM release package</h3>
 <div class="paragraph _abstract">
-<p>You can update Red&#160;Hat Enterprise Linux (RHEL) operating system independently of your Red&#160;Hat build of MicroShift version if the version combination is supported.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Warning">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Keeping component versions in a supported configuration of Red&#160;Hat Device Edge can require updating MicroShift and RHEL at the same time. Ensure that your version of RHEL is compatible with the version of MicroShift you are updating to, especially if you are updating MicroShift across two minor versions. Otherwise, you can create an unsupported configuration, break your node, or both. For more information, see the following link:</p>
+<p>To see the images included with a MicroShift release, you can list the contents of the <code>microshift-release-info</code> RPM by downloading and unpacking the RPM.</p>
 </div>
 <div class="ulist">
+<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/getting_ready_to_install_microshift/microshift-install-get-ready#get-ready-install-rhde-compatibility-table_microshift-install-get-ready">Red Hat Device Edge release compatibility matrix</a></p>
+<p>You are using Red&#160;Hat Enterprise Linux (RHEL) or an operating system with an RPM package manager.</p>
+</li>
+<li>
+<p>Your MicroShift repositories are enabled.</p>
 </li>
 </ul>
 </div>
-</td>
-</tr>
-</table>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Optional: List which versions of the MicroShift RPM are available for download by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo dnf repoquery microshift-release-info-0:4.17.1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace the example value <code>4.17.1</code> with the major and minor release numbers you are interested in.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Updating Subscription Management repositories.
+microshift-release-info-0:4.17.1-202406281132.p0.g8babeb9.assembly.4.17.1.el9.noarch
+microshift-release-info-0:4.17.10-202408291007.p0.g6e4ee4d.assembly.4.17.10.el9.noarch
+microshift-release-info-0:4.17.2-202407040825.p0.g2e0407e.assembly.4.17.2.el9.noarch
+microshift-release-info-0:4.17.3-202407111123.p0.ge4206d3.assembly.4.17.3.el9.noarch
+microshift-release-info-0:4.17.4-202407191908.p0.g057a9af.assembly.4.17.4.el9.noarch
+microshift-release-info-0:4.17.5-202407250951.p0.g0afcb57.assembly.4.17.5.el9.noarch
+microshift-release-info-0:4.17.6-202408010822.p0.gc4ded66.assembly.4.17.6.el9.noarch
+microshift-release-info-0:4.17.7-202408081107.p0.g0597bb8.assembly.4.17.7.el9.noarch
+microshift-release-info-0:4.17.8-202408150851.p0.gc8a3bb1.assembly.4.17.8.el9.noarch
+microshift-release-info-0:4.17.9-202408220842.p0.gefa92a2.assembly.4.17.9.el9.noarch</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Download the RPM package you want by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo dnf download microshift-release-info-<em>&lt;release_version&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;release_version&gt;</em></code> with the numerical value of the release you are deploying, using the entire version number, for example, <code>4.17.1</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">microshift-release-info-4.17.1.-202411101230.p0.g7dc6a00.assembly.4.17.1.el9.noarch.rpm</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Your output should contain the date and commit ID.</p>
+</div>
+</li>
+<li>
+<p>Unpack the RPM package without installing it by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rpm2cpio <em>&lt;microshift_release_info&gt;</em> | cpio -idmv</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;microshift_release_info&gt;</em></code> with the name of the RPM package from the previous step. For example, <code>microshift-release-info-4.17.10-202408291007.p0.g6e4ee4d.assembly.4.17.10.el9.noarch.rpm</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">./usr/share/microshift
+./usr/share/microshift/blueprint
+./usr/share/microshift/blueprint/blueprint-aarch64.toml
+./usr/share/microshift/blueprint/blueprint-x86_64.toml
+./usr/share/microshift/release
+./usr/share/microshift/release/release-aarch64.json
+./usr/share/microshift/release/release-x86_64.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>List the contents by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat ./usr/share/microshift/release/release-x86_64.json</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">{
+  "release": {
+    "base": "4.17.10"
+  },
+  "images": {
+    "cli": "....
+# ...</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 <div class="ulist">
 <ul>
@@ -538,7 +611,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="microshift-standalone-rhel-updates_update-rhel-os-only.html">Standalone RHEL updates</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-standalone-updates_update-microshift-only.html">Standalone MicroShift updates</a> →</p>
+<p>← Previous: <a href="microshift-updates-edge-to-image-uid-drift_migrate-rhel-edge-to-image-mode.html">Work around UID and GID drift when migrating to image mode for RHEL</a> | ↑ Up: <a href="_upgrade.html">Upgrade</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a> →</p>
 </div>
 </div>
 <div id="footer">

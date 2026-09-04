@@ -438,7 +438,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="microshift-applying-patch-updates-rpms_apply-patch-update-rpms" class="book toc2 toc-left">
+<body id="microshift-standalone-rhel-updates_update-options-rhde" class="book toc2 toc-left">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
@@ -454,33 +454,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
 <ul class="sectlevel2">
-<li><a href="microshift-updates-rpms-ostree-con_apply-updates-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
 </li>
-<li><a href="microshift-rpm-ostree-updates_understand-automatic-rollbacks.html">Update MicroShift on RHEL for Edge</a>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
 </li>
-<li><a href="microshift-updates-rpms-con_apply-patch-update-rpms.html">About updates using RPMs</a>
-</li>
-<li><a href="microshift-updates-rpms-con_apply-minor-version-update-rpms.html">About updates using RPMs</a>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
 </li>
 <li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
 </li>
-<li><a href="microshift-verify-system-health-con_verify-system-health.html">Verify system health</a>
-</li>
-<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
-</li>
-<li><a href="microshift-identify-potential-update-issues-con_identify-potential-update-issues.html">Identify potential update issues</a>
-</li>
-<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+<li><a href="microshift-get-rpm-release-info_list-rpm-update-contents.html">Listing the contents of the MicroShift RPM release package</a>
 </li>
 <li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
 </li>
-<li><a href="microshift-simultaneous-microshift-rhel-updates_update-microshift-and-os-concurrently.html">Simultaneous MicroShift and RHEL updates</a>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
 </li>
-<li><a href="microshift-standalone-rhel-updates_update-rhel-os-only.html">Standalone RHEL updates</a>
-</li>
-<li><a href="microshift-standalone-updates_update-microshift-only.html">Standalone MicroShift updates</a>
-</li>
-<li><a href="microshift-manage-rhel-repositories_manage-rhel-repositories.html">Manage RHEL repositories for RPM updates</a>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
 </li>
 </ul>
 </li>
@@ -507,99 +495,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect3">
-<h4 id="microshift-applying-patch-updates-rpms_apply-patch-update-rpms">Apply patch updates using RPMs</h4>
+<h4 id="microshift-standalone-rhel-updates_update-options-rhde">Standalone RHEL updates</h4>
 <div class="paragraph _abstract">
-<p>Updating MicroShift on non <code>rpm-ostree</code> systems such as Red&#160;Hat Enterprise Linux (RHEL) requires downloading then updating the RPMs. For example, use the following procedure to upgrade from 4.22.0 to 4.22.1.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Warning">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Keeping component versions in a supported configuration of Red&#160;Hat Device Edge can require updating MicroShift and RHEL at the same time. Ensure that your version of RHEL is compatible with the version of MicroShift you are updating to, especially if you are updating MicroShift across two minor versions. Otherwise, you can create an unsupported configuration, break your node, or both. For more information, see the following link:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/getting_ready_to_install_microshift/microshift-install-get-ready#get-ready-install-rhde-compatibility-table_microshift-install-get-ready">Red Hat Device Edge release compatibility matrix</a></p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>You cannot downgrade MicroShift with this process. Downgrades are not supported.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>The system requirements for installing MicroShift have been met.</p>
-</li>
-<li>
-<p>You have root user access to the host.</p>
-</li>
-<li>
-<p>The version of MicroShift you have is compatible to upgrade to the version you are preparing to use.</p>
-</li>
-<li>
-<p>You have verified that your host operating system is compatible with the version of MicroShift you are preparing to install.</p>
-</li>
-<li>
-<p>You have completed a system backup.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Update the MicroShift RPMs by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo dnf update microshift</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Restart MicroShift by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart microshift</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The greenboot system health check runs on this update type, but does not perform any actions. If the update fails, an error message appears with the instruction to check the logs.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ol>
+<p>You can update to any RHEL type without updating MicroShift if the two final versions in your Red&#160;Hat Device Edge are compatible. Check compatibilities before beginning an update. Use the RHEL documentation specific to your use case.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -607,7 +505,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-manual-rpm-updates_apply-patch-update-rpms.html">Manual RPM updates</a> | ↑ Up: <a href="microshift-updates-rpms-con_apply-patch-update-rpms.html">About updates using RPMs</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-updates-rpms-con_apply-minor-version-update-rpms.html">About updates using RPMs</a> →</p>
+<p>← Previous: <a href="microshift-manual-rpm-updates_update-options-rhde.html">Manual RPM updates</a> | ↑ Up: <a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-simultaneous-microshift-rhel-updates_update-options-rhde.html">Simultaneous MicroShift and RHEL updates</a> →</p>
 </div>
 </div>
 <div id="footer">
