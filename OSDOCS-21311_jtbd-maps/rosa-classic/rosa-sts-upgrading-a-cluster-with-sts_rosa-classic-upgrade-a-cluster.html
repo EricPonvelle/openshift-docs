@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red Hat OpenShift Service on AWS classic architecture</title>
+<title>Red Hat OpenShift Services on AWS (classic architecture)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,10 +440,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster" class="book toc2 toc-left">
 <div id="header">
-<h1>Red Hat OpenShift Service on AWS classic architecture</h1>
+<h1>Red Hat OpenShift Services on AWS (classic architecture)</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Service on AWS classic architecture</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
 <li><a href="_discover.html">Discover</a>
@@ -452,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="rosa-upgrading-lifecycle-policy_rosa-classic-plan-cluster-upgrades.html">Life cycle policies and planning</a>
 </li>
-<li><a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html"><span class="toc-current">Upgrading a {product-title} cluster</span></a>
+<li><a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html"><span class="toc-current">Upgrading a Red Hat OpenShift Services on AWS (classic architecture) cluster</span></a>
 </li>
 </ul>
 </li>
@@ -463,9 +463,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect2">
-<h3 id="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster">Upgrading a {product-title} cluster</h3>
+<h3 id="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster">Upgrading a Red Hat OpenShift Services on AWS (classic architecture) cluster</h3>
 <div class="paragraph _abstract">
-<p>Upgrade your {product-title} clusters using either the {rosa-cli-first} or the OpenShift Cluster Manager console. While both methods verify compatibility, the {rosa-cli} can automatically align {AWS} Security Token Service (STS) policies to the target version, ensuring your IAM roles meet all security requirements for the new release.</p>
+<p>Upgrade your Red Hat OpenShift Services on AWS (classic architecture) clusters using either the ROSA command-line interface (CLI) (<code>rosa</code>) or the OpenShift Cluster Manager console. While both methods verify compatibility, the ROSA CLI can automatically align Amazon Web Services (AWS) Security Token Service (STS) policies to the target version, ensuring your IAM roles meet all security requirements for the new release.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -482,7 +482,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="paragraph">
-<p>When a {product-title} cluster that uses AWS Security Token Services (STS) is upgraded, the {rosa-cli} verifies the account and Operator role policies for the chosen cluster are compatible with the target version of the upgrade. If the policies are compatible, the CLI automatically upgrades the cluster. If the policies are not compatible with the chosen upgrade version, the CLI automatically upgrades IAM policies before upgrading the cluster. When scheduling the upgrade, you give administrative acknowledgment to confirm you have reviewed the changes involved with the upgrade, if required.</p>
+<p>When a Red Hat OpenShift Services on AWS (classic architecture) cluster that uses AWS Security Token Services (STS) is upgraded, the ROSA CLI verifies the account and Operator role policies for the chosen cluster are compatible with the target version of the upgrade. If the policies are compatible, the CLI automatically upgrades the cluster. If the policies are not compatible with the chosen upgrade version, the CLI automatically upgrades IAM policies before upgrading the cluster. When scheduling the upgrade, you give administrative acknowledgment to confirm you have reviewed the changes involved with the upgrade, if required.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -490,10 +490,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="rosa-upgrading-lifecycle-policy_rosa-classic-upgrade-a-cluster.html">Life cycle policies and planning</a></p>
 </li>
 <li>
-<p><a href="rosa-upgrading-channels_rosa-classic-upgrade-a-cluster.html">Channels in {product-title} clusters</a></p>
+<p><a href="rosa-upgrading-channels_rosa-classic-upgrade-a-cluster.html">Channels in Red Hat OpenShift Services on AWS (classic architecture) clusters</a></p>
 </li>
 <li>
-<p><a href="rosa-how-upgrades-work_rosa-classic-upgrade-a-cluster.html">How {product-title} cluster upgrades work</a></p>
+<p><a href="rosa-how-upgrades-work_rosa-classic-upgrade-a-cluster.html">How Red Hat OpenShift Services on AWS (classic architecture) cluster upgrades work</a></p>
 </li>
 <li>
 <p><a href="rosa-upgrading-cli_rosa-classic-upgrade-a-cluster.html">Updating with the ROSA CLI</a></p>
@@ -502,7 +502,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="rosa-upgrade-ocm_rosa-classic-upgrade-a-cluster.html">Upgrading with the OpenShift Cluster Manager console</a></p>
 </li>
 <li>
-<p><a href="rosa-deleting-cluster-upgrade-cli_rosa-classic-upgrade-a-cluster.html">Deleting a {product-title} cluster upgrade with the ROSA CLI</a></p>
+<p><a href="rosa-deleting-cluster-upgrade-cli_rosa-classic-upgrade-a-cluster.html">Deleting a Red Hat OpenShift Services on AWS (classic architecture) cluster upgrade with the ROSA CLI</a></p>
 </li>
 <li>
 <p><a href="rosa-deleting-cluster-upgrade-ocm_rosa-classic-upgrade-a-cluster.html">Deleting an upgrade with the OpenShift Cluster Manager console</a></p>
@@ -511,12 +511,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="_cluster_update_options.html">Cluster update options</a> | ↑ Up: <a href="_upgrade.html">Upgrade</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Service on AWS classic architecture</a> | Next: <a href="rosa-upgrading-lifecycle-policy_rosa-classic-upgrade-a-cluster.html">Life cycle policies and planning</a> →</p>
+<p>← Previous: <a href="_cluster_update_options.html">Cluster update options</a> | ↑ Up: <a href="_upgrade.html">Upgrade</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-upgrading-lifecycle-policy_rosa-classic-upgrade-a-cluster.html">Life cycle policies and planning</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 10:36:54 -0500
+Last updated 2026-09-04 11:08:54 -0500
 </div>
 </div>
 </body>

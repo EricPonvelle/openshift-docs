@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red Hat OpenShift Service on AWS classic architecture</title>
+<title>Red Hat OpenShift Services on AWS (classic architecture)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,10 +440,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="rosa-sts-aws-requirements-attaching-boundary-policy_about-iam-resources-for-sts-clusters" class="book toc2 toc-left">
 <div id="header">
-<h1>Red Hat OpenShift Service on AWS classic architecture</h1>
+<h1>Red Hat OpenShift Services on AWS (classic architecture)</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Service on AWS classic architecture</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
 <li><a href="_discover.html">Discover</a>
@@ -463,7 +463,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="rosa-sts-aws-requirements-attaching-boundary-policy_about-iam-resources-for-sts-clusters">Permission boundaries for the installer role</h5>
 <div class="paragraph _abstract">
-<p>You can apply a policy as a <em>permissions boundary</em> on an installer role. You can use an AWS-managed policy or a customer-managed policy to set the boundary for an Amazon Web Services (AWS) Identity and Access Management (IAM) entity (user or role). The combination of policy and boundary policy limits the maximum permissions for the user or role. {product-title} includes a set of three prepared permission boundary policy files, with which you can restrict permissions for the installer role since changing the installer policy itself is not supported.</p>
+<p>You can apply a policy as a <em>permissions boundary</em> on an installer role. You can use an AWS-managed policy or a customer-managed policy to set the boundary for an Amazon Web Services (AWS) Identity and Access Management (IAM) entity (user or role). The combination of policy and boundary policy limits the maximum permissions for the user or role. Red Hat OpenShift Services on AWS (classic architecture) includes a set of three prepared permission boundary policy files, with which you can restrict permissions for the installer role since changing the installer policy itself is not supported.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -473,7 +473,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>This feature is only supported on {rosa-classic-title} clusters.</p>
+<p>This feature is only supported on Red Hat OpenShift Service on AWS (classic architecture) clusters.</p>
 </div>
 </td>
 </tr>
@@ -485,14 +485,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>The <em>Core</em> boundary policy file contains the minimum permissions needed for {product-title} installer to install an {product-title} cluster.
+<p>The <em>Core</em> boundary policy file contains the minimum permissions needed for Red Hat OpenShift Services on AWS (classic architecture) installer to install an Red Hat OpenShift Services on AWS (classic architecture) cluster.
 The installer does not have permissions to create a virtual private cloud (VPC) or PrivateLink (PL). A VPC needs to be provided.</p>
 </li>
 <li>
-<p>The <em>VPC</em> boundary policy file contains the minimum permissions needed for {product-title} installer to create/manage the VPC. It does not include permissions for PL or core installation. If you need to install a cluster with enough permissions for the installer to install the cluster and create/manage the VPC, but you do not need to set up PL, then use the core and VPC boundary files together with the installer role.</p>
+<p>The <em>VPC</em> boundary policy file contains the minimum permissions needed for Red Hat OpenShift Services on AWS (classic architecture) installer to create/manage the VPC. It does not include permissions for PL or core installation. If you need to install a cluster with enough permissions for the installer to install the cluster and create/manage the VPC, but you do not need to set up PL, then use the core and VPC boundary files together with the installer role.</p>
 </li>
 <li>
-<p>The <em>PrivateLink (PL)</em> boundary policy file contains the minimum permissions needed for {product-title} installer to create the AWS PL with a cluster. It does not include permissions for VPC or core installation. Provide a pre-created VPC for all PL clusters during installation.</p>
+<p>The <em>PrivateLink (PL)</em> boundary policy file contains the minimum permissions needed for Red Hat OpenShift Services on AWS (classic architecture) installer to create the AWS PL with a cluster. It does not include permissions for VPC or core installation. Provide a pre-created VPC for all PL clusters during installation.</p>
 </li>
 </ul>
 </div>
@@ -549,7 +549,7 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 </ul>
 </div>
 <div class="paragraph">
-<p>This example procedure is applicable for an installer role and policy with the most restriction of permissions, using only the <em>core</em> installer permission boundary policy for {product-title}. You can complete this with the AWS console or the AWS CLI. This example uses the AWS CLI and the following policy:</p>
+<p>This example procedure is applicable for an installer role and policy with the most restriction of permissions, using only the <em>core</em> installer permission boundary policy for Red Hat OpenShift Services on AWS (classic architecture). You can complete this with the AWS console or the AWS CLI. This example uses the AWS CLI and the following policy:</p>
 </div>
 <div class="paragraph">
 <p>The following example shows <code>sts_installer_core_permission_boundary_policy.json</code>:</p>
@@ -567,7 +567,7 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 </td>
 <td class="content">
 <div class="paragraph">
-<p>To use the permission boundaries, you will need to prepare the permission boundary policy and add it to your relevant installer role in AWS IAM. While the {rosa-cli-first} offers a permission boundary function, it applies to all roles and not just the installer role, which means it does not work with the provided permission boundary policies (which are only for the installer role).</p>
+<p>To use the permission boundaries, you will need to prepare the permission boundary policy and add it to your relevant installer role in AWS IAM. While the ROSA command-line interface (CLI) (<code>rosa</code>) offers a permission boundary function, it applies to all roles and not just the installer role, which means it does not work with the provided permission boundary policies (which are only for the installer role).</p>
 </div>
 </td>
 </tr>
@@ -583,10 +583,10 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 <p>You have the permissions required to administer AWS roles and policies.</p>
 </li>
 <li>
-<p>You have installed and configured the latest AWS (<code>aws</code>) CLI and {rosa-cli} on your workstation.</p>
+<p>You have installed and configured the latest AWS (<code>aws</code>) CLI and ROSA CLI on your workstation.</p>
 </li>
 <li>
-<p>You have already prepared your {product-title} account-wide roles, includes the installer role, and the corresponding policies. If these do not exist in your AWS account, see "Creating the account-wide STS roles and policies" in <em>Additional resources</em>.</p>
+<p>You have already prepared your Red Hat OpenShift Services on AWS (classic architecture) account-wide roles, includes the installer role, and the corresponding policies. If these do not exist in your AWS account, see "Creating the account-wide STS roles and policies" in <em>Additional resources</em>.</p>
 </li>
 </ul>
 </div>
@@ -594,7 +594,7 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Prepare the policy file by entering the following command in the {rosa-cli}:</p>
+<p>Prepare the policy file by entering the following command in the ROSA CLI:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ curl -o ./rosa-installer-core.json https://raw.githubusercontent.com/openshift/managed-cluster-config/master/resources/sts/4.21/sts_installer_core_permission_boundary_policy.json</code></pre>
@@ -644,7 +644,7 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 </div>
 </li>
 <li>
-<p>Display the installer role to validate attached policies (including permissions boundary) by entering the following command in the {rosa-cli}:</p>
+<p>Display the installer role to validate attached policies (including permissions boundary) by entering the following command in the ROSA CLI:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam get-role --role-name ManagedOpenShift-Installer-Role \
@@ -683,12 +683,12 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-sts-account-wide-role-and-policy-aws-cli_about-iam-resources-for-sts-clusters.html">Account-wide IAM role and policy AWS CLI reference</a> | ↑ Up: <a href="rosa-classic-about-iam-resources_about-iam-resources-for-sts-clusters.html">About IAM resources for STS clusters</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Service on AWS classic architecture</a> | Next: <a href="rosa-sts-operator-roles_about-iam-resources-for-sts-clusters.html">Cluster-specific Operator IAM role reference</a> →</p>
+<p>← Previous: <a href="rosa-sts-account-wide-role-and-policy-aws-cli_about-iam-resources-for-sts-clusters.html">Account-wide IAM role and policy AWS CLI reference</a> | ↑ Up: <a href="rosa-classic-about-iam-resources_about-iam-resources-for-sts-clusters.html">About IAM resources for STS clusters</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sts-operator-roles_about-iam-resources-for-sts-clusters.html">Cluster-specific Operator IAM role reference</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 10:36:54 -0500
+Last updated 2026-09-04 11:08:54 -0500
 </div>
 </div>
 </body>

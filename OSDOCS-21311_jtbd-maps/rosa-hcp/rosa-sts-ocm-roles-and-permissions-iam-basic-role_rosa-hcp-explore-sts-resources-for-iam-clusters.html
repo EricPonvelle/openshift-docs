@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red Hat OpenShift Service on AWS with hosted control planes</title>
+<title>Red Hat OpenShift Services on AWS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,10 +440,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-explore-sts-resources-for-iam-clusters" class="book toc2 toc-left">
 <div id="header">
-<h1>Red Hat OpenShift Service on AWS with hosted control planes</h1>
+<h1>Red Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Service on AWS with hosted control planes</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
 <li><a href="_discover.html">Discover</a>
@@ -483,7 +483,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-explore-sts-resources-for-iam-clusters">Creating an ocm-role IAM role</h4>
 <div class="paragraph _abstract">
-<p>You create your <code>ocm-role</code> IAM roles by using the {rosa-cli-first}. If you want to create and manage clusters by using only the {rosa-cli-first} and the OpenShift CLI (<code>oc</code>), you can use the <code>--no-console</code> profile for the <code>ocm-role</code> IAM resource. For more information about the <code>ocm-role</code> IAM resource permissions profile, see the <em>Additional resources</em>.</p>
+<p>You create your <code>ocm-role</code> IAM roles by using the ROSA command-line interface (CLI) (<code>rosa</code>). If you want to create and manage clusters by using only the ROSA command-line interface (CLI) (<code>rosa</code>) and the OpenShift CLI (<code>oc</code>), you can use the <code>--no-console</code> profile for the <code>ocm-role</code> IAM resource. For more information about the <code>ocm-role</code> IAM resource permissions profile, see the <em>Additional resources</em>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -493,7 +493,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You must create the <code>ocm-role</code> IAM role before you can create your {product-title} cluster.</p>
+<p>You must create the <code>ocm-role</code> IAM role before you can create your Red Hat OpenShift Services on AWS cluster.</p>
 </div>
 </td>
 </tr>
@@ -512,7 +512,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You have the permissions required to install AWS account-wide roles.</p>
 </li>
 <li>
-<p>You have installed and configured the latest {rosa-cli}, <code>rosa</code>, on your installation host.</p>
+<p>You have installed and configured the latest ROSA CLI, <code>rosa</code>, on your installation host.</p>
 </li>
 </ul>
 </div>
@@ -555,7 +555,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The admin profile supports "auto" mode configuration for {product-title} clusters which provisions OIDC Configuration and Operator roles automatically. To achieve this automatic flow, the profile has a wider set of permissions than the standard profile.</p>
+<p>The admin profile supports "auto" mode configuration for Red Hat OpenShift Services on AWS clusters which provisions OIDC Configuration and Operator roles automatically. To achieve this automatic flow, the profile has a wider set of permissions than the standard profile.</p>
 </div>
 </td>
 </tr>
@@ -567,7 +567,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the {rosa-cli} (<code>rosa</code>) create your Operator roles and policies.
+<p>This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the ROSA CLI (<code>rosa</code>) create your Operator roles and policies.
 See "Methods of account-wide role creation" for more information. The following example shows what your creation flow might look like.</p>
 </div>
 <div class="listingblock">
@@ -626,7 +626,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 </dd>
 <dt class="hdlist1"><code>Role creation mode</code></dt>
 <dd>
-<p>Choose the method to create your AWS roles. By using <code>auto</code>, the {rosa-cli} generates and links the roles and policies. In the <code>auto</code> mode, you receive some different prompts to create the AWS roles.</p>
+<p>Choose the method to create your AWS roles. By using <code>auto</code>, the ROSA CLI generates and links the roles and policies. In the <code>auto</code> mode, you receive some different prompts to create the AWS roles.</p>
 </dd>
 <dt class="hdlist1"><code>Create the 'ManagedOpenShift-OCM-Role-182' role?</code></dt>
 <dd>
@@ -655,7 +655,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 </td>
 <td class="content">
 <div class="paragraph">
-<p>While the <code>no-console</code> profile offers the minimum permissions policy that can still create {product-title} clusters, the permissions are insufficient if you want to use <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> for cluster creation.</p>
+<p>While the <code>no-console</code> profile offers the minimum permissions policy that can still create Red Hat OpenShift Services on AWS clusters, the permissions are insufficient if you want to use <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> for cluster creation.</p>
 </div>
 </td>
 </tr>
@@ -678,12 +678,12 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-sts-understanding-user-role_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Understanding the user role</a> | ↑ Up: <a href="rosa-hcp-explore-sts-resources-for-iam-clusters_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Explore STS resources for IAM clusters</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Service on AWS with hosted control planes</a> | Next: <a href="rosa-sts-account-wide-roles-and-policies_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Account-wide IAM role and policy reference</a> →</p>
+<p>← Previous: <a href="rosa-sts-understanding-user-role_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Understanding the user role</a> | ↑ Up: <a href="rosa-hcp-explore-sts-resources-for-iam-clusters_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Explore STS resources for IAM clusters</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS</a> | Next: <a href="rosa-sts-account-wide-roles-and-policies_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Account-wide IAM role and policy reference</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 10:36:54 -0500
+Last updated 2026-09-04 11:08:54 -0500
 </div>
 </div>
 </body>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red Hat OpenShift Service on AWS classic architecture</title>
+<title>Red Hat OpenShift Services on AWS (classic architecture)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,10 +440,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="rosa-sdpolicy-networking_service-definition" class="book toc2 toc-left">
 <div id="header">
-<h1>Red Hat OpenShift Service on AWS classic architecture</h1>
+<h1>Red Hat OpenShift Services on AWS (classic architecture)</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Service on AWS classic architecture</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
 <li><a href="_discover.html">Discover</a>
@@ -475,7 +475,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Starting with {product-title} 4.14, the Custom Domain Operator is deprecated. To manage Ingress in ROSA 4.14 or later, use the Ingress Operator.</p>
+<p>Starting with Red Hat OpenShift Services on AWS (classic architecture) 4.14, the Custom Domain Operator is deprecated. To manage Ingress in ROSA 4.14 or later, use the Ingress Operator.</p>
 </div>
 </td>
 </tr>
@@ -500,7 +500,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect5">
 <h6 id="rosa-sdpolicy-load-balancers_service-definition">Load balancers</h6>
 <div class="paragraph">
-<p>{product-title} uses up to five different load balancers:</p>
+<p>Red Hat OpenShift Services on AWS (classic architecture) uses up to five different load balancers:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -520,7 +520,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Optional: A secondary router/ingress load balancer that is a secondary application load balancer, denoted by <code>apps2</code> in the URL. The secondary load balancer can be configured in OpenShift Cluster Manager to be either publicly accessible over the Internet or only privately accessible over a pre-existing private connection. If a <code>Label match</code> is configured for this router load balancer, then only application routes matching this label are exposed on this router load balancer; otherwise, all application routes are also exposed on this router load balancer.</p>
 </li>
 <li>
-<p>Optional: Load balancers for services. Enable non-HTTP/SNI traffic and non-standard ports for services. These load balancers can be mapped to a service running on {product-title} to enable advanced ingress features, such as non-HTTP/SNI traffic or the use of non-standard ports. Each AWS account has a quota which <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html">limits the number of Classic Load Balancers</a> that can be used within each cluster.</p>
+<p>Optional: Load balancers for services. Enable non-HTTP/SNI traffic and non-standard ports for services. These load balancers can be mapped to a service running on Red Hat OpenShift Services on AWS (classic architecture) to enable advanced ingress features, such as non-HTTP/SNI traffic or the use of non-standard ports. Each AWS account has a quota which <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html">limits the number of Classic Load Balancers</a> that can be used within each cluster.</p>
 </li>
 </ul>
 </div>
@@ -541,7 +541,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h6 id="rosa-sdpolicy-cluster-egress_service-definition">Cluster egress</h6>
 <div class="paragraph">
 <p>Pod egress traffic control through <code>EgressNetworkPolicy</code> objects can be used to prevent or limit outbound traffic in
-{product-title}.</p>
+Red Hat OpenShift Services on AWS (classic architecture).</p>
 </div>
 <div class="paragraph">
 <p>Public outbound traffic from the control plane and infrastructure nodes is required and necessary to maintain cluster image security and cluster monitoring. This requires that the <code>0.0.0.0/0</code> route belongs only to the Internet gateway; it is not possible to route this range over private connections.</p>
@@ -561,7 +561,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect5">
 <h6 id="rosa-sdpolicy-cloud-network-config_service-definition">Cloud network configuration</h6>
 <div class="paragraph">
-<p>{Product-title} allows for the configuration of a private network connection through AWS-managed technologies, such as:</p>
+<p>Red Hat OpenShift Services on AWS (classic architecture) allows for the configuration of a private network connection through AWS-managed technologies, such as:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -611,12 +611,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-sdpolicy-monitoring_service-definition.html">Monitoring</a> | ↑ Up: <a href="rosa-classic-service-definition_service-definition.html">Service definition</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Service on AWS classic architecture</a> | Next: <a href="rosa-sdpolicy-storage_service-definition.html">Storage</a> →</p>
+<p>← Previous: <a href="rosa-sdpolicy-monitoring_service-definition.html">Monitoring</a> | ↑ Up: <a href="rosa-classic-service-definition_service-definition.html">Service definition</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sdpolicy-storage_service-definition.html">Storage</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 10:36:54 -0500
+Last updated 2026-09-04 11:08:54 -0500
 </div>
 </div>
 </body>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red Hat OpenShift Service on AWS classic architecture</title>
+<title>Red Hat OpenShift Services on AWS (classic architecture)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,10 +440,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="rosa-upgrade-ocm_rosa-classic-upgrade-a-cluster" class="book toc2 toc-left">
 <div id="header">
-<h1>Red Hat OpenShift Service on AWS classic architecture</h1>
+<h1>Red Hat OpenShift Services on AWS (classic architecture)</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Service on AWS classic architecture</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
 <li><a href="_discover.html">Discover</a>
@@ -452,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="rosa-upgrading-lifecycle-policy_rosa-classic-plan-cluster-upgrades.html">Life cycle policies and planning</a>
 </li>
-<li><a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html">Upgrading a {product-title} cluster</a>
+<li><a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html">Upgrading a Red Hat OpenShift Services on AWS (classic architecture) cluster</a>
 </li>
 </ul>
 </li>
@@ -465,7 +465,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="rosa-upgrade-ocm_rosa-classic-upgrade-a-cluster">Upgrading with the OpenShift Cluster Manager console</h4>
 <div class="paragraph _abstract">
-<p>You can schedule upgrades for a {product-title} cluster manually either one time or on a recurring schedule by using OpenShift Cluster Manager console.</p>
+<p>You can schedule upgrades for a Red Hat OpenShift Services on AWS (classic architecture) cluster manually either one time or on a recurring schedule by using OpenShift Cluster Manager console.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -550,14 +550,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>The <strong>Update cluster</strong> dialog opens. Recommended cluster upgrades appear in the <strong>Select version</strong> pane. Select the version you want to upgrade your cluster to, and click <strong>Next</strong>.</p>
 </li>
 <li>
-<p>Optional: For {product-title} clusters that use AWS Security Token Service (STS), the account-level and cluster-specific Operator roles might need to be updated, depending on the selected target version.</p>
+<p>Optional: For Red Hat OpenShift Services on AWS (classic architecture) clusters that use AWS Security Token Service (STS), the account-level and cluster-specific Operator roles might need to be updated, depending on the selected target version.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>In the {rosa-cli}, run the <code>rosa list account-roles</code> command to list and verify that the account roles are compatible with the target minor version chosen for the upgrade. If the roles are not compatible, run the <code>rosa upgrade account-roles</code> command to upgrade the account roles to the latest OpenShift version.</p>
+<p>In the ROSA CLI, run the <code>rosa list account-roles</code> command to list and verify that the account roles are compatible with the target minor version chosen for the upgrade. If the roles are not compatible, run the <code>rosa upgrade account-roles</code> command to upgrade the account roles to the latest OpenShift version.</p>
 </li>
 <li>
-<p>In the {rosa-cli}, run the <code>rosa list operator-roles</code> command to list and verify that Operator roles associated with the cluster are compatible with the target minor version chosen for the upgrade. If not, run the <code>rosa upgrade operators-roles</code> command to upgrade the cluster&#8217;s Operator roles to the latest OpenShift version.</p>
+<p>In the ROSA CLI, run the <code>rosa list operator-roles</code> command to list and verify that Operator roles associated with the cluster are compatible with the target minor version chosen for the upgrade. If not, run the <code>rosa upgrade operators-roles</code> command to upgrade the cluster&#8217;s Operator roles to the latest OpenShift version.</p>
 </li>
 <li>
 <p>If you select an update version that requires approval, provide an administrator&#8217;s acknowledgment by typing <strong>Acknowledge</strong> into the field provided, and click <strong>Next</strong>.</p>
@@ -626,12 +626,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-upgrading-cli_rosa-classic-upgrade-a-cluster.html">Updating with the ROSA CLI</a> | ↑ Up: <a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html">Upgrading a {product-title} cluster</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Service on AWS classic architecture</a> | Next: <a href="rosa-deleting-cluster-upgrade-cli_rosa-classic-upgrade-a-cluster.html">Deleting a {product-title} cluster upgrade with the ROSA CLI</a> →</p>
+<p>← Previous: <a href="rosa-upgrading-cli_rosa-classic-upgrade-a-cluster.html">Updating with the ROSA CLI</a> | ↑ Up: <a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html">Upgrading a Red Hat OpenShift Services on AWS (classic architecture) cluster</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-deleting-cluster-upgrade-cli_rosa-classic-upgrade-a-cluster.html">Deleting a Red Hat OpenShift Services on AWS (classic architecture) cluster upgrade with the ROSA CLI</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 10:36:54 -0500
+Last updated 2026-09-04 11:08:54 -0500
 </div>
 </div>
 </body>
