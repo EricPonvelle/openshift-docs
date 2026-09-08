@@ -451,7 +451,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="_discover.html">Discover</a>
 </li>
 <li><a href="_install.html">Install</a>
-<ul class="sectlevel3">
+<ul class="sectlevel2">
 <li><a href="rosa-classic-create-a-rosa-classic-cluster-intro_rosa-classic-create-a-rosa-classic-cluster.html">Create a ROSA classic cluster</a>
 </li>
 <li><a href="rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc-intro_rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc.html">Create a ROSA classic cluster in a shared VPC</a>
@@ -470,119 +470,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div class="sect4">
-<h5 id="rosa-classic-delete-the-cluster-intro_rosa-classic-delete-the-cluster">Delete the cluster</h5>
+<div class="sect3">
+<h4 id="rosa-classic-delete-the-cluster-intro_rosa-classic-delete-the-cluster">Delete the cluster</h4>
 <div class="paragraph _abstract">
 <p>Delete the cluster by completing the tasks in this section. Review each step to prepare, configure, and verify your Red Hat OpenShift Services on AWS (classic architecture) environment.</p>
 </div>
-<div class="sect5">
-<h6 id="rosa-deleting-cluster_rosa-classic-delete-the-cluster">Deleting a ROSA cluster</h6>
-<div class="paragraph _abstract">
-<p>You can delete a Red Hat OpenShift Services on AWS (classic architecture) (ROSA) cluster using the ROSA CLI (<code>rosa</code>).</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If the cluster that created the VPC during the installation is deleted, the associated installation program-created VPC will also be deleted, resulting in the failure of all the clusters that are using the same VPC. Additionally, any resources created with the same <code>tagSet</code> key-value pair of the resources created by the installation program and labeled with a value of <code>owned</code> will also be deleted.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="ulist">
-<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have installed a ROSA cluster.</p>
+<p><a href="rosa-deleting-cluster_rosa-classic-delete-the-cluster.html">Deleting a ROSA cluster</a></p>
 </li>
 <li>
-<p>You have installed and configured the latest ROSA CLI (<code>rosa</code>) on your installation host.</p>
+<p><a href="rosa-deleting-cluster-troubleshooting_rosa-classic-delete-the-cluster.html">Troubleshooting cluster deletion</a></p>
+</li>
+<li>
+<p><a href="rosa-deleting-sts-resources-account-wide_rosa-classic-delete-the-cluster.html">Deleting the account-wide IAM resources</a></p>
 </li>
 </ul>
 </div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Enter the following command to delete a cluster and watch the logs, replacing <code>&lt;cluster_name&gt;</code> with the name or ID of your cluster:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa delete cluster --cluster=&lt;cluster_name&gt; --watch</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>To clean up your CloudFormation stack, enter the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init --delete</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-deleting-cluster-troubleshooting_rosa-classic-delete-the-cluster">Troubleshooting cluster deletion</h6>
-<div class="paragraph _abstract">
-<p>Troubleshooting issues that prevent cluster deletion involves verifying IAM configurations and confirming the removal of resource dependencies.</p>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>If the cluster cannot be deleted because of missing IAM roles, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/support/index#rosa-troubleshooting-cluster-deletion_rosa-troubleshooting-cluster-deployments">Repairing a cluster that cannot be deleted</a>.</p>
-</li>
-<li>
-<p>If the cluster cannot be deleted for other reasons:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Check that there are no Add-ons for your cluster pending in the <a href="https://console.redhat.com/openshift">Hybrid Cloud Console</a>.</p>
-</li>
-<li>
-<p>Check that all AWS resources and dependencies have been deleted in the Amazon Web Console.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-deleting-sts-resources-account-wide_rosa-classic-delete-the-cluster">Deleting the account-wide IAM resources</h6>
-<div class="paragraph _abstract">
-<p>You can delete the account-wide AWS Identity and Access Management (IAM) resources. First, delete all Red Hat OpenShift Services on AWS (classic architecture) clusters that depend on these resources.</p>
-</div>
-<div class="paragraph">
-<p>If you no longer need Red Hat OpenShift Cluster Manager to install Red Hat OpenShift Services on AWS (classic architecture) clusters, you can delete the OpenShift Cluster Manager and user IAM roles.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The account-wide IAM roles and policies might be used by other Red Hat OpenShift Services on AWS (classic architecture) clusters in the same AWS account. Only remove the resources if they are not required by other clusters.</p>
-</div>
-<div class="paragraph">
-<p>The OpenShift Cluster Manager and user IAM roles are required for other Red Hat OpenShift Services on AWS (classic architecture) clusters in the same AWS account. These roles enable you to install, manage, and delete clusters by using OpenShift Cluster Manager. Only remove them if you no longer need to manage Red Hat OpenShift Services on AWS (classic architecture) clusters in your account. If these roles are removed before cluster deletion, see "Repairing a cluster that cannot be deleted" in <em>Troubleshooting cluster deployments</em>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-classic-set-up-initial-access-to-the-cluster-intro_rosa-classic-set-up-initial-access-to-the-cluster.html">Set up initial access to the cluster</a> | ↑ Up: <a href="rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc-intro_rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc.html">Create a ROSA classic cluster in a shared VPC</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="_upgrade.html">Upgrade</a> →</p>
+<p>← Previous: <a href="rosa-accessing-your-cluster_rosa-classic-set-up-initial-access-to-the-cluster.html">Accessing your cluster with an IDP account</a> | ↑ Up: <a href="rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc-intro_rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc.html">Create a ROSA classic cluster in a shared VPC</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-deleting-cluster_rosa-classic-delete-the-cluster.html">Deleting a ROSA cluster</a> →</p>
 </div>
 </div>
 <div id="footer">

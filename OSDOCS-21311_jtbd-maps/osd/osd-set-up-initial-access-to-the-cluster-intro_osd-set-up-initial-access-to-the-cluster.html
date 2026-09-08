@@ -449,7 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="_discover.html">Discover</a>
 </li>
 <li><a href="_install.html">Install</a>
-<ul class="sectlevel3">
+<ul class="sectlevel2">
 <li><a href="osd-create-an-osd-cluster-on-google-cloud-intro_osd-create-an-osd-cluster-on-google-cloud.html">Create an OSD cluster on Google Cloud</a>
 </li>
 <li><a href="osd-create-an-osd-cluster-on-aws-intro_osd-create-an-osd-cluster-on-aws.html">Create an OSD cluster on AWS</a>
@@ -464,384 +464,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div class="sect4">
-<h5 id="osd-set-up-initial-access-to-the-cluster-intro_osd-set-up-initial-access-to-the-cluster">Set up initial access to the cluster</h5>
+<div class="sect3">
+<h4 id="osd-set-up-initial-access-to-the-cluster-intro_osd-set-up-initial-access-to-the-cluster">Set up initial access to the cluster</h4>
 <div class="paragraph _abstract">
 <p>Set up initial access to the cluster by completing the tasks in this section. Review each step to prepare, configure, and verify your Openshift Dedicated environment.</p>
 </div>
-<div class="sect5">
-<h6 id="config-idp_osd-set-up-initial-access-to-the-cluster">Configuring an identity provider</h6>
-<div class="paragraph _abstract">
-<p>After you have installed Openshift Dedicated, you must configure your cluster to use an identity provider. You can then add members to your identity provider to grant them access to your cluster.</p>
-</div>
-<div class="paragraph">
-<p>You can configure different identity provider types for your Openshift Dedicated cluster. Supported types include GitHub, GitHub Enterprise, GitLab, Google, LDAP, OpenID Connect, and htpasswd identity providers.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The htpasswd identity provider option is included only to enable the creation of a single, static administration user. htpasswd is not supported as a general-use identity provider for Openshift Dedicated.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following procedure configures a GitHub identity provider as an example.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Warning">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Configuring GitHub authentication allows users to log in to Openshift Dedicated with their GitHub credentials. To prevent anyone with any GitHub user ID from logging in to your Openshift Dedicated cluster, you must restrict access to only those in specific GitHub organizations or teams.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
-</li>
-<li>
-<p>You created an Openshift Dedicated cluster.</p>
-</li>
-<li>
-<p>You have a GitHub user account.</p>
-</li>
-<li>
-<p>You created a GitHub organization in your GitHub account. For more information, see <a href="https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch">Creating a new organization from scratch</a> in the GitHub documentation.</p>
-</li>
-<li>
-<p>If you are restricting user access to a GitHub team, you have created a team within your GitHub organization. For more information, see <a href="https://docs.github.com/en/organizations/organizing-members-into-teams/creating-a-team">Creating a team</a> in the GitHub documentation.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Navigate to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and select your cluster.</p>
-</li>
-<li>
-<p>Select <strong>Access control</strong> &#8594; <strong>Identity providers</strong>.</p>
-</li>
-<li>
-<p>Select the <strong>GitHub</strong> identity provider type from the <strong>Add identity provider</strong> drop-down menu.</p>
-</li>
-<li>
-<p>Enter a unique name for the identity provider. The name cannot be changed later.</p>
-</li>
-<li>
-<p>Register an OAuth application in your GitHub organization by following the steps in the <a href="https://docs.github.com/en/developers/apps/creating-an-oauth-app">GitHub documentation</a>.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>You must register the OAuth app under your GitHub organization. If you register an OAuth application that is not owned by the organization that contains your cluster users or teams, then user authentication to the cluster will not succeed.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>For the homepage URL in your GitHub OAuth app configuration, specify the <code>https://oauth-openshift.apps.&lt;cluster_name&gt;.&lt;cluster_domain&gt;</code> portion of the <strong>OAuth callback URL</strong> that is automatically generated in the <strong>Add a GitHub identity provider</strong> page on OpenShift Cluster Manager.</p>
-<div class="paragraph">
-<p>The following is an example of a homepage URL for a GitHub identity provider:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>https://oauth-openshift.apps.openshift-cluster.example.com</pre>
-</div>
-</div>
+<p><a href="config-idp_osd-set-up-initial-access-to-the-cluster.html">Configuring an identity provider</a></p>
 </li>
 <li>
-<p>For the authorization callback URL in your GitHub OAuth app configuration, specify the full <strong>OAuth callback URL</strong> that is automatically generated in the <strong>Add a GitHub identity provider</strong> page on OpenShift Cluster Manager. The full URL has the following syntax:</p>
-<div class="listingblock">
-<div class="content">
-<pre>https://oauth-openshift.apps.&lt;cluster_name&gt;.&lt;cluster_domain&gt;/oauth2callback/&lt;idp_provider_name&gt;</pre>
-</div>
-</div>
+<p><a href="osd-revoke-user-access_osd-set-up-initial-access-to-the-cluster.html">Revoke user access to a cluster</a></p>
+</li>
+<li>
+<p><a href="osd-grant-admin-privileges_osd-set-up-initial-access-to-the-cluster.html">Granting administrator privileges to a user</a></p>
+</li>
+<li>
+<p><a href="osd-revoke-admin-privileges_osd-set-up-initial-access-to-the-cluster.html">Revoke administrator privileges from a user</a></p>
+</li>
+<li>
+<p><a href="access-cluster_osd-set-up-initial-access-to-the-cluster.html">Accessing your cluster</a></p>
 </li>
 </ul>
-</div>
-</li>
-<li>
-<p>Return to the <strong>Edit identity provider: GitHub</strong> dialog in <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and select <strong>Claim</strong> from the <strong>Mapping method</strong> drop-down menu.</p>
-</li>
-<li>
-<p>Enter the <strong>Client ID</strong> and <strong>Client secret</strong> for your GitHub OAuth application. The GitHub page for your OAuth app provides the ID and secret.</p>
-</li>
-<li>
-<p>Optional: Enter a <strong>hostname</strong>.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>A hostname must be entered when using a hosted instance of GitHub Enterprise.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Optional: You can specify a certificate authority (CA) file to validate server certificates for a configured GitHub Enterprise URL. Click <strong>Browse</strong> to locate and attach a <strong>CA file</strong> to the identity provider.</p>
-</li>
-<li>
-<p>Select <strong>Use organizations</strong> or <strong>Use teams</strong> to restrict access to a GitHub organization or a GitHub team within an organization.</p>
-</li>
-<li>
-<p>Enter the name of the organization or team you want to restrict access to. Click <strong>Add more</strong> to specify multiple organizations or teams.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Specified organizations must own an OAuth app that was registered by using the preceding steps. If you specify a team, it must exist within an organization that owns an OAuth app that was registered by using the preceding steps.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Click <strong>Add</strong> to apply the identity provider configuration.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>It might take approximately two minutes for the identity provider configuration to become active.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ol>
-</div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>After the configuration becomes active, the identity provider is listed under <strong>Access control</strong> &#8594; <strong>Identity providers</strong> on the <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> page for your cluster.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect5">
-<h6 id="osd-revoke-user-access_osd-set-up-initial-access-to-the-cluster">Revoke user access to a cluster</h6>
-<div class="paragraph _abstract">
-<p>You can revoke cluster access from an identity provider user by removing them from your configured identity provider.</p>
-</div>
-<div class="paragraph">
-<p>You can configure different types of identity providers for your Openshift Dedicated cluster. The following example procedure revokes cluster access for a member of a GitHub organization or team that is configured for identity provision to the cluster.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have an Openshift Dedicated cluster.</p>
-</li>
-<li>
-<p>You have a GitHub user account.</p>
-</li>
-<li>
-<p>You have configured a GitHub identity provider for your cluster and added an identity provider user.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Navigate to <a href="https://github.com">github.com</a> and log in to your GitHub account.</p>
-</li>
-<li>
-<p>Remove the user from your GitHub organization or team:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>If your identity provider configuration uses a GitHub organization, follow the steps in <a href="https://docs.github.com/en/organizations/managing-membership-in-your-organization/removing-a-member-from-your-organization">Removing a member from your organization</a> in the GitHub documentation.</p>
-</li>
-<li>
-<p>If your identity provider configuration uses a team within a GitHub organization, follow the steps in <a href="https://docs.github.com/en/organizations/organizing-members-into-teams/removing-organization-members-from-a-team">Removing organization members from a team</a> in the GitHub documentation.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>After removing the user from your identity provider, the user cannot authenticate to the cluster.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect5">
-<h6 id="osd-grant-admin-privileges_osd-set-up-initial-access-to-the-cluster">Granting administrator privileges to a user</h6>
-<div class="paragraph _abstract">
-<p>After you have configured an identity provider for your cluster and added a user to the identity provider, you can grant <code>dedicated-admin</code> cluster privileges to the user.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
-</li>
-<li>
-<p>You created an Openshift Dedicated cluster.</p>
-</li>
-<li>
-<p>You configured an identity provider for your cluster.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Navigate to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and select your cluster.</p>
-</li>
-<li>
-<p>Click the <strong>Access control</strong> tab.</p>
-</li>
-<li>
-<p>In the <strong>Cluster Roles and Access</strong> tab, click <strong>Add user</strong>.</p>
-</li>
-<li>
-<p>Enter the user ID of an identity provider user.</p>
-</li>
-<li>
-<p>Click <strong>Add user</strong> to grant <code>dedicated-admin</code> cluster privileges to the user.</p>
-</li>
-</ol>
-</div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>After granting the privileges, the user is listed as part of the <code>dedicated-admins</code> group under <strong>Access control</strong> &#8594; <strong>Cluster Roles and Access</strong> on the OpenShift Cluster Manager page for your cluster.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect5">
-<h6 id="osd-revoke-admin-privileges_osd-set-up-initial-access-to-the-cluster">Revoke administrator privileges from a user</h6>
-<div class="paragraph _abstract">
-<p>After you have granted <code>dedicated-admin</code> privileges to a user, you can revoke those privileges when they are no longer needed.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
-</li>
-<li>
-<p>You created an Openshift Dedicated cluster.</p>
-</li>
-<li>
-<p>You have configured a GitHub identity provider for your cluster and added an identity provider user.</p>
-</li>
-<li>
-<p>You granted <code>dedicated-admin</code> privileges to a user.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Navigate to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and select your cluster.</p>
-</li>
-<li>
-<p>Click the <strong>Access control</strong> tab.</p>
-</li>
-<li>
-<p>In the <strong>Cluster Roles and Access</strong> tab, click <span class="image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAjCAIAAADqn+bCAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA+0lEQVRIie2WMQqEMBBFJ47gUXRBLyBYqbUXULCx9CR2XsAb6AlUEM9kpckW7obdZhwWYWHXX/3i8TPJZEKEUgpOlXFu3JX4V4kmB2qaZhgGKSUiZlkWxzEBC84N9zxv27bdO47Tti0Bs3at4wBgXVca/lJnfN/XPggCGmadIwAsywIAiGhZFk1ydy2EYJKgGCqK4vZUVVU0zKpxnmftp2mi4S/1GhG1N82DMWNNYVmW4zgqpRAxTVMa5t4evlg11nXd9/1eY57nSZIQMKtG13WllLu3bbvrOgJmdUbHwfur8Xniqw6Hh5UYRdGDNowwDA+WvP4UV+JPJ94B1gKUWcTOCT0AAAAASUVORK5CYII=" alt="kebab" title="Options menu"></span> next to a user and click <strong>Delete</strong>.</p>
-</li>
-</ol>
-</div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>After revoking the privileges, the user is no longer listed as part of the <code>dedicated-admins</code> group under <strong>Access control</strong> &gt; <strong>Cluster Roles and Access</strong> on the OpenShift Cluster Manager page for your cluster.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect5">
-<h6 id="access-cluster_osd-set-up-initial-access-to-the-cluster">Accessing your cluster</h6>
-<div class="paragraph _abstract">
-<p>After you have configured your identity providers, users can access the cluster from Red Hat OpenShift Cluster Manager.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
-</li>
-<li>
-<p>You created an Openshift Dedicated cluster.</p>
-</li>
-<li>
-<p>You configured an identity provider for your cluster.</p>
-</li>
-<li>
-<p>You added your user account to the configured identity provider.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>From <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>, select the cluster you want to access.</p>
-</li>
-<li>
-<p>Click <strong>Open console</strong> to open the web console for your cluster.</p>
-</li>
-<li>
-<p>Select your identity provider and enter your credentials to log in to the cluster. Complete any authorization requests from your provider.</p>
-</li>
-</ol>
-</div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="osd-prepare-to-create-the-cluster-intro_osd-prepare-to-create-the-cluster.html">Prepare to create the cluster</a> | ↑ Up: <a href="osd-create-an-osd-cluster-on-aws-intro_osd-create-an-osd-cluster-on-aws.html">Create an OSD cluster on AWS</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-delete-a-cluster-intro_osd-delete-a-cluster.html">Delete a cluster</a> →</p>
+<p>← Previous: <a href="ccs-aws-provisioned_osd-prepare-to-create-the-cluster.html">Provisioned AWS Infrastructure</a> | ↑ Up: <a href="osd-create-an-osd-cluster-on-aws-intro_osd-create-an-osd-cluster-on-aws.html">Create an OSD cluster on AWS</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="config-idp_osd-set-up-initial-access-to-the-cluster.html">Configuring an identity provider</a> →</p>
 </div>
 </div>
 <div id="footer">
