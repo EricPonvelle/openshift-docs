@@ -446,8 +446,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
+<li><a href="rosa-classic-whats-new_whats-new-with-rosa-classic.html">What&#8217;s new for Red Hat OpenShift Service on AWS classic architecture</a>
+</li>
 <li><a href="_discover.html">Discover</a>
-<ul class="sectlevel3">
+<ul class="sectlevel2">
 <li><a href="rosa-classic-understand-architecture_understand-rosa-classic-architecture.html">Understand Red Hat OpenShift Service on AWS classic architecture</a>
 </li>
 <li><a href="rosa-sdpolicy-billing_understand-rosa-classic-architecture.html">Billing and pricing</a>
@@ -476,12 +478,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="_observe.html">Observe</a>
 </li>
+<li><a href="rosa-classic-collect-and-analyze-logs_rosa-classic-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="rosa-classic-monitor-cluster-health_rosa-classic-monitor-cluster-health.html">Monitor cluster health</a>
+</li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect4">
-<h5 id="rosa-sts-understanding-ocm-role_about-iam-resources-for-sts-clusters">Understanding the OpenShift Cluster Manager role</h5>
+<div class="sect3">
+<h4 id="rosa-sts-understanding-ocm-role_about-iam-resources-for-sts-clusters">Understanding the OpenShift Cluster Manager role</h4>
 <div class="paragraph">
 <p>Creating Red Hat OpenShift Services on AWS (classic architecture) clusters in <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> requires an <code>ocm-role</code> IAM role. The standard <code>ocm-role</code> IAM role permissions let you perform cluster maintenance within OpenShift Cluster Manager. To automatically create the Operator roles and OpenID Connect (OIDC) provider, you must add the <code>--admin</code> option to the <code>rosa create</code> command. This command creates an <code>ocm-role</code> resource with additional permissions needed for administrative tasks. If you do not need to use OpenShift Cluster Manager, the <code>--no-console</code> profile creates an <code>ocm-role</code> IAM role with the minimum required permissions to create and manage clusters by using the CLI.</p>
 </div>
@@ -499,121 +505,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </table>
 </div>
-<div class="sect5">
-<h6 id="rosa-sts-understanding-user-role_about-iam-resources-for-sts-clusters">Understanding the user role</h6>
-<div class="paragraph">
-<p>In addition to an <code>ocm-role</code> IAM role, you must create a user role so that Red Hat OpenShift Services on AWS (classic architecture) can verify your AWS identity. This role has no permissions, and it is only used to create a trust relationship between the installer account and your <code>ocm-role</code> resources.</p>
-</div>
-<div class="paragraph">
-<p>The following tables show the associated basic and administrative permissions for the <code>ocm-role</code> resource.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. Associated permissions for the basic <code>ocm-role</code> resource</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Resource</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam:GetOpenIDConnectProvider</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the basic role to retrieve information about the specified OpenID Connect (OIDC) provider.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam:GetRole</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the basic role to retrieve any information for a specified role. Some of the data returned include the role&#8217;s path, GUID, ARN, and the role&#8217;s trust policy that grants permission to assume the role.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam:ListRoles</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the basic role to list the roles within a path prefix.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam:ListRoleTags</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the basic role to list the tags on a specified role.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ec2:DescribeRegions</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the basic role to return information about all of the enabled regions on your account.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ec2:DescribeRouteTables</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the basic role to return information about all of your route tables.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ec2:DescribeSubnets</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the basic role to return information about all of your subnets.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ec2:DescribeVpcs</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the basic role to return information about all of your virtual private clouds (VPCs).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sts:AssumeRole</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the basic role to retrieve temporary security credentials to access AWS resources that are beyond its normal permissions.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sts:AssumeRoleWithWebIdentity</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the basic role to retrieve temporary security credentials for users authenticated their account with a web identity provider.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. Additional permissions for the admin <code>ocm-role</code> resource</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Resource</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam:AttachRolePolicy</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the admin role to attach a specified policy to the desired IAM role.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam:CreateOpenIDConnectProvider</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission creates a resource that describes an identity provider, which supports OpenID Connect (OIDC). When you create an OIDC provider with this permission, this provider establishes a trust relationship between the provider and AWS.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam:CreateRole</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the admin role to create a role for your AWS account.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam:ListPolicies</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the admin role to list any policies associated with your AWS account.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam:ListPolicyTags</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the admin role to list any tags on a designated policy.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam:PutRolePermissionsBoundary</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the admin role to change the permissions boundary for a user based on a specified policy.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam:TagRole</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This permission allows the admin role to add tags to an IAM role.</p></td>
-</tr>
-</tbody>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="rosa-sts-understanding-user-role_about-iam-resources-for-sts-clusters.html">Understanding the user role</a></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="rosa-classic-about-iam-resources_about-iam-resources-for-sts-clusters.html">About IAM resources for STS clusters</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sts-ocm-roles-and-permissions-iam-basic-role_about-iam-resources-for-sts-clusters.html">Creating an ocm-role IAM role</a> →</p>
+<p>↑ Up: <a href="rosa-classic-about-iam-resources_about-iam-resources-for-sts-clusters.html">About IAM resources for STS clusters</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sts-understanding-user-role_about-iam-resources-for-sts-clusters.html">Understanding the user role</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 15:53:21 -0500
+Last updated 2026-09-08 14:32:09 -0500
 </div>
 </div>
 </body>

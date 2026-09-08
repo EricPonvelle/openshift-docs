@@ -438,7 +438,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="rosa-upgrading-lifecycle-policy_rosa-classic-upgrade-a-cluster" class="book toc2 toc-left">
+<body id="rosa-sts-byo-oidc-raw-files_openid-connect-overview" class="book toc2 toc-left">
 <div id="header">
 <h1>Red Hat OpenShift Services on AWS (classic architecture)</h1>
 <div id="toc" class="toc2">
@@ -446,42 +446,68 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
+<li><a href="rosa-classic-whats-new_whats-new-with-rosa-classic.html">What&#8217;s new for Red Hat OpenShift Service on AWS classic architecture</a>
+</li>
 <li><a href="_discover.html">Discover</a>
+<ul class="sectlevel2">
+<li><a href="rosa-classic-understand-architecture_understand-rosa-classic-architecture.html">Understand Red Hat OpenShift Service on AWS classic architecture</a>
 </li>
-<li><a href="_upgrade.html">Upgrade</a>
-<ul class="sectlevel3">
-<li><a href="rosa-upgrading-lifecycle-policy_rosa-classic-plan-cluster-upgrades.html">Life cycle policies and planning</a>
+<li><a href="rosa-sdpolicy-billing_understand-rosa-classic-architecture.html">Billing and pricing</a>
 </li>
-<li><a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html">Upgrading a Red Hat OpenShift Services on AWS (classic architecture) cluster</a>
+<li><a href="rosa-classic-overview-of-responsibilities_overview-of-responsibilities.html">Overview of responsibilities</a>
+</li>
+<li><a href="rosa-classic-understanding-process-and-security_understanding-process-and-security.html">Understanding process and security</a>
+</li>
+<li><a href="rosa-classic-sre-and-service-account-access_sre-and-service-account-access.html">SRE and service account access</a>
+</li>
+<li><a href="rosa-classic-about-iam-resources_about-iam-resources-for-sts-clusters.html">About IAM resources for STS clusters</a>
+</li>
+<li><a href="rosa-classic-openid-connect-overview_openid-connect-overview.html">OpenID Connect Overview</a>
+</li>
+<li><a href="rosa-classic-about-availability_about-availability.html">About Availability</a>
+</li>
+<li><a href="rosa-classic-service-definition_service-definition.html">Service definition</a>
+</li>
+<li><a href="rosa-classic-instance-types_instance-types.html">Instance types</a>
+</li>
+<li><a href="rosa-classic-update-life-cycle_update-life-cycle.html">Update life cycle</a>
 </li>
 </ul>
 </li>
+<li><a href="_upgrade.html">Upgrade</a>
+</li>
 <li><a href="_observe.html">Observe</a>
+</li>
+<li><a href="rosa-classic-collect-and-analyze-logs_rosa-classic-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="rosa-classic-monitor-cluster-health_rosa-classic-monitor-cluster-health.html">Monitor cluster health</a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect4">
-<h5 id="rosa-upgrading-lifecycle-policy_rosa-classic-upgrade-a-cluster">Life cycle policies and planning</h5>
-<div class="paragraph _abstract">
-<p>To plan an upgrade, see the <em>Red Hat OpenShift Service on AWS update life cycle</em> in the "Additional resources" section.
-The life cycle page includes release definitions, support and update requirements, installation policy information and life cycle dates.</p>
+<h5 id="rosa-sts-byo-oidc-raw-files_openid-connect-overview">raw-files</h5>
+<div class="paragraph">
+<p>Allows you to provide raw files for the private RSA key. This key is named <code>rosa-private-key-oidc-&lt;random_label_of_length_4&gt;.key</code>. You also receive a discovery document, named <code>discovery-document-oidc-&lt;random_label_of_length_4&gt;.json</code>, and a JSON Web Key Set, named <code>jwks-oidc-&lt;random_label_of_length_4&gt;.json</code>.</p>
 </div>
 <div class="paragraph">
-<p>Updates are manually initiated or automatically scheduled. Red Hat Site Reliability Engineers (SREs) monitor update progress and remedy any issues encountered.</p>
+<p>You use these files to set up the endpoint. This endpoint responds to <code>/.well-known/openid-configuration</code> with the discovery document and on <code>keys.json</code> with the JSON Web Key Set. The private key is stored in Amazon Web Services (AWS) Secrets Manager Service (SMS) as plaintext.</p>
 </div>
-<div class="paragraph">
-<p>You can use update channels to decide which Red Hat OpenShift Services on AWS (classic architecture) minor version to update your clusters to. Red Hat OpenShift Services on AWS (classic architecture) supports updates through the <code>stable-4.y</code>, <code>eus-4.y</code>, and <code>fast-4.y</code> channels.</p>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create oidc-config --raw-files</code></pre>
+</div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html">Upgrading a Red Hat OpenShift Services on AWS (classic architecture) cluster</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-upgrading-channels_rosa-classic-upgrade-a-cluster.html">Channels in Red Hat OpenShift Services on AWS (classic architecture) clusters</a> →</p>
+<p>↑ Up: <a href="rosa-sts-byo-oidc-options_openid-connect-overview.html">Parameter options for creating your own OpenID Connect configuration</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sts-byo-oidc-mode_openid-connect-overview.html">mode</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 15:53:21 -0500
+Last updated 2026-09-08 14:32:09 -0500
 </div>
 </div>
 </body>

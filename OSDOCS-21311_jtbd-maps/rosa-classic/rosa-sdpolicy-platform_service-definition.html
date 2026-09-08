@@ -446,8 +446,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
+<li><a href="rosa-classic-whats-new_whats-new-with-rosa-classic.html">What&#8217;s new for Red Hat OpenShift Service on AWS classic architecture</a>
+</li>
 <li><a href="_discover.html">Discover</a>
-<ul class="sectlevel3">
+<ul class="sectlevel2">
 <li><a href="rosa-classic-understand-architecture_understand-rosa-classic-architecture.html">Understand Red Hat OpenShift Service on AWS classic architecture</a>
 </li>
 <li><a href="rosa-sdpolicy-billing_understand-rosa-classic-architecture.html">Billing and pricing</a>
@@ -476,167 +478,68 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="_observe.html">Observe</a>
 </li>
+<li><a href="rosa-classic-collect-and-analyze-logs_rosa-classic-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="rosa-classic-monitor-cluster-health_rosa-classic-monitor-cluster-health.html">Monitor cluster health</a>
+</li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect4">
-<h5 id="rosa-sdpolicy-platform_service-definition">Platform</h5>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-platform_service-definition">Platform</h4>
 <div class="paragraph">
 <p>This section provides information about the service definition for the
 Red Hat OpenShift Services on AWS (classic architecture) (ROSA) platform.</p>
 </div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-autoscaling_service-definition">Autoscaling</h6>
-<div class="paragraph">
-<p>Node autoscaling is available on
-Red Hat OpenShift Services on AWS (classic architecture).
-You can configure the autoscaler option to automatically scale the number of machines in a cluster.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-multiple-availability-zone_service-definition">Multiple availability zone</h6>
-<div class="paragraph">
-<p>In a multiple availability zone cluster, control plane nodes are distributed across availability zones and at least one worker node is required in each availability zone.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-node-labels_service-definition">Node labels</h6>
-<div class="paragraph">
-<p>Custom node labels are created by Red&#160;Hat during node creation and cannot be changed on
-Red Hat OpenShift Services on AWS (classic architecture)
-clusters at this time. However, custom labels are supported when creating new machine pools.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-node-lifecycle_service-definition">Node lifecycle</h6>
-<div class="paragraph">
-<p>Worker nodes are not guaranteed longevity, and may be replaced at any time as part of the normal operation and management of OpenShift.</p>
-</div>
-<div class="paragraph">
-<p>A worker node might be replaced in the following circumstances:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Machine health checks are deployed and configured to ensure that a worker node with a <code>NotReady</code> status is replaced to ensure smooth operation of the cluster.</p>
+<p><a href="rosa-sdpolicy-autoscaling_service-definition.html">Autoscaling</a></p>
 </li>
 <li>
-<p>AWS EC2 instances may be terminated when AWS detects irreparable failure of the underlying hardware that hosts the instance.</p>
+<p><a href="rosa-sdpolicy-multiple-availability-zone_service-definition.html">Multiple availability zone</a></p>
+</li>
+<li>
+<p><a href="rosa-sdpolicy-node-labels_service-definition.html">Node labels</a></p>
+</li>
+<li>
+<p><a href="rosa-sdpolicy-node-lifecycle_service-definition.html">Node lifecycle</a></p>
+</li>
+<li>
+<p><a href="rosa-sdpolicy-backup-policy_service-definition.html">Cluster backup policy</a></p>
+</li>
+<li>
+<p><a href="rosa-sdpolicy-openshift-version_service-definition.html">OpenShift version</a></p>
+</li>
+<li>
+<p><a href="rosa-sdpolicy-upgrades_service-definition.html">Upgrades</a></p>
+</li>
+<li>
+<p><a href="rosa-sdpolicy-window-containers_service-definition.html">Windows Containers</a></p>
+</li>
+<li>
+<p><a href="rosa-sdpolicy-container-engine_service-definition.html">Container engine</a></p>
+</li>
+<li>
+<p><a href="rosa-sdpolicy-operating-system_service-definition.html">Operating system</a></p>
+</li>
+<li>
+<p><a href="rosa-sdpolicy-red-hat-operator_service-definition.html">Red&#160;Hat Operator support</a></p>
+</li>
+<li>
+<p><a href="rosa-sdpolicy-kubernetes-operator_service-definition.html">Kubernetes Operator support</a></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>For all containerized workloads running on a Kubernetes based system, it is best practice to configure applications to be resilient of node replacements.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-backup-policy_service-definition">Cluster backup policy</h6>
-<div class="paragraph">
-<p>Red Hat recommends object-level backup solutions for ROSA clusters. OpenShift API for Data Protection (OADP) is included in OpenShift but not enabled by default. Customers can configure OADP on their clusters to achieve object-level backup and restore capabilities.</p>
-</div>
-<div class="paragraph">
-<p>Red Hat does not back up customer applications or application data. Customers are solely responsible for applications and their data, and must put their own backup and restore capabilities in place.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Warning">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Customers are solely responsible for backing up and restoring their applications and application data. For more information about customer responsibilities, see "Shared responsibility matrix".</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-openshift-version_service-definition">OpenShift version</h6>
-<div class="paragraph">
-<p>Red Hat OpenShift Services on AWS (classic architecture)
-Upgrade scheduling to the latest version is available.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-upgrades_service-definition">Upgrades</h6>
-<div class="paragraph">
-<p>Upgrades can be scheduled using the ROSA CLI, <code>rosa</code>, or through OpenShift Cluster Manager.</p>
-</div>
-<div class="paragraph">
-<p>See the <a href="https://docs.openshift.com/rosa/rosa_policy/rosa-life-cycle.html">Red Hat OpenShift Services on AWS (classic architecture) Life Cycle</a> for more information on the upgrade policy and procedures.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-window-containers_service-definition">Windows Containers</h6>
-<div class="paragraph">
-<p>Red&#160;Hat OpenShift support for Windows Containers is not available on Red Hat OpenShift Services on AWS (classic architecture) at this time.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-container-engine_service-definition">Container engine</h6>
-<div class="paragraph">
-<p>Red Hat OpenShift Services on AWS (classic architecture)
-runs on OpenShift 4 and uses <a href="https://www.redhat.com/en/blog/red-hat-openshift-container-platform-4-now-defaults-cri-o-underlying-container-engine">CRI-O</a> as the only available container engine</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-operating-system_service-definition">Operating system</h6>
-<div class="paragraph">
-<p>Red Hat OpenShift Services on AWS (classic architecture)
-runs on OpenShift 4 and uses Red&#160;Hat CoreOS (RHCOS) as the operating system for all cluster nodes.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-red-hat-operator_service-definition">Red&#160;Hat Operator support</h6>
-<div class="paragraph">
-<p>Red&#160;Hat workloads typically refer to Red&#160;Hat-provided Operators made available through Operator Hub. Red&#160;Hat workloads are not managed by the Red&#160;Hat SRE team, and must be deployed on worker nodes. These Operators may require additional Red&#160;Hat subscriptions, and may incur additional cloud infrastructure costs. Examples of these Red&#160;Hat-provided Operators are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Red&#160;Hat Quay</p>
-</li>
-<li>
-<p>Red&#160;Hat Advanced Cluster Management</p>
-</li>
-<li>
-<p>Red&#160;Hat Advanced Cluster Security</p>
-</li>
-<li>
-<p>Red Hat OpenShift Service Mesh</p>
-</li>
-<li>
-<p>OpenShift Serverless</p>
-</li>
-<li>
-<p>Red Hat OpenShift Logging</p>
-</li>
-<li>
-<p>Red Hat OpenShift Pipelines</p>
-</li>
-<li>
-<p>OpenShift Virtualization</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-kubernetes-operator_service-definition">Kubernetes Operator support</h6>
-<div class="paragraph">
-<p>All Operators listed in the software catalog marketplace should be available for installation. These Operators are considered customer workloads, and are not monitored nor managed by Red&#160;Hat SRE. Operators authored by Red&#160;Hat are supported by Red&#160;Hat.</p>
-</div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-sdpolicy-storage_service-definition.html">Storage</a> | ↑ Up: <a href="rosa-classic-service-definition_service-definition.html">Service definition</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sdpolicy-security_service-definition.html">Security</a> →</p>
+<p>← Previous: <a href="_shared_storage_rwx.html">Shared Storage (RWX)</a> | ↑ Up: <a href="rosa-classic-service-definition_service-definition.html">Service definition</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sdpolicy-autoscaling_service-definition.html">Autoscaling</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 15:53:21 -0500
+Last updated 2026-09-08 14:32:09 -0500
 </div>
 </div>
 </body>

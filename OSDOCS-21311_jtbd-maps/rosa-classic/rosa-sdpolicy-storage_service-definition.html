@@ -446,8 +446,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
+<li><a href="rosa-classic-whats-new_whats-new-with-rosa-classic.html">What&#8217;s new for Red Hat OpenShift Service on AWS classic architecture</a>
+</li>
 <li><a href="_discover.html">Discover</a>
-<ul class="sectlevel3">
+<ul class="sectlevel2">
 <li><a href="rosa-classic-understand-architecture_understand-rosa-classic-architecture.html">Understand Red Hat OpenShift Service on AWS classic architecture</a>
 </li>
 <li><a href="rosa-sdpolicy-billing_understand-rosa-classic-architecture.html">Billing and pricing</a>
@@ -476,58 +478,45 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="_observe.html">Observe</a>
 </li>
+<li><a href="rosa-classic-collect-and-analyze-logs_rosa-classic-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="rosa-classic-monitor-cluster-health_rosa-classic-monitor-cluster-health.html">Monitor cluster health</a>
+</li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect4">
-<h5 id="rosa-sdpolicy-storage_service-definition">Storage</h5>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-storage_service-definition">Storage</h4>
 <div class="paragraph">
 <p>This section provides information about the service definition for
 Red Hat OpenShift Services on AWS (classic architecture)
 storage.</p>
 </div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-encrytpted-at-rest-storage_service-definition">Encrypted-at-rest OS and node storage</h6>
-<div class="paragraph">
-<p>Control plane, infrastructure, and worker
-nodes use encrypted-at-rest Amazon Elastic Block Store (Amazon EBS) storage.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-encrytpted-at-rest-pv_service-definition">Encrypted-at-rest PV</h6>
-<div class="paragraph">
-<p>EBS volumes that are used for PVs are encrypted-at-rest by default.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="rosa-sdpolicy-block-storage_service-definition">Block storage (RWO)</h6>
-<div class="paragraph">
-<p>Persistent volumes (PVs) are backed by Amazon Elastic Block Store (Amazon EBS), which is Read-Write-Once.</p>
-</div>
-<div class="paragraph">
-<p>PVs can be attached only to a single node at a time and are specific to the availability zone in which they were provisioned. However, PVs can be attached to any node in the availability zone.</p>
-</div>
-<div class="paragraph">
-<p>Each cloud provider has its own limits for how many PVs can be attached to a single node. See <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html#instance-type-volume-limits">AWS instance type limits</a> for details.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_shared_storage_rwx">Shared Storage (RWX)</h6>
-<div class="paragraph">
-<p>The AWS CSI Driver can be used to provide RWX support for
-Red Hat OpenShift Services on AWS (classic architecture).
-A community Operator is provided to simplify setup. See <a href="https://access.redhat.com/articles/5025181">Amazon Elastic File Storage Setup for Red Hat OpenShift Service on AWS</a> for details.</p>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="rosa-sdpolicy-encrytpted-at-rest-storage_service-definition.html">Encrypted-at-rest OS and node storage</a></p>
+</li>
+<li>
+<p><a href="rosa-sdpolicy-encrytpted-at-rest-pv_service-definition.html">Encrypted-at-rest PV</a></p>
+</li>
+<li>
+<p><a href="rosa-sdpolicy-block-storage_service-definition.html">Block storage (RWO)</a></p>
+</li>
+<li>
+<p><a href="_shared_storage_rwx.html">Shared Storage (RWX)</a></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-sdpolicy-networking_service-definition.html">Networking</a> | ↑ Up: <a href="rosa-classic-service-definition_service-definition.html">Service definition</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sdpolicy-platform_service-definition.html">Platform</a> →</p>
+<p>← Previous: <a href="rosa-sdpolicy-network-verification_service-definition.html">Network verification</a> | ↑ Up: <a href="rosa-classic-service-definition_service-definition.html">Service definition</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sdpolicy-encrytpted-at-rest-storage_service-definition.html">Encrypted-at-rest OS and node storage</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 15:53:21 -0500
+Last updated 2026-09-08 14:32:09 -0500
 </div>
 </div>
 </body>

@@ -438,7 +438,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="rosa-upgrading-channels_rosa-classic-upgrade-a-cluster" class="book toc2 toc-left">
+<body id="rosa-sdpolicy-auth-provider_service-definition" class="book toc2 toc-left">
 <div id="header">
 <h1>Red Hat OpenShift Services on AWS (classic architecture)</h1>
 <div id="toc" class="toc2">
@@ -446,102 +446,81 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
+<li><a href="rosa-classic-whats-new_whats-new-with-rosa-classic.html">What&#8217;s new for Red Hat OpenShift Service on AWS classic architecture</a>
+</li>
 <li><a href="_discover.html">Discover</a>
+<ul class="sectlevel2">
+<li><a href="rosa-classic-understand-architecture_understand-rosa-classic-architecture.html">Understand Red Hat OpenShift Service on AWS classic architecture</a>
 </li>
-<li><a href="_upgrade.html">Upgrade</a>
-<ul class="sectlevel3">
-<li><a href="rosa-upgrading-lifecycle-policy_rosa-classic-plan-cluster-upgrades.html">Life cycle policies and planning</a>
+<li><a href="rosa-sdpolicy-billing_understand-rosa-classic-architecture.html">Billing and pricing</a>
 </li>
-<li><a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html">Upgrading a Red Hat OpenShift Services on AWS (classic architecture) cluster</a>
+<li><a href="rosa-classic-overview-of-responsibilities_overview-of-responsibilities.html">Overview of responsibilities</a>
+</li>
+<li><a href="rosa-classic-understanding-process-and-security_understanding-process-and-security.html">Understanding process and security</a>
+</li>
+<li><a href="rosa-classic-sre-and-service-account-access_sre-and-service-account-access.html">SRE and service account access</a>
+</li>
+<li><a href="rosa-classic-about-iam-resources_about-iam-resources-for-sts-clusters.html">About IAM resources for STS clusters</a>
+</li>
+<li><a href="rosa-classic-openid-connect-overview_openid-connect-overview.html">OpenID Connect Overview</a>
+</li>
+<li><a href="rosa-classic-about-availability_about-availability.html">About Availability</a>
+</li>
+<li><a href="rosa-classic-service-definition_service-definition.html">Service definition</a>
+</li>
+<li><a href="rosa-classic-instance-types_instance-types.html">Instance types</a>
+</li>
+<li><a href="rosa-classic-update-life-cycle_update-life-cycle.html">Update life cycle</a>
 </li>
 </ul>
 </li>
+<li><a href="_upgrade.html">Upgrade</a>
+</li>
 <li><a href="_observe.html">Observe</a>
+</li>
+<li><a href="rosa-classic-collect-and-analyze-logs_rosa-classic-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="rosa-classic-monitor-cluster-health_rosa-classic-monitor-cluster-health.html">Monitor cluster health</a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect4">
-<h5 id="rosa-upgrading-channels_rosa-classic-upgrade-a-cluster">Channels in Red Hat OpenShift Services on AWS (classic architecture) clusters</h5>
-<div class="paragraph _abstract">
-<p>You can use Red Hat OpenShift Services on AWS (classic architecture) channels to view available cluster update options and apply patches or z-stream updates in your existing channel. You can also view the update path to newer y-stream versions if available.</p>
-</div>
-<div class="sect5">
-<h6 id="_channel_groups_and_channels_2">Channel groups and channels</h6>
+<h5 id="rosa-sdpolicy-auth-provider_service-definition">Authentication provider</h5>
 <div class="paragraph">
-<p>Channel groups in Red Hat OpenShift Services on AWS (classic architecture) are similar to channels, but there is no specific version with channel groups. When you select a channel group, your Red Hat OpenShift Services on AWS (classic architecture) cluster receives z-stream updates for your current channel group. These channel groups typically include:</p>
+<p>Authentication for the cluster can be configured using either <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> or cluster creation process or using the ROSA CLI, <code>rosa</code>. ROSA is not an identity provider, and all access to the cluster must be managed by the customer as part of their integrated solution. The use of multiple identity providers provisioned at the same time is supported. The following identity providers are supported:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>fast</code>: cluster receives the latest updates as soon as they are available.</p>
+<p>GitHub or GitHub Enterprise</p>
 </li>
 <li>
-<p><code>stable</code>: cluster receives updates after they have been thoroughly tested.</p>
+<p>GitLab</p>
 </li>
 <li>
-<p><code>eus</code>: Extended Update Support channel, allowing for extended support for even-numbered versions, for example, 4.16, 4.18, or 4.20.</p>
+<p>Google</p>
+</li>
+<li>
+<p>LDAP</p>
+</li>
+<li>
+<p>OpenID Connect</p>
+</li>
+<li>
+<p>htpasswd</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>By moving from channel groups to channels, you can have more control over your cluster updates. Instead of receiving patch/z-stream updates only for a particular channel group, by using channels you can view the available updates associated with a minor release version, and determine if there is a path available to that minor/y+1/y+2 version.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The channel group option is being deprecated. If you set a channel group only, Red Hat OpenShift Services on AWS (classic architecture) will default to preserving the current channel&#8217;s target version. For example, a <code>stable-4.20</code> cluster moving to the <code>eus</code> channel group will use the <code>eus-4.20</code> channel by default, if the current cluster version is a member of the <code>eus-4.20</code> channel.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_cluster_update_options_2">Cluster update options</h6>
-<div class="paragraph">
-<p>The process for updating your cluster is based on the updates that are available for your current version, and what level of release you are interested in, such as z-stream or y-stream updates.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Patch (z-stream) updates</strong>: You do not need to change the channel when performing a patch update within your current minor version. For example, if you have your cluster at version 4.19.12, you can stay within your current <code>stable-4.19</code> channel, and decide to update your cluster when there are updates available, such as 4.19.13, 4.19.14, 4.19.17, 4.19.20 until you have the latest updates for that minor version.</p>
-</li>
-<li>
-<p><strong>Minor version (y-stream) updates</strong>: To update to a new minor release, you must change the channel to the next release channel.</p>
-<div class="paragraph">
-<p>For example, if you have your cluster at version 4.19.12, you can switch the channel to <code>stable-4.20</code> or <code>stable-4.21</code> and check if there is an update path available for those versions.</p>
-</div>
-<div class="paragraph">
-<p>If <code>stable-4.20</code> has an update path available, it shows you the z-stream updates for your current version, as well as the updates to the y+1 version, such as 4.19.14, 4.19.17, 4.19.20, 4.19.23, 4.19.27, 4.20.0.</p>
-</div>
-<div class="paragraph">
-<p>If you select <code>stable-4.21</code>, the available updates might be 4.19.14, 4.19.17, 4.19.20, 4.19.23, 4.19.27, 4.20.0, 4.20.3, 4.20.4, 4.20.6, 4.20.7, with all the z-stream/patch updates displayed right through to the y+2 version of 4.21.0.</p>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>You can change your cluster&#8217;s channel either through the Cluster Overview → Details page in the web console or by using the <code>rosa edit cluster</code> command in ROSA CLI.</p>
-</div>
-<div class="paragraph">
-<p>When you have set the channel and an update is initiated, the Cluster Version Operator (CVO) retrieves the target release image and begins applying the changes to the cluster.</p>
-</div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-upgrading-lifecycle-policy_rosa-classic-upgrade-a-cluster.html">Life cycle policies and planning</a> | ↑ Up: <a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html">Upgrading a Red Hat OpenShift Services on AWS (classic architecture) cluster</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-how-upgrades-work_rosa-classic-upgrade-a-cluster.html">How Red Hat OpenShift Services on AWS (classic architecture) cluster upgrades work</a> →</p>
+<p>↑ Up: <a href="rosa-sdpolicy-security_service-definition.html">Security</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sdpolicy-privileged-containers_service-definition.html">Privileged containers</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 15:53:21 -0500
+Last updated 2026-09-08 14:32:09 -0500
 </div>
 </div>
 </body>

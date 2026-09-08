@@ -446,8 +446,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
+<li><a href="rosa-classic-whats-new_whats-new-with-rosa-classic.html">What&#8217;s new for Red Hat OpenShift Service on AWS classic architecture</a>
+</li>
 <li><a href="_discover.html">Discover</a>
-<ul class="sectlevel3">
+<ul class="sectlevel2">
 <li><a href="rosa-classic-understand-architecture_understand-rosa-classic-architecture.html">Understand Red Hat OpenShift Service on AWS classic architecture</a>
 </li>
 <li><a href="rosa-sdpolicy-billing_understand-rosa-classic-architecture.html">Billing and pricing</a>
@@ -476,99 +478,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="_observe.html">Observe</a>
 </li>
+<li><a href="rosa-classic-collect-and-analyze-logs_rosa-classic-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="rosa-classic-monitor-cluster-health_rosa-classic-monitor-cluster-health.html">Monitor cluster health</a>
+</li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect4">
-<h5 id="sd-redhat-managed-resources_overview-of-responsibilities">Red&#160;Hat managed resources</h5>
+<div class="sect3">
+<h4 id="sd-redhat-managed-resources_overview-of-responsibilities">Red&#160;Hat managed resources</h4>
 <!-- toc disabled -->
-<div class="sect5">
-<h6 id="sd-managed-resources-overview_sd-managed-resources">Overview</h6>
-<div class="paragraph">
-<p>The following covers all Red Hat OpenShift Services on AWS (classic architecture) resources that are managed or protected by the Service Reliability Engineering Platform (SRE-P) Team. Customers should not try to change these resources because doing so can lead to cluster instability.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="sd-managed-resources-all_sd-managed-resources">Managed resources</h6>
-<div class="paragraph">
-<p>The following list displays the Red Hat OpenShift Services on AWS (classic architecture) resources managed by OpenShift Hive, the centralized fleet configuration management system. These resources are in addition to the OpenShift/ROSA platform resources created during installation. OpenShift Hive continually reconciles consistency across all Red Hat OpenShift Services on AWS (classic architecture) clusters. Changes to Red Hat OpenShift Services on AWS (classic architecture) resources should be made through OpenShift Cluster Manager so that OpenShift Cluster Manager and Hive are synchronized. Contact <a href="mailto:ocm-feedback@redhat.com">ocm-feedback@redhat.com</a> if OpenShift Cluster Manager does not support modifying the resources in question.</p>
-</div>
-<div class="paragraph">
-<div class="title">List of Red&#160;Hat managed resources</div>
-<p>(Note that the following may not be visible in your ROSA cluster)</p>
-</div>
-<details>
-<summary class="title">Details</summary>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/master/resources/managed/all-osd-resources.yaml[role=include]</code></pre>
-</div>
-</div>
-</div>
-</details>
-</div>
-<div class="sect5">
-<h6 id="sd-core-namespaces_sd-managed-resources">Red Hat OpenShift Services on AWS (classic architecture) core namespaces</h6>
-<div class="paragraph">
-<p>Red Hat OpenShift Services on AWS (classic architecture) core namespaces are installed by default during cluster installation.</p>
-</div>
-<div class="paragraph">
-<div class="title">List of core namespaces</div>
-<p>(Note that the following may not be visible in your ROSA cluster)</p>
-</div>
-<details>
-<summary class="title">Details</summary>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/master/deploy/osd-managed-resources/ocp-namespaces.ConfigMap.yaml[role=include]</code></pre>
-</div>
-</div>
-</div>
-</details>
-</div>
-<div class="sect5">
-<h6 id="sd-add-on-managed-namespaces_sd-managed-resources">Red Hat OpenShift Services on AWS (classic architecture) add-on namespaces</h6>
-<div class="paragraph">
-<p>Red Hat OpenShift Services on AWS (classic architecture) add-ons are services available for installation after cluster installation. These additional services include Red Hat OpenShift Dev Spaces, Red&#160;Hat OpenShift API Management, and Cluster Logging Operator. Any changes to resources within the following namespaces can be overridden by the add-on during upgrades, which can lead to unsupported configurations for the add-on functionality.</p>
-</div>
-<details>
-<summary class="title">List of add-on managed namespaces</summary>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/master/resources/addons-namespaces/main.yaml[role=include]</code></pre>
-</div>
-</div>
-</div>
-</details>
-</div>
-<div class="sect5">
-<h6 id="sd-validating-webhooks_sd-managed-resources">Red Hat OpenShift Services on AWS (classic architecture) validating webhooks</h6>
-<div class="paragraph">
-<p>Red Hat OpenShift Services on AWS (classic architecture) validating webhooks are a set of dynamic admission controls maintained by the OpenShift SRE team. These HTTP callbacks, also known as webhooks, are called for various types of requests to ensure cluster stability. The following list describes the various webhooks with rules containing the registered operations and resources that are controlled. Any attempt to circumvent these validating webhooks could affect the stability and supportability of the cluster.</p>
-</div>
-<details>
-<summary class="title">List of validating webhooks</summary>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-validating-webhooks/master/docs/webhooks.json[role=include]</code></pre>
-</div>
-</div>
-</div>
-</details>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="sd-managed-resources-overview_sd-managed-resources.html">Overview</a></p>
+</li>
+<li>
+<p><a href="sd-managed-resources-all_sd-managed-resources.html">Managed resources</a></p>
+</li>
+<li>
+<p><a href="sd-core-namespaces_sd-managed-resources.html">Red Hat OpenShift Services on AWS (classic architecture) core namespaces</a></p>
+</li>
+<li>
+<p><a href="sd-add-on-managed-namespaces_sd-managed-resources.html">Red Hat OpenShift Services on AWS (classic architecture) add-on namespaces</a></p>
+</li>
+<li>
+<p><a href="sd-validating-webhooks_sd-managed-resources.html">Red Hat OpenShift Services on AWS (classic architecture) validating webhooks</a></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-policy-disaster-recovery_overview-of-responsibilities.html">Disaster recovery</a> | ↑ Up: <a href="rosa-classic-overview-of-responsibilities_overview-of-responsibilities.html">Overview of responsibilities</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-policy-customer-responsibility_sd-managed-resources.html">Additional customer responsibilities for data and applications</a> →</p>
+<p>← Previous: <a href="rosa-policy-disaster-recovery_overview-of-responsibilities.html">Disaster recovery</a> | ↑ Up: <a href="rosa-classic-overview-of-responsibilities_overview-of-responsibilities.html">Overview of responsibilities</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="sd-managed-resources-overview_sd-managed-resources.html">Overview</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-04 15:53:21 -0500
+Last updated 2026-09-08 14:32:09 -0500
 </div>
 </div>
 </body>
