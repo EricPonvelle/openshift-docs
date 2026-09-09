@@ -464,63 +464,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div class="sect4">
-<h5 id="rosa-classic-configure-dns-forwarding-intro_rosa-classic-configure-dns-forwarding">(PrivateLink cluster only) Configure DNS forwarding</h5>
+<div class="sect3">
+<h4 id="rosa-classic-configure-dns-forwarding-intro_rosa-classic-configure-dns-forwarding">(PrivateLink cluster only) Configure DNS forwarding</h4>
 <div class="paragraph _abstract">
 <p>(PrivateLink cluster only) Configure DNS forwarding by completing the tasks in this section. Review each step to prepare, configure, and verify your Red Hat OpenShift Services on AWS (classic architecture) environment.</p>
 </div>
-<div class="sect5">
-<h6 id="osd-aws-privatelink-config-dns-forwarding_rosa-classic-configure-dns-forwarding">Configuring AWS PrivateLink DNS forwarding</h6>
-<div class="paragraph _abstract">
-<p>Configure DNS forwarding to enable resolution of cluster DNS records from outside the VPC.</p>
-</div>
-<div class="paragraph">
-<p>With AWS PrivateLink clusters, a public hosted zone and a private hosted zone are created in Route 53. With the private hosted zone, records within the zone are resolvable only from within the VPC to which it is assigned.</p>
-</div>
-<div class="paragraph">
-<p>The <em>Let&#8217;s Encrypt DNS-01</em> validation requires a public zone so that valid, publicly trusted certificates can be issued for the domain. The validation records are deleted after <em>Let&#8217;s Encrypt</em> validation is complete; however, the zone is still required for issuing and renewing these certificates, which are typically required every 60 days. While these zones usually appear empty, it is serving a critical role in the validation process.</p>
-</div>
-<div class="paragraph">
-<p>For more information about private hosted zones, see <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html">AWS private hosted zones documentation</a>. For more information about public hosted zones, see <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/AboutHZWorkingWith.html">AWS public hosted zones documentation</a>.</p>
-</div>
 <div class="ulist">
-<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>Your corporate network or other VPC has connectivity</p>
-</li>
-<li>
-<p>UDP port 53 and TCP port 53 ARE enabled across your networks to allow for DNS queries</p>
-</li>
-<li>
-<p>You have created an AWS PrivateLink cluster using Red Hat OpenShift Services on AWS (classic architecture)</p>
+<p><a href="osd-aws-privatelink-config-dns-forwarding_rosa-classic-configure-dns-forwarding.html">Configuring AWS PrivateLink DNS forwarding</a></p>
 </li>
 </ul>
 </div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>To allow for records such as <code>api.&lt;cluster_domain&gt;</code> and <code>*.apps.&lt;cluster_domain&gt;</code> to resolve outside of the VPC, <a href="https://aws.amazon.com/premiumsupport/knowledge-center/route53-resolve-with-inbound-endpoint/">configure a Route 53 Resolver Inbound Endpoint</a>.</p>
-</li>
-<li>
-<p>When you configure the inbound endpoint, select the VPC and private subnets that were used when you created the cluster.</p>
-</li>
-<li>
-<p>After the endpoints are operational and associated, configure your corporate network to forward DNS queries to those IP addresses for the top-level cluster domain, such as <code>drow-pl-01.htno.p1.openshiftapps.com</code>.</p>
-</li>
-<li>
-<p>If you are forwarding DNS queries from one VPC to another VPC, <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-rules-managing.html">configure forwarding rules</a>.</p>
-</li>
-<li>
-<p>If you are configuring your remote network DNS server, see your specific DNS server documentation to configure selective DNS forwarding for the installed cluster domain.</p>
-</li>
-</ol>
-</div>
-</div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-classic-cluster-configuration-properties-reference-intro_rosa-classic-cluster-configuration-properties-reference.html">Cluster configuration properties reference</a> | ↑ Up: <a href="rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc-intro_rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc.html">Create a ROSA classic cluster in a shared VPC</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-classic-set-up-initial-access-to-the-cluster-intro_rosa-classic-set-up-initial-access-to-the-cluster.html">Set up initial access to the cluster</a> →</p>
+<p>← Previous: <a href="rosa-sts-interactive-cluster-creation-mode-options_rosa-classic-cluster-configuration-properties-reference.html">Interactive cluster creation mode options</a> | ↑ Up: <a href="rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc-intro_rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc.html">Create a ROSA classic cluster in a shared VPC</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="osd-aws-privatelink-config-dns-forwarding_rosa-classic-configure-dns-forwarding.html">Configuring AWS PrivateLink DNS forwarding</a> →</p>
 </div>
 </div>
 <div id="footer">
