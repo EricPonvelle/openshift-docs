@@ -446,31 +446,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
-<li><a href="rosa-classic-whats-new_whats-new-with-rosa-classic.html">What&#8217;s new for Red Hat OpenShift Service on AWS classic architecture</a>
-</li>
 <li><a href="_discover.html">Discover</a>
 <ul class="sectlevel2">
 <li><a href="rosa-classic-understand-architecture_understand-rosa-classic-architecture.html">Understand Red Hat OpenShift Service on AWS classic architecture</a>
-</li>
-<li><a href="rosa-sdpolicy-billing_understand-rosa-classic-architecture.html">Billing and pricing</a>
-</li>
-<li><a href="rosa-classic-overview-of-responsibilities_overview-of-responsibilities.html">Overview of responsibilities</a>
-</li>
-<li><a href="rosa-classic-understanding-process-and-security_understanding-process-and-security.html">Understanding process and security</a>
-</li>
-<li><a href="rosa-classic-sre-and-service-account-access_sre-and-service-account-access.html">SRE and service account access</a>
-</li>
-<li><a href="rosa-classic-about-iam-resources_about-iam-resources-for-sts-clusters.html">About IAM resources for STS clusters</a>
-</li>
-<li><a href="rosa-classic-openid-connect-overview_openid-connect-overview.html">OpenID Connect Overview</a>
-</li>
-<li><a href="rosa-classic-about-availability_about-availability.html">About Availability</a>
-</li>
-<li><a href="rosa-classic-service-definition_service-definition.html">Service definition</a>
-</li>
-<li><a href="rosa-classic-instance-types_instance-types.html">Instance types</a>
-</li>
-<li><a href="rosa-classic-update-life-cycle_update-life-cycle.html">Update life cycle</a>
 </li>
 </ul>
 </li>
@@ -480,58 +458,167 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="_observe.html">Observe</a>
 </li>
-<li><a href="rosa-classic-collect-and-analyze-logs_rosa-classic-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
-</li>
-<li><a href="rosa-classic-monitor-cluster-health_rosa-classic-monitor-cluster-health.html">Monitor cluster health</a>
-</li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect3">
-<h4 id="rosa-sdpolicy-networking_service-definition">Networking</h4>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-networking_service-definition">Networking</h5>
 <div class="paragraph">
 <p>This section provides information about the service definition for ROSA networking.</p>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-custom-domains_service-definition">Custom domains for applications</h6>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Warning">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Starting with Red Hat OpenShift Services on AWS (classic architecture) 4.14, the Custom Domain Operator is deprecated. To manage Ingress in ROSA 4.14 or later, use the Ingress Operator.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To use a custom hostname for a route, you must update your DNS provider by creating a canonical name (CNAME) record. Your CNAME record should map the OpenShift canonical router hostname to your custom domain. The OpenShift canonical router hostname is shown on the <em>Route Details</em> page after a route is created. Alternatively, a wildcard CNAME record can be created once to route all subdomains for a given hostname to the cluster&#8217;s router.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-validated-certificates_service-definition">Domain validated certificates</h6>
+<div class="paragraph">
+<p>ROSA includes TLS security certificates needed for both internal and external services on the cluster. For external routes, there are two separate TLS wildcard certificates that are provided and installed on each cluster: one is for the web console and route default hostnames, and the other is for the API endpoint. Let’s Encrypt is the certificate authority used for certificates. Routes within the cluster, such as the internal <a href="https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#accessing-the-api-from-a-pod">API endpoint</a>, use TLS certificates signed by the cluster&#8217;s built-in certificate authority and require the CA bundle available in every pod for trusting the TLS certificate.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-custom-certificates_service-definition">Custom certificate authorities for builds</h6>
+<div class="paragraph">
+<p>ROSA supports the use of custom certificate authorities to be trusted by builds when pulling images from an image registry.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-load-balancers_service-definition">Load balancers</h6>
+<div class="paragraph">
+<p>Red Hat OpenShift Services on AWS (classic architecture) uses up to five different load balancers:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-sdpolicy-custom-domains_service-definition.html">Custom domains for applications</a></p>
+<p>An internal control plane load balancer that is internal to the cluster and used to balance traffic for internal cluster communications.</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-validated-certificates_service-definition.html">Domain validated certificates</a></p>
+<p>An external control plane load balancer that is used for accessing the OpenShift and Kubernetes APIs. This load balancer can be disabled in OpenShift Cluster Manager. If this load balancer is disabled, Red&#160;Hat reconfigures the API DNS to point to the internal control plane load balancer.</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-custom-certificates_service-definition.html">Custom certificate authorities for builds</a></p>
+<p>An external control plane load balancer for Red&#160;Hat that is reserved for cluster management by Red&#160;Hat. Access is strictly controlled, and communication is only possible from whitelisted bastion hosts.</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-load-balancers_service-definition.html">Load balancers</a></p>
+<p>A default external router/ingress load balancer that is the default application load balancer, denoted by <code>apps</code> in the URL. The default load balancer can be configured in OpenShift Cluster Manager to be either publicly accessible over the Internet or only privately accessible over a pre-existing private connection. All application routes on the cluster are exposed on this default router load balancer, including cluster services such as the logging UI, metrics API, and registry.</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-cluster-ingress_service-definition.html">Cluster ingress</a></p>
+<p>Optional: A secondary router/ingress load balancer that is a secondary application load balancer, denoted by <code>apps2</code> in the URL. The secondary load balancer can be configured in OpenShift Cluster Manager to be either publicly accessible over the Internet or only privately accessible over a pre-existing private connection. If a <code>Label match</code> is configured for this router load balancer, then only application routes matching this label are exposed on this router load balancer; otherwise, all application routes are also exposed on this router load balancer.</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-cluster-egress_service-definition.html">Cluster egress</a></p>
-</li>
-<li>
-<p><a href="rosa-sdpolicy-cloud-network-config_service-definition.html">Cloud network configuration</a></p>
-</li>
-<li>
-<p><a href="rosa-sdpolicy-dns-forwarding_service-definition.html">DNS forwarding</a></p>
-</li>
-<li>
-<p><a href="rosa-sdpolicy-network-verification_service-definition.html">Network verification</a></p>
+<p>Optional: Load balancers for services. Enable non-HTTP/SNI traffic and non-standard ports for services. These load balancers can be mapped to a service running on Red Hat OpenShift Services on AWS (classic architecture) to enable advanced ingress features, such as non-HTTP/SNI traffic or the use of non-standard ports. Each AWS account has a quota which <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html">limits the number of Classic Load Balancers</a> that can be used within each cluster.</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-cluster-ingress_service-definition">Cluster ingress</h6>
+<div class="paragraph">
+<p>Project administrators can add route annotations for many different purposes, including ingress control through IP allow-listing.</p>
+</div>
+<div class="paragraph">
+<p>Ingress policies can also be changed by using <code>NetworkPolicy</code> objects, which leverage the <code>ovs-networkpolicy</code> plugin. This allows for full control over the ingress network policy down to the pod level, including between pods on the same cluster and even in the same namespace.</p>
+</div>
+<div class="paragraph">
+<p>All cluster ingress traffic will go through the defined load balancers. Direct access to all nodes is blocked by cloud configuration.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-cluster-egress_service-definition">Cluster egress</h6>
+<div class="paragraph">
+<p>Pod egress traffic control through <code>EgressNetworkPolicy</code> objects can be used to prevent or limit outbound traffic in
+Red Hat OpenShift Services on AWS (classic architecture).</p>
+</div>
+<div class="paragraph">
+<p>Public outbound traffic from the control plane and infrastructure nodes is required and necessary to maintain cluster image security and cluster monitoring. This requires that the <code>0.0.0.0/0</code> route belongs only to the Internet gateway; it is not possible to route this range over private connections.</p>
+</div>
+<div class="paragraph">
+<p>OpenShift 4 clusters use NAT gateways to present a public, static IP for any public outbound traffic leaving the cluster. Each availability zone a cluster is deployed into receives a distinct NAT gateway, therefore up to 3 unique static IP addresses can exist for cluster egress traffic. Any traffic that remains inside the cluster, or that does not go out to the public Internet, will not pass through the NAT gateway and will have a source IP address belonging to the node that the traffic originated from. Node IP addresses are dynamic; therefore, a customer must not rely on whitelisting individual IP addresses when accessing private resources.</p>
+</div>
+<div class="paragraph">
+<p>Customers can determine their public static IP addresses by running a pod on the cluster and then querying an external service. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc run ip-lookup --image=busybox -i -t --restart=Never --rm -- /bin/sh -c "/bin/nslookup -type=a myip.opendns.com resolver1.opendns.com | grep -E 'Address: [0-9.]+'"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-cloud-network-config_service-definition">Cloud network configuration</h6>
+<div class="paragraph">
+<p>Red Hat OpenShift Services on AWS (classic architecture) allows for the configuration of a private network connection through AWS-managed technologies, such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>VPN connections</p>
+</li>
+<li>
+<p>VPC peering</p>
+</li>
+<li>
+<p>Transit Gateway</p>
+</li>
+<li>
+<p>Direct Connect</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Red&#160;Hat site reliability engineers (SREs) do not monitor private network connections. Monitoring of these connections is the responsibility of the customer.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-dns-forwarding_service-definition">DNS forwarding</h6>
+<div class="paragraph">
+<p>For ROSA clusters that have a private cloud network configuration, a customer can specify internal DNS servers available on that private connection that should be queried for explicitly provided domains.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-network-verification_service-definition">Network verification</h6>
+<div class="paragraph">
+<p>Network verification checks run automatically when you deploy a ROSA cluster into an existing Virtual Private Cloud (VPC) or create an additional machine pool with a subnet that is new to your cluster. The checks validate your network configuration and highlight errors, enabling you to resolve configuration issues prior to deployment.</p>
+</div>
+<div class="paragraph">
+<p>You can also run the network verification checks manually to validate the configuration for an existing cluster.</p>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-sdpolicy-cluster-status-notifications_service-definition.html">Cluster notifications</a> | ↑ Up: <a href="rosa-classic-service-definition_service-definition.html">Service definition</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sdpolicy-custom-domains_service-definition.html">Custom domains for applications</a> →</p>
+<p>← Previous: <a href="rosa-sdpolicy-monitoring_service-definition.html">Monitoring</a> | ↑ Up: <a href="rosa-classic-service-definition_service-definition.html">Service definition</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sdpolicy-storage_service-definition.html">Storage</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-08 16:12:33 -0500
+Last updated 2026-09-09 12:57:42 -0500
 </div>
 </div>
 </body>

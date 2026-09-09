@@ -446,31 +446,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
-<li><a href="rosa-classic-whats-new_whats-new-with-rosa-classic.html">What&#8217;s new for Red Hat OpenShift Service on AWS classic architecture</a>
-</li>
 <li><a href="_discover.html">Discover</a>
 <ul class="sectlevel2">
 <li><a href="rosa-classic-understand-architecture_understand-rosa-classic-architecture.html">Understand Red Hat OpenShift Service on AWS classic architecture</a>
-</li>
-<li><a href="rosa-sdpolicy-billing_understand-rosa-classic-architecture.html">Billing and pricing</a>
-</li>
-<li><a href="rosa-classic-overview-of-responsibilities_overview-of-responsibilities.html">Overview of responsibilities</a>
-</li>
-<li><a href="rosa-classic-understanding-process-and-security_understanding-process-and-security.html">Understanding process and security</a>
-</li>
-<li><a href="rosa-classic-sre-and-service-account-access_sre-and-service-account-access.html">SRE and service account access</a>
-</li>
-<li><a href="rosa-classic-about-iam-resources_about-iam-resources-for-sts-clusters.html">About IAM resources for STS clusters</a>
-</li>
-<li><a href="rosa-classic-openid-connect-overview_openid-connect-overview.html">OpenID Connect Overview</a>
-</li>
-<li><a href="rosa-classic-about-availability_about-availability.html">About Availability</a>
-</li>
-<li><a href="rosa-classic-service-definition_service-definition.html">Service definition</a>
-</li>
-<li><a href="rosa-classic-instance-types_instance-types.html">Instance types</a>
-</li>
-<li><a href="rosa-classic-update-life-cycle_update-life-cycle.html">Update life cycle</a>
 </li>
 </ul>
 </li>
@@ -480,16 +458,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="_observe.html">Observe</a>
 </li>
-<li><a href="rosa-classic-collect-and-analyze-logs_rosa-classic-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
-</li>
-<li><a href="rosa-classic-monitor-cluster-health_rosa-classic-monitor-cluster-health.html">Monitor cluster health</a>
-</li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect3">
-<h4 id="rosa-policy-incident_overview-of-responsibilities">Incident and operations management</h4>
+<div class="sect4">
+<h5 id="rosa-policy-incident_overview-of-responsibilities">Incident and operations management</h5>
 <div class="paragraph _abstract">
 <p>Red&#160;Hat is responsible for overseeing the service components required for default platform networking.
 AWS is responsible for protecting the hardware infrastructure that runs all of the services offered in the AWS Cloud. The customer is responsible for incident and operations management of customer application data and any custom networking the customer has configured for the cluster network or virtual network.</p>
@@ -947,27 +921,104 @@ AWS is responsible for protecting the hardware infrastructure that runs all of t
 </tr>
 </tbody>
 </table>
+<div class="sect5">
+<h6 id="rosa-policy-platform-monitoring_overview-of-responsibilities">Platform monitoring</h6>
+<div class="paragraph">
+<p>Platform audit logs are securely forwarded to a centralized security information and event monitoring (SIEM) system, where they may trigger configured alerts to the Red&#160;Hat SRE team and are also subject to manual review. Audit logs are retained in the SIEM system for one year. Audit logs for a given cluster are not deleted at the time the cluster is deleted.</p>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat monitors the cluster using monitoring and alerting systems that run on Red&#160;Hat managed infrastructure and operate independently of the cluster. Customers retain full access to the Cluster Monitoring Operator stack for their own in-cluster monitoring, alerting, and observability needs.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-policy-incident-management_overview-of-responsibilities">Incident management</h6>
+<div class="paragraph">
+<p>An incident is an event that results in a degradation or outage of one or more Red&#160;Hat services.</p>
+</div>
+<div class="paragraph">
+<p>An incident can be raised by a customer or a Customer Experience and Engagement (CEE) member through a support case, directly by the centralized monitoring and alerting system, or directly by a member of the SRE team.</p>
+</div>
+<div class="paragraph">
+<p>Depending on the impact on the service and customer, the incident is categorized in terms of severity. To learn more, see "Production Support Terms of Service" in <em>Additional resources</em>.</p>
+</div>
+<div class="paragraph">
+<p>When managing a new incident, Red&#160;Hat uses the following general workflow:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>An SRE first responder is alerted to a new incident and begins an initial investigation.</p>
+</li>
+<li>
+<p>After the initial investigation, the incident is assigned an incident lead, who coordinates the recovery efforts.</p>
+</li>
+<li>
+<p>The incident lead manages all communication and coordination around recovery, including any relevant notifications and support case updates.</p>
+</li>
+<li>
+<p>When the incident is resolved a brief summary of the incident and resolution are provided in the customer-initiated support ticket. This summary helps the customers understand the incident and its resolution in more detail.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If customers require more information in addition to what is provided in the support ticket, they can request the following workflow:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The customer must make a request for the additional information within 5 business days of the incident resolution.</p>
+</li>
+<li>
+<p>Depending on the severity of the incident, Red&#160;Hat may provide customers with a root cause summary, or a root cause analysis (RCA) in the support ticket. The additional information will be provided within 7 business days for root cause summary and 30 business days for root cause analysis from the incident resolution.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat also assists with customer incidents raised through support cases.
+Red&#160;Hat can assist with activities including but not limited to:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-policy-platform-monitoring_overview-of-responsibilities.html">Platform monitoring</a></p>
+<p>Forensic gathering, including isolating virtual compute</p>
 </li>
 <li>
-<p><a href="rosa-policy-incident-management_overview-of-responsibilities.html">Incident management</a></p>
+<p>Guiding compute image collection</p>
 </li>
 <li>
-<p><a href="rosa-policy-cluster-capacity_overview-of-responsibilities.html">Cluster capacity</a></p>
+<p>Providing collected audit logs</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect5">
+<h6 id="rosa-policy-cluster-capacity_overview-of-responsibilities">Cluster capacity</h6>
+<div class="paragraph">
+<p>The impact of a cluster upgrade on capacity is evaluated as part of the upgrade testing process to ensure that capacity is not negatively impacted by new additions to the cluster. During a cluster upgrade, additional worker nodes are added to make sure that total cluster capacity is maintained during the upgrade process.</p>
+</div>
+<div class="paragraph">
+<p>Capacity evaluations by the Red&#160;Hat SRE staff also happen in response to alerts from the cluster, after usage thresholds are exceeded for a certain period of time. Such alerts can also result in a notification to the customer.</p>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.aws.amazon.com/whitepapers/latest/aws-operational-resilience/how-aws-maintains-operational-resilience-and-continuity-of-service.html#incident-management">How AWS maintains operational resilience and continuity of service</a></p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/support/offerings/production/sla">Production Support Terms of Service</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="managed-cluster-notification-policy_overview-of-responsibilities.html">Cluster notification policy</a> | ↑ Up: <a href="rosa-classic-overview-of-responsibilities_overview-of-responsibilities.html">Overview of responsibilities</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-policy-platform-monitoring_overview-of-responsibilities.html">Platform monitoring</a> →</p>
+<p>← Previous: <a href="managed-cluster-notification-policy_overview-of-responsibilities.html">Cluster notification policy</a> | ↑ Up: <a href="rosa-classic-overview-of-responsibilities_overview-of-responsibilities.html">Overview of responsibilities</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-policy-change-management_overview-of-responsibilities.html">Change management</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-08 16:12:33 -0500
+Last updated 2026-09-09 12:57:42 -0500
 </div>
 </div>
 </body>

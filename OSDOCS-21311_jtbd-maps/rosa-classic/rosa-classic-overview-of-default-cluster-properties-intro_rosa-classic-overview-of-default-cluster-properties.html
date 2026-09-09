@@ -446,8 +446,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
-<li><a href="rosa-classic-whats-new_whats-new-with-rosa-classic.html">What&#8217;s new for Red Hat OpenShift Service on AWS classic architecture</a>
-</li>
 <li><a href="_discover.html">Discover</a>
 </li>
 <li><a href="_install.html">Install</a>
@@ -462,34 +460,279 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="_observe.html">Observe</a>
 </li>
-<li><a href="rosa-classic-collect-and-analyze-logs_rosa-classic-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
-</li>
-<li><a href="rosa-classic-monitor-cluster-health_rosa-classic-monitor-cluster-health.html">Monitor cluster health</a>
-</li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect3">
-<h4 id="rosa-classic-overview-of-default-cluster-properties-intro_rosa-classic-overview-of-default-cluster-properties">Overview of default cluster properties</h4>
+<div class="sect4">
+<h5 id="rosa-classic-overview-of-default-cluster-properties-intro_rosa-classic-overview-of-default-cluster-properties">Overview of default cluster properties</h5>
 <div class="paragraph _abstract">
 <p>Overview of default cluster properties by completing the tasks in this section. Review each step to prepare, configure, and verify your Red Hat OpenShift Services on AWS (classic architecture) environment.</p>
 </div>
-<div class="ulist">
+<div class="sect5">
+<h6 id="rosa-sts-overview-of-the-default-cluster-specifications_rosa-classic-overview-of-default-cluster-properties">Overview of the default cluster specifications</h6>
+<div class="paragraph _abstract">
+<p>You can quickly create a Red Hat OpenShift Services on AWS (classic architecture) cluster by using the default installation options.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 22. Default Red Hat OpenShift Services on AWS (classic architecture) cluster specifications</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Component</th>
+<th class="tableblock halign-left valign-middle">Default specifications</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Accounts and roles</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-sts-overview-of-the-default-cluster-specifications_rosa-classic-overview-of-default-cluster-properties.html">Overview of the default cluster specifications</a></p>
+<p>Default IAM role prefix: <code>HCP-ROSA</code></p>
 </li>
 </ul>
 </div>
+<div class="ulist">
+<ul>
+</ul>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-sts-aws-requirements-attaching-boundary-policy_rosa-classic-prepare-to-create-the-cluster.html">Permission boundaries for the installer role</a> | ↑ Up: <a href="rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc-intro_rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc.html">Create a ROSA classic cluster in a shared VPC</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sts-overview-of-the-default-cluster-specifications_rosa-classic-overview-of-default-cluster-properties.html">Overview of the default cluster specifications</a> →</p>
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Cluster settings</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Default cluster version: Latest</p>
+</li>
+<li>
+<p>Default AWS region for installations using the ROSA CLI (<code>rosa</code>): Defined by your <code>aws</code> CLI configuration</p>
+</li>
+<li>
+<p>Default EC2 IMDS endpoints (both v1 and v2) are enabled</p>
+</li>
+<li>
+<p>Availability: Single zone for the data plane</p>
+</li>
+<li>
+<p>Monitoring for user-defined projects: Enabled</p>
+</li>
+<li>
+<p>No cluster admin role created</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Compute node machine pool</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Compute node instance type: m5.xlarge (4 vCPU 16, GiB RAM)</p>
+</li>
+<li>
+<p>Compute node count: 2</p>
+</li>
+<li>
+<p>Autoscaling: Not enabled</p>
+</li>
+<li>
+<p>No additional node labels</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Networking configuration</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Cluster privacy: Public</p>
+</li>
+<li>
+<p>No cluster-wide proxy is configured</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Classless Inter-Domain Routing (CIDR) ranges</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Machine CIDR: 10.0.0.0/16</p>
+</li>
+<li>
+<p>Service CIDR: 172.30.0.0/16</p>
+</li>
+<li>
+<p>Pod CIDR: 10.128.0.0/14</p>
+</li>
+<li>
+<p>Host prefix: /23</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The static IP address <code>172.20.0.1</code> is reserved for the internal Kubernetes API address. The machine, pod, and service CIDRs ranges must not conflict with this IP address.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Cluster roles and policies</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Mode used to create the Operator roles and the OpenID Connect (OIDC) provider: <code>auto</code></p>
+</li>
+<li>
+<p>A configured <code>ocm-role</code>, which is required for all Red Hat OpenShift Services on AWS (classic architecture) clusters.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For installations that use OpenShift Cluster Manager on the Hybrid Cloud Console, the <code>auto</code> mode requires an admin-privileged OpenShift Cluster Manager role (ocm-role).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Default Operator role prefix: <code>&lt;cluster_name&gt;-&lt;4_digit_random_string&gt;</code></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Storage</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Node volumes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Type: AWS EBS GP3</p>
+</li>
+<li>
+<p>Default size: 300GiB (adjustable at creation time)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Workload persistent volumes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Default StorageClass: gp3-csi</p>
+</li>
+<li>
+<p>Provisioner: ebs.csi.aws.com</p>
+</li>
+<li>
+<p>Dynamic persistent volume provisioning</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Cluster update strategy</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Individual updates</p>
+</li>
+<li>
+<p>1 hour grace period for node draining</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Previous: <a href="rosa-classic-prepare-to-create-the-cluster-intro_rosa-classic-prepare-to-create-the-cluster.html">Prepare to create the cluster</a> | ↑ Up: <a href="rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc-intro_rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc.html">Create a ROSA classic cluster in a shared VPC</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-classic-create-the-cluster-intro_rosa-classic-create-the-cluster.html">Create the cluster</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-08 16:12:33 -0500
+Last updated 2026-09-09 12:57:42 -0500
 </div>
 </div>
 </body>

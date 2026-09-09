@@ -446,31 +446,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
 </li>
-<li><a href="rosa-classic-whats-new_whats-new-with-rosa-classic.html">What&#8217;s new for Red Hat OpenShift Service on AWS classic architecture</a>
-</li>
 <li><a href="_discover.html">Discover</a>
 <ul class="sectlevel2">
 <li><a href="rosa-classic-understand-architecture_understand-rosa-classic-architecture.html">Understand Red Hat OpenShift Service on AWS classic architecture</a>
-</li>
-<li><a href="rosa-sdpolicy-billing_understand-rosa-classic-architecture.html">Billing and pricing</a>
-</li>
-<li><a href="rosa-classic-overview-of-responsibilities_overview-of-responsibilities.html">Overview of responsibilities</a>
-</li>
-<li><a href="rosa-classic-understanding-process-and-security_understanding-process-and-security.html">Understanding process and security</a>
-</li>
-<li><a href="rosa-classic-sre-and-service-account-access_sre-and-service-account-access.html">SRE and service account access</a>
-</li>
-<li><a href="rosa-classic-about-iam-resources_about-iam-resources-for-sts-clusters.html">About IAM resources for STS clusters</a>
-</li>
-<li><a href="rosa-classic-openid-connect-overview_openid-connect-overview.html">OpenID Connect Overview</a>
-</li>
-<li><a href="rosa-classic-about-availability_about-availability.html">About Availability</a>
-</li>
-<li><a href="rosa-classic-service-definition_service-definition.html">Service definition</a>
-</li>
-<li><a href="rosa-classic-instance-types_instance-types.html">Instance types</a>
-</li>
-<li><a href="rosa-classic-update-life-cycle_update-life-cycle.html">Update life cycle</a>
 </li>
 </ul>
 </li>
@@ -480,57 +458,175 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="_observe.html">Observe</a>
 </li>
-<li><a href="rosa-classic-collect-and-analyze-logs_rosa-classic-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
-</li>
-<li><a href="rosa-classic-monitor-cluster-health_rosa-classic-monitor-cluster-health.html">Monitor cluster health</a>
-</li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect3">
-<h4 id="rosa-sdpolicy-security_service-definition">Security</h4>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-security_service-definition">Security</h5>
 <div class="paragraph">
 <p>This section provides information about the service definition for
 Red Hat OpenShift Services on AWS (classic architecture)
 security.</p>
 </div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-auth-provider_service-definition">Authentication provider</h6>
+<div class="paragraph">
+<p>Authentication for the cluster can be configured using either <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> or cluster creation process or using the ROSA CLI, <code>rosa</code>. ROSA is not an identity provider, and all access to the cluster must be managed by the customer as part of their integrated solution. The use of multiple identity providers provisioned at the same time is supported. The following identity providers are supported:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-sdpolicy-auth-provider_service-definition.html">Authentication provider</a></p>
+<p>GitHub or GitHub Enterprise</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-privileged-containers_service-definition.html">Privileged containers</a></p>
+<p>GitLab</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-customer-admin-user_service-definition.html">Customer administrator user</a></p>
+<p>Google</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-cluster-admin-role_service-definition.html">Cluster administration role</a></p>
+<p>LDAP</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-project-self-service_service-definition.html">Project self-service</a></p>
+<p>OpenID Connect</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-regulatory-compliance_service-definition.html">Regulatory compliance</a></p>
-</li>
-<li>
-<p><a href="rosa-sdpolicy-network-security_service-definition.html">Network security</a></p>
-</li>
-<li>
-<p><a href="rosa-sdpolicy-etcd-encryption_service-definition.html">etcd encryption</a></p>
+<p>htpasswd</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-privileged-containers_service-definition">Privileged containers</h6>
+<div class="paragraph">
+<p>Privileged containers are available for users with the <code>cluster-admin</code> role. Usage of privileged containers as <code>cluster-admin</code> is subject to the responsibilities and exclusion notes in the <a href="https://www.redhat.com/en/about/agreements">Red&#160;Hat Enterprise Agreement Appendix 4</a> (Online Subscription Services).</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-customer-admin-user_service-definition">Customer administrator user</h6>
+<div class="paragraph">
+<p>In addition to normal users,
+Red Hat OpenShift Services on AWS (classic architecture)
+provides access to a
+ROSA-specific
+group called <code>dedicated-admin</code>. Any users on the cluster that are members of the <code>dedicated-admin</code> group:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Have administrator access to all customer-created projects on the cluster.</p>
+</li>
+<li>
+<p>Can manage resource quotas and limits on the cluster.</p>
+</li>
+<li>
+<p>Can add and manage <code>NetworkPolicy</code> objects.</p>
+</li>
+<li>
+<p>Are able to view information about specific nodes and PVs in the cluster, including scheduler information.</p>
+</li>
+<li>
+<p>Can access the reserved <code>dedicated-admin</code> project on the cluster, which allows for the creation of service accounts with elevated privileges and also gives the ability to update default limits and quotas for projects on the cluster.</p>
+</li>
+<li>
+<p>Can install Operators from the software catalog and perform all verbs in all <code>*.operators.coreos.com</code> API groups.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-cluster-admin-role_service-definition">Cluster administration role</h6>
+<div class="paragraph">
+<p>The administrator of
+Red Hat OpenShift Services on AWS (classic architecture)
+has default access to the <code>cluster-admin</code> role for your organization&#8217;s cluster. While logged into an account with the <code>cluster-admin</code> role, users have increased permissions to run privileged security contexts.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-project-self-service_service-definition">Project self-service</h6>
+<div class="paragraph">
+<p>By default, all users have the ability to create, update, and delete their projects. This can be restricted if a member of the <code>dedicated-admin</code> group removes the <code>self-provisioner</code> role from authenticated users:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm policy remove-cluster-role-from-group self-provisioner system:authenticated:oauth</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Restrictions can be reverted by applying:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm policy add-cluster-role-to-group self-provisioner system:authenticated:oauth</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-regulatory-compliance_service-definition">Regulatory compliance</h6>
+<div class="paragraph">
+<p>See the <em>Compliance</em> table in <em>Understanding process and security for ROSA</em> for the latest compliance information.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-network-security_service-definition">Network security</h6>
+<div class="paragraph">
+<p>With Red Hat OpenShift Services on AWS (classic architecture), AWS provides a standard DDoS protection on all load balancers, called AWS Shield. This provides 95% protection against most commonly used level 3 and 4 attacks on all the public facing load balancers used for ROSA. A 10-second timeout is added for HTTP requests coming to the <code>haproxy</code> router to receive a response or the connection is closed to provide additional protection.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-sdpolicy-etcd-encryption_service-definition">etcd encryption</h6>
+<div class="paragraph">
+<p>In Red Hat OpenShift Services on AWS (classic architecture), the control plane storage is encrypted at rest by default, including encryption of the etcd volumes. This storage-level encryption is provided through the storage layer of the cloud provider.</p>
+</div>
+<div class="paragraph">
+<p>You can also enable etcd encryption, which encrypts the key values in etcd, but not the keys. If you enable etcd encryption, the following Kubernetes API server and OpenShift API server resources are encrypted:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Secrets</p>
+</li>
+<li>
+<p>Config maps</p>
+</li>
+<li>
+<p>Routes</p>
+</li>
+<li>
+<p>OAuth access tokens</p>
+</li>
+<li>
+<p>OAuth authorize tokens</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The etcd encryption feature is not enabled by default and it can be enabled only at cluster installation time. Even with etcd encryption enabled, the etcd key values are accessible to anyone with access to the control plane nodes or <code>cluster-admin</code> privileges.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>By enabling etcd encryption for the key values in etcd, you will incur a performance overhead of approximately 20%. The overhead is a result of introducing this second layer of encryption, in addition to the default control plane storage encryption that encrypts the etcd volumes. Red&#160;Hat recommends that you enable etcd encryption only if you specifically require it for your use case.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-sdpolicy-kubernetes-operator_service-definition.html">Kubernetes Operator support</a> | ↑ Up: <a href="rosa-classic-service-definition_service-definition.html">Service definition</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-sdpolicy-auth-provider_service-definition.html">Authentication provider</a> →</p>
+<p>← Previous: <a href="rosa-sdpolicy-platform_service-definition.html">Platform</a> | ↑ Up: <a href="rosa-classic-service-definition_service-definition.html">Service definition</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-classic-instance-types_instance-types.html">Instance types</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-08 16:12:33 -0500
+Last updated 2026-09-09 12:57:42 -0500
 </div>
 </div>
 </body>
