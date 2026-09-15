@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red Hat OpenShift Services on AWS</title>
+<title>Red&#160;Hat OpenShift Services on AWS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,10 +440,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="rosa-sts-operator-roles_rosa-hcp-explore-sts-resources-for-iam-clusters" class="book toc2 toc-left">
 <div id="header">
-<h1>Red Hat OpenShift Services on AWS</h1>
+<h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s new</a>
 </li>
 <li><a href="_discover.html">Discover</a>
@@ -488,7 +488,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Use Operator roles to authenticate to your AWS resources through an OpenID Connect (OIDC) provider, and obtain temporary permissions for cluster operations. Securing these permissions helps you successfully manage capabilities like back-end storage, cloud ingress controllers, and external cluster access.</p>
 </div>
 <div class="paragraph">
-<p>When you create the Operator roles, the account-wide Operator policies for the matching cluster version are attached to the roles.</p>
+<p>When you create the Operator roles, the account-wide Operator policies for the matching cluster version are attached to the roles.
+AWS managed Operator policies are versioned in AWS IAM. The latest version of an AWS managed policy is always used, so you do not need to manage or schedule upgrades for AWS managed policies used by Red&#160;Hat OpenShift Services on AWS.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -504,18 +505,75 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </table>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 18. Required Operator roles and AWS Managed policies for Red&#160;Hat OpenShift Services on AWS</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Role name</th>
+<th class="tableblock halign-left valign-top">AWS Managed policy name</th>
+<th class="tableblock halign-left valign-top">Role description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-cloud-network-config-controller-credentials</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ROSACloudNetworkConfigOperatorPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role required by the cloud network config controller to manage cloud network credentials for a cluster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-image-registry-installer-cloud-credentials</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ROSAImageRegistryOperatorPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role required by the Red&#160;Hat OpenShift Services on AWS Image Registry Operator to manage the OpenShift image registry storage in AWS S3 for a cluster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kube-system-kube-controller-manager</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ROSAKubeControllerPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role required for OpenShift management on hosted control planes (HCP) clusters.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kube-system-capa-controller-manager</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ROSANodePoolManagementPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role required for node management on HCP clusters.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kube-system-control-plane-operator</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ROSAControlPlaneOperatorPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role required for control plane management on HCP clusters.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kube-system-kms-provider</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ROSAKMSProviderPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role required for OpenShift management on HCP clusters.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-ingress-operator-cloud-credentials</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ROSAIngressOperatorPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role required by the Red&#160;Hat OpenShift Services on AWS Ingress Operator to manage external access to a cluster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-cluster-csi-drivers-ebs-cloud-credentials</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ROSAAmazonEBSCSIDriverOperatorPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role required by Red&#160;Hat OpenShift Services on AWS to manage back-end storage through the Container Storage Interface (CSI).</p></td>
+</tr>
+</tbody>
+</table>
 <div class="ulist">
 <ul>
 </ul>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-sts-aws-requirements-attaching-boundary-policy_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Permission boundaries for the installer role</a> | ↑ Up: <a href="rosa-hcp-explore-sts-resources-for-iam-clusters_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Explore STS resources for IAM clusters</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS</a> | Next: <a href="rosa-sts-operator-role-aws-cli_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Operator IAM role AWS CLI reference</a> →</p>
+<p>← Previous: <a href="rosa-sts-aws-requirements-attaching-boundary-policy_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Permission boundaries for the installer role</a> | ↑ Up: <a href="rosa-hcp-explore-sts-resources-for-iam-clusters_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Explore STS resources for IAM clusters</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-sts-operator-role-aws-cli_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Operator IAM role AWS CLI reference</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-15 09:33:47 -0500
+Last updated 2026-09-15 15:57:10 -0500
 </div>
 </div>
 </body>

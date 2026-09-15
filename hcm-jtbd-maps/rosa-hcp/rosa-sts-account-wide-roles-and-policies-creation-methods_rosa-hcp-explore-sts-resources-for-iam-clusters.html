@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red Hat OpenShift Services on AWS</title>
+<title>Red&#160;Hat OpenShift Services on AWS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,10 +440,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="rosa-sts-account-wide-roles-and-policies-creation-methods_rosa-hcp-explore-sts-resources-for-iam-clusters" class="book toc2 toc-left">
 <div id="header">
-<h1>Red Hat OpenShift Services on AWS</h1>
+<h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s new</a>
 </li>
 <li><a href="_discover.html">Discover</a>
@@ -485,7 +485,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="rosa-sts-account-wide-roles-and-policies-creation-methods_rosa-hcp-explore-sts-resources-for-iam-clusters">Methods of account-wide role creation</h5>
 <div class="paragraph">
-<p>You can create account-wide roles by using the Red Hat OpenShift Services on AWS (ROSA) CLI, <code>rosa</code>, or the <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> guided installation. You can create the roles manually or by using an automatic process that uses predefined names for these roles and policies.</p>
+<p>You can create account-wide roles by using the Red&#160;Hat OpenShift Services on AWS (ROSA) CLI, <code>rosa</code>, or the <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> guided installation. You can create the roles manually or by using an automatic process that uses predefined names for these roles and policies.</p>
 </div>
 <div class="sect5">
 <h6 id="rosa-sts-account-wide-roles-and-policies-creation-methods-manual_rosa-hcp-explore-sts-resources-for-iam-clusters">Manual ocm-role resource creation</h6>
@@ -499,24 +499,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>After you created an <code>ocm-role</code> resource with administrative permissions, you can use the automatic creation method from OpenShift Cluster Manager. Selecting this method creates the roles and policies that use the default names.</p>
 </div>
 <div class="paragraph">
-<p>If you use the Red Hat OpenShift Services on AWS guided installation on OpenShift Cluster Manager, you must have created an <code>ocm-role</code> resource with administrative permissions in the first step of the guided cluster installation.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The account number present in the <code>sts_installer_trust_policy.json</code> and <code>sts_support_trust_policy.json</code> samples represents the Red&#160;Hat account that is allowed to assume the required roles.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>If you use the Red&#160;Hat OpenShift Services on AWS guided installation on OpenShift Cluster Manager, you must have created an <code>ocm-role</code> resource with administrative permissions in the first step of the guided cluster installation.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 6. ROSA installer role, policy, and policy files</caption>
+<caption class="title">Table 6. ROSA Manage Subscription policy and policy file</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -529,37 +515,71 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-Installer-Role</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ROSAManageSubscription.html"><code>ROSAManageSubscription</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This policy streamlines permission setup by packaging necessary access rights, giving entities appropriate control over the ROSA subscription while preventing excessive permissions.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. ROSA installer role, policy, and policy files</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Resource</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HCP-ROSA-Installer-Role</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role used by the ROSA installer.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-Installer-Role-Policy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ROSAInstallerPolicy.html">ROSAInstallerPolicy</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that provides the ROSA installer with the permissions required to complete cluster installation tasks.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HCP-ROSA-Installer-Role</code> trust policy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grants the Red&#160; Hat installer temporary permission to act within your AWS account for the sole purpose of setting up a Red&#160;Hat OpenShift Services on AWS cluster.</p></td>
+</tr>
 </tbody>
 </table>
 <details>
-<summary class="title"><code>sts_installer_trust_policy.json</code></summary>
+<summary class="title"><code>sts_hcp_installer_permission_policy.json</code></summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/sts_installer_trust_policy.json[role=include]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/hypershift/sts_hcp_installer_permission_policy.json[role=include]</code></pre>
 </div>
 </div>
 </div>
 </details>
 <details>
-<summary class="title"><code>sts_installer_permission_policy.json</code></summary>
+<summary class="title"><code>sts_hcp_installer_trust_policy.json</code></summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/sts_installer_permission_policy.json[role=include]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::710019948333:role/RH-Managed-OpenShift-Installer"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}</code></pre>
 </div>
 </div>
 </div>
 </details>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 7. ROSA control plane role, policy, and policy files</caption>
+<caption class="title">Table 8. ROSA worker node role, policy, and policy files</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -572,74 +592,46 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-ControlPlane-Role</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role used by the ROSA control plane.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HCP-ROSA-Worker-Role</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role used by the compute instances.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-ControlPlane-Role-Policy</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that provides the ROSA control plane with the permissions required to manage its components.</p></td>
-</tr>
-</tbody>
-</table>
-<details>
-<summary class="title"><code>sts_instance_controlplane_trust_policy.json</code></summary>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/sts_instance_controlplane_trust_policy.json[role=include]</code></pre>
-</div>
-</div>
-</div>
-</details>
-<details>
-<summary class="title"><code>sts_instance_controlplane_permission_policy.json</code></summary>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/sts_instance_controlplane_permission_policy.json[role=include]</code></pre>
-</div>
-</div>
-</div>
-</details>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. ROSA compute node role, policy, and policy files</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Resource</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-Worker-Role</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role used by the ROSA compute instances.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-Worker-Role-Policy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ROSAWorkerInstancePolicy.html">ROSAWorkerInstancePolicy</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that provides the ROSA compute instances with the permissions required to manage their components.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HCP-ROSA-Worker-Role</code> trust policy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows essential software on your worker nodes to securely connect and talk to the cluster&#8217;s control plane, which is managed remotely by Red&#160;Hat.</p></td>
+</tr>
 </tbody>
 </table>
 <details>
-<summary class="title"><code>sts_instance_worker_trust_policy.json</code></summary>
+<summary class="title"><code>sts_hcp_worker_instance_permission_policy.json</code></summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/sts_instance_worker_trust_policy.json[role=include]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/hypershift/sts_hcp_worker_instance_permission_policy.json[role=include]</code></pre>
 </div>
 </div>
 </div>
 </details>
 <details>
-<summary class="title"><code>sts_instance_worker_permission_policy.json</code></summary>
+<summary class="title"><code>sts_hcp_worker_instance_trust_policy.json</code></summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/sts_instance_worker_permission_policy.json[role=include]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}</code></pre>
 </div>
 </div>
 </div>
@@ -658,37 +650,52 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-Support-Role</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role used by the Red&#160;Hat Site Reliability Engineering (SRE) support team.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HCP-ROSA-Support-Role</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role used by the Red Hat Site Reliability Engineering (SRE) support team.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-Support-Role-Policy</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that provides the Red&#160;Hat SRE support team with the permissions required to support ROSA clusters.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ROSASRESupportPolicy.html">ROSASRESupportPolicy</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that provides the Red Hat SRE support team with the permissions required to support ROSA clusters.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HCP-ROSA-Support-Role</code> trust policy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides a secure mechanism for authorized Red Hat Site Reliability Engineers (SREs) to perform diagnostic and support functions on the cluster.</p></td>
 </tr>
 </tbody>
 </table>
 <details>
-<summary class="title"><code>sts_support_trust_policy.json</code></summary>
+<summary class="title"><code>sts_hcp_support_permission_policy.json</code></summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/sts_support_trust_policy.json[role=include]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/hypershift/sts_hcp_support_permission_policy.json[role=include]</code></pre>
 </div>
 </div>
 </div>
 </details>
 <details>
-<summary class="title"><code>sts_support_permission_policy.json</code></summary>
+<summary class="title"><code>sts_hcp_support_trust_policy.json</code></summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/sts_support_permission_policy.json[role=include]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::710019948333:role/RH-Technical-Support-15234082"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}</code></pre>
 </div>
 </div>
 </div>
 </details>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 10. ROSA OCM role and policy file</caption>
+<caption class="title">Table 10. ROSA Kube Controller Operator policy and policy file</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -701,23 +708,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-OCM-Role</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">You use this IAM role to create and maintain ROSA clusters in  OpenShift Cluster Manager.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-hcp-kube-controller-manager-credentials</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that grants permissions to the kube controller to manage Amazon EC2, Elastic Load Balancing, and AWS KMS resources.</p></td>
 </tr>
 </tbody>
 </table>
 <details>
-<summary class="title"><code>sts_ocm_role_trust_policy.json</code></summary>
+<summary class="title"><code>openshift-hcp_kube-controller-manager-credentials-policy.json</code></summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/sts_ocm_trust_policy.json[role=include]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/hypershift/openshift_hcp_kube_controller_manager_credentials_policy.json[role=include]</code></pre>
 </div>
 </div>
 </div>
 </details>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 11. ROSA user role and policy file</caption>
+<caption class="title">Table 11. ROSA Control Plane Operator policy and policy file</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -730,82 +737,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-User-&lt;OCM_user&gt;-Role</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM role used by Red&#160;Hat to verify the customer&#8217;s AWS identity.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-hcp-control-plane-operator-credentials-policy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that grants required permissions to the Control Plane Operator to manage Amazon EC2 and Route 53 resources.</p></td>
 </tr>
 </tbody>
 </table>
 <details>
-<summary class="title"><code>sts_user_role_trust_policy.json</code></summary>
+<summary class="title"><code>openshift_hcp_control_plane_operator_credentials_policy.json</code></summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/sts_installer_trust_policy.json[role=include]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/hypershift/openshift_hcp_control_plane_operator_credentials_policy.json[role=include]</code></pre>
 </div>
 </div>
 </div>
 </details>
-<div class="sect6">
-<h7 id="rosa-sts-account-wide-roles-and-policies-example-cli-output-for-policies-attached-to-a-role_rosa-hcp-explore-sts-resources-for-iam-clusters">Example CLI output for policies attached to a role</h7>
-<div class="paragraph">
-<p>When a policy is attached to a role, the ROSA CLI displays a confirmation output. The output depends on the type of policy.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>If the policy is a trust policy, the ROSA CLI outputs the role name and the content of the policy.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>For the target role with policy attached, ROSA CLI outputs the role name and the console URL of the target role.</p>
-<div class="listingblock">
-<div class="title">Target role with policy attached example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Attached trust policy to role 'testrole-Worker-Role(https://console.aws.amazon.com/iam/home?#/roles/testrole-Worker-Role)': ******************</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>If the attached policy is a trust policy, the ROSA CLI outputs the content of this policy.</p>
-<div class="listingblock">
-<div class="title">Trust policy example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Attached trust policy to role 'test-Support-Role': {"Version": "2012-10-17", "Statement": [{"Action": ["sts:AssumeRole"], "Effect": "Allow", "Principal": {"AWS": ["arn:aws:iam::000000000000:role/RH-Technical-Support-00000000"]}}]}</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>If the policy is a permission policy, the ROSA CLI outputs the name and public link of this policy or the ARN depending on whether or not the policy is an AWS managed policy or customer-managed policy.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>If the attached policy is an AWS managed policy, the ROSA CLI outputs the name and public link of this policy and the role it is attached to.</p>
-<div class="listingblock">
-<div class="title">AWS managed policy example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Attached policy 'ROSASRESupportPolicy(https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ROSASRESupportPolicy)' to role 'test-HCP-ROSA-Support-Role(https://console.aws.amazon.com/iam/home?#/roles/test-HCP-ROSA-Support-Role)'</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>If the attached policy is an AWS managed policy, the ROSA CLI outputs the name and public link of this policy and the role it is attached to.</p>
-<div class="listingblock">
-<div class="title">Customer-managed policy example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Attached policy 'arn:aws:iam::000000000000:policy/testrole-Worker-Role-Policy' to role 'testrole-Worker-Role(https://console.aws.amazon.com/iam/home?#/roles/testrole-Worker-Role)'</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 12. ROSA Ingress Operator IAM policy and policy file</caption>
+<caption class="title">Table 12. ROSA Node Pool Management Operator policy and policy file</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -818,23 +766,139 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-openshift-ingress-operator-cloud-credentials</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-hcp-capa-controller-manager-credentials-policy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that grants required permissions to the NodePool controller to describe, run, and terminate Amazon EC2 instances managed as worker nodes. This policy also grants permissions to allow for disk encryption of the worker node root volume using AWS KMS keys, and to tag the elastic network interface that is attached to the worker node.</p></td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary class="title"><code>openshift_hcp_capa_controller_manager_credentials_policy.json</code></summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/hypershift/openshift_hcp_capa_controller_manager_credentials_policy.json[role=include]</code></pre>
+</div>
+</div>
+</div>
+</details>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 13. ROSA Image Registry Operator policy and policy file</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Resource</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-hcp-image-registry-operator-permission-policy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that grants required permissions to the Image Registry Operator to provision and manage resources for the ROSA in-cluster image registry and dependent services, including S3. This is required so that the operator can install and maintain the internal registry of a ROSA cluster.</p></td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary class="title"><code>openshift_hcp_image_registry_operator_permission_policy.json</code></summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/hypershift/openshift_hcp_image_registry_operator_permission_policy.json[role=include]</code></pre>
+</div>
+</div>
+</div>
+</details>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 14. ROSA Amazon EBSCI Driver Operator policy and policy file</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Resource</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-hcp-cluster-csi-driver-ebs-operator-cloud-credentials-policy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that grants necessary permissions to the Amazon EBS CSI Driver Operator to install and maintain the Amazon EBS CSI driver on a ROSA cluster.</p></td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary class="title"><code>openshift_hcp_cluster_csi_driver_ebs_operator_cloud_credentials_policy.json</code></summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/hypershift/openshift_hcp_cluster_csi_driver_ebs_operator_cloud_credentials_policy.json[role=include]</code></pre>
+</div>
+</div>
+</div>
+</details>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 15. ROSA Cloud Network Config Operator policy and policy file</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Resource</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-hcp-cloud-network-config-cloud-credentials-permission-policy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that grants necessary permissions to the Amazon EBS CSI Driver Operator to install and maintain the Amazon EBS CSI driver on a ROSA cluster.</p></td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary class="title"><code>openshift_hcp_cloud_network_config_cloud_credentials_permission_policy.json</code></summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/hypershift/openshift_hcp_cloud_network_config_cloud_credentials_permission_policy.json[role=include]</code></pre>
+</div>
+</div>
+</div>
+</details>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 16. ROSA Ingress Operator policy and policy file</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Resource</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-hcp-cluster-ingress-operator-cloud-credentials-policy</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that provides the ROSA Ingress Operator with the permissions required to manage external access to a cluster.</p></td>
 </tr>
 </tbody>
 </table>
 <details>
-<summary class="title"><code>openshift_ingress_operator_cloud_credentials_policy.json</code></summary>
+<summary class="title"><code>openshift_hcp_cluster_ingress_operator_cloud_credentials_policy.json</code></summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/openshift_ingress_operator_cloud_credentials_policy.json[role=include]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/hypershift/openshift_hcp_cluster_ingress_operator_cloud_credentials_policy.json[role=include]</code></pre>
 </div>
 </div>
 </div>
 </details>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 13. ROSA back-end storage IAM policy and policy file</caption>
+<caption class="title">Table 17. ROSA KMS Provider Operator policy and policy file</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -847,118 +911,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credentials</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy required by ROSA to manage back-end storage through the Container Storage Interface (CSI).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-hcp-kms-provider-credential-policy.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy grants required permissions to the built-in AWS Encryption Provider to manage AWS KMS keys that support etcd data encryption. This policy allows Amazon EC2 to use KMS keys that the AWS Encryption Provider provides to encrypt and decrypt etcd data.</p></td>
 </tr>
 </tbody>
 </table>
 <details>
-<summary class="title"><code>openshift_cluster_csi_drivers_ebs_cloud_credentials_policy.json</code></summary>
+<summary class="title"><code>openshift_hcp_kms_provider_credential_policy.json</code></summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/openshift_cluster_csi_drivers_ebs_cloud_credentials_policy.json[role=include]</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/hypershift/openshift_hcp_kms_provider_credential_policy.json[role=include]</code></pre>
 </div>
 </div>
 </div>
 </details>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 14. ROSA Machine Config Operator policy and policy file</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Resource</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-openshift-machine-api-aws-cloud-credentials</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that provides the ROSA Machine Config Operator with the permissions required to perform core cluster functionality.</p></td>
-</tr>
-</tbody>
-</table>
-<details>
-<summary class="title"><code>openshift_machine_api_aws_cloud_credentials_policy.json</code></summary>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/openshift_machine_api_aws_cloud_credentials_policy.json[role=include]</code></pre>
-</div>
-</div>
-</div>
-</details>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 15. ROSA Cloud Credential Operator policy and policy file</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Resource</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-openshift-cloud-credential-operator-cloud-credentials</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that provides the ROSA Cloud Credential Operator with the permissions required to manage cloud provider credentials.</p></td>
-</tr>
-</tbody>
-</table>
-<details>
-<summary class="title"><code>openshift_cloud_credential_operator_cloud_credential_operator_iam_ro_creds_policy.json</code></summary>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/openshift_cloud_credential_operator_cloud_credential_operator_iam_ro_creds_policy.json[role=include]</code></pre>
-</div>
-</div>
-</div>
-</details>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 16. ROSA Image Registry Operator policy and policy file</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Resource</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedOpenShift-openshift-image-registry-installer-cloud-credentials</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An IAM policy that provides the ROSA Image Registry Operator with the permissions required to manage the OpenShift image registry storage in AWS S3 for a cluster.</p></td>
-</tr>
-</tbody>
-</table>
-<details>
-<summary class="title"><code>openshift_image_registry_installer_cloud_credentials_policy.json</code></summary>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/refs/heads/master/resources/sts/4.22/openshift_image_registry_installer_cloud_credentials_policy.json[role=include]</code></pre>
-</div>
-</div>
-</div>
-</details>
-</div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="rosa-sts-account-wide-roles-and-policies_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Account-wide IAM role and policy reference</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS</a> | Next: <a href="rosa-sts-account-wide-role-and-policy-aws-cli_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Account-wide IAM role and policy AWS CLI reference</a> →</p>
+<p>↑ Up: <a href="rosa-sts-account-wide-roles-and-policies_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Account-wide IAM role and policy reference</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-sts-account-wide-role-and-policy-aws-cli_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Account-wide IAM role and policy AWS CLI reference</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-15 09:33:47 -0500
+Last updated 2026-09-15 15:57:10 -0500
 </div>
 </div>
 </body>

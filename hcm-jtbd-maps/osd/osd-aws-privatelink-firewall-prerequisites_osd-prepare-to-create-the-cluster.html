@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red Hat OpenShift Services on AWS</title>
+<title>Openshift Dedicated</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,41 +438,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="rosa-policy-container-cluster-failure_rosa-hcp-general-availability" class="book toc2 toc-left">
+<body id="osd-aws-privatelink-firewall-prerequisites_osd-prepare-to-create-the-cluster" class="book toc2 toc-left">
 <div id="header">
-<h1>Red Hat OpenShift Services on AWS</h1>
+<h1>Openshift Dedicated</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Openshift Dedicated</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s new</a>
 </li>
 <li><a href="_discover.html">Discover</a>
-<ul class="sectlevel2">
-<li><a href="rosa-hcp-learn-about-benefits-and-use-cases_rosa-hcp-learn-about-benefits-and-use-cases.html">Learn about benefits and use cases</a>
-</li>
-<li><a href="rosa-hcp-evaluate-shared-responsibilities_rosa-hcp-evaluate-shared-responsibilities.html">Evaluate shared responsibilities</a>
-</li>
-<li><a href="rosa-hcp-get-sre-and-service-account-access_rosa-hcp-get-sre-and-service-account-access.html">Get SRE and service account access</a>
-</li>
-<li><a href="rosa-hcp-understand-security-control_rosa-hcp-understand-security-control.html">Understand security control</a>
-</li>
-<li><a href="rosa-hcp-acquire-aws-sts-authentication_rosa-hcp-acquire-aws-sts-authentication.html">Acquire AWS STS authentication</a>
-</li>
-<li><a href="rosa-hcp-investigate-architecture-models_rosa-hcp-investigate-architecture-models.html">Investigate architecture models</a>
-</li>
-<li><a href="rosa-hcp-explore-sts-resources-for-iam-clusters_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Explore STS resources for IAM clusters</a>
-</li>
-<li><a href="rosa-hcp-general-availability_rosa-hcp-general-availability.html">General availability</a>
-</li>
-<li><a href="rosa-hcp-review-the-service-definition_rosa-hcp-review-the-service-definition.html">Review the service definition</a>
-</li>
-<li><a href="rosa-hcp-review-supported-instance-types_rosa-hcp-review-supported-instance-types.html">Review supported instance types</a>
-</li>
-<li><a href="rosa-hcp-update-life-cycle_rosa-hcp-update-life-cycle.html">Update life cycle</a>
-</li>
-</ul>
 </li>
 <li><a href="_install.html">Install</a>
+<ul class="sectlevel2">
+<li><a href="osd-create-an-osd-cluster-on-google-cloud-intro_osd-create-an-osd-cluster-on-google-cloud.html">Create an OSD cluster on Google Cloud</a>
+</li>
+<li><a href="osd-create-an-osd-cluster-on-aws-intro_osd-create-an-osd-cluster-on-aws.html">Create an OSD cluster on AWS</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
 </li>
@@ -483,27 +465,345 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect4">
-<h5 id="rosa-policy-container-cluster-failure_rosa-hcp-general-availability">Cluster failure</h5>
-<div class="paragraph">
-<p>Single-AZ ROSA clusters have three control plane nodes and two infrastructure nodes in the same availability zone (AZ) in the private subnet.</p>
+<h5 id="osd-aws-privatelink-firewall-prerequisites_osd-prepare-to-create-the-cluster">Firewall AllowList requirements</h5>
+<div class="paragraph _abstract">
+<p>If you are using a firewall to control egress traffic from Openshift Dedicated, you must configure your firewall to grant access to the certain domain and port combinations below. Openshift Dedicated requires this access to provide a fully managed OpenShift service.</p>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. Domains for installation packages and tools</caption>
+<colgroup>
+<col style="width: 46.1538%;">
+<col style="width: 7.6923%;">
+<col style="width: 46.1539%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Domain</th>
+<th class="tableblock halign-left valign-top">Port</th>
+<th class="tableblock halign-left valign-top">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>registry.redhat.io</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides core container images.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quay.io</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides core container images.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cdn01.quay.io</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides core container images.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cdn02.quay.io</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides core container images.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cdn03.quay.io</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides core container images.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cdn04.quay.io</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides core container images.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cdn05.quay.io</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides core container images.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cdn06.quay.io</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides core container images.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sso.redhat.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required. The <code><a href="https://console.redhat.com/openshift" class="bare">https://console.redhat.com/openshift</a></code> site uses authentication from <code>sso.redhat.com</code> to download the pull secret and use Red&#160;Hat SaaS solutions to facilitate monitoring of your subscriptions, cluster inventory, chargeback reporting, and so on.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quay-registry.s3.amazonaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides core container images.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quayio-production-s3.s3.amazonaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides core container images.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>registry.access.redhat.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hosts all the container images that are stored on the Red&#160;Hat Ecosytem Catalog. Additionally, the registry provides access to the <code>odo</code> CLI tool that helps developers build on OpenShift and Kubernetes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>access.redhat.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required. Hosts a signature store that a container client requires for verifying images when pulling them from <code>registry.access.redhat.com</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>registry.connect.redhat.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required for all third-party images and certified Operators.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>console.redhat.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required. Allows interactions between the cluster and OpenShift Console Manager to enable functionality, such as scheduling upgrades.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sso.redhat.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code><a href="https://console.redhat.com/openshift" class="bare">https://console.redhat.com/openshift</a></code> site uses authentication from <code>sso.redhat.com</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pull.q1w2.quay.rhcloud.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides core container images as a fallback when quay.io is not available.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>catalog.redhat.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>registry.access.redhat.com</code> and <code><a href="https://registry.redhat.io" class="bare">https://registry.redhat.io</a></code> sites redirect through <code>catalog.redhat.com</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oidc.op1.openshiftapps.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used by Openshift Dedicated  for STS implementation with managed OIDC configuration.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 8. Domains for telemetry</caption>
+<colgroup>
+<col style="width: 46.1538%;">
+<col style="width: 7.6923%;">
+<col style="width: 46.1539%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Domain</th>
+<th class="tableblock halign-left valign-top">Port</th>
+<th class="tableblock halign-left valign-top">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cert-api.access.redhat.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required for telemetry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>api.access.redhat.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required for telemetry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infogw.api.openshift.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required for telemetry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>console.redhat.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required for telemetry and Red&#160;Hat Lightspeed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>observatorium-mst.api.openshift.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required for managed OpenShift-specific telemetry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>observatorium.api.openshift.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required for managed OpenShift-specific telemetry.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
-<p>Multi-AZ ROSA clusters have three control plane nodes and three infrastructure nodes that are preconfigured for high availability, one in each AZ. Control plane and infrastructure nodes have the same resiliency as worker nodes, with the added benefit of being managed completely by Red&#160;Hat.</p>
+<p>Managed clusters require enabling telemetry to allow Red&#160;Hat to react more quickly to problems, better support the customers, and better understand how product upgrades impact clusters. For more information about how remote health monitoring data is used by Red&#160;Hat, see <em>About remote health monitoring</em> in the <em>Additional resources</em> section.</p>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 9. Domains for Amazon Web Services (AWS) APIs</caption>
+<colgroup>
+<col style="width: 46.1538%;">
+<col style="width: 7.6923%;">
+<col style="width: 46.1539%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Domain</th>
+<th class="tableblock halign-left valign-top">Port</th>
+<th class="tableblock halign-left valign-top">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.amazonaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required to access AWS services and resources.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
-<p>In the event of a complete control plane outage, the OpenShift APIs will not function, and existing worker node pods are unaffected. However, if there is also a pod or node outage at the same time, the control planes must recover before new pods or nodes can be added or scheduled.</p>
+<p>Alternatively, if you choose to not use a wildcard for Amazon Web Services (AWS) APIs, you must allowlist the following URLs:</p>
 </div>
-<div class="paragraph">
-<p>All services running on infrastructure nodes are configured by Red&#160;Hat to be highly available and distributed across infrastructure nodes. In case of a complete infrastructure outage, these services are unavailable until these nodes have been recovered.</p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 46.1538%;">
+<col style="width: 7.6923%;">
+<col style="width: 46.1539%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Domain</th>
+<th class="tableblock halign-left valign-top">Port</th>
+<th class="tableblock halign-left valign-top">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ec2.amazonaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to install and manage clusters in an AWS environment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>events.&lt;aws_region&gt;.amazonaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to install and manage clusters in an AWS environment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam.amazonaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to install and manage clusters in an AWS environment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>route53.amazonaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to install and manage clusters in an AWS environment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sts.amazonaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to install and manage clusters in an AWS environment, for clusters configured to use the global endpoint for AWS STS.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sts.&lt;aws_region&gt;.amazonaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to install and manage clusters in an AWS environment, for clusters configured to use regionalized endpoints for AWS STS. See <a href="https://docs.aws.amazon.com/sdkref/latest/guide/feature-sts-regionalized-endpoints.html">AWS STS regionalized endpoints</a> for more information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tagging.us-east-1.amazonaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to install and manage clusters in an AWS environment. This endpoint is always us-east-1, regardless of the region the cluster is deployed in.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ec2.&lt;aws_region&gt;.amazonaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to install and manage clusters in an AWS environment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>elasticloadbalancing.&lt;aws_region&gt;.amazonaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to install and manage clusters in an AWS environment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tagging.&lt;aws_region&gt;.amazonaws.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows the assignment of metadata about AWS resources in the form of tags.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 10. Domains for OpenShift</caption>
+<colgroup>
+<col style="width: 46.1538%;">
+<col style="width: 7.6923%;">
+<col style="width: 46.1539%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Domain</th>
+<th class="tableblock halign-left valign-top">Port</th>
+<th class="tableblock halign-left valign-top">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.openshift.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to access mirrored installation content and images. This site is also a source of release image signatures.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>api.openshift.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to check if updates are available for the cluster.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 11. Domains for your Site Reliability Engineering (SRE) and management</caption>
+<colgroup>
+<col style="width: 46.1538%;">
+<col style="width: 7.6923%;">
+<col style="width: 46.1539%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Domain</th>
+<th class="tableblock halign-left valign-top">Port</th>
+<th class="tableblock halign-left valign-top">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>api.pagerduty.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This alerting service is used by the in-cluster alertmanager to send alerts notifying Red&#160;Hat SRE of an event to take action on.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>events.pagerduty.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This alerting service is used by the in-cluster alertmanager to send alerts notifying Red&#160;Hat SRE of an event to take action on.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>api.deadmanssnitch.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alerting service used by Openshift Dedicated to send periodic pings that indicate whether the cluster is available and running.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nosnch.in</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alerting service used by Openshift Dedicated to send periodic pings that indicate whether the cluster is available and running.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http-inputs-osdsecuritylogs.splunkcloud.com</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required. Used by the <code>splunk-forwarder-operator</code> as a logging forwarding endpoint to be used by Red&#160;Hat SRE for log-based alerting.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sftp.access.redhat.com</code> (Recommended)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">22</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The SFTP server used by <code>must-gather-operator</code> to upload diagnostic logs to help troubleshoot issues with the cluster.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-policy-worker-node-failure_rosa-hcp-general-availability.html">Worker node failure</a> | ↑ Up: <a href="rosa-policy-failure-points_rosa-hcp-general-availability.html">Potential points of failure</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS</a> | Next: <a href="rosa-policy-container-zone-failure_rosa-hcp-general-availability.html">Zone failure</a> →</p>
+<p>← Previous: <a href="ccs-aws-customer-procedure_osd-prepare-to-create-the-cluster.html">Required customer procedure</a> | ↑ Up: <a href="osd-prepare-to-create-the-cluster-intro_osd-prepare-to-create-the-cluster.html">Prepare to create the cluster</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="aws-limits_osd-prepare-to-create-the-cluster.html">AWS account limits</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-15 09:33:47 -0500
+Last updated 2026-09-15 15:57:10 -0500
 </div>
 </div>
 </body>

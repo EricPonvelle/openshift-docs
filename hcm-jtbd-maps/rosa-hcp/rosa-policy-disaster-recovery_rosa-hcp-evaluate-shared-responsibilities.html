@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red Hat OpenShift Services on AWS</title>
+<title>Red&#160;Hat OpenShift Services on AWS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,10 +440,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="rosa-policy-disaster-recovery_rosa-hcp-evaluate-shared-responsibilities" class="book toc2 toc-left">
 <div id="header">
-<h1>Red Hat OpenShift Services on AWS</h1>
+<h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s new</a>
 </li>
 <li><a href="_discover.html">Discover</a>
@@ -504,7 +504,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>For more information, see “Disaster recovery options in the cloud” in <em>Additional resources</em>.</p>
 </div>
 <div class="paragraph">
-<p>The following responsibility matrix provides details about disaster recovery practices as part of Red Hat OpenShift Services on AWS.</p>
+<p>The following responsibility matrix provides details about disaster recovery practices as part of Red&#160;Hat OpenShift Services on AWS.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Disaster recovery responsibilities</caption>
@@ -648,6 +648,104 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Control plane</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use snapshots, troubleshooting tools, and control planes deployed in multiple AZs to minimize downtime during service-side disaster events.</p>
+</li>
+<li>
+<p>Take a full snapshot of the control plane etcd database every hour and retain the snapshot for 24 hours. This backup schedule supports the Recovery Point Objective (RPO) of one hour.</p>
+<div class="paragraph">
+<p>Note that these backups are intended for use within service-side disaster recovery scenarios and are not available for customer-requested restorations.</p>
+</div>
+</li>
+<li>
+<p>Commit to a Recovery Time Objective (RTO) of up to one hour, covering complete cluster restoration and post-validation checks.</p>
+</li>
+<li>
+<p>During disaster events, notify the customer that control plane recovery is in progress. If both the control and data planes are impacted, coordinate recovery efforts with the customer.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Cooperate with Red&#160;Hat during disaster recovery events.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Data plane (worker nodes)</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Red&#160;Hat is available to support customer efforts to restore data and applications upon submission of a support case.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Back up data plane contents and configuration.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>AWS software (public AWS services)</p>
 </div>
 <div class="ulist">
@@ -664,7 +762,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Compute:</strong> Provide Amazon EC2 features that support data resiliency such as Amazon EBS snapshots and Amazon EC2 Auto Scaling. For more information, see "Resilience in Amazon EC2" in <em>Additional resources</em>.</p>
 </div>
 <div class="paragraph">
-<p><strong>Storage:</strong> Provide the ability for the Red Hat OpenShift Services on AWS service and customers to back up the Amazon EBS volume on the cluster through Amazon EBS volume snapshots.</p>
+<p><strong>Storage:</strong> Provide the ability for the Red&#160;Hat OpenShift Services on AWS service and customers to back up the Amazon EBS volume on the cluster through Amazon EBS volume snapshots.</p>
 </div>
 <div class="paragraph">
 <p><strong>Storage:</strong> For information about Amazon S3 features that support data resiliency, see "Resilience in Amazon S3" in <em>Additional resources</em>.</p>
@@ -682,7 +780,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
 <li>
-<p>Configure Red Hat OpenShift Services on AWS clusters with multiple machine pools across multiple AZs to improve fault tolerance and cluster availability.</p>
+<p>Configure Red&#160;Hat OpenShift Services on AWS clusters with multiple machine pools across multiple AZs to improve fault tolerance and cluster availability.</p>
 </li>
 <li>
 <p>Provision persistent volumes using the Amazon EBS CSI driver to enable volume snapshots.</p>
@@ -717,7 +815,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>Provide AWS global infrastructure that allows Red Hat OpenShift Services on AWS to scale
+<p>Provide AWS global infrastructure that allows Red&#160;Hat OpenShift Services on AWS to scale
+nodes
 across AZs. This functionality enables orchestration of automatic failover between zones without interruption.</p>
 </li>
 </ul>
@@ -732,7 +831,7 @@ across AZs. This functionality enables orchestration of automatic failover betwe
 <td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
 <li>
-<p>Configure Red Hat OpenShift Services on AWS clusters with multiple machine pools across multiple AZs to improve fault tolerance and cluster availability.</p>
+<p>Configure Red&#160;Hat OpenShift Services on AWS clusters with multiple machine pools across multiple AZs to improve fault tolerance and cluster availability.</p>
 </li>
 </ul>
 </div>
@@ -752,12 +851,12 @@ across AZs. This functionality enables orchestration of automatic failover betwe
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-policy-security-compliance_rosa-hcp-evaluate-shared-responsibilities.html">Security and regulation compliance</a> | ↑ Up: <a href="rosa-hcp-evaluate-shared-responsibilities_rosa-hcp-evaluate-shared-responsibilities.html">Evaluate shared responsibilities</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS</a> | Next: <a href="sd-redhat-managed-resources_rosa-hcp-evaluate-shared-responsibilities.html">Red&#160;Hat managed resources</a> →</p>
+<p>← Previous: <a href="rosa-policy-security-compliance_rosa-hcp-evaluate-shared-responsibilities.html">Security and regulation compliance</a> | ↑ Up: <a href="rosa-hcp-evaluate-shared-responsibilities_rosa-hcp-evaluate-shared-responsibilities.html">Evaluate shared responsibilities</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="sd-redhat-managed-resources_rosa-hcp-evaluate-shared-responsibilities.html">Red&#160;Hat managed resources</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-15 09:33:47 -0500
+Last updated 2026-09-15 15:57:10 -0500
 </div>
 </div>
 </body>

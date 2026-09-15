@@ -498,6 +498,9 @@ clusters is controlled through several layers of required authentication, all of
 <li>
 <p>Accessing a PrivateLink cluster: Request is sent to the Red&#160;Hat Transit Gateway, which then connects to a Red&#160;Hat VPC per region. The VPC that receives the request will be dependent on the target private cluster&#8217;s region. Within the VPC, there is a private subnet that contains the PrivateLink endpoint to the customer&#8217;s PrivateLink cluster.</p>
 </li>
+<li>
+<p>Accessing a Private Service Connect (PSC) cluster: Request is sent to Red&#160;Hat&#8217;s internal backend infrastructure, which routes the traffic through a secured, trusted network to Red&#160;Hat&#8217;s Management project in Google Cloud. The Red&#160;Hat Management project includes VPC, which is configured with subnets in multiple regions, each containing a PSC endpoint that provides private access to the customer&#8217;s cluster in the respective region. The traffic is routed through the appropriate regional subnet, ensuring secure and private access to the cluster without traversing the public internet.</p>
+</li>
 </ul>
 </div>
 </li>
@@ -514,7 +517,7 @@ clusters is controlled through several layers of required authentication, all of
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-15 09:33:47 -0500
+Last updated 2026-09-15 15:57:10 -0500
 </div>
 </div>
 </body>

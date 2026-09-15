@@ -475,78 +475,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 These roles define the function of the machine within the cluster.
 The cluster contains definitions for the standard <code>master</code> and <code>worker</code> role types.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The cluster also contains the definition for the <code>bootstrap</code> role.
-The installation program uses the bootstrap machine only during cluster deployment.
-See the cluster installation documentation to learn more about its role.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Control plane and node host compatibility</dt>
-<dd>
-<div class="paragraph">
-<p>The Openshift Dedicated version must match between control plane host and node host.
-For example, in a {product-version} cluster, all control plane hosts must be {product-version} and all nodes must be {product-version}.</p>
-</div>
-<div class="paragraph">
-<p>Temporary mismatches during cluster upgrades are acceptable.
-For example, when upgrading from the previous Openshift Dedicated version to {product-version}, some nodes upgrade to {product-version} before others.
-Prolonged skewing of control plane hosts and node hosts might expose older compute machines to bugs and missing features.
-Users can resolve skewed control plane hosts and node hosts as soon as possible.</p>
-</div>
-<div class="paragraph">
-<p>The <code>kubelet</code> service must not be newer than <code>kube-apiserver</code>, and can be up to two minor versions older depending on whether your Openshift Dedicated version is odd or even. The table below shows the appropriate version compatibility:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Openshift Dedicated version</th>
-<th class="tableblock halign-left valign-top">Supported <code>kubelet</code> skew</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Odd Openshift Dedicated minor versions <sup>[1]</sup></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Up to one version older</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Even Openshift Dedicated minor versions <sup>[2]</sup></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Up to two versions older</p></td>
-</tr>
-</tbody>
-</table>
-</dd>
-</dl>
-</div>
-<div class="openblock small">
-<div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>For example, Openshift Dedicated 4.11, 4.13.</p>
-</li>
-<li>
-<p>For example, Openshift Dedicated 4.10, 4.12.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
 <div id="defining-workers_evaluate-platform-architecture-and-components" class="dlist">
 <dl>
 <dt class="hdlist1">Cluster workers</dt>
@@ -617,43 +545,15 @@ An MCP is used to group machines together so the MCO can manage their configurat
 </div>
 <div class="paragraph">
 <p>For most Openshift Dedicated clusters, control plane machines are defined by a series of standalone machine API resources.
-For supported cloud provider and Openshift Dedicated version combinations, control planes can be managed with control plane machine sets.
+Control planes are managed with control plane machine sets.
 Extra controls apply to control plane machines to prevent you from deleting all of the control plane machines and making the cluster inoperable.
-Exactly three control plane nodes must be used for all production deployments.</p>
-</div>
-</dd>
-</dl>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>On a bare-metal platform, you can scale a cluster to three, four, or five control plane nodes.
-For best results, use odd size control plane nodes, such as three or five, on a cluster.
-A four-node control plane has the same etcd one failure tolerance as three nodes.
-Only a five-node control plane can tolerate two simultaneous failures.</p>
+Single availability zone clusters and multiple availability zone clusters require a minimum of three control plane nodes.</p>
 </div>
 <div class="paragraph">
-<p>Adding a fourth control plane node means etcd needs three healthy members instead of two.
-Until the fourth node is healthy, losing one of the original nodes breaks quorum and takes the cluster down.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>+
-Services that fall under the Kubernetes category on the control plane include the Kubernetes API server, etcd, the Kubernetes controller manager, and the Kubernetes scheduler.</p>
-</div>
-<div class="paragraph">
-<p>+
-.Kubernetes services that run on the control plane</p>
+<p>Services that fall under the Kubernetes category on the control plane include the Kubernetes API server, etcd, the Kubernetes controller manager, and the Kubernetes scheduler.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Kubernetes services that run on the control plane</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -689,14 +589,10 @@ one active leader at a time.</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p>+
-There are also OpenShift services that run on the control plane, which include the OpenShift API server, OpenShift controller manager, OpenShift OAuth API server, and OpenShift OAuth server.</p>
-</div>
-<div class="paragraph">
-<p>+
-.OpenShift services that run on the control plane</p>
+<p>There are also OpenShift services that run on the control plane, which include the OpenShift API server, OpenShift controller manager, OpenShift OAuth API server, and OpenShift OAuth server.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. OpenShift services that run on the control plane</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -731,28 +627,25 @@ There are also OpenShift services that run on the control plane, which include t
 </tbody>
 </table>
 <div class="paragraph">
-<p>+
-Some of these services on the control plane machines run as systemd services, while others run as static pods.</p>
+<p>Some of these services on the control plane machines run as systemd services, while others run as static pods.</p>
 </div>
 <div class="paragraph">
-<p>+
-Systemd services are appropriate for services that must always start on that particular system shortly after it starts. For control plane machines, such as those include sshd, that allow remote login. It also includes services such as:</p>
-</div>
-<div class="paragraph">
-<p>+
-* The CRI-O container engine (crio), which runs and manages the containers. Openshift Dedicated {product-version} uses CRI-O instead of the Docker Container Engine.
-* Kubelet (kubelet), which accepts requests for managing containers on the machine from control plane services.</p>
-</div>
-<div class="paragraph">
-<p>+
-CRI-O and Kubelet must run directly on the host as systemd services because they need to be running before you can run other containers.</p>
-</div>
-<div class="paragraph">
-<p>+
-The <code>installer-*</code> and <code>revision-pruner-*</code> control plane pods must run with root permissions because they write to the <code>/etc/kubernetes</code> directory, which is owned by the root user. These pods are in the following namespaces:</p>
+<p>Systemd services are appropriate for services that must always start on that particular system shortly after it starts. For control plane machines, such as those include sshd, that allow remote login. It also includes services such as:</p>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>The CRI-O container engine (crio), which runs and manages the containers. Openshift Dedicated {product-version} uses CRI-O instead of the Docker Container Engine.</p>
+</li>
+<li>
+<p>Kubelet (kubelet), which accepts requests for managing containers on the machine from control plane services.</p>
+<div class="paragraph">
+<p>CRI-O and Kubelet must run directly on the host as systemd services because they need to be running before you can run other containers.</p>
+</div>
+<div class="paragraph">
+<p>The <code>installer-*</code> and <code>revision-pruner-*</code> control plane pods must run with root permissions because they write to the <code>/etc/kubernetes</code> directory, which is owned by the root user. These pods are in the following namespaces:</p>
+</div>
+</li>
 <li>
 <p><code>openshift-etcd</code></p>
 </li>
@@ -767,6 +660,9 @@ The <code>installer-*</code> and <code>revision-pruner-*</code> control plane po
 </li>
 </ul>
 </div>
+</dd>
+</dl>
+</div>
 <div class="ulist">
 <ul>
 </ul>
@@ -778,7 +674,7 @@ The <code>installer-*</code> and <code>revision-pruner-*</code> control plane po
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-15 09:33:47 -0500
+Last updated 2026-09-15 15:57:10 -0500
 </div>
 </div>
 </body>

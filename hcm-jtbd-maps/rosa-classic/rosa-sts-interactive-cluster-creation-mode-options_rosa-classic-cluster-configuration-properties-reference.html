@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red Hat OpenShift Services on AWS (classic architecture)</title>
+<title>Red&#160;Hat OpenShift Services on AWS (classic architecture)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,10 +440,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="rosa-sts-interactive-cluster-creation-mode-options_rosa-classic-cluster-configuration-properties-reference" class="book toc2 toc-left">
 <div id="header">
-<h1>Red Hat OpenShift Services on AWS (classic architecture)</h1>
+<h1>Red&#160;Hat OpenShift Services on AWS (classic architecture)</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s new</a>
 </li>
 <li><a href="_discover.html">Discover</a>
@@ -467,13 +467,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="rosa-sts-interactive-cluster-creation-mode-options_rosa-classic-cluster-configuration-properties-reference">Interactive cluster creation mode options</h5>
 <div class="paragraph _abstract">
-<p>You can create a Red Hat OpenShift Services on AWS (classic architecture) cluster with the AWS Security Token Service (STS) by using the interactive mode. You can enable the mode by specifying the <code>--interactive</code> option when you run the <code>rosa create cluster</code> command.</p>
+<p>You can create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster with the AWS Security Token Service (STS) by using the interactive mode. You can enable the mode by specifying the <code>--interactive</code> option when you run the <code>rosa create cluster</code> command.</p>
 </div>
 <div class="paragraph">
 <p>The following table describes the interactive cluster creation mode options:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 23. <code>--interactive</code> cluster creation mode options</caption>
+<caption class="title">Table 24. <code>--interactive</code> cluster creation mode options</caption>
 <colgroup>
 <col style="width: 40%;">
 <col style="width: 60%;">
@@ -590,6 +590,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>Specify <code>optional</code> to configure all EC2 instances to use both v1 and v2 endpoints of EC2 Instance Metadata Service (IMDS). This is the default value. Specify <code>required</code> to configure all EC2 instances to use IMDSv2 only.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Instance Metadata Service settings cannot be changed after your cluster is created.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="ulist">
 <ul>
 </ul>
@@ -638,6 +652,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>By default, the cluster-specific Operator role names are prefixed with the cluster name and a random 4-digit hash. You can optionally specify a custom prefix to replace <code>&lt;cluster_name&gt;-&lt;hash&gt;</code> in the role names. The prefix is applied when you create the cluster-specific Operator IAM roles. For information about the prefix, see <em>About custom Operator IAM role prefixes</em>.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you specified custom ARN paths when you created the associated account-wide roles, the custom path is automatically detected. The custom path is applied to the cluster-specific Operator roles when you create them in a later step.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="ulist">
 <ul>
 </ul>
@@ -662,7 +690,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Tags (optional)</code></p></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>Specify a tag that is used on all resources created by Red Hat OpenShift Services on AWS (classic architecture) in AWS. Tags can help you manage, identify, organize, search for, and filter resources within AWS. Tags are comma separated, for example: <code>key value, data input</code>.</p>
+<p>Specify a tag that is used on all resources created by Red&#160;Hat OpenShift Services on AWS (classic architecture) in AWS. Tags can help you manage, identify, organize, search for, and filter resources within AWS. Tags are comma separated, for example: <code>key value, data input</code>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -672,11 +700,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Red Hat OpenShift Services on AWS (classic architecture) only supports custom tags to Red&#160;Hat OpenShift resources during cluster creation. Once added, the tags cannot be removed or edited.
+<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) only supports custom tags to Red&#160;Hat OpenShift resources during cluster creation. Once added, the tags cannot be removed or edited.
 Tags that are added by Red&#160;Hat are required for clusters to stay in compliance with Red&#160;Hat production service level agreements (SLAs). These tags must not be removed.</p>
 </div>
 <div class="paragraph">
-<p>Red Hat OpenShift Services on AWS (classic architecture) does not support adding additional tags outside of ROSA cluster-managed resources. These tags can be lost when AWS resources are managed by the ROSA cluster. In these cases, you might need custom solutions or tools to reconcile the tags and keep them intact.</p>
+<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) does not support adding additional tags outside of ROSA cluster-managed resources. These tags can be lost when AWS resources are managed by the ROSA cluster. In these cases, you might need custom solutions or tools to reconcile the tags and keep them intact.</p>
 </div>
 </td>
 </tr>
@@ -781,7 +809,7 @@ Tags that are added by Red&#160;Hat are required for clusters to stay in complia
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You cannot install a Red Hat OpenShift Services on AWS (classic architecture) cluster into an existing VPC that was created by the OpenShift installer. These VPCs are created during the cluster deployment process and must only be associated with a single cluster to ensure that cluster provisioning and deletion operations work correctly.</p>
+<p>You cannot install a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster into an existing VPC that was created by the OpenShift installer. These VPCs are created during the cluster deployment process and must only be associated with a single cluster to ensure that cluster provisioning and deletion operations work correctly.</p>
 </div>
 <div class="paragraph">
 <p>To verify whether a VPC was created by the OpenShift installer, check for the <code>owned</code> value on the <code>kubernetes.io/cluster/&lt;infra-id&gt;</code> tag. For example, when viewing the tags for the VPC named <code>mycluster-12abc-34def</code>, the <code>kubernetes.io/cluster/mycluster-12abc-34def</code> tag has a value of <code>owned</code>. Therefore, the VPC was created by the installer and must not be modified by the administrator.</p>
@@ -974,7 +1002,7 @@ Tags that are added by Red&#160;Hat are required for clusters to stay in complia
 <p>To enable FIPS mode for your cluster, you must run the installation program from a Red&#160;Hat Enterprise Linux (RHEL) computer configured to operate in FIPS mode. For more information about configuring FIPS mode on RHEL, see <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening">Switching RHEL to FIPS mode</a>.</p>
 </div>
 <div class="paragraph">
-<p>When running Red&#160;Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, Red Hat OpenShift Services on AWS (classic architecture) core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.</p>
+<p>When running Red&#160;Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, Red&#160;Hat OpenShift Services on AWS (classic architecture) core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.</p>
 </div>
 </td>
 </tr>
@@ -1084,12 +1112,12 @@ Tags that are added by Red&#160;Hat are required for clusters to stay in complia
 </table>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="rosa-classic-cluster-configuration-properties-reference-intro_rosa-classic-cluster-configuration-properties-reference.html">Cluster configuration properties reference</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-classic-configure-dns-forwarding-intro_rosa-classic-configure-dns-forwarding.html">(PrivateLink cluster only) Configure DNS forwarding</a> →</p>
+<p>↑ Up: <a href="rosa-classic-cluster-configuration-properties-reference-intro_rosa-classic-cluster-configuration-properties-reference.html">Cluster configuration properties reference</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-classic-configure-dns-forwarding-intro_rosa-classic-configure-dns-forwarding.html">(PrivateLink cluster only) Configure DNS forwarding</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-15 09:33:47 -0500
+Last updated 2026-09-15 15:57:10 -0500
 </div>
 </div>
 </body>
