@@ -501,10 +501,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="microshift-firewall-known-issue_secure-and-control-traffic">Known firewall issue</h4>
 <div class="paragraph _abstract">
-<p>To avoid traffic failures after a firewalld reload or restart on MicroShift, run firewall commands before you start Red&#160;Hat Enterprise Linux (RHEL).</p>
-</div>
-<div class="paragraph">
-<p>If you must run firewall commands later, restart the <code>ovnkube-master</code> pod in <code>openshift-ovn-kubernetes</code> to restore iptable rules that OVN-Kubernetes manages.</p>
+<p>To avoid traffic failures after a firewalld reload or restart on MicroShift, run firewall commands before you start Red&#160;Hat Enterprise Linux (RHEL). If you must run firewall commands later, restart the <code>ovnkube-master</code> pod in <code>openshift-ovn-kubernetes</code> to restore iptable rules that OVN-Kubernetes manages.</p>
 </div>
 <div class="paragraph">
 <p>The CNI driver in MicroShift makes use of iptable rules for some traffic flows, such as those using the NodePort service. The iptable rules are generated and inserted by the CNI driver, but are deleted when the firewall reloads or restarts. The absence of the iptable rules breaks traffic flows.</p>

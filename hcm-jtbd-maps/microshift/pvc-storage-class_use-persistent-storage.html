@@ -493,10 +493,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="pvc-storage-class_use-persistent-storage">Storage classes</h5>
 <div class="paragraph _abstract">
-<p>To request specific storage capabilities, define the <code>StorageClass</code> name in the <code>storageClassName</code> attribute of your <code>PersistentVolumeClaim</code> (PVC).</p>
-</div>
-<div class="paragraph">
-<p>This setting ensures the claim binds only to matching <code>PersistentVolumes</code> (PVs) or triggers dynamic provisioning if the cluster administrator has configured on-demand creation.</p>
+<p>To request specific storage capabilities, define the <code>StorageClass</code> name in the <code>storageClassName</code> attribute of your <code>PersistentVolumeClaim</code> (PVC). This setting ensures the claim binds only to matching <code>PersistentVolumes</code> (PVs) or triggers dynamic provisioning if the cluster administrator has configured on-demand creation.</p>
 </div>
 <div class="paragraph">
 <p>The cluster administrator can also set a default storage class for all PVCs. When you configure a default storage class, the PVC must explicitly ask for <code>StorageClass</code> or <code>storageClassName</code> annotations set to <code>""</code> to be bound to a PV without a storage class.</p>

@@ -525,8 +525,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
     --operator-roles-prefix &lt;operator-role-prefix&gt; \
     --external-id &lt;external-id&gt; \
     --oidc-config-id &lt;id-of-oidc-configuration&gt; \
-    --subnet-ids=&lt;public-subnet-id&gt;,&lt;private-subnet-id&gt; \
-    --enable-delete-protection</code></pre>
+    --subnet-ids=&lt;public-subnet-id&gt;,&lt;private-subnet-id&gt;</code></pre>
 </div>
 </div>
 <div class="openblock">
@@ -551,16 +550,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <dt class="hdlist1"><code>&lt;external-id&gt;</code></dt>
 <dd>
 <p>Optional. A unique identifier that might be required when you assume a role in another account. For more information about external ID, see <em>About external ID</em>.</p>
-</dd>
-<dt class="hdlist1"><code>--enable-delete-protection</code></dt>
-<dd>
-<p>Optional. Enables cluster deletion protection to prevent accidental deletion. By default, clusters are created with deletion protection disabled.</p>
-<div class="paragraph">
-<p>When deletion protection is enabled, attempts to delete the cluster using <code>rosa delete cluster</code> fail immediately before prompting for deletion confirmation. To delete a cluster, disable the protection first by running <code>rosa edit cluster -c &lt;cluster_name&gt; --enable-delete-protection=false</code>.</p>
-</div>
-<div class="paragraph">
-<p>Deletion protection only blocks deletion requests made through the ROSA CLI. It does not set any AWS-level resource protections, and you can still delete cluster resources directly in AWS, risking data loss or cluster outage. Additionally, deletion protection does not override the Red&#160;Hat <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-delete-policy_rosa-hcp-life-cycle">Deletion policy</a>. Red&#160;Hat reserves the right to delete clusters that violate service requirements.</p>
-</div>
 </dd>
 </dl>
 </div>

@@ -493,10 +493,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="persistent-storage-overview_understand-lvms-storage">Persistent storage overview</h4>
 <div class="paragraph _abstract">
-<p>Stateful applications deployed in containers require persistent storage. MicroShift uses a pre-provisioned storage framework called persistent volumes (PV) to allow node administrators to provision persistent storage.</p>
-</div>
-<div class="paragraph">
-<p>The data inside these volumes can exist beyond the lifecycle of an individual pod. Developers can use persistent volume claims (PVCs) to request storage requirements.</p>
+<p>Stateful applications deployed in containers require persistent storage. MicroShift uses a pre-provisioned storage framework called persistent volumes (PV) to allow node administrators to provision persistent storage. The data inside these volumes can exist beyond the lifecycle of an individual pod. Developers can use persistent volume claims (PVCs) to request storage requirements.</p>
 </div>
 <div class="paragraph">
 <p>PVCs are specific to a namespace, and are created and used by developers as a means to use a PV. PV resources on their own are not scoped to any single namespace; they can be shared across the entire Red&#160;Hat build of MicroShift node and claimed from any namespace. After a PV is bound to a PVC, that PV can not then be bound to additional PVCs. This has the effect of scoping a bound PV to a single namespace.</p>

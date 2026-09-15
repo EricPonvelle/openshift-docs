@@ -467,7 +467,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="rosa-sts-creating-cluster-customizations-cli_rosa-classic-create-the-cluster">Creating a cluster with customizations using the CLI</h5>
 <div class="paragraph _abstract">
-<p>When you create a Red Hat OpenShift Services on AWS (classic architecture) cluster that uses the AWS Security Token Service (STS), you can customize your installation interactively.</p>
+<p>When you create a Red Hat OpenShift Services on AWS (classic architecture) (ROSA) cluster that uses the AWS Security Token Service (STS), you can customize your installation interactively.</p>
 </div>
 <div class="paragraph">
 <p>When you run the <code>rosa create cluster --interactive</code> command at cluster creation time, you are presented with a series of interactive prompts that enable you to customize your deployment. For more information, see <em>Interactive cluster creation mode reference</em>.</p>
@@ -499,13 +499,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You have available AWS service quotas.</p>
 </li>
 <li>
-<p>You have enabled the Red Hat OpenShift Services on AWS (classic architecture) service in the AWS Console.</p>
+<p>You have enabled the ROSA service in the AWS Console.</p>
 </li>
 <li>
-<p>You have installed and configured the latest ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host. Run <code>rosa version</code> to see your currently installed version of the ROSA CLI. If a newer version is available, the CLI provides a link to download this upgrade.</p>
+<p>You have installed and configured the latest ROSA CLI, <code>rosa</code>, on your installation host. Run <code>rosa version</code> to see your currently installed version of the ROSA CLI. If a newer version is available, the CLI provides a link to download this upgrade.</p>
 </li>
 <li>
-<p>If you want to use a customer-managed AWS Key Management Service (KMS) key for encryption, you must create a symmetric KMS key. You must provide the Amazon Resource Name (ARN) when creating your cluster. To create a customer-managed KMS key, follow the procedure for <a href="https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk">Creating symmetric encryption KMS keys</a>.</p>
+<p>If you want to use a customer managed AWS Key Management Service (KMS) key for encryption, you must create a symmetric KMS key. You must provide the Amazon Resource Name (ARN) when creating your cluster. To create a customer managed KMS key, follow the procedure for <a href="https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk">Creating symmetric encryption KMS keys</a>.</p>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -517,7 +517,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>The EBS Operator role is required in addition to the account roles to successfully create your cluster.</p>
 </div>
 <div class="paragraph">
-<p>This role must be attached with the <code>ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credentials</code> policy, an IAM policy required by Red Hat OpenShift Services on AWS (classic architecture) to manage back-end storage through the Container Storage Interface (CSI).</p>
+<p>This role must be attached with the <code>ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credentials</code> policy, an IAM policy required by ROSA to manage back-end storage through the Container Storage Interface (CSI).</p>
 </div>
 <div class="paragraph">
 <p>For more information about the policies and permissions that the cluster Operators require, see <em>Methods of account-wide role creation</em>.</p>
@@ -565,8 +565,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>The following example shows sample output:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Logged in as '&lt;red_hat_username&gt;' on 'https://api.openshift.com'
 I: Validating AWS credentials...
@@ -626,12 +628,12 @@ rosa create cluster --sts</code></pre>
 </dd>
 <dt class="hdlist1"><code>Role creation mode</code></dt>
 <dd>
-<p>Select the role creation mode. You can use <code>auto</code> mode to automatically create the account-wide roles and policies. In <code>manual</code> mode, the ROSA CLI generates the <code>aws</code> commands needed to create the roles and policies. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</p>
+<p>Select the role creation mode. You can use <code>auto</code> mode to automatically create the account wide roles and policies. In <code>manual</code> mode, the <code>rosa</code> CLI generates the <code>aws</code> commands needed to create the roles and policies. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
-<p>After you specify the configuration options, the account-wide installer, control plane, worker, and support roles and corresponding IAM policies are created. For more information, see <em>Account-wide IAM role and policy reference</em>.</p>
+<p>After specifying the configuration options, the account-wide installer, control plane, worker and support roles and corresponding IAM policies are created. For more information, see <em>Account-wide IAM role and policy reference</em>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -641,7 +643,7 @@ rosa create cluster --sts</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In this step, the ROSA CLI also automatically creates the account-wide Operator IAM policies that are used by the cluster-specific Operator policies to permit the Red Hat OpenShift Services on AWS (classic architecture) cluster Operators to run core OpenShift functionality. For more information, see <em>Account-wide IAM role and policy reference</em>.</p>
+<p>In this step, the ROSA CLI also automatically creates the account-wide Operator IAM policies that are used by the cluster-specific Operator policies to permit the ROSA cluster Operators to run core OpenShift functionality. For more information, see <em>Account-wide IAM role and policy reference</em>.</p>
 </div>
 </td>
 </tr>
@@ -792,7 +794,7 @@ rosa create cluster --sts</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You cannot install a Red Hat OpenShift Services on AWS (classic architecture) cluster into an existing VPC that was created by the OpenShift installer. These VPCs are created during the cluster deployment process and must only be associated with a single cluster to ensure that cluster provisioning and deletion operations work correctly.</p>
+<p>You cannot install a ROSA cluster into an existing VPC that was created by the OpenShift installer. These VPCs are created during the cluster deployment process and must only be associated with a single cluster to ensure that cluster provisioning and deletion operations work correctly.</p>
 </div>
 <div class="paragraph">
 <p>To verify whether a VPC was created by the OpenShift installer, check for the <code>owned</code> value on the <code>kubernetes.io/cluster/&lt;infra-id&gt;</code> tag. For example, when viewing the tags for the VPC named <code>mycluster-12abc-34def</code>, the <code>kubernetes.io/cluster/mycluster-12abc-34def</code> tag has a value of <code>owned</code>. Therefore, the VPC was created by the installer and must not be modified by the administrator.</p>
@@ -849,7 +851,6 @@ I: Using arn:aws:iam::&lt;aws_account_id&gt;:role/ManagedOpenShift-Support-Role 
 ? Enable FIPS support: No
 ? Encrypt etcd data: No
 ? Disable Workload monitoring (optional): No
-? Enable cluster deletion protection (optional): No
 I: Creating cluster '&lt;cluster_name&gt;'
 I: To create this cluster again in the future, you can run:
    rosa create cluster --cluster-name &lt;cluster_name&gt; --role-arn arn:aws:iam::&lt;aws_account_id&gt;:role/ManagedOpenShift-Installer-Role --support-role-arn arn:aws:iam::&lt;aws_account_id&gt;:role/ManagedOpenShift-Support-Role --master-iam-role arn:aws:iam::&lt;aws_account_id&gt;:role/ManagedOpenShift-ControlPlane-Role --worker-iam-role arn:aws:iam::&lt;aws_account_id&gt;:role/ManagedOpenShift-Worker-Role --operator-roles-prefix &lt;cluster_name&gt;-&lt;random_string&gt; --region us-east-1 --version 4.22.0 --additional-compute-security-group-ids sg-0e375ff0ec4a6cfa2 --additional-infra-security-group-ids sg-0e375ff0ec4a6cfa2 --additional-control-plane-security-group-ids sg-0e375ff0ec4a6cfa2 --replicas 2 --machine-cidr 10.0.0.0/16 --service-cidr 172.30.0.0/16 --pod-cidr 10.128.0.0/14 --host-prefix 23
@@ -928,7 +929,7 @@ I: Once the cluster is installed you will need to add an Identity Provider befor
 <p>The EBS Operator role is required in addition to the account roles to successfully create your cluster.</p>
 </div>
 <div class="paragraph">
-<p>This role must be attached with the <code>ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credentials</code> policy, an IAM policy required by Red Hat OpenShift Services on AWS (classic architecture) to manage back-end storage through the Container Storage Interface (CSI).</p>
+<p>This role must be attached with the <code>ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credentials</code> policy, an IAM policy required by ROSA to manage back-end storage through the Container Storage Interface (CSI).</p>
 </div>
 <div class="paragraph">
 <p>For more information about the policies and permissions that the cluster Operators require, see <em>Methods of account-wide role creation</em>.</p>

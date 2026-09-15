@@ -1029,25 +1029,6 @@ Tags that are added by Red&#160;Hat are required for clusters to stay in complia
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Enable cluster deletion protection (optional)</code></p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>Enable cluster deletion protection to prevent accidental deletion. By default, clusters are created with deletion protection disabled.</p>
-</div>
-<div class="paragraph">
-<p>When deletion protection is enabled, attempts to delete the cluster using <code>rosa delete cluster</code> fail immediately before prompting for deletion confirmation. To delete a cluster, disable the protection first by running <code>rosa edit cluster -c &lt;cluster_name&gt; --enable-delete-protection=false</code>.</p>
-</div>
-<div class="paragraph">
-<p>Deletion protection only blocks deletion requests made through the ROSA CLI. It does not set any AWS-level resource protections, and you can still delete cluster resources directly in AWS, risking data loss or cluster outage.</p>
-</div>
-<div class="ulist">
-<ul>
-</ul>
-</div>
-<div class="paragraph nav-footer">
-<p></p>
-</div></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Route Selector for ingress (optional)</code></p></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>Specify the route selector for your ingress. The format should be a comma-separated list of key-value pairs. If you do not specify a label, all routes will be exposed on both routers. For legacy ingress support, these labels are inclusion labels; otherwise, they are treated as exclusion labels.</p>

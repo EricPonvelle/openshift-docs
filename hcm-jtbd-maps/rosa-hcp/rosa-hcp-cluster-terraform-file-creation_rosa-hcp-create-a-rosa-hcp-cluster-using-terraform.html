@@ -572,28 +572,13 @@ module "rosa-hcp" {
 #  admin_credentials_username = &lt;username&gt;
 #  admin_credentials_password = &lt;password&gt;
 
-# Optional: Enable cluster deletion protection to prevent accidental deletion.
-# To enable, uncomment the following parameter:
-#  delete_protection = true
-# By default, clusters are created with deletion protection disabled.
-
   depends_on = [time_sleep.wait_60_seconds]
 }
 EOF</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>If you want to create an administrator user during cluster creation, uncomment the appropriate parameters in the <code>Optional: Configure a cluster administrator user</code> section and edit their values.</p>
-</li>
-<li>
-<p>If you want to enable deletion protection during cluster creation, uncomment the corresponding parameter in the <code>Optional: Enable cluster delete protection</code> section. When enabled, deletion protection blocks the <code>terraform destroy</code> command until you set <code>delete_protection = false</code> and apply the change by running <code>terraform apply</code>.</p>
 <div class="paragraph">
-<p>Deletion protection only blocks deletion requests made through Terraform. It does not set any AWS-level resource protections, and you can still delete cluster resources directly in AWS, risking data loss or cluster outage. Additionally, deletion protection does not override the Red&#160;Hat <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-delete-policy_rosa-hcp-life-cycle">Deletion policy</a>. Red&#160;Hat reserves the right to delete clusters that violate service requirements.</p>
-</div>
-</li>
-</ul>
+<p>If you want to create an administrator user during cluster creation, uncomment the appropriate parameters in the <code>Optional: Configure a cluster administrator user</code> section and edit their values.</p>
 </div>
 </li>
 <li>
@@ -641,11 +626,11 @@ variable "create_vpc" {
   description = "If you would like to create a new VPC, set this value to 'true'. If you do not want to create a new VPC, set this value to 'false'."
 }
 
-# Red Hat OpenShift Services on AWS cluster info
+# ROSA Cluster info
 variable "cluster_name" {
   default     = null
   type        = string
-  description = "The name of the Red Hat OpenShift Services on AWS cluster to create"
+  description = "The name of the ROSA cluster to create"
 }
 
 variable "additional_tags" {
