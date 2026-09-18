@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red&#160;Hat OpenShift Services on AWS (classic architecture)</title>
+<title>Red&#160;Hat OpenShift Services on AWS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,12 +438,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="rosa-upgrading-lifecycle-policy_rosa-classic-plan-cluster-upgrades" class="book toc2 toc-left">
+<body id="rosa-hcp-upgrade-machine-pools_rosa-hcp-upgrade-a-cluster" class="book toc2 toc-left">
 <div id="header">
-<h1>Red&#160;Hat OpenShift Services on AWS (classic architecture)</h1>
+<h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s new</a>
 </li>
 <li><a href="_discover.html">Discover</a>
@@ -452,9 +452,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
 <ul class="sectlevel2">
-<li><a href="rosa-upgrading-lifecycle-policy_rosa-classic-plan-cluster-upgrades.html"><span class="toc-current">Life cycle policies and planning</span></a>
+<li><a href="rosa-hcp-plan-cluster-upgrades_rosa-hcp-plan-cluster-upgrades.html">Plan cluster upgrades</a>
 </li>
-<li><a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html">Upgrading a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster</a>
+<li><a href="rosa-hcp-upgrade-a-cluster_rosa-hcp-upgrade-a-cluster.html">Upgrade a cluster</a>
+</li>
+<li><a href="rosa-hcp-upgrade-karpenter-managed-nodes_rosa-hcp-upgrade-karpenter-managed-nodes.html">Upgrade Karpenter-managed nodes</a>
 </li>
 </ul>
 </li>
@@ -464,33 +466,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div class="sect2">
-<h3 id="rosa-upgrading-lifecycle-policy_rosa-classic-plan-cluster-upgrades">Life cycle policies and planning</h3>
+<div class="sect3">
+<h4 id="rosa-hcp-upgrade-machine-pools_rosa-hcp-upgrade-a-cluster">Upgrade machine pools</h4>
 <div class="paragraph _abstract">
-<p>To plan an upgrade, see the <em>Red Hat OpenShift Service on AWS update life cycle</em> in the "Additional resources" section.
-The life cycle page includes release definitions, support and update requirements, installation policy information and life cycle dates.</p>
-</div>
-<div class="paragraph">
-<p>Updates are manually initiated or automatically scheduled. Red Hat Site Reliability Engineers (SREs) monitor update progress and remedy any issues encountered.</p>
-</div>
-<div class="paragraph">
-<p>You can use update channels to decide which Red&#160;Hat OpenShift Services on AWS (classic architecture) minor version to update your clusters to. Red&#160;Hat OpenShift Services on AWS (classic architecture) supports updates through the <code>stable-4.y</code>, <code>eus-4.y</code>, and <code>fast-4.y</code> channels.</p>
+<p>In Red&#160;Hat OpenShift Services on AWS, machine pool upgrades are decoupled from hosted control plane upgrades. This strategy gives you fine-grained control over cluster availability and allows you to schedule maintenance for one or several machine pools independently on your preferred schedule.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-upgrading-channels_rosa-classic-plan-cluster-upgrades.html">Channels in Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters</a></p>
+<p><a href="rosa-nodes-machinepools-upgrade-requirements-hcp_rosa-hcp-upgrade-a-cluster.html">Machine pool upgrade requirements</a></p>
+</li>
+<li>
+<p><a href="rosa-hcp-upgrading-cli-machinepool_rosa-hcp-upgrade-a-cluster.html">Upgrade machine pools with the ROSA CLI</a></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="_upgrade.html">Upgrade</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-upgrading-channels_rosa-classic-plan-cluster-upgrades.html">Channels in Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters</a> →</p>
+<p>← Previous: <a href="rosa-hcp-upgrading-cli-control-plane_rosa-hcp-upgrade-a-cluster.html">Upgrade the hosted control plane with the ROSA CLI</a> | ↑ Up: <a href="rosa-hcp-upgrade-a-cluster_rosa-hcp-upgrade-a-cluster.html">Upgrade a cluster</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-nodes-machinepools-upgrade-requirements-hcp_rosa-hcp-upgrade-a-cluster.html">Machine pool upgrade requirements</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-17 12:21:29 -0500
+Last updated 2026-09-18 11:19:39 -0500
 </div>
 </div>
 </body>
