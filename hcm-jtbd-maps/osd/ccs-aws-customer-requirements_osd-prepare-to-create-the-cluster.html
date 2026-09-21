@@ -465,19 +465,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect4">
-<h5 id="ccs-aws-customer-requirements_osd-prepare-to-create-the-cluster">Customer requirements</h5>
+<h5 id="ccs-aws-customer-requirements_osd-prepare-to-create-the-cluster">Requirements for Customer Cloud Subscription on AWS</h5>
 <div class="paragraph _abstract">
-<p>Openshift Dedicated clusters using a Customer Cloud Subscription (CCS) model on Amazon Web Services (AWS) must meet several prerequisites before they can be deployed.</p>
+<p>Openshift Dedicated clusters that use a Customer Cloud Subscription (CCS) model on Amazon Web Services (AWS) must meet several prerequisites before they can be deployed.</p>
 </div>
 <div class="sect5">
 <h6 id="ccs-requirements-account_osd-prepare-to-create-the-cluster">Account</h6>
 <div class="ulist">
 <ul>
 <li>
-<p>The customer ensures that <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">AWS limits</a> are sufficient to support Openshift Dedicated provisioned within the customer-provided AWS account.</p>
+<p>You must ensure that AWS service quotas are sufficient to support Openshift Dedicated provisioned within your AWS account. For more information, see "AWS service quotas" in the <em>Additional resources</em>.</p>
 </li>
 <li>
-<p>The customer-provided AWS account should be in the customer&#8217;s AWS Organization with the applicable service control policy (SCP) applied.</p>
+<p>Your AWS account should be in your AWS Organization with the applicable service control policy (SCP) applied.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -486,7 +486,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>It is not a requirement that the customer-provided account be within an AWS Organization or for the SCP to be applied, however Red Hat must be able to perform all the actions listed in the SCP without restriction.</p>
+<p>It is not a requirement that your account is within an AWS Organization or for the SCP to be applied, however Red&#160;Hat must be able to perform all the actions listed in the SCP without restriction.</p>
 </div>
 </td>
 </tr>
@@ -494,16 +494,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>The customer-provided AWS account must not be transferable to Red Hat.</p>
+<p>Your AWS account must not be transferable to Red&#160;Hat.</p>
 </li>
 <li>
-<p>The customer may not impose AWS usage restrictions on Red Hat activities. Imposing restrictions severely hinders Red Hat&#8217;s ability to respond to incidents.</p>
+<p>Do not impose AWS usage restrictions on Red&#160;Hat activities. Imposing restrictions severely hinders Red&#160;Hat&#8217;s ability to respond to incidents.</p>
 </li>
 <li>
-<p>Red Hat deploys monitoring into AWS to alert Red Hat when a highly privileged account, such as a root account, logs into the customer-provided AWS account.</p>
+<p>Red&#160;Hat deploys monitoring into AWS to alert Red&#160;Hat when a highly privileged account, such as a root account, logs into your AWS account.</p>
 </li>
 <li>
-<p>The customer can deploy native AWS services within the same customer-provided AWS account.</p>
+<p>You can deploy native AWS services within the same AWS account.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -512,7 +512,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Customers are encouraged, but not mandated, to deploy resources in a Virtual Private Cloud (VPC) separate from the VPC hosting Openshift Dedicated and other Red Hat supported services.</p>
+<p>You are encouraged, but not mandated, to deploy resources in a Virtual Private Cloud (VPC) separate from the VPC hosting Openshift Dedicated and other Red&#160;Hat supported services.</p>
 </div>
 </td>
 </tr>
@@ -527,7 +527,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>To appropriately manage the Openshift Dedicated service, Red Hat must have the <code>AdministratorAccess</code> policy applied to the administrator role at all times.</p>
+<p>To appropriately manage the Openshift Dedicated service, Red&#160;Hat must have the <code>AdministratorAccess</code> policy applied to the administrator role at all times.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -536,7 +536,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>This policy only provides Red Hat with permissions and capabilities to change resources in the customer-provided AWS account.</p>
+<p>This policy only provides Red&#160;Hat with permissions and capabilities to change resources in your AWS account.</p>
 </div>
 </td>
 </tr>
@@ -544,13 +544,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>Red Hat must have AWS console access to the customer-provided AWS account. This access is protected and managed by Red Hat.</p>
+<p>Red&#160;Hat must have AWS console access to your AWS account. This access is protected and managed by Red&#160;Hat.</p>
 </li>
 <li>
-<p>The customer must not utilize the AWS account to elevate their permissions within the Openshift Dedicated cluster.</p>
+<p>You must not use the AWS account to elevate your permissions within the Openshift Dedicated cluster.</p>
 </li>
 <li>
-<p>Actions available in <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> must not be directly performed in the customer-provided AWS account.</p>
+<p>Actions available in <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> must not be directly performed in your AWS account.</p>
 </li>
 </ul>
 </div>
@@ -560,16 +560,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>Red Hat recommends that the customer have at least <a href="https://aws.amazon.com/premiumsupport/plans/">Business Support</a> from AWS.</p>
+<p>Red&#160;Hat recommends that you have at least the Business Support plan from AWS. For more information, see the <em>Additional resources</em>.</p>
 </li>
 <li>
-<p>Red Hat has authority from the customer to request AWS support on their behalf.</p>
+<p>Red&#160;Hat has authority to request AWS support on your behalf.</p>
 </li>
 <li>
-<p>Red Hat has authority from the customer to request AWS resource limit increases on the customer-provided account.</p>
+<p>Red&#160;Hat has authority to request AWS resource limit increases on your account.</p>
 </li>
 <li>
-<p>Red Hat manages the restrictions, limitations, expectations, and defaults for all Openshift Dedicated clusters in the same manner, unless otherwise specified in this requirements section.</p>
+<p>Red&#160;Hat manages the restrictions, limitations, expectations, and defaults for all Openshift Dedicated clusters in the same manner, unless otherwise specified in this requirements section.</p>
 </li>
 </ul>
 </div>
@@ -579,23 +579,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>The customer-provided IAM credentials must be unique to the customer-provided AWS account and must not be stored anywhere in the customer-provided AWS account.</p>
+<p>Your IAM credentials must be unique to your AWS account and must not be stored anywhere in your AWS account.</p>
 </li>
 <li>
-<p>Volume snapshots will remain within the customer-provided AWS account and customer-specified region.</p>
+<p>Volume snapshots will remain within your AWS account and a region you specified.</p>
 </li>
 <li>
-<p>Red Hat must have ingress access to EC2 hosts and the API server through white-listed Red Hat machines.</p>
+<p>Red&#160;Hat must have ingress access to EC2 hosts and the API server through allowlisted Red&#160;Hat machines.</p>
 </li>
 <li>
-<p>Red Hat must have egress allowed to forward system and audit logs to a Red Hat managed central logging stack.</p>
+<p>Red&#160;Hat must have egress allowed to forward system and audit logs to a Red&#160;Hat managed central logging stack.</p>
+</li>
+</ul>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">AWS service quotas</a></p>
+</li>
+<li>
+<p><a href="https://aws.amazon.com/premiumsupport/plans/">Business Support plan</a></p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="osd-prepare-to-create-the-cluster-intro_osd-prepare-to-create-the-cluster.html">Prepare to create the cluster</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="ccs-aws-customer-procedure_osd-prepare-to-create-the-cluster.html">Required customer procedure</a> →</p>
+<p>↑ Up: <a href="osd-prepare-to-create-the-cluster-intro_osd-prepare-to-create-the-cluster.html">Prepare to create the cluster</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="ccs-aws-customer-procedure_osd-prepare-to-create-the-cluster.html">Prepare your AWS account for Customer Cloud Subscription</a> →</p>
 </div>
 </div>
 <div id="footer">

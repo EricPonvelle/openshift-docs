@@ -467,12 +467,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="aws-limits_osd-prepare-to-create-the-cluster">AWS account limits</h5>
 <div class="paragraph _abstract">
-<p>The Openshift Dedicated cluster uses a number of Amazon Web Services (AWS) components, and the default <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">service limits</a> affect your ability to install Openshift Dedicated clusters. If you use certain cluster configurations, deploy your cluster in certain AWS regions, or run multiple clusters from your account, you might need to request additional resources for your AWS account.</p>
+<p>The Openshift Dedicated cluster uses several Amazon Web Services (AWS) components, and the default service quotas affect your ability to install Openshift Dedicated clusters.</p>
+</div>
+<div class="paragraph">
+<p>If you use certain cluster configurations, deploy your cluster in certain AWS regions, or run multiple clusters from your account, you might need to request additional resources for your AWS account. For more information, see "AWS service quotas" in the <em>Additional resources</em>.</p>
 </div>
 <div class="paragraph">
 <p>The following table summarizes the AWS components whose limits can impact your ability to install and run Openshift Dedicated clusters.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 12. Default AWS component limits that impact cluster installations</caption>
 <colgroup>
 <col style="width: 17.647%;">
 <col style="width: 17.647%;">
@@ -531,7 +535,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Three control plane nodes</p>
 </li>
 <li>
-<p>Two infrastructure nodes for a single availability zone; three infrascture nodes for multi-availability zones</p>
+<p>Two infrastructure nodes for a single availability zone; three infrastructure nodes for multi-availability zones</p>
 </li>
 <li>
 <p>Two worker nodes for a single availability zone; three worker nodes for multi-availability zones</p>
@@ -542,7 +546,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>These instance type counts are within a new account&#8217;s default limit. To deploy more worker nodes, deploy large workloads, or use a different instance type, review your account limits to ensure that your cluster can deploy the machines that you need.</p>
 </div>
 <div class="paragraph">
-<p>In most regions, the bootstrap and worker machines uses an <code>m4.large</code> machines and the control plane machines use <code>m4.xlarge</code> instances. In some regions, including all regions that do not support these instance types, <code>m5.large</code> and <code>m5.xlarge</code> instances are used instead.</p>
+<p>In most regions, the bootstrap and worker machines use <code>m4.large</code> machines and the control plane machines use <code>m4.xlarge</code> instances. In some regions, including all regions that do not support these instance types, <code>m5.large</code> and <code>m5.xlarge</code> instances are used instead.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -584,8 +588,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>To provision the cluster in a highly available configuration, the installation program creates a public and private subnet for each <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">availability zone within a region</a>. Each private subnet requires a <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">NAT Gateway</a>, and each NAT gateway requires a separate
-<a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ipaddresses-eip.html">elastic IP</a>. Review the <a href="https://aws.amazon.com/about-aws/global-infrastructure/">AWS region map</a> to determine how many availability zones are in each region. To take advantage of the default high availability, install the cluster in a region with at least three availability zones. To install a cluster in a region with more than five availability zones, you must increase the EIP limit.</p>
+<p>To provision the cluster in a highly available configuration, the installation program creates a public and private subnet for each availability zone within a region. Each private subnet requires a NAT gateway, and each NAT gateway requires a separate Elastic IP address. For more information on these concepts, see the <em>Additional resources</em>.</p>
+</div>
+<div class="paragraph">
+<p>Review the AWS region maps, linked in the <em>Additional resources</em>, to determine how many availability zones are in each region. To take advantage of the default high availability, install the cluster in a region with at least three availability zones. To install a cluster in a region with more than five availability zones, you must increase the EIP limit.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -683,7 +689,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>By default, each cluster creates internal and external Network Load Balancers for the primary API server and a single Classic Load Balancer for the router. Deploying more Kubernetes LoadBalancer Service objects will create additional <a href="https://aws.amazon.com/elasticloadbalancing/">load balancers</a>.</p>
+<p>By default, each cluster creates internal and external Network Load Balancers for the primary API server and a single Classic Load Balancer for the router. Deploying more Kubernetes LoadBalancer Service objects will create additional load balancers. For more information, see "Elastic Load Balancing" in the <em>Additional resources</em>.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -767,7 +773,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The default installation creates 21 ENIs and an ENI for each availability zone in your region. For example, the <code>us-east-1</code> region contains six availability zones, so a cluster that is deployed in that zone uses 27 ENIs. Review the <a href="https://aws.amazon.com/about-aws/global-infrastructure/">AWS region map</a> to determine how many availability zones are in each region.</p>
+<p>The default installation creates 21 ENIs and an ENI for each availability zone in your region. For example, the <code>us-east-1</code> region contains six availability zones, so a cluster that is deployed in that zone uses 27 ENIs. Review the AWS region maps, linked in the <em>Additional resources</em>, to determine how many availability zones are in each region.</p>
 </div>
 <div class="paragraph">
 <p>Additional ENIs are created for additional machines and load balancers that are created by cluster usage and deployed workloads.</p>
@@ -908,9 +914,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">AWS service quotas</a></p>
+</li>
+<li>
+<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">Regions and zones</a></p>
+</li>
+<li>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">NAT gateways</a></p>
+</li>
+<li>
+<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic IP addresses</a></p>
+</li>
+<li>
+<p><a href="https://aws.amazon.com/about-aws/global-infrastructure/">AWS global infrastructure and region maps</a></p>
+</li>
+<li>
+<p><a href="https://aws.amazon.com/elasticloadbalancing/">Elastic Load Balancing</a></p>
+</li>
+</ul>
+</div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="osd-aws-privatelink-firewall-prerequisites_osd-prepare-to-create-the-cluster.html">Firewall AllowList requirements</a> | ↑ Up: <a href="osd-prepare-to-create-the-cluster-intro_osd-prepare-to-create-the-cluster.html">Prepare to create the cluster</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="ccs-aws-provisioned_osd-prepare-to-create-the-cluster.html">Provisioned AWS Infrastructure</a> →</p>
+<p>← Previous: <a href="osd-aws-privatelink-firewall-prerequisites_osd-prepare-to-create-the-cluster.html">Firewall allowlist requirements</a> | ↑ Up: <a href="osd-prepare-to-create-the-cluster-intro_osd-prepare-to-create-the-cluster.html">Prepare to create the cluster</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="ccs-aws-provisioned_osd-prepare-to-create-the-cluster.html">Provisioned AWS infrastructure</a> →</p>
 </div>
 </div>
 <div id="footer">
