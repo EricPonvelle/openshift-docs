@@ -477,7 +477,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Do not modify Terraform state files. For more information, see <a href="https://docs.openshift.com/rosa/rosa_planning/rosa-understanding-terraform.html#rosa-sts-terraform-considerations_rosa-understanding-terraform">Considerations when using Terraform</a></p>
+<p>Do not modify Terraform state files.</p>
 </div>
 </td>
 </tr>
@@ -534,9 +534,20 @@ var.private_cluster
 </li>
 <li>
 <p>Enter <code>yes</code> to proceed or <code>no</code> to cancel when the Terraform interface lists the resources to be created or changed and prompts for confirmation:</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Plan: 74 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>+
-If you enter <code>yes</code>, your Terraform plan starts, creating your AWS account roles, Operator roles, and your Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster.</p>
+<p>If you enter <code>yes</code>, your Terraform plan starts, creating your AWS account roles, Operator roles, and your Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster.</p>
 </div>
 </li>
 </ol>
@@ -575,6 +586,7 @@ If you enter <code>yes</code>, your Terraform plan starts, creating your AWS acc
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Fetching account roles
 ROLE NAME                                   ROLE TYPE      ROLE ARN                                                           OPENSHIFT VERSION  AWS Managed
+ROSA-demo-ControlPlane-Role                 Control plane  arn:aws:iam::&lt;ID&gt;:role/ROSA-demo-ControlPlane-Role                 4.14               No
 ROSA-demo-Installer-Role                    Installer      arn:aws:iam::&lt;ID&gt;:role/ROSA-demo-Installer-Role                    4.14               No
 ROSA-demo-Support-Role                      Support        arn:aws:iam::&lt;ID&gt;:role/ROSA-demo-Support-Role                      4.14               No
 ROSA-demo-Worker-Role                       Worker         arn:aws:iam::&lt;ID&gt;:role/ROSA-demo-Worker-Role                       4.14               No</code></pre>
@@ -594,7 +606,8 @@ ROSA-demo-Worker-Role                       Worker         arn:aws:iam::&lt;ID&g
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Fetching operator roles
-ROLE PREFIX    AMOUNT IN BUNDLE</code></pre>
+ROLE PREFIX    AMOUNT IN BUNDLE
+rosa-demo      6</code></pre>
 </div>
 </div>
 </li>

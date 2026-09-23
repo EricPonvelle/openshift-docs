@@ -487,6 +487,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph _abstract">
 <p>Service control policies (SCP) are a type of organization policy that manages permissions within your organization. SCPs ensure that accounts within your organization stay within your defined access control guidelines. These policies are maintained in AWS organizations and control the services that are available within the attached AWS accounts. SCP management is the responsibility of the customer.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When using AWS Security Token Service (STS), you must ensure that the service control policy does not block the following resources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ec2:{}</code></p>
+</li>
+<li>
+<p><code>iam:{}</code></p>
+</li>
+<li>
+<p><code>tag:*</code></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Verify that your service control policy (SCP) does not restrict any of these required permissions.</p>
 </div>

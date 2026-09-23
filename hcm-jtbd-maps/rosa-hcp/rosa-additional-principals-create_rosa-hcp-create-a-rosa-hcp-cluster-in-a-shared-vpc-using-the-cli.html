@@ -469,9 +469,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph _abstract">
 <p>By default, only the IAM role that created the cluster can access the cluster&#8217;s API. If other IAM roles in your AWS account need access to the cluster API, you can grant them access by specifying additional allowed principals during cluster creation.</p>
 </div>
-<div class="olist arabic">
+<div class="ulist">
 <div class="title">Procedure</div>
-<ol class="arabic">
+<ul>
 <li>
 <p>Add the <code>--additional-allowed-principals</code> argument to the <code>rosa create cluster</code> command, similar to the following:</p>
 <div class="listingblock">
@@ -483,6 +483,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You can use <code>arn:aws:iam::account_id:role/role_name</code> to approve a specific role.</p>
 </div>
 </li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
 <li>
 <p>When the cluster creation command runs, you receive a summary of your cluster with the <code>--additional-allowed-principals</code> specified:</p>
 <div class="listingblock">
@@ -544,7 +549,7 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 </div>
 </div>
 </li>
-</ol>
+</ul>
 </div>
 </div>
 <div class="paragraph nav-footer">

@@ -477,7 +477,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Do not modify Terraform state files. For more information, see <a href="https://docs.openshift.com/rosa/rosa_planning/rosa-understanding-terraform.html#rosa-sts-terraform-considerations_rosa-understanding-terraform">Considerations when using Terraform</a></p>
+<p>Do not modify Terraform state files.</p>
 </div>
 </td>
 </tr>
@@ -534,9 +534,17 @@ var.private_cluster
 </li>
 <li>
 <p>Enter <code>yes</code> to proceed or <code>no</code> to cancel when the Terraform interface lists the resources to be created or changed and prompts for confirmation:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Plan: 63 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>+
-If you enter <code>yes</code>, your Terraform plan starts, creating your AWS account roles, Operator roles, and your Red&#160;Hat OpenShift Services on AWS cluster.</p>
+<p>If you enter <code>yes</code>, your Terraform plan starts, creating your AWS account roles, Operator roles, and your Red&#160;Hat OpenShift Services on AWS cluster.</p>
 </div>
 </li>
 </ol>
@@ -594,7 +602,8 @@ ROSA-demo-Worker-Role                       Worker         arn:aws:iam::&lt;ID&g
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Fetching operator roles
-ROLE PREFIX    AMOUNT IN BUNDLE</code></pre>
+ROLE PREFIX    AMOUNT IN BUNDLE
+rosa-demo      8</code></pre>
 </div>
 </div>
 </li>
