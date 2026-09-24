@@ -467,7 +467,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="rosa-upgrading-cli_rosa-classic-upgrade-a-cluster">Upgrade a cluster with the ROSA CLI</h4>
 <div class="paragraph _abstract">
-<p>You can use the ROSA command-line interface (CLI) (<code>rosa</code>) to upgrade a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster either immediately within 10 minutes or at a future time.</p>
+<p>You can use the ROSA command-line interface (CLI) (<code>rosa</code>) to upgrade a cluster either immediately within 10 minutes or at a future time. For Security Token Service (STS) clusters, the ROSA CLI automatically upgrades Identity and Access Management (IAM) policies to match the target version of the upgrade.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -536,7 +536,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If you are upgrading an AWS Security Token Service (STS) cluster, this command starts an interactive IAM Roles/policies upgrade mode process that verifies the account and operator role policies for the chosen cluster are compatible with the target version of the upgrade. If the policies are not compatible with the chosen upgrade version, the CLI automatically upgrades them in auto mode.</p>
+<p>If you are upgrading an AWS Security Token Service (STS) cluster, this command starts an interactive IAM roles and policies upgrade mode process that verifies the account and Operator role policies for the chosen cluster are compatible with the target version of the upgrade. If the policies are not compatible with the chosen upgrade version, the CLI automatically upgrades them in auto mode.</p>
 </div>
 </td>
 </tr>
@@ -547,7 +547,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>Alternatively, to upgrade the cluster at a future time in UTC, enter the following command:</p>
+<p>Alternatively, to upgrade the cluster at a future time in Coordinated Universal Time (UTC), enter the following command:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa upgrade cluster --cluster=&lt;cluster_name|cluster_id&gt;   \
@@ -602,7 +602,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-cluster-upgrade-overview_rosa-classic-upgrade-a-cluster.html">Red&#160;Hat OpenShift Services on AWS (classic architecture) upgrade overview</a> | ↑ Up: <a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html">Upgrade a cluster</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-upgrade-ocm_rosa-classic-upgrade-a-cluster.html">Upgrade a cluster with OpenShift Cluster Manager</a> →</p>
+<p>← Previous: <a href="rosa-cluster-upgrade-overview_rosa-classic-upgrade-a-cluster.html">Cluster upgrade overview</a> | ↑ Up: <a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html">Upgrade a cluster</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-upgrade-ocm_rosa-classic-upgrade-a-cluster.html">Upgrade a cluster with OpenShift Cluster Manager</a> →</p>
 </div>
 </div>
 <div id="footer">

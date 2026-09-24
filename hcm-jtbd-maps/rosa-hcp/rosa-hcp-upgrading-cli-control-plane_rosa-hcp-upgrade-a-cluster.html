@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red&#160;Hat OpenShift Services on AWS (classic architecture)</title>
+<title>Red&#160;Hat OpenShift Services on AWS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,12 +438,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster" class="book toc2 toc-left">
+<body id="rosa-hcp-upgrading-cli-control-plane_rosa-hcp-upgrade-a-cluster" class="book toc2 toc-left">
 <div id="header">
-<h1>Red&#160;Hat OpenShift Services on AWS (classic architecture)</h1>
+<h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s new</a>
 </li>
 <li><a href="_discover.html">Discover</a>
@@ -452,9 +452,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
 <ul class="sectlevel2">
-<li><a href="rosa-plan-cluster-upgrades_rosa-classic-plan-cluster-upgrades.html">Plan cluster upgrades</a>
+<li><a href="rosa-plan-cluster-upgrades_rosa-hcp-plan-cluster-upgrades.html">Plan cluster upgrades</a>
 </li>
-<li><a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html"><span class="toc-current">Upgrade a cluster</span></a>
+<li><a href="rosa-hcp-upgrade-a-cluster_rosa-hcp-upgrade-a-cluster.html">Upgrade a cluster</a>
+</li>
+<li><a href="rosa-hcp-upgrade-karpenter-managed-nodes_rosa-hcp-upgrade-karpenter-managed-nodes.html">Upgrade Karpenter-managed nodes</a>
 </li>
 </ul>
 </li>
@@ -464,13 +466,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div class="sect2">
-<h3 id="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster">Upgrade a cluster</h3>
+<div class="sect3">
+<h4 id="rosa-hcp-upgrading-cli-control-plane_rosa-hcp-upgrade-a-cluster">Upgrade the hosted control plane with the ROSA CLI</h4>
 <div class="paragraph _abstract">
-<p>Upgrade your Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters using either the ROSA command-line interface (CLI) (<code>rosa</code>) or the OpenShift Cluster Manager console. Both support immediate and scheduled one-time upgrades. OpenShift Cluster Manager also schedules recurring upgrade windows that apply new z-versions automatically.</p>
+<p>You can manually update the hosted control plane of a Red&#160;Hat OpenShift Services on AWS cluster by using the ROSA command-line interface (CLI) (<code>rosa</code>). This method schedules the control plane for an update if a more recent version is available, either immediately, or at a specified future time.</p>
 </div>
 <div class="paragraph">
-<p>While both methods verify compatibility, the ROSA CLI can automatically align Amazon Web Services (AWS) Security Token Service (STS) policies to the target version, ensuring your IAM roles meet all security requirements for the new release.</p>
+<p>You can upgrade the hosted control plane separately from the machine pools and apply the latest feature and security improvements without affecting running workloads on your worker nodes.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -480,37 +482,124 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The actual start time of the cluster upgrade will be within 10 minutes of the upgrade schedule time. Additionally, the duration of the upgrade might vary based on your workload configuration.</p>
+<p>Your control plane only supports machine pools within two minor y-stream versions. For example, a Red&#160;Hat OpenShift Services on AWS cluster with a control plane using version 4.17.z supports machine pools with version 4.15.z and 4.16.z, but the control plane does not support machine pools using version 4.14.z.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have installed and configured the latest version of the ROSA CLI.</p>
+</li>
+<li>
+<p>No machine pool updates are in progress or scheduled to take place at the same time as the hosted control plane update.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Verify the current version of your cluster by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa describe cluster --cluster=&lt;cluster_name_or_id&gt;</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>When a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster that uses AWS STS is upgraded, the ROSA CLI verifies the account and Operator role policies for the chosen cluster are compatible with the target version of the upgrade. If the policies are compatible, the CLI automatically upgrades the cluster. If the policies are not compatible with the chosen upgrade version, the CLI automatically upgrades IAM policies before upgrading the cluster. When scheduling the upgrade, you give administrative acknowledgment to confirm you have reviewed the changes involved with the upgrade, if required.</p>
+<p>Replace <code>&lt;cluster_name_or_id&gt;</code> with the cluster name or the cluster ID.</p>
+</div>
+</li>
+<li>
+<p>List the versions that you can update your control plane to by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list upgrade --cluster=&lt;cluster_name_or_id&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The command returns a list of available updates, including the recommended version.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">VERSION  NOTES
+4.18.18   recommended
+4.18.17
+4.18.16</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the update channel. For more information about channels, refer to "Channels in Red&#160;Hat OpenShift Services on AWS clusters".</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa edit cluster -c &lt;cluster_name_or_id&gt; --channel &lt;channel&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example, to set the channel to <code>stable-4.19</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa edit cluster -c &lt;cluster_name_or_id&gt; --channel stable-4.19</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Update the cluster&#8217;s hosted control plane by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa upgrade cluster -c &lt;cluster_name_or_id&gt; [--schedule-date=&lt;yyyy-mm-dd&gt; --schedule-time=&lt;HH:mm&gt;] --version &lt;version_number&gt;</code></pre>
+</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-how-upgrades-work_rosa-classic-upgrade-a-cluster.html">How cluster upgrades work</a></p>
+<p>To schedule an immediate update to the specified version, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa upgrade cluster -c &lt;cluster_name_or_id&gt; --version &lt;version_number&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Your hosted control plane is scheduled for an immediate update.</p>
+</div>
 </li>
 <li>
-<p><a href="rosa-upgrading-cli_rosa-classic-upgrade-a-cluster.html">Upgrade a cluster with the ROSA CLI</a></p>
+<p>To schedule an update to the specified version at a future date, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa upgrade cluster -c &lt;cluster_name_or_id&gt; --schedule-date=&lt;yyyy-mm-dd&gt; --schedule-time=&lt;HH:mm&gt; --version=&lt;version_number&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Your hosted control plane is scheduled for an update at the specified time in Coordinated Universal Time (UTC).</p>
+</div>
 </li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Troubleshooting</div>
+<ul>
 <li>
-<p><a href="rosa-upgrade-ocm_rosa-classic-upgrade-a-cluster.html">Upgrade a cluster with OpenShift Cluster Manager</a></p>
+<p>Sometimes a scheduled update does not initiate. See <a href="https://access.redhat.com/solutions/6648291">Upgrade maintenance canceled</a> for more information.</p>
 </li>
-<li>
-<p><a href="rosa-deleting-cluster-upgrade-cli_rosa-classic-upgrade-a-cluster.html">Delete a cluster upgrade with the ROSA CLI</a></p>
-</li>
-<li>
-<p><a href="rosa-deleting-cluster-upgrade-ocm_rosa-classic-upgrade-a-cluster.html">Delete a cluster upgrade with OpenShift Cluster Manager</a></p>
-</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
 </ul>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="_cluster_update_options.html">Cluster update options</a> | ↑ Up: <a href="_upgrade.html">Upgrade</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-how-upgrades-work_rosa-classic-upgrade-a-cluster.html">How cluster upgrades work</a> →</p>
+<p>↑ Up: <a href="rosa-hcp-upgrade-a-cluster_rosa-hcp-upgrade-a-cluster.html">Upgrade a cluster</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-upgrade-machine-pools_rosa-hcp-upgrade-a-cluster.html">Upgrade machine pools</a> →</p>
 </div>
 </div>
 <div id="footer">
