@@ -465,41 +465,35 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect4">
-<h5 id="ocm-cli-verify-wif-commands_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication">Verifying a Workload Identity Federation configuration</h5>
+<h5 id="ocm-cli-verify-wif-commands_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication">Verify a Workload Identity Federation configuration</h5>
 <div class="paragraph _abstract">
-<p>You can verify that the configuration of resources associated with a WIF configuration are correct by running the <code>ocm gcp verify wif-config</code> command. If a misconfiguration is found, the output provides details about the misconfiguration and recommends that you update the WIF configuration.</p>
+<p>You can verify that the configuration of resources associated with a Workload Identity Federation (WIF) configuration are correct by running the <code>ocm gcp verify wif-config</code> command.</p>
 </div>
-<div class="paragraph">
-<p>You need the name and ID of the WIF configuration you want to verify before verification.
-To obtain the name and ID of your active WIF configurations, run the following command:</p>
-</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Get the name and ID of your active WIF configurations by running the following command:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ocm gcp list wif-configs</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>To determine if the WIF configuration you want to verify is configured correctly, run the following command:</p>
-</div>
+</li>
+<li>
+<p>Determine if the WIF configuration you want to verify is configured correctly by running the following command, replacing <code>&lt;wif_config_name&gt;</code> and <code>&lt;wif_config_id&gt;</code> with the name and ID of your WIF configuration, respectively:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ocm gcp verify wif-config &lt;wif_config_name&gt;|&lt;wif_config_id&gt; <img src="data:image/png;base64," alt="1"></code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ocm gcp verify wif-config &lt;wif_config_name&gt;|&lt;wif_config_id&gt;</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><img src="data:image/png;base64," alt="1"></td>
-<td>Replace <code>&lt;wif_config_name&gt;</code> and <code>&lt;wif_config_id&gt;</code> with the name and ID of your WIF configuration, respectively.</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>If a misconfiguration is found, the output provides details about the misconfiguration and recommends that you update the WIF configuration.</p>
 </div>
 <div class="openblock">
 <div class="content">
-<div class="paragraph">
-<p><strong>Example output</strong></p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">Error: verification failed with error: missing role 'compute.storageAdmin'.
 Running 'ocm gcp update wif-config' may fix errors related to cloud resource misconfiguration.
@@ -508,9 +502,12 @@ exit status 1.</code></pre>
 </div>
 </div>
 </div>
+</li>
+</ol>
+</div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="wif-removing-stale-support-permissions_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Removing stale support permissions from service accounts managed by a WIF configuration</a> | ↑ Up: <a href="osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication-intro_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Create an OSD cluster on Google Cloud with WIF authentication</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-create-an-osd-cluster-on-google-cloud-with-service-account-authentication-intro_osd-create-an-osd-cluster-on-google-cloud-with-service-account-authentication.html">Create an OSD cluster on Google Cloud with Service Account authentication</a> →</p>
+<p>← Previous: <a href="wif-removing-stale-support-permissions_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Remove stale support permissions from service accounts managed by a WIF configuration</a> | ↑ Up: <a href="osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication-intro_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Create an OSD cluster on Google Cloud with WIF authentication</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-create-an-osd-cluster-on-google-cloud-with-service-account-authentication-intro_osd-create-an-osd-cluster-on-google-cloud-with-service-account-authentication.html">Create an OSD cluster on Google Cloud with Service Account authentication</a> →</p>
 </div>
 </div>
 <div id="footer">

@@ -465,7 +465,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect4">
-<h5 id="create-wif-configuration_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication">Creating a Workload Identity Federation configuration</h5>
+<h5 id="create-wif-configuration_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication">Create a Workload Identity Federation configuration</h5>
 <div class="paragraph _abstract">
 <p>You can create a WIF configuration using the <code>auto</code> mode or the <code>manual</code> mode in the <code>ocm</code> CLI.</p>
 </div>
@@ -483,32 +483,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>Create a WIF configuration in auto mode by running the following command:</p>
+<p>Create a WIF configuration in auto mode by running the following command, replacing <code>&lt;wif_name&gt;</code> with the name of your WIF configuration and <code>&lt;gcp_project_id&gt;</code> with the ID of the Google Cloud project where the WIF configuration is implemented:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ocm gcp create wif-config --name &lt;wif_name&gt; \ <img src="data:image/png;base64," alt="1">
-  --project &lt;gcp_project_id&gt; \ <img src="data:image/png;base64," alt="2">
-  --version &lt;osd_version&gt; <img src="data:image/png;base64," alt="3">
-  --federated-project &lt;gcp_project_id&gt; <img src="data:image/png;base64," alt="4"></code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ocm gcp create wif-config --name &lt;wif_name&gt; \
+  --project &lt;gcp_project_id&gt; \
+  --version &lt;osd_version&gt; \
+  --federated-project &lt;gcp_project_id&gt;</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><img src="data:image/png;base64," alt="1"></td>
-<td>Replace <code>&lt;wif_name&gt;</code> with the name of your WIF configuration.</td>
-</tr>
-<tr>
-<td><img src="data:image/png;base64," alt="2"></td>
-<td>Replace <code>&lt;gcp_project_id&gt;</code> with the ID of the Google Cloud project where the WIF configuration will be implemented.</td>
-</tr>
-<tr>
-<td><img src="data:image/png;base64," alt="3"></td>
-<td>Optional: Replace <code>&lt;osd_version&gt;</code> with the desired Openshift Dedicated version the wif-config will need to support. If you do not specify a version, the wif-config will support the latest Openshift Dedicated y-stream version as well as the last three supported Openshift Dedicated y-stream versions (beginning with version 4.17).</td>
-</tr>
-<tr>
-<td><img src="data:image/png;base64," alt="4"></td>
-<td>Optional: Replace <code>&lt;gcp_project_id&gt;</code> with the ID of the dedicated project where the workload identity pools and providers will be created and managed. If the <code>--federated-project</code> flag is not specified, the workload identity pools and providers will be created and managed in the project specified by the <code>--project</code> flag.
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>--version &lt;osd_version&gt;</code></dt>
+<dd>
+<p>Optional: Replace <code>&lt;osd_version&gt;</code> with the desired Openshift Dedicated version the wif-config will need to support. If you do not specify a version, the wif-config will support the latest Openshift Dedicated y-stream version as well as the last three supported Openshift Dedicated y-stream versions (beginning with version 4.17).</p>
+</dd>
+<dt class="hdlist1"><code>--federated-project &lt;gcp_project_id&gt;</code></dt>
+<dd>
+<p>Optional: Replace <code>&lt;gcp_project_id&gt;</code> with the ID of the dedicated project where the workload identity pools and providers will be created and managed. If the <code>--federated-project</code> flag is not specified, the workload identity pools and providers will be created and managed in the project specified by the <code>--project</code> flag.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -554,29 +556,17 @@ Using a dedicated project helps you to establish centralized governance over the
 </div>
 </div>
 </div>
-</div></td>
-</tr>
-</table>
 </div>
 </li>
 <li>
-<p>Create a WIF configuration in manual mode by running the following command:</p>
+<p>Create a WIF configuration in manual mode by running the following command, replacing <code>&lt;wif_name&gt;</code> with the name of your WIF configuration and <code>&lt;gcp_project_id&gt;</code> with the ID of the Google Cloud project where the WIF configuration is implemented:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ocm gcp create wif-config --name &lt;wif_name&gt; \ <img src="data:image/png;base64," alt="1">
-  --project &lt;gcp_project_id&gt; \ <img src="data:image/png;base64," alt="2">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ocm gcp create wif-config --name &lt;wif_name&gt; \
+  --project &lt;gcp_project_id&gt; \
   --mode=manual</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><img src="data:image/png;base64," alt="1"></td>
-<td>Replace <code>&lt;wif_name&gt;</code> with the name of your WIF configuration.</td>
-</tr>
-<tr>
-<td><img src="data:image/png;base64," alt="2"></td>
-<td>Replace <code>&lt;gcp_project_id&gt;</code> with the ID  of the Google Cloud project where the WIF configuration will be implemented.
 <div class="paragraph">
 <p>Once the WIF is configured, the following service accounts, roles, and groups are created.</p>
 </div>
@@ -886,9 +876,6 @@ Using a dedicated project helps you to establish centralized governance over the
 </table>
 <div class="paragraph">
 <p>For the complete list of WIF configuration roles and their assigned permissions, see <a href="https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.19/vanilla.yaml">managed-cluster-config</a>.</p>
-</div></td>
-</tr>
-</table>
 </div>
 </li>
 </ul>
@@ -898,7 +885,7 @@ Using a dedicated project helps you to establish centralized governance over the
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="workload-identity-federation-overview_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Workload Identity Federation overview</a> | ↑ Up: <a href="osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication-intro_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Create an OSD cluster on Google Cloud with WIF authentication</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="create-wif-cluster-ocm_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Creating a Workload Identity Federation cluster using OpenShift Cluster Manager</a> →</p>
+<p>← Previous: <a href="workload-identity-federation-overview_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Workload Identity Federation overview</a> | ↑ Up: <a href="osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication-intro_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Create an OSD cluster on Google Cloud with WIF authentication</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="create-wif-cluster-ocm_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Create a Workload Identity Federation cluster using OpenShift Cluster Manager</a> →</p>
 </div>
 </div>
 <div id="footer">

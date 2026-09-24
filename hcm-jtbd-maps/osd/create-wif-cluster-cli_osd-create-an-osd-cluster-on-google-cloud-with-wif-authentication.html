@@ -465,7 +465,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect4">
-<h5 id="create-wif-cluster-cli_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication">Creating a Workload Identity Federation cluster using the OpenShift Cluster Manager CLI</h5>
+<h5 id="create-wif-cluster-cli_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication">Create a Workload Identity Federation cluster using the OpenShift Cluster Manager CLI</h5>
 <div class="paragraph _abstract">
 <p>You can create an Openshift Dedicated on Google Cloud cluster with Workload Identity Federation (WIF) using the OpenShift Cluster Manager CLI (<code>ocm</code>) in interactive or noninteractive mode.</p>
 </div>
@@ -473,7 +473,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have created a WIF configuration. For more information, see "Creating a Workload Identity Federation configuration".</p>
+<p>You have created a WIF configuration. For more information, see "Create a Workload Identity Federation configuration".</p>
 </li>
 <li>
 <p>You have downloaded the latest version of the OpenShift Cluster Manager CLI (<code>ocm</code>) for your operating system from the <a href="https://console.redhat.com/openshift/downloads">Downloads</a> page on OpenShift Cluster Manager.</p>
@@ -484,18 +484,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Create a WIF cluster using the <code>interactive</code> or the <code>non-interactive</code> mode.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>In <code>interactive</code> mode, cluster attributes are displayed automatically as prompts during the creation of the cluster. Enter the values for those prompts based on specified requirements in the fields provided.</p>
-</li>
-<li>
-<p>In <code>non-interactive</code> mode, specify the values for specific parameters within the command.</p>
-<div class="ulist">
-<ul>
-<li>
 <p>Based on your mode preference, run one of the following commands to create an Openshift Dedicated cluster on Google Cloud with WIF configuration:</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>In <code>interactive</code> mode, cluster attributes are displayed automatically as prompts during the creation of the cluster. Enter the values for those prompts based on specified requirements in the fields provided.</p>
+</div>
+<div class="paragraph">
+<p>In <code>non-interactive</code> mode, specify the values for specific parameters within the command.</p>
+</div>
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -513,10 +512,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <dt class="hdlist1"><code>--interactive</code></dt>
 <dd>
 <p>Specifies that the cluster is created in interactive mode. This mode prompts you to enter the required configuration options during cluster creation. If you do not include this parameter, the cluster is created in <code>non-interactive</code> mode by default.</p>
-</dd>
-</dl>
-</div>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p>Create a cluster in noninteractive mode by running the following command.
 The following example is made up of optional and required parameters and might differ from your noninteractive mode command. Parameters not identified as optional are required. For additional details about these and other parameters, run the <code>ocm create cluster --help flag</code> command in your terminal window.</p>
@@ -542,8 +539,10 @@ The following example is made up of optional and required parameters and might d
 <div class="paragraph">
 <p>where:</p>
 </div>
-<div class="dlist">
-<dl>
+</li>
+</ul>
+</div>
+</dd>
 <dt class="hdlist1"><code>&lt;cluster_name&gt;</code></dt>
 <dd>
 <p>Specifies the name of the cluster. Replace <code>&lt;cluster_name&gt;</code> with a name for your cluster.</p>
@@ -581,7 +580,7 @@ The following example is made up of optional and required parameters and might d
 <p>Specifies the required Openshift Dedicated version. This parameter is optional. However, if an Openshift Dedicated version is specified, the version must also be supported by the assigned WIF configuration. If a version is specified that is not supported by the assigned WIF configuration, cluster creation will fail.
 If this occurs, update the assigned WIF configuration to the required version or create a new WIF configuration with the required version. If you do not specify a version, the cluster is created with the default version for the assigned WIF configuration.</p>
 <div class="paragraph">
-<p>For more information about supported versions for WIF configurations, see "Creating a Workload Identity Federation configuration".</p>
+<p>For more information about supported versions for WIF configurations, see "Create a Workload Identity Federation configuration".</p>
 </div>
 </dd>
 <dt class="hdlist1"><code>--multi-az=true</code></dt>
@@ -614,12 +613,6 @@ If this occurs, update the assigned WIF configuration to the required version or
 </ul>
 </div>
 </li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</li>
 </ol>
 </div>
 <div class="ulist">
@@ -646,7 +639,7 @@ If this occurs, update the assigned WIF configuration to the required version or
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If your cluster deployment fails during installation, certain resources created during the installation process are not automatically removed from your Google Cloud account. To remove these resources from your Google Cloud account, you must delete the failed cluster. For more information, see "Deleting an Openshift Dedicated cluster on Google Cloud".</p>
+<p>If your cluster deployment fails during installation, certain resources created during the installation process are not automatically removed from your Google Cloud account. To remove these resources from your Google Cloud account, you must delete the failed cluster. For more information, see "Delete an Openshift Dedicated cluster on Google Cloud".</p>
 </div>
 </td>
 </tr>
@@ -654,7 +647,7 @@ If this occurs, update the assigned WIF configuration to the required version or
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="create-wif-cluster-ocm_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Creating a Workload Identity Federation cluster using OpenShift Cluster Manager</a> | ↑ Up: <a href="osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication-intro_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Create an OSD cluster on Google Cloud with WIF authentication</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="ocm-cli-list-wif-commands_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Listing Workload Identity Federation clusters</a> →</p>
+<p>← Previous: <a href="create-wif-cluster-ocm_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Create a Workload Identity Federation cluster using OpenShift Cluster Manager</a> | ↑ Up: <a href="osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication-intro_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">Create an OSD cluster on Google Cloud with WIF authentication</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="ocm-cli-list-wif-commands_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication.html">List Workload Identity Federation clusters</a> →</p>
 </div>
 </div>
 <div id="footer">
