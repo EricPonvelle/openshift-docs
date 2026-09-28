@@ -437,16 +437,154 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-left-nav-toggle-start -->
+<style>
+  #toc .toc-toggle {
+    display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .75em;
+    padding: 0 .3em 0 0;
+    margin: 0;
+    color: #555;
+    transition: transform .15s ease;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  #toc .toc-toggle:hover { color: #0066cc; }
+  #toc .toc-toggle.open { transform: rotate(90deg); }
+  #toc li > ul.sectlevel2,
+  #toc li > ul.sectlevel3,
+  #toc li > ul.sectlevel4 { display: none; }
+  #toc li.toc-expanded > ul.sectlevel2,
+  #toc li.toc-expanded > ul.sectlevel3,
+  #toc li.toc-expanded > ul.sectlevel4 { display: block; }
+</style>
+<script>
+(function() {
+  var previewPath = window.location.pathname.slice(
+    0,
+    window.location.pathname.lastIndexOf('/')
+  ) || '/';
+  var STORAGE_KEY = 'navmap-toc-state:' + previewPath;
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch(e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var state = loadState();
+    var currentPage = location.pathname.split('/').pop();
+    var buttons = document.querySelectorAll('#toc .toc-toggle');
+
+    buttons.forEach(function(btn) {
+      var key = btn.getAttribute('data-toc-key');
+      var li = btn.parentElement;
+      var isCurrentSection = false;
+
+      /* Auto-expand the section containing the current page */
+      var links = li.querySelectorAll('a[href]');
+      links.forEach(function(a) {
+        var href = a.getAttribute('href').split('#')[0];
+        if (href === currentPage) { isCurrentSection = true; }
+      });
+
+      if (state[key] === true || isCurrentSection) {
+        li.classList.add('toc-expanded');
+        btn.classList.add('open');
+        if (isCurrentSection) { state[key] = true; }
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var expanded = li.classList.toggle('toc-expanded');
+        btn.classList.toggle('open', expanded);
+        state[key] = expanded;
+        saveState(state);
+      });
+    });
+
+    saveState(state);
+
+    /* --- Scroll current page into view in the TOC --- */
+    var toc = document.getElementById('toc');
+    if (toc) {
+      var cur = toc.querySelector('a[href="' + currentPage + '"]');
+      if (!cur) { cur = toc.querySelector('a[href$="/' + currentPage + '"]'); }
+      if (cur) {
+        cur.style.fontWeight = 'bold';
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            cur.scrollIntoView({ block: 'center', behavior: 'instant' });
+          }, 0);
+        });
+      }
+    }
+  });
+})();
+</script>
+<!-- navmap-left-nav-toggle-end -->
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="osd-understand-service-definitions_understand-service-definitions" class="book toc2 toc-left">
+<body id="osd-understand-service-definitions_understand-service-definitions" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Openshift Dedicated</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Openshift Dedicated</a></span></p><ul class="sectlevel1">
-<li><a href="_whats_new.html">What&#8217;s new</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
+
+<ul class="sectlevel2">
+<li><a href="osd-whats-new_whats-new-with-openshift-dedicated.html">What&#8217;s new with OpenShift Dedicated</a>
 </li>
-<li><a href="_discover.html">Discover</a>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
 <ul class="sectlevel2">
 <li><a href="osd-evaluate-managed-platform-features_evaluate-managed-platform-features-and-infrastructure.html">Evaluate managed platform features and infrastructure</a>
 </li>
@@ -458,79 +596,3723 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
-<li><a href="_install.html">Install</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="osd-create-an-osd-cluster-on-google-cloud-intro_osd-create-an-osd-cluster-on-google-cloud.html">Create an OSD cluster on Google Cloud</a>
 </li>
-<li><a href="_upgrade.html">Upgrade</a>
+<li><a href="osd-create-an-osd-cluster-on-aws-intro_osd-create-an-osd-cluster-on-aws.html">Create an OSD cluster on AWS</a>
 </li>
-<li><a href="_observe.html">Observe</a>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_upgrade.html">▶</button><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="osd-plan-cluster-upgrades_plan-cluster-upgrades.html">Plan cluster upgrades</a>
+</li>
+<li><a href="osd-upgrade-a-cluster_upgrade-a-cluster.html">Upgrade a cluster</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_observe.html">▶</button><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="osd-collect-and-analyze-logs_collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="osd-monitor-cluster-health_monitor-cluster-health.html">Monitor cluster health</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#billing_understand-service-definitions">Billing options</a></li><li class="level-4"><a href="#cluster-self-service_understand-service-definitions">Cluster self-service</a></li><li class="level-4"><a href="#cloud-providers_understand-service-definitions">Cloud providers</a></li><li class="level-4"><a href="#instance-types_understand-service-definitions">Instance types</a></li><li class="level-4"><a href="#aws-instance-types-ccs_understand-service-definitions">AWS instance types for Customer Cloud Subscription clusters</a></li><li class="level-4"><a href="#aws-instance-types-non-ccs_understand-service-definitions">AWS instance types for non-CCS clusters</a></li><li class="level-4"><a href="#gcp-compute-types_understand-service-definitions">Google Cloud instance types</a></li><li class="level-4"><a href="#regions-availability-zones_understand-service-definitions">Regions and availability zones</a></li><li class="level-5"><a href="#aws-regions-availability-zones_understand-service-definitions">AWS regions and availability zones</a></li><li class="level-5"><a href="#gcp-regions-availability-zones_understand-service-definitions">Google Cloud regions and availability zones</a></li><li class="level-4"><a href="#sla_understand-service-definitions">Service level agreement (SLA)</a></li><li class="level-4"><a href="#limited-support_understand-service-definitions">Limited support status</a></li><li class="level-4"><a href="#support_understand-service-definitions">Support</a></li><li class="level-4"><a href="#sdpolicy-logging_understand-service-definitions">Logging</a></li><li class="level-5"><a href="#audit-logging_understand-service-definitions">Cluster audit logging</a></li><li class="level-5"><a href="#application-logging_understand-service-definitions">Application logging</a></li><li class="level-4"><a href="#sdpolicy-monitoring_understand-service-definitions">Monitoring</a></li><li class="level-5"><a href="#cluster-metrics_understand-service-definitions">Cluster metrics</a></li><li class="level-5"><a href="#cluster-status-notification_understand-service-definitions">Cluster notifications</a></li><li class="level-4"><a href="#sdpolicy-networking_understand-service-definitions">Networking</a></li><li class="level-5"><a href="#custom-domains_understand-service-definitions">Custom domains for applications</a></li><li class="level-5"><a href="#custom-domains-cluster_understand-service-definitions">Custom domains for cluster services</a></li><li class="level-5"><a href="#domain-validated-certificates_understand-service-definitions">Domain validated certificates</a></li><li class="level-5"><a href="#custom-certificate-authorities_understand-service-definitions">Custom certificate authorities for builds</a></li><li class="level-5"><a href="#load-balancers_understand-service-definitions">Load balancers</a></li><li class="level-5"><a href="#network-usage_understand-service-definitions">Network usage</a></li><li class="level-5"><a href="#cluster-ingress_understand-service-definitions">Cluster ingress</a></li><li class="level-5"><a href="#cluster-egress_understand-service-definitions">Cluster egress</a></li><li class="level-5"><a href="#cloud-network-configuration_understand-service-definitions">Cloud network configuration</a></li><li class="level-5"><a href="#dns-forwarding_understand-service-definitions">DNS forwarding</a></li><li class="level-5"><a href="#osd-network-verification_understand-service-definitions">Network verification</a></li><li class="level-4"><a href="#sdpolicy-storage_understand-service-definitions">Storage</a></li><li class="level-5"><a href="#encrypt-rest-node_understand-service-definitions">Encrypted-at-rest OS/node storage</a></li><li class="level-5"><a href="#encrypt-rest-pv_understand-service-definitions">Encrypted-at-rest PV</a></li><li class="level-5"><a href="#block-storage_understand-service-definitions">Block storage (RWO)</a></li><li class="level-5"><a href="#shared-storage_understand-service-definitions">Shared storage (RWX)</a></li><li class="level-4"><a href="#sdpolicy-platform_understand-service-definitions">Platform</a></li><li class="level-5"><a href="#cluster-backup-policy_understand-service-definitions">Cluster backup policy</a></li><li class="level-5"><a href="#autoscaling_understand-service-definitions">Autoscaling</a></li><li class="level-5"><a href="#daemon-sets_understand-service-definitions">Daemon sets</a></li><li class="level-5"><a href="#multi-availability-zones_understand-service-definitions">Multiple availability zone</a></li><li class="level-5"><a href="#node-labels_understand-service-definitions">Node labels</a></li><li class="level-5"><a href="#openshift-version_understand-service-definitions">OpenShift version</a></li><li class="level-5"><a href="#upgrades_understand-service-definitions">Upgrades</a></li><li class="level-5"><a href="#windows-containers_understand-service-definitions">Windows containers</a></li><li class="level-5"><a href="#container-engine_understand-service-definitions">Container engine</a></li><li class="level-5"><a href="#operating-system_understand-service-definitions">Operating system</a></li><li class="level-5"><a href="#_red_hat_operator_support">Red Hat Operator support</a></li><li class="level-5"><a href="#kubernetes-operator-support_understand-service-definitions">Kubernetes Operator support</a></li><li class="level-4"><a href="#sdpolicy-security_understand-service-definitions">Security</a></li><li class="level-5"><a href="#auth-provider_understand-service-definitions">Authentication provider</a></li><li class="level-5"><a href="#privileged-containers_understand-service-definitions">Privileged containers</a></li><li class="level-5"><a href="#cluster-admin-user_understand-service-definitions">Customer administrator user</a></li><li class="level-5"><a href="#cluster-admin-role_understand-service-definitions">Cluster administration role</a></li><li class="level-5"><a href="#project-self-service_understand-service-definitions">Project self-service</a></li><li class="level-5"><a href="#regulatory-compliance_understand-service-definitions">Regulatory compliance</a></li><li class="level-5"><a href="#network-security_understand-service-definitions">Network security</a></li><li class="level-5"><a href="#etcd-encryption_understand-service-definitions">etcd encryption</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="osd-understand-service-definitions_understand-service-definitions">Understand service definitions</h3>
 <div class="paragraph _abstract">
 <p>Review the Openshift Dedicated service definition, including account management, logging, monitoring, networking, storage, platform, and security aspects.</p>
 </div>
+<div class="sect3">
+<h4 id="billing_understand-service-definitions">Billing options</h4>
+<div class="paragraph _abstract">
+<p>Customers have the option to purchase annual subscriptions of Openshift Dedicated (OSD) or consume on-demand through cloud marketplaces. Customers can decide to bring their own cloud infrastructure account, referred to as Customer Cloud Subscription (CCS), or deploy in cloud provider accounts owned by Red Hat. The table below provides additional information regarding billing, as well as the corresponding supported deployment options.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">OSD Subscription-type</th>
+<th class="tableblock halign-left valign-top">Cloud infrastructure account</th>
+<th class="tableblock halign-left valign-top">Billed through</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><div class="content"><div class="paragraph">
+<p>Annual fixed capacity subscriptions through Red Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red Hat cloud account</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red Hat for consumption of both OSD subscriptions and cloud infrastructure</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer&#8217;s own cloud account</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red Hat for consumption of the OSD subscriptions</p>
+</div>
+<div class="paragraph">
+<p>Cloud provider for consumption of cloud infrastructure</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>On-demand usage-based consumption through Google Cloud Marketplace</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer&#8217;s own Google Cloud account</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Google Cloud for both cloud infrastructure and Red Hat OSD subscriptions</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Customers that use their own cloud infrastructure account, referred to as Customer Cloud Subscription (CSS), are responsible to pre-purchase or provide Reserved Instance (RI) compute instances to ensure lower cloud infrastructure costs.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Additional resources can be purchased for an OpenShift Dedicated cluster, including:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="billing_understand-service-definitions.html">Billing options</a></p>
+<p>Additional nodes (can be different types and sizes through the use of machine pools)</p>
 </li>
 <li>
-<p><a href="cluster-self-service_understand-service-definitions.html">Cluster self-service</a></p>
+<p>Middleware (JBoss EAP, JBoss Fuse, and so on) - additional pricing based on specific middleware component</p>
 </li>
 <li>
-<p><a href="cloud-providers_understand-service-definitions.html">Cloud providers</a></p>
+<p>Additional storage in increments of 500 GB (non-CCS only; 100 GB included)</p>
 </li>
 <li>
-<p><a href="instance-types_understand-service-definitions.html">Instance types</a></p>
+<p>Additional 12 TiB Network I/O (non-CCS only; 12 TB included)</p>
 </li>
 <li>
-<p><a href="aws-instance-types-ccs_understand-service-definitions.html">AWS instance types for Customer Cloud Subscription clusters</a></p>
-</li>
-<li>
-<p><a href="aws-instance-types-non-ccs_understand-service-definitions.html">AWS instance types for non-CCS clusters</a></p>
-</li>
-<li>
-<p><a href="gcp-compute-types_understand-service-definitions.html">Google Cloud instance types</a></p>
-</li>
-<li>
-<p><a href="regions-availability-zones_understand-service-definitions.html">Regions and availability zones</a></p>
-</li>
-<li>
-<p><a href="sla_understand-service-definitions.html">Service level agreement (SLA)</a></p>
-</li>
-<li>
-<p><a href="limited-support_understand-service-definitions.html">Limited support status</a></p>
-</li>
-<li>
-<p><a href="support_understand-service-definitions.html">Support</a></p>
-</li>
-<li>
-<p><a href="sdpolicy-logging_understand-service-definitions.html">Logging</a></p>
-</li>
-<li>
-<p><a href="sdpolicy-monitoring_understand-service-definitions.html">Monitoring</a></p>
-</li>
-<li>
-<p><a href="sdpolicy-networking_understand-service-definitions.html">Networking</a></p>
-</li>
-<li>
-<p><a href="sdpolicy-storage_understand-service-definitions.html">Storage</a></p>
-</li>
-<li>
-<p><a href="sdpolicy-platform_understand-service-definitions.html">Platform</a></p>
-</li>
-<li>
-<p><a href="sdpolicy-security_understand-service-definitions.html">Security</a></p>
+<p>Load Balancers for Services are available in bundles of 4; enables non-HTTP/SNI traffic or non-standard ports (non-CCS only)</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="cluster-self-service_understand-service-definitions">Cluster self-service</h4>
+<div class="paragraph _abstract">
+<p>Customers can create, scale, and delete their clusters from <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>, provided that they have already purchased the necessary subscriptions.</p>
+</div>
+<div class="paragraph">
+<p>Actions available in Red Hat OpenShift Cluster Manager must not be directly performed from within the cluster as this might cause adverse affects, including having all actions automatically reverted.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cloud-providers_understand-service-definitions">Cloud providers</h4>
+<div class="paragraph _abstract">
+<p>Openshift Dedicated offers OpenShift Container Platform clusters as a managed service on the following cloud providers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Amazon Web Services (AWS)</p>
+</li>
+<li>
+<p>Google Cloud</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="instance-types_understand-service-definitions">Instance types</h4>
+<div class="paragraph _abstract">
+<p>Single availability zone clusters require a minimum of 2 worker nodes for Customer Cloud Subscription (CCS) clusters deployed to a single availability zone. A minimum of 4 worker nodes is required for non-CCS clusters. These 4 worker nodes are included in the base subscription.</p>
+</div>
+<div class="paragraph">
+<p>Multiple availability zone clusters require a minimum of 3 worker nodes for Customer Cloud Subscription (CCS) clusters, 1 deployed to each of 3 availability zones. A minimum of 9 worker nodes are required for non-CCS clusters. These 9 worker nodes are included in the base subscription, and additional nodes must be purchased in multiples of 3 to maintain proper node distribution.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All worker nodes within a single Openshift Dedicated machine pool must be of the same type and size. However, worker nodes across multiple machine pools within an Openshift Dedicated cluster can be of different types and sizes.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Control plane and infrastructure nodes are deployed and managed by Red&#160;Hat. There are at least 3 control plane nodes that handle etcd and API-related workloads. There are at least 2 infrastructure nodes that handle metrics, routing, the web console, and other workloads. You must not run any workloads on the control plane and infrastructure nodes. Any workloads you intend to run must be deployed on worker nodes.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Shutting down the underlying infrastructure through the cloud provider console is unsupported and can lead to data loss.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more information about Red&#160;Hat workloads that must be deployed on worker nodes, see the <em>Red&#160;Hat Operator support</em> section below.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Approximately 1 vCPU core and 1 GiB of memory are reserved on each worker node and removed from allocatable resources. This is necessary to run <a href="https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#system-reserved">processes required by the underlying platform</a>. This includes system daemons such as udev, kubelet, container runtime, and so on, and also accounts for kernel reservations. OpenShift Container Platform core systems such as audit log aggregation, metrics collection, DNS, image registry, SDN, and so on might consume additional allocatable resources to maintain the stability and maintainability of the cluster. The additional resources consumed might vary based on usage.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aws-instance-types-ccs_understand-service-definitions">AWS instance types for Customer Cloud Subscription clusters</h4>
+<div class="paragraph _abstract">
+<p>Openshift Dedicated offers the following worker node instance types and sizes on AWS:</p>
+</div>
+<details>
+<summary class="title">General purpose</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>m5.metal (96&#8224;  vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m5.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m5.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m5.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m5.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5a.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m5a.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5a.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m5a.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m5a.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5a.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m5a.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5ad.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m5ad.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5ad.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m5ad.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m5ad.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5ad.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m5ad.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5d.metal (96&#8224;  vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5d.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m5d.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5d.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m5d.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m5d.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5d.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m5d.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5n.metal (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5n.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m5n.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5n.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m5n.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m5n.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5n.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m5n.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5dn.metal (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5dn.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m5dn.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5dn.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m5dn.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m5dn.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5dn.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m5dn.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5zn.metal (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5zn.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m5zn.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5zn.3xlarge (12 vCPU, 48 GiB)</p>
+</li>
+<li>
+<p>m5zn.6xlarge (24 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>m5zn.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m6a.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m6a.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m6a.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m6a.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m6a.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m6a.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m6a.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m6a.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m6a.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m6i.metal (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m6i.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m6i.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m6i.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m6i.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m6i.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m6i.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m6i.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m6i.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m6id.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m6id.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m6id.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m6id.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m6id.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m6id.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m6id.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m6id.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m7i.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m7i.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m7i.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m7i.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m7i.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m7i.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m7i.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m7i.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m7i.metal-24xl (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m7i.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m7i-flex.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m7i-flex.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m7i-flex.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m7i-flex.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m7a.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m7a.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m7a.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m7a.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m7a.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m7a.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m7a.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m7a.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m7a.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m7a.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8i.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8i.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m8i.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m8i.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m8i.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8i.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m8i.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8i.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m8i.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8i.96xlarge (384 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>m8i.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8i.metal-96xl (384 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.large (2 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m8id.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8id.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m8id.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m8id.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m8id.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8id.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m8id.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8id.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m8id.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8id.96xlarge (384 vCPU, 1536 GiB)</p>
+</li>
+<li>
+<p>m8id.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8id.metal-96xl (384 vCPU, 1536 GiB)</p>
+</li>
+<li>
+<p>m8a.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8a.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m8a.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m8a.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m8a.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8a.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m8a.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8a.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8a.metal-24xl (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8a.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8azn.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8azn.3xlarge (12 vCPU, 48 GiB)</p>
+</li>
+<li>
+<p>m8azn.6xlarge (24 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>m8azn.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8azn.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8azn.metal-12xl (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8azn.metal-24xl (96 vCPU, 384 GiB)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#8224; These instance types provide 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Burstable general purpose</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>t3.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>t3.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>t3a.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>t3a.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Memory intensive</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>u7i-6tb.112xlarge (448 vCPU, 6,144 GiB)</p>
+</li>
+<li>
+<p>u7i-8tb.112xlarge (448 vCPU, 6,144 GiB)</p>
+</li>
+<li>
+<p>u7i-12tb.224xlarge (896 vCPU, 12,288 GiB)</p>
+</li>
+<li>
+<p>u7in-16tb.224xlarge (896 vCPU, 16,384 GiB)</p>
+</li>
+<li>
+<p>u7in-24tb.224xlarge (896 vCPU, 24,576 GiB)</p>
+</li>
+<li>
+<p>u7in-32tb.224xlarge (896 vCPU, 32,768 GiB)</p>
+</li>
+<li>
+<p>u7inh-32tb.480xlarge (1920 vCPU, 32,768 GiB)</p>
+</li>
+<li>
+<p>x1.16xlarge (64 vCPU, 976 GiB)</p>
+</li>
+<li>
+<p>x1.32xlarge (128 vCPU, 1952 GiB)</p>
+</li>
+<li>
+<p>x1e.xlarge (4 vCPU, 122 GiB)</p>
+</li>
+<li>
+<p>x1e.2xlarge (8 vCPU, 244 GiB)</p>
+</li>
+<li>
+<p>x1e.4xlarge (16 vCPU, 488 GiB)</p>
+</li>
+<li>
+<p>x1e.8xlarge (32 vCPU, 976 GiB)</p>
+</li>
+<li>
+<p>x1e.16xlarge (64 vCPU, 1,952 GiB)</p>
+</li>
+<li>
+<p>x1e.32xlarge (128 vCPU, 3,904 GiB)</p>
+</li>
+<li>
+<p>x2idn.16xlarge (64 vCPU, 1024 GiB)</p>
+</li>
+<li>
+<p>x2idn.24xlarge (96 vCPU, 1536 GiB)</p>
+</li>
+<li>
+<p>x2idn.32xlarge (128 vCPU, 2048 GiB)</p>
+</li>
+<li>
+<p>x2iedn.xlarge (4 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>x2iedn.2xlarge (8 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>x2iedn.4xlarge (16 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>x2iedn.8xlarge (32 vCPU, 1024 GiB)</p>
+</li>
+<li>
+<p>x2iedn.16xlarge (64 vCPU, 2048 GiB)</p>
+</li>
+<li>
+<p>x2iedn.24xlarge (96 vCPU, 3072 GiB)</p>
+</li>
+<li>
+<p>x2iedn.32xlarge (128 vCPU, 4096 GiB)</p>
+</li>
+<li>
+<p>x2iezn.2xlarge (8 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>x2iezn.4xlarge (16 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>x2iezn.6xlarge (24 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>x2iezn.8xlarge (32 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>x2iezn.12xlarge (48 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>x2idn.metal (128 vCPU, 2,048 GiB)</p>
+</li>
+<li>
+<p>x2iedn.metal (128 vCPU, 4,096 GiB)</p>
+</li>
+<li>
+<p>x2iezn.metal (48 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>x8aedz.xlarge (4 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>x8aedz.3xlarge (12 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>x8aedz.6xlarge (24 vCPU, 756 GiB)</p>
+</li>
+<li>
+<p>x8aedz.12xlarge (48 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>x8aedz.24xlarge (96 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>x8aedz.metal-12xl (48 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>x8aedz.metal-24xl (96 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>x8i.xlarge (4 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>x8i.2xlarge (8 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>x8i.4xlarge (16 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>x8i.8xlarge (32 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>x8i.12xlarge (48 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>x8i.16xlarge (64 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>x8i.24xlarge (96 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>x8i.32xlarge (128 vCPU, 2,048 GiB)</p>
+</li>
+<li>
+<p>x8i.48xlarge (192 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>x8i.64xlarge (256 vCPU, 4,096 GiB)</p>
+</li>
+<li>
+<p>x8i.96xlarge (384 vCPU, 6,144 GiB)</p>
+</li>
+<li>
+<p>x8i.metal-48xl (192 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>x8i.metal-96xl (384 vCPU, 6,144 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Memory optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>r4.xlarge (4 vCPU, 30.5 GiB)</p>
+</li>
+<li>
+<p>r4.2xlarge (8 vCPU, 61 GiB)</p>
+</li>
+<li>
+<p>r4.4xlarge (16 vCPU, 122 GiB)</p>
+</li>
+<li>
+<p>r4.8xlarge (32 vCPU, 244 GiB)</p>
+</li>
+<li>
+<p>r4.16xlarge (64 vCPU, 488 GiB)</p>
+</li>
+<li>
+<p>r5.metal (96&#8224; vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r5.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r5.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r5.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r5.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r5.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5a.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5a.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r5a.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r5a.8xlarge  (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r5a.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r5a.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r5a.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5ad.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5ad.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r5ad.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r5ad.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r5ad.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r5ad.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r5ad.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5d.metal (96&#8224; vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5d.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5d.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r5d.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r5d.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r5d.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r5d.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r5d.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5n.metal (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5n.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5n.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r5n.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r5n.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r5n.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r5n.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r5n.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5dn.metal (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5dn.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5dn.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r5dn.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r5dn.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r5dn.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r5dn.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r5dn.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r6a.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r6a.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r6a.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r6a.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r6a.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r6a.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r6a.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r6a.32xlarge (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r6a.48xlarge (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>r6a.metal	(192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>r6i.metal (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r6i.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r6i.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r6i.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r6i.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r6i.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r6i.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r6i.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r6i.32xlarge (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r6id.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r6id.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r6id.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r6id.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r6id.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r6id.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r6id.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r6id.32xlarge (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>z1d.metal (48&#135; vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>z1d.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>z1d.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>z1d.3xlarge (12 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>z1d.6xlarge (24 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>z1d.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r7a.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r7a.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r7a.4xlarge  (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r7a.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r7a.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r7a.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r7a.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r7a.32xlarge (128 vCPU, 1024 GiB)</p>
+</li>
+<li>
+<p>r7a.48xlarge (192 vCPU, 1536 GiB)</p>
+</li>
+<li>
+<p>r7a.metal-48xl (192 vCPU, 1536 GiB)</p>
+</li>
+<li>
+<p>r7i.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r7i.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r7i.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r7i.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r7i.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r7i.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r7i.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r7i.metal-24xl (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r7iz.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r7iz.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r7iz.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r7iz.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r7iz.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r7iz.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r7iz.32xlarge (128 vCPU, 1024 GiB)</p>
+</li>
+<li>
+<p>r7iz.metal-16xl (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r7iz.metal-32xl (128 vCPU, 1024 GiB)</p>
+</li>
+<li>
+<p>r8i.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r8i.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r8i.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r8i.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r8i.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r8i.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r8i.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r8i.32xlarge (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r8i.48xlarge (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>r8i.96xlarge (384 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>r8i.metal-48xl (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>r8i.metal-96xl (384 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>r8i-flex.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r8i-flex.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r8i-flex.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r8i-flex.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r8i-flex.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r8i-flex.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r8id.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r8id.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r8id.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r8id.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r8id.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r8id.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r8id.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r8id.32xlarge (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r8id.48xlarge (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>r8id.96xlarge (384 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>r8id.metal-48xl (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>r8id.metal-96xl (384 vCPU, 3,072 GiB)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#8224; These instance types provide 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.</p>
+</div>
+<div class="paragraph">
+<p>&#135; This instance type provides 48 logical processors on 24 physical cores.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Accelerated computing</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>p3.2xlarge (8 vCPU, 61 GiB)</p>
+</li>
+<li>
+<p>p3.8xlarge (32 vCPU, 244 GiB)</p>
+</li>
+<li>
+<p>p3.16xlarge (64 vCPU, 488 GiB)</p>
+</li>
+<li>
+<p>p3dn.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>p4d.24xlarge (96 vCPU, 1,152 GiB)</p>
+</li>
+<li>
+<p>p4de.24xlarge (96 vCPU, 1,152 GiB)</p>
+</li>
+<li>
+<p>p5.48xlarge (192 vCPU, 2,048 GiB)</p>
+</li>
+<li>
+<p>p5.4xlarge (16 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>p5e.48xlarge (192 vCPU, 2,048 GiB)</p>
+</li>
+<li>
+<p>p5en.48xlarge (192 vCPU, 2,048 GiB)</p>
+</li>
+<li>
+<p>g4ad.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>g4ad.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>g4ad.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>g4ad.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g4ad.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>g4dn.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>g4dn.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>g4dn.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>g4dn.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g4dn.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>g4dn.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>g4dn.metal (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>g5.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>g5.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>g5.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>g5.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g5.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>g5.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>g5.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>g5.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>dl1.24xlarge  (96 vCPU, 768 GiB)&#8224;</p>
+</li>
+<li>
+<p>g6.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>g6.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>g6.4xlarge (16 vCPU,	64 GiB)</p>
+</li>
+<li>
+<p>g6.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g6.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>g6.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>g6.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>g6.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>g6e.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>g6e.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>g6e.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g6e.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>g6e.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>g6e.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>g6e.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>g6e.48xlarge (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>gr6.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>gr6.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>g7e.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>g7e.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g7e.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>g7e.12xlarge (48 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>g7e.24xlarge (96 vCPU, 1024 GiB)</p>
+</li>
+<li>
+<p>g7e.48xlarge (192 vCPU, 2048 GiB)</p>
+</li>
+<li>
+<p>dl1.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#8224; Intel specific; not covered by Nvidia</p>
+</div>
+<div class="paragraph">
+<p>Support for the GPU instance type software stack is provided by AWS. Ensure that your AWS service quotas can accommodate the desired GPU instance types.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Compute optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>c5.metal (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c5.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c5.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c5.9xlarge (36 vCPU, 72 GiB)</p>
+</li>
+<li>
+<p>c5.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c5.18xlarge (72 vCPU, 144 GiB)</p>
+</li>
+<li>
+<p>c5.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5d.metal (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5d.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c5d.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c5d.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c5d.9xlarge (36 vCPU, 72 GiB)</p>
+</li>
+<li>
+<p>c5d.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c5d.18xlarge (72 vCPU, 144 GiB)</p>
+</li>
+<li>
+<p>c5d.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5a.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c5a.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c5a.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c5a.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c5a.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c5a.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c5a.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5ad.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c5ad.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c5ad.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c5ad.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c5ad.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c5ad.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c5ad.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5n.metal (72 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5n.xlarge (4 vCPU, 10.5 GiB)</p>
+</li>
+<li>
+<p>c5n.2xlarge (8 vCPU, 21 GiB)</p>
+</li>
+<li>
+<p>c5n.4xlarge (16 vCPU, 42 GiB)</p>
+</li>
+<li>
+<p>c5n.9xlarge (36 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c5n.18xlarge (72 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c6a.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c6a.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c6a.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c6a.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c6a.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c6a.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c6a.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c6a.32xlarge (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c6a.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c6a.metal	(192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c6i.metal (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c6i.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c6i.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c6i.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c6i.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c6i.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c6i.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c6i.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c6i.32xlarge (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c6id.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c6id.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c6id.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c6id.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c6id.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c6id.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c6id.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c6id.32xlarge (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c7a.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c7a.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c7a.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c7a.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c7a.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c7a.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c7a.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c7a.32xlarge (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c7a.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c7a.metal-48xl (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c7i.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c7i.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c7i.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c7i.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c7i.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c7i.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c7i.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c7i.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c7i-flex.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c7i-flex.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c7i-flex.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c7i-flex.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c7i.metal-24xl (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c7i.metal-48xl (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8a.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c8a.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c8a.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c8a.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c8a.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c8a.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c8a.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c8a.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8a.metal-24xl (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c8a.metal-48xl (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8i.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c8i.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c8i.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c8i.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c8i.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c8i.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c8i.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c8i.32xlarge (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c8i.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8i.96xlarge (384 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>c8i.metal-48xl (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8i.metal-96xl (384 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>c8i-flex.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c8i-flex.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c8i-flex.4xlarge (16 vCPU, 48 GiB)</p>
+</li>
+<li>
+<p>c8i-flex.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c8i-flex.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c8i-flex.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c8id.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c8id.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c8id.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c8id.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c8id.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c8id.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c8id.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c8id.32xlarge (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c8id.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8id.96xlarge (384 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>c8id.metal-48xl (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8id.metal-96xl (384 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>hpc6a.48xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>hpc6id.32xlarge (64 vCPU, 1024 GiB)</p>
+</li>
+<li>
+<p>hpc7a.12xlarge (24 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>hpc7a.24xlarge (48 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>hpc7a.48xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>hpc7a.96xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>p6-b300.48xlarge (192 vCPU, 4,096 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Storage optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>i3.metal (72&#8224; vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>i3.xlarge	(4 vCPU, 30.5 GiB)</p>
+</li>
+<li>
+<p>i3.2xlarge (8 vCPU, 61 GiB)</p>
+</li>
+<li>
+<p>i3.4xlarge (16 vCPU, 122 GiB)</p>
+</li>
+<li>
+<p>i3.8xlarge (32 vCPU, 244 GiB)</p>
+</li>
+<li>
+<p>i3.16xlarge (64 vCPU, 488 GiB)</p>
+</li>
+<li>
+<p>i3en.metal (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>i3en.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>i3en.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>i3en.3xlarge (12 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>i3en.6xlarge (24 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>i3en.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>i3en.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>i4i.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>i4i.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>i4i.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>i4i.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>i4i.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>i4i.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>i4i.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>i4i.32xlarge (128 vCPU, 1024 GiB)</p>
+</li>
+<li>
+<p>i4i.metal (128 vCPU, 1024 GiB)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#8224; This instance type provides 72 logical processors on 36 physical cores.</p>
+</div>
+</div>
+</details>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Virtual instance types initialize faster than ".metal" instance types.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<details>
+<summary class="title">High memory</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>u-3tb1.56xlarge (224 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>u-6tb1.56xlarge (224 vCPU, 6,144 GiB)</p>
+</li>
+<li>
+<p>u-6tb1.112xlarge (448 vCPU, 6,144 GiB)</p>
+</li>
+<li>
+<p>u-6tb1.metal (448 vCPU, 6,144 GiB)</p>
+</li>
+<li>
+<p>u-9tb1.112xlarge (448 vCPU, 9,216 GiB)</p>
+</li>
+<li>
+<p>u-9tb1.metal (448 vCPU, 9,216 GiB)</p>
+</li>
+<li>
+<p>u-12tb1.112xlarge (448 vCPU, 12,288 GiB)</p>
+</li>
+<li>
+<p>u-12tb1.metal (448 vCPU, 12,288 GiB)</p>
+</li>
+<li>
+<p>u-18tb1.metal (448 vCPU, 18,432 GiB)</p>
+</li>
+<li>
+<p>u-24tb1.metal (448 vCPU, 24,576 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">High performance compute</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>hpc6a.48xlarge (96 vCPU, 384 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="aws-instance-types-non-ccs_understand-service-definitions">AWS instance types for non-CCS clusters</h4>
+<div class="paragraph _abstract">
+<p>Openshift Dedicated offers the following worker node types and sizes on AWS:</p>
+</div>
+<details>
+<summary class="title">General purpose</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>m5.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m5.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Memory-optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>r5.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r5.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Compute-optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>c5.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c5.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="gcp-compute-types_understand-service-definitions">Google Cloud instance types</h4>
+<div class="paragraph _abstract">
+<p>Openshift Dedicated offers the following worker node types and sizes on Google Cloud that are chosen to have a common CPU and memory capacity that are the same as other cloud instance types:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>a2</code>, <code>a3</code>, <code>e2</code>, <code>c3</code>, <code>n4</code>, <code>n4d</code>, <code>c2d</code>, <code>c3d</code>, <code>g2</code>, <code>g4</code>, <code>n2d</code>, and <code>t2d</code> instance types are available for clusters created with the Customer Cloud Subscription (CCS) infrastructure type only.</p>
+</div>
+<div class="paragraph">
+<p><code>custom</code>, <code>c2</code>, and <code>n2</code> instance types are available for clusters created with both CCS and Red&#160;Hat cloud account infrastructure types.</p>
+</div>
+<div class="paragraph">
+<p><code>g2</code> and <code>g4</code> instance types are available for Openshift Dedicated version 4.21 and later.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<details>
+<summary class="title">General purpose</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>custom-4-16384 (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>custom-8-32768 (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>custom-16-65536 (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>custom-32-131072 (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>custom-48-199608 (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>custom-64-262144 (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>custom-96-393216 (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c2d-standard-4 (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c2d-standard-8 (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c2d-standard-16 (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c2d-standard-32 (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c2d-standard-56 (56 vCPU, 224 GiB)</p>
+</li>
+<li>
+<p>c2d-standard-112 (112 vCPU, 448 GiB)</p>
+</li>
+<li>
+<p>c3-standard-192-metal (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-4 (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-8 (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-16 (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-30 (30 vCPU, 120 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-60 (60 vCPU, 240 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-90 (90 vCPU, 360 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-180 (180 vCPU, 720 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-360 (360 vCPU, 1440 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-8-lssd (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-16-lssd (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-30-lssd (30 vCPU, 120 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-60-lssd (60 vCPU, 240 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-90-lssd (90 vCPU, 360 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-180-lssd (180 vCPU, 720 GiB)</p>
+</li>
+<li>
+<p>c3d-standard-360-lssd (360 vCPU, 1440 GiB)</p>
+</li>
+<li>
+<p>e2-standard-4 (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>e2-standard-8 (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>e2-standard-16 (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>e2-standard-32 (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>n2-standard-4 (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>n2-standard-8 (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>n2-standard-16 (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>n2-standard-32 (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>n2-standard-48 (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>n2-standard-64 (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>n2-standard-80 (80 vCPU, 320 GiB)</p>
+</li>
+<li>
+<p>n2-standard-96 (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>n2-standard-128 (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>n2d-standard-4 (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>n2d-standard-8 (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>n2d-standard-16 (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>n2d-standard-32 (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>n2d-standard-48 (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>n2d-standard-64 (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>n2d-standard-80 (80 vCPU, 320 GiB)</p>
+</li>
+<li>
+<p>n2d-standard-96 (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>n2d-standard-128 (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>n2d-standard-224 (224 vCPU, 896 GiB)</p>
+</li>
+<li>
+<p>n4-standard-4 (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>n4-standard-8 (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>n4-standard-16 (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>n4-standard-32 (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>n4-standard-48 (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>n4-standard-64 (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>n4-standard-80 (80 vCPU, 320 GiB)</p>
+</li>
+<li>
+<p>n4d-standard-4 (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>n4d-standard-8 (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>n4d-standard-16 (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>n4d-standard-32 (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>n4d-standard-48 (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>n4d-standard-64 (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>n4d-standard-80 (80 vCPU, 320 GiB)</p>
+</li>
+<li>
+<p>n4d-standard-96 (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>t2d-standard-4 (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>t2d-standard-8 (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>t2d-standard-16 (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>t2d-standard-32 (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>t2d-standard-48 (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>t2d-standard-60 (60 vCPU, 240 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Memory-optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>custom-4-32768-ext (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>custom-8-65536-ext (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>custom-16-131072-ext (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c2d-highmem-4 (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c2d-highmem-8 (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c2d-highmem-16 (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c2d-highmem-32 (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c2d-highmem-56 (56 vCPU, 448 GiB)</p>
+</li>
+<li>
+<p>c2d-highmem-112 (112 vCPU, 896 GiB)</p>
+</li>
+<li>
+<p>c3-highmem-192-metal (192 vCPU, 1536 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-4 (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-8 (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-16 (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-30 (30 vCPU, 240 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-60 (60 vCPU, 480 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-90 (90 vCPU, 720 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-180 (180 vCPU, 1440 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-360 (360 vCPU, 2880 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-8-lssd (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-16-lssd (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-30-lssd (30 vCPU, 240 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-60-lssd (60 vCPU, 480 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-90-lssd (90 vCPU, 720 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-180-lssd (180 vCPU, 1440 GiB)</p>
+</li>
+<li>
+<p>c3d-highmem-360-lssd (360 vCPU, 2880 GiB)</p>
+</li>
+<li>
+<p>e2-highmem-4 (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>e2-highmem-8 (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>e2-highmem-16 (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>n2-highmem-4 (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>n2-highmem-8 (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>n2-highmem-16 (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>n2-highmem-32 (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>n2-highmem-48 (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>n2-highmem-64 (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>n2-highmem-80 (80 vCPU, 640 GiB)</p>
+</li>
+<li>
+<p>n2-highmem-96 (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>n2-highmem-128 (128 vCPU, 864 GiB)</p>
+</li>
+<li>
+<p>n2d-highmem-4 (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>n2d-highmem-8 (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>n2d-highmem-16 (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>n2d-highmem-32 (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>n2d-highmem-48 (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>n2d-highmem-64 (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>n2d-highmem-80 (80 vCPU, 640 GiB)</p>
+</li>
+<li>
+<p>n2d-highmem-96 (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>n4-highmem-4 (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>n4-highmem-8 (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>n4-highmem-16 (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>n4-highmem-32 (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>n4-highmem-48 (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>n4-highmem-64 (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>n4-highmem-80 (80 vCPU, 640 GiB)</p>
+</li>
+<li>
+<p>n4d-highmem-4 (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>n4d-highmem-8 (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>n4d-highmem-16 (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>n4d-highmem-32 (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>n4d-highmem-48 (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>n4d-highmem-64 (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>n4d-highmem-80 (80 vCPU, 640 GiB)</p>
+</li>
+<li>
+<p>n4d-highmem-96 (96 vCPU, 768 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Compute-optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>custom-8-16384 (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>custom-16-32768 (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>custom-36-73728 (36 vCPU, 72 GiB)</p>
+</li>
+<li>
+<p>custom-48-98304 (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>custom-72-147456 (72 vCPU, 144 GiB)</p>
+</li>
+<li>
+<p>custom-96-196608 (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c2-standard-4 (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c2-standard-8 (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c2-standard-16 (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c2-standard-30 (30 vCPU, 120 GiB)</p>
+</li>
+<li>
+<p>c2-standard-60 (60 vCPU, 240 GiB)</p>
+</li>
+<li>
+<p>c2d-highcpu-4 (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c2d-highcpu-8 (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c2d-highcpu-16 (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c2d-highcpu-32 (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c2d-highcpu-56 (56 vCPU, 112 GiB)</p>
+</li>
+<li>
+<p>c2d-highcpu-112 (112 vCPU, 224 GiB)</p>
+</li>
+<li>
+<p>c3-highcpu-192-metal (192 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>c3d-highcpu-4 (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c3d-highcpu-8 (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c3d-highcpu-16 (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c3d-highcpu-30 (30 vCPU, 60 GiB)</p>
+</li>
+<li>
+<p>c3d-highcpu-60 (60 vCPU, 120 GiB)</p>
+</li>
+<li>
+<p>c3d-highcpu-90 (90 vCPU, 180 GiB)</p>
+</li>
+<li>
+<p>c3d-highcpu-180 (180 vCPU, 360 GiB)</p>
+</li>
+<li>
+<p>c3d-highcpu-360 (360 vCPU, 720 GiB)</p>
+</li>
+<li>
+<p>e2-highcpu-8 (8 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>e2-highcpu-16 (16 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>e2-highcpu-32 (32 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>n2-highcpu-8 (8 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>n2-highcpu-16 (16 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>n2-highcpu-32 (32 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>n2-highcpu-48 (48 vCPU, 48 GiB)</p>
+</li>
+<li>
+<p>n2-highcpu-64 (64 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>n2-highcpu-80 (80 vCPU, 80 GiB)</p>
+</li>
+<li>
+<p>n2-highcpu-96 (96 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>n2d-highcpu-4 (4 vCPU, 4 GiB)</p>
+</li>
+<li>
+<p>n2d-highcpu-8 (8 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>n2d-highcpu-16 (16 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>n2d-highcpu-32 (32 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>n2d-highcpu-48 (48 vCPU, 48 GiB)</p>
+</li>
+<li>
+<p>n2d-highcpu-64 (64 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>n2d-highcpu-80 (80 vCPU, 80 GiB)</p>
+</li>
+<li>
+<p>n2d-highcpu-96 (96 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>n2d-highcpu-128 (128 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>n2d-highcpu-224 (224 vCPU, 224 GiB)</p>
+</li>
+<li>
+<p>n4-highcpu-4 (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>n4-highcpu-8 (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>n4-highcpu-16 (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>n4-highcpu-32 (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>n4-highcpu-48 (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>n4-highcpu-64 (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>n4-highcpu-80 (80 vCPU, 160 GiB)</p>
+</li>
+<li>
+<p>n4d-highcpu-4 (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>n4d-highcpu-8 (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>n4d-highcpu-16 (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>n4d-highcpu-32 (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>n4d-highcpu-48 (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>n4d-highcpu-64 (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>n4d-highcpu-80 (80 vCPU, 160 GiB)</p>
+</li>
+<li>
+<p>n4d-highcpu-96 (96 vCPU, 192 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Accelerated computing</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>a2-highgpu-1g (12 vCPU, 85 GiB)</p>
+</li>
+<li>
+<p>a2-highgpu-2g (24 vCPU, 170 GiB)</p>
+</li>
+<li>
+<p>a2-highgpu-4g (48 vCPU, 340 GiB)</p>
+</li>
+<li>
+<p>a2-highgpu-8g (96 vCPU, 680 GiB)</p>
+</li>
+<li>
+<p>a2-megagpu-16g (96 vCPU, 1.33 TiB)</p>
+</li>
+<li>
+<p>a2-ultragpu-1g (12 vCPU, 170 GiB)</p>
+</li>
+<li>
+<p>a2-ultragpu-2g (24 vCPU, 340 GiB)</p>
+</li>
+<li>
+<p>a2-ultragpu-4g (48 vCPU, 680 GiB)</p>
+</li>
+<li>
+<p>a2-ultragpu-8g (96 vCPU, 1360 GiB)</p>
+</li>
+<li>
+<p>a3-highgpu-1g (26 vCPU, 234 GiB)</p>
+</li>
+<li>
+<p>a3-highgpu-2g (52 vCPU, 468 GiB)</p>
+</li>
+<li>
+<p>a3-highgpu-4g (104 vCPU, 936 GiB)</p>
+</li>
+<li>
+<p>a3-highgpu-8g (208 vCPU, 1872 GiB)</p>
+</li>
+<li>
+<p>a3-megagpu-8g (208 vCPU, 1872 GiB)</p>
+</li>
+<li>
+<p>a3-edgegpu-8g (208 vCPU, 1872 GiB)</p>
+</li>
+<li>
+<p>g2-standard-4 (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>g2-standard-8 (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>g2-standard-12 (12 vCPU, 48 GiB)</p>
+</li>
+<li>
+<p>g2-standard-16 (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>g2-standard-24 (24 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>g2-standard-32 (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g2-standard-48 (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>g2-standard-96 (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>g4-standard-6 (6 vCPU, 22 GiB)</p>
+</li>
+<li>
+<p>g4-standard-12 (12 vCPU, 45 GiB)</p>
+</li>
+<li>
+<p>g4-standard-24 (24 vCPU, 90 GiB)</p>
+</li>
+<li>
+<p>g4-standard-48 (48 vCPU, 180 GiB)</p>
+</li>
+<li>
+<p>g4-standard-96 (96 vCPU, 360 GiB)</p>
+</li>
+<li>
+<p>g4-standard-192 (192 vCPU, 720 GiB)</p>
+</li>
+<li>
+<p>g4-standard-384 (384 vCPU, 1440 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="regions-availability-zones_understand-service-definitions">Regions and availability zones</h4>
+<div class="paragraph _abstract">
+<p>The following regions are supported by OpenShift Container Platform 4 and are supported for Openshift Dedicated.</p>
+</div>
+<div class="sect4">
+<h5 id="aws-regions-availability-zones_understand-service-definitions">AWS regions and availability zones</h5>
+<div class="paragraph">
+<p>The following AWS regions are supported by OpenShift Container Platform 4 and are supported for Openshift Dedicated:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>af-south-1 (Cape Town, AWS opt-in required)</p>
+</li>
+<li>
+<p>ap-east-1 (Hong Kong, AWS opt-in required)</p>
+</li>
+<li>
+<p>ap-northeast-1 (Tokyo)</p>
+</li>
+<li>
+<p>ap-northeast-2 (Seoul)</p>
+</li>
+<li>
+<p>ap-northeast-3 (Osaka)</p>
+</li>
+<li>
+<p>ap-south-1 (Mumbai)</p>
+</li>
+<li>
+<p>ap-south-2 (Hyderabad, AWS opt-in required)</p>
+</li>
+<li>
+<p>ap-southeast-1 (Singapore)</p>
+</li>
+<li>
+<p>ap-southeast-2 (Sydney)</p>
+</li>
+<li>
+<p>ap-southeast-3 (Jakarta, AWS opt-in required)</p>
+</li>
+<li>
+<p>ap-southeast-4 (Melbourne, AWS opt-in required)</p>
+</li>
+<li>
+<p>ca-central-1 (Central Canada)</p>
+</li>
+<li>
+<p>eu-central-1 (Frankfurt)</p>
+</li>
+<li>
+<p>eu-central-2 (Zurich, AWS opt-in required)</p>
+</li>
+<li>
+<p>eu-north-1 (Stockholm)</p>
+</li>
+<li>
+<p>eu-south-1 (Milan, AWS opt-in required)</p>
+</li>
+<li>
+<p>eu-south-2 (Spain, AWS opt-in required)</p>
+</li>
+<li>
+<p>eu-west-1 (Ireland)</p>
+</li>
+<li>
+<p>eu-west-2 (London)</p>
+</li>
+<li>
+<p>eu-west-3 (Paris)</p>
+</li>
+<li>
+<p>me-central-1 (UAE, AWS opt-in required)</p>
+</li>
+<li>
+<p>me-south-1 (Bahrain, AWS opt-in required)</p>
+</li>
+<li>
+<p>sa-east-1 (São Paulo)</p>
+</li>
+<li>
+<p>us-east-1 (N. Virginia)</p>
+</li>
+<li>
+<p>us-east-2 (Ohio)</p>
+</li>
+<li>
+<p>us-west-1 (N. California)</p>
+</li>
+<li>
+<p>us-west-2 (Oregon)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="gcp-regions-availability-zones_understand-service-definitions">Google Cloud regions and availability zones</h5>
+<div class="paragraph">
+<p>The following Google Cloud regions are currently supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>asia-east1, Changhua County, Taiwan</p>
+</li>
+<li>
+<p>asia-east2, Hong Kong</p>
+</li>
+<li>
+<p>asia-northeast1, Tokyo, Japan</p>
+</li>
+<li>
+<p>asia-northeast2, Osaka, Japan</p>
+</li>
+<li>
+<p>asia-south1, Mumbai, India</p>
+</li>
+<li>
+<p>asia-south2, Delhi, India</p>
+</li>
+<li>
+<p>asia-southeast1, Jurong West, Singapore</p>
+</li>
+<li>
+<p>australia-southeast1, Sydney, Australia</p>
+</li>
+<li>
+<p>australia-southeast2, Melbourne, Australia</p>
+</li>
+<li>
+<p>europe-north1, Hamina, Finland</p>
+</li>
+<li>
+<p>europe-west1, St. Ghislain, Belgium</p>
+</li>
+<li>
+<p>europe-west2, London, England, UK</p>
+</li>
+<li>
+<p>europe-west3, Frankfurt, Germany</p>
+</li>
+<li>
+<p>europe-west4, Eemshaven, Netherlands</p>
+</li>
+<li>
+<p>europe-west6, Zürich, Switzerland</p>
+</li>
+<li>
+<p>europe-west8, Milan, Italy</p>
+</li>
+<li>
+<p>europe-west12, Turin, Italy</p>
+</li>
+<li>
+<p>europe-southwest1, Madrid, Spain</p>
+</li>
+<li>
+<p>northamerica-northeast1, Montréal, Québec, Canada</p>
+</li>
+<li>
+<p>southamerica-east1, Osasco (São Paulo), Brazil</p>
+</li>
+<li>
+<p>southamerica-west1, Santiago, Chile</p>
+</li>
+<li>
+<p>us-central1, Council Bluffs, Iowa, USA</p>
+</li>
+<li>
+<p>us-east1, Moncks Corner, South Carolina, USA</p>
+</li>
+<li>
+<p>us-east4, Ashburn, Northern Virginia, USA</p>
+</li>
+<li>
+<p>us-west1, The Dalles, Oregon, USA</p>
+</li>
+<li>
+<p>us-west2, Los Angeles, California, USA</p>
+</li>
+<li>
+<p>me-central1, Doha, Qatar</p>
+</li>
+<li>
+<p>me-central2, Dammam, Saudi Arabia</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Multi-AZ clusters can only be deployed in regions with at least 3 availability zones (see <a href="https://aws.amazon.com/about-aws/global-infrastructure/regions_az/">AWS</a> and <a href="https://cloud.google.com/compute/docs/regions-zones">Google Cloud</a>).</p>
+</div>
+<div class="paragraph">
+<p>Each new Openshift Dedicated cluster is installed within a dedicated Virtual Private Cloud (VPC) in a single Region, with the option to deploy into a single Availability Zone (Single-AZ) or across multiple Availability Zones (Multi-AZ). This provides cluster-level network and resource isolation, and enables cloud-provider VPC settings, such as VPN connections and VPC Peering. Persistent volumes are backed by cloud block storage and are specific to the availability zone in which they are provisioned. Persistent volumes do not bind to a volume until the associated pod resource is assigned into a specific availability zone in order to prevent unschedulable pods. Availability zone-specific resources are only usable by resources in the same availability zone.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Warning">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The region and the choice of single or multi availability zone cannot be changed once a cluster has been deployed.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sla_understand-service-definitions">Service level agreement (SLA)</h4>
+<div class="paragraph _abstract">
+<p>Any SLAs for the service itself are defined in Appendix 4 of the <a href="https://www.redhat.com/en/about/agreements">Red Hat Enterprise Agreement Appendix 4 (Online Subscription Services)</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="limited-support_understand-service-definitions">Limited support status</h4>
+<div class="paragraph _abstract">
+<p>When a cluster transitions to a <em>Limited Support</em> status, Red Hat no longer proactively monitors the cluster, the SLA is no longer applicable, and credits requested against the SLA are denied. It does not mean that you no longer have product support. In some cases, the cluster can return to a fully-supported status if you remediate the violating factors. However, in other cases, you might have to delete and recreate the cluster.</p>
+</div>
+<div class="paragraph">
+<p>A cluster might transition to a Limited Support status for many reasons, including the following scenarios:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">If you do not upgrade a cluster to a supported version before the end-of-life date</dt>
+<dd>
+<p>Red Hat does not make any runtime or SLA guarantees for versions after their end-of-life date. To receive continued support, upgrade the cluster to a supported version prior to the end-of-life date. If you do not upgrade the cluster prior to the end-of-life date, the cluster transitions to a Limited Support status until it is upgraded to a supported version.</p>
+<div class="paragraph">
+<p>Red Hat provides commercially reasonable support to upgrade from an unsupported version to a supported version. However, if a supported upgrade path is no longer available, you might have to create a new cluster and migrate your workloads.</p>
+</div>
+</dd>
+<dt class="hdlist1">If you remove or replace any native Openshift Dedicated components or any other component that is installed and managed by Red Hat</dt>
+<dd>
+<p>If cluster administrator permissions were used, Red Hat is not responsible for any of your or your authorized users’ actions, including those that affect infrastructure services, service availability, or data loss. If Red Hat detects any such actions, the cluster might transition to a Limited Support status. Red Hat notifies you of the status change and you should either revert the action or create a support case to explore remediation steps that might require you to delete and recreate the cluster.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>If you have questions about a specific action that might cause a cluster to transition to a Limited Support status or need further assistance, open a support ticket.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="support_understand-service-definitions">Support</h4>
+<div class="paragraph _abstract">
+<p>Openshift Dedicated includes Red Hat Premium Support, which can be accessed by using the <a href="https://access.redhat.com/support?extIdCarryOver=true&amp;sc_cid=701f2000001Css5AAC">Red Hat Customer Portal</a>.</p>
+</div>
+<div class="paragraph">
+<p>See the <a href="https://access.redhat.com/support/offerings/production/soc">Scope of Coverage Page</a> for <a href="https://access.redhat.com/support/offerings/production/scope_moredetail">more details</a> on what is covered with included support for Openshift Dedicated.</p>
+</div>
+<div class="paragraph">
+<p>See Openshift Dedicated <a href="https://access.redhat.com/support/offerings/openshift/sla?extIdCarryOver=true&amp;sc_cid=701f2000001Css5AAC">SLAs</a> for support response times.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sdpolicy-logging_understand-service-definitions">Logging</h4>
+<div class="paragraph _abstract">
+<p>Openshift Dedicated provides optional integrated log forwarding to Amazon CloudWatch (on AWS) or Google Cloud Logging (on Google Cloud).</p>
+</div>
+<div class="paragraph">
+<p>For more information, see <a href="https://docs.openshift.com/dedicated/observability/logging/log_collection_forwarding/log-forwarding.html">About log collection and forwarding</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="audit-logging_understand-service-definitions">Cluster audit logging</h5>
+<div class="paragraph">
+<p>Cluster audit logs are available through Amazon CloudWatch (on AWS) or Google Cloud Logging (on Google Cloud), if the integration is enabled. If the integration is not enabled, you can request the audit logs by opening a support case. Audit log requests must specify a date and time range not to exceed 21 days. When requesting audit logs, customers should be aware that audit logs are many GB per day in size.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="application-logging_understand-service-definitions">Application logging</h5>
+<div class="paragraph">
+<p>Application logs sent to <code>STDOUT</code> are forwarded to Amazon CloudWatch (on AWS) or Google Cloud Logging (on Google Cloud) through the cluster logging stack, if it is installed.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sdpolicy-monitoring_understand-service-definitions">Monitoring</h4>
+<div class="paragraph _abstract">
+<p>Review the tools you need to monitor cluster performance and stay informed about your cluster&#8217;s status.</p>
+</div>
+<div class="sect4">
+<h5 id="cluster-metrics_understand-service-definitions">Cluster metrics</h5>
+<div class="paragraph">
+<p>Openshift Dedicated clusters come with an integrated Prometheus/Grafana stack for cluster monitoring including CPU, memory, and network-based metrics. This is accessible through the web console and can also be used to view cluster-level status and capacity/usage through a Grafana dashboard. These metrics also allow for horizontal pod autoscaling based on CPU or memory metrics provided by an Openshift Dedicated user.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="cluster-status-notification_understand-service-definitions">Cluster notifications</h5>
+<div class="paragraph">
+<p>Cluster notifications are the primary way that Red Hat Site Reliability Engineering (SRE) communicates with you about the health of your managed cluster. Red Hat SRE may also use cluster notifications to prompt you to perform an action in order to resolve or prevent an issue with your cluster.</p>
+</div>
+<div class="paragraph">
+<p>Cluster owners and administrators must regularly review and action cluster notifications to ensure clusters remain healthy and supported.</p>
+</div>
+<div class="paragraph">
+<p>You can view cluster notifications in the Red Hat Hybrid Cloud Console, in the <strong>Cluster history</strong> tab for your cluster. By default, only the cluster owner receives cluster notifications as emails. If other users need to receive cluster notification emails, add each user as a notification contact for your cluster.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sdpolicy-networking_understand-service-definitions">Networking</h4>
+<div class="paragraph _abstract">
+<p>Review the networking aspects of Openshift Dedicated.</p>
+</div>
+<div class="sect4">
+<h5 id="custom-domains_understand-service-definitions">Custom domains for applications</h5>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Warning">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Starting with Openshift Dedicated 4.14, the Custom Domain Operator is deprecated. To manage Ingress in Openshift Dedicated 4.14 or later, use the Ingress Operator. The functionality is unchanged for Openshift Dedicated 4.13 and earlier versions.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To use a custom hostname for a route, you must update your DNS provider by creating a canonical name (CNAME) record. Your CNAME record should map the OpenShift canonical router hostname to your custom domain. The OpenShift canonical router hostname is shown on the <strong>Route Details</strong> page after a Route is created. Alternatively, a wildcard CNAME record can be created once to route all subdomains for a given hostname to the cluster&#8217;s router.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="custom-domains-cluster_understand-service-definitions">Custom domains for cluster services</h5>
+<div class="paragraph">
+<p>Custom domains and subdomains are not available for the platform service routes, for example, the API or web console routes, or for the default application routes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="domain-validated-certificates_understand-service-definitions">Domain validated certificates</h5>
+<div class="paragraph">
+<p>Openshift Dedicated includes TLS security certificates needed for both internal and external services on the cluster. For external routes, there are two, separate TLS wildcard certificates that are provided and installed on each cluster, one for the web console and route default hostnames and the second for the API endpoint. <em>Let’s Encrypt</em> is the certificate authority used for certificates. Routes within the cluster, for example, the internal <a href="https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#accessing-the-api-from-a-pod">API endpoint</a>, use TLS certificates signed by the cluster&#8217;s built-in certificate authority and require the CA bundle available in every pod for trusting the TLS certificate.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="custom-certificate-authorities_understand-service-definitions">Custom certificate authorities for builds</h5>
+<div class="paragraph">
+<p>Openshift Dedicated supports the use of custom certificate authorities to be trusted by builds when pulling images from an image registry.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="load-balancers_understand-service-definitions">Load balancers</h5>
+<div class="paragraph">
+<p>Openshift Dedicated uses up to 5 different load balancers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Internal control plane load balancer that is internal to the cluster and used to balance traffic for internal cluster communications.</p>
+</li>
+<li>
+<p>External control plane load balancer that is used for accessing the OpenShift Container Platform and Kubernetes APIs. This load balancer can be disabled in Red Hat OpenShift Cluster Manager. If this load balancer is disabled, Red&#160;Hat reconfigures the API DNS to point to the internal control load balancer.</p>
+</li>
+<li>
+<p>External control plane load balancer for Red&#160;Hat that is reserved for cluster management by Red&#160;Hat. Access is strictly controlled, and communication is only possible from allowlisted bastion hosts.</p>
+</li>
+<li>
+<p>Default router/ingress load balancer that is the default application load balancer, denoted by <code>apps</code> in the URL. The default load balancer can be configured in OpenShift Cluster Manager to be either publicly accessible over the internet, or only privately accessible over a pre-existing private connection. All application routes on the cluster are exposed on this default router load balancer, including cluster services such as the logging UI, metrics API, and registry.</p>
+</li>
+<li>
+<p>Optional: Secondary router/ingress load balancer that is a secondary application load balancer, denoted by <code>apps2</code> in the URL. The secondary load balancer can be configured in OpenShift Cluster Manager to be either publicly accessible over the internet, or only privately accessible over a pre-existing private connection. If a 'Label match' is configured for this router load balancer, then only application routes matching this label will be exposed on this router load balancer, otherwise all application routes are also exposed on this router load balancer.</p>
+</li>
+<li>
+<p>Optional: Load balancers for services that can be mapped to a service running on Openshift Dedicated to enable advanced ingress features, such as non-HTTP/SNI traffic or the use of non-standard ports. These can be purchased in groups of 4 for non-CCS clusters, or they can be provisioned through the cloud provider console in Customer Cloud Subscription (CCS) clusters; however, each AWS account has a quota that <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html">limits the number of Classic Load Balancers</a> that can be used within each cluster.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="network-usage_understand-service-definitions">Network usage</h5>
+<div class="paragraph">
+<p>For non-CCS Openshift Dedicated clusters, network usage is measured based on data transfer between inbound, VPC peering, VPN, and AZ traffic. On a non-CCS Openshift Dedicated base cluster, 12 TB of network I/O is provided. Additional network I/O can be purchased in 12 TB increments. For CCS Openshift Dedicated clusters, network usage is not monitored, and is billed directly by the cloud provider.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="cluster-ingress_understand-service-definitions">Cluster ingress</h5>
+<div class="paragraph">
+<p>Project administrators can add route annotations for many different purposes, including ingress control through IP allowlisting.</p>
+</div>
+<div class="paragraph">
+<p>Ingress policies can also be changed by using <code>NetworkPolicy</code> objects, which leverage the <code>ovs-networkpolicy</code> plugin. This allows for full control over the ingress network policy down to the pod level, including between pods on the same cluster and even in the same namespace.</p>
+</div>
+<div class="paragraph">
+<p>All cluster ingress traffic goes through the defined load balancers. Direct access to all nodes is blocked by cloud configuration.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="cluster-egress_understand-service-definitions">Cluster egress</h5>
+<div class="paragraph">
+<p>Pod egress traffic control through <code>EgressNetworkPolicy</code> objects can be used to prevent or limit outbound traffic in Openshift Dedicated.</p>
+</div>
+<div class="paragraph">
+<p>Public outbound traffic from the control plane and infrastructure nodes is required and necessary to maintain cluster image security and cluster monitoring. This requires the <code>0.0.0.0/0</code> route to belong only to the internet gateway; it is not possible to route this range over private connections.</p>
+</div>
+<div class="paragraph">
+<p>Openshift Dedicated clusters use NAT Gateways to present a public, static IP for any public outbound traffic leaving the cluster. Each subnet a cluster is deployed into receives a distinct NAT Gateway. For clusters deployed on AWS with multiple availability zones, up to 3 unique static IP addresses can exist for cluster egress traffic. For clusters deployed on Google Cloud, regardless of availability zone topology, there will by 1 static IP address for worker node egress traffic. Any traffic that remains inside the cluster or does not go out to the public internet will not pass through the NAT Gateway and will have a source IP address belonging to the node that the traffic originated from. Node IP addresses are dynamic, and therefore a customer should not rely on allowlisting individual IP address when accessing private resources.</p>
+</div>
+<div class="paragraph">
+<p>Customers can determine their public static IP addresses by running a pod on the cluster and then querying an external service. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc run ip-lookup --image=busybox -i -t --restart=Never --rm -- /bin/sh -c "/bin/nslookup -type=a myip.opendns.com resolver1.opendns.com | grep -E 'Address: [0-9.]+'"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="cloud-network-configuration_understand-service-definitions">Cloud network configuration</h5>
+<div class="paragraph">
+<p>Openshift Dedicated allows for the configuration of a private network connection through several cloud provider managed technologies:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>VPN connections</p>
+</li>
+<li>
+<p>AWS VPC peering</p>
+</li>
+<li>
+<p>AWS Transit Gateway</p>
+</li>
+<li>
+<p>AWS Direct Connect</p>
+</li>
+<li>
+<p>Google Cloud VPC Network peering</p>
+</li>
+<li>
+<p>Google Cloud Classic VPN</p>
+</li>
+<li>
+<p>Google Cloud HA VPN</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Red&#160;Hat SREs do not monitor private network connections. Monitoring these connections is the responsibility of the customer.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="dns-forwarding_understand-service-definitions">DNS forwarding</h5>
+<div class="paragraph">
+<p>For Openshift Dedicated clusters that have a private cloud network configuration, a customer can specify internal DNS servers available on that private connection that should be queried for explicitly provided domains.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="osd-network-verification_understand-service-definitions">Network verification</h5>
+<div class="paragraph">
+<p>Network verification checks run automatically when you deploy an Openshift Dedicated cluster into an existing Virtual Private Cloud (VPC) or create an additional machine pool with a subnet that is new to your cluster. The checks validate your network configuration and highlight errors, enabling you to resolve configuration issues prior to deployment.</p>
+</div>
+<div class="paragraph">
+<p>You can also run the network verification checks manually to validate the configuration for an existing cluster.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sdpolicy-storage_understand-service-definitions">Storage</h4>
+<div class="paragraph _abstract">
+<p>Review the storage options available for Openshift Dedicated clusters.</p>
+</div>
+<div class="sect4">
+<h5 id="encrypt-rest-node_understand-service-definitions">Encrypted-at-rest OS/node storage</h5>
+<div class="paragraph">
+<p>Control plane nodes use encrypted-at-rest-EBS storage.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="encrypt-rest-pv_understand-service-definitions">Encrypted-at-rest PV</h5>
+<div class="paragraph">
+<p>EBS volumes used for persistent volumes (PVs) are encrypted-at-rest by default.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="block-storage_understand-service-definitions">Block storage (RWO)</h5>
+<div class="paragraph">
+<p>Persistent volumes (PVs) are backed by AWS EBS and Google Cloud persistent disk block storage, which uses the ReadWriteOnce (RWO) access mode. On a non-CCS Openshift Dedicated base cluster, 100 GB of block storage is provided for PVs, which is dynamically provisioned and recycled based on application requests. Additional persistent storage can be purchased in 500 GB increments.</p>
+</div>
+<div class="paragraph">
+<p>PVs can only be attached to a single node at a time and are specific to the availability zone in which they were provisioned, but they can be attached to any node in the availability zone.</p>
+</div>
+<div class="paragraph">
+<p>Each cloud provider has its own limits for how many PVs can be attached to a single node. See <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html#instance-type-volume-limits">AWS instance type limits</a> or <a href="https://cloud.google.com/compute/docs/machine-types#custom_machine_types">Google Cloud custom machine types </a> for details.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="shared-storage_understand-service-definitions">Shared storage (RWX)</h5>
+<div class="paragraph">
+<p>The AWS CSI Driver can be used to provide RWX support for Openshift Dedicated on AWS. A community Operator is provided to simplify setup. For more information, see <a href="https://access.redhat.com/articles/5025181">AWS EFS Setup for OpenShift Dedicated and Red Hat OpenShift Service on AWS</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sdpolicy-platform_understand-service-definitions">Platform</h4>
+<div class="paragraph _abstract">
+<p>This guide outlines the automated backup measures provided by the Openshift Dedicated service and clarifies the steps you must take to protect your unique application data.</p>
+</div>
+<div class="sect4">
+<h5 id="cluster-backup-policy_understand-service-definitions">Cluster backup policy</h5>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It is critical that customers have a backup plan for their applications and application data.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Application and application data backups are not a part of the Openshift Dedicated service.
+All Kubernetes objects in each Openshift Dedicated cluster are backed up to facilitate a prompt recovery in the unlikely event that a cluster becomes irreparably inoperable.</p>
+</div>
+<div class="paragraph">
+<p>The backups are stored in a secure object storage (Multi-AZ) bucket in the same account as the cluster.
+Node root volumes are not backed up because Red Hat Enterprise Linux CoreOS is fully managed by the OpenShift Container Platform cluster and no stateful data should be stored on the root volume of a node.</p>
+</div>
+<div class="paragraph">
+<p>The following table shows the frequency of backups:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Component</th>
+<th class="tableblock halign-left valign-top">Snapshot Frequency</th>
+<th class="tableblock halign-left valign-top">Retention</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Full object store backup</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Daily at 0100 UTC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7 days</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is a full backup of all Kubernetes objects. No persistent volumes (PVs) are backed up in this backup schedule.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Full object store backup</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Weekly on Mondays at 0200 UTC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 days</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is a full backup of all Kubernetes objects. No PVs are backed up in this backup schedule.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Full object store backup</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hourly at 17 minutes past the hour</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">24 hours</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is a full backup of all Kubernetes objects. No PVs are backed up in this backup schedule.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="autoscaling_understand-service-definitions">Autoscaling</h5>
+<div class="paragraph">
+<p>Node autoscaling is available on Openshift Dedicated. See <a href="https://docs.openshift.com/dedicated/osd_cluster_admin/osd_nodes/osd-nodes-about-autoscaling-nodes.html">About autoscaling nodes on a cluster</a> for more information on autoscaling nodes on a cluster.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="daemon-sets_understand-service-definitions">Daemon sets</h5>
+<div class="paragraph">
+<p>Customers may create and run DaemonSets on Openshift Dedicated. In order to restrict DaemonSets to only running on worker nodes, use the following nodeSelector:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">...
+spec:
+  nodeSelector:
+    role: worker
+...</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="multi-availability-zones_understand-service-definitions">Multiple availability zone</h5>
+<div class="paragraph">
+<p>In a multiple availability zone cluster, control nodes are distributed across availability zones and at least three worker nodes are required in each availability zone.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="node-labels_understand-service-definitions">Node labels</h5>
+<div class="paragraph">
+<p>Custom node labels are created by Red Hat during node creation and cannot be changed on Openshift Dedicated clusters at this time.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="openshift-version_understand-service-definitions">OpenShift version</h5>
+<div class="paragraph">
+<p>Openshift Dedicated is run as a service and is kept up to date with the latest OpenShift Container Platform version.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="upgrades_understand-service-definitions">Upgrades</h5>
+<div class="paragraph">
+<p>Refer to <a href="https://access.redhat.com/support/policy/updates/openshift/dedicated">Openshift Dedicated Life Cycle</a> for more information on the upgrade policy and procedures.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="windows-containers_understand-service-definitions">Windows containers</h5>
+<div class="paragraph">
+<p>Windows containers are not available on Openshift Dedicated at this time.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="container-engine_understand-service-definitions">Container engine</h5>
+<div class="paragraph">
+<p>Openshift Dedicated runs on OpenShift 4 and uses <a href="https://www.redhat.com/en/blog/red-hat-openshift-container-platform-4-now-defaults-cri-o-underlying-container-engine">CRI-O </a> as the only available container engine.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="operating-system_understand-service-definitions">Operating system</h5>
+<div class="paragraph">
+<p>Openshift Dedicated runs on OpenShift 4 and uses Red Hat Enterprise Linux CoreOS as the operating system for all control plane and worker nodes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_red_hat_operator_support">Red Hat Operator support</h5>
+<div id="sdpolicy-red-hat-operator_understand-service-definitions" class="paragraph">
+<p>Red Hat workloads typically refer to Red Hat-provided Operators made available through Operator Hub. Red Hat workloads are not managed by the Red Hat SRE team, and must be deployed on worker nodes. These Operators may require additional Red Hat subscriptions, and may incur additional cloud infrastructure costs. Examples of these Red Hat-provided Operators are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Red&#160;Hat Quay</p>
+</li>
+<li>
+<p>Red Hat Advanced Cluster Management</p>
+</li>
+<li>
+<p>Red Hat Advanced Cluster Security</p>
+</li>
+<li>
+<p>Red Hat OpenShift Service Mesh</p>
+</li>
+<li>
+<p>OpenShift Serverless</p>
+</li>
+<li>
+<p>Red Hat OpenShift Logging</p>
+</li>
+<li>
+<p>Red Hat OpenShift Pipelines</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="kubernetes-operator-support_understand-service-definitions">Kubernetes Operator support</h5>
+<div class="paragraph">
+<p>All Operators listed in the software catalog marketplace should be available for installation. Operators installed from the software catalog, including Red Hat Operators, are not SRE managed as part of the Openshift Dedicated service. Refer to the <a href="https://access.redhat.com/solutions/4807821">Red Hat Customer Portal</a> for more information on the supportability of a given Operator.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sdpolicy-security_understand-service-definitions">Security</h4>
+<div class="paragraph _abstract">
+<p>Review the security features and configurations of Openshift Dedicated.</p>
+</div>
+<div class="sect4">
+<h5 id="auth-provider_understand-service-definitions">Authentication provider</h5>
+<div class="paragraph">
+<p>Authentication for the cluster is configured as part of Red Hat OpenShift Cluster Manager cluster creation process. OpenShift is not an identity provider, and all access to the cluster must be managed by the customer as part of their integrated solution. Provisioning multiple identity providers provisioned at the same time is supported. The following identity providers are supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>GitHub or GitHub Enterprise OAuth</p>
+</li>
+<li>
+<p>GitLab OAuth</p>
+</li>
+<li>
+<p>Google OAuth</p>
+</li>
+<li>
+<p>LDAP</p>
+</li>
+<li>
+<p>OpenID connect</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="privileged-containers_understand-service-definitions">Privileged containers</h5>
+<div class="paragraph">
+<p>Privileged containers are not available by default on Openshift Dedicated. The <code>anyuid</code> and <code>nonroot</code> Security Context Constraints are available for members of the <code>dedicated-admins</code> group, and should address many use cases. Privileged containers are only available for <code>cluster-admin</code> users.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="cluster-admin-user_understand-service-definitions">Customer administrator user</h5>
+<div class="paragraph">
+<p>In addition to normal users, Openshift Dedicated provides access to an Openshift Dedicated-specific group called <code>dedicated-admin</code>. Any users on the cluster that are members of the <code>dedicated-admin</code> group:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Have administrator access to all customer-created projects on the cluster.</p>
+</li>
+<li>
+<p>Can manage resource quotas and limits on the cluster.</p>
+</li>
+<li>
+<p>Can add and manage <code>NetworkPolicy</code> objects.</p>
+</li>
+<li>
+<p>Are able to view information about specific nodes and PVs in the cluster, including scheduler information.</p>
+</li>
+<li>
+<p>Can access the reserved <code>dedicated-admin</code> project on the cluster, which allows for the creation of service accounts with elevated privileges and also gives the ability to update default limits and quotas for projects on the cluster.</p>
+</li>
+<li>
+<p>Can install Operators from the software catalog (<code>*</code> verbs in all <code>*.operators.coreos.com</code> API groups).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="cluster-admin-role_understand-service-definitions">Cluster administration role</h5>
+<div class="paragraph">
+<p>As an administrator of Openshift Dedicated with Customer Cloud Subscriptions (CCS), you have access to the <code>cluster-admin</code> role. While logged in to an account with the <code>cluster-admin</code> role, users have mostly unrestricted access to control and configure the cluster. There are some configurations that are blocked with webhooks to prevent destablizing the cluster, or because they are managed in OpenShift Cluster Manager and any in-cluster changes would be overwritten.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="project-self-service_understand-service-definitions">Project self-service</h5>
+<div class="paragraph">
+<p>All users, by default, have the ability to create, update, and delete their projects. This can be restricted if a member of the <code>dedicated-admin</code> group removes the self-provisioner role from authenticated users:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm policy remove-cluster-role-from-group self-provisioner system:authenticated:oauth</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Restrictions can be reverted by applying:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm policy add-cluster-role-to-group self-provisioner system:authenticated:oauth</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="regulatory-compliance_understand-service-definitions">Regulatory compliance</h5>
+<div class="paragraph">
+<p>See the <em>Security and control certifications for Openshift Dedicated</em> table in <em>Understanding process and security for Openshift Dedicated</em> for the latest compliance information.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="network-security_understand-service-definitions">Network security</h5>
+<div class="paragraph">
+<p>Each Openshift Dedicated cluster is protected by a secure network configuration at the cloud infrastructure level using firewall rules (AWS Security Groups or Google Cloud Compute Engine firewall rules). Openshift Dedicated customers on AWS are also protected against DDoS attacks with <a href="https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html">AWS Shield Standard</a>.
+Similarly, all Google Cloud load balancers and public IP addresses used by Openshift Dedicated on Google Cloud are protected against DDoS attacks with <a href="https://cloud.google.com/armor/docs/managed-protection-overview">Google Cloud Armor Standard</a>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="etcd-encryption_understand-service-definitions">etcd encryption</h5>
+<div class="paragraph">
+<p>In Openshift Dedicated, the control plane storage is encrypted at rest by default and this includes encryption of the etcd volumes. This storage-level encryption is provided through the storage layer of the cloud provider.</p>
+</div>
+<div class="paragraph">
+<p>You can also enable etcd encryption, which encrypts the key values in etcd, but not the keys. If you enable etcd encryption, the following Kubernetes API server and OpenShift API server resources are encrypted:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Secrets</p>
+</li>
+<li>
+<p>Config maps</p>
+</li>
+<li>
+<p>Routes</p>
+</li>
+<li>
+<p>OAuth access tokens</p>
+</li>
+<li>
+<p>OAuth authorize tokens</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The etcd encryption feature is not enabled by default and it can be enabled only at cluster installation time. Even with etcd encryption enabled, the etcd key values are accessible to anyone with access to the control plane nodes or <code>cluster-admin</code> privileges.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>By enabling etcd encryption for the key values in etcd, you will incur a performance overhead of approximately 20%. The overhead is a result of introducing this second layer of encryption, in addition to the default control plane storage encryption that encrypts the etcd volumes. Red Hat recommends that you enable etcd encryption only if you specifically require it for your use case.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="configuring-dynamic-admission_evaluate-platform-architecture-and-components.html">Configuring dynamic admission</a> | ↑ Up: <a href="_discover.html">Discover</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="billing_understand-service-definitions.html">Billing options</a> →</p>
+<p>← Previous: <a href="osd-evaluate-platform-architecture_evaluate-platform-architecture-and-components.html">Evaluate platform architecture and components</a> | ↑ Up: <a href="_discover.html">Discover</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-understand-shared-responsibility-model_understand-the-shared-responsibility-model.html">Understand the shared responsibility model</a> →</p>
 </div>
 </div>
 <div id="footer">

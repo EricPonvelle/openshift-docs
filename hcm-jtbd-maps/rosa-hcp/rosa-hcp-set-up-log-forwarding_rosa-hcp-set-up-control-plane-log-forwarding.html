@@ -437,22 +437,246 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-left-nav-toggle-start -->
+<style>
+  #toc .toc-toggle {
+    display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .75em;
+    padding: 0 .3em 0 0;
+    margin: 0;
+    color: #555;
+    transition: transform .15s ease;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  #toc .toc-toggle:hover { color: #0066cc; }
+  #toc .toc-toggle.open { transform: rotate(90deg); }
+  #toc li > ul.sectlevel2,
+  #toc li > ul.sectlevel3,
+  #toc li > ul.sectlevel4 { display: none; }
+  #toc li.toc-expanded > ul.sectlevel2,
+  #toc li.toc-expanded > ul.sectlevel3,
+  #toc li.toc-expanded > ul.sectlevel4 { display: block; }
+</style>
+<script>
+(function() {
+  var previewPath = window.location.pathname.slice(
+    0,
+    window.location.pathname.lastIndexOf('/')
+  ) || '/';
+  var STORAGE_KEY = 'navmap-toc-state:' + previewPath;
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch(e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var state = loadState();
+    var currentPage = location.pathname.split('/').pop();
+    var buttons = document.querySelectorAll('#toc .toc-toggle');
+
+    buttons.forEach(function(btn) {
+      var key = btn.getAttribute('data-toc-key');
+      var li = btn.parentElement;
+      var isCurrentSection = false;
+
+      /* Auto-expand the section containing the current page */
+      var links = li.querySelectorAll('a[href]');
+      links.forEach(function(a) {
+        var href = a.getAttribute('href').split('#')[0];
+        if (href === currentPage) { isCurrentSection = true; }
+      });
+
+      if (state[key] === true || isCurrentSection) {
+        li.classList.add('toc-expanded');
+        btn.classList.add('open');
+        if (isCurrentSection) { state[key] = true; }
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var expanded = li.classList.toggle('toc-expanded');
+        btn.classList.toggle('open', expanded);
+        state[key] = expanded;
+        saveState(state);
+      });
+    });
+
+    saveState(state);
+
+    /* --- Scroll current page into view in the TOC --- */
+    var toc = document.getElementById('toc');
+    if (toc) {
+      var cur = toc.querySelector('a[href="' + currentPage + '"]');
+      if (!cur) { cur = toc.querySelector('a[href$="/' + currentPage + '"]'); }
+      if (cur) {
+        cur.style.fontWeight = 'bold';
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            cur.scrollIntoView({ block: 'center', behavior: 'instant' });
+          }, 0);
+        });
+      }
+    }
+  });
+})();
+</script>
+<!-- navmap-left-nav-toggle-end -->
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
+<!-- navmap-preview-warning-start -->
+<style>
+  .navmap-preview-warning {
+    background: #fff1f1;
+    border: 2px solid #c9190b;
+    border-radius: 4px;
+    color: #3b0a0a;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    margin: 1em auto;
+    max-width: 70em;
+    padding: 1em 1.25em;
+  }
+  .navmap-preview-warning strong { color: #a30000; }
+  .navmap-preview-warning details { margin-top: .75em; }
+  .navmap-preview-warning pre {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    max-height: 20em;
+    overflow: auto;
+    padding: .75em;
+    white-space: pre-wrap;
+  }
+</style>
+<!-- navmap-preview-warning-end -->
 </head>
-<body id="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding" class="book toc2 toc-left">
+<body id="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding" class="book toc2 toc-left navmap-has-right-toc">
+<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-hcp/navigation.adoc
+
+Missing include targets:
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-cli.adoc:104
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-hybrid-cloud-console.adoc:104
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-terraform.adoc:23
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli.adoc:92
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+
+How to fix these errors:
+  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
+  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
+  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
+</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
-<li><a href="_whats_new.html">What&#8217;s new</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-whats-new_rosa-hcp-whats-new.html">What&#8217;s new for Red Hat OpenShift Service on AWS</a>
 </li>
-<li><a href="_discover.html">Discover</a>
+</ul>
 </li>
-<li><a href="_install.html">Install</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-learn-about-benefits-and-use-cases_rosa-hcp-learn-about-benefits-and-use-cases.html">Learn about benefits and use cases</a>
 </li>
-<li><a href="_upgrade.html">Upgrade</a>
+<li><a href="rosa-hcp-evaluate-shared-responsibilities_rosa-hcp-evaluate-shared-responsibilities.html">Evaluate shared responsibilities</a>
 </li>
-<li><a href="_observe.html">Observe</a>
+<li><a href="rosa-hcp-get-sre-and-service-account-access_rosa-hcp-get-sre-and-service-account-access.html">Get SRE and service account access</a>
+</li>
+<li><a href="rosa-hcp-understand-security-control_rosa-hcp-understand-security-control.html">Understand security control</a>
+</li>
+<li><a href="rosa-hcp-acquire-aws-sts-authentication_rosa-hcp-acquire-aws-sts-authentication.html">Acquire AWS STS authentication</a>
+</li>
+<li><a href="rosa-hcp-investigate-architecture-models_rosa-hcp-investigate-architecture-models.html">Investigate architecture models</a>
+</li>
+<li><a href="rosa-hcp-explore-sts-resources-for-iam-clusters_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Explore STS resources for IAM clusters</a>
+</li>
+<li><a href="rosa-hcp-general-availability_rosa-hcp-general-availability.html">General availability</a>
+</li>
+<li><a href="rosa-hcp-review-the-service-definition_rosa-hcp-review-the-service-definition.html">Review the service definition</a>
+</li>
+<li><a href="rosa-hcp-review-supported-instance-types_rosa-hcp-review-supported-instance-types.html">Review supported instance types</a>
+</li>
+<li><a href="rosa-hcp-update-life-cycle_rosa-hcp-update-life-cycle.html">Update life cycle</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-intro_rosa-hcp-create-a-rosa-hcp-cluster.html">Create a ROSA HCP Cluster</a>
+</li>
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-intro_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc.html">Create a ROSA HCP Cluster in a Shared VPC</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_upgrade.html">▶</button><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-plan-cluster-upgrades_rosa-hcp-plan-cluster-upgrades.html">Plan cluster upgrades</a>
+</li>
+<li><a href="rosa-hcp-upgrade-a-cluster_rosa-hcp-upgrade-a-cluster.html">Upgrade a cluster</a>
+</li>
+<li><a href="rosa-hcp-upgrade-karpenter-managed-nodes_rosa-hcp-upgrade-karpenter-managed-nodes.html">Upgrade Karpenter-managed nodes</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_observe.html">▶</button><a href="_observe.html">Observe</a>
 <ul class="sectlevel2">
 <li><a href="rosa-hcp-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
 </li>
@@ -465,28 +689,949 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-hcp-prepare-for-log-forwarding_rosa-hcp-prepare-for-log-forwarding">Prepare for log forwarding</a></li><li class="level-5"><a href="#rosa-determine-log-groups_rosa-hcp-prepare-for-log-forwarding">Determining what log groups to use</a></li><li class="level-5"><a href="#rosa-create-an-iam-role-policy_rosa-hcp-prepare-for-log-forwarding">Creating an IAM role and policy</a></li><li class="level-4"><a href="#rosa-hcp-configure-log-forwarding-destinations_rosa-hcp-configure-log-forwarding-destinations">Configure log forwarding destinations</a></li><li class="level-5"><a href="#rosa-set-up-cloudwatch-log-group_rosa-hcp-configure-log-forwarding-destinations">Setting up the CloudWatch log group</a></li><li class="level-5"><a href="#rosa-set-up-s3-bucket_rosa-hcp-configure-log-forwarding-destinations">Setting up the S3 bucket</a></li><li class="level-5"><a href="#rosa-manage-control-plane-log-forwarding_rosa-hcp-configure-log-forwarding-destinations">Managing control plane log forwarding</a></li><li class="level-5"><a href="#rosa-create-cluster-ui-log-groups_rosa-hcp-configure-log-forwarding-destinations">Creating a Red Hat OpenShift Services on AWS cluster in the Red Hat Hybrid Cloud Console</a></li><li class="level-4"><a href="#rosa-hcp-manage-and-verify-log-forwarding_rosa-hcp-manage-and-verify-log-forwarding">Manage and verify log forwarding</a></li><li class="level-5"><a href="#rosa-verify-karpenter-log-forwarding_rosa-hcp-manage-and-verify-log-forwarding">Verifying Karpenter set up for log forwarding</a></li><li class="level-5"><a href="#rosa-create-cluster-log-forwarding-ui_rosa-hcp-manage-and-verify-log-forwarding">Create a Red Hat OpenShift Services on AWS cluster with log forwarding</a></li><li class="level-5"><a href="#rosa-edit-cluster-log-forwarding-ui_rosa-hcp-manage-and-verify-log-forwarding">Edit a Red Hat OpenShift Services on AWS cluster with log forwarding</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding">Set up control plane log forwarding for cluster auditing and monitoring</h3>
 <div class="paragraph _abstract">
 <p>Red&#160;Hat OpenShift Services on AWS provides a control plane log forwarder that is a separate system outside your cluster. You can use the control plane log forwarder to send your logs to either an Amazon CloudWatch group or Amazon S3 bucket.</p>
 </div>
+<div class="sect3">
+<h4 id="rosa-hcp-prepare-for-log-forwarding_rosa-hcp-prepare-for-log-forwarding">Prepare for log forwarding</h4>
+<div class="paragraph _abstract">
+<p>Before you configure log forwarding, select the log groups you want to forward and grant the required AWS permissions.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-determine-log-groups_rosa-hcp-prepare-for-log-forwarding">Determining what log groups to use</h5>
+<div class="paragraph _abstract">
+<p>When you forward control plane logs to Amazon CloudWatch or S3, you must decide on what log groups you want to use. Because of the existing AWS pricing for these services, you can expect additional costs associated with forwarding and storing your logs in S3 and CloudWatch. When you determine what log group to use, consider these additional costs along with other factors, such as your log retention requirements.</p>
+</div>
+<div class="paragraph">
+<p>For each log group, you have access to different applications, and these applications can change depending on what you choose to enable and disable with your logs.</p>
+</div>
+<div class="paragraph">
+<p>When you forward log groups, you must specify a group or application. When you specify a group, the log forwarder collects all the applications in that group. Instead of selecting a group, you can select individual applications. When you set up your log forwarder, you must specify at least one group or application, but you do not need to specify both.</p>
+</div>
+<div class="paragraph">
+<p>The following table lists available log groups:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 44. Log groups</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Log group name</th>
+<th class="tableblock halign-left valign-top">Benefit of that log group</th>
+<th class="tableblock halign-left valign-top">Example applications available for that log group</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">api</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Records every request made to the cluster. Supports security by detecting unauthorized access attempts.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>audit-webhook</code></p>
+</li>
+<li>
+<p><code>kube-apiserver</code></p>
+</li>
+<li>
+<p><code>oauth-openshift</code></p>
+</li>
+<li>
+<p><code>openshift-apiserver</code></p>
+</li>
+<li>
+<p><code>openshift-oauth-apiserver</code></p>
+</li>
+<li>
+<p><code>packageserver</code></p>
+</li>
+<li>
+<p><code>validation-webhook</code></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">authentication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tracks login attempts and requests for tokens. Supports security by recording authenticated user information.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>ignition-server</code></p>
+</li>
+<li>
+<p><code>konnectivity-agent</code></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">controller manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Monitors the controllers that manage the state of your clusters. Clarifies differences among the different cluster states, for example, the <code>Current</code>, <code>Desired</code>, <code>Health</code>, and <code>Feature</code> state.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>aws-ebs-csi-driver-controller</code></p>
+</li>
+<li>
+<p><code>capi-provider-controller-manager</code></p>
+</li>
+<li>
+<p><code>catalog-operator</code></p>
+</li>
+<li>
+<p><code>cloud-controller-manager</code></p>
+</li>
+<li>
+<p><code>cloud-credential-operator</code></p>
+</li>
+<li>
+<p><code>cloud-network-config-controller</code></p>
+</li>
+<li>
+<p><code>cluster-network-operator</code></p>
+</li>
+<li>
+<p><code>cluster-node-tuning-operator</code></p>
+</li>
+<li>
+<p><code>cluster-policy-controller</code></p>
+</li>
+<li>
+<p><code>cluster-version-operator</code></p>
+</li>
+<li>
+<p><code>control-plane-operator</code></p>
+</li>
+<li>
+<p><code>control-plane-pki-operator</code></p>
+</li>
+<li>
+<p><code>csi-snapshot-controller-operator</code></p>
+</li>
+<li>
+<p><code>csi-snapshot-controller</code></p>
+</li>
+<li>
+<p><code>dns-operator</code></p>
+</li>
+<li>
+<p><code>hosted-cluster-config-operator</code></p>
+</li>
+<li>
+<p><code>ingress-operator</code></p>
+</li>
+<li>
+<p><code>kube-controller-manager</code></p>
+</li>
+<li>
+<p><code>machine-approver</code></p>
+</li>
+<li>
+<p><code>multus-admission-controller</code></p>
+</li>
+<li>
+<p><code>network-node-identity</code></p>
+</li>
+<li>
+<p><code>olm-operator</code></p>
+</li>
+<li>
+<p><code>openshift-controller-manager</code></p>
+</li>
+<li>
+<p><code>openshift-route-controller-manager</code></p>
+</li>
+<li>
+<p><code>ovnkube-control-plane</code></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">scheduler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Records the placement of each pod on every node. Shows why pods are in a <code>Running</code> or <code>Pending</code> state.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>kube-scheduler</code></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">autoscaling</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tracks the node provisioning and scaling decisions made by Karpenter workloads. This group records why nodes were created, deleted, or consolidated. It also helps administrators troubleshoot pod scheduling failures caused by insufficient compute resources.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>karpenter</code></p>
+</li>
+<li>
+<p><code>karpenter-operator</code></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not applicable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">These applications do not belong to a defined log group. To forward their logs, set these applications in the <code>applications</code> array.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>certified-operators-catalog</code></p>
+</li>
+<li>
+<p><code>cluster-api</code></p>
+</li>
+<li>
+<p><code>community-operators-catalog</code></p>
+</li>
+<li>
+<p><code>etcd</code></p>
+</li>
+<li>
+<p><code>private-router</code></p>
+</li>
+<li>
+<p><code>redhat-marketplace-catalog</code></p>
+</li>
+<li>
+<p><code>redhat-operators-catalog</code></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="rosa-create-an-iam-role-policy_rosa-hcp-prepare-for-log-forwarding">Creating an IAM role and policy</h5>
+<div class="paragraph _abstract">
+<p>When you forward your logs to an Amazon CloudWatch group or S3 bucket, those locations exist outside your control plane. You must create an Identity and Access Management (IAM) role and policy so that your log forwarder has the right permissions and capabilities to send these logs to your chosen destination, CloudWatch, or S3.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
 <div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-hcp-prepare-for-log-forwarding_rosa-hcp-prepare-for-log-forwarding.html">Prepare for log forwarding</a></p>
+<p>To use a CloudWatch group, you must create an IAM role and policy.</p>
 </li>
 <li>
-<p><a href="rosa-hcp-configure-log-forwarding-destinations_rosa-hcp-configure-log-forwarding-destinations.html">Configure log forwarding destinations</a></p>
+<p>To use an S3 bucket, you do not need an IAM role and policy.</p>
 </li>
 <li>
-<p><a href="rosa-hcp-manage-and-verify-log-forwarding_rosa-hcp-manage-and-verify-log-forwarding.html">Manage and verify log forwarding</a></p>
+<p>The only supported Amazon S3-managed encryption method is <code>SSE-S3</code>.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have ensured that the name of you your IAM role has the prefix, <code>arn:aws:iam::*:role/CustomerLogDistribution-*</code>.</p>
+</li>
+<li>
+<p>You have installed and configured the latest ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host.</p>
+</li>
+<li>
+<p>You have installed and configured the latest Amazon Web Services (AWS) command-line interface (CLI) on your installation host.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>To enable the log forwarder delivery capability, prepare the IAM policy by creating an <code>assume-role-policy.json</code> file. Apply the following IAM policy sample:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::859037107838:role/ROSA-CentralLogDistributionRole-241c1a86"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To enable the log forwarder distribution capability, create an IAM role that must include the <code>CustomerLogDistribution</code> name by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam create-role \
+    --role-name CustomerLogDistribution-RH \
+    --assume-role-policy-document file://assume-role-policy.json</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>role_arn</code> name should be something similar to <code>arn:aws:iam::aws_account_ID:role/CustomerLogDistribution-&lt;any-name&gt;</code>. You choose the name for <code>&lt;any-name&gt;</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Next steps</div>
+<p>After you create an IAM role and policy, you must decide to send your control plane logs to either a CloudWatch log group, an S3 bucket, or both. See the following summary about CloudWatch and S3 to help you decide what you want to do:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use CloudWatch for logs requiring immediate action or organization.</p>
+</li>
+<li>
+<p>Use S3 for logs requiring long-term storage or large-scale data analysis.</p>
 </li>
 </ul>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="rosa-hcp-configure-log-forwarding-destinations_rosa-hcp-configure-log-forwarding-destinations">Configure log forwarding destinations</h4>
+<div class="paragraph _abstract">
+<p>Configure your log forwarding destinations to send control plane logs to Amazon CloudWatch for real-time monitoring or Amazon S3 for long-term compliance.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-set-up-cloudwatch-log-group_rosa-hcp-configure-log-forwarding-destinations">Setting up the CloudWatch log group</h5>
+<div class="paragraph _abstract">
+<p>If you have logs that require immediate action or organization, set up an Amazon CloudWatch log group.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have created an IAM role and policy.</p>
+</li>
+<li>
+<p>You have ensured that the name of you your IAM role has the prefix, <code>CustomerLogDistribution</code>.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create the CloudWatch log group by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws logs create-log-group --log-group-name &lt;your_log_group_name&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In your Red&#160;Hat OpenShift Services on AWS cluster, configure the log forwarder to use the CloudWatch log group by applying the following JSON sample:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "CreatePutLogs",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "&lt;your_log_group_arn&gt;:*"
+        },
+        {
+            "Sid": "DescribeLogs",
+            "Effect": "Allow",
+            "Action": [
+                "logs:DescribeLogGroups",
+                "logs:DescribeLogStreams"
+            ],
+            "Resource": "*"
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Attach the policy to the CloudWatch role by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam put-role-policy \
+    --role-name CustomerLogDistribution-RH \
+    --policy-name Allow-CloudWatch-Writes \
+    --policy-document file://cloudwatch-policy.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure your Red&#160;Hat OpenShift Services on AWS cluster to forward logs to the CloudWatch log group by applying the following sample YAML list. Specify an application, or group, or both:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">cloudwatch:
+  cloudwatch_log_role_arn: "arn:aws:iam::123456789012:role/RosaCloudWatch"
+  cloudwatch_log_group_name: "rosa-logs"
+  applications:
+    - "&lt;example_app1&gt;"
+  groups:
+    - "&lt;example_group1&gt;"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">&lt;example_app1&gt;</dt>
+<dd>
+<p>Add one or more applications. For a list of applications, see the table in "Determining what log groups to use".</p>
+</dd>
+<dt class="hdlist1">&lt;example_group1&gt;</dt>
+<dd>
+<p>Add one or more of the following groups: <code>api</code>, <code>authentication</code>, <code>controller manager</code>, <code>scheduler</code>.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Enable the log forwarder to send logs to your Red&#160;Hat OpenShift Services on AWS cluster.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>To enable control plane log forwarding on a new cluster, include the log forwarding configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create cluster --log-fwd-config="&lt;path_to_file&gt;.yaml"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To enable control plane log forwarding on an existing cluster, include the log forwarding configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create log-forwarder -c &lt;cluster&gt; --log-fwd-config="&lt;path_to_file&gt;.yaml" -o yaml</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Optional: For an example for forwarding logs to the CloudWatch log group, apply the following sample YAML:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">cloudwatch:
+  cloudwatch_log_role_arn: "cloudwatch-log-role-arn"
+  cloudwatch_log_group_name: "cloudwatch-group-name"
+  applications:
+    - "&lt;example_app1&gt;"
+  groups:
+    - "&lt;example_group1&gt;"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-set-up-s3-bucket_rosa-hcp-configure-log-forwarding-destinations">Setting up the S3 bucket</h5>
+<div class="paragraph _abstract">
+<p>If you have logs that need long-term storage or large-scale data analysis, set up an Amazon S3 bucket.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>If you want to prevent limitations for the managed keys for your S3 bucket, you must have created an IAM role and policy.</p>
+</li>
+<li>
+<p>You have ensured that the name of you your IAM role has the prefix, <code>CustomerLogDistribution</code>.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create the S3 bucket by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws s3api create-bucket \
+    --bucket &lt;your_s3_bucket_name&gt; \
+    --region &lt;your_aws_region&gt; \
+    --create-bucket-configuration LocationConstraint=&lt;cluster_aws_region&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure the policy for the S3 bucket by applying the following S3 bucket policy sample:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json"> "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowCentralLogDistributionWrite",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::859037107838:role/ROSA-CentralLogDistributionRole-241c1a86"
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::&lt;your_s3_bucket_name&gt;/*",
+            "Condition": {
+                "StringEquals": {
+                    "s3:x-amz-acl": "bucket-owner-full-control"
+                }
+            }
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Attach the policy to the S3 role by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws s3api put-bucket-policy \
+    --bucket &lt;your_s3_bucket_name&gt; \
+    --policy file://s3-bucket-policy.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure your Red&#160;Hat OpenShift Services on AWS cluster to forward logs to the S3 bucket by applying the following sample YAML list. Specify an application, or group, or both:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">s3:
+  s3_config_bucket_name: "my-log-bucket"
+  s3_config_bucket_prefix: "my-bucket-prefix"
+  applications:
+    - "&lt;example_app1&gt;"
+  groups:
+    - "&lt;example_group1&gt;"</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">&lt;example_app1&gt;</dt>
+<dd>
+<p>Add one or more applications. For a list of applications, see the table in "Determining what log groups to use".</p>
+</dd>
+<dt class="hdlist1">&lt;example_group1&gt;</dt>
+<dd>
+<p>Add one or more of the following groups: <code>api</code>, <code>authentication</code>, <code>controller manager</code>, <code>scheduler</code>.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Enable the log forwarder to send logs to your Red&#160;Hat OpenShift Services on AWS cluster.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>To enable control plane log forwarding on a new cluster, include the log forwarding configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create cluster --log-fwd-config="&lt;path_to_file&gt;.yaml"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To enable control plane log forwarding on an existing cluster, include the log forwarding configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create log-forwarder -c &lt;cluster&gt; --log-fwd-config="&lt;path_to_file&gt;.yaml" -o yaml</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Optional: For an example for forwarding logs to the S3 bucket, apply the following sample YAML:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">s3:
+  s3_config_bucket_name: "s3-bucket-name"
+  s3_config_bucket_prefix: "s3-bucket-prefix"
+  groups:
+    - "&lt;example_group1&gt;"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-manage-control-plane-log-forwarding_rosa-hcp-configure-log-forwarding-destinations">Managing control plane log forwarding</h5>
+<div class="paragraph _abstract">
+<p>After you configure the Red&#160;Hat OpenShift Services on AWS clusters to use your selected log forwarder for control plane logs, see the following commands to run based on your specific needs. For all of these commands, you must provide the <code>clusterid</code> or cluster name in the <code>--cluster</code> flag:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>rosa create log-forwarder -c &lt;cluster_name|cluster_id&gt;</code></dt>
+<dd>
+<p>Configures your Red&#160;Hat OpenShift Services on AWS cluster to use the log forwarder.</p>
+</dd>
+<dt class="hdlist1"><code>rosa list log-forwarder -c &lt;cluster_name|cluster_id&gt;</code></dt>
+<dd>
+<p>Displays all of the log forwarder configurations for a Red&#160;Hat OpenShift Services on AWS cluster.</p>
+</dd>
+<dt class="hdlist1"><code>rosa describe log-forwarder -c &lt;cluster_name|cluster_id&gt; &lt;log_fwd_id&gt;</code></dt>
+<dd>
+<p>Provides additional details for a specific log forwarder.</p>
+</dd>
+<dt class="hdlist1"><code>rosa edit log-forwarder -c &lt;cluster_name|cluster_id&gt; &lt;log_fwd_id&gt;</code></dt>
+<dd>
+<p>Changes the following log forwarder fields: groups, applications, and S3 and CloudWatch configurations.</p>
+</dd>
+<dt class="hdlist1"><code>rosa delete log-forwarder -c &lt;cluster_name|cluster_id&gt; &lt;log_fwd_id&gt;</code></dt>
+<dd>
+<p>Deletes the log forwarder configuration. Logs are no longer forwarded to your chosen destinations but are not automatically deleted. If you no longer want to store your logs in the S3 bucket or CloudWatch group, delete those logs.</p>
+<div class="paragraph">
+<p>Additionally, use this command to change the following log forwarder fields: ID, cluster ID, and the type for S3 and CloudWatch. Delete a log forwarder and re-create it with the updated values.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-create-cluster-ui-log-groups_rosa-hcp-configure-log-forwarding-destinations">Creating a Red&#160;Hat OpenShift Services on AWS cluster in the Red Hat Hybrid Cloud Console</h5>
+<div class="paragraph _abstract">
+<p>You can forward logs from your Red&#160;Hat OpenShift Services on AWS cluster to <code>CloudWatch</code>, <code>S3</code>, or both. When you forward your control plane logs, you can store them in the infrastructure that you designated, helping you meet compliance and audit requirements and workflows.</p>
+</div>
+<div class="paragraph">
+<p>In the Red Hat Hybrid Cloud Console, you set up your Red&#160;Hat OpenShift Services on AWS cluster to forward control plane logs when you create the cluster. Then, you can continue to use the web user interface (UI) to forward your control plane logs.</p>
+</div>
+<div class="paragraph">
+<p>Enable control plane log forwarding when you create the cluster to ensure a complete audit trail. If enabled later, the feature cannot capture logs generated before the activation, leaving gaps in your data.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-hcp-manage-and-verify-log-forwarding_rosa-hcp-manage-and-verify-log-forwarding">Manage and verify log forwarding</h4>
+<div class="paragraph _abstract">
+<p>After configuring log forwarding, verify that logs are delivered to your destination targets and manage existing log forwarding configurations.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-verify-karpenter-log-forwarding_rosa-hcp-manage-and-verify-log-forwarding">Verifying Karpenter set up for log forwarding</h5>
+<div class="paragraph _abstract">
+<p>After you configure the Red&#160;Hat OpenShift Services on AWS clusters to use your selected log forwarder, such as <code>S3</code> or <code>CloudWatch</code>, verify that Karpenter logs are arriving at your specified destination. Confirming that Karpenter log data is present ensures that your node provisioning and scaling decisions are captured, which supports troubleshooting and capacity planning for your cluster.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Verify that you have control plane log forwarders configured for your cluster by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list log-forwarder -c &lt;cluster_name|cluster_id&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Confirm that the expected forwarder has the configuration correctly set to forward logs for Karpenter by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa describe log-forwarder -c &lt;cluster_name|cluster_id&gt; &lt;log_fwd_id&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Go to your specified logging destination, and confirm that the output includes the data from your application. The output should resemble the following sample:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{"application": "karpenter", "message": "Node provisioning triggered"}
+{"application": "karpenter-operator", "message": "Reconciliation loop successful"}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-create-cluster-log-forwarding-ui_rosa-hcp-manage-and-verify-log-forwarding">Create a Red&#160;Hat OpenShift Services on AWS cluster with log forwarding</h5>
+<div class="paragraph _abstract">
+<p>You can set up control plane log forwarding when you create your Red&#160;Hat OpenShift Services on AWS cluster in the Red Hat Hybrid Cloud Console. As you create your Red&#160;Hat OpenShift Services on AWS cluster, you have the option to forward your control plane logs to an Amazon <code>S3</code> bucket, <code>CloudWatch</code> log group, or both.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In the Red Hat Hybrid Cloud Console, go to <strong>Clusters</strong> &#8594; <strong>Cluster List</strong>, then click the <strong>Create cluster</strong> button.</p>
+</li>
+<li>
+<p>On the <strong>Managed services</strong> offerings page, go to the offering, <strong>Red Hat OpenShift Service on AWS (ROSA)</strong>, and click the <strong>Create cluster</strong> button, then select <strong>With web interface</strong>.</p>
+</li>
+<li>
+<p>For <strong>Create a ROSA Cluster</strong> &#8594; <strong>Control plane</strong>, select your <strong>ROSA hosted architecture</strong>.</p>
+</li>
+<li>
+<p>For <strong>Accounts and roles</strong>, select your <strong>Associated AWS infrastructure account</strong> and <strong>AWS billing account</strong>.</p>
+</li>
+<li>
+<p>For the <strong>Cluster settings</strong> &#8594; <strong>Cluster details</strong>, complete the following text boxes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Region</strong></p>
+</li>
+<li>
+<p><strong>Cluster name</strong></p>
+</li>
+<li>
+<p><strong>Version</strong></p>
+</li>
+<li>
+<p><strong>Channel</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In about 20 minutes after you complete this information, your cluster is ready to install and you can continue to configure it.</p>
+</div>
+</li>
+<li>
+<p>For <strong>Machine pool</strong> &#8594; <strong>Networking</strong> &#8594; <strong>Configuration</strong> &#8594; <strong>CIDR ranges</strong> &#8594; <strong>Cluster roles and policies</strong>, complete all of the required text boxes with the specifications that you want for your cluster.</p>
+</li>
+<li>
+<p>On the <strong>Review and create</strong> &#8594; <strong>Review your ROSA cluster</strong> page, verify that the cluster details are correct.</p>
+</li>
+<li>
+<p>Optional: If you want to forward your control plane logs to an Amazon <code>S3</code> bucket or <code>CloudWatch</code> log group, complete the following instructions:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>On the <strong>Control plane log forwarding (optional)</strong> page, click <strong>Enable Amazon S3</strong>, or <strong>Enable CloudWatch</strong>, or both.</p>
+</li>
+<li>
+<p>If you enable Amazon <code>S3</code>, complete the following fields:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Bucket name</strong>: Give it a unique identifier across all of Amazon Web Services (AWS).</p>
+</li>
+<li>
+<p><strong>Bucket prefix</strong>: Give it an optional path to organize your data.</p>
+</li>
+<li>
+<p><strong>Select groups and applications</strong> (optional): When you select a group, the log forwarder collects all of the applications and related services from that group.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If you enable <code>CloudWatch</code>, complete the following fields:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Prerequisite</strong>: Verify that you have created an <code>IAM</code> role and policy, then click the box stating that you have.</p>
+</li>
+<li>
+<p><strong>Log group name</strong>: Give it a unique identifier.</p>
+</li>
+<li>
+<p><strong>Role ARN</strong>: Give the <code>IAM</code> role ARN. For example, <code>arn:aws:iam::&lt;12-digit-account-id&gt;:role/&lt;role-name&gt;</code>.</p>
+</li>
+<li>
+<p><strong>Select groups and applications</strong>: When you select a group, the log forwarder collects all the applications and related services from that group.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>On the <strong>Review and create</strong> &#8594; <strong>Review your ROSA cluster</strong> page, verify that the cluster details are correct.</p>
+</li>
+<li>
+<p>Click the <strong>Create cluster</strong> button.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>If you want to finish completing your cluster with no designated log forwarding destination, click the <strong>Create cluster</strong> button.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>In the Red Hat Hybrid Cloud Console, go to <strong>Clusters</strong> &#8594; <strong>Cluster List</strong>.  You can see the name and status of your cluster.</p>
+</li>
+<li>
+<p>Verify that the status of your cluster is “Ready” and click the name of your cluster.</p>
+</li>
+<li>
+<p>In the <strong>Overview</strong> tab, verify that the details of your cluster are what you specified.</p>
+</li>
+<li>
+<p>Go to the <strong>Control plane log forwarding</strong> section.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If you enabled <code>Amazon S3</code>, verify that you see <strong>Amazon S3: Enabled</strong>. If you did not set it up, it shows, <strong>Amazon S3: Disabled</strong>.</p>
+</li>
+<li>
+<p>If you enabled <code>CloudWatch</code>, verify that you see <strong>CloudWatch: Enabled</strong>. If you did not set it up, it shows, <strong>CloudWatch: Disabled</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <strong>View details</strong>, which takes you to the <strong>Settings</strong> tab. Confirm all the specific details for your control plane log forwarding are correct.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-edit-cluster-log-forwarding-ui_rosa-hcp-manage-and-verify-log-forwarding">Edit a Red&#160;Hat OpenShift Services on AWS cluster with log forwarding</h5>
+<div class="paragraph _abstract">
+<p>You can verify the status of log forwarding for a cluster and edit the log forwarding configurations.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In the Red Hat Hybrid Cloud Console, go to <strong>Clusters</strong> &#8594; <strong>Cluster List</strong>, then click the name of your cluster.</p>
+</li>
+<li>
+<p>Go to the <strong>Settings</strong> tab then the <strong>Control plane log forwarding</strong> section.</p>
+</li>
+<li>
+<p>To add to your log forwarding, click the <strong>Add configuration</strong> dropdown button.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>You can add a <code>CloudWatch</code> or <code>Amazon S3</code> configuration.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To make changes to your existing log forwarding, click the three dots within your <code>CloudWatch</code> or <code>Amazon S3</code> log forwarding configuration, then select <strong>Edit configuration</strong> or <strong>Delete configuration</strong>.</p>
+</li>
+<li>
+<p>When you click <strong>Edit configuration</strong> for <code>Amazon S3</code> log forwarding, you see your configuration and can make changes to the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Bucket Name</strong></p>
+</li>
+<li>
+<p><strong>Bucket Prefix</strong></p>
+</li>
+<li>
+<p><strong>Select groups and applications</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>When you click <strong>Edit configuration</strong> for <code>CloudWatch</code> log forwarding, you see your configuration and can make changes to the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Log group name</strong></p>
+</li>
+<li>
+<p><strong>Role ARN</strong></p>
+</li>
+<li>
+<p><strong>Select groups and applications</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Make the changes to your configuration, then click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>In the <strong>Settings</strong> tab &#8594; <strong>Control plane log forwarding</strong> section, verify that you see the changes you made to your configuration. The changes you made instantly go through and appear in this section.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-hcp-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a> | ↑ Up: <a href="_observe.html">Observe</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-prepare-for-log-forwarding_rosa-hcp-prepare-for-log-forwarding.html">Prepare for log forwarding</a> →</p>
+<p>← Previous: <a href="rosa-hcp-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a> | ↑ Up: <a href="_observe.html">Observe</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-monitor-cluster-health_rosa-hcp-monitor-cluster-health.html">Monitor cluster health</a> →</p>
 </div>
 </div>
 <div id="footer">

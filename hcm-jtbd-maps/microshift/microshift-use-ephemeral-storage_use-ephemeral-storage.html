@@ -437,38 +437,275 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-use-ephemeral-storage_use-ephemeral-storage" class="book toc2 toc-left">
+<body id="microshift-use-ephemeral-storage_use-ephemeral-storage" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
 <ul class="sectlevel2">
@@ -489,49 +726,370 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#storage-ephemeral-storage-overview_use-ephemeral-storage">Overview of ephemeral storage</a></li><li class="level-4"><a href="#storage-ephemeral-storage-types_use-ephemeral-storage">Types of ephemeral storage</a></li><li class="level-4"><a href="#storage-ephemeral-storage-manage-overview_use-ephemeral-storage">Ephemeral storage management overview</a></li><li class="level-5"><a href="#storage-ephemeral-storage-manage-requests-and-limits_use-ephemeral-storage">Ephemeral storage management limits and requests</a></li><li class="level-6"><a href="#storage-ephemeral-storage-eviction_use-ephemeral-storage">Ephemeral storage configuration effects pod eviction</a></li><li class="level-4"><a href="#generic-ephemeral-vols-overview_use-ephemeral-storage">Overview of generic ephemeral volumes</a></li><li class="level-4"><a href="#generic-ephemeral-vols-lifecycle_use-ephemeral-storage">Lifecycle and persistent volume claims</a></li><li class="level-4"><a href="#generic-ephemeral-security_use-ephemeral-storage">Security</a></li><li class="level-4"><a href="#generic-ephemeral-vols-pvc-naming_use-ephemeral-storage">Persistent volume claim naming</a></li><li class="level-4"><a href="#generic-ephemeral-vols-procedure_use-ephemeral-storage">Creating generic ephemeral volumes</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-use-ephemeral-storage_use-ephemeral-storage">Use ephemeral storage</h3>
 <div class="paragraph _abstract">
 <p>MicroShift supports ephemeral storage for workloads that require temporary, pod-local data storage. Ephemeral storage is tied to the lifecycle of the pod and is automatically released when the pod terminates. You can configure ephemeral storage limits and use generic ephemeral volumes backed by LVMS for workloads that need more flexible temporary storage.</p>
 </div>
+<div class="sect3">
+<h4 id="storage-ephemeral-storage-overview_use-ephemeral-storage">Overview of ephemeral storage</h4>
+<div class="paragraph _abstract">
+<p>Use ephemeral storage to provide temporary local storage for stateless applications that only need data for the duration of the pod lifecycle, such as caches, scratch files, and logs that do not need to persist after the pod terminates.</p>
+</div>
+<div class="paragraph">
+<p>Both developers and administrators can use this feature.</p>
+</div>
+<div class="paragraph">
+<p>Pods and containers can require ephemeral or transient local storage for their operation. The lifetime of this ephemeral storage does not extend beyond the life of the individual pod, and this ephemeral storage cannot be shared across pods.</p>
+</div>
+<div class="paragraph">
+<p>Issues related to the lack of local storage accounting and isolation include the following:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="storage-ephemeral-storage-overview_use-ephemeral-storage.html">Overview of ephemeral storage</a></p>
+<p>Pods cannot detect how much local storage is available to them.</p>
 </li>
 <li>
-<p><a href="storage-ephemeral-storage-types_use-ephemeral-storage.html">Types of ephemeral storage</a></p>
+<p>Pods cannot request guaranteed local storage.</p>
 </li>
 <li>
-<p><a href="storage-ephemeral-storage-manage-overview_use-ephemeral-storage.html">Ephemeral storage management overview</a></p>
+<p>Local storage is a best-effort resource.</p>
 </li>
 <li>
-<p><a href="generic-ephemeral-vols-overview_use-ephemeral-storage.html">Overview of generic ephemeral volumes</a></p>
-</li>
-<li>
-<p><a href="generic-ephemeral-vols-lifecycle_use-ephemeral-storage.html">Lifecycle and persistent volume claims</a></p>
-</li>
-<li>
-<p><a href="generic-ephemeral-security_use-ephemeral-storage.html">Security</a></p>
-</li>
-<li>
-<p><a href="generic-ephemeral-vols-pvc-naming_use-ephemeral-storage.html">Persistent volume claim naming</a></p>
-</li>
-<li>
-<p><a href="generic-ephemeral-vols-procedure_use-ephemeral-storage.html">Creating generic ephemeral volumes</a></p>
+<p>Pods can be evicted due to other pods filling the local storage, after which new pods are not admitted until sufficient storage is reclaimed.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Unlike persistent volumes, ephemeral storage is unstructured and the space is shared between all pods running on the node, other uses by the system, and Red&#160;Hat build of MicroShift. The ephemeral storage framework allows pods to specify their transient local storage needs. It also allows Red&#160;Hat build of MicroShift to protect the node against excessive use of local storage.</p>
+</div>
+<div class="paragraph">
+<p>While the ephemeral storage framework allows administrators and developers to better manage local storage, I/O throughput and latency are not directly affected.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="storage-ephemeral-storage-types_use-ephemeral-storage">Types of ephemeral storage</h4>
+<div class="paragraph _abstract">
+<p>Provision ephemeral local storage by creating the primary partition using either root or runtime methods. Choose the method that aligns with your node configuration to ensure temporary storage is available for your workloads.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Root</dt>
+<dd>
+<p>This partition holds the kubelet root directory, <code>/var/lib/kubelet/</code> by default, and <code>/var/log/</code> directory. This partition can be shared between user pods, the operating system, and Kubernetes system daemons. This partition can be consumed by pods through <code>EmptyDir</code> volumes, container logs, image layers, and container-writable layers. Kubelet manages shared access and isolation of this partition. This partition is ephemeral, and applications cannot expect any performance SLAs, such as disk IOPS, from this partition.</p>
+</dd>
+<dt class="hdlist1">Runtime</dt>
+<dd>
+<p>This is an optional partition that runtimes can use for overlay file systems. Red&#160;Hat build of MicroShift attempts to identify and provide shared access along with isolation to this partition. Container image layers and writable layers are stored here. If the runtime partition exists, the <code>root</code> partition does not hold any image layer or other writable storage.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="storage-ephemeral-storage-manage-overview_use-ephemeral-storage">Ephemeral storage management overview</h4>
+<div class="paragraph _abstract">
+<p>Cluster administrators can manage ephemeral storage within a project by setting quotas that define limit ranges and request counts for all pods in a non-terminal state. Developers can also set requests and limits on this resource at the pod and container level.</p>
+</div>
+<div class="paragraph">
+<p>You can manage local ephemeral storage by specifying requests and limits. Each container in a pod can specify the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>spec.containers[].resources.limits.ephemeral-storage</code></p>
+</li>
+<li>
+<p><code>spec.containers[].resources.requests.ephemeral-storage</code></p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="storage-ephemeral-storage-manage-requests-and-limits_use-ephemeral-storage">Ephemeral storage management limits and requests</h5>
+<div class="paragraph _abstract">
+<p>Express ephemeral storage limits and requests using byte quantities with suffixes like G, M, K or power-of-two equivalents Gi, Mi, Ki. Pod-level limits aggregate all container limits plus <code>emptyDir</code> volumes, enabling proper scheduling and preventing pods from exhausting node storage.</p>
+</div>
+<div class="paragraph">
+<p>Limits and requests for ephemeral storage are measured in byte quantities. You can express storage as a plain integer or as a fixed-point number by using one of these suffixes: E, P, T, G, M, K. You can also use the power-of-two equivalents: Ei, Pi, Ti, Gi, Mi, Ki. For example, the following quantities all represent approximately the same value: 128974848, 129e6, 129M, and 123Mi. Pod-level limits aggregate all container limits plus <code>emptyDir</code> volumes, enabling proper scheduling and preventing pods from exhausting node storage.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The suffixes for each byte quantity are case-sensitive. Be sure to use the correct case. Use the case-sensitive "M", such as used in "400M", to set the request at 400 megabytes. Use the case-sensitive "400Mi" to request 400 mebibytes. If you specify "400m" of ephemeral storage, the storage request is only 0.4 bytes.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following example configuration file shows a pod with two containers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Each container requests 2GiB of local ephemeral storage.</p>
+</li>
+<li>
+<p>Each container has a limit of 4GiB of local ephemeral storage.</p>
+</li>
+<li>
+<p>At the pod level, kubelet works out an overall pod storage limit by adding up the limits of all the containers in that pod.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>In this case, the total storage usage at the pod level is the sum of the disk usage from all containers plus the <code>emptyDir</code> volumes of a pod.</p>
+</li>
+<li>
+<p>Therefore, the pod has a request of 4GiB of local ephemeral storage, and a limit of 8GiB of local ephemeral storage.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example ephemeral storage configuration with quotas and limits</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend
+spec:
+  containers:
+  - name: app
+    image: images.my-company.example/app:v4
+    resources:
+      requests:
+        ephemeral-storage: "2Gi"
+      limits:
+        ephemeral-storage: "4Gi"
+    volumeMounts:
+    - name: ephemeral
+      mountPath: "/tmp"
+  - name: log-aggregator
+    image: images.my-company.example/log-aggregator:v6
+    resources:
+      requests:
+        ephemeral-storage: "2Gi"
+      limits:
+        ephemeral-storage: "4Gi"
+    volumeMounts:
+    - name: ephemeral
+      mountPath: "/tmp"
+  volumes:
+    - name: ephemeral
+      emptyDir: {}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>spec.containers.name.resources.requests.ephemeral-storage</code>: Specifies the container request for local ephemeral storage.</p>
+</li>
+<li>
+<p><code>spec.containers.name.resources.limits.ephemeral-storage</code>: Specifies the container limit for local ephemeral storage.</p>
+</li>
+</ul>
+</div>
+<div class="sect5">
+<h6 id="storage-ephemeral-storage-eviction_use-ephemeral-storage">Ephemeral storage configuration effects pod eviction</h6>
+<div class="paragraph">
+<p>At the container level, because the first container sets a resource limit, kubelet eviction manager measures the disk usage of this container and evicts the pod if the storage usage of the container exceeds its limit (4GiB). The kubelet eviction manager also marks the pod for eviction if the total usage exceeds the overall pod storage limit (8GiB).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This policy is strictly for <code>emptyDir</code> volumes and is not applied to persistent storage. You can specify the <code>priorityClass</code> of pods to exempt the pod from eviction.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="generic-ephemeral-vols-overview_use-ephemeral-storage">Overview of generic ephemeral volumes</h4>
+<div class="paragraph _abstract">
+<p>Generic ephemeral volumes support network-attached storage, size limits, initial data population, and operations like cloning and snapshotting for temporary storage, with some driver-specific limitations.</p>
+</div>
+<div class="paragraph">
+<p>Generic ephemeral volumes have the following features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Storage can be local or network-attached.</p>
+</li>
+<li>
+<p>Volumes can have a fixed size that pods cannot exceed.</p>
+</li>
+<li>
+<p>Volumes might have some initial data, depending on the driver and parameters.</p>
+</li>
+<li>
+<p>Typical operations on volumes are supported, assuming that the driver supports them, including snapshotting, cloning, resizing, and storage capacity tracking.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Generic ephemeral volumes do not support offline snapshotting and resizing.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="generic-ephemeral-vols-lifecycle_use-ephemeral-storage">Lifecycle and persistent volume claims</h4>
+<div class="paragraph _abstract">
+<p>Generic ephemeral volumes follow pod lifecycle through automatically managed persistent volume claims created at pod startup and deleted at termination. Choose volume binding mode and reclaim policy based on this lifecycle behavior.</p>
+</div>
+<div class="paragraph">
+<p>Generic ephemeral volumes are specified inline in the pod spec and follow the pod&#8217;s lifecycle. They are created and deleted along with the pod.</p>
+</div>
+<div class="paragraph">
+<p>The parameters for a volume claim are allowed inside a volume source of a pod. Labels, annotations, and the whole set of fields for PVCs are supported. When such a pod is created, the ephemeral volume controller then creates an actual PVC object (from the template shown in the <em>Creating generic ephemeral volumes</em> procedure) in the same namespace as the pod, and ensures that the PVC is deleted when the pod is deleted.</p>
+</div>
+<div class="paragraph">
+<p>This triggers volume binding and provisioning in one of two ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Either immediately, if the storage class uses immediate volume binding.</p>
+<div class="paragraph">
+<p>With immediate binding, the scheduler is forced to select a node that has access to the volume after it is available.</p>
+</div>
+</li>
+<li>
+<p>When the pod is tentatively scheduled onto a node (<code>WaitForFirstConsumer</code> volume binding mode).</p>
+<div class="paragraph">
+<p>This volume binding option is recommended for generic ephemeral volumes because then the scheduler can choose a suitable node for the pod.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In terms of resource ownership, a pod that has generic ephemeral storage is the owner of the PVCs that provide that ephemeral storage. When the pod is deleted, the Kubernetes garbage collector deletes the PVC, which then usually triggers deletion of the volume because the default reclaim policy of storage classes is to delete volumes. You can create quasi-ephemeral local storage by using a storage class with a reclaim policy of retain. The storage outlives the pod, and in this case, you must ensure that volume clean-up happens separately. While these PVCs exist, they can be used like any other PVC. In particular, they can be referenced as data sources in volume cloning or snapshotting. The PVC object also holds the current status of the volume.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="generic-ephemeral-security_use-ephemeral-storage">Security</h4>
+<div class="paragraph _abstract">
+<p>Generic ephemeral volumes allow users who can create pods to indirectly create persistent volume claims (PVCs), even without direct PVC creation permissions. You can restrict this behavior if it conflicts with your security model.</p>
+</div>
+<div class="paragraph">
+<p>To restrict this behavior, use an admission webhook that rejects objects such as pods that have a generic ephemeral volume.</p>
+</div>
+<div class="paragraph">
+<p>The normal namespace quota for PVCs still applies, so even if users are allowed to use this new mechanism, they cannot use it to circumvent other policies.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="generic-ephemeral-vols-pvc-naming_use-ephemeral-storage">Persistent volume claim naming</h4>
+<div class="paragraph _abstract">
+<p>Automatically created persistent volume claims (PVCs) are named using pod name and volume name with a hyphen separator, potentially causing conflicts with other pods or manual PVCs.</p>
+</div>
+<div class="paragraph">
+<p>For example, <code>pod-a</code> with volume <code>scratch</code> and <code>pod</code> with volume <code>a-scratch</code> both end up with the same PVC name, <code>pod-a-scratch</code>.</p>
+</div>
+<div class="paragraph">
+<p>Such conflicts are detected, and a PVC is only used for an ephemeral volume if it was created for the pod. This check is based on the ownership relationship. An existing PVC is not overwritten or modified, but this does not resolve the conflict. Without the right PVC, a pod cannot start.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Be careful when naming pods and volumes inside the same namespace so that naming conflicts do not occur.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="generic-ephemeral-vols-procedure_use-ephemeral-storage">Creating generic ephemeral volumes</h4>
+<div class="paragraph _abstract">
+<p>To create ephemeral volumes that are automatically provisioned and deleted with pod lifecycle, define a <code>volumeClaimTemplate</code> in your pod spec specifying storage class, size, and access modes.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create the <code>pod</code> object definition and save it to a file.</p>
+</li>
+<li>
+<p>Include the generic ephemeral volume information in the file.</p>
+<div class="listingblock">
+<div class="title">my-example-pod-with-generic-vols.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: Pod
+apiVersion: v1
+metadata:
+  name: my-app
+spec:
+  containers:
+    - name: my-frontend
+      image: busybox:1.28
+      volumeMounts:
+      - mountPath: "/mnt/storage"
+        name: data
+      command: [ "sleep", "1000000" ]
+  volumes:
+    - name: data
+      ephemeral:
+        volumeClaimTemplate:
+          metadata:
+            labels:
+              type: my-app-ephvol
+          spec:
+            accessModes: [ "ReadWriteOnce" ]
+            storageClassName: "topolvm-provisioner"
+            resources:
+              requests:
+                storage: 1Gi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where <code>spec.volumes.name</code> is the name of the generic ephemeral volume.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="expanding-recovering-from-failure_expand-persistent-volumes.html">Recovering from failure when expanding volumes</a> | ↑ Up: <a href="_storage.html">Storage</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="storage-ephemeral-storage-overview_use-ephemeral-storage.html">Overview of ephemeral storage</a> →</p>
+<p>← Previous: <a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a> | ↑ Up: <a href="_storage.html">Storage</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a> →</p>
 </div>
 </div>
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
+<a href="microshift-use-oc-cli_use-oc-cli.html#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
 </div>
 </div>
 <div id="footer">

@@ -437,20 +437,176 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-left-nav-toggle-start -->
+<style>
+  #toc .toc-toggle {
+    display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .75em;
+    padding: 0 .3em 0 0;
+    margin: 0;
+    color: #555;
+    transition: transform .15s ease;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  #toc .toc-toggle:hover { color: #0066cc; }
+  #toc .toc-toggle.open { transform: rotate(90deg); }
+  #toc li > ul.sectlevel2,
+  #toc li > ul.sectlevel3,
+  #toc li > ul.sectlevel4 { display: none; }
+  #toc li.toc-expanded > ul.sectlevel2,
+  #toc li.toc-expanded > ul.sectlevel3,
+  #toc li.toc-expanded > ul.sectlevel4 { display: block; }
+</style>
+<script>
+(function() {
+  var previewPath = window.location.pathname.slice(
+    0,
+    window.location.pathname.lastIndexOf('/')
+  ) || '/';
+  var STORAGE_KEY = 'navmap-toc-state:' + previewPath;
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch(e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var state = loadState();
+    var currentPage = location.pathname.split('/').pop();
+    var buttons = document.querySelectorAll('#toc .toc-toggle');
+
+    buttons.forEach(function(btn) {
+      var key = btn.getAttribute('data-toc-key');
+      var li = btn.parentElement;
+      var isCurrentSection = false;
+
+      /* Auto-expand the section containing the current page */
+      var links = li.querySelectorAll('a[href]');
+      links.forEach(function(a) {
+        var href = a.getAttribute('href').split('#')[0];
+        if (href === currentPage) { isCurrentSection = true; }
+      });
+
+      if (state[key] === true || isCurrentSection) {
+        li.classList.add('toc-expanded');
+        btn.classList.add('open');
+        if (isCurrentSection) { state[key] = true; }
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var expanded = li.classList.toggle('toc-expanded');
+        btn.classList.toggle('open', expanded);
+        state[key] = expanded;
+        saveState(state);
+      });
+    });
+
+    saveState(state);
+
+    /* --- Scroll current page into view in the TOC --- */
+    var toc = document.getElementById('toc');
+    if (toc) {
+      var cur = toc.querySelector('a[href="' + currentPage + '"]');
+      if (!cur) { cur = toc.querySelector('a[href$="/' + currentPage + '"]'); }
+      if (cur) {
+        cur.style.fontWeight = 'bold';
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            cur.scrollIntoView({ block: 'center', behavior: 'instant' });
+          }, 0);
+        });
+      }
+    }
+  });
+})();
+</script>
+<!-- navmap-left-nav-toggle-end -->
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="osd-plan-cluster-upgrades_plan-cluster-upgrades" class="book toc2 toc-left">
+<body id="osd-plan-cluster-upgrades_plan-cluster-upgrades" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Openshift Dedicated</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Openshift Dedicated</a></span></p><ul class="sectlevel1">
-<li><a href="_whats_new.html">What&#8217;s new</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
+
+<ul class="sectlevel2">
+<li><a href="osd-whats-new_whats-new-with-openshift-dedicated.html">What&#8217;s new with OpenShift Dedicated</a>
 </li>
-<li><a href="_discover.html">Discover</a>
+</ul>
 </li>
-<li><a href="_install.html">Install</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="osd-evaluate-managed-platform-features_evaluate-managed-platform-features-and-infrastructure.html">Evaluate managed platform features and infrastructure</a>
 </li>
-<li><a href="_upgrade.html">Upgrade</a>
+<li><a href="osd-evaluate-platform-architecture_evaluate-platform-architecture-and-components.html">Evaluate platform architecture and components</a>
+</li>
+<li><a href="osd-understand-service-definitions_understand-service-definitions.html">Understand service definitions</a>
+</li>
+<li><a href="osd-understand-shared-responsibility-model_understand-the-shared-responsibility-model.html">Understand the shared responsibility model</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="osd-create-an-osd-cluster-on-google-cloud-intro_osd-create-an-osd-cluster-on-google-cloud.html">Create an OSD cluster on Google Cloud</a>
+</li>
+<li><a href="osd-create-an-osd-cluster-on-aws-intro_osd-create-an-osd-cluster-on-aws.html">Create an OSD cluster on AWS</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_upgrade.html">▶</button><a href="_upgrade.html">Upgrade</a>
 <ul class="sectlevel2">
 <li><a href="osd-plan-cluster-upgrades_plan-cluster-upgrades.html"><span class="toc-current">Plan cluster upgrades</span></a>
 </li>
@@ -458,11 +614,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
-<li><a href="_observe.html">Observe</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_observe.html">▶</button><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="osd-collect-and-analyze-logs_collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="osd-monitor-cluster-health_monitor-cluster-health.html">Monitor cluster health</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#upgrade_plan-cluster-upgrades">Understanding cluster upgrades</a></li><li class="level-5"><a href="#upgrade-automatic_plan-cluster-upgrades">Recurring upgrades</a></li><li class="level-5"><a href="#upgrade-manual_upgrades_plan-cluster-upgrades">Individual upgrades</a></li><li class="level-5"><a href="#upgrade-notifications_plan-cluster-upgrades">Upgrade notifications</a></li><li class="level-5"><a href="#wif-upgrades_plan-cluster-upgrades">Cluster upgrades with Workload Identity Federation (WIF)</a></li><li class="level-4"><a href="#osd-upgrading-channels_plan-cluster-upgrades">Channels in Openshift Dedicated clusters</a></li><li class="level-5"><a href="#_channel_groups_and_channels">Channel groups and channels</a></li><li class="level-5"><a href="#_cluster_update_options">Cluster update options</a></li><li class="level-4"><a href="#osd-upgrading-switch-channels_plan-cluster-upgrades">Switch channels to view available update options</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="osd-plan-cluster-upgrades_plan-cluster-upgrades">Plan cluster upgrades</h3>
@@ -492,22 +656,300 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
+<div class="sect3">
+<h4 id="upgrade_plan-cluster-upgrades">Understanding cluster upgrades</h4>
+<div class="paragraph _abstract">
+<p>You can upgrade your Openshift Dedicated cluster to the newest available version through Red Hat OpenShift Cluster Manager or the OpenShift Cluster Manager command-line interface (CLI). Keeping your cluster up to date ensures you receive the latest features, fixes, and security enhancements.</p>
+</div>
+<div class="paragraph">
+<p>You can set your upgrade policies on existing clusters or during cluster creation, and upgrades can be scheduled to occur automatically or manually.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Before upgrading a Workload Identity Federation (WIF)-enabled Openshift Dedicated on Google Cloud cluster, you must update the wif-config. For more information, see "Cluster upgrades with Workload Identity Federation (WIF)".</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Red Hat Site Reliability Engineers (SRE) will provide a curated list of available versions for your Openshift Dedicated clusters. For each cluster you will be able to review the full list of available releases, as well as the corresponding release notes. OpenShift Cluster Manager will enable installation of clusters at the latest supported versions, and upgrades can be canceled at any time.</p>
+</div>
+<div class="paragraph">
+<p>You can also set a grace period for how long <code>PodDisruptionBudget</code> protected workloads are respected during upgrades. After this grace period, any workloads protected by <code>PodDisruptionBudget</code> that have not been successfully drained from a node, will be forcibly deleted.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All Kubernetes objects and Persistent Volumes (PVs) in each Openshift Dedicated cluster are backed up as part of the Openshift Dedicated service. Application and application data backups are not a part of the Openshift Dedicated service. Ensure you have a backup policy in place for your applications and application data before scheduling upgrades.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When following a scheduled upgrade policy, there might be a delay of an hour or more before the upgrade process begins, even if it is an immediate upgrade. Additionally, the duration of the upgrade might vary based on your workload configuration.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="upgrade-automatic_plan-cluster-upgrades">Recurring upgrades</h5>
+<div class="paragraph">
+<p>Upgrades can be scheduled to occur automatically on a day and time specified by the cluster owner or administrator. Upgrades occur on a weekly basis, unless an upgrade is unavailable for that week.</p>
+</div>
+<div class="paragraph">
+<p>If you select recurring updates for your cluster, you must provide an administrator&#8217;s acknowledgment. OpenShift Cluster Manager does not start scheduled y-stream updates for minor versions without receiving an administrator&#8217;s acknowledgment.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Recurring upgrade policies are optional and if they are not set, the upgrade policies default to individual.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="upgrade-manual_upgrades_plan-cluster-upgrades">Individual upgrades</h5>
+<div class="paragraph">
+<p>If you opt for individual upgrades, you are responsible for updating your cluster. If you select an update version that requires approval, you must provide an administrator&#8217;s acknowledgment.</p>
+</div>
+<div class="paragraph">
+<p>If your cluster version becomes outdated, it changes to a limited support status.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="upgrade-notifications_plan-cluster-upgrades">Upgrade notifications</h5>
+<div class="paragraph">
+<p>From OpenShift Cluster Manager console you can view your cluster&#8217;s history from the <strong>Overview</strong> tab. The Upgrade states can be viewed in the service log under the <strong>Cluster history</strong> heading.</p>
+</div>
+<div class="paragraph">
+<p>Every change of state also triggers an email notification to the cluster owner and subscribed users. You will receive email notifications for the following events:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="upgrade_plan-cluster-upgrades.html">Understanding cluster upgrades</a></p>
+<p>An upgrade has been scheduled.</p>
 </li>
 <li>
-<p><a href="osd-upgrading-channels_plan-cluster-upgrades.html">Channels in Openshift Dedicated clusters</a></p>
+<p>An upgrade has started.</p>
 </li>
 <li>
-<p><a href="osd-upgrading-switch-channels_plan-cluster-upgrades.html">Switch channels to view available update options</a></p>
+<p>An upgrade has completed.</p>
+</li>
+<li>
+<p>An upgrade has been canceled.</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For recurring upgrades, you will also receive email notifications before the upgrade occurs based on the following cadence:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>2 week notice</p>
+</li>
+<li>
+<p>1 week notice</p>
+</li>
+<li>
+<p>1 day notice</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="wif-upgrades_plan-cluster-upgrades">Cluster upgrades with Workload Identity Federation (WIF)</h5>
+<div class="paragraph">
+<p>Before upgrading an Openshift Dedicated on Google Cloud cluster with WIF authentication type to a newer y-stream version, you must update the WIF configuration to that version. Failure to do so before attempting to upgrade the cluster version will result in an error.
+For more information on how to update a WIF configuration, see the  <em>Additional resources</em> section.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The update path to a brand new release of Openshift Dedicated is not available in the stable channel until 45 to 90 days after the initial general availability (GA) of a newer y-stream version.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="osd-upgrading-channels_plan-cluster-upgrades">Channels in Openshift Dedicated clusters</h4>
+<div class="paragraph _abstract">
+<p>You can use Openshift Dedicated channels to view available cluster update options and apply patches or z-stream updates in your existing channel. You can also view the update path to newer y-stream versions if available.</p>
+</div>
+<div class="sect4">
+<h5 id="_channel_groups_and_channels">Channel groups and channels</h5>
+<div class="paragraph">
+<p>Channel groups in Openshift Dedicated are similar to channels, but there is no specific version with channel groups. When you select a channel group, your Openshift Dedicated cluster receives z-stream updates for your current channel group. These channel groups typically include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>fast</code>: cluster receives the latest updates as soon as they are available.</p>
+</li>
+<li>
+<p><code>stable</code>: cluster receives updates after they have been thoroughly tested.</p>
+</li>
+<li>
+<p><code>eus</code>: Extended Update Support channel, allowing for extended support for even-numbered versions, for example, 4.16, 4.18, or 4.20.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By moving from channel groups to channels, you can have more control over your cluster updates. Instead of receiving patch/z-stream updates only for a particular channel group, by using channels you can view the available updates associated with a minor release version, and determine if there is a path available to that minor/y+1/y+2 version.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The channel group option is being deprecated. If you set a channel group only, Openshift Dedicated will default to preserving the current channel&#8217;s target version. For example, a <code>stable-4.20</code> cluster moving to the <code>eus</code> channel group will use the <code>eus-4.20</code> channel by default, if the current cluster version is a member of the <code>eus-4.20</code> channel.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_cluster_update_options">Cluster update options</h5>
+<div class="paragraph">
+<p>The process for updating your cluster is based on the updates that are available for your current version, and what level of release you are interested in, such as z-stream or y-stream updates.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Patch (z-stream) updates</strong>: You do not need to change the channel when performing a patch update within your current minor version. For example, if you have your cluster at version 4.19.12, you can stay within your current <code>stable-4.19</code> channel, and decide to update your cluster when there are updates available, such as 4.19.13, 4.19.14, 4.19.17, 4.19.20 until you have the latest updates for that minor version.</p>
+</li>
+<li>
+<p><strong>Minor version (y-stream) updates</strong>: To update to a new minor release, you must change the channel to the next release channel.</p>
+<div class="paragraph">
+<p>For example, if you have your cluster at version 4.19.12, you can switch the channel to <code>stable-4.20</code> or <code>stable-4.21</code> and check if there is an update path available for those versions.</p>
+</div>
+<div class="paragraph">
+<p>If <code>stable-4.20</code> has an update path available, it shows you the z-stream updates for your current version, as well as the updates to the y+1 version, such as 4.19.14, 4.19.17, 4.19.20, 4.19.23, 4.19.27, 4.20.0.</p>
+</div>
+<div class="paragraph">
+<p>If you select <code>stable-4.21</code>, the available updates might be 4.19.14, 4.19.17, 4.19.20, 4.19.23, 4.19.27, 4.20.0, 4.20.3, 4.20.4, 4.20.6, 4.20.7, with all the z-stream/patch updates displayed right through to the y+2 version of 4.21.0.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When you have set the channel and an update is initiated, the Cluster Version Operator (CVO) retrieves the target release image and begins applying the changes to the cluster.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="osd-upgrading-switch-channels_plan-cluster-upgrades">Switch channels to view available update options</h4>
+<div class="paragraph _abstract">
+<p>You can switch the channel on a Openshift Dedicated cluster to access update options within a current minor version (y-stream), or the subsequent minor versions (y+1, y+2). The version number in the channel represents the target minor version.</p>
+</div>
+<div class="paragraph">
+<p>For example, if your cluster is on <code>stable-4.18</code>, switching the channel to <code>stable-4.19</code> shows update paths from 4.18.z to 4.19.z, if such paths are available. This strategy ensures that administrators must explicitly initiate minor version updates, and they never occur automatically.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Log in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
+</li>
+<li>
+<p>Click <strong>Fleet Management</strong> &gt; <strong>Clusters</strong>.</p>
+</li>
+<li>
+<p>Select the cluster for which you want to see the update options.</p>
+</li>
+<li>
+<p>To view the cluster details, click the <strong>Overview</strong> tab.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <strong>Channel</strong> field displays the current update channel for the cluster.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Select the new update channel.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In the <strong>Channel</strong> field, click the <strong>Edit channel</strong> icon next to the current channel name.</p>
+</li>
+<li>
+<p>On the <strong>Edit channel</strong> dialog, select the required channel version.</p>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <strong>Channel</strong> field updates to display the new update channel.</p>
+</li>
+<li>
+<p>The <strong>Version</strong> field displays the <strong>Update</strong> link if updates are available for your selected channel.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="_upgrade.html">Upgrade</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="upgrade_plan-cluster-upgrades.html">Understanding cluster upgrades</a> →</p>
+<p>↑ Up: <a href="_upgrade.html">Upgrade</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-upgrade-a-cluster_upgrade-a-cluster.html">Upgrade a cluster</a> →</p>
 </div>
 </div>
 <div id="footer">

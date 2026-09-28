@@ -437,34 +437,239 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-oc-cli-commands-reference_oc-cli-commands-reference" class="book toc2 toc-left">
+<body id="microshift-oc-cli-commands-reference_oc-cli-commands-reference" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
 <ul class="sectlevel2">
@@ -477,40 +682,2767 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-oc-cmd_oc-cli-commands-reference">OpenShift administrator commands</a></li><li class="level-4"><a href="#microshift-cli-developer_oc-cli-commands-reference">OpenShift CLI (oc) developer commands</a></li><li class="level-5"><a href="#microshift-oc-annotate_oc-cli-commands-reference">oc annotate</a></li><li class="level-5"><a href="#microshift-oc-api-resources_oc-cli-commands-reference">oc api-resources</a></li><li class="level-5"><a href="#microshift-oc-api-versions_oc-cli-commands-reference">oc api-versions</a></li><li class="level-5"><a href="#microshift-oc-apply_oc-cli-commands-reference">oc apply</a></li><li class="level-5"><a href="#microshift-oc-apply-edit-last-applied_oc-cli-commands-reference">oc apply edit-last-applied</a></li><li class="level-5"><a href="#microshift-oc-apply-set-last-applied_oc-cli-commands-reference">oc apply set-last-applied</a></li><li class="level-5"><a href="#microshift-oc-apply-view-last-applied_oc-cli-commands-reference">oc apply view-last-applied</a></li><li class="level-5"><a href="#microshift-oc-attach_oc-cli-commands-reference">oc attach</a></li><li class="level-5"><a href="#microshift-oc-auth-can-i_oc-cli-commands-reference">oc auth can-i</a></li><li class="level-5"><a href="#microshift-oc-auth-reconcile_oc-cli-commands-reference">oc auth reconcile</a></li><li class="level-5"><a href="#microshift-oc-auth-whoami_oc-cli-commands-reference">oc auth whoami</a></li><li class="level-5"><a href="#microshift-oc-cluster-info_oc-cli-commands-reference">oc cluster-info</a></li><li class="level-5"><a href="#microshift-oc-cluster-info-dump_oc-cli-commands-reference">oc cluster-info dump</a></li><li class="level-5"><a href="#microshift-oc-completion_oc-cli-commands-reference">oc completion</a></li><li class="level-5"><a href="#microshift-oc-config-current-context_oc-cli-commands-reference">oc config current-context</a></li><li class="level-5"><a href="#microshift-oc-config-delete-cluster_oc-cli-commands-reference">oc config delete-cluster</a></li><li class="level-5"><a href="#microshift-oc-config-delete-context_oc-cli-commands-reference">oc config delete-context</a></li><li class="level-5"><a href="#microshift-oc-config-delete-user_oc-cli-commands-reference">oc config delete-user</a></li><li class="level-5"><a href="#microshift-oc-config-get-clusters_oc-cli-commands-reference">oc config get-clusters</a></li><li class="level-5"><a href="#microshift-oc-config-get-contexts_oc-cli-commands-reference">oc config get-contexts</a></li><li class="level-5"><a href="#microshift-oc-config-get-users_oc-cli-commands-reference">oc config get-users</a></li><li class="level-5"><a href="#microshift-oc-config-new-admin-kubeconfig_oc-cli-commands-reference">oc config new-admin-kubeconfig</a></li><li class="level-5"><a href="#microshift-oc-config-new-kubelet-bootstrap-kubeconfig_oc-cli-commands-reference">oc config new-kubelet-bootstrap-kubeconfig</a></li><li class="level-5"><a href="#microshift-oc-config-refresh-ca-bundle_oc-cli-commands-reference">oc config refresh-ca-bundle</a></li><li class="level-5"><a href="#microshift-oc-config-rename-context_oc-cli-commands-reference">oc config rename-context</a></li><li class="level-5"><a href="#microshift-oc-config-set_oc-cli-commands-reference">oc config set</a></li><li class="level-5"><a href="#microshift-oc-config-set-cluster_oc-cli-commands-reference">oc config set-cluster</a></li><li class="level-5"><a href="#microshift-oc-config-set-context_oc-cli-commands-reference">oc config set-context</a></li><li class="level-5"><a href="#microshift-oc-config-set-credentials_oc-cli-commands-reference">oc config set-credentials</a></li><li class="level-5"><a href="#microshift-oc-config-unset_oc-cli-commands-reference">oc config unset</a></li><li class="level-5"><a href="#microshift-oc-config-use-context_oc-cli-commands-reference">oc config use-context</a></li><li class="level-5"><a href="#microshift-oc-config-view_oc-cli-commands-reference">oc config view</a></li><li class="level-5"><a href="#microshift-oc-cp_oc-cli-commands-reference">oc cp</a></li><li class="level-5"><a href="#microshift-oc-create_oc-cli-commands-reference">oc create</a></li><li class="level-5"><a href="#microshift-oc-create-cluster-role_oc-cli-commands-reference">oc create clusterrole</a></li><li class="level-5"><a href="#microshift-oc-create-cluster-role-binding_oc-cli-commands-reference">oc create clusterrolebinding</a></li><li class="level-5"><a href="#microshift-oc-create-config-map_oc-cli-commands-reference">oc create configmap</a></li><li class="level-5"><a href="#microshift-oc-create-cronjob_oc-cli-commands-reference">oc create cronjob</a></li><li class="level-5"><a href="#microshift-oc-create-deployment_oc-cli-commands-reference">oc create deployment</a></li><li class="level-5"><a href="#microshift-oc-create-ingress_oc-cli-commands-reference">oc create ingress</a></li><li class="level-5"><a href="#microshift-oc-create-job_oc-cli-commands-reference">oc create job</a></li><li class="level-5"><a href="#microshift-oc-create-namespace_oc-cli-commands-reference">oc create namespace</a></li><li class="level-5"><a href="#microshift-oc-create-poddisruptionbudget_oc-cli-commands-reference">oc create poddisruptionbudget</a></li><li class="level-5"><a href="#microshift-oc-create-priorityclass_oc-cli-commands-reference">oc create priorityclass</a></li><li class="level-5"><a href="#microshift-oc-create-quota_oc-cli-commands-reference">oc create quota</a></li><li class="level-5"><a href="#microshift-oc-create-role_oc-cli-commands-reference">oc create role</a></li><li class="level-5"><a href="#microshift-oc-create-rolebinding_oc-cli-commands-reference">oc create rolebinding</a></li><li class="level-5"><a href="#microshift-oc-create-route-edge_oc-cli-commands-reference">oc create route edge</a></li><li class="level-5"><a href="#microshift-oc-create-route-passthrough_oc-cli-commands-reference">oc create route passthrough</a></li><li class="level-5"><a href="#microshift-oc-create-route-reencrypt_oc-cli-commands-reference">oc create route reencrypt</a></li><li class="level-5"><a href="#microshift-oc-create-secret-docker-registry_oc-cli-commands-reference">oc create secret docker-registry</a></li><li class="level-5"><a href="#microshift-oc-create-secret-generic_oc-cli-commands-reference">oc create secret generic</a></li><li class="level-5"><a href="#microshift-oc-create-secret-tls_oc-cli-commands-reference">oc create secret tls</a></li><li class="level-5"><a href="#microshift-oc-create-service-clusterip_oc-cli-commands-reference">oc create service clusterip</a></li><li class="level-5"><a href="#microshift-oc-create-service-externalname_oc-cli-commands-reference">oc create service externalname</a></li><li class="level-5"><a href="#microshift-oc-create-service-loadbalancer_oc-cli-commands-reference">oc create service loadbalancer</a></li><li class="level-5"><a href="#microshift-oc-create-service-nodeport_oc-cli-commands-reference">oc create service nodeport</a></li><li class="level-5"><a href="#microshift-oc-create-serviceaccount_oc-cli-commands-reference">oc create serviceaccount</a></li><li class="level-5"><a href="#microshift-oc-create-token_oc-cli-commands-reference">oc create token</a></li><li class="level-5"><a href="#microshift-oc-debug_oc-cli-commands-reference">oc debug</a></li><li class="level-5"><a href="#microshift-oc-delete_oc-cli-commands-reference">oc delete</a></li><li class="level-5"><a href="#microshift-oc-describe_oc-cli-commands-reference">oc describe</a></li><li class="level-5"><a href="#microshift-oc-diff_oc-cli-commands-reference">oc diff</a></li><li class="level-5"><a href="#microshift-oc-edit_oc-cli-commands-reference">oc edit</a></li><li class="level-5"><a href="#microshift-oc-events_oc-cli-commands-reference">oc events</a></li><li class="level-5"><a href="#microshift-oc-exec_oc-cli-commands-reference">oc exec</a></li><li class="level-5"><a href="#microshift-oc-explain_oc-cli-commands-reference">oc explain</a></li><li class="level-5"><a href="#microshift-oc-expose_oc-cli-commands-reference">oc expose</a></li><li class="level-5"><a href="#microshift-oc-extract_oc-cli-commands-reference">oc extract</a></li><li class="level-5"><a href="#microshift-oc-get_oc-cli-commands-reference">oc get</a></li><li class="level-5"><a href="#microshift-oc-image-append_oc-cli-commands-reference">oc image append</a></li><li class="level-5"><a href="#microshift-oc-image-extract_oc-cli-commands-reference">oc image extract</a></li><li class="level-5"><a href="#microshift-oc-image-info_oc-cli-commands-reference">oc image info</a></li><li class="level-5"><a href="#microshift-oc-image-mirror_oc-cli-commands-reference">oc image mirror</a></li><li class="level-5"><a href="#microshift-oc-kustomize_oc-cli-commands-reference">oc kustomize</a></li><li class="level-5"><a href="#microshift-oc-label_oc-cli-commands-reference">oc label</a></li><li class="level-5"><a href="#microshift-oc-logs_oc-cli-commands-reference">oc logs</a></li><li class="level-5"><a href="#microshift-oc-observe_oc-cli-commands-reference">oc observe</a></li><li class="level-5"><a href="#microshift-oc-patch_oc-cli-commands-reference">oc patch</a></li><li class="level-5"><a href="#microshift-oc-plugin-list_oc-cli-commands-reference">oc plugin list</a></li><li class="level-5"><a href="#microshift-oc-policy-add-role-to-user_oc-cli-commands-reference">oc policy add-role-to-user</a></li><li class="level-5"><a href="#microshift-oc-policy-scc-review_oc-cli-commands-reference">oc policy scc-review</a></li><li class="level-5"><a href="#microshift-oc-policy-scc-subject-review_oc-cli-commands-reference">oc policy scc-subject-review</a></li><li class="level-5"><a href="#microshift-oc-port-forward_oc-cli-commands-reference">oc port-forward</a></li><li class="level-5"><a href="#microshift-oc-proxy_oc-cli-commands-reference">oc proxy</a></li><li class="level-5"><a href="#microshift-oc-rollback_oc-cli-commands-reference">oc rollback</a></li><li class="level-5"><a href="#microshift-oc-rollout-cancel_oc-cli-commands-reference">oc rollout cancel</a></li><li class="level-5"><a href="#microshift-oc-rollout-history_oc-cli-commands-reference">oc rollout history</a></li><li class="level-5"><a href="#microshift-oc-rollout-latest_oc-cli-commands-reference">oc rollout latest</a></li><li class="level-5"><a href="#microshift-oc-rollout-pause_oc-cli-commands-reference">oc rollout pause</a></li><li class="level-5"><a href="#microshift-oc-rollout-restart_oc-cli-commands-reference">oc rollout restart</a></li><li class="level-5"><a href="#microshift-oc-rollout-resume_oc-cli-commands-reference">oc rollout resume</a></li><li class="level-5"><a href="#microshift-oc-rollout-retry_oc-cli-commands-reference">oc rollout retry</a></li><li class="level-5"><a href="#microshift-oc-rollout-status_oc-cli-commands-reference">oc rollout status</a></li><li class="level-5"><a href="#microshift-oc-rollout-undo_oc-cli-commands-reference">oc rollout undo</a></li><li class="level-5"><a href="#microshift-oc-rsh_oc-cli-commands-reference">oc rsh</a></li><li class="level-5"><a href="#microshift-oc-rsync_oc-cli-commands-reference">oc rsync</a></li><li class="level-5"><a href="#microshift-oc-run_oc-cli-commands-reference">oc run</a></li><li class="level-5"><a href="#microshift-oc-scale_oc-cli-commands-reference">oc scale</a></li><li class="level-5"><a href="#microshift-oc-secrets-link_oc-cli-commands-reference">oc secrets link</a></li><li class="level-5"><a href="#microshift-oc-secrets-unlink_oc-cli-commands-reference">oc secrets unlink</a></li><li class="level-5"><a href="#microshift-oc-set-data_oc-cli-commands-reference">oc set data</a></li><li class="level-5"><a href="#microshift-oc-set-env_oc-cli-commands-reference">oc set env</a></li><li class="level-5"><a href="#microshift-oc-set-image_oc-cli-commands-reference">oc set image</a></li><li class="level-5"><a href="#microshift-oc-set-image-lookup_oc-cli-commands-reference">oc set image-lookup</a></li><li class="level-5"><a href="#microshift-oc-set-probe_oc-cli-commands-reference">oc set probe</a></li><li class="level-5"><a href="#microshift-oc-set-resources_oc-cli-commands-reference">oc set resources</a></li><li class="level-5"><a href="#microshift-oc-set-route-backends_oc-cli-commands-reference">oc set route-backends</a></li><li class="level-5"><a href="#microshift-oc-set-selector_oc-cli-commands-reference">oc set selector</a></li><li class="level-5"><a href="#microshift-oc-set-serviceaccount_oc-cli-commands-reference">oc set serviceaccount</a></li><li class="level-5"><a href="#microshift-oc-set-subject_oc-cli-commands-reference">oc set subject</a></li><li class="level-5"><a href="#microshift-oc-set-volumes_oc-cli-commands-reference">oc set volumes</a></li><li class="level-5"><a href="#microshift-oc-tag_oc-cli-commands-reference">oc tag</a></li><li class="level-5"><a href="#microshift-oc-version_oc-cli-commands-reference">oc version</a></li><li class="level-5"><a href="#microshift-oc-wait_oc-cli-commands-reference">oc wait</a></li><li class="level-4"><a href="#microshift-cli-admin_oc-cli-commands-reference">OpenShift CLI (oc) administrator commands</a></li><li class="level-5"><a href="#microshift-oc-adm-inspect_oc-cli-commands-reference">oc adm inspect</a></li><li class="level-5"><a href="#microshift-oc-adm-release-extract_oc-cli-commands-reference">oc adm release extract</a></li><li class="level-5"><a href="#microshift-oc-adm-release-info_oc-cli-commands-reference">oc adm release info</a></li><li class="level-5"><a href="#microshift-oc-adm-taint_oc-cli-commands-reference">oc adm taint</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-oc-cli-commands-reference_oc-cli-commands-reference">oc CLI commands reference</h3>
 <div class="paragraph _abstract">
 <p>This reference covers the <code>oc</code> and <code>oc adm</code> commands available for use with MicroShift. The <code>oc</code> binary provides commands for managing applications, resources, and cluster state. The <code>oc adm</code> commands cover cluster administration tasks. MicroShift supports a subset of the full OpenShift Container Platform command set.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-oc-cmd_oc-cli-commands-reference">OpenShift administrator commands</h4>
+<div class="paragraph _abstract">
+<p>If you have <code>cluster-admin</code> or equivalent permissions, you can list administrator commands.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-oc-cmd_oc-cli-commands-reference.html">OpenShift administrator commands</a></p>
+<p>Enter the <code>oc adm -h</code> command to list all administrator commands:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm -h</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p><a href="microshift-cli-developer_oc-cli-commands-reference.html">OpenShift CLI (oc) developer commands</a></p>
-</li>
-<li>
-<p><a href="microshift-cli-admin_oc-cli-commands-reference.html">OpenShift CLI (oc) administrator commands</a></p>
+<p>Enter the <code>oc &lt;command&gt; --help</code> command to get additional details for a specific command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc &lt;command&gt; --help</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Using <code>oc &lt;command&gt; --help</code> lists details for any <code>oc</code> command. Not all <code>oc</code> commands apply to using Red&#160;Hat build of MicroShift.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-cli-developer_oc-cli-commands-reference">OpenShift CLI (oc) developer commands</h4>
+<div class="paragraph _abstract">
+<p>You can use the <code>oc</code> command-line tool to manage your applications and interact with your MicroShift cluster. Use the following commands, along with their descriptions and example usage, to work with your cluster resources.</p>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-annotate_oc-cli-commands-reference">oc annotate</h5>
+<div class="paragraph">
+<p>Update the annotations on a resource</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Update pod 'foo' with the annotation 'description' and the value 'my frontend'
+  # If the same annotation is set multiple times, only the last value will be applied
+  oc annotate pods foo description='my frontend'
+
+  # Update a pod identified by type and name in "pod.json"
+  oc annotate -f pod.json description='my frontend'
+
+  # Update pod 'foo' with the annotation 'description' and the value 'my frontend running nginx', overwriting any existing value
+  oc annotate --overwrite pods foo description='my frontend running nginx'
+
+  # Update all pods in the namespace
+  oc annotate pods --all description='my frontend running nginx'
+
+  # Update pod 'foo' only if the resource is unchanged from version 1
+  oc annotate pods foo description='my frontend running nginx' --resource-version=1
+
+  # Update pod 'foo' by removing an annotation named 'description' if it exists
+  # Does not require the --overwrite flag
+  oc annotate pods foo description-</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-api-resources_oc-cli-commands-reference">oc api-resources</h5>
+<div class="paragraph">
+<p>Print the supported API resources on the server</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Print the supported API resources
+  oc api-resources
+
+  # Print the supported API resources with more information
+  oc api-resources -o wide
+
+  # Print the supported API resources sorted by a column
+  oc api-resources --sort-by=name
+
+  # Print the supported namespaced resources
+  oc api-resources --namespaced=true
+
+  # Print the supported non-namespaced resources
+  oc api-resources --namespaced=false
+
+  # Print the supported API resources with a specific APIGroup
+  oc api-resources --api-group=rbac.authorization.k8s.io</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-api-versions_oc-cli-commands-reference">oc api-versions</h5>
+<div class="paragraph">
+<p>Print the supported API versions on the server, in the form of "group/version"</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Print the supported API versions
+  oc api-versions</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-apply_oc-cli-commands-reference">oc apply</h5>
+<div class="paragraph">
+<p>Apply a configuration to a resource by file name or stdin</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Apply the configuration in pod.json to a pod
+  oc apply -f ./pod.json
+
+  # Apply resources from a directory containing kustomization.yaml - e.g. dir/kustomization.yaml
+  oc apply -k dir/
+
+  # Apply the JSON passed into stdin to a pod
+  cat pod.json | oc apply -f -
+
+  # Apply the configuration from all files that end with '.json' - i.e. expand wildcard characters in file names
+  oc apply -f '*.json'
+
+  # Note: --prune is still in Alpha
+  # Apply the configuration in manifest.yaml that matches label app=nginx and delete all other resources that are not in the file and match label app=nginx
+  oc apply --prune -f manifest.yaml -l app=nginx
+
+  # Apply the configuration in manifest.yaml and delete all the other config maps that are not in the file
+  oc apply --prune -f manifest.yaml --all --prune-allowlist=core/v1/ConfigMap</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-apply-edit-last-applied_oc-cli-commands-reference">oc apply edit-last-applied</h5>
+<div class="paragraph">
+<p>Edit latest last-applied-configuration annotations of a resource/object</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Edit the last-applied-configuration annotations by type/name in YAML
+  oc apply edit-last-applied deployment/nginx
+
+  # Edit the last-applied-configuration annotations by file in JSON
+  oc apply edit-last-applied -f deploy.yaml -o json</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-apply-set-last-applied_oc-cli-commands-reference">oc apply set-last-applied</h5>
+<div class="paragraph">
+<p>Set the last-applied-configuration annotation on a live object to match the contents of a file</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Set the last-applied-configuration of a resource to match the contents of a file
+  oc apply set-last-applied -f deploy.yaml
+
+  # Execute set-last-applied against each configuration file in a directory
+  oc apply set-last-applied -f path/
+
+  # Set the last-applied-configuration of a resource to match the contents of a file; will create the annotation if it does not already exist
+  oc apply set-last-applied -f deploy.yaml --create-annotation=true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-apply-view-last-applied_oc-cli-commands-reference">oc apply view-last-applied</h5>
+<div class="paragraph">
+<p>View the latest last-applied-configuration annotations of a resource/object</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # View the last-applied-configuration annotations by type/name in YAML
+  oc apply view-last-applied deployment/nginx
+
+  # View the last-applied-configuration annotations by file in JSON
+  oc apply view-last-applied -f deploy.yaml -o json</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-attach_oc-cli-commands-reference">oc attach</h5>
+<div class="paragraph">
+<p>Attach to a running container</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Get output from running pod mypod; use the 'oc.kubernetes.io/default-container' annotation
+  # for selecting the container to be attached or the first container in the pod will be chosen
+  oc attach mypod
+
+  # Get output from ruby-container from pod mypod
+  oc attach mypod -c ruby-container
+
+  # Switch to raw terminal mode; sends stdin to 'bash' in ruby-container from pod mypod
+  # and sends stdout/stderr from 'bash' back to the client
+  oc attach mypod -c ruby-container -i -t
+
+  # Get output from the first pod of a replica set named nginx
+  oc attach rs/nginx</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-auth-can-i_oc-cli-commands-reference">oc auth can-i</h5>
+<div class="paragraph">
+<p>Check whether an action is allowed</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Check to see if I can create pods in any namespace
+  oc auth can-i create pods --all-namespaces
+
+  # Check to see if I can list deployments in my current namespace
+  oc auth can-i list deployments.apps
+
+  # Check to see if service account "foo" of namespace "dev" can list pods
+  # in the namespace "prod".
+  # You must be allowed to use impersonation for the global option "--as".
+  oc auth can-i list pods --as=system:serviceaccount:dev:foo -n prod
+
+  # Check to see if I can do everything in my current namespace ("*" means all)
+  oc auth can-i '*' '*'
+
+  # Check to see if I can get the job named "bar" in namespace "foo"
+  oc auth can-i list jobs.batch/bar -n foo
+
+  # Check to see if I can read pod logs
+  oc auth can-i get pods --subresource=log
+
+  # Check to see if I can access the URL /logs/
+  oc auth can-i get /logs/
+
+  # List all allowed actions in namespace "foo"
+  oc auth can-i --list --namespace=foo</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-auth-reconcile_oc-cli-commands-reference">oc auth reconcile</h5>
+<div class="paragraph">
+<p>Reconciles rules for RBAC role, role binding, cluster role, and cluster role binding objects</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Reconcile RBAC resources from a file
+  oc auth reconcile -f my-rbac-rules.yaml</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-auth-whoami_oc-cli-commands-reference">oc auth whoami</h5>
+<div class="paragraph">
+<p>Experimental: Check self subject attributes</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Get your subject attributes.
+  oc auth whoami
+
+  # Get your subject attributes in JSON format.
+  oc auth whoami -o json</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-cluster-info_oc-cli-commands-reference">oc cluster-info</h5>
+<div class="paragraph">
+<p>Display cluster information</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Print the address of the control plane and cluster services
+  oc cluster-info</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-cluster-info-dump_oc-cli-commands-reference">oc cluster-info dump</h5>
+<div class="paragraph">
+<p>Dump relevant information for debugging and diagnosis</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Dump current cluster state to stdout
+  oc cluster-info dump
+
+  # Dump current cluster state to /path/to/cluster-state
+  oc cluster-info dump --output-directory=/path/to/cluster-state
+
+  # Dump all namespaces to stdout
+  oc cluster-info dump --all-namespaces
+
+  # Dump a set of namespaces to /path/to/cluster-state
+  oc cluster-info dump --namespaces default,kube-system --output-directory=/path/to/cluster-state</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-completion_oc-cli-commands-reference">oc completion</h5>
+<div class="paragraph">
+<p>Output shell completion code for the specified shell (bash, zsh, fish, or powershell)</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Installing bash completion on macOS using homebrew
+  ## If running Bash 3.2 included with macOS
+  brew install bash-completion
+  ## or, if running Bash 4.1+
+  brew install bash-completion@2
+  ## If oc is installed via homebrew, this should start working immediately
+  ## If you've installed via other means, you may need add the completion to your completion directory
+  oc completion bash &gt; $(brew --prefix)/etc/bash_completion.d/oc
+
+
+  # Installing bash completion on Linux
+  ## If bash-completion is not installed on Linux, install the 'bash-completion' package
+  ## via your distribution's package manager.
+  ## Load the oc completion code for bash into the current shell
+  source &lt;(oc completion bash)
+  ## Write bash completion code to a file and source it from .bash_profile
+  oc completion bash &gt; ~/.kube/completion.bash.inc
+  printf "
+  # Kubectl shell completion
+  source '$HOME/.kube/completion.bash.inc'
+  " &gt;&gt; $HOME/.bash_profile
+  source $HOME/.bash_profile
+
+  # Load the oc completion code for zsh[1] into the current shell
+  source &lt;(oc completion zsh)
+  # Set the oc completion code for zsh[1] to autoload on startup
+  oc completion zsh &gt; "${fpath[1]}/_oc"
+
+
+  # Load the oc completion code for fish[2] into the current shell
+  oc completion fish | source
+  # To load completions for each session, execute once:
+  oc completion fish &gt; ~/.config/fish/completions/oc.fish
+
+  # Load the oc completion code for powershell into the current shell
+  oc completion powershell | Out-String | Invoke-Expression
+  # Set oc completion code for powershell to run on startup
+  ## Save completion code to a script and execute in the profile
+  oc completion powershell &gt; $HOME\.kube\completion.ps1
+  Add-Content $PROFILE "$HOME\.kube\completion.ps1"
+  ## Execute completion code in the profile
+  Add-Content $PROFILE "if (Get-Command oc -ErrorAction SilentlyContinue) {
+  oc completion powershell | Out-String | Invoke-Expression
+  }"
+  ## Add completion code directly to the $PROFILE script
+  oc completion powershell &gt;&gt; $PROFILE</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-current-context_oc-cli-commands-reference">oc config current-context</h5>
+<div class="paragraph">
+<p>Display the current-context</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Display the current-context
+  oc config current-context</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-delete-cluster_oc-cli-commands-reference">oc config delete-cluster</h5>
+<div class="paragraph">
+<p>Delete the specified cluster from the kubeconfig</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Delete the minikube cluster
+  oc config delete-cluster minikube</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-delete-context_oc-cli-commands-reference">oc config delete-context</h5>
+<div class="paragraph">
+<p>Delete the specified context from the kubeconfig</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Delete the context for the minikube cluster
+  oc config delete-context minikube</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-delete-user_oc-cli-commands-reference">oc config delete-user</h5>
+<div class="paragraph">
+<p>Delete the specified user from the kubeconfig</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Delete the minikube user
+  oc config delete-user minikube</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-get-clusters_oc-cli-commands-reference">oc config get-clusters</h5>
+<div class="paragraph">
+<p>Display clusters defined in the kubeconfig</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # List the clusters that oc knows about
+  oc config get-clusters</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-get-contexts_oc-cli-commands-reference">oc config get-contexts</h5>
+<div class="paragraph">
+<p>Describe one or many contexts</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # List all the contexts in your kubeconfig file
+  oc config get-contexts
+
+  # Describe one context in your kubeconfig file
+  oc config get-contexts my-context</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-get-users_oc-cli-commands-reference">oc config get-users</h5>
+<div class="paragraph">
+<p>Display users defined in the kubeconfig</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # List the users that oc knows about
+  oc config get-users</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-new-admin-kubeconfig_oc-cli-commands-reference">oc config new-admin-kubeconfig</h5>
+<div class="paragraph">
+<p>Generate, make the server trust, and display a new admin.kubeconfig.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Generate a new admin kubeconfig
+  oc config new-admin-kubeconfig</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-new-kubelet-bootstrap-kubeconfig_oc-cli-commands-reference">oc config new-kubelet-bootstrap-kubeconfig</h5>
+<div class="paragraph">
+<p>Generate, make the server trust, and display a new kubelet /etc/kubernetes/kubeconfig.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Generate a new kubelet bootstrap kubeconfig
+  oc config new-kubelet-bootstrap-kubeconfig</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-refresh-ca-bundle_oc-cli-commands-reference">oc config refresh-ca-bundle</h5>
+<div class="paragraph">
+<p>Update the OpenShift CA bundle by contacting the apiserver.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Refresh the CA bundle for the current context's cluster
+  oc config refresh-ca-bundle
+
+  # Refresh the CA bundle for the cluster named e2e in your kubeconfig
+  oc config refresh-ca-bundle e2e
+
+  # Print the CA bundle from the current OpenShift cluster's apiserver.
+  oc config refresh-ca-bundle --dry-run</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-rename-context_oc-cli-commands-reference">oc config rename-context</h5>
+<div class="paragraph">
+<p>Rename a context from the kubeconfig file</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Rename the context 'old-name' to 'new-name' in your kubeconfig file
+  oc config rename-context old-name new-name</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-set_oc-cli-commands-reference">oc config set</h5>
+<div class="paragraph">
+<p>Set an individual value in a kubeconfig file</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Set the server field on the my-cluster cluster to https://1.2.3.4
+  oc config set clusters.my-cluster.server https://1.2.3.4
+
+  # Set the certificate-authority-data field on the my-cluster cluster
+  oc config set clusters.my-cluster.certificate-authority-data $(echo "cert_data_here" | base64 -i -)
+
+  # Set the cluster field in the my-context context to my-cluster
+  oc config set contexts.my-context.cluster my-cluster
+
+  # Set the client-key-data field in the cluster-admin user using --set-raw-bytes option
+  oc config set users.cluster-admin.client-key-data cert_data_here --set-raw-bytes=true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-set-cluster_oc-cli-commands-reference">oc config set-cluster</h5>
+<div class="paragraph">
+<p>Set a cluster entry in kubeconfig</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Set only the server field on the e2e cluster entry without touching other values
+  oc config set-cluster e2e --server=https://1.2.3.4
+
+  # Embed certificate authority data for the e2e cluster entry
+  oc config set-cluster e2e --embed-certs --certificate-authority=~/.kube/e2e/kubernetes.ca.crt
+
+  # Disable cert checking for the e2e cluster entry
+  oc config set-cluster e2e --insecure-skip-tls-verify=true
+
+  # Set custom TLS server name to use for validation for the e2e cluster entry
+  oc config set-cluster e2e --tls-server-name=my-cluster-name
+
+  # Set proxy url for the e2e cluster entry
+  oc config set-cluster e2e --proxy-url=https://1.2.3.4</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-set-context_oc-cli-commands-reference">oc config set-context</h5>
+<div class="paragraph">
+<p>Set a context entry in kubeconfig</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Set the user field on the gce context entry without touching other values
+  oc config set-context gce --user=cluster-admin</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-set-credentials_oc-cli-commands-reference">oc config set-credentials</h5>
+<div class="paragraph">
+<p>Set a user entry in kubeconfig</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Set only the "client-key" field on the "cluster-admin"
+  # entry, without touching other values
+  oc config set-credentials cluster-admin --client-key=~/.kube/admin.key
+
+  # Set basic auth for the "cluster-admin" entry
+  oc config set-credentials cluster-admin --username=admin --password=uXFGweU9l35qcif
+
+  # Embed client certificate data in the "cluster-admin" entry
+  oc config set-credentials cluster-admin --client-certificate=~/.kube/admin.crt --embed-certs=true
+
+  # Enable the Google Compute Platform auth provider for the "cluster-admin" entry
+  oc config set-credentials cluster-admin --auth-provider=gcp
+
+  # Enable the OpenID Connect auth provider for the "cluster-admin" entry with additional args
+  oc config set-credentials cluster-admin --auth-provider=oidc --auth-provider-arg=client-id=foo --auth-provider-arg=client-secret=bar
+
+  # Remove the "client-secret" config value for the OpenID Connect auth provider for the "cluster-admin" entry
+  oc config set-credentials cluster-admin --auth-provider=oidc --auth-provider-arg=client-secret-
+
+  # Enable new exec auth plugin for the "cluster-admin" entry
+  oc config set-credentials cluster-admin --exec-command=/path/to/the/executable --exec-api-version=client.authentication.k8s.io/v1beta1
+
+  # Define new exec auth plugin args for the "cluster-admin" entry
+  oc config set-credentials cluster-admin --exec-arg=arg1 --exec-arg=arg2
+
+  # Create or update exec auth plugin environment variables for the "cluster-admin" entry
+  oc config set-credentials cluster-admin --exec-env=key1=val1 --exec-env=key2=val2
+
+  # Remove exec auth plugin environment variables for the "cluster-admin" entry
+  oc config set-credentials cluster-admin --exec-env=var-to-remove-</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-unset_oc-cli-commands-reference">oc config unset</h5>
+<div class="paragraph">
+<p>Unset an individual value in a kubeconfig file</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Unset the current-context
+  oc config unset current-context
+
+  # Unset namespace in foo context
+  oc config unset contexts.foo.namespace</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-use-context_oc-cli-commands-reference">oc config use-context</h5>
+<div class="paragraph">
+<p>Set the current-context in a kubeconfig file</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Use the context for the minikube cluster
+  oc config use-context minikube</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-config-view_oc-cli-commands-reference">oc config view</h5>
+<div class="paragraph">
+<p>Display merged kubeconfig settings or a specified kubeconfig file</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Show merged kubeconfig settings
+  oc config view
+
+  # Show merged kubeconfig settings and raw certificate data and exposed secrets
+  oc config view --raw
+
+  # Get the password for the e2e user
+  oc config view -o jsonpath='{.users[?(@.name == "e2e")].user.password}'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-cp_oc-cli-commands-reference">oc cp</h5>
+<div class="paragraph">
+<p>Copy files and directories to and from containers</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # !!!Important Note!!!
+  # Requires that the 'tar' binary is present in your container
+  # image.  If 'tar' is not present, 'oc cp' will fail.
+  #
+  # For advanced use cases, such as symlinks, wildcard expansion or
+  # file mode preservation, consider using 'oc exec'.
+
+  # Copy /tmp/foo local file to /tmp/bar in a remote pod in namespace &lt;some-namespace&gt;
+  tar cf - /tmp/foo | oc exec -i -n &lt;some-namespace&gt; &lt;some-pod&gt; -- tar xf - -C /tmp/bar
+
+  # Copy /tmp/foo from a remote pod to /tmp/bar locally
+  oc exec -n &lt;some-namespace&gt; &lt;some-pod&gt; -- tar cf - /tmp/foo | tar xf - -C /tmp/bar
+
+  # Copy /tmp/foo_dir local directory to /tmp/bar_dir in a remote pod in the default namespace
+  oc cp /tmp/foo_dir &lt;some-pod&gt;:/tmp/bar_dir
+
+  # Copy /tmp/foo local file to /tmp/bar in a remote pod in a specific container
+  oc cp /tmp/foo &lt;some-pod&gt;:/tmp/bar -c &lt;specific-container&gt;
+
+  # Copy /tmp/foo local file to /tmp/bar in a remote pod in namespace &lt;some-namespace&gt;
+  oc cp /tmp/foo &lt;some-namespace&gt;/&lt;some-pod&gt;:/tmp/bar
+
+  # Copy /tmp/foo from a remote pod to /tmp/bar locally
+  oc cp &lt;some-namespace&gt;/&lt;some-pod&gt;:/tmp/foo /tmp/bar</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create_oc-cli-commands-reference">oc create</h5>
+<div class="paragraph">
+<p>Create a resource from a file or from stdin</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a pod using the data in pod.json
+  oc create -f ./pod.json
+
+  # Create a pod based on the JSON passed into stdin
+  cat pod.json | oc create -f -
+
+  # Edit the data in registry.yaml in JSON then create the resource using the edited data
+  oc create -f registry.yaml --edit -o json</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-cluster-role_oc-cli-commands-reference">oc create clusterrole</h5>
+<div class="paragraph">
+<p>Create a cluster role</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a cluster role named "pod-reader" that allows user to perform "get", "watch" and "list" on pods
+  oc create clusterrole pod-reader --verb=get,list,watch --resource=pods
+
+  # Create a cluster role named "pod-reader" with ResourceName specified
+  oc create clusterrole pod-reader --verb=get --resource=pods --resource-name=readablepod --resource-name=anotherpod
+
+  # Create a cluster role named "foo" with API Group specified
+  oc create clusterrole foo --verb=get,list,watch --resource=rs.apps
+
+  # Create a cluster role named "foo" with SubResource specified
+  oc create clusterrole foo --verb=get,list,watch --resource=pods,pods/status
+
+  # Create a cluster role name "foo" with NonResourceURL specified
+  oc create clusterrole "foo" --verb=get --non-resource-url=/logs/*
+
+  # Create a cluster role name "monitoring" with AggregationRule specified
+  oc create clusterrole monitoring --aggregation-rule="rbac.example.com/aggregate-to-monitoring=true"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-cluster-role-binding_oc-cli-commands-reference">oc create clusterrolebinding</h5>
+<div class="paragraph">
+<p>Create a cluster role binding for a particular cluster role</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a cluster role binding for user1, user2, and group1 using the cluster-admin cluster role
+  oc create clusterrolebinding cluster-admin --clusterrole=cluster-admin --user=user1 --user=user2 --group=group1</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-config-map_oc-cli-commands-reference">oc create configmap</h5>
+<div class="paragraph">
+<p>Create a config map from a local file, directory or literal value</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a new config map named my-config based on folder bar
+  oc create configmap my-config --from-file=path/to/bar
+
+  # Create a new config map named my-config with specified keys instead of file basenames on disk
+  oc create configmap my-config --from-file=key1=/path/to/bar/file1.txt --from-file=key2=/path/to/bar/file2.txt
+
+  # Create a new config map named my-config with key1=config1 and key2=config2
+  oc create configmap my-config --from-literal=key1=config1 --from-literal=key2=config2
+
+  # Create a new config map named my-config from the key=value pairs in the file
+  oc create configmap my-config --from-file=path/to/bar
+
+  # Create a new config map named my-config from an env file
+  oc create configmap my-config --from-env-file=path/to/foo.env --from-env-file=path/to/bar.env</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-cronjob_oc-cli-commands-reference">oc create cronjob</h5>
+<div class="paragraph">
+<p>Create a cron job with the specified name</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a cron job
+  oc create cronjob my-job --image=busybox --schedule="*/1 * * * *"
+
+  # Create a cron job with a command
+  oc create cronjob my-job --image=busybox --schedule="*/1 * * * *" -- date</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-deployment_oc-cli-commands-reference">oc create deployment</h5>
+<div class="paragraph">
+<p>Create a deployment with the specified name</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a deployment named my-dep that runs the busybox image
+  oc create deployment my-dep --image=busybox
+
+  # Create a deployment with a command
+  oc create deployment my-dep --image=busybox -- date
+
+  # Create a deployment named my-dep that runs the nginx image with 3 replicas
+  oc create deployment my-dep --image=nginx --replicas=3
+
+  # Create a deployment named my-dep that runs the busybox image and expose port 5701
+  oc create deployment my-dep --image=busybox --port=5701</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-ingress_oc-cli-commands-reference">oc create ingress</h5>
+<div class="paragraph">
+<p>Create an ingress with the specified name</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a single ingress called 'simple' that directs requests to foo.com/bar to svc
+  # svc1:8080 with a tls secret "my-cert"
+  oc create ingress simple --rule="foo.com/bar=svc1:8080,tls=my-cert"
+
+  # Create a catch all ingress of "/path" pointing to service svc:port and Ingress Class as "otheringress"
+  oc create ingress catch-all --class=otheringress --rule="/path=svc:port"
+
+  # Create an ingress with two annotations: ingress.annotation1 and ingress.annotations2
+  oc create ingress annotated --class=default --rule="foo.com/bar=svc:port" \
+  --annotation ingress.annotation1=foo \
+  --annotation ingress.annotation2=bla
+
+  # Create an ingress with the same host and multiple paths
+  oc create ingress multipath --class=default \
+  --rule="foo.com/=svc:port" \
+  --rule="foo.com/admin/=svcadmin:portadmin"
+
+  # Create an ingress with multiple hosts and the pathType as Prefix
+  oc create ingress ingress1 --class=default \
+  --rule="foo.com/path*=svc:8080" \
+  --rule="bar.com/admin*=svc2:http"
+
+  # Create an ingress with TLS enabled using the default ingress certificate and different path types
+  oc create ingress ingtls --class=default \
+  --rule="foo.com/=svc:https,tls" \
+  --rule="foo.com/path/subpath*=othersvc:8080"
+
+  # Create an ingress with TLS enabled using a specific secret and pathType as Prefix
+  oc create ingress ingsecret --class=default \
+  --rule="foo.com/*=svc:8080,tls=secret1"
+
+  # Create an ingress with a default backend
+  oc create ingress ingdefault --class=default \
+  --default-backend=defaultsvc:http \
+  --rule="foo.com/*=svc:8080,tls=secret1"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-job_oc-cli-commands-reference">oc create job</h5>
+<div class="paragraph">
+<p>Create a job with the specified name</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a job
+  oc create job my-job --image=busybox
+
+  # Create a job with a command
+  oc create job my-job --image=busybox -- date
+
+  # Create a job from a cron job named "a-cronjob"
+  oc create job test-job --from=cronjob/a-cronjob</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-namespace_oc-cli-commands-reference">oc create namespace</h5>
+<div class="paragraph">
+<p>Create a namespace with the specified name</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a new namespace named my-namespace
+  oc create namespace my-namespace</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-poddisruptionbudget_oc-cli-commands-reference">oc create poddisruptionbudget</h5>
+<div class="paragraph">
+<p>Create a pod disruption budget with the specified name</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a pod disruption budget named my-pdb that will select all pods with the app=rails label
+  # and require at least one of them being available at any point in time
+  oc create poddisruptionbudget my-pdb --selector=app=rails --min-available=1
+
+  # Create a pod disruption budget named my-pdb that will select all pods with the app=nginx label
+  # and require at least half of the pods selected to be available at any point in time
+  oc create pdb my-pdb --selector=app=nginx --min-available=50%</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-priorityclass_oc-cli-commands-reference">oc create priorityclass</h5>
+<div class="paragraph">
+<p>Create a priority class with the specified name</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a priority class named high-priority
+  oc create priorityclass high-priority --value=1000 --description="high priority"
+
+  # Create a priority class named default-priority that is considered as the global default priority
+  oc create priorityclass default-priority --value=1000 --global-default=true --description="default priority"
+
+  # Create a priority class named high-priority that cannot preempt pods with lower priority
+  oc create priorityclass high-priority --value=1000 --description="high priority" --preemption-policy="Never"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-quota_oc-cli-commands-reference">oc create quota</h5>
+<div class="paragraph">
+<p>Create a quota with the specified name</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a new resource quota named my-quota
+  oc create quota my-quota --hard=cpu=1,memory=1G,pods=2,services=3,replicationcontrollers=2,resourcequotas=1,secrets=5,persistentvolumeclaims=10
+
+  # Create a new resource quota named best-effort
+  oc create quota best-effort --hard=pods=100 --scopes=BestEffort</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-role_oc-cli-commands-reference">oc create role</h5>
+<div class="paragraph">
+<p>Create a role with single rule</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a role named "pod-reader" that allows user to perform "get", "watch" and "list" on pods
+  oc create role pod-reader --verb=get --verb=list --verb=watch --resource=pods
+
+  # Create a role named "pod-reader" with ResourceName specified
+  oc create role pod-reader --verb=get --resource=pods --resource-name=readablepod --resource-name=anotherpod
+
+  # Create a role named "foo" with API Group specified
+  oc create role foo --verb=get,list,watch --resource=rs.apps
+
+  # Create a role named "foo" with SubResource specified
+  oc create role foo --verb=get,list,watch --resource=pods,pods/status</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-rolebinding_oc-cli-commands-reference">oc create rolebinding</h5>
+<div class="paragraph">
+<p>Create a role binding for a particular role or cluster role</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a role binding for user1, user2, and group1 using the admin cluster role
+  oc create rolebinding admin --clusterrole=admin --user=user1 --user=user2 --group=group1
+
+  # Create a role binding for serviceaccount monitoring:sa-dev using the admin role
+  oc create rolebinding admin-binding --role=admin --serviceaccount=monitoring:sa-dev</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-route-edge_oc-cli-commands-reference">oc create route edge</h5>
+<div class="paragraph">
+<p>Create a route that uses edge TLS termination</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create an edge route named "my-route" that exposes the frontend service
+  oc create route edge my-route --service=frontend
+
+  # Create an edge route that exposes the frontend service and specify a path
+  # If the route name is omitted, the service name will be used
+  oc create route edge --service=frontend --path /assets</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-route-passthrough_oc-cli-commands-reference">oc create route passthrough</h5>
+<div class="paragraph">
+<p>Create a route that uses passthrough TLS termination</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a passthrough route named "my-route" that exposes the frontend service
+  oc create route passthrough my-route --service=frontend
+
+  # Create a passthrough route that exposes the frontend service and specify
+  # a host name. If the route name is omitted, the service name will be used
+  oc create route passthrough --service=frontend --hostname=www.example.com</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-route-reencrypt_oc-cli-commands-reference">oc create route reencrypt</h5>
+<div class="paragraph">
+<p>Create a route that uses reencrypt TLS termination</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a route named "my-route" that exposes the frontend service
+  oc create route reencrypt my-route --service=frontend --dest-ca-cert cert.cert
+
+  # Create a reencrypt route that exposes the frontend service, letting the
+  # route name default to the service name and the destination CA certificate
+  # default to the service CA
+  oc create route reencrypt --service=frontend</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-secret-docker-registry_oc-cli-commands-reference">oc create secret docker-registry</h5>
+<div class="paragraph">
+<p>Create a secret for use with a Docker registry</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # If you don't already have a .dockercfg file, you can create a dockercfg secret directly by using:
+  oc create secret docker-registry my-secret --docker-server=DOCKER_REGISTRY_SERVER --docker-username=DOCKER_USER --docker-password=DOCKER_PASSWORD --docker-email=DOCKER_EMAIL
+
+  # Create a new secret named my-secret from ~/.docker/config.json
+  oc create secret docker-registry my-secret --from-file=.dockerconfigjson=path/to/.docker/config.json</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-secret-generic_oc-cli-commands-reference">oc create secret generic</h5>
+<div class="paragraph">
+<p>Create a secret from a local file, directory, or literal value</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a new secret named my-secret with keys for each file in folder bar
+  oc create secret generic my-secret --from-file=path/to/bar
+
+  # Create a new secret named my-secret with specified keys instead of names on disk
+  oc create secret generic my-secret --from-file=ssh-privatekey=path/to/id_rsa --from-file=ssh-publickey=path/to/id_rsa.pub
+
+  # Create a new secret named my-secret with key1=supersecret and key2=topsecret
+  oc create secret generic my-secret --from-literal=key1=supersecret --from-literal=key2=topsecret
+
+  # Create a new secret named my-secret using a combination of a file and a literal
+  oc create secret generic my-secret --from-file=ssh-privatekey=path/to/id_rsa --from-literal=passphrase=topsecret
+
+  # Create a new secret named my-secret from env files
+  oc create secret generic my-secret --from-env-file=path/to/foo.env --from-env-file=path/to/bar.env</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-secret-tls_oc-cli-commands-reference">oc create secret tls</h5>
+<div class="paragraph">
+<p>Create a TLS secret</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a new TLS secret named tls-secret with the given key pair
+  oc create secret tls tls-secret --cert=path/to/tls.cert --key=path/to/tls.key</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-service-clusterip_oc-cli-commands-reference">oc create service clusterip</h5>
+<div class="paragraph">
+<p>Create a ClusterIP service</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a new ClusterIP service named my-cs
+  oc create service clusterip my-cs --tcp=5678:8080
+
+  # Create a new ClusterIP service named my-cs (in headless mode)
+  oc create service clusterip my-cs --clusterip="None"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-service-externalname_oc-cli-commands-reference">oc create service externalname</h5>
+<div class="paragraph">
+<p>Create an ExternalName service</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a new ExternalName service named my-ns
+  oc create service externalname my-ns --external-name bar.com</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-service-loadbalancer_oc-cli-commands-reference">oc create service loadbalancer</h5>
+<div class="paragraph">
+<p>Create a LoadBalancer service</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a new LoadBalancer service named my-lbs
+  oc create service loadbalancer my-lbs --tcp=5678:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-service-nodeport_oc-cli-commands-reference">oc create service nodeport</h5>
+<div class="paragraph">
+<p>Create a NodePort service</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a new NodePort service named my-ns
+  oc create service nodeport my-ns --tcp=5678:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-serviceaccount_oc-cli-commands-reference">oc create serviceaccount</h5>
+<div class="paragraph">
+<p>Create a service account with the specified name</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a new service account named my-service-account
+  oc create serviceaccount my-service-account</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-create-token_oc-cli-commands-reference">oc create token</h5>
+<div class="paragraph">
+<p>Request a service account token</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Request a token to authenticate to the kube-apiserver as the service account "myapp" in the current namespace
+  oc create token myapp
+
+  # Request a token for a service account in a custom namespace
+  oc create token myapp --namespace myns
+
+  # Request a token with a custom expiration
+  oc create token myapp --duration 10m
+
+  # Request a token with a custom audience
+  oc create token myapp --audience https://example.com
+
+  # Request a token bound to an instance of a Secret object
+  oc create token myapp --bound-object-kind Secret --bound-object-name mysecret
+
+  # Request a token bound to an instance of a Secret object with a specific uid
+  oc create token myapp --bound-object-kind Secret --bound-object-name mysecret --bound-object-uid 0d4691ed-659b-4935-a832-355f77ee47cc</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-debug_oc-cli-commands-reference">oc debug</h5>
+<div class="paragraph">
+<p>Launch a new instance of a pod for debugging</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Start a shell session into a pod using the OpenShift tools image
+  oc debug
+
+  # Debug a currently running deployment by creating a new pod
+  oc debug deploy/test
+
+  # Debug a node as an administrator
+  oc debug node/master-1
+
+  # Launch a shell in a pod using the provided image stream tag
+  oc debug istag/mysql:latest -n openshift
+
+  # Test running a job as a non-root user
+  oc debug job/test --as-user=1000000
+
+  # Debug a specific failing container by running the env command in the 'second' container
+  oc debug daemonset/test -c second -- /bin/env
+
+  # See the pod that would be created to debug
+  oc debug mypod-9xbc -o yaml
+
+  # Debug a resource but launch the debug pod in another namespace
+  # Note: Not all resources can be debugged using --to-namespace without modification. For example,
+  # volumes and service accounts are namespace-dependent. Add '-o yaml' to output the debug pod definition
+  # to disk.  If necessary, edit the definition then run 'oc debug -f -' or run without --to-namespace
+  oc debug mypod-9xbc --to-namespace testns</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-delete_oc-cli-commands-reference">oc delete</h5>
+<div class="paragraph">
+<p>Delete resources by file names, stdin, resources and names, or by resources and label selector</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Delete a pod using the type and name specified in pod.json
+  oc delete -f ./pod.json
+
+  # Delete resources from a directory containing kustomization.yaml - e.g. dir/kustomization.yaml
+  oc delete -k dir
+
+  # Delete resources from all files that end with '.json' - i.e. expand wildcard characters in file names
+  oc delete -f '*.json'
+
+  # Delete a pod based on the type and name in the JSON passed into stdin
+  cat pod.json | oc delete -f -
+
+  # Delete pods and services with same names "baz" and "foo"
+  oc delete pod,service baz foo
+
+  # Delete pods and services with label name=myLabel
+  oc delete pods,services -l name=myLabel
+
+  # Delete a pod with minimal delay
+  oc delete pod foo --now
+
+  # Force delete a pod on a dead node
+  oc delete pod foo --force
+
+  # Delete all pods
+  oc delete pods --all</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-describe_oc-cli-commands-reference">oc describe</h5>
+<div class="paragraph">
+<p>Show details of a specific resource or group of resources</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Describe a node
+  oc describe nodes kubernetes-node-emt8.c.myproject.internal
+
+  # Describe a pod
+  oc describe pods/nginx
+
+  # Describe a pod identified by type and name in "pod.json"
+  oc describe -f pod.json
+
+  # Describe all pods
+  oc describe pods
+
+  # Describe pods by label name=myLabel
+  oc describe po -l name=myLabel
+
+  # Describe all pods managed by the 'frontend' replication controller
+  # (rc-created pods get the name of the rc as a prefix in the pod name)
+  oc describe pods frontend</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-diff_oc-cli-commands-reference">oc diff</h5>
+<div class="paragraph">
+<p>Diff the live version against a would-be applied version</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Diff resources included in pod.json
+  oc diff -f pod.json
+
+  # Diff file read from stdin
+  cat service.yaml | oc diff -f -</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-edit_oc-cli-commands-reference">oc edit</h5>
+<div class="paragraph">
+<p>Edit a resource on the server</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Edit the service named 'registry'
+  oc edit svc/registry
+
+  # Use an alternative editor
+  KUBE_EDITOR="nano" oc edit svc/registry
+
+  # Edit the job 'myjob' in JSON using the v1 API format
+  oc edit job.v1.batch/myjob -o json
+
+  # Edit the deployment 'mydeployment' in YAML and save the modified config in its annotation
+  oc edit deployment/mydeployment -o yaml --save-config
+
+  # Edit the deployment/mydeployment's status subresource
+  oc edit deployment mydeployment --subresource='status'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-events_oc-cli-commands-reference">oc events</h5>
+<div class="paragraph">
+<p>List events</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # List recent events in the default namespace.
+  oc events
+
+  # List recent events in all namespaces.
+  oc events --all-namespaces
+
+  # List recent events for the specified pod, then wait for more events and list them as they arrive.
+  oc events --for pod/web-pod-13je7 --watch
+
+  # List recent events in given format. Supported ones, apart from default, are json and yaml.
+  oc events -oyaml
+
+  # List recent only events in given event types
+  oc events --types=Warning,Normal</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-exec_oc-cli-commands-reference">oc exec</h5>
+<div class="paragraph">
+<p>Execute a command in a container</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Get output from running the 'date' command from pod mypod, using the first container by default
+  oc exec mypod -- date
+
+  # Get output from running the 'date' command in ruby-container from pod mypod
+  oc exec mypod -c ruby-container -- date
+
+  # Switch to raw terminal mode; sends stdin to 'bash' in ruby-container from pod mypod
+  # and sends stdout/stderr from 'bash' back to the client
+  oc exec mypod -c ruby-container -i -t -- bash -il
+
+  # List contents of /usr from the first container of pod mypod and sort by modification time
+  # If the command you want to execute in the pod has any flags in common (e.g. -i),
+  # you must use two dashes (--) to separate your command's flags/arguments
+  # Also note, do not surround your command and its flags/arguments with quotes
+  # unless that is how you would execute it normally (i.e., do ls -t /usr, not "ls -t /usr")
+  oc exec mypod -i -t -- ls -t /usr
+
+  # Get output from running 'date' command from the first pod of the deployment mydeployment, using the first container by default
+  oc exec deploy/mydeployment -- date
+
+  # Get output from running 'date' command from the first pod of the service myservice, using the first container by default
+  oc exec svc/myservice -- date</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-explain_oc-cli-commands-reference">oc explain</h5>
+<div class="paragraph">
+<p>Get documentation for a resource</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Get the documentation of the resource and its fields
+  oc explain pods
+
+  # Get the documentation of a specific field of a resource
+  oc explain pods.spec.containers</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-expose_oc-cli-commands-reference">oc expose</h5>
+<div class="paragraph">
+<p>Expose a replicated application as a service or route</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Create a route based on service nginx. The new route will reuse nginx's labels
+  oc expose service nginx
+
+  # Create a route and specify your own label and route name
+  oc expose service nginx -l name=myroute --name=fromdowntown
+
+  # Create a route and specify a host name
+  oc expose service nginx --hostname=www.example.com
+
+  # Create a route with a wildcard
+  oc expose service nginx --hostname=x.example.com --wildcard-policy=Subdomain
+  # This would be equivalent to *.example.com. NOTE: only hosts are matched by the wildcard; subdomains would not be included
+
+  # Expose a deployment configuration as a service and use the specified port
+  oc expose dc ruby-hello-world --port=8080
+
+  # Expose a service as a route in the specified path
+  oc expose service nginx --path=/nginx</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-extract_oc-cli-commands-reference">oc extract</h5>
+<div class="paragraph">
+<p>Extract secrets or config maps to disk</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Extract the secret "test" to the current directory
+  oc extract secret/test
+
+  # Extract the config map "nginx" to the /tmp directory
+  oc extract configmap/nginx --to=/tmp
+
+  # Extract the config map "nginx" to STDOUT
+  oc extract configmap/nginx --to=-
+
+  # Extract only the key "nginx.conf" from config map "nginx" to the /tmp directory
+  oc extract configmap/nginx --to=/tmp --keys=nginx.conf</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-get_oc-cli-commands-reference">oc get</h5>
+<div class="paragraph">
+<p>Display one or many resources</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # List all pods in ps output format
+  oc get pods
+
+  # List all pods in ps output format with more information (such as node name)
+  oc get pods -o wide
+
+  # List a single replication controller with specified NAME in ps output format
+  oc get replicationcontroller web
+
+  # List deployments in JSON output format, in the "v1" version of the "apps" API group
+  oc get deployments.v1.apps -o json
+
+  # List a single pod in JSON output format
+  oc get -o json pod web-pod-13je7
+
+  # List a pod identified by type and name specified in "pod.yaml" in JSON output format
+  oc get -f pod.yaml -o json
+
+  # List resources from a directory with kustomization.yaml - e.g. dir/kustomization.yaml
+  oc get -k dir/
+
+  # Return only the phase value of the specified pod
+  oc get -o template pod/web-pod-13je7 --template={{.status.phase}}
+
+  # List resource information in custom columns
+  oc get pod test-pod -o custom-columns=CONTAINER:.spec.containers[0].name,IMAGE:.spec.containers[0].image
+
+  # List all replication controllers and services together in ps output format
+  oc get rc,services
+
+  # List one or more resources by their type and names
+  oc get rc/web service/frontend pods/web-pod-13je7
+
+  # List status subresource for a single pod.
+  oc get pod web-pod-13je7 --subresource status</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-image-append_oc-cli-commands-reference">oc image append</h5>
+<div class="paragraph">
+<p>Add layers to images and push them to a registry</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Remove the entrypoint on the mysql:latest image
+  oc image append --from mysql:latest --to myregistry.com/myimage:latest --image '{"Entrypoint":null}'
+
+  # Add a new layer to the image
+  oc image append --from mysql:latest --to myregistry.com/myimage:latest layer.tar.gz
+
+  # Add a new layer to the image and store the result on disk
+  # This results in $(pwd)/v2/mysql/blobs,manifests
+  oc image append --from mysql:latest --to file://mysql:local layer.tar.gz
+
+  # Add a new layer to the image and store the result on disk in a designated directory
+  # This will result in $(pwd)/mysql-local/v2/mysql/blobs,manifests
+  oc image append --from mysql:latest --to file://mysql:local --dir mysql-local layer.tar.gz
+
+  # Add a new layer to an image that is stored on disk (~/mysql-local/v2/image exists)
+  oc image append --from-dir ~/mysql-local --to myregistry.com/myimage:latest layer.tar.gz
+
+  # Add a new layer to an image that was mirrored to the current directory on disk ($(pwd)/v2/image exists)
+  oc image append --from-dir v2 --to myregistry.com/myimage:latest layer.tar.gz
+
+  # Add a new layer to a multi-architecture image for an os/arch that is different from the system's os/arch
+  # Note: The first image in the manifest list that matches the filter will be returned when --keep-manifest-list is not specified
+  oc image append --from docker.io/library/busybox:latest --filter-by-os=linux/s390x --to myregistry.com/myimage:latest layer.tar.gz
+
+  # Add a new layer to a multi-architecture image for all the os/arch manifests when keep-manifest-list is specified
+  oc image append --from docker.io/library/busybox:latest --keep-manifest-list --to myregistry.com/myimage:latest layer.tar.gz
+
+  # Add a new layer to a multi-architecture image for all the os/arch manifests that is specified by the filter, while preserving the manifestlist
+  oc image append --from docker.io/library/busybox:latest --filter-by-os=linux/s390x --keep-manifest-list --to myregistry.com/myimage:latest layer.tar.gz</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-image-extract_oc-cli-commands-reference">oc image extract</h5>
+<div class="paragraph">
+<p>Copy files from an image to the file system</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Extract the busybox image into the current directory
+  oc image extract docker.io/library/busybox:latest
+
+  # Extract the busybox image into a designated directory (must exist)
+  oc image extract docker.io/library/busybox:latest --path /:/tmp/busybox
+
+  # Extract the busybox image into the current directory for linux/s390x platform
+  # Note: Wildcard filter is not supported with extract; pass a single os/arch to extract
+  oc image extract docker.io/library/busybox:latest --filter-by-os=linux/s390x
+
+  # Extract a single file from the image into the current directory
+  oc image extract docker.io/library/centos:7 --path /bin/bash:.
+
+  # Extract all .repo files from the image's /etc/yum.repos.d/ folder into the current directory
+  oc image extract docker.io/library/centos:7 --path /etc/yum.repos.d/*.repo:.
+
+  # Extract all .repo files from the image's /etc/yum.repos.d/ folder into a designated directory (must exist)
+  # This results in /tmp/yum.repos.d/*.repo on local system
+  oc image extract docker.io/library/centos:7 --path /etc/yum.repos.d/*.repo:/tmp/yum.repos.d
+
+  # Extract an image stored on disk into the current directory ($(pwd)/v2/busybox/blobs,manifests exists)
+  # --confirm is required because the current directory is not empty
+  oc image extract file://busybox:local --confirm
+
+  # Extract an image stored on disk in a directory other than $(pwd)/v2 into the current directory
+  # --confirm is required because the current directory is not empty ($(pwd)/busybox-mirror-dir/v2/busybox exists)
+  oc image extract file://busybox:local --dir busybox-mirror-dir --confirm
+
+  # Extract an image stored on disk in a directory other than $(pwd)/v2 into a designated directory (must exist)
+  oc image extract file://busybox:local --dir busybox-mirror-dir --path /:/tmp/busybox
+
+  # Extract the last layer in the image
+  oc image extract docker.io/library/centos:7[-1]
+
+  # Extract the first three layers of the image
+  oc image extract docker.io/library/centos:7[:3]
+
+  # Extract the last three layers of the image
+  oc image extract docker.io/library/centos:7[-3:]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-image-info_oc-cli-commands-reference">oc image info</h5>
+<div class="paragraph">
+<p>Display information about an image</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Show information about an image
+  oc image info quay.io/openshift/cli:latest
+
+  # Show information about images matching a wildcard
+  oc image info quay.io/openshift/cli:4.*
+
+  # Show information about a file mirrored to disk under DIR
+  oc image info --dir=DIR file://library/busybox:latest
+
+  # Select which image from a multi-OS image to show
+  oc image info library/busybox:latest --filter-by-os=linux/arm64</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-image-mirror_oc-cli-commands-reference">oc image mirror</h5>
+<div class="paragraph">
+<p>Mirror images from one repository to another</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Copy image to another tag
+  oc image mirror myregistry.com/myimage:latest myregistry.com/myimage:stable
+
+  # Copy image to another registry
+  oc image mirror myregistry.com/myimage:latest docker.io/myrepository/myimage:stable
+
+  # Copy all tags starting with mysql to the destination repository
+  oc image mirror myregistry.com/myimage:mysql* docker.io/myrepository/myimage
+
+  # Copy image to disk, creating a directory structure that can be served as a registry
+  oc image mirror myregistry.com/myimage:latest file://myrepository/myimage:latest
+
+  # Copy image to S3 (pull from &lt;bucket&gt;.s3.amazonaws.com/image:latest)
+  oc image mirror myregistry.com/myimage:latest s3://s3.amazonaws.com/&lt;region&gt;/&lt;bucket&gt;/image:latest
+
+  # Copy image to S3 without setting a tag (pull via @&lt;digest&gt;)
+  oc image mirror myregistry.com/myimage:latest s3://s3.amazonaws.com/&lt;region&gt;/&lt;bucket&gt;/image
+
+  # Copy image to multiple locations
+  oc image mirror myregistry.com/myimage:latest docker.io/myrepository/myimage:stable \
+  docker.io/myrepository/myimage:dev
+
+  # Copy multiple images
+  oc image mirror myregistry.com/myimage:latest=myregistry.com/other:test \
+  myregistry.com/myimage:new=myregistry.com/other:target
+
+  # Copy manifest list of a multi-architecture image, even if only a single image is found
+  oc image mirror myregistry.com/myimage:latest=myregistry.com/other:test \
+  --keep-manifest-list=true
+
+  # Copy specific os/arch manifest of a multi-architecture image
+  # Run 'oc image info myregistry.com/myimage:latest' to see available os/arch for multi-arch images
+  # Note that with multi-arch images, this results in a new manifest list digest that includes only
+  # the filtered manifests
+  oc image mirror myregistry.com/myimage:latest=myregistry.com/other:test \
+  --filter-by-os=os/arch
+
+  # Copy all os/arch manifests of a multi-architecture image
+  # Run 'oc image info myregistry.com/myimage:latest' to see list of os/arch manifests that will be mirrored
+  oc image mirror myregistry.com/myimage:latest=myregistry.com/other:test \
+  --keep-manifest-list=true
+
+  # Note the above command is equivalent to
+  oc image mirror myregistry.com/myimage:latest=myregistry.com/other:test \
+  --filter-by-os=.*
+
+  # Copy specific os/arch manifest of a multi-architecture image
+  # Run 'oc image info myregistry.com/myimage:latest' to see available os/arch for multi-arch images
+  # Note that the target registry may reject a manifest list if the platform specific images do not all
+  # exist. You must use a registry with sparse registry support enabled.
+  oc image mirror myregistry.com/myimage:latest=myregistry.com/other:test \
+  --filter-by-os=os/arch \
+  --keep-manifest-list=true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-kustomize_oc-cli-commands-reference">oc kustomize</h5>
+<div class="paragraph">
+<p>Build a kustomization target from a directory or URL</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Build the current working directory
+  oc kustomize
+
+  # Build some shared configuration directory
+  oc kustomize /home/config/production
+
+  # Build from github
+  oc kustomize https://github.com/kubernetes-sigs/kustomize.git/examples/helloWorld?ref=v1.0.6</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-label_oc-cli-commands-reference">oc label</h5>
+<div class="paragraph">
+<p>Update the labels on a resource</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Update pod 'foo' with the label 'unhealthy' and the value 'true'
+  oc label pods foo unhealthy=true
+
+  # Update pod 'foo' with the label 'status' and the value 'unhealthy', overwriting any existing value
+  oc label --overwrite pods foo status=unhealthy
+
+  # Update all pods in the namespace
+  oc label pods --all status=unhealthy
+
+  # Update a pod identified by the type and name in "pod.json"
+  oc label -f pod.json status=unhealthy
+
+  # Update pod 'foo' only if the resource is unchanged from version 1
+  oc label pods foo status=unhealthy --resource-version=1
+
+  # Update pod 'foo' by removing a label named 'bar' if it exists
+  # Does not require the --overwrite flag
+  oc label pods foo bar-</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-logs_oc-cli-commands-reference">oc logs</h5>
+<div class="paragraph">
+<p>Print the logs for a container in a pod</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Start streaming the logs of the most recent build of the openldap build config
+  oc logs -f bc/openldap
+
+  # Start streaming the logs of the latest deployment of the mysql deployment config
+  oc logs -f dc/mysql
+
+  # Get the logs of the first deployment for the mysql deployment config. Note that logs
+  # from older deployments may not exist either because the deployment was successful
+  # or due to deployment pruning or manual deletion of the deployment
+  oc logs --version=1 dc/mysql
+
+  # Return a snapshot of ruby-container logs from pod backend
+  oc logs backend -c ruby-container
+
+  # Start streaming of ruby-container logs from pod backend
+  oc logs -f pod/backend -c ruby-container</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-observe_oc-cli-commands-reference">oc observe</h5>
+<div class="paragraph">
+<p>Observe changes to resources and react to them (experimental)</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Observe changes to services
+  oc observe services
+
+  # Observe changes to services, including the clusterIP and invoke a script for each
+  oc observe services --template '{ .spec.clusterIP }' -- register_dns.sh
+
+  # Observe changes to services filtered by a label selector
+  oc observe services -l regist-dns=true --template '{ .spec.clusterIP }' -- register_dns.sh</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-patch_oc-cli-commands-reference">oc patch</h5>
+<div class="paragraph">
+<p>Update fields of a resource</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Partially update a node using a strategic merge patch, specifying the patch as JSON
+  oc patch node k8s-node-1 -p '{"spec":{"unschedulable":true}}'
+
+  # Partially update a node using a strategic merge patch, specifying the patch as YAML
+  oc patch node k8s-node-1 -p $'spec:\n unschedulable: true'
+
+  # Partially update a node identified by the type and name specified in "node.json" using strategic merge patch
+  oc patch -f node.json -p '{"spec":{"unschedulable":true}}'
+
+  # Update a container's image; spec.containers[*].name is required because it's a merge key
+  oc patch pod valid-pod -p '{"spec":{"containers":[{"name":"kubernetes-serve-hostname","image":"new image"}]}}'
+
+  # Update a container's image using a JSON patch with positional arrays
+  oc patch pod valid-pod --type='json' -p='[{"op": "replace", "path": "/spec/containers/0/image", "value":"new image"}]'
+
+  # Update a deployment's replicas through the scale subresource using a merge patch.
+  oc patch deployment nginx-deployment --subresource='scale' --type='merge' -p '{"spec":{"replicas":2}}'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-plugin-list_oc-cli-commands-reference">oc plugin list</h5>
+<div class="paragraph">
+<p>List all visible plugin executables on a user&#8217;s PATH</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # List all available plugins
+  oc plugin list</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-policy-add-role-to-user_oc-cli-commands-reference">oc policy add-role-to-user</h5>
+<div class="paragraph">
+<p>Add a role to users or service accounts for the current project</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Add the 'view' role to user1 for the current project
+  oc policy add-role-to-user view user1
+
+  # Add the 'edit' role to serviceaccount1 for the current project
+  oc policy add-role-to-user edit -z serviceaccount1</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-policy-scc-review_oc-cli-commands-reference">oc policy scc-review</h5>
+<div class="paragraph">
+<p>Check which service account can create a pod</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Check whether service accounts sa1 and sa2 can admit a pod with a template pod spec specified in my_resource.yaml
+  # Service Account specified in myresource.yaml file is ignored
+  oc policy scc-review -z sa1,sa2 -f my_resource.yaml
+
+  # Check whether service accounts system:serviceaccount:bob:default can admit a pod with a template pod spec specified in my_resource.yaml
+  oc policy scc-review -z system:serviceaccount:bob:default -f my_resource.yaml
+
+  # Check whether the service account specified in my_resource_with_sa.yaml can admit the pod
+  oc policy scc-review -f my_resource_with_sa.yaml
+
+  # Check whether the default service account can admit the pod; default is taken since no service account is defined in myresource_with_no_sa.yaml
+  oc policy scc-review -f myresource_with_no_sa.yaml</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-policy-scc-subject-review_oc-cli-commands-reference">oc policy scc-subject-review</h5>
+<div class="paragraph">
+<p>Check whether a user or a service account can create a pod</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Check whether user bob can create a pod specified in myresource.yaml
+  oc policy scc-subject-review -u bob -f myresource.yaml
+
+  # Check whether user bob who belongs to projectAdmin group can create a pod specified in myresource.yaml
+  oc policy scc-subject-review -u bob -g projectAdmin -f myresource.yaml
+
+  # Check whether a service account specified in the pod template spec in myresourcewithsa.yaml can create the pod
+  oc policy scc-subject-review -f myresourcewithsa.yaml</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-port-forward_oc-cli-commands-reference">oc port-forward</h5>
+<div class="paragraph">
+<p>Forward one or more local ports to a pod</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Listen on ports 5000 and 6000 locally, forwarding data to/from ports 5000 and 6000 in the pod
+  oc port-forward pod/mypod 5000 6000
+
+  # Listen on ports 5000 and 6000 locally, forwarding data to/from ports 5000 and 6000 in a pod selected by the deployment
+  oc port-forward deployment/mydeployment 5000 6000
+
+  # Listen on port 8443 locally, forwarding to the targetPort of the service's port named "https" in a pod selected by the service
+  oc port-forward service/myservice 8443:https
+
+  # Listen on port 8888 locally, forwarding to 5000 in the pod
+  oc port-forward pod/mypod 8888:5000
+
+  # Listen on port 8888 on all addresses, forwarding to 5000 in the pod
+  oc port-forward --address 0.0.0.0 pod/mypod 8888:5000
+
+  # Listen on port 8888 on localhost and selected IP, forwarding to 5000 in the pod
+  oc port-forward --address localhost,10.19.21.23 pod/mypod 8888:5000
+
+  # Listen on a random port locally, forwarding to 5000 in the pod
+  oc port-forward pod/mypod :5000</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-proxy_oc-cli-commands-reference">oc proxy</h5>
+<div class="paragraph">
+<p>Run a proxy to the Kubernetes API server</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # To proxy all of the Kubernetes API and nothing else
+  oc proxy --api-prefix=/
+
+  # To proxy only part of the Kubernetes API and also some static files
+  # You can get pods info with 'curl localhost:8001/api/v1/pods'
+  oc proxy --www=/my/files --www-prefix=/static/ --api-prefix=/api/
+
+  # To proxy the entire Kubernetes API at a different root
+  # You can get pods info with 'curl localhost:8001/custom/api/v1/pods'
+  oc proxy --api-prefix=/custom/
+
+  # Run a proxy to the Kubernetes API server on port 8011, serving static content from ./local/www/
+  oc proxy --port=8011 --www=./local/www/
+
+  # Run a proxy to the Kubernetes API server on an arbitrary local port
+  # The chosen port for the server will be output to stdout
+  oc proxy --port=0
+
+  # Run a proxy to the Kubernetes API server, changing the API prefix to k8s-api
+  # This makes e.g. the pods API available at localhost:8001/k8s-api/v1/pods/
+  oc proxy --api-prefix=/k8s-api</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-rollback_oc-cli-commands-reference">oc rollback</h5>
+<div class="paragraph">
+<p>Revert part of an application back to a previous deployment</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Perform a rollback to the last successfully completed deployment for a deployment config
+  oc rollback frontend
+
+  # See what a rollback to version 3 will look like, but do not perform the rollback
+  oc rollback frontend --to-version=3 --dry-run
+
+  # Perform a rollback to a specific deployment
+  oc rollback frontend-2
+
+  # Perform the rollback manually by piping the JSON of the new config back to oc
+  oc rollback frontend -o json | oc replace dc/frontend -f -
+
+  # Print the updated deployment configuration in JSON format instead of performing the rollback
+  oc rollback frontend -o json</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-rollout-cancel_oc-cli-commands-reference">oc rollout cancel</h5>
+<div class="paragraph">
+<p>Cancel the in-progress deployment</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Cancel the in-progress deployment based on 'nginx'
+  oc rollout cancel dc/nginx</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-rollout-history_oc-cli-commands-reference">oc rollout history</h5>
+<div class="paragraph">
+<p>View rollout history</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # View the rollout history of a deployment
+  oc rollout history dc/nginx
+
+  # View the details of deployment revision 3
+  oc rollout history dc/nginx --revision=3</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-rollout-latest_oc-cli-commands-reference">oc rollout latest</h5>
+<div class="paragraph">
+<p>Start a new rollout for a deployment config with the latest state from its triggers</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Start a new rollout based on the latest images defined in the image change triggers
+  oc rollout latest dc/nginx
+
+  # Print the rolled out deployment config
+  oc rollout latest dc/nginx -o json</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-rollout-pause_oc-cli-commands-reference">oc rollout pause</h5>
+<div class="paragraph">
+<p>Mark the provided resource as paused</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Mark the nginx deployment as paused. Any current state of
+  # the deployment will continue its function, new updates to the deployment will not
+  # have an effect as long as the deployment is paused
+  oc rollout pause dc/nginx</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-rollout-restart_oc-cli-commands-reference">oc rollout restart</h5>
+<div class="paragraph">
+<p>Restart a resource</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Restart a deployment
+  oc rollout restart deployment/nginx
+
+  # Restart a daemon set
+  oc rollout restart daemonset/abc
+
+  # Restart deployments with the app=nginx label
+  oc rollout restart deployment --selector=app=nginx</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-rollout-resume_oc-cli-commands-reference">oc rollout resume</h5>
+<div class="paragraph">
+<p>Resume a paused resource</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Resume an already paused deployment
+  oc rollout resume dc/nginx</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-rollout-retry_oc-cli-commands-reference">oc rollout retry</h5>
+<div class="paragraph">
+<p>Retry the latest failed rollout</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Retry the latest failed deployment based on 'frontend'
+  # The deployer pod and any hook pods are deleted for the latest failed deployment
+  oc rollout retry dc/frontend</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-rollout-status_oc-cli-commands-reference">oc rollout status</h5>
+<div class="paragraph">
+<p>Show the status of the rollout</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Watch the status of the latest rollout
+  oc rollout status dc/nginx</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-rollout-undo_oc-cli-commands-reference">oc rollout undo</h5>
+<div class="paragraph">
+<p>Undo a previous rollout</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Roll back to the previous deployment
+  oc rollout undo dc/nginx
+
+  # Roll back to deployment revision 3. The replication controller for that version must exist
+  oc rollout undo dc/nginx --to-revision=3</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-rsh_oc-cli-commands-reference">oc rsh</h5>
+<div class="paragraph">
+<p>Start a shell session in a container</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Open a shell session on the first container in pod 'foo'
+  oc rsh foo
+
+  # Open a shell session on the first container in pod 'foo' and namespace 'bar'
+  # (Note that oc client specific arguments must come before the resource name and its arguments)
+  oc rsh -n bar foo
+
+  # Run the command 'cat /etc/resolv.conf' inside pod 'foo'
+  oc rsh foo cat /etc/resolv.conf
+
+  # See the configuration of your internal registry
+  oc rsh dc/docker-registry cat config.yml
+
+  # Open a shell session on the container named 'index' inside a pod of your job
+  oc rsh -c index job/scheduled</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-rsync_oc-cli-commands-reference">oc rsync</h5>
+<div class="paragraph">
+<p>Copy files between a local file system and a pod</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Synchronize a local directory with a pod directory
+  oc rsync ./local/dir/ POD:/remote/dir
+
+  # Synchronize a pod directory with a local directory
+  oc rsync POD:/remote/dir/ ./local/dir</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-run_oc-cli-commands-reference">oc run</h5>
+<div class="paragraph">
+<p>Run a particular image on the cluster</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Start a nginx pod
+  oc run nginx --image=nginx
+
+  # Start a hazelcast pod and let the container expose port 5701
+  oc run hazelcast --image=hazelcast/hazelcast --port=5701
+
+  # Start a hazelcast pod and set environment variables "DNS_DOMAIN=cluster" and "POD_NAMESPACE=default" in the container
+  oc run hazelcast --image=hazelcast/hazelcast --env="DNS_DOMAIN=cluster" --env="POD_NAMESPACE=default"
+
+  # Start a hazelcast pod and set labels "app=hazelcast" and "env=prod" in the container
+  oc run hazelcast --image=hazelcast/hazelcast --labels="app=hazelcast,env=prod"
+
+  # Dry run; print the corresponding API objects without creating them
+  oc run nginx --image=nginx --dry-run=client
+
+  # Start a nginx pod, but overload the spec with a partial set of values parsed from JSON
+  oc run nginx --image=nginx --overrides='{ "apiVersion": "v1", "spec": { ... } }'
+
+  # Start a busybox pod and keep it in the foreground, don't restart it if it exits
+  oc run -i -t busybox --image=busybox --restart=Never
+
+  # Start the nginx pod using the default command, but use custom arguments (arg1 .. argN) for that command
+  oc run nginx --image=nginx -- &lt;arg1&gt; &lt;arg2&gt; ... &lt;argN&gt;
+
+  # Start the nginx pod using a different command and custom arguments
+  oc run nginx --image=nginx --command -- &lt;cmd&gt; &lt;arg1&gt; ... &lt;argN&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-scale_oc-cli-commands-reference">oc scale</h5>
+<div class="paragraph">
+<p>Set a new size for a deployment, replica set, or replication controller</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Scale a replica set named 'foo' to 3
+  oc scale --replicas=3 rs/foo
+
+  # Scale a resource identified by type and name specified in "foo.yaml" to 3
+  oc scale --replicas=3 -f foo.yaml
+
+  # If the deployment named mysql's current size is 2, scale mysql to 3
+  oc scale --current-replicas=2 --replicas=3 deployment/mysql
+
+  # Scale multiple replication controllers
+  oc scale --replicas=5 rc/foo rc/bar rc/baz
+
+  # Scale stateful set named 'web' to 3
+  oc scale --replicas=3 statefulset/web</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-secrets-link_oc-cli-commands-reference">oc secrets link</h5>
+<div class="paragraph">
+<p>Link secrets to a service account</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Add an image pull secret to a service account to automatically use it for pulling pod images
+  oc secrets link serviceaccount-name pull-secret --for=pull
+
+  # Add an image pull secret to a service account to automatically use it for both pulling and pushing build images
+  oc secrets link builder builder-image-secret --for=pull,mount</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-secrets-unlink_oc-cli-commands-reference">oc secrets unlink</h5>
+<div class="paragraph">
+<p>Detach secrets from a service account</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Unlink a secret currently associated with a service account
+  oc secrets unlink serviceaccount-name secret-name another-secret-name ...</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-set-data_oc-cli-commands-reference">oc set data</h5>
+<div class="paragraph">
+<p>Update the data within a config map or secret</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Set the 'password' key of a secret
+  oc set data secret/foo password=this_is_secret
+
+  # Remove the 'password' key from a secret
+  oc set data secret/foo password-
+
+  # Update the 'haproxy.conf' key of a config map from a file on disk
+  oc set data configmap/bar --from-file=../haproxy.conf
+
+  # Update a secret with the contents of a directory, one key per file
+  oc set data secret/foo --from-file=secret-dir</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-set-env_oc-cli-commands-reference">oc set env</h5>
+<div class="paragraph">
+<p>Update environment variables on a pod template</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Update deployment config 'myapp' with a new environment variable
+  oc set env dc/myapp STORAGE_DIR=/local
+
+  # List the environment variables defined on a build config 'sample-build'
+  oc set env bc/sample-build --list
+
+  # List the environment variables defined on all pods
+  oc set env pods --all --list
+
+  # Output modified build config in YAML
+  oc set env bc/sample-build STORAGE_DIR=/data -o yaml
+
+  # Update all containers in all replication controllers in the project to have ENV=prod
+  oc set env rc --all ENV=prod
+
+  # Import environment from a secret
+  oc set env --from=secret/mysecret dc/myapp
+
+  # Import environment from a config map with a prefix
+  oc set env --from=configmap/myconfigmap --prefix=MYSQL_ dc/myapp
+
+  # Remove the environment variable ENV from container 'c1' in all deployment configs
+  oc set env dc --all --containers="c1" ENV-
+
+  # Remove the environment variable ENV from a deployment config definition on disk and
+  # update the deployment config on the server
+  oc set env -f dc.json ENV-
+
+  # Set some of the local shell environment into a deployment config on the server
+  oc set env | grep RAILS_ | oc env -e - dc/myapp</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-set-image_oc-cli-commands-reference">oc set image</h5>
+<div class="paragraph">
+<p>Update the image of a pod template</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Set a deployment config's nginx container image to 'nginx:1.9.1', and its busybox container image to 'busybox'.
+  oc set image dc/nginx busybox=busybox nginx=nginx:1.9.1
+
+  # Set a deployment config's app container image to the image referenced by the imagestream tag 'openshift/ruby:2.3'.
+  oc set image dc/myapp app=openshift/ruby:2.3 --source=imagestreamtag
+
+  # Update all deployments' and rc's nginx container's image to 'nginx:1.9.1'
+  oc set image deployments,rc nginx=nginx:1.9.1 --all
+
+  # Update image of all containers of daemonset abc to 'nginx:1.9.1'
+  oc set image daemonset abc *=nginx:1.9.1
+
+  # Print result (in YAML format) of updating nginx container image from local file, without hitting the server
+  oc set image -f path/to/file.yaml nginx=nginx:1.9.1 --local -o yaml</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-set-image-lookup_oc-cli-commands-reference">oc set image-lookup</h5>
+<div class="paragraph">
+<p>Change how images are resolved when deploying applications</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Print all of the image streams and whether they resolve local names
+  oc set image-lookup
+
+  # Use local name lookup on image stream mysql
+  oc set image-lookup mysql
+
+  # Force a deployment to use local name lookup
+  oc set image-lookup deploy/mysql
+
+  # Show the current status of the deployment lookup
+  oc set image-lookup deploy/mysql --list
+
+  # Disable local name lookup on image stream mysql
+  oc set image-lookup mysql --enabled=false
+
+  # Set local name lookup on all image streams
+  oc set image-lookup --all</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-set-probe_oc-cli-commands-reference">oc set probe</h5>
+<div class="paragraph">
+<p>Update a probe on a pod template</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Clear both readiness and liveness probes off all containers
+  oc set probe dc/myapp --remove --readiness --liveness
+
+  # Set an exec action as a liveness probe to run 'echo ok'
+  oc set probe dc/myapp --liveness -- echo ok
+
+  # Set a readiness probe to try to open a TCP socket on 3306
+  oc set probe rc/mysql --readiness --open-tcp=3306
+
+  # Set an HTTP startup probe for port 8080 and path /healthz over HTTP on the pod IP
+  oc set probe dc/webapp --startup --get-url=http://:8080/healthz
+
+  # Set an HTTP readiness probe for port 8080 and path /healthz over HTTP on the pod IP
+  oc set probe dc/webapp --readiness --get-url=http://:8080/healthz
+
+  # Set an HTTP readiness probe over HTTPS on 127.0.0.1 for a hostNetwork pod
+  oc set probe dc/router --readiness --get-url=https://127.0.0.1:1936/stats
+
+  # Set only the initial-delay-seconds field on all deployments
+  oc set probe dc --all --readiness --initial-delay-seconds=30</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-set-resources_oc-cli-commands-reference">oc set resources</h5>
+<div class="paragraph">
+<p>Update resource requests/limits on objects with pod templates</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Set a deployments nginx container CPU limits to "200m and memory to 512Mi"
+  oc set resources deployment nginx -c=nginx --limits=cpu=200m,memory=512Mi
+
+  # Set the resource request and limits for all containers in nginx
+  oc set resources deployment nginx --limits=cpu=200m,memory=512Mi --requests=cpu=100m,memory=256Mi
+
+  # Remove the resource requests for resources on containers in nginx
+  oc set resources deployment nginx --limits=cpu=0,memory=0 --requests=cpu=0,memory=0
+
+  # Print the result (in YAML format) of updating nginx container limits locally, without hitting the server
+  oc set resources -f path/to/file.yaml --limits=cpu=200m,memory=512Mi --local -o yaml</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-set-route-backends_oc-cli-commands-reference">oc set route-backends</h5>
+<div class="paragraph">
+<p>Update the backends for a route</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Print the backends on the route 'web'
+  oc set route-backends web
+
+  # Set two backend services on route 'web' with 2/3rds of traffic going to 'a'
+  oc set route-backends web a=2 b=1
+
+  # Increase the traffic percentage going to b by 10%% relative to a
+  oc set route-backends web --adjust b=+10%%
+
+  # Set traffic percentage going to b to 10%% of the traffic going to a
+  oc set route-backends web --adjust b=10%%
+
+  # Set weight of b to 10
+  oc set route-backends web --adjust b=10
+
+  # Set the weight to all backends to zero
+  oc set route-backends web --zero</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-set-selector_oc-cli-commands-reference">oc set selector</h5>
+<div class="paragraph">
+<p>Set the selector on a resource</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Set the labels and selector before creating a deployment/service pair.
+  oc create service clusterip my-svc --clusterip="None" -o yaml --dry-run | oc set selector --local -f - 'environment=qa' -o yaml | oc create -f -
+  oc create deployment my-dep -o yaml --dry-run | oc label --local -f - environment=qa -o yaml | oc create -f -</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-set-serviceaccount_oc-cli-commands-reference">oc set serviceaccount</h5>
+<div class="paragraph">
+<p>Update the service account of a resource</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Set deployment nginx-deployment's service account to serviceaccount1
+  oc set serviceaccount deployment nginx-deployment serviceaccount1
+
+  # Print the result (in YAML format) of updated nginx deployment with service account from a local file, without hitting the API server
+  oc set sa -f nginx-deployment.yaml serviceaccount1 --local --dry-run -o yaml</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-set-subject_oc-cli-commands-reference">oc set subject</h5>
+<div class="paragraph">
+<p>Update the user, group, or service account in a role binding or cluster role binding</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Update a cluster role binding for serviceaccount1
+  oc set subject clusterrolebinding admin --serviceaccount=namespace:serviceaccount1
+
+  # Update a role binding for user1, user2, and group1
+  oc set subject rolebinding admin --user=user1 --user=user2 --group=group1
+
+  # Print the result (in YAML format) of updating role binding subjects locally, without hitting the server
+  oc create rolebinding admin --role=admin --user=admin -o yaml --dry-run | oc set subject --local -f - --user=foo -o yaml</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-set-volumes_oc-cli-commands-reference">oc set volumes</h5>
+<div class="paragraph">
+<p>Update volumes on a pod template</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # List volumes defined on all deployment configs in the current project
+  oc set volume dc --all
+
+  # Add a new empty dir volume to deployment config (dc) 'myapp' mounted under
+  # /var/lib/myapp
+  oc set volume dc/myapp --add --mount-path=/var/lib/myapp
+
+  # Use an existing persistent volume claim (PVC) to overwrite an existing volume 'v1'
+  oc set volume dc/myapp --add --name=v1 -t pvc --claim-name=pvc1 --overwrite
+
+  # Remove volume 'v1' from deployment config 'myapp'
+  oc set volume dc/myapp --remove --name=v1
+
+  # Create a new persistent volume claim that overwrites an existing volume 'v1'
+  oc set volume dc/myapp --add --name=v1 -t pvc --claim-size=1G --overwrite
+
+  # Change the mount point for volume 'v1' to /data
+  oc set volume dc/myapp --add --name=v1 -m /data --overwrite
+
+  # Modify the deployment config by removing volume mount "v1" from container "c1"
+  # (and by removing the volume "v1" if no other containers have volume mounts that reference it)
+  oc set volume dc/myapp --remove --name=v1 --containers=c1
+
+  # Add new volume based on a more complex volume source (AWS EBS, GCE PD,
+  # Ceph, Gluster, NFS, ISCSI, ...)
+  oc set volume dc/myapp --add -m /data --source=&lt;json-string&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-tag_oc-cli-commands-reference">oc tag</h5>
+<div class="paragraph">
+<p>Tag existing images into image streams</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Tag the current image for the image stream 'openshift/ruby' and tag '2.0' into the image stream 'yourproject/ruby with tag 'tip'
+  oc tag openshift/ruby:2.0 yourproject/ruby:tip
+
+  # Tag a specific image
+  oc tag openshift/ruby@sha256:6b646fa6bf5e5e4c7fa41056c27910e679c03ebe7f93e361e6515a9da7e258cc yourproject/ruby:tip
+
+  # Tag an external container image
+  oc tag --source=docker openshift/origin-control-plane:latest yourproject/ruby:tip
+
+  # Tag an external container image and request pullthrough for it
+  oc tag --source=docker openshift/origin-control-plane:latest yourproject/ruby:tip --reference-policy=local
+
+  # Tag an external container image and include the full manifest list
+  oc tag --source=docker openshift/origin-control-plane:latest yourproject/ruby:tip --import-mode=PreserveOriginal
+
+  # Remove the specified spec tag from an image stream
+  oc tag openshift/origin-control-plane:latest -d</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-version_oc-cli-commands-reference">oc version</h5>
+<div class="paragraph">
+<p>Print the client and server version information</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Print the OpenShift client, kube-apiserver, and openshift-apiserver version information for the current context
+  oc version
+
+  # Print the OpenShift client, kube-apiserver, and openshift-apiserver version numbers for the current context
+  oc version --short
+
+  # Print the OpenShift client version information for the current context
+  oc version --client</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-wait_oc-cli-commands-reference">oc wait</h5>
+<div class="paragraph">
+<p>Experimental: Wait for a specific condition on one or many resources</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Wait for the pod "busybox1" to contain the status condition of type "Ready"
+  oc wait --for=condition=Ready pod/busybox1
+
+  # The default value of status condition is true; you can wait for other targets after an equal delimiter (compared after Unicode simple case folding, which is a more general form of case-insensitivity):
+  oc wait --for=condition=Ready=false pod/busybox1
+
+  # Wait for the pod "busybox1" to contain the status phase to be "Running".
+  oc wait --for=jsonpath='{.status.phase}'=Running pod/busybox1
+
+  # Wait for the pod "busybox1" to be deleted, with a timeout of 60s, after having issued the "delete" command
+  oc delete pod/busybox1
+  oc wait --for=delete pod/busybox1 --timeout=60s</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-cli-admin_oc-cli-commands-reference">OpenShift CLI (oc) administrator commands</h4>
+<div class="paragraph _abstract">
+<p>You can use the <code>oc adm</code> command-line tool to perform administrative tasks on your MicroShift cluster. Use the following commands, along with their descriptions and example usage, to manage and troubleshoot your cluster.</p>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-adm-inspect_oc-cli-commands-reference">oc adm inspect</h5>
+<div class="paragraph">
+<p>Collect debugging data for a given resource</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Collect debugging data for a kubernetes service
+  oc adm inspect service/kubernetes
+
+  # Collect debugging data for a node
+  oc adm inspect node/&lt;node_name&gt;
+
+  # Collect debugging data for logicalvolumes in a CRD
+  oc adm inspect crd/logicalvolumes.topolvm.io
+
+  # Collect debugging data for routes.route.openshift.io in a CRD
+  oc adm inspect crd/routes.route.openshift.io</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-adm-release-extract_oc-cli-commands-reference">oc adm release extract</h5>
+<div class="paragraph">
+<p>Extract the contents of an update payload to disk</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Use git to check out the source code for the current cluster release to DIR
+  oc adm release extract --git=DIR
+
+  # Extract cloud credential requests for AWS
+  oc adm release extract --credentials-requests --cloud=aws
+
+  # Use git to check out the source code for the current cluster release to DIR from linux/s390x image
+  # Note: Wildcard filter is not supported; pass a single os/arch to extract
+  oc adm release extract --git=DIR quay.io/openshift-release-dev/ocp-release:4.11.2 --filter-by-os=linux/s390x</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-adm-release-info_oc-cli-commands-reference">oc adm release info</h5>
+<div class="paragraph">
+<p>Display information about a release</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Show information about the cluster's current release
+  oc adm release info
+
+  # Show the source code that comprises a release
+  oc adm release info 4.11.2 --commit-urls
+
+  # Show the source code difference between two releases
+  oc adm release info 4.11.0 4.11.2 --commits
+
+  # Show where the images referenced by the release are located
+  oc adm release info quay.io/openshift-release-dev/ocp-release:4.11.2 --pullspecs
+
+  # Show information about linux/s390x image
+  # Note: Wildcard filter is not supported; pass a single os/arch to extract
+  oc adm release info quay.io/openshift-release-dev/ocp-release:4.11.2 --filter-by-os=linux/s390x</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-oc-adm-taint_oc-cli-commands-reference">oc adm taint</h5>
+<div class="paragraph">
+<p>Update the taints on nodes</p>
+</div>
+<div class="listingblock">
+<div class="title">Example usage</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">  # Update node 'foo' with a taint with key 'dedicated' and value 'special-user' and effect 'NoSchedule'
+  # If a taint with that key and effect already exists, its value is replaced as specified
+  oc adm taint nodes foo dedicated=special-user:NoSchedule
+
+  # Remove from node 'foo' the taint with key 'dedicated' and effect 'NoSchedule' if one exists
+  oc adm taint nodes foo dedicated:NoSchedule-
+
+  # Remove from node 'foo' all the taints with key 'dedicated'
+  oc adm taint nodes foo dedicated-
+
+  # Add a taint with key 'dedicated' on nodes having label mylabel=X
+  oc adm taint node -l myLabel=X  dedicated=foo:PreferNoSchedule
+
+  # Add to node 'foo' a taint with key 'bar' and no value
+  oc adm taint nodes foo bar:NoSchedule</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-oc-apis-errors_use-oc-cli.html">oc command errors in MicroShift</a> | ↑ Up: <a href="_reference.html">Reference</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-oc-cmd_oc-cli-commands-reference.html">OpenShift administrator commands</a> →</p>
+<p>← Previous: <a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a> | ↑ Up: <a href="_reference.html">Reference</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="_networking.html">Networking</a> →</p>
 </div>
 </div>
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
+<a href="microshift-use-oc-cli_use-oc-cli.html#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
 </div>
 </div>
 <div id="footer">

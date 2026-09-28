@@ -437,24 +437,148 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-manifests-overview_deploy-with-kustomize" class="book toc2 toc-left">
+<body id="microshift-manifests-overview_deploy-with-kustomize" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
 <ul class="sectlevel2">
@@ -477,22 +601,132 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#how-microshift-uses-manifests_deploy-with-kustomize">How MicroShift uses manifests</a></li><li class="level-4"><a href="#microshift-manifests-override-paths_deploy-with-kustomize">Override the list of manifest paths</a></li><li class="level-4"><a href="#microshift-applying-manifests-example_deploy-with-kustomize">Use the manifests example</a></li><li class="level-4"><a href="#microshift-manifests-deletion-behavior_deploy-with-kustomize">How manifest resource deletion works</a></li><li class="level-4"><a href="#microshift-manifests-deletion-overview_deploy-with-kustomize">How manifest deletion works</a></li><li class="level-5"><a href="#microshift-examples-of-usecase_deploy-with-kustomize">Use cases for manifest resource deletion</a></li><li class="level-4"><a href="#microshift-manifests-removal-scenario-rpm_deploy-with-kustomize">Remove manifests for RPM systems</a></li><li class="level-4"><a href="#microshift-manifests-removal-scenario-ostree_deploy-with-kustomize">Remove manifests for OSTree systems</a></li><li class="level-4"><a href="#microshift-manifests-upgrade-scenario-rpm_deploy-with-kustomize">Upgrade manifests for RPM systems</a></li><li class="level-4"><a href="#microshift-manifests-upgrade-scenario-ostree_deploy-with-kustomize">Upgrade manifests for OSTree systems</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-manifests-overview_deploy-with-kustomize">How Kustomize works with manifests to deploy applications</h3>
@@ -529,40 +763,480 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </table>
 </div>
+<div class="sect3">
+<h4 id="how-microshift-uses-manifests_deploy-with-kustomize">How MicroShift uses manifests</h4>
+<div class="paragraph">
+<p>At every start, MicroShift searches the following manifest directories for Kustomize manifest files:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="how-microshift-uses-manifests_deploy-with-kustomize.html">How MicroShift uses manifests</a></p>
+<p><code>/etc/microshift/manifests</code></p>
 </li>
 <li>
-<p><a href="microshift-manifests-override-paths_deploy-with-kustomize.html">Override the list of manifest paths</a></p>
+<p><code>/etc/microshift/manifests.d/*</code></p>
 </li>
 <li>
-<p><a href="microshift-applying-manifests-example_deploy-with-kustomize.html">Use the manifests example</a></p>
+<p><code>/usr/lib/microshift/</code></p>
 </li>
 <li>
-<p><a href="microshift-manifests-deletion-behavior_deploy-with-kustomize.html">How manifest resource deletion works</a></p>
-</li>
-<li>
-<p><a href="microshift-manifests-deletion-overview_deploy-with-kustomize.html">How manifest deletion works</a></p>
-</li>
-<li>
-<p><a href="microshift-manifests-removal-scenario-rpm_deploy-with-kustomize.html">Remove manifests for RPM systems</a></p>
-</li>
-<li>
-<p><a href="microshift-manifests-removal-scenario-ostree_deploy-with-kustomize.html">Remove manifests for OSTree systems</a></p>
-</li>
-<li>
-<p><a href="microshift-manifests-upgrade-scenario-rpm_deploy-with-kustomize.html">Upgrade manifests for RPM systems</a></p>
-</li>
-<li>
-<p><a href="microshift-manifests-upgrade-scenario-ostree_deploy-with-kustomize.html">Upgrade manifests for OSTree systems</a></p>
+<p><code>/usr/lib/microshift/manifests.d/*</code></p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>MicroShift automatically runs the equivalent of the <code>kubectl apply -k</code> command to apply the manifests to the node if any of the following file types exists in the searched directories:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>kustomization.yaml</code></p>
+</li>
+<li>
+<p><code>kustomization.yml</code></p>
+</li>
+<li>
+<p><code>Kustomization</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This automatic loading from multiple directories means you can manage MicroShift workloads with the flexibility of having different workloads run independently of each other.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. MicroShift manifest directories</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Intent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/etc/microshift/manifests</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read/write location for configuration management systems or development.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/etc/microshift/manifests.d/*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read/write location for configuration management systems or development.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/usr/lib/microshift/manifests</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read-only location for embedding configuration manifests on OSTree-based systems.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/usr/lib/microshift/manifestsd./*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read-only location for embedding configuration manifests on OSTree-based systems.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="microshift-manifests-override-paths_deploy-with-kustomize">Override the list of manifest paths</h4>
+<div class="paragraph _abstract">
+<p>You can override the list of default manifest paths by using a new single path, or by using a new glob pattern for multiple files.</p>
+</div>
+<div class="paragraph">
+<p>Use the following procedure to customize your manifest paths.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Override the list of default paths by inserting your own values and running one of the following commands:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Set <code>manifests.kustomizePaths</code> to <code>&lt;"/opt/alternate/path"&gt;</code> in the configuration file for a single path.</p>
+</li>
+<li>
+<p>Set <code>kustomizePaths</code> to <code>,"/opt/alternative/path.d/*".</code> in the configuration file for a glob pattern.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">manifests:
+    kustomizePaths:
+        - <em>&lt;location&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;location&gt;</em></code> with the path to the manifest directory. Set each location entry to an exact path by using <code>"/opt/alternate/path"</code> or a glob pattern by using <code>"/opt/alternative/path.d/*"</code>.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To disable loading manifests, set the configuration option to an empty list.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">manifests:
+    kustomizePaths: []</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The configuration file overrides the defaults entirely. If the <code>kustomizePaths</code> value is set, only the values in the configuration file are used. Setting the value to an empty list disables manifest loading.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-applying-manifests-example_deploy-with-kustomize">Use the manifests example</h4>
+<div class="paragraph _abstract">
+<p>You can automatically deploy a BusyBox container on MicroShift by using <code>kustomize</code> manifests in the <code>/etc/microshift/manifests</code> directory.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create the BusyBox manifest files by running the following commands:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Define the directory location:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ MANIFEST_DIR=/etc/microshift/manifests</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Make the directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo mkdir -p ${MANIFEST_DIR}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Place the YAML file in the directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">sudo tee ${MANIFEST_DIR}/busybox.yaml &amp;&gt;/dev/null &lt;&lt;EOF
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: busybox
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox
+  namespace: busybox-deployment
+spec:
+  selector:
+    matchLabels:
+      app: busybox
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      containers:
+      - name: busybox
+        image: BUSYBOX_IMAGE
+        command: [ "/bin/sh", "-c", "while true ; do date; sleep 3600; done;" ]
+EOF</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Next, create the <code>kustomize</code> manifest files by running the following commands:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Place the YAML file in the directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">sudo tee ${MANIFEST_DIR}/kustomization.yaml &amp;&gt;/dev/null &lt;&lt;EOF
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: busybox
+resources:
+  - busybox.yaml
+images:
+  - name: BUSYBOX_IMAGE
+    newName: busybox:1.35
+EOF</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Restart MicroShift to apply the manifests by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart microshift</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the manifests and start the <code>busybox</code> pod by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n busybox</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-manifests-deletion-behavior_deploy-with-kustomize">How manifest resource deletion works</h4>
+<div class="paragraph _abstract">
+<p>When creating new manifests in MicroShift, you can use manifest resource deletion to remove or update old objects, ensuring there are no conflicts or issues.</p>
+</div>
+<div class="paragraph">
+<p>MicroShift supports the deletion of manifest resources in the following situations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Manifest removal: Manifests can be removed when you need to completely remove a resource from the node.</p>
+</li>
+<li>
+<p>Manifest upgrade: During an application upgrade, some resources might need to be removed while others are retained to preserve data.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Manifest files placed in the <code>delete</code> subdirectories are not automatically removed and require manual deletion. Only the resources listed in the manifest files placed in the delete subdirectories are deleted.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-manifests-deletion-overview_deploy-with-kustomize">How manifest deletion works</h4>
+<div class="paragraph _abstract">
+<p>By default, MicroShift searches for deletion manifests in the <code>delete</code> subdirectories within the manifests path. When a user places a manifest in these subdirectories, MicroShift removes the manifests when the system is started.</p>
+</div>
+<div class="paragraph">
+<p>Read through the following to understand how manifests deletion works in MicroShift.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Each time the system starts, before applying the manifests, MicroShift scans the following <code>delete</code> subdirectories within the configured manifests directory to identify the manifests that need to be deleted:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>/usr/lib/microshift/manifests/delete</code></p>
+</li>
+<li>
+<p><code>/usr/lib/microshift/manifests.d/delete/*</code></p>
+</li>
+<li>
+<p><code>/etc/microshift/manifests/delete</code></p>
+</li>
+<li>
+<p><code>/etc/microshift/manifests.d/delete/*</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>MicroShift deletes the resources defined in the manifests found in the <code>delete</code> directories by running the equivalent of the <code>kubectl delete --ignore-not-found -k</code> command.</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="microshift-examples-of-usecase_deploy-with-kustomize">Use cases for manifest resource deletion</h5>
+<div class="paragraph">
+<p>The following sections explain the use case in which the manifest resource deletion is used.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-manifests-removal-scenario-rpm_deploy-with-kustomize">Remove manifests for RPM systems</h4>
+<div class="paragraph _abstract">
+<p>To remove a resource on RPM-based MicroShift systems, move the manifest into a <code>delete</code> subdirectory and restart MicroShift so the resource is deleted.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Identify the manifest that needs to be placed in the <code>delete</code> subdirectories.</p>
+</li>
+<li>
+<p>Create the <code>delete</code> subdirectory in which the manifest will be placed by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo mkdir -p <em>&lt;path_of_delete_directory&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;path_of_delete_directory&gt;</em></code> with one of the following valid directory paths: <code>/etc/microshift/manifests.d/delete</code>, <code>/etc/microshift/manifests/delete/</code>, <code>/usr/lib/microshift/manifests.d/delete</code>, or <code>/usr/lib/microshift/manifests/delete</code>.</p>
+</div>
+</li>
+<li>
+<p>Move the manifest file into one of the <code>delete</code> subdirectories under the configured manifests directory by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ [sudo] mv <em>&lt;path_of_manifests&gt;</em> <em>&lt;path_of_delete_directory&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code><em>&lt;path_of_manifests&gt;</em></code></dt>
+<dd>
+<p>Specifies the path of the manifest to be deleted, for example <code>/etc/microshift/manifests.d/010-SOME-MANIFEST</code>.</p>
+</dd>
+<dt class="hdlist1"><code><em>&lt;path_of_delete_directory&gt;</em></code></dt>
+<dd>
+<p>Specifies one of the following valid directory paths: <code>/etc/microshift/manifests.d/delete</code>, <code>/etc/microshift/manifests/delete</code>, <code>/usr/lib/microshift/manifests.d/delete</code> or <code>/usr/lib/microshift/manifests/delete</code>.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Restart MicroShift by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart microshift</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>MicroShift detects and removes the resource after the manifest file is placed in the <code>delete</code> subdirectories.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-manifests-removal-scenario-ostree_deploy-with-kustomize">Remove manifests for OSTree systems</h4>
+<div class="paragraph _abstract">
+<p>On OSTree-based MicroShift systems, you can remove a resource by packaging the manifest in an RPM, adding it to a blueprint, and letting MicroShift process the <code>delete</code> directory.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For OSTree installation, the <code>delete</code> subdirectories are read-only.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Identify the manifest that needs to be placed in the <code>delete</code> subdirectories.</p>
+</li>
+<li>
+<p>Package the manifest into an RPM. See <a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/running_applications/microshift-embedding-apps-tutorial#microshift-building-apps-rpms_microshift-embedding-apps-tutorial">Building the RPM package for the application</a> for the procedure to package the manifest into an RPM.</p>
+</li>
+<li>
+<p>Add the packaged RPM to the blueprint file to install it into correct location. See <a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/running_applications/microshift-embedding-apps-tutorial#microshift-adding-app-rpms-to-blueprint_microshift-embedding-apps-tutorial">Adding application RPMs to a blueprint</a> for the procedure to add an RPM to a blueprint.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-manifests-upgrade-scenario-rpm_deploy-with-kustomize">Upgrade manifests for RPM systems</h4>
+<div class="paragraph _abstract">
+<p>To update resources while preserving data on RPM-based MicroShift systems, you can create new manifests for changes and deletions, and then move the deletion manifests into a <code>delete</code> subdirectory.</p>
+</div>
+<div class="paragraph">
+<p>Use the following procedure to remove some resources while retaining others to preserve data.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Identify the manifest that requires updating.</p>
+</li>
+<li>
+<p>Create new manifests to be applied in the manifest directories.</p>
+</li>
+<li>
+<p>Create new manifests for resource deletion. It is not necessary to include the <code>spec</code> in these manifests. See <a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/running_applications/applications-with-microshift#microshift-applying-manifests-example_applications-microshift">Using manifests example</a> to create new manifests using the example.</p>
+</li>
+<li>
+<p>Use the procedure in "Removing manifests for RPM systems" to create <code>delete</code> subdirectories and place the manifests created for resource deletion in this path.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-manifests-upgrade-scenario-ostree_deploy-with-kustomize">Upgrade manifests for OSTree systems</h4>
+<div class="paragraph _abstract">
+<p>To update resources while preserving data on OSTree-based MicroShift systems, you can create new manifests for changes and deletions and use the OSTree removal procedure for the <code>delete</code> directory.</p>
+</div>
+<div class="paragraph">
+<p>Use the following procedure to remove some resources while retaining others to preserve data.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For OSTree systems, the <code>delete</code> subdirectories are read-only.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Identify the manifest that needs updating.</p>
+</li>
+<li>
+<p>Create a new manifest to apply in the manifest directories. See <a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/running_applications/applications-with-microshift#microshift-applying-manifests-example_applications-microshift">Using manifests example</a> to create new manifests using the example.</p>
+</li>
+<li>
+<p>Create a new manifest for resource deletion to be placed in the <code>delete</code> subdirectories.</p>
+</li>
+<li>
+<p>Use the procedure in "Removing manifests for OSTree systems" to remove the manifests.</p>
+</li>
+</ol>
+</div>
+</div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="_develop.html">Develop</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="how-microshift-uses-manifests_deploy-with-kustomize.html">How MicroShift uses manifests</a> →</p>
+<p>↑ Up: <a href="_develop.html">Develop</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a> →</p>
 </div>
 </div>
 <div id="footer">

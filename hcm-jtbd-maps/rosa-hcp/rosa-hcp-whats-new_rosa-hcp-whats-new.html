@@ -437,94 +437,1117 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-left-nav-toggle-start -->
+<style>
+  #toc .toc-toggle {
+    display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .75em;
+    padding: 0 .3em 0 0;
+    margin: 0;
+    color: #555;
+    transition: transform .15s ease;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  #toc .toc-toggle:hover { color: #0066cc; }
+  #toc .toc-toggle.open { transform: rotate(90deg); }
+  #toc li > ul.sectlevel2,
+  #toc li > ul.sectlevel3,
+  #toc li > ul.sectlevel4 { display: none; }
+  #toc li.toc-expanded > ul.sectlevel2,
+  #toc li.toc-expanded > ul.sectlevel3,
+  #toc li.toc-expanded > ul.sectlevel4 { display: block; }
+</style>
+<script>
+(function() {
+  var previewPath = window.location.pathname.slice(
+    0,
+    window.location.pathname.lastIndexOf('/')
+  ) || '/';
+  var STORAGE_KEY = 'navmap-toc-state:' + previewPath;
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch(e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var state = loadState();
+    var currentPage = location.pathname.split('/').pop();
+    var buttons = document.querySelectorAll('#toc .toc-toggle');
+
+    buttons.forEach(function(btn) {
+      var key = btn.getAttribute('data-toc-key');
+      var li = btn.parentElement;
+      var isCurrentSection = false;
+
+      /* Auto-expand the section containing the current page */
+      var links = li.querySelectorAll('a[href]');
+      links.forEach(function(a) {
+        var href = a.getAttribute('href').split('#')[0];
+        if (href === currentPage) { isCurrentSection = true; }
+      });
+
+      if (state[key] === true || isCurrentSection) {
+        li.classList.add('toc-expanded');
+        btn.classList.add('open');
+        if (isCurrentSection) { state[key] = true; }
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var expanded = li.classList.toggle('toc-expanded');
+        btn.classList.toggle('open', expanded);
+        state[key] = expanded;
+        saveState(state);
+      });
+    });
+
+    saveState(state);
+
+    /* --- Scroll current page into view in the TOC --- */
+    var toc = document.getElementById('toc');
+    if (toc) {
+      var cur = toc.querySelector('a[href="' + currentPage + '"]');
+      if (!cur) { cur = toc.querySelector('a[href$="/' + currentPage + '"]'); }
+      if (cur) {
+        cur.style.fontWeight = 'bold';
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            cur.scrollIntoView({ block: 'center', behavior: 'instant' });
+          }, 0);
+        });
+      }
+    }
+  });
+})();
+</script>
+<!-- navmap-left-nav-toggle-end -->
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
+<!-- navmap-preview-warning-start -->
+<style>
+  .navmap-preview-warning {
+    background: #fff1f1;
+    border: 2px solid #c9190b;
+    border-radius: 4px;
+    color: #3b0a0a;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    margin: 1em auto;
+    max-width: 70em;
+    padding: 1em 1.25em;
+  }
+  .navmap-preview-warning strong { color: #a30000; }
+  .navmap-preview-warning details { margin-top: .75em; }
+  .navmap-preview-warning pre {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    max-height: 20em;
+    overflow: auto;
+    padding: .75em;
+    white-space: pre-wrap;
+  }
+</style>
+<!-- navmap-preview-warning-end -->
 </head>
-<body id="rosa-hcp-whats-new_rosa-hcp-whats-new" class="book toc2 toc-left">
+<body id="rosa-hcp-whats-new_rosa-hcp-whats-new" class="book toc2 toc-left navmap-has-right-toc">
+<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-hcp/navigation.adoc
+
+Missing include targets:
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-cli.adoc:104
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-hybrid-cloud-console.adoc:104
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-terraform.adoc:23
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli.adoc:92
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+
+How to fix these errors:
+  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
+  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
+  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
+</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
-<li><a href="_whats_new.html">What&#8217;s new</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
 <ul class="sectlevel2">
 <li><a href="rosa-hcp-whats-new_rosa-hcp-whats-new.html"><span class="toc-current">What&#8217;s new for Red Hat OpenShift Service on AWS</span></a>
 </li>
 </ul>
 </li>
-<li><a href="_discover.html">Discover</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-learn-about-benefits-and-use-cases_rosa-hcp-learn-about-benefits-and-use-cases.html">Learn about benefits and use cases</a>
 </li>
-<li><a href="_install.html">Install</a>
+<li><a href="rosa-hcp-evaluate-shared-responsibilities_rosa-hcp-evaluate-shared-responsibilities.html">Evaluate shared responsibilities</a>
 </li>
-<li><a href="_upgrade.html">Upgrade</a>
+<li><a href="rosa-hcp-get-sre-and-service-account-access_rosa-hcp-get-sre-and-service-account-access.html">Get SRE and service account access</a>
 </li>
-<li><a href="_observe.html">Observe</a>
+<li><a href="rosa-hcp-understand-security-control_rosa-hcp-understand-security-control.html">Understand security control</a>
+</li>
+<li><a href="rosa-hcp-acquire-aws-sts-authentication_rosa-hcp-acquire-aws-sts-authentication.html">Acquire AWS STS authentication</a>
+</li>
+<li><a href="rosa-hcp-investigate-architecture-models_rosa-hcp-investigate-architecture-models.html">Investigate architecture models</a>
+</li>
+<li><a href="rosa-hcp-explore-sts-resources-for-iam-clusters_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Explore STS resources for IAM clusters</a>
+</li>
+<li><a href="rosa-hcp-general-availability_rosa-hcp-general-availability.html">General availability</a>
+</li>
+<li><a href="rosa-hcp-review-the-service-definition_rosa-hcp-review-the-service-definition.html">Review the service definition</a>
+</li>
+<li><a href="rosa-hcp-review-supported-instance-types_rosa-hcp-review-supported-instance-types.html">Review supported instance types</a>
+</li>
+<li><a href="rosa-hcp-update-life-cycle_rosa-hcp-update-life-cycle.html">Update life cycle</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-intro_rosa-hcp-create-a-rosa-hcp-cluster.html">Create a ROSA HCP Cluster</a>
+</li>
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-intro_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc.html">Create a ROSA HCP Cluster in a Shared VPC</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_upgrade.html">▶</button><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-plan-cluster-upgrades_rosa-hcp-plan-cluster-upgrades.html">Plan cluster upgrades</a>
+</li>
+<li><a href="rosa-hcp-upgrade-a-cluster_rosa-hcp-upgrade-a-cluster.html">Upgrade a cluster</a>
+</li>
+<li><a href="rosa-hcp-upgrade-karpenter-managed-nodes_rosa-hcp-upgrade-karpenter-managed-nodes.html">Upgrade Karpenter-managed nodes</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_observe.html">▶</button><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a>
+</li>
+<li><a href="rosa-hcp-monitor-cluster-health_rosa-hcp-monitor-cluster-health.html">Monitor cluster health</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-q3-2026_rosa-hcp-whats-new">Q3 2026</a></li><li class="level-4"><a href="#rosa-q2-2026_rosa-hcp-whats-new">Q2 2026</a></li><li class="level-4"><a href="#rosa-q1-2026_rosa-hcp-whats-new">Q1 2026</a></li><li class="level-4"><a href="#rosa-q4-2025_rosa-hcp-whats-new">Q4 2025</a></li><li class="level-4"><a href="#rosa-q3-2025_rosa-hcp-whats-new">Q3 2025</a></li><li class="level-4"><a href="#rosa-q2-2025_rosa-hcp-whats-new">Q2 2025</a></li><li class="level-4"><a href="#rosa-q1-2025_rosa-hcp-whats-new">Q1 2025</a></li><li class="level-4"><a href="#rosa-q4-2024_rosa-hcp-whats-new">Q4 2024</a></li><li class="level-4"><a href="#rosa-q3-2024_rosa-hcp-whats-new">Q3 2024</a></li><li class="level-4"><a href="#rosa-q2-2024_rosa-hcp-whats-new">Q2 2024</a></li><li class="level-4"><a href="#rosa-q1-2024_rosa-hcp-whats-new">Q1 2024</a></li><li class="level-4"><a href="#rosa-known-issues_rosa-hcp-whats-new">Known issues</a></li><li class="level-4"><a href="#rosa-deprecated-removed-features_rosa-hcp-whats-new">Deprecated and removed features</a></li><li class="level-4"><a href="#rosa-q4-2023_rosa-hcp-whats-new">Q4 2023</a></li><li class="level-4"><a href="#rosa-q3-2023_rosa-hcp-whats-new">Q3 2023</a></li><li class="level-4"><a href="#rosa-q2-2023_rosa-hcp-whats-new">Q2 2023</a></li><li class="level-4"><a href="#rosa-q1-2023_rosa-hcp-whats-new">Q1 2023</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-hcp-whats-new_rosa-hcp-whats-new">What&#8217;s new for Red Hat OpenShift Service on AWS</h3>
 <div class="paragraph _abstract">
 <p>Find new additions, recent changes, and relevant updates for Red&#160;Hat OpenShift Services on AWS listed below in quarterly increments.</p>
 </div>
+<div class="sect3">
+<h4 id="rosa-q3-2026_rosa-hcp-whats-new">Q3 2026</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the third quarter of 2026.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Cluster deletion protection</dt>
+<dd>
+<div class="paragraph">
+<p>You can enable deletion protection when creating Red&#160;Hat OpenShift Services on AWS clusters using the ROSA CLI or Terraform to prevent accidental deletion. For more information, see the following documentation:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-q3-2026_rosa-hcp-whats-new.html">Q3 2026</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/install_clusters/rosa-hcp-sts-creating-a-cluster-quickly#rosa-hcp-sts-creating-a-cluster-cli_rosa-hcp-sts-creating-a-cluster-quickly">Creating a cluster using the CLI</a></p>
 </li>
 <li>
-<p><a href="rosa-q2-2026_rosa-hcp-whats-new.html">Q2 2026</a></p>
-</li>
-<li>
-<p><a href="rosa-q1-2026_rosa-hcp-whats-new.html">Q1 2026</a></p>
-</li>
-<li>
-<p><a href="rosa-q4-2025_rosa-hcp-whats-new.html">Q4 2025</a></p>
-</li>
-<li>
-<p><a href="rosa-q3-2025_rosa-hcp-whats-new.html">Q3 2025</a></p>
-</li>
-<li>
-<p><a href="rosa-q2-2025_rosa-hcp-whats-new.html">Q2 2025</a></p>
-</li>
-<li>
-<p><a href="rosa-q1-2025_rosa-hcp-whats-new.html">Q1 2025</a></p>
-</li>
-<li>
-<p><a href="rosa-q4-2024_rosa-hcp-whats-new.html">Q4 2024</a></p>
-</li>
-<li>
-<p><a href="rosa-q3-2024_rosa-hcp-whats-new.html">Q3 2024</a></p>
-</li>
-<li>
-<p><a href="rosa-q2-2024_rosa-hcp-whats-new.html">Q2 2024</a></p>
-</li>
-<li>
-<p><a href="rosa-q1-2024_rosa-hcp-whats-new.html">Q1 2024</a></p>
-</li>
-<li>
-<p><a href="rosa-known-issues_rosa-hcp-whats-new.html">Known issues</a></p>
-</li>
-<li>
-<p><a href="rosa-deprecated-removed-features_rosa-hcp-whats-new.html">Deprecated and removed features</a></p>
-</li>
-<li>
-<p><a href="rosa-q4-2023_rosa-hcp-whats-new.html">Q4 2023</a></p>
-</li>
-<li>
-<p><a href="rosa-q3-2023_rosa-hcp-whats-new.html">Q3 2023</a></p>
-</li>
-<li>
-<p><a href="rosa-q2-2023_rosa-hcp-whats-new.html">Q2 2023</a></p>
-</li>
-<li>
-<p><a href="rosa-q1-2023_rosa-hcp-whats-new.html">Q1 2023</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/install_clusters/creating-a-red-hat-openshift-service-on-aws-cluster-with-terraform#rosa-hcp-terraform-cluster-creation-overview_rosa-hcp-creating-a-cluster-quickly-terraform">Creating a default cluster using Terraform</a></p>
 </li>
 </ul>
 </div>
+</dd>
+<dt class="hdlist1">Disaster recovery policies are updated</dt>
+<dd>
+<div class="paragraph">
+<p>A new backup and recovery strategy for the Red&#160;Hat OpenShift Services on AWS cluster control planes is implemented, minimizing cluster risk from disaster events. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-policy-disaster-recovery_rosa-policy-responsibility-matrix">Disaster recovery</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Spot instances are supported</dt>
+<dd>
+<div class="paragraph">
+<p>AWS Spot instances are supported for Red&#160;Hat OpenShift Services on AWS clusters. This option can minimize compute costs by using spare EC2 instances and Spot market options in a cluster. Both simple mode and enhanced mode for graceful termination handling are supported. For more information, see the following documentation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/install_clusters/rosa-hcp-config-aws-spot-instances-cli">Configure AWS Spot instances for Red&#160;Hat OpenShift Services on AWS using the CLI</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/install_clusters/creating-a-red-hat-openshift-service-on-aws-cluster-with-terraform#rosa-hcp-config-aws-spot-instances-terraform">Configure AWS Spot instances for Red&#160;Hat OpenShift Services on AWS with Terraform</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Multiple subnet support per Availability Zone (AZ)</dt>
+<dd>
+<div class="paragraph">
+<p>Administrators can now configure clusters and provision machine pools in multiple subnets within a single AZ. This enhancement provides greater flexibility when integrating Red&#160;Hat OpenShift Services on AWS into complex or constrained AWS Virtual Private Cloud (VPC) topologies, providing each subnet with access to the VPC endpoint. This update applies to Red&#160;Hat OpenShift Services on AWS versions 4.22.4+, 4.21.25+, and 4.20.31+.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q2-2026_rosa-hcp-whats-new">Q2 2026</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the second quarter of 2026.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">New worker node instance types are available</dt>
+<dd>
+<div class="paragraph">
+<p>With this update, Red&#160;Hat OpenShift Services on AWS offers 8th generation worker instances such as G7e, P6-B300, and more. For more information and details on instance type differences, see
+<a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/introduction_to_rosa/policies-and-service-definition#rosa-hcp-instance-types">Red&#160;Hat OpenShift Services on AWS instance types.</a></p>
+</div>
+</dd>
+<dt class="hdlist1">Red&#160;Hat build of Karpenter based on Karpenter v1.9 is available</dt>
+<dd>
+<div class="paragraph">
+<p>With this update, you can use Red&#160;Hat build of Karpenter to provision compute nodes based on workload demand. Red&#160;Hat build of Karpenter is based on the open-source Karpenter project and provides dynamic node provisioning that matches workload requirements without requiring pre-configured node pools. When pods no longer require a node, Red&#160;Hat build of Karpenter removes the node to reduce costs.</p>
+</div>
+<div class="paragraph">
+<p>For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/cluster_administration/managing-compute-nodes-using-red-hat-build-of-karpenter#rosa-autonode-about">About Red&#160;Hat build of Karpenter</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">New version of Red&#160;Hat OpenShift Services on AWS available</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS version 4.22 is available for new clusters.</p>
+</div>
+</dd>
+<dt class="hdlist1">Upgrade channels are available</dt>
+<dd>
+<div class="paragraph">
+<p>You can select the new channels option for more precise, version-specific control over your cluster updates. You can target exact minor version paths, such as <code>stable-4.20</code> or <code>fast-4.21</code>, instead of relying on broader channel groups, which are being deprecated. For more information, see
+ <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/upgrading/index#rosa-hcp-upgrading-channels_rosa-hcp-upgrading">Channels in Red&#160;Hat OpenShift Services on AWS clusters</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">The <code>fast</code> upgrade channel is available as an update option</dt>
+<dd>
+<div class="paragraph">
+<p>You can select <code>fast</code> as an upgrade channel when creating or updating your Red&#160;Hat OpenShift Services on AWS clusters. Red&#160;Hat updates the <code>fast</code> channel with new versions of Red&#160;Hat OpenShift Services on AWS as soon as Red&#160;Hat declares the version as a general availability (GA) release.</p>
+</div>
+</dd>
+<dt class="hdlist1">FIPS-encrypted Red&#160;Hat OpenShift Services on AWS clusters</dt>
+<dd>
+<div class="paragraph">
+<p>With this update, you can create Red&#160;Hat OpenShift Services on AWS clusters with Federal Information Processing Standards (FIPS) encryption that adhere to the highest data security levels. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/install_clusters/index#rosa-hcp-creating-cluster-with-fips-encryption">Deploying Red&#160;Hat OpenShift Services on AWS clusters using FIPS encryption</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">The Modern TLS 1.3 security profile for Red&#160;Hat OpenShift Services on AWS clusters</dt>
+<dd>
+<div class="paragraph">
+<p>With this update, you can enhance the security of your managed endpoints by enforcing the Modern Transport Layer Security (TLS) 1.3 security profile. This profile ensures that all communications with the API server and OAuth endpoints comply with the latest security standards.</p>
+</div>
+</dd>
+<dt class="hdlist1">Machine pools can be scaled to zero nodes</dt>
+<dd>
+<div class="paragraph">
+<p>With this update, you can optimize infrastructure costs for Red&#160;Hat OpenShift Services on AWS by configuring machine pools to autoscale to zero nodes. By setting a minimum replica count of 0, use the cluster autoscaler to decommission all idle nodes in a pool. By doing this, you eliminate subscription and infrastructure expenses for high-cost resources, like GPU nodes or specialized on-demand workloads. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/cluster_administration/managing-compute-nodes-using-machine-pools#creating_a_machine_pool_rosa-managing-worker-nodes">Creating a machine pool</a>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q1-2026_rosa-hcp-whats-new">Q1 2026</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the first quarter of 2026.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Cluster admins can create multiple users with htpasswd identity providers</dt>
+<dd>
+<div class="paragraph">
+<p>Cluster administrators can add multiple users to an htpasswd identity providers (IDPs) for Red&#160;Hat OpenShift Services on AWS clusters using the command-line interface (CLI). You can add multiple users to a single htpasswd IDP, streamlining managing user identities. Using the CLI or Terraform, administrators can add users interactively and noninteractively. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/authentication_and_authorization/sd-configuring-identity-providers#config-htpasswd-idp_sd-configuring-identity-providers">Configuring an htpasswd identity provider</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Platform monitoring using the Cluster Monitoring Operator</dt>
+<dd>
+<div class="paragraph">
+<p>With this update, you can configure the in-cluster monitoring stack components, metrics, and alerts to monitor both core platform components and user-defined projects. Previously, you could only monitor user-defined projects. This change applies to both new and existing Red&#160;Hat OpenShift Services on AWS clusters. However, it affects them differently.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For new clusters created after this change, the default, in-cluster monitoring stack is installed during cluster installation and immediately begins collecting metrics. After installation, you can use the default configuration, or you can modify the monitoring components to suit your needs.</p>
+</li>
+<li>
+<p>For existing clusters created prior to this change, no changes will be made to the cluster&#8217;s monitoring configuration. However, you can begin to use the core platform monitoring components, and modify them to suit your needs.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/monitoring/index">Monitoring projects on Red&#160;Hat OpenShift Services on AWS</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">AWS Windows License Included is available for Red&#160;Hat OpenShift Services on AWS</dt>
+<dd>
+<div class="paragraph">
+<p>You can add a Windows License Included enabled machine pool to a Red&#160;Hat OpenShift Services on AWS cluster. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/cluster_administration/managing-compute-nodes-using-machine-pools#creating_a_machine_pools_cli_win_li_rosa-managing-worker-nodes">Creating a machine pool with AWS Windows License Included enabled using the ROSA CLI</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Updating the global pull secret is available for Red&#160;Hat OpenShift Services on AWS clusters</dt>
+<dd>
+<div class="paragraph">
+<p>You can modify the global pull secret to include additional pull secrets for accessing container images from private registries. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets">Updating the global cluster pull secret</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">New version of Red&#160;Hat OpenShift Services on AWS available</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS version 4.21 is available for new clusters.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q4-2025_rosa-hcp-whats-new">Q4 2025</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the fourth quarter of 2025.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">AWS GovCloud</dt>
+<dd>
+<div class="paragraph">
+<p>The Amazon Web Services (AWS) GovCloud service is now available for federal and government agencies. Commercial organizations and Federal Information Security Modernization Act (FISMA) R&amp;D Universities may also use the service if they support a current government contract or are in the process of bidding on a government contract such as a request for proposal (RFP) or request for information (RFI) pre-bid stage. For more information, see
+<a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/getting_started_with_red_hat_openshift_service_on_aws_in_aws_govcloud">Getting started with ROSA GovCloud</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">New version of Red&#160;Hat OpenShift Services on AWS available</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS version 4.20 is available for new clusters.</p>
+</div>
+</dd>
+<dt class="hdlist1">On-Demand Capacity Reservations and Capacity Blocks for ML are supported</dt>
+<dd>
+<div class="paragraph">
+<p>With this update, you can use pre-purchased Capacity Reservations when creating new machine pools on Red&#160;Hat OpenShift Services on AWS clusters. For more information, see <a href="https://docs.redhat.com/documentation/red_hat_openshift_service_on_aws/4/html-single/cluster_administration/index#rosa-managing-worker-nodes">Managing compute nodes</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">ImageDigestMirrorSets (IDMS) is supported</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS adds support for ImageDigestMirrorSets (IDMS), enabling clusters to redirect image pulls to a private, mirrored registry. This critical enhancement means customers in restricted networks can host their own mirrors for third-party images while satisfying strict security and compliance requirements. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/images/index#images-registry-mirroring_image-configuration-hcp">Image registry mirroring for Red&#160;Hat OpenShift Services on AWS</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Red&#160;Hat OpenShift Services on AWS regions added</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS is available in the following regions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mexico (<code>mx-central-1</code>)</p>
+</li>
+<li>
+<p>Thailand (<code>ap-southeast-7</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information on region availabilities, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-sdpolicy-regions-az_rosa-hcp-service-definition">Regions and availability zones</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">The EUS channel group is available</dt>
+<dd>
+<div class="paragraph">
+<p>You can select the Extended Update Support (EUS) channel group when creating or editing your Red&#160;Hat OpenShift Services on AWS cluster. The EUS channel group allows you to extend the life cycle of your even-numbered version Red&#160;Hat OpenShift Services on AWS cluster, giving you additional time to plan and budget for future upgrades as well as providing continued security patches and critical bug fixes. For more information, see
+<a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/introduction_to_rosa/policies-and-service-definition#sd-life-cycle-dates_rosa-hcp-life-cycle">Life cycle dates</a>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q3-2025_rosa-hcp-whats-new">Q3 2025</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the third quarter of 2025.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">New cluster deletion policy</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS clusters now have a new deletion policy. This policy is based on a set time period of customer non-response to service notifications. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-delete-policy_rosa-hcp-life-cycle">Deletion policy</a>. For specific revised terms and conditions, refer to <a href="https://www.redhat.com/licenses/Appendix-4-Red-Hat-Online-Services-20250805.pdf">Product Appendix 4</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Shared VPC for Red&#160;Hat OpenShift Services on AWS clusters</dt>
+<dd>
+<div class="paragraph">
+<p>You can create Red&#160;Hat OpenShift Services on AWS clusters in shared, centrally-managed AWS virtual private clouds (VPCs). For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/install_clusters/index#rosa-hcp-shared-vpc-config">Configuring a shared VPC for ROSA with HCP clusters</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Deprecated <code>--private-link</code> flags for Red&#160;Hat OpenShift Services on AWS clusters</dt>
+<dd>
+<div class="paragraph">
+<p>Architectural changes to the ROSA CLI 1.2.55 make networking more flexible for Red&#160;Hat OpenShift Services on AWS clusters. The <code>--private-link</code> flag previously used when creating a Red&#160;Hat OpenShift Services on AWS cluster is now deprecated in favor of the <code>--private</code> and <code>--default-ingress-private</code> flags. Now, users can choose to have a combination of a public or private API with a public or private ingress. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/install_clusters/index#rosa-hcp-aws-private-create-cluster_rosa-hcp-aws-private-creating-cluster">Creating a private cluster on Red&#160;Hat OpenShift Services on AWS</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Changed default ingress listening method to begin with Day 1 operations</dt>
+<dd>
+<div class="paragraph">
+<p>Previously, the default ingress listening method was a Day 2 operation. Now, the default ingress listening method is a Day 1 operation.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q2-2025_rosa-hcp-whats-new">Q2 2025</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the second quarter of 2025.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Updated version requirements for migration from OpenShift SDN to OVN-Kubernetes</dt>
+<dd>
+<div class="paragraph">
+<p>Your cluster version must be 4.16.43 or above to initiate live migration from the OpenShift SDN network plugin to the OVN-Kubernetes network plugin.</p>
+</div>
+<div class="paragraph">
+<p>If your cluster uses the OpenShift SDN network plugin, you cannot upgrade to future major versions of Red&#160;Hat OpenShift Services on AWS without migrating to OVN-Kubernetes.</p>
+</div>
+</dd>
+<dt class="hdlist1">AWS Trainium and Inferentia instance types now supported</dt>
+<dd>
+<div class="paragraph">
+<p>You can now use Amazon Web Services (AWS) Trainium and Inferentia instance types for your Red&#160;Hat OpenShift Services on AWS clusters. For more information, see
+<a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-hcp-instance-types">Red&#160;Hat OpenShift Services on AWS instance types</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">New version of Red&#160;Hat OpenShift Services on AWS available</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS version 4.19 is now available for new clusters. For more information about upgrading to this latest version, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/upgrading/index">Upgrading ROSA with HCP clusters</a>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q1-2025_rosa-hcp-whats-new">Q1 2025</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the first quarter of 2025.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Cluster autoscaling is now available for Red&#160;Hat OpenShift Services on AWS</dt>
+<dd>
+<div class="paragraph">
+<p>You can configure cluster autoscaling for Red&#160;Hat OpenShift Services on AWS. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/cluster_administration/rosa-cluster-autoscaling-hcp#cluster-autoscaler-about_rosa-cluster-autoscaling-hcp">Cluster autoscaling</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Red&#160;Hat OpenShift Services on AWS region added</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS is now available in the following regions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Malaysia (<code>ap-southeast-5</code>)</p>
+</li>
+<li>
+<p>Tel Aviv (<code>il-central-1</code>)</p>
+</li>
+<li>
+<p>Calgary (<code>ca-west-1</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information on region availabilities, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-sdpolicy-regions-az_rosa-hcp-service-definition">Regions and availability zones</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">New version of Red&#160;Hat OpenShift Services on AWS available</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS version 4.18 is now available. For more information about upgrading to this latest version, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/upgrading/index#rosa-hcp-upgrading">Upgrading Red&#160;Hat OpenShift Services on AWS clusters</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Graphical installer enhancements</dt>
+<dd>
+<div class="paragraph">
+<p>You can now use the graphical installer in Red Hat Hybrid Cloud Console to configure the following options when you create your cluster:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Configure a <code>cluster-admin</code> user and optionally define a custom password.</p>
+</li>
+<li>
+<p>Configure the root disk size for the default machine pool.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Image configuration is now available for Red&#160;Hat OpenShift Services on AWS</dt>
+<dd>
+<div class="paragraph">
+<p>You can configure registries within a cluster to exclude some registries or allow only a defined list. It also allows to expose additional trusted bundle for registries to pull from. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/images/index#images-configuration-parameters-hcp_image-configuration-hcp">Image configuration resources for Red&#160;Hat OpenShift Services on AWS</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Red&#160;Hat OpenShift Services on AWS now creates independent security groups for the AWS PrivateLink endpoint and worker nodes</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS clusters version 4.17.2 and greater can now add additional AWS security groups to the AWS PrivateLink endpoint to allow additional ingress traffic to the cluster&#8217;s API. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/install_clusters/index#rosa-hcp-aws-private-security-groups_rosa-hcp-aws-private-creating-cluster">Adding additional AWS security groups to the AWS PrivateLink endpoint</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Egress zero is now generally available on Red&#160;Hat OpenShift Services on AWS clusters</dt>
+<dd>
+<div class="paragraph">
+<p>You can create a fully operational cluster that does not require a public egress by configuring a virtual private cloud (VPC) and using the <code>--properties zero_egress:true</code> flag when creating your cluster. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/install_clusters/index#rosa-hcp-egress-zero-install">Creating a {product-title} clusters with egress zero</a>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q4-2024_rosa-hcp-whats-new">Q4 2024</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the fourth quarter of 2024.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Create a VPC using the ROSA CLI</dt>
+<dd>
+<div class="paragraph">
+<p>The <code>rosa create network</code> command lets you use the ROSA CLI to create a VPC for your cluster based on an AWS CloudFormation template. You can use this command to create and configure a VPC before creating your cluster.
+For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index#rosa-create-network_rosa-managing-objects-cli">create network</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Create additional security groups in Red&#160;Hat OpenShift Services on AWS clusters</dt>
+<dd>
+<div class="paragraph">
+<p>Starting with ROSA CLI version 1.2.47, you can now create additional security groups using the ROSA CLI when creating Red&#160;Hat OpenShift Services on AWS clusters. Note that additional security group IDs attached to the machine pool cannot be modified. To remove or add more security group IDs, replace the entire machine pool with a new one.</p>
+</div>
+</dd>
+<dt class="hdlist1">ROSA CLI update</dt>
+<dd>
+<div class="paragraph">
+<p>The ROSA CLI (<code>rosa</code>) was updated to a new version. For information about what has changed in this release, see the <a href="https://github.com/openshift/rosa/releases/">ROSA CLI release notes</a>. For more information about the ROSA CLI (<code>rosa</code>), see
+<a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index#rosa-about_rosa-getting-started-cli">About the ROSA CLI</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1"><code>VolumeDetachTimeout</code> configuration applied to machine pools for Red&#160;Hat OpenShift Services on AWS</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS is applying a <code>VolumeDetachTimeout</code> configuration of 5 minutes to all machine pools. This prevents issues with node deletion when volumes fail to detach.</p>
+</div>
+</dd>
+<dt class="hdlist1">Configure machine pool disk volume for Red&#160;Hat OpenShift Services on AWS clusters</dt>
+<dd>
+<div class="paragraph">
+<p>You can now configure the disk volume size for machine pools in Red&#160;Hat OpenShift Services on AWS clusters. The default disk size is 300 GiB, and you can configure it from a minimum of 75 GiB to a maximum of 16,384 GiB. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cluster_administration/#configuring-machine-pool-disk-volume_rosa-managing-worker-nodes">Configuring machine pool disk volume</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Edit the billing account for existing Red&#160;Hat OpenShift Services on AWS clusters</dt>
+<dd>
+<div class="paragraph">
+<p>You can now update the billing account associated with your Red&#160;Hat OpenShift Services on AWS clusters after cluster creation. For more information, see <a href="https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html-single/managing_clusters/index#proc_updating-billing-accts-rosa-hcp_assembly-managing-clusters">Updating billing accounts for OpenShift Service on AWS Hosted Control Planes clusters</a>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q3-2024_rosa-hcp-whats-new">Q3 2024</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the third quarter of 2024.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Red&#160;Hat OpenShift Services on AWS multi-architecture cluster update</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS clusters created before 25 July, 2024 will migrate to a multi-architecture image on their next upgrade allowing you to use Amazon Web Services (AWS) Arm-based Graviton instance types for your workloads. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/upgrading/index#rosa-upgrade-options_rosa-hcp-upgrading">Upgrading ROSA with HCP clusters</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Red&#160;Hat OpenShift Services on AWS cluster node limit update</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS clusters can now scale to 500 worker nodes. This is an increase from the previous limit of 250 nodes. The 250 node limit is an increase from the previous limit 90 nodes on 26 August, 2024.</p>
+</div>
+</dd>
+<dt class="hdlist1">IMDSv2 support in Red&#160;Hat OpenShift Services on AWS</dt>
+<dd>
+<div class="paragraph">
+<p>You can now enforce the use of the IMDSv2 endpoint for default machine pool worker nodes on new Red&#160;Hat OpenShift Services on AWS clusters and for new machine pools on existing clusters. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/install_clusters/#rosa-hcp-creating-a-cluster-quickly-terraform">Creating a default Red&#160;Hat OpenShift Services on AWS cluster using Terraform</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Upgrade multiple nodes simultaneously</dt>
+<dd>
+<div class="paragraph">
+<p>You can now configure a machine pool to upgrade multiple nodes simultaneously. Two new machine pool parameters, <code>max-surge</code> and <code>max-unavailable</code>, give you greater control over how machine pool upgrades occur. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/upgrading/index#rosa-hcp-upgrading">Upgrading Red&#160;Hat OpenShift Services on AWS clusters</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Red&#160;Hat OpenShift Services on AWS Graviton Arm-based instance types</dt>
+<dd>
+<div class="paragraph">
+<p>You can now use Amazon Web Services (AWS) Arm-based Graviton instance types for your workloads in Red&#160;Hat OpenShift Services on AWS clusters created after 24 July, 2024. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-sdpolicy-aws-instance-types-graviton_rosa-hcp-instance-types">AWS Graviton Arm-based instance types</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">ROSA CLI update</dt>
+<dd>
+<div class="paragraph">
+<p>The ROSA CLI (<code>rosa</code>) was updated to a new version. For information about what has changed in this release, see the <a href="https://github.com/openshift/rosa/releases/tag/v1.2.42">ROSA CLI release notes</a>. For more information about the ROSA CLI (<code>rosa</code>), see
+<a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index#rosa-about_rosa-getting-started-cli">About the ROSA CLI</a>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q2-2024_rosa-hcp-whats-new">Q2 2024</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the second quarter of 2024.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Approve additional principals for Red&#160;Hat OpenShift Services on AWS clusters</dt>
+<dd>
+<div class="paragraph">
+<p>You can approve additional user-roles to connect to your cluster&#8217;s private API server endpoint. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/install_clusters/index#rosa-additional-principals-overview_rosa-hcp-aws-private-creating-cluster">Additional principals on your Red&#160;Hat OpenShift Services on AWS cluster</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">ROSA CLI update</dt>
+<dd>
+<div class="paragraph">
+<p>The ROSA CLI (<code>rosa</code>) was updated to a new version. For information about what has changed in this release, see the <a href="https://github.com/openshift/rosa/releases/tag/v1.2.41">ROSA CLI release notes</a>. For more information about the ROSA CLI (<code>rosa</code>),
+see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index#rosa-about_rosa-getting-started-cli">About the ROSA CLI</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Approved Access for Red&#160;Hat OpenShift Services on AWS clusters</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat Site Reliability Engineering (SRE) managing and proactively supporting Red&#160;Hat OpenShift Services on AWS clusters will typically not require elevated access to customer clusters as part of the normal operations. In the unlikely event should Red&#160;Hat SRE (Site Reliability Engineer) need elevated access, the <em>Approved Access</em> functionality provides an interface for customers to review and <em>approve</em> or <em>deny</em> access requests.</p>
+</div>
+<div class="paragraph">
+<p>Elevated access requests to Red&#160;Hat OpenShift Services on AWS clusters and the corresponding cloud accounts can be created by Red&#160;Hat SRE either in response to a customer-initiated support ticket or in response to alerts received by a Red&#160;Hat SRE, as part of the standard incident response process. For more information,
+see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/support/index#approved-access">Approved Access</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1"><code>rosa</code> command enhancement</dt>
+<dd>
+<div class="paragraph">
+<p>The <code>rosa describe</code> command has a new optional argument, <code>--get-role-policy-bindings</code>. This new argument allows users to view the policies attached to STS roles assigned to the selected cluster. For more information,
+see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index#rosa-describe-cluster_rosa-managing-objects-cli">describe cluster</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Expanded customer-managed policy capabilities</dt>
+<dd>
+<div class="paragraph">
+<p>You can now attach customer-managed policies to the IAM roles required to run Red&#160;Hat OpenShift Services on AWS clusters. Furthermore, these customer-managed policies, including the permissions attached to those policies, are not modified during cluster or role upgrades. For more information,
+see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-aws-customer-managed-policies_rosa-sts-about-iam-resources">Customer-managed policies</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Red&#160;Hat OpenShift Services on AWS regions added</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS is now available in the following regions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Zurich (<code>eu-central-2</code>)</p>
+</li>
+<li>
+<p>Hong Kong (<code>ap-east-1</code>)</p>
+</li>
+<li>
+<p>Osaka (<code>ap-northeast-3</code>)</p>
+</li>
+<li>
+<p>Spain (<code>eu-south-2</code>)</p>
+</li>
+<li>
+<p>UAE (<code>me-central-1</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information on region availabilities, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-sdpolicy-regions-az_rosa-hcp-service-definition">Regions and availability zones</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Added support for external authentication providers</dt>
+<dd>
+<div class="paragraph">
+<p>You can now create clusters configured with external authentication providers, such as Microsoft Entra ID and KeyCloak. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/install_clusters/index#rosa-hcp-sts-creating-a-cluster-ext-auth">Creating Red&#160;Hat OpenShift Services on AWS clusters with external authentication</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Longer cluster names enhancement</dt>
+<dd>
+<div class="paragraph">
+<p>You can now specify a cluster name that is longer than 15 characters. For cluster names that are longer than 15 characters, you can customize the domain prefix for the cluster URL by using the <code>domain-prefix</code> flag in the ROSA CLI (<code>rosa</code>) or by selecting the <strong>Create custom domain prefix</strong> checkbox in the Red Hat Hybrid Cloud Console. For more information,
+see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index#rosa-create-cluster-command_rosa-managing-objects-cli">create cluster in Managing objects with the ROSA CLI</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Additional Security Groups for Red&#160;Hat OpenShift Services on AWS</dt>
+<dd>
+<div class="paragraph">
+<p>Starting with ROSA CLI version 1.2.37, you can now use the <code>--additional-security-group-ids &lt;sec_group_id&gt;</code> when creating machine pools on ROSA with HCP clusters. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cluster_administration/index#creating_machine_pools_cli_rosa-managing-worker-nodes">Creating a machine pool using the ROSA CLI</a> and the <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index#rosa-create-machinepool_rosa-managing-objects-cli">create machinepool</a> section of the ROSA CLI reference.</p>
+</div>
+</dd>
+<dt class="hdlist1">Node management improvements</dt>
+<dd>
+<div class="paragraph">
+<p>Now, you can perform specific tasks to make clusters more efficient. You can cordon, uncordon, and drain a specific node. For more information,
+see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/nodes/#working-with-nodes">Working with nodes</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Node drain grace periods</dt>
+<dd>
+<div class="paragraph">
+<p>You can now configure node drain grace periods in ROSA with HCP clusters with the <code>rosa</code> CLI.</p>
+</div>
+<div class="paragraph">
+<p>For more information about configuring node drain grace periods, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cluster_administration/index#rosa-node-drain-grace-period_rosa-managing-worker-nodes">Configuring node drain grace periods in Red&#160;Hat OpenShift Services on AWS</a>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q1-2024_rosa-hcp-whats-new">Q1 2024</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the first quarter of 2024.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Machine pool update</dt>
+<dd>
+<div class="paragraph">
+<p>You can now upgrade machine pools that are configured on ROSA with HCP clusters. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/#rosa-upgrade-machinepool_rosa-managing-objects-cli">upgrade machinepool</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Red&#160;Hat OpenShift Services on AWS regions added</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS is now available in the following regions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Hyderabad (<code>ap-south-2</code>)</p>
+</li>
+<li>
+<p>Milan (<code>eu-south-1</code>)</p>
+</li>
+<li>
+<p>London (<code>eu-west-2</code>)</p>
+</li>
+<li>
+<p>Mumbai (<code>ap-south-1</code>)</p>
+</li>
+<li>
+<p>Cape Town (<code>af-south-1</code>)</p>
+</li>
+<li>
+<p>Seoul (<code>ap-northeast-2</code>)</p>
+</li>
+<li>
+<p>Stockholm (<code>eu-north-1</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information on region availabilities, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/#rosa-sdpolicy-regions-az_rosa-hcp-service-definition">Regions and availability zones</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">ROSA CLI update</dt>
+<dd>
+<div class="paragraph">
+<p>The ROSA CLI (<code>rosa</code>) was updated to a new version. For information about what has changed in this release, see the <a href="https://github.com/openshift/rosa/releases/tag/v1.2.36">ROSA CLI release notes</a>. For more information about the ROSA CLI (<code>rosa</code>), see
+<a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index#rosa-about_rosa-getting-started-cli">About the ROSA CLI</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Log linking is enabled by default</dt>
+<dd>
+<div class="paragraph">
+<p>Beginning with Red&#160;Hat OpenShift Services on AWS 4.15, log linking is enabled by default. Log linking gives you access to the container logs for your pods.</p>
+</div>
+</dd>
+<dt class="hdlist1">Availability zone update</dt>
+<dd>
+<div class="paragraph">
+<p>You can now optionally select a single availability zone (AZ) for machine pools when you have a multi-AZ cluster. For more information, see
+<a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cluster_administration/index#creating_machine_pools_cli_rosa-managing-worker-nodes">Creating a machine pool using the ROSA CLI</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Delete cluster command enhancement</dt>
+<dd>
+<div class="paragraph">
+<p>With the release of ROSA CLI (<code>rosa</code>) version 1.2.31, the <code>--best-effort</code> argument was added, which allows you to force-delete clusters when using the <code>rosa delete cluster</code> command. For more information, see
+<a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index#rosa-delete-cluster_rosa-managing-objects-cli">delete cluster</a>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-known-issues_rosa-hcp-whats-new">Known issues</h4>
+<div class="paragraph _abstract">
+<p>The following items are known issues with Red&#160;Hat OpenShift Services on AWS releases.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>ocm-role</code> and <code>user-role</code> can be enabled accidentally</dt>
+<dd>
+<div class="paragraph">
+<p>The OpenShift Cluster Manager roles (<code>ocm-role</code>) and user roles (<code>user-role</code>) that are key to the Red&#160;Hat OpenShift Services on AWS provisioning wizard might get enabled accidentally in your Red&#160;Hat organization by another user. However, this behavior does not affect the usability.</p>
+</div>
+</dd>
+<dt class="hdlist1"><code>htpasswd</code> does not function as expected</dt>
+<dd>
+<div class="paragraph">
+<p>The <code>htpasswd</code> identity provider does not function as expected in all scenarios against the <code>rosa create admin</code> function.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-deprecated-removed-features_rosa-hcp-whats-new">Deprecated and removed features</h4>
+<div class="paragraph _abstract">
+<p>Some features available in previous releases have been deprecated or removed. Deprecated functionality is still included in Red&#160;Hat OpenShift Services on AWS and continues to be supported; however, it will be removed in a future release of this product and is not recommended for new deployments.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Disable workload monitoring</dt>
+<dd>
+<div class="paragraph">
+<p>Previously, users could disable workload monitoring on Red&#160;Hat OpenShift Services on AWS clusters. However, to allow users to own the full Cluster Monitoring Operator (CMO) stack on Red&#160;Hat OpenShift Services on AWS clusters, the ability to disable workload monitoring has been deprecated. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/monitoring/index#preparing-to-configure-the-monitoring-stack-uwm">Preparing to configure the user workload monitoring stack</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Label removal on core namespaces</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS is no longer labeling OpenShift core using the <code>name</code> label. Customers should migrate to referencing the <code>kubernetes.io/metadata.name</code> label if needed for Network Policies or other use cases.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q4-2023_rosa-hcp-whats-new">Q4 2023</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the fourth quarter of 2023.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">ROSA CLI update</dt>
+<dd>
+<div class="paragraph">
+<p>The ROSA CLI (<code>rosa</code>) was updated to a new version. For information about what has changed in this release, see the <a href="https://github.com/openshift/rosa/releases/tag/v1.2.32">ROSA CLI release notes</a>. For more information about the ROSA CLI (<code>rosa</code>), see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/#rosa-about_rosa-getting-started-cli">About the ROSA CLI</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Delete cluster command enhancement</dt>
+<dd>
+<div class="paragraph">
+<p>With the release of ROSA CLI (<code>rosa</code>) version 1.2.31, the <code>--best-effort</code> argument was added, which allows you to force-delete clusters when using the <code>rosa delete cluster</code> command. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/index#rosa-delete-cluster_rosa-managing-objects-cli">delete cluster</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Red Hat OpenShift Service on AWS that uses hosted control planes is now generally available</dt>
+<dd>
+<div class="paragraph">
+<p>For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/install_clusters/rosa-hcp-sts-creating-a-cluster-quickly">Creating Red&#160;Hat OpenShift Services on AWS clusters using the default options</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Configurable process identifier (PID) limits</dt>
+<dd>
+<div class="paragraph">
+<p>With the release of ROSA CLI (<code>rosa</code>) version 1.2.31, administrators can use the <code>rosa create kubeletconfig</code> and <code>rosa edit kubeletconfig</code> commands to set the maximum PIDs for an existing cluster. For more information, see <a href="https://access.redhat.com/articles/7033551">Changing the maximum number of process IDs per pod (podPidsLimit) for Red&#160;Hat OpenShift Services on AWS</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Configure custom security groups</dt>
+<dd>
+<div class="paragraph">
+<p>With the release of ROSA CLI (<code>rosa</code>) version 1.2.31, administrators can use the <code>rosa create</code> command or the OpenShift Cluster Manager to create a new cluster or a new machine pool with up to 5 additional custom security groups. Configuring custom security groups gives administrators greater control over resource access in new clusters and machine pools. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/install_rosa_classic_clusters/index#rosa-security-groups_prerequisites">Security groups</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Command update</dt>
+<dd>
+<div class="paragraph">
+<p>With the release of ROSA CLI (<code>rosa</code>) version 1.2.28, a new command, <code>rosa describe machinepool</code>, was added that allows you to check detailed information regarding a specific Red&#160;Hat OpenShift Services on AWS cluster machine pool. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/index#rosa-describe-machinepool_rosa-managing-objects-cli">describe machinepool</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Documentation update</dt>
+<dd>
+<div class="paragraph">
+<p>The Operators section was added to the Red&#160;Hat OpenShift Services on AWS documentation. Operators are the preferred method of packaging, deploying, and managing services on the control plane. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/operators/index#operators-overview-1">Operators overview</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">OpenShift Virtualization support</dt>
+<dd>
+<div class="paragraph">
+<p>The release of OpenShift Virtualization 4.14 added support for running OpenShift Virtualization on Red&#160;Hat OpenShift Services on AWS clusters. For more information, see <a href="https://docs.openshift.com/container-platform/4.14/virt/install/preparing-cluster-for-virt.html#virt-aws-bm_preparing-cluster-for-virt">OpenShift Virtualization on AWS bare metal</a> in the OpenShift Container Platform documentation.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q3-2023_rosa-hcp-whats-new">Q3 2023</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the third quarter of 2023.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">ROSA CLI update</dt>
+<dd>
+<div class="paragraph">
+<p>The ROSA CLI (<code>rosa</code>) was updated to a new version. For information about what has changed in this release, see the <a href="https://github.com/openshift/rosa/releases/tag/v1.2.27">ROSA CLI release notes</a>. For more information about the ROSA CLI (<code>rosa</code>), see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/index#rosa-about_rosa-getting-started-cli">About the ROSA CLI</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Cluster autoscaling</dt>
+<dd>
+<div class="paragraph">
+<p>You can now enable cluster autoscaling using Red&#160;Hat OpenShift Services on AWS clusters. Cluster autoscaling automatically adjusts the size of a cluster so that all pods have a place to run, and there are no unneeded nodes. You can enable autoscaling during and after cluster creation using either OpenShift Cluster Manager or the ROSA CLI (<code>rosa</code>). For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cluster_administration/index#rosa-cluster-autoscaling">Cluster autoscaling</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Shared virtual private clouds</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS now supports installing clusters into VPCs shared among AWS accounts that are part of AWS organizations. AWS account installing Red Hat OpenShift Service on AWS (classic architecture) clusters can now use shared subnets owned by a management account. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/install_rosa_classic_clusters/index#configuring-a-shared-virtual-private-cloud-for-rosa-classic-architecture-clusters">Configuring a shared virtual private cloud for Red&#160;Hat OpenShift Services on AWS clusters</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Machine pool disk volume size</dt>
+<dd>
+<div class="paragraph">
+<p>You can now configure your machine pool disk volume size for additional flexibility. You can select your own sizing for the disk volumes of their worker machine pool nodes. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cluster_administration/index#configuring_machine_pool_disk_volumerosa-managing-worker-nodes">Configuring machine pool disk volume</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Machine pool update</dt>
+<dd>
+<div class="paragraph">
+<p>You can now add taints to the machine pool that is automatically generated during cluster creation. You can also delete this machine pool. This new feature provides more flexibility and cost-effectiveness for cluster administrators, specifically in regards to scaling infrastructure based on changing resource requirements. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cluster_administration/index#creating_a_machine_pool_rosa-managing-worker-nodes">Creating a machine pool</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Documentation update</dt>
+<dd>
+<div class="paragraph">
+<p>The CLI Tools section was added to the Red&#160;Hat OpenShift Services on AWS documentation and includes more detailed information to help you fully use all of the supported CLI tools. The ROSA CLI section can now be found nested inside the CLI Tools heading. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/index#cli-tools-overview-1">CLI tools overview</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Documentation update</dt>
+<dd>
+<div class="paragraph">
+<p>The Monitoring section in the documentation was expanded and now includes more detailed information to help you conveniently manage your Red&#160;Hat OpenShift Services on AWS clusters. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/monitoring/#about-ocp-monitoring">About Red&#160;Hat OpenShift Services on AWS monitoring</a>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q2-2023_rosa-hcp-whats-new">Q2 2023</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the second quarter of 2023.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">ROSA CLI update</dt>
+<dd>
+<div class="paragraph">
+<p>The ROSA CLI (<code>rosa</code>) was updated to a new version. For information about what has changed in this release, see the <a href="https://github.com/openshift/rosa/releases/tag/v1.2.23">ROSA CLI release notes</a>. For more information about the ROSA CLI (<code>rosa</code>), see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/index#rosa-about_rosa-getting-started-cli">About the ROSA CLI</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">Red&#160;Hat OpenShift Services on AWS region added</dt>
+<dd>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS is now available in the United Arab Emirates (<code>me-central-1</code>) region. For more information on region availability, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/introduction_to_rosa/index#rosa-sdpolicy-regions-az_rosa-service-definition">Regions and availability zones</a>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-q1-2023_rosa-hcp-whats-new">Q1 2023</h4>
+<div class="paragraph _abstract">
+<p>The following items were added during the first quarter of 2023.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">OIDC provider endpoint URL update</dt>
+<dd>
+<div class="paragraph">
+<p>Starting with ROSA CLI version 1.2.7, all new cluster OIDC provider endpoint URLs are no longer regional. Amazon CloudFront is part of this implementation to improve access speed, reduce latency, and improve resiliency. This change is only available for new clusters created with ROSA CLI 1.2.7 or later. There are no supported migration paths for existing OIDC provider configurations.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="_whats_new.html">What&#8217;s new</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-q3-2026_rosa-hcp-whats-new.html">Q3 2026</a> →</p>
+<p>↑ Up: <a href="_whats_new.html">What&#8217;s new</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="_discover.html">Discover</a> →</p>
 </div>
 </div>
 <div id="footer">

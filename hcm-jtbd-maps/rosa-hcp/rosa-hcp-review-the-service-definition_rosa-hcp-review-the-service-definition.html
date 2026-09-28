@@ -437,16 +437,199 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-left-nav-toggle-start -->
+<style>
+  #toc .toc-toggle {
+    display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .75em;
+    padding: 0 .3em 0 0;
+    margin: 0;
+    color: #555;
+    transition: transform .15s ease;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  #toc .toc-toggle:hover { color: #0066cc; }
+  #toc .toc-toggle.open { transform: rotate(90deg); }
+  #toc li > ul.sectlevel2,
+  #toc li > ul.sectlevel3,
+  #toc li > ul.sectlevel4 { display: none; }
+  #toc li.toc-expanded > ul.sectlevel2,
+  #toc li.toc-expanded > ul.sectlevel3,
+  #toc li.toc-expanded > ul.sectlevel4 { display: block; }
+</style>
+<script>
+(function() {
+  var previewPath = window.location.pathname.slice(
+    0,
+    window.location.pathname.lastIndexOf('/')
+  ) || '/';
+  var STORAGE_KEY = 'navmap-toc-state:' + previewPath;
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch(e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var state = loadState();
+    var currentPage = location.pathname.split('/').pop();
+    var buttons = document.querySelectorAll('#toc .toc-toggle');
+
+    buttons.forEach(function(btn) {
+      var key = btn.getAttribute('data-toc-key');
+      var li = btn.parentElement;
+      var isCurrentSection = false;
+
+      /* Auto-expand the section containing the current page */
+      var links = li.querySelectorAll('a[href]');
+      links.forEach(function(a) {
+        var href = a.getAttribute('href').split('#')[0];
+        if (href === currentPage) { isCurrentSection = true; }
+      });
+
+      if (state[key] === true || isCurrentSection) {
+        li.classList.add('toc-expanded');
+        btn.classList.add('open');
+        if (isCurrentSection) { state[key] = true; }
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var expanded = li.classList.toggle('toc-expanded');
+        btn.classList.toggle('open', expanded);
+        state[key] = expanded;
+        saveState(state);
+      });
+    });
+
+    saveState(state);
+
+    /* --- Scroll current page into view in the TOC --- */
+    var toc = document.getElementById('toc');
+    if (toc) {
+      var cur = toc.querySelector('a[href="' + currentPage + '"]');
+      if (!cur) { cur = toc.querySelector('a[href$="/' + currentPage + '"]'); }
+      if (cur) {
+        cur.style.fontWeight = 'bold';
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            cur.scrollIntoView({ block: 'center', behavior: 'instant' });
+          }, 0);
+        });
+      }
+    }
+  });
+})();
+</script>
+<!-- navmap-left-nav-toggle-end -->
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
+<!-- navmap-preview-warning-start -->
+<style>
+  .navmap-preview-warning {
+    background: #fff1f1;
+    border: 2px solid #c9190b;
+    border-radius: 4px;
+    color: #3b0a0a;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    margin: 1em auto;
+    max-width: 70em;
+    padding: 1em 1.25em;
+  }
+  .navmap-preview-warning strong { color: #a30000; }
+  .navmap-preview-warning details { margin-top: .75em; }
+  .navmap-preview-warning pre {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    max-height: 20em;
+    overflow: auto;
+    padding: .75em;
+    white-space: pre-wrap;
+  }
+</style>
+<!-- navmap-preview-warning-end -->
 </head>
-<body id="rosa-hcp-review-the-service-definition_rosa-hcp-review-the-service-definition" class="book toc2 toc-left">
+<body id="rosa-hcp-review-the-service-definition_rosa-hcp-review-the-service-definition" class="book toc2 toc-left navmap-has-right-toc">
+<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-hcp/navigation.adoc
+
+Missing include targets:
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-cli.adoc:104
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-hybrid-cloud-console.adoc:104
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-terraform.adoc:23
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli.adoc:92
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+
+How to fix these errors:
+  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
+  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
+  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
+</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
-<li><a href="_whats_new.html">What&#8217;s new</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-whats-new_rosa-hcp-whats-new.html">What&#8217;s new for Red Hat OpenShift Service on AWS</a>
 </li>
-<li><a href="_discover.html">Discover</a>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
 <ul class="sectlevel2">
 <li><a href="rosa-hcp-learn-about-benefits-and-use-cases_rosa-hcp-learn-about-benefits-and-use-cases.html">Learn about benefits and use cases</a>
 </li>
@@ -472,73 +655,950 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
-<li><a href="_install.html">Install</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-intro_rosa-hcp-create-a-rosa-hcp-cluster.html">Create a ROSA HCP Cluster</a>
 </li>
-<li><a href="_upgrade.html">Upgrade</a>
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-intro_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc.html">Create a ROSA HCP Cluster in a Shared VPC</a>
 </li>
-<li><a href="_observe.html">Observe</a>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_upgrade.html">▶</button><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-plan-cluster-upgrades_rosa-hcp-plan-cluster-upgrades.html">Plan cluster upgrades</a>
+</li>
+<li><a href="rosa-hcp-upgrade-a-cluster_rosa-hcp-upgrade-a-cluster.html">Upgrade a cluster</a>
+</li>
+<li><a href="rosa-hcp-upgrade-karpenter-managed-nodes_rosa-hcp-upgrade-karpenter-managed-nodes.html">Upgrade Karpenter-managed nodes</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_observe.html">▶</button><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a>
+</li>
+<li><a href="rosa-hcp-monitor-cluster-health_rosa-hcp-monitor-cluster-health.html">Monitor cluster health</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-sdpolicy-account-management_rosa-hcp-review-the-service-definition">Account management</a></li><li class="level-4"><a href="#rosa-sdpolicy-billing_rosa-hcp-review-the-service-definition">Billing and pricing</a></li><li class="level-4"><a href="#rosa-sdpolicy-cluster-self-service_rosa-hcp-review-the-service-definition">Cluster self-service</a></li><li class="level-4"><a href="#rosa-sdpolicy-instance-types_rosa-hcp-review-the-service-definition">Instance types</a></li><li class="level-4"><a href="#rosa-sdpolicy-regions-az_rosa-hcp-review-the-service-definition">Regions and availability zones</a></li><li class="level-4"><a href="#rosa-sdpolicy-am-local-zones_rosa-hcp-review-the-service-definition">Local Zones</a></li><li class="level-4"><a href="#rosa-sdpolicy-sla_rosa-hcp-review-the-service-definition">Service Level Agreement (SLA)</a></li><li class="level-4"><a href="#rosa-limited-support_rosa-hcp-review-the-service-definition">Limited support status</a></li><li class="level-4"><a href="#rosa-sdpolicy-support_rosa-hcp-review-the-service-definition">Support</a></li><li class="level-4"><a href="#rosa-sdpolicy-logging_rosa-hcp-review-the-service-definition">Logging</a></li><li class="level-5"><a href="#rosa-sdpolicy-cluster-audit-logging_rosa-hcp-review-the-service-definition">Cluster audit logging</a></li><li class="level-5"><a href="#rosa-sdpolicy-application-logging_rosa-hcp-review-the-service-definition">Application logging</a></li><li class="level-4"><a href="#rosa-sdpolicy-monitoring_rosa-hcp-review-the-service-definition">Monitoring</a></li><li class="level-5"><a href="#rosa-sdpolicy-cluster-metrics_rosa-hcp-review-the-service-definition">Cluster metrics</a></li><li class="level-5"><a href="#rosa-sdpolicy-cluster-status-notifications_rosa-hcp-review-the-service-definition">Cluster notifications</a></li><li class="level-4"><a href="#rosa-sdpolicy-networking_rosa-hcp-review-the-service-definition">Networking</a></li><li class="level-5"><a href="#rosa-sdpolicy-custom-domains_rosa-hcp-review-the-service-definition">Custom domains for applications</a></li><li class="level-5"><a href="#rosa-sdpolicy-validated-certificates_rosa-hcp-review-the-service-definition">Domain validated certificates</a></li><li class="level-5"><a href="#rosa-sdpolicy-custom-certificates_rosa-hcp-review-the-service-definition">Custom certificate authorities for builds</a></li><li class="level-5"><a href="#rosa-sdpolicy-load-balancers_rosa-hcp-review-the-service-definition">Load balancers</a></li><li class="level-5"><a href="#rosa-sdpolicy-cluster-ingress_rosa-hcp-review-the-service-definition">Cluster ingress</a></li><li class="level-5"><a href="#rosa-sdpolicy-cluster-egress_rosa-hcp-review-the-service-definition">Cluster egress</a></li><li class="level-5"><a href="#rosa-sdpolicy-cloud-network-config_rosa-hcp-review-the-service-definition">Cloud network configuration</a></li><li class="level-5"><a href="#rosa-sdpolicy-dns-forwarding_rosa-hcp-review-the-service-definition">DNS forwarding</a></li><li class="level-5"><a href="#rosa-sdpolicy-network-verification_rosa-hcp-review-the-service-definition">Network verification</a></li><li class="level-4"><a href="#rosa-sdpolicy-storage_rosa-hcp-review-the-service-definition">Storage</a></li><li class="level-5"><a href="#rosa-sdpolicy-encrytpted-at-rest-storage_rosa-hcp-review-the-service-definition">Encrypted-at-rest OS and node storage</a></li><li class="level-5"><a href="#rosa-sdpolicy-encrytpted-at-rest-pv_rosa-hcp-review-the-service-definition">Encrypted-at-rest PV</a></li><li class="level-5"><a href="#rosa-sdpolicy-block-storage_rosa-hcp-review-the-service-definition">Block storage (RWO)</a></li><li class="level-5"><a href="#_shared_storage_rwx">Shared Storage (RWX)</a></li><li class="level-4"><a href="#rosa-sdpolicy-platform_rosa-hcp-review-the-service-definition">Platform</a></li><li class="level-5"><a href="#rosa-sdpolicy-autoscaling_rosa-hcp-review-the-service-definition">Autoscaling</a></li><li class="level-5"><a href="#rosa-sdpolicy-multiple-availability-zone_rosa-hcp-review-the-service-definition">Multiple availability zone</a></li><li class="level-5"><a href="#rosa-sdpolicy-node-labels_rosa-hcp-review-the-service-definition">Node labels</a></li><li class="level-5"><a href="#rosa-sdpolicy-node-lifecycle_rosa-hcp-review-the-service-definition">Node lifecycle</a></li><li class="level-5"><a href="#rosa-sdpolicy-backup-policy_rosa-hcp-review-the-service-definition">Cluster backup policy</a></li><li class="level-5"><a href="#rosa-sdpolicy-openshift-version_rosa-hcp-review-the-service-definition">OpenShift version</a></li><li class="level-5"><a href="#rosa-sdpolicy-upgrades_rosa-hcp-review-the-service-definition">Upgrades</a></li><li class="level-5"><a href="#rosa-sdpolicy-window-containers_rosa-hcp-review-the-service-definition">Windows Containers</a></li><li class="level-5"><a href="#rosa-sdpolicy-container-engine_rosa-hcp-review-the-service-definition">Container engine</a></li><li class="level-5"><a href="#rosa-sdpolicy-operating-system_rosa-hcp-review-the-service-definition">Operating system</a></li><li class="level-5"><a href="#rosa-sdpolicy-red-hat-operator_rosa-hcp-review-the-service-definition">Red Hat Operator support</a></li><li class="level-5"><a href="#rosa-sdpolicy-kubernetes-operator_rosa-hcp-review-the-service-definition">Kubernetes Operator support</a></li><li class="level-4"><a href="#rosa-sdpolicy-security_rosa-hcp-review-the-service-definition">Security</a></li><li class="level-5"><a href="#rosa-sdpolicy-auth-provider_rosa-hcp-review-the-service-definition">Authentication provider</a></li><li class="level-5"><a href="#rosa-sdpolicy-privileged-containers_rosa-hcp-review-the-service-definition">Privileged containers</a></li><li class="level-5"><a href="#rosa-sdpolicy-customer-admin-user_rosa-hcp-review-the-service-definition">Customer administrator user</a></li><li class="level-5"><a href="#rosa-sdpolicy-cluster-admin-role_rosa-hcp-review-the-service-definition">Cluster administration role</a></li><li class="level-5"><a href="#rosa-sdpolicy-project-self-service_rosa-hcp-review-the-service-definition">Project self-service</a></li><li class="level-5"><a href="#rosa-sdpolicy-regulatory-compliance_rosa-hcp-review-the-service-definition">Regulatory compliance</a></li><li class="level-5"><a href="#rosa-sdpolicy-network-security_rosa-hcp-review-the-service-definition">Network security</a></li><li class="level-5"><a href="#rosa-sdpolicy-etcd-encryption_rosa-hcp-review-the-service-definition">etcd encryption</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-hcp-review-the-service-definition_rosa-hcp-review-the-service-definition">Review the service definition</h3>
 <div class="paragraph _abstract">
 <p>This section outlines the service definition for the Red Hat OpenShift Service on AWS managed service, including account management, billing, cluster self-service, supported regions and availability zones, SLA terms, and platform capabilities.</p>
 </div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-account-management_rosa-hcp-review-the-service-definition">Account management</h4>
+<div class="paragraph">
+<p>This section provides information about the service definition for Red&#160;Hat OpenShift Services on AWS account management.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-billing_rosa-hcp-review-the-service-definition">Billing and pricing</h4>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS is billed directly to your Amazon Web Services (AWS) account. ROSA pricing is consumption based, with annual commitments or three-year commitments for greater discounting. The total cost of ROSA consists of two components:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-sdpolicy-account-management_rosa-hcp-review-the-service-definition.html">Account management</a></p>
+<p>ROSA service fees</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-billing_rosa-hcp-review-the-service-definition.html">Billing and pricing</a></p>
+<p>AWS infrastructure fees</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Visit the <a href="https://aws.amazon.com/rosa/pricing/">Red&#160;Hat OpenShift Services on AWS Pricing</a> page on the AWS website for more details.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-cluster-self-service_rosa-hcp-review-the-service-definition">Cluster self-service</h4>
+<div class="paragraph">
+<p>Customers can self-service their clusters, including, but not limited to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a cluster</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-cluster-self-service_rosa-hcp-review-the-service-definition.html">Cluster self-service</a></p>
+<p>Delete a cluster</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-instance-types_rosa-hcp-review-the-service-definition.html">Instance types</a></p>
+<p>Add or remove an identity provider</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-regions-az_rosa-hcp-review-the-service-definition.html">Regions and availability zones</a></p>
+<p>Add or remove a user from an elevated group</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-am-local-zones_rosa-hcp-review-the-service-definition.html">Local Zones</a></p>
+<p>Configure cluster privacy</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-sla_rosa-hcp-review-the-service-definition.html">Service Level Agreement (SLA)</a></p>
+<p>Add or remove machine pools and configure autoscaling</p>
 </li>
 <li>
-<p><a href="rosa-limited-support_rosa-hcp-review-the-service-definition.html">Limited support status</a></p>
+<p>Define upgrade policies</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can perform these self-service tasks using the Red&#160;Hat OpenShift Services on AWS (ROSA) CLI, <code>rosa</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-instance-types_rosa-hcp-review-the-service-definition">Instance types</h4>
+<div class="paragraph">
+<p>All Red&#160;Hat OpenShift Services on AWS clusters require a minimum of two worker nodes. Shutting down the underlying (EC2 instance) infrastructure through the cloud provider console is unsupported and can lead to data loss and other risks.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Approximately one vCPU core and 1 GiB of memory are reserved on each worker node and removed from allocatable resources. This reservation of resources is necessary to run processes required by the underlying platform. These processes include system daemons such as udev, kubelet, and container runtime among others. The reserved resources also account for kernel reservations.</p>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS core systems such as audit log aggregation, metrics collection, DNS, image registry, CNI/OVN-Kubernetes, and others might consume additional allocatable resources to maintain the stability and maintainability of the cluster. The additional resources consumed might vary based on usage.</p>
+</div>
+<div class="paragraph">
+<p>For additional information, see the <a href="https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#system-reserved">Kubernetes documentation</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-regions-az_rosa-hcp-review-the-service-definition">Regions and availability zones</h4>
+<div class="paragraph">
+<p>The following AWS regions are currently available for Red&#160;Hat OpenShift 4 and are supported for Red&#160;Hat OpenShift Services on AWS.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Regions in China are not supported, regardless of their support on OpenShift Container Platform.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For GovCloud (US) regions, you must submit an Access request for Red&#160;Hat OpenShift Services on AWS FedRAMP.</p>
+</div>
+<div class="paragraph">
+<p>The following AWS GovCloud regions are supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>us-gov-west-1</code></p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-support_rosa-hcp-review-the-service-definition.html">Support</a></p>
+<p><code>us-gov-east-1</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information about AWS GovCloud regions, see the AWS GovCloud (US) User Guide.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 19. AWS regions</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Region</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Minimum Red&#160;Hat OpenShift Services on AWS version required</th>
+<th class="tableblock halign-left valign-top">AWS opt-in required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">us-east-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N. Virginia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">us-east-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ohio</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">us-west-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oregon</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">af-south-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cape Town</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ap-east-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hong Kong</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ap-south-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hyderabad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ap-southeast-3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jakarta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ap-southeast-4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Melbourne</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ap-southeast-5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Malaysia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.16.34; 4.17.15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ap-southeast-6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auckland</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.19.18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ap-southeast-7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Thailand</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ap-south-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mumbai</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ap-northeast-3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Osaka</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ap-northeast-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seoul</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ap-southeast-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Singapore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ap-southeast-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sydney</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ap-northeast-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tokyo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ca-central-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Central Canada</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eu-central-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Frankfurt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mx-central-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mexico</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eu-north-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stockholm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eu-west-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ireland</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eu-west-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">London</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eu-south-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Milan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eu-west-3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Paris</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eu-south-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spain</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eu-central-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zurich</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">me-south-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bahrain</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">me-central-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UAE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa-east-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">São Paulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">il-central-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tel Aviv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ca-west-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calgary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Clusters can only be deployed in regions with at least three availability zones. For more information, see the Regions and Availability Zones section in the AWS documentation.</p>
+</div>
+<div class="paragraph">
+<p>Each new Red&#160;Hat OpenShift Services on AWS cluster is installed within
+a
+preexisting Virtual Private Cloud (VPC) in a single region, with the option to deploy
+up to the total number of availability zones for the given region.
+This provides cluster-level network and resource isolation, and enables cloud-provider VPC settings, such as VPN connections and VPC Peering. Persistent volumes (PVs) are backed by Amazon Elastic Block Storage (Amazon EBS), and are specific to the availability zone in which they are provisioned. Persistent volume claims (PVCs) do not bind to a volume until the associated pod resource is assigned into a specific availability zone to prevent unschedulable pods. Availability zone-specific resources are only usable by resources in the same availability zone.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Warning">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The region
+cannot be changed after a cluster has been deployed.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-am-local-zones_rosa-hcp-review-the-service-definition">Local Zones</h4>
+<div class="paragraph">
+<p>Red Hat OpenShift Service on AWS does not support the use of AWS Local Zones.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-sla_rosa-hcp-review-the-service-definition">Service Level Agreement (SLA)</h4>
+<div class="paragraph">
+<p>Any SLAs for the service itself are defined in Appendix 4 of the <a href="https://www.redhat.com/en/about/appendices">Red&#160;Hat Enterprise Agreement Appendix 4 (Online Subscription Services)</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-limited-support_rosa-hcp-review-the-service-definition">Limited support status</h4>
+<div class="paragraph">
+<p>When a cluster transitions to a <em>Limited Support</em> status, Red&#160;Hat no longer proactively monitors the cluster, the SLA is no longer applicable, and credits requested against the SLA are denied. It does not mean that you no longer have product support. In some cases, the cluster can return to a fully-supported status if you remediate the violating factors. However, in other cases, you might have to delete and recreate the cluster.</p>
+</div>
+<div class="paragraph">
+<p>A cluster might move to a Limited Support status for many reasons, including the following scenarios:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">If you remove or replace any native Red&#160;Hat OpenShift Services on AWS components or any other component that is installed and managed by Red&#160;Hat</dt>
+<dd>
+<p>If cluster administrator permissions were used, Red&#160;Hat is not responsible for any of your or your authorized users’ actions, including those that affect infrastructure services, service availability, or data loss. If Red&#160;Hat detects any such actions, the cluster might transition to a Limited Support status. Red&#160;Hat notifies you of the status change and you should either revert the action or create a support case to explore remediation steps that might require you to delete and recreate the cluster.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>If you have questions about a specific action that might cause a cluster to move to a Limited Support status or need further assistance, open a support ticket.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-support_rosa-hcp-review-the-service-definition">Support</h4>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS includes Red&#160;Hat Premium Support, which can be accessed by using the <a href="https://access.redhat.com/support?extIdCarryOver=true&amp;sc_cid=701f2000001Css5AAC">Red&#160;Hat Customer Portal</a>.</p>
+</div>
+<div class="paragraph">
+<p>See the Red&#160;Hat <a href="https://access.redhat.com/support/offerings/production/sla">Production Support Terms of Service</a> for support response times.</p>
+</div>
+<div class="paragraph">
+<p>AWS support is subject to a customer&#8217;s existing support contract with AWS.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-logging_rosa-hcp-review-the-service-definition">Logging</h4>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS provides optional integrated log forwarding to Amazon (AWS) CloudWatch.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-cluster-audit-logging_rosa-hcp-review-the-service-definition">Cluster audit logging</h5>
+<div class="paragraph">
+<p>Cluster audit logs are available through AWS CloudWatch, if the integration is enabled. If the integration is not enabled, you can request the audit logs by opening a support case.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-application-logging_rosa-hcp-review-the-service-definition">Application logging</h5>
+<div class="paragraph">
+<p>Application logs sent to <code>STDOUT</code> are collected by Fluentd and forwarded to AWS CloudWatch through the cluster logging stack, if it is installed.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-monitoring_rosa-hcp-review-the-service-definition">Monitoring</h4>
+<div class="paragraph">
+<p>This section provides information about the service definition for Red&#160;Hat OpenShift Services on AWS monitoring.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-cluster-metrics_rosa-hcp-review-the-service-definition">Cluster metrics</h5>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS clusters come with an integrated Prometheus stack for cluster monitoring including CPU, memory, and network-based metrics. This is accessible through the web console. These metrics also allow for horizontal pod autoscaling based on CPU or memory metrics provided by a ROSA user.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-cluster-status-notifications_rosa-hcp-review-the-service-definition">Cluster notifications</h5>
+<div class="paragraph">
+<p>Cluster notifications are the primary way that Red Hat Site Reliability Engineering (SRE) communicates with you about the health of your managed cluster. Red Hat SRE may also use cluster notifications to prompt you to perform an action in order to resolve or prevent an issue with your cluster.</p>
+</div>
+<div class="paragraph">
+<p>Cluster owners and administrators must regularly review and action cluster notifications to ensure clusters remain healthy and supported.</p>
+</div>
+<div class="paragraph">
+<p>You can view cluster notifications in the Red Hat Hybrid Cloud Console, in the <strong>Cluster history</strong> tab for your cluster. By default, only the cluster owner receives cluster notifications as emails. If other users need to receive cluster notification emails, add each user as a notification contact for your cluster.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-networking_rosa-hcp-review-the-service-definition">Networking</h4>
+<div class="paragraph">
+<p>This section provides information about the service definition for ROSA networking.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-custom-domains_rosa-hcp-review-the-service-definition">Custom domains for applications</h5>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Warning">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Starting with Red&#160;Hat OpenShift Services on AWS 4.14, the Custom Domain Operator is deprecated. To manage Ingress in ROSA 4.14 or later, use the Ingress Operator.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To use a custom hostname for a route, you must update your DNS provider by creating a canonical name (CNAME) record. Your CNAME record should map the OpenShift canonical router hostname to your custom domain. The OpenShift canonical router hostname is shown on the <em>Route Details</em> page after a route is created. Alternatively, a wildcard CNAME record can be created once to route all subdomains for a given hostname to the cluster&#8217;s router.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-validated-certificates_rosa-hcp-review-the-service-definition">Domain validated certificates</h5>
+<div class="paragraph">
+<p>ROSA includes TLS security certificates needed for both internal and external services on the cluster. For external routes, there are two separate TLS wildcard certificates that are provided and installed on each cluster: one is for the web console and route default hostnames, and the other is for the API endpoint. Let’s Encrypt is the certificate authority used for certificates. Routes within the cluster, such as the internal <a href="https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#accessing-the-api-from-a-pod">API endpoint</a>, use TLS certificates signed by the cluster&#8217;s built-in certificate authority and require the CA bundle available in every pod for trusting the TLS certificate.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-custom-certificates_rosa-hcp-review-the-service-definition">Custom certificate authorities for builds</h5>
+<div class="paragraph">
+<p>ROSA supports the use of custom certificate authorities to be trusted by builds when pulling images from an image registry.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-load-balancers_rosa-hcp-review-the-service-definition">Load balancers</h5>
+<div class="paragraph">
+<p>Red Hat OpenShift Service on AWS only deploys load balancers from the default ingress controller. All other load balancers can be optionally deployed by a customer for secondary ingress controllers or service load balancers.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-cluster-ingress_rosa-hcp-review-the-service-definition">Cluster ingress</h5>
+<div class="paragraph">
+<p>Project administrators can add route annotations for many different purposes, including ingress control through IP allow-listing.</p>
+</div>
+<div class="paragraph">
+<p>Ingress policies can also be changed by using <code>NetworkPolicy</code> objects, which leverage the <code>ovs-networkpolicy</code> plugin. This allows for full control over the ingress network policy down to the pod level, including between pods on the same cluster and even in the same namespace.</p>
+</div>
+<div class="paragraph">
+<p>All cluster ingress traffic will go through the defined load balancers. Direct access to all nodes is blocked by cloud configuration.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-cluster-egress_rosa-hcp-review-the-service-definition">Cluster egress</h5>
+<div class="paragraph">
+<p>Pod egress traffic control through <code>EgressNetworkPolicy</code> objects can be used to prevent or limit outbound traffic in
+Red&#160;Hat OpenShift Services on AWS with hosted control planes (HCP).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-cloud-network-config_rosa-hcp-review-the-service-definition">Cloud network configuration</h5>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS allows for the configuration of a private network connection through AWS-managed technologies, such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>VPN connections</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-logging_rosa-hcp-review-the-service-definition.html">Logging</a></p>
+<p>VPC peering</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-monitoring_rosa-hcp-review-the-service-definition.html">Monitoring</a></p>
+<p>Transit Gateway</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-networking_rosa-hcp-review-the-service-definition.html">Networking</a></p>
+<p>Direct Connect</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Red&#160;Hat site reliability engineers (SREs) do not monitor private network connections. Monitoring of these connections is the responsibility of the customer.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-dns-forwarding_rosa-hcp-review-the-service-definition">DNS forwarding</h5>
+<div class="paragraph">
+<p>For ROSA clusters that have a private cloud network configuration, a customer can specify internal DNS servers available on that private connection that should be queried for explicitly provided domains.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-network-verification_rosa-hcp-review-the-service-definition">Network verification</h5>
+<div class="paragraph">
+<p>Network verification checks run automatically when you deploy a ROSA cluster into an existing Virtual Private Cloud (VPC) or create an additional machine pool with a subnet that is new to your cluster. The checks validate your network configuration and highlight errors, enabling you to resolve configuration issues prior to deployment.</p>
+</div>
+<div class="paragraph">
+<p>You can also run the network verification checks manually to validate the configuration for an existing cluster.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-storage_rosa-hcp-review-the-service-definition">Storage</h4>
+<div class="paragraph">
+<p>This section provides information about the service definition for Red&#160;Hat OpenShift Services on AWS storage.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-encrytpted-at-rest-storage_rosa-hcp-review-the-service-definition">Encrypted-at-rest OS and node storage</h5>
+<div class="paragraph">
+<p>Worker
+nodes use encrypted-at-rest Amazon Elastic Block Store (Amazon EBS) storage.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-encrytpted-at-rest-pv_rosa-hcp-review-the-service-definition">Encrypted-at-rest PV</h5>
+<div class="paragraph">
+<p>EBS volumes that are used for PVs are encrypted-at-rest by default.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-block-storage_rosa-hcp-review-the-service-definition">Block storage (RWO)</h5>
+<div class="paragraph">
+<p>Persistent volumes (PVs) are backed by Amazon Elastic Block Store (Amazon EBS), which is Read-Write-Once.</p>
+</div>
+<div class="paragraph">
+<p>PVs can be attached only to a single node at a time and are specific to the availability zone in which they were provisioned. However, PVs can be attached to any node in the availability zone.</p>
+</div>
+<div class="paragraph">
+<p>Each cloud provider has its own limits for how many PVs can be attached to a single node.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_shared_storage_rwx">Shared Storage (RWX)</h5>
+<div class="paragraph">
+<p>The AWS CSI Driver can be used to provide RWX support for Red&#160;Hat OpenShift Services on AWS. A community Operator is provided to simplify setup.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-platform_rosa-hcp-review-the-service-definition">Platform</h4>
+<div class="paragraph">
+<p>This section provides information about the service definition for the
+Red Hat OpenShift Service on AWS platform.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-autoscaling_rosa-hcp-review-the-service-definition">Autoscaling</h5>
+<div class="paragraph">
+<p>Node autoscaling is available on
+ROSA with HCP.
+You can configure the autoscaler option to automatically scale the number of machines in a cluster.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-multiple-availability-zone_rosa-hcp-review-the-service-definition">Multiple availability zone</h5>
+<div class="paragraph">
+<p>Control plane components are always deployed across multiple availability zones, regardless of a customer&#8217;s worker node configuration.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-node-labels_rosa-hcp-review-the-service-definition">Node labels</h5>
+<div class="paragraph">
+<p>Custom node labels are created by Red&#160;Hat during node creation and cannot be changed on
+ROSA with HCP
+clusters at this time. However, custom labels are supported when creating new machine pools.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-node-lifecycle_rosa-hcp-review-the-service-definition">Node lifecycle</h5>
+<div class="paragraph">
+<p>Worker nodes are not guaranteed longevity, and may be replaced at any time as part of the normal operation and management of OpenShift.</p>
+</div>
+<div class="paragraph">
+<p>A worker node might be replaced in the following circumstances:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Machine health checks are deployed and configured to ensure that a worker node with a <code>NotReady</code> status is replaced to ensure smooth operation of the cluster.</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-storage_rosa-hcp-review-the-service-definition.html">Storage</a></p>
+<p>AWS EC2 instances may be terminated when AWS detects irreparable failure of the underlying hardware that hosts the instance.</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-platform_rosa-hcp-review-the-service-definition.html">Platform</a></p>
+<p>During upgrades, a new, upgraded node is first created and joined to the cluster. Once this new node has been successfully integrated into the cluster via the previously described automated health checks, an older node is then removed from the cluster.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For all containerized workloads running on a Kubernetes based system, it is best practice to configure applications to be resilient of node replacements.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-backup-policy_rosa-hcp-review-the-service-definition">Cluster backup policy</h5>
+<div class="paragraph">
+<p>Red Hat recommends object-level backup solutions for ROSA clusters. OpenShift API for Data Protection (OADP) is included in OpenShift but not enabled by default. Customers can configure OADP on their clusters to achieve object-level backup and restore capabilities.</p>
+</div>
+<div class="paragraph">
+<p>Red Hat does not back up customer applications or application data. Customers are solely responsible for applications and their data, and must put their own backup and restore capabilities in place.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Warning">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Customers are solely responsible for backing up and restoring their applications and application data. For more information about customer responsibilities, see "Shared responsibility matrix".</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-openshift-version_rosa-hcp-review-the-service-definition">OpenShift version</h5>
+<div class="paragraph">
+<p>ROSA with HCP
+is run as a service. Red&#160;Hat SRE team will force upgrade when end of life (EOL) is reached.
+Upgrade scheduling to the latest version is available.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-upgrades_rosa-hcp-review-the-service-definition">Upgrades</h5>
+<div class="paragraph">
+<p>Upgrades can be scheduled using the ROSA CLI, <code>rosa</code>, or through OpenShift Cluster Manager.</p>
+</div>
+<div class="paragraph">
+<p>See the <a href="https://docs.openshift.com/rosa/rosa_policy/rosa-life-cycle.html">Red&#160;Hat OpenShift Services on AWS Life Cycle</a> for more information on the upgrade policy and procedures.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-window-containers_rosa-hcp-review-the-service-definition">Windows Containers</h5>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift support for Windows Containers is not available on Red&#160;Hat OpenShift Services on AWS at this time.
+Alternatively, it is supported to run Windows based virtual machines on OpenShift Virtualization running on a ROSA cluster.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-container-engine_rosa-hcp-review-the-service-definition">Container engine</h5>
+<div class="paragraph">
+<p>ROSA with HCP
+runs on OpenShift 4 and uses <a href="https://www.redhat.com/en/blog/red-hat-openshift-container-platform-4-now-defaults-cri-o-underlying-container-engine">CRI-O</a> as the only available container engine
+(container runtime interface).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-operating-system_rosa-hcp-review-the-service-definition">Operating system</h5>
+<div class="paragraph">
+<p>ROSA with HCP
+runs on OpenShift 4 and uses Red&#160;Hat CoreOS (RHCOS) as the operating system for all cluster nodes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-red-hat-operator_rosa-hcp-review-the-service-definition">Red&#160;Hat Operator support</h5>
+<div class="paragraph">
+<p>Red&#160;Hat workloads typically refer to Red&#160;Hat-provided Operators made available through Operator Hub. Red&#160;Hat workloads are not managed by the Red&#160;Hat SRE team, and must be deployed on worker nodes. These Operators may require additional Red&#160;Hat subscriptions, and may incur additional cloud infrastructure costs. Examples of these Red&#160;Hat-provided Operators are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Red&#160;Hat Quay</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-security_rosa-hcp-review-the-service-definition.html">Security</a></p>
+<p>Red&#160;Hat Advanced Cluster Management</p>
+</li>
+<li>
+<p>Red&#160;Hat Advanced Cluster Security</p>
+</li>
+<li>
+<p>Red Hat OpenShift Service Mesh</p>
+</li>
+<li>
+<p>OpenShift Serverless</p>
+</li>
+<li>
+<p>Red Hat OpenShift Logging</p>
+</li>
+<li>
+<p>Red Hat OpenShift Pipelines</p>
+</li>
+<li>
+<p>OpenShift Virtualization</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-kubernetes-operator_rosa-hcp-review-the-service-definition">Kubernetes Operator support</h5>
+<div class="paragraph">
+<p>All Operators listed in the software catalog marketplace should be available for installation. These Operators are considered customer workloads, and are not monitored nor managed by Red&#160;Hat SRE. Operators authored by Red&#160;Hat are supported by Red&#160;Hat.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-security_rosa-hcp-review-the-service-definition">Security</h4>
+<div class="paragraph">
+<p>This section provides information about the service definition for Red&#160;Hat OpenShift Services on AWS security.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-auth-provider_rosa-hcp-review-the-service-definition">Authentication provider</h5>
+<div class="paragraph">
+<p>Authentication for the cluster can be configured using either <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> or cluster creation process or using the ROSA CLI, <code>rosa</code>. ROSA is not an identity provider, and all access to the cluster must be managed by the customer as part of their integrated solution. The use of multiple identity providers provisioned at the same time is supported. The following identity providers are supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>GitHub or GitHub Enterprise</p>
+</li>
+<li>
+<p>GitLab</p>
+</li>
+<li>
+<p>Google</p>
+</li>
+<li>
+<p>LDAP</p>
+</li>
+<li>
+<p>OpenID Connect</p>
+</li>
+<li>
+<p>htpasswd</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-privileged-containers_rosa-hcp-review-the-service-definition">Privileged containers</h5>
+<div class="paragraph">
+<p>Privileged containers are available for users with the <code>cluster-admin</code> role. Usage of privileged containers as <code>cluster-admin</code> is subject to the responsibilities and exclusion notes in the <a href="https://www.redhat.com/en/about/agreements">Red&#160;Hat Enterprise Agreement Appendix 4</a> (Online Subscription Services).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-customer-admin-user_rosa-hcp-review-the-service-definition">Customer administrator user</h5>
+<div class="paragraph">
+<p>In addition to normal users, Red&#160;Hat OpenShift Services on AWS provides access to a Red&#160;Hat OpenShift Services on AWS-specific group called <code>dedicated-admin</code>. Any users on the cluster that are members of the <code>dedicated-admin</code> group:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Have administrator access to all customer-created projects on the cluster.</p>
+</li>
+<li>
+<p>Can manage resource quotas and limits on the cluster.</p>
+</li>
+<li>
+<p>Can add and manage <code>NetworkPolicy</code> objects.</p>
+</li>
+<li>
+<p>Are able to view information about specific nodes and PVs in the cluster, including scheduler information.</p>
+</li>
+<li>
+<p>Can access the reserved <code>dedicated-admin</code> project on the cluster, which allows for the creation of service accounts with elevated privileges and also gives the ability to update default limits and quotas for projects on the cluster.</p>
+</li>
+<li>
+<p>Can install Operators from the software catalog and perform all verbs in all <code>*.operators.coreos.com</code> API groups.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-cluster-admin-role_rosa-hcp-review-the-service-definition">Cluster administration role</h5>
+<div class="paragraph">
+<p>The administrator of Red&#160;Hat OpenShift Services on AWS has default access to the <code>cluster-admin</code> role for your organization&#8217;s cluster. While logged into an account with the <code>cluster-admin</code> role, users have increased permissions to run privileged security contexts.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-project-self-service_rosa-hcp-review-the-service-definition">Project self-service</h5>
+<div class="paragraph">
+<p>By default, all users have the ability to create, update, and delete their projects. This can be restricted if a member of the <code>dedicated-admin</code> group removes the <code>self-provisioner</code> role from authenticated users:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm policy remove-cluster-role-from-group self-provisioner system:authenticated:oauth</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Restrictions can be reverted by applying:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm policy add-cluster-role-to-group self-provisioner system:authenticated:oauth</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-regulatory-compliance_rosa-hcp-review-the-service-definition">Regulatory compliance</h5>
+<div class="paragraph">
+<p>See the <em>Compliance</em> table in <em>Understanding process and security for ROSA</em> for the latest compliance information.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-network-security_rosa-hcp-review-the-service-definition">Network security</h5>
+<div class="paragraph">
+<p>With Red&#160;Hat OpenShift Services on AWS, AWS provides a standard DDoS protection on all load balancers, called AWS Shield. This provides 95% protection against most commonly used level 3 and 4 attacks on all the public facing load balancers used for ROSA. A 10-second timeout is added for HTTP requests coming to the <code>haproxy</code> router to receive a response or the connection is closed to provide additional protection.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-sdpolicy-etcd-encryption_rosa-hcp-review-the-service-definition">etcd encryption</h5>
+<div class="paragraph">
+<p>In Red&#160;Hat OpenShift Services on AWS, the control plane storage is encrypted at rest by default, including encryption of the etcd volumes. This storage-level encryption is provided through the storage layer of the cloud provider.</p>
+</div>
+<div class="paragraph">
+<p>Customers can also opt to encrypt the etcd database at build time or provide their own custom AWS KMS keys for the purpose of encrypting the etcd database.</p>
+</div>
+<div class="paragraph">
+<p>Etcd encryption will encrypt the following Kubernetes API server and OpenShift API server resources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Secrets</p>
+</li>
+<li>
+<p>Config maps</p>
+</li>
+<li>
+<p>Routes</p>
+</li>
+<li>
+<p>OAuth access tokens</p>
+</li>
+<li>
+<p>OAuth authorize tokens</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-policy-container-storage-failure_rosa-hcp-general-availability.html">Storage failure</a> | ↑ Up: <a href="_discover.html">Discover</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-sdpolicy-account-management_rosa-hcp-review-the-service-definition.html">Account management</a> →</p>
+<p>← Previous: <a href="rosa-hcp-general-availability_rosa-hcp-general-availability.html">General availability</a> | ↑ Up: <a href="_discover.html">Discover</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-review-supported-instance-types_rosa-hcp-review-supported-instance-types.html">Review supported instance types</a> →</p>
 </div>
 </div>
 <div id="footer">

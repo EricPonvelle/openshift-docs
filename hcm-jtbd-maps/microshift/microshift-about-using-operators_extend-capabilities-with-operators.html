@@ -437,24 +437,148 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-about-using-operators_extend-capabilities-with-operators" class="book toc2 toc-left">
+<body id="microshift-about-using-operators_extend-capabilities-with-operators" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
 <ul class="sectlevel2">
@@ -477,22 +601,132 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-operators-how-to-install-and-manage_extend-capabilities-with-operators">How to use Operators with a MicroShift node</a></li><li class="level-5"><a href="#microshift-operators-paths-manifests_extend-capabilities-with-operators">Manifests for Operators</a></li><li class="level-5"><a href="#microshift-operators-paths-olm_extend-capabilities-with-operators">Operator Lifecycle Manager for Operators</a></li><li class="level-4"><a href="#microshift-olm-considerations_extend-capabilities-with-operators">Considerations for using OLM with MicroShift</a></li><li class="level-4"><a href="#microshift-installing-olm-options_extend-capabilities-with-operators">Determine your OLM installation type</a></li><li class="level-4"><a href="#microshift-olm-namespaces_extend-capabilities-with-operators">Namespace use in MicroShift</a></li><li class="level-5"><a href="#microshift-olm-default-namespaces_extend-capabilities-with-operators">Default namespaces</a></li><li class="level-5"><a href="#microshift-olm-custom-namespace_extend-capabilities-with-operators">Custom namespaces</a></li><li class="level-4"><a href="#microshift-options-building-operator-catalogs_extend-capabilities-with-operators">About building Operator catalogs</a></li><li class="level-5"><a href="#microshift-file-based-olm-catalogs_extend-capabilities-with-operators">File-based Operator catalogs</a></li><li class="level-4"><a href="#microshift-olm-deploy-operators_extend-capabilities-with-operators">How to deploy Operators using OLM</a></li><li class="level-5"><a href="#microshift-olm-operators-connection-details_extend-capabilities-with-operators">Connectivity and OLM Operator deployment</a></li><li class="level-4"><a href="#microshift-OLM-deploy-Operators_extend-capabilities-with-operators">Add OLM-based Operators to a networked node using the global namespace</a></li><li class="level-4"><a href="#microshift-OLM-deploy-Operators-specific-namespace_extend-capabilities-with-operators">Add OLM-based Operators to a networked node in a specific namespace</a></li><li class="level-4"><a href="#microshift-olm-rh-ops-mirror_extend-capabilities-with-operators">Use Red Hat-provided Operator catalogs and mirror registries</a></li><li class="level-4"><a href="#microshift-using-oc-mirror_extend-capabilities-with-operators">About the oc-mirror plugin for creating a mirror registry</a></li><li class="level-4"><a href="#microshift-connectivity-considerations_extend-capabilities-with-operators">Connectivity considerations when populating a mirror registry</a></li><li class="level-4"><a href="#microshift-oc-mirror-list-operators-catalogs_extend-capabilities-with-operators">Inspect catalog contents by using the oc-mirror plugin</a></li><li class="level-4"><a href="#microshift-oc-mirror-creating-imageset-config_extend-capabilities-with-operators">Create an image set configuration file</a></li><li class="level-4"><a href="#oc-mirror-imageset-config-parameters-v2_extend-capabilities-with-operators">ImageSet configuration parameters for oc-mirror plugin v2</a></li><li class="level-5"><a href="#delete-imagset-config-parameters_extend-capabilities-with-operators">DeleteImageSetConfiguration parameters</a></li><li class="level-4"><a href="#microshift-oc-mirror-mirror-to-mirror_extend-capabilities-with-operators">Mirror from mirror to mirror</a></li><li class="level-4"><a href="#microshift-oc-mirror-transform-imageset-to-crio_extend-capabilities-with-operators">Configure CRI-O to use a registry mirror for Operators</a></li><li class="level-4"><a href="#microshift-oc-mirror-install-catalog-in-node_extend-capabilities-with-operators">Install a custom catalog created with the oc-mirror plugin</a></li><li class="level-4"><a href="#microshift-adding-OLM-Operators-to-disconnected-node_extend-capabilities-with-operators">About adding OLM-based Operators to a disconnected node</a></li><li class="level-4"><a href="#microshift-oc-mirror-dry-run_extend-capabilities-with-operators">Perform a dry run</a></li><li class="level-4"><a href="#microshift-oc-mirror-prep-ops-cat-images-disconnected-use_extend-capabilities-with-operators">Get catalogs and Operator container image references</a></li><li class="level-4"><a href="#microshift-apply-ops-ostree-disconnected-use_extend-capabilities-with-operators">Apply catalogs and Operators in a disconnected-deployment RHEL for Edge image</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-about-using-operators_extend-capabilities-with-operators">About using Operators with a MicroShift node</h3>
@@ -505,76 +739,3172 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>MicroShift applications are generally expected to be deployed in static environments. However, Operators are available if helpful in your use case. To discover whether an Operator is compatible with MicroShift, check the Operator documentation.</p>
 </div>
-<div class="ulist">
+<div class="sect3">
+<h4 id="microshift-operators-how-to-install-and-manage_extend-capabilities-with-operators">How to use Operators with a MicroShift node</h4>
+<div class="paragraph _abstract">
+<p>There are two ways to install and manage Operators for your MicroShift node. You can use manifests or Operator Lifecycle Manager (OLM).</p>
+</div>
+<div class="sect4">
+<h5 id="microshift-operators-paths-manifests_extend-capabilities-with-operators">Manifests for Operators</h5>
+<div class="paragraph">
+<p>You can install and manage Operators directly by using manifests. You can use the <code>kustomize</code> configuration management tool with MicroShift to deploy an application. Use the same steps to install Operators with manifests.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-operators-paths-olm_extend-capabilities-with-operators">Operator Lifecycle Manager for Operators</h5>
+<div class="paragraph">
+<p>You can also install add-on Operators to a MicroShift node by using Operator Lifecycle Manager (OLM). OLM can be used to manage both custom Operators and Operators that are widely available. Building catalogs is required to use OLM with MicroShift.</p>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="microshift-operators-how-to-install-and-manage_extend-capabilities-with-operators.html">How to use Operators with a MicroShift node</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/running_applications/applications-with-microshift">Using Kustomize manifests to deploy applications</a></p>
 </li>
 <li>
-<p><a href="microshift-olm-considerations_extend-capabilities-with-operators.html">Considerations for using OLM with MicroShift</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/running_applications/applications-with-microshift#microshift-applying-manifests-example_applications-microshift">Using manifests example</a></p>
 </li>
 <li>
-<p><a href="microshift-installing-olm-options_extend-capabilities-with-operators.html">Determine your OLM installation type</a></p>
-</li>
-<li>
-<p><a href="microshift-olm-namespaces_extend-capabilities-with-operators.html">Namespace use in MicroShift</a></p>
-</li>
-<li>
-<p><a href="microshift-options-building-operator-catalogs_extend-capabilities-with-operators.html">About building Operator catalogs</a></p>
-</li>
-<li>
-<p><a href="microshift-olm-deploy-operators_extend-capabilities-with-operators.html">How to deploy Operators using OLM</a></p>
-</li>
-<li>
-<p><a href="microshift-OLM-deploy-Operators_extend-capabilities-with-operators.html">Add OLM-based Operators to a networked node using the global namespace</a></p>
-</li>
-<li>
-<p><a href="microshift-OLM-deploy-Operators-specific-namespace_extend-capabilities-with-operators.html">Add OLM-based Operators to a networked node in a specific namespace</a></p>
-</li>
-<li>
-<p><a href="microshift-olm-rh-ops-mirror_extend-capabilities-with-operators.html">Use Red Hat-provided Operator catalogs and mirror registries</a></p>
-</li>
-<li>
-<p><a href="microshift-using-oc-mirror_extend-capabilities-with-operators.html">About the oc-mirror plugin for creating a mirror registry</a></p>
-</li>
-<li>
-<p><a href="microshift-connectivity-considerations_extend-capabilities-with-operators.html">Connectivity considerations when populating a mirror registry</a></p>
-</li>
-<li>
-<p><a href="microshift-oc-mirror-list-operators-catalogs_extend-capabilities-with-operators.html">Inspect catalog contents by using the oc-mirror plugin</a></p>
-</li>
-<li>
-<p><a href="microshift-oc-mirror-creating-imageset-config_extend-capabilities-with-operators.html">Create an image set configuration file</a></p>
-</li>
-<li>
-<p><a href="oc-mirror-imageset-config-parameters-v2_extend-capabilities-with-operators.html">ImageSet configuration parameters for oc-mirror plugin v2</a></p>
-</li>
-<li>
-<p><a href="microshift-oc-mirror-mirror-to-mirror_extend-capabilities-with-operators.html">Mirror from mirror to mirror</a></p>
-</li>
-<li>
-<p><a href="microshift-oc-mirror-transform-imageset-to-crio_extend-capabilities-with-operators.html">Configure CRI-O to use a registry mirror for Operators</a></p>
-</li>
-<li>
-<p><a href="microshift-oc-mirror-install-catalog-in-node_extend-capabilities-with-operators.html">Install a custom catalog created with the oc-mirror plugin</a></p>
-</li>
-<li>
-<p><a href="microshift-adding-OLM-Operators-to-disconnected-node_extend-capabilities-with-operators.html">About adding OLM-based Operators to a disconnected node</a></p>
-</li>
-<li>
-<p><a href="microshift-oc-mirror-dry-run_extend-capabilities-with-operators.html">Perform a dry run</a></p>
-</li>
-<li>
-<p><a href="microshift-oc-mirror-prep-ops-cat-images-disconnected-use_extend-capabilities-with-operators.html">Get catalogs and Operator container image references</a></p>
-</li>
-<li>
-<p><a href="microshift-apply-ops-ostree-disconnected-use_extend-capabilities-with-operators.html">Apply catalogs and Operators in a disconnected-deployment RHEL for Edge image</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/running_applications/operators#microshift-operators-olm">Using Operator Lifecycle Manager with MicroShift</a></p>
 </li>
 </ul>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="microshift-olm-considerations_extend-capabilities-with-operators">Considerations for using OLM with MicroShift</h4>
+<div class="paragraph _abstract">
+<p>You must consider the application of Operators and steps to use them when planning which ones you want to use with your MicroShift platform.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cluster Operators as applied in OpenShift Container Platform are not used in MicroShift.</p>
+</li>
+<li>
+<p>You must create your own catalogs for the add-on Operators you want to use with your applications. Catalogs are not provided by default.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Each catalog must have an accessible <code>CatalogSource</code> added to a node, so that the OLM catalog Operator can use the catalog for content.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>You must use the CLI to conduct OLM activities with MicroShift. The console and OperatorHub GUIs are not available.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use the Operator Package Manager (<code>opm</code>) CLI with a network-connected node, or for building catalogs for custom Operators that use an internal registry.</p>
+</li>
+<li>
+<p>To mirror your catalogs and Operators for disconnected or offline nodes, install the <code>oc-mirror</code> OpenShift CLI plugin.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Before using an Operator, verify with the provider that the Operator is supported on Red&#160;Hat build of MicroShift.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/cli_tools/opm-cli#cli-opm-install">Operator Package Manager <code>opm</code> CLI</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html-single/disconnected_environments/index#installation-oc-mirror-installing-plugin_installing-mirroring-disconnected">Installing the oc-mirror OpenShift CLI plugin</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-installing-olm-options_extend-capabilities-with-operators">Determine your OLM installation type</h4>
+<div class="paragraph _abstract">
+<p>You can install Operator Lifecycle Manager (OLM) for use with MicroShift 4.16 or newer versions. There are different ways to install OLM for a MicroShift node, depending on your use case.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can install the <code>microshift-olm</code> RPM at the same time you install the MicroShift RPM on Red&#160;Hat Enterprise Linux (RHEL).</p>
+</li>
+<li>
+<p>You can install the <code>microshift-olm</code> on an existing MicroShift 4.22. Restart the MicroShift service after installing OLM for the changes to apply.</p>
+</li>
+<li>
+<p>See "Installing the Operator Lifecycle Manager (OLM) from an RPM package" and "Adding other packages to a blueprint" for specifics on each installation type.</p>
+</li>
+</ul>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.20/html/installing_optional_rpm_packages/microshift-install-optional-rpms#microshift-installing-with-olm-from-rpm-package_microshift-install-optional-rpm">Installing the Operator Lifecycle Manager (OLM) from an RPM package</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.20/html/embedding_in_a_rhel_for_edge_image/microshift-embed-in-rpm-ostree#microshift-adding-other-services-to-blueprint_microshift-embed-in-rpm-ostree">Adding other packages to a blueprint</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-olm-namespaces_extend-capabilities-with-operators">Namespace use in MicroShift</h4>
+<div class="paragraph _abstract">
+<p>The <code>microshift-olm</code> RPM creates the three default namespaces: one for running Operator Lifecycle Manager (OLM), and two for catalog and Operator installation. You can create additional namespaces as needed for your use case.</p>
+</div>
+<div class="sect4">
+<h5 id="microshift-olm-default-namespaces_extend-capabilities-with-operators">Default namespaces</h5>
+<div class="paragraph">
+<p>The following table lists the default namespaces and a brief description of how each namespace works.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Default namespaces created by OLM for MicroShift</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Default Namespace</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Details</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-operator-lifecycle-manager</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OLM package manager runs in this namespace.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-marketplace</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The global namespace. Empty by default. To make the catalog source to be available globally to users in all namespaces, set the <code>openshift-marketplace</code> namespace in the catalog-source YAML.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift-operators</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The default namespace where Operators run in MicroShift. Operators that reference catalogs in the <code>openshift-operators</code> namespace must have the <strong>AllNamespaces</strong> watch scope.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="microshift-olm-custom-namespace_extend-capabilities-with-operators">Custom namespaces</h5>
+<div class="paragraph">
+<p>If you want to use a catalog and Operator together in a single namespace, then you must create a custom namespace. After you create the namespace, you must create the catalog in that namespace. All Operators running in the custom namespace must have the same single-namespace watch scope.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-options-building-operator-catalogs_extend-capabilities-with-operators">About building Operator catalogs</h4>
+<div class="paragraph _abstract">
+<p>To use Operator Lifecycle Manager (OLM) with MicroShift, you must build custom Operator catalogs that you can then manage with OLM. The standard catalogs that are included with OpenShift Container Platform are not included with MicroShift.</p>
+</div>
+<div class="sect4">
+<h5 id="microshift-file-based-olm-catalogs_extend-capabilities-with-operators">File-based Operator catalogs</h5>
+<div class="paragraph">
+<p>You can create catalogs for your custom Operators or filter catalogs of widely available Operators. You can combine both methods to create the catalogs needed for your specific use case. To run MicroShift with your own Operators and OLM, make a catalog by using the file-based catalog structure.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>When adding a catalog source to a cluster, set the <code>securityContextConfig</code> value to <code>restricted</code> in the <code>catalogSource.yaml</code> file. Ensure that your catalog can run with <code>restricted</code> permissions.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/operators/administrator-tasks#olm-managing-custom-catalogs">Managing custom catalogs</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/operators/understanding-operators#olm-packaging-format">Operator Framework packaging format</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/cli_tools/opm-cli#cli-opm-ref"><code>opm</code> CLI reference</a></p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/documentation/en-us/openshift_container_platform/4.22/html/operators/administrator-tasks#olm-creating-catalog-from-index_olm-restricted-networks">Adding a catalog source to a cluster</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-olm-deploy-operators_extend-capabilities-with-operators">How to deploy Operators using OLM</h4>
+<div class="paragraph _abstract">
+<p>After you create and deploy your custom catalog, you must create a Subscription custom resource (CR) that can access the catalog and install the Operators you choose. Where Operators run depends on the namespace in which you create the Subscription CR.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Operators that you are managing with Operator Lifecycle Manager (OLM) have a watch scope. For example, some Operators only support watching their own namespace, while others support watching every namespace in the node. All Operators installed in a given namespace must have the same watch scope.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="microshift-olm-operators-connection-details_extend-capabilities-with-operators">Connectivity and OLM Operator deployment</h5>
+<div class="paragraph">
+<p>You can deplpy Operators anywhere a catalog is running.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For a node that is connected to the internet, mirroring images is not required. Images can be pulled over the network.</p>
+</li>
+<li>
+<p>For restricted networks in which MicroShift has access to an internal network only, images must be mirrored to an internal registry.</p>
+</li>
+<li>
+<p>For use cases in which a MicroShift node is completely offline, all images must be embedded into an <code>osbuild</code> blueprint or a Containerfile.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-OLM-deploy-Operators_extend-capabilities-with-operators">Add OLM-based Operators to a networked node using the global namespace</h4>
+<div class="paragraph _abstract">
+<p>To deploy different Operators to different namespaces, follow the basic steps to use configuration files to install an Operator that uses the global namespace.</p>
+</div>
+<div class="paragraph">
+<p>For a MicroShift node that has network connectivity, Operator Lifecycle Manager (OLM) can access sources hosted on remote registries.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To use an Operator installed in a different namespace, or in more than one namespace, make sure that both the catalog source and the Subscription CR that references the Operator are running in the <code>openshift-marketplace</code> namespace.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>The OpenShift CLI (<code>oc</code>) is installed.</p>
+</li>
+<li>
+<p>Operator Lifecycle Manager (OLM) is installed.</p>
+</li>
+<li>
+<p>You created a custom catalog in the global namespace.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Confirm that OLM is running by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc -n openshift-operator-lifecycle-manager get pod -l app=olm-operator</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                            READY   STATUS    RESTARTS   AGE
+olm-operator-85b5c6786-n6kbc    1/1     Running   0          2m24s</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Confirm that the OLM catalog Operator is running by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc -n openshift-operator-lifecycle-manager get pod -l app=catalog-operator</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                                READY   STATUS    RESTARTS   AGE
+catalog-operator-5fc7f857b6-tj8cf   1/1     Running   0          2m33s</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The following steps assume you are using the global namespace, <code>openshift-marketplace</code>. The catalog must run in the same namespace as the Operator. The Operator must support the <strong>AllNamespaces</strong> mode.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Create the <code>CatalogSource</code> object by using the following example YAML:</p>
+<div class="listingblock">
+<div class="title">Example catalog source YAML</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: operatorhubio-catalog
+  namespace: openshift-marketplace
+spec:
+  sourceType: grpc
+  image: quay.io/operatorhubio/catalog:latest
+  displayName: Community Operators
+  publisher: OperatorHub.io
+  grpcPodConfig:
+    securityContextConfig: restricted
+  updateStrategy:
+    registryPoll:
+      interval: 60m</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>metadata.namespace</code></dt>
+<dd>
+<p>Specifies the global namespace. Setting the <code>metadata.namespace</code> to <code>openshift-marketplace</code> enables the catalog to run in all namespaces. Subscriptions in any namespace can reference catalogs created in the <code>openshift-marketplace</code> namespace.</p>
+</dd>
+<dt class="hdlist1"><code>spec.displayName</code></dt>
+<dd>
+<p>Specifies that the Community Operators are not installed by default with OLM for MicroShift. Listed here for example only.</p>
+</dd>
+<dt class="hdlist1"><code>grpcPodConfig.securityContextConfig</code></dt>
+<dd>
+<p>Specifies the value of <code>securityContextConfig</code> must be set to <code>restricted</code> for MicroShift.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Apply the <code>CatalogSource</code> configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f <em>&lt;catalog_source.yaml&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;catalog</em>-<em>source.yaml&gt;</em></code> with your catalog source configuration file name. In this example, <code>catalogsource.yaml</code> is used.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">catalogsource.operators.coreos.com/operatorhubio-catalog created</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To verify that the catalog source is applied, check for the <code>READY</code> state by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc describe catalogsources.operators.coreos.com -n openshift-marketplace operatorhubio-catalog</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Name:         operatorhubio-catalog
+Namespace:    openshift-marketplace
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  operators.coreos.com/v1alpha1
+Kind:         CatalogSource
+Metadata:
+  Creation Timestamp:  2024-01-31T09:55:31Z
+  Generation:          1
+  Resource Version:    1212
+  UID:                 4edc1a96-83cd-4de9-ac8c-c269ca895f3e
+Spec:
+  Display Name:  Community Operators
+  Grpc Pod Config:
+    Security Context Config:  restricted
+  Image:                      quay.io/operatorhubio/catalog:latest
+  Publisher:                  OperatorHub.io
+  Source Type:                grpc
+  Update Strategy:
+    Registry Poll:
+      Interval:  60m
+Status:
+  Connection State:
+    Address:              operatorhubio-catalog.openshift-marketplace.svc:50051
+    Last Connect:         2024-01-31T09:55:57Z
+    Last Observed State:  READY
+  Registry Service:
+    Created At:         2024-01-31T09:55:31Z
+    Port:               50051
+    Protocol:           grpc
+    Service Name:       operatorhubio-catalog
+    Service Namespace:  openshift-marketplace
+Events:                 &lt;none&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>Last Observed State</code> field reports the status as <code>READY</code>.</p>
+</div>
+</li>
+<li>
+<p>Confirm that the catalog source is running by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n openshift-marketplace -l olm.catalogSource=operatorhubio-catalog</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                          READY   STATUS    RESTARTS   AGE
+operatorhubio-catalog-x24nh   1/1     Running   0          59s</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a Subscription CR configuration file by using the following example YAML:</p>
+<div class="listingblock">
+<div class="title">Example Subscription custom resource YAML</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: my-cert-manager
+  namespace: openshift-operators
+spec:
+  channel: stable
+  name: cert-manager
+  source: operatorhubio-catalog
+  sourceNamespace: openshift-marketplace</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>sourceNamespace</code> field defines the global namespace. Setting the <code>sourceNamespace</code> value to <code>openshift-marketplace</code> enables Operators to run in multiple namespaces if the catalog also runs in the <code>openshift-marketplace</code> namespace.</p>
+</div>
+</li>
+<li>
+<p>Apply the Subscription CR configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f <em>&lt;subscription_cr.yaml&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;subscription_cr.yaml&gt;</em></code> with your Subscription CR filename.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">subscription.operators.coreos.com/my-cert-manager created</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You can create a configuration file for the specific Operand you want to use and apply it now.</p>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify that your Operator is running by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n openshift-operators <img src="data:image/png;base64," alt="1"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>openshift-operators</code> uses the namespace from the Subscription CR.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Allow a minute or two for the Operator start.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                                       READY   STATUS    RESTARTS   AGE
+cert-manager-7df8994ddb-4vrkr              1/1     Running   0          19s
+cert-manager-cainjector-5746db8fd7-69442   1/1     Running   0          18s
+cert-manager-webhook-f858bf58b-748nt       1/1     Running   0          18s</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-OLM-deploy-Operators-specific-namespace_extend-capabilities-with-operators">Add OLM-based Operators to a networked node in a specific namespace</h4>
+<div class="paragraph _abstract">
+<p>You can specify a namespace for an Operator for a variety of reasons, such as security and resource isolation. For example, you can specify the namespace <code>olm-microshift</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the following example, the catalog is scoped and available in the global <code>openshift-marketplace</code> namespace. The Operator uses content from the global namespace, but runs only in the <code>olm-microshift</code> namespace. For a MicroShift node that has network connectivity, Operator Lifecycle Manager (OLM) can access sources hosted on remote registries.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All of the Operators installed in a specific namespace must have the same watch scope. In this case, the watch scope is <strong>OwnNamespace</strong>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>The OpenShift CLI (<code>oc</code>) is installed.</p>
+</li>
+<li>
+<p>Operator Lifecycle Manager (OLM) is installed.</p>
+</li>
+<li>
+<p>You have created a custom catalog that is running in the global namespace.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Confirm that OLM is running by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc -n openshift-operator-lifecycle-manager get pod -l app=olm-operator</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                           READY   STATUS    RESTARTS   AGE
+olm-operator-85b5c6786-n6kbc   1/1     Running   0          16m</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Confirm that the OLM catalog Operator is running by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc -n openshift-operator-lifecycle-manager get pod -l app=catalog-operator</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                                READY   STATUS    RESTARTS   AGE
+catalog-operator-5fc7f857b6-tj8cf   1/1     Running   0          16m</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a namespace by using the following example YAML:</p>
+<div class="listingblock">
+<div class="title">Example namespace YAML</div>
+<div class="content">
+<pre class="highlight"><code class="language-YAML" data-lang="YAML">apiVersion: v1
+kind: Namespace
+metadata:
+  name: olm-microshift</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the namespace configuration using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f <em>&lt;ns.yaml&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;ns.yaml&gt;</em></code> with the name of your namespace configuration file. In this example, <code>olm-microshift</code> is used.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">namespace/olm-microshift created</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the Operator group YAML by using the following example YAML:</p>
+<div class="listingblock">
+<div class="title">Example Operator group YAML</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: OperatorGroup
+apiVersion: operators.coreos.com/v1
+metadata:
+  name: og
+  namespace: olm-microshift
+spec:
+  targetNamespaces:
+  - olm-microshift</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>spec.targetNamespaces</code> field and values can be omitted for Operators using the global namespace.</p>
+</div>
+</li>
+<li>
+<p>Apply the Operator group configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f <em>&lt;og.yaml&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;og.yaml&gt;</em></code> with the name of your operator group configuration file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">operatorgroup.operators.coreos.com/og created</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the <code>CatalogSource</code> object by using the following example YAML:</p>
+<div class="listingblock">
+<div class="title">Example catalog source YAML</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: operatorhubio-catalog
+  namespace: openshift-marketplace
+spec:
+  sourceType: grpc
+  image: quay.io/operatorhubio/catalog:latest
+  displayName: Community Operators
+  publisher: OperatorHub.io
+  grpcPodConfig:
+    securityContextConfig: restricted
+  updateStrategy:
+    registryPoll:
+      interval: 60m</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>metadata.namespace</code></dt>
+<dd>
+<p>Specifies the global namespace. Setting the <code>metadata.namespace</code> to <code>openshift-marketplace</code> enables the catalog to run in all namespaces. Subscriptions CRs in any namespace can reference catalogs created in the <code>openshift-marketplace</code> namespace.</p>
+</dd>
+<dt class="hdlist1"><code>spec.displayName</code></dt>
+<dd>
+<p>Specifies that the Community Operators are not installed by default with OLM for MicroShift. Listed here for example only.</p>
+</dd>
+<dt class="hdlist1"><code>grpcPodConfig.securityContextConfig</code></dt>
+<dd>
+<p>Specifies the value of <code>securityContextConfig</code> must be set to <code>restricted</code> for MicroShift.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Apply the <code>CatalogSource</code> configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f <em>&lt;catalog_source.yaml&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;catalog_source.yaml&gt;</em></code> with your catalog source configuration file name.</p>
+</div>
+</li>
+<li>
+<p>To verify that the catalog source is applied, check for the <code>READY</code> state by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc describe catalogsources.operators.coreos.com -n openshift-marketplace operatorhubio-catalog</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Name:         operatorhubio-catalog
+Namespace:    openshift-marketplace
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  operators.coreos.com/v1alpha1
+Kind:         CatalogSource
+Metadata:
+  Creation Timestamp:  2024-01-31T10:09:46Z
+  Generation:          1
+  Resource Version:    2811
+  UID:                 60ce4a36-86d3-4921-b9fc-84d67c28df48
+Spec:
+  Display Name:  Community Operators
+  Grpc Pod Config:
+    Security Context Config:  restricted
+  Image:                      quay.io/operatorhubio/catalog:latest
+  Publisher:                  OperatorHub.io
+  Source Type:                grpc
+  Update Strategy:
+    Registry Poll:
+      Interval:  60m
+Status:
+  Connection State:
+    Address:              operatorhubio-catalog.openshift-marketplace.svc:50051
+    Last Connect:         2024-01-31T10:10:04Z
+    Last Observed State:  READY
+  Registry Service:
+    Created At:         2024-01-31T10:09:46Z
+    Port:               50051
+    Protocol:           grpc
+    Service Name:       operatorhubio-catalog
+    Service Namespace:  openshift-marketplace
+Events:                 &lt;none&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>Last Observed State</code> field reports the status as <code>READY</code>.</p>
+</div>
+</li>
+<li>
+<p>Confirm that the catalog source is running by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n openshift-marketplace -l olm.catalogSource=operatorhubio-catalog</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                          READY   STATUS    RESTARTS   AGE
+operatorhubio-catalog-j7sc8   1/1     Running   0          43s</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a Subscription CR configuration file by using the following example YAML:</p>
+<div class="listingblock">
+<div class="title">Example Subscription custom resource YAML</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: my-gitlab-operator-kubernetes
+  namespace: olm-microshift
+spec:
+  channel: stable
+  name: gitlab-operator-kubernetes
+  source: operatorhubio-catalog
+  sourceNamespace: openshift-marketplace</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>metadata.namespace</code></dt>
+<dd>
+<p>Specifies the specific namespace. Operators reference the global namespace for content, but run in the <code>olm-microshift</code> namespace.</p>
+</dd>
+<dt class="hdlist1"><code>spec.sourceNamespace</code></dt>
+<dd>
+<p>Specifies the global namespace. Subscriptions CRs in any namespace can reference catalogs created in the <code>openshift-marketplace</code> namespace.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Apply the Subscription CR configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f <em>&lt;subscription_cr.yaml&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;subscription_cr.yaml&gt;</em></code> with the name of the Subscription CR configuration file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">subscription.operators.coreos.com/my-gitlab-operator-kubernetes</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You can create a configuration file for the specific Operand you want to use and apply it now.</p>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify that your Operator is running by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n olm-microshift</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>olm-microshift</code> uses the namespace from the Subscription CR.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Allow a minute or two for the Operator start.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                                         READY   STATUS    RESTARTS   AGE
+gitlab-controller-manager-69bb6df7d6-g7ntx   2/2     Running   0          3m24s</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-olm-rh-ops-mirror_extend-capabilities-with-operators">Use Red Hat-provided Operator catalogs and mirror registries</h4>
+<div class="paragraph _abstract">
+<p>You can filter catalogs and delete images to get specific Operators and mirror them by using the oc-mirror OpenShift CLI (<code>oc</code>) plugin. You can also use Operators in disconnected settings or embedded in a Red&#160;Hat Enterprise Linux (RHEL) image.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To understand more about how to configure your systems for mirroring, follow the links in the following "Additional resources" section.</p>
+</li>
+<li>
+<p>If you are ready to deploy Operators from Red Hat-provided Operator catalogs, mirror them, or to embed them in a RHEL image, start with the following section, "Inspecting catalog contents by using the oc-mirror plugin."</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-using-oc-mirror_extend-capabilities-with-operators">About the oc-mirror plugin for creating a mirror registry</h4>
+<div class="paragraph _abstract">
+<p>You can use the oc-mirror OpenShift CLI (<code>oc</code>) plugin with MicroShift to filter and delete images from Operator catalogs. You can then mirror the filtered catalog contents to a mirror registry or use the container images in disconnected or offline deployments.</p>
+</div>
+<div class="paragraph">
+<p>The procedure to mirror content from Red Hat-hosted registries connected to the internet to a disconnected image registry is the same, independent of the registry you select. After you mirror the contents of your catalog, configure each node to retrieve this content from your mirror registry.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-connectivity-considerations_extend-capabilities-with-operators">Connectivity considerations when populating a mirror registry</h4>
+<div class="paragraph _abstract">
+<p>When you populate your mirror registry, you can use connected or disconnected mirroring depending on your use case.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Connected mirroring</dt>
+<dd>
+<p>If you have a host that can access both the internet and your mirror registry, but not your node, you can directly mirror the content from that machine.</p>
+</dd>
+<dt class="hdlist1">Disconnected mirroring</dt>
+<dd>
+<p>If you do not have a host that can access both the internet and your mirror registry, you must mirror the images to a file system and then bring that host or removable media into your disconnected environment.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A container registry must be reachable by every machine in the node that you provision. Installing, updating, and other operations, such as relocating workloads, fail if the registry is unreachable.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>To avoid problems caused by an unreachable registry, use the following standard practices:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Run mirror registries in a highly available way.</p>
+</li>
+<li>
+<p>Ensure that the mirror registry at least matches the production availability of your node.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-oc-mirror-list-operators-catalogs_extend-capabilities-with-operators">Inspect catalog contents by using the oc-mirror plugin</h4>
+<div class="paragraph _abstract">
+<p>Use the following example procedure to select a catalog and list Operators to add to your oc-mirror plugin image set configuration file.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you use your own catalogs and Operators, you can push the images directly to your internal registry.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You uninstalled OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>You installed the Operator Lifecycle Manager (OLM).</p>
+</li>
+<li>
+<p>You installed the oc-mirror plugin.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Get a list of available Red&#160;Hat-provided Operator catalogs to filter by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc mirror list operators --version 4.22 --catalogs --v2</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get a list of Operators in the Red Hat Operators catalog by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc mirror list operators --catalog=&lt;catalog_source&gt; --v2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;catalog_source&gt;</code> with your catalog source, such as <code>registry.redhat.io/redhat/redhat-operator-index:v4.22</code> or <code>quay.io/operatorhubio/catalog:latest</code>.</p>
+</div>
+</li>
+<li>
+<p>Select an Operator. This example uses the <code>amq-broker-rhel9</code> Operator.</p>
+</li>
+<li>
+<p>Optional: To inspect the channels and versions of the Operator you want to filter, enter the following commands:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Get a list of channels by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc mirror list operators --catalog=registry.redhat.io/redhat/redhat-operator-index:v4.22 --package=amq-broker-rhel9 --v2</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get a list of versions within a channel by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc mirror list operators --catalog=registry.redhat.io/redhat/redhat-operator-index:v4.22 --package=amq-broker-rhel9 --channel=7.13.x --v2</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Next steps</div>
+<ul>
+<li>
+<p>Create and edit an image set configuration file using the information gathered in this procedure.</p>
+</li>
+<li>
+<p>Mirror the images from the transformed image set configuration file to a mirror registry or disk.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-oc-mirror-creating-imageset-config_extend-capabilities-with-operators">Create an image set configuration file</h4>
+<div class="paragraph _abstract">
+<p>You must create an <code>ImageSetConfiguration</code> YAML file to specify both the Operators to mirror and the configuration settings for the oc-mirror plugin. Edit the contents of the file so that the entries are compatible with both MicroShift and the Operator you plan to use.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>oc mirror</code> v2 uses a cache system instead of metadata. The cache system prevents the need to start the entire mirroring process over when a single step fails. Instead, you can troubleshoot the failed step and the process does not re-mirror images that existed before the failure.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You created a container image registry credentials file. For more information, see the following reference:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html-single/disconnected_environments/index#installation-adding-registry-pull-secret_installing-mirroring-disconnected">Configuring credentials that allow images to be mirrored</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create and edit the <code>ImageSetConfiguration</code> YAML for MicroShift by using the following example as a guide:</p>
+<div class="listingblock">
+<div class="title">Example edited MicroShift image set configuration file</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: ImageSetConfiguration
+apiVersion: mirror.openshift.io/v2alpha1
+mirror:
+  operators:
+  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.22
+    packages:
+    - name: amq-broker-rhel9
+      channels:
+      - name: 7.13.x
+  additionalImages:
+   - name: quay.io/rh_ee_aguidi/multi-platform-container:latest
+   - name: quay.io/rh_ee_aguidi/empty-image:latest</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>mirror.operators.catalog</code></dt>
+<dd>
+<p>Specifies the Operator catalog to retrieve images from.</p>
+</dd>
+<dt class="hdlist1"><code>mirror.operators.packages.name</code></dt>
+<dd>
+<p>Specifies the Operator packages to include in the image set. Remove this field to retrieve all packages in the catalog.</p>
+</dd>
+<dt class="hdlist1"><code>mirror.operators.packages.channels.name</code></dt>
+<dd>
+<p>Specifies only certain channels of the Operator packages to include in the image set. You must always include the default channel for the Operator package even if you do not use the bundles in that channel. You can find the default channel by running the following command: <code>oc mirror list operators --catalog=&lt;catalog_name&gt; --package=&lt;package_name&gt; --v2</code>.</p>
+</dd>
+<dt class="hdlist1"><code>mirror.additionalImages</code></dt>
+<dd>
+<p>Specifies any additional images to include in the image set. If you do not need to specify additional images, delete this field.</p>
+<div class="openblock">
+<div class="content">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>platform</code> field, related fields, and Helm are not supported by MicroShift.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Save the updated file as <code>ImageSetConfiguration.yaml</code>.</p>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Next steps</div>
+<ul>
+<li>
+<p>Use the oc-mirror plugin to mirror an image set directly to a target mirror registry.</p>
+</li>
+<li>
+<p>Configure CRI-O.</p>
+</li>
+<li>
+<p>Apply the catalog sources to your node.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="oc-mirror-imageset-config-parameters-v2_extend-capabilities-with-operators">ImageSet configuration parameters for oc-mirror plugin v2</h4>
+<div class="paragraph _abstract">
+<p>The oc-mirror plugin v2 requires an image set configuration file that defines what images to mirror.</p>
+</div>
+<div class="paragraph">
+<p>The following table lists the available parameters for the `ImageSetConfiguration resource.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>When selecting bundles for mirroring, the oc-mirror plugin v2 does not automatically detect group/version/kind (GVK) and bundle dependencies. You must explicitly specify the required Operators, their channels, and the Operator versions in the <code>ImageSetConfiguration</code> file. For more information, see "opm CLI reference".</p>
+</li>
+<li>
+<p>Using the <code>minVersion</code> and <code>maxVersion</code> properties to filter for a specific Operator version range can result in a multiple channel heads error. The error message states that there are <code>multiple channel heads</code>. This is because when the filter is applied, the update graph of the Operator is truncated.</p>
+</li>
+<li>
+<p>OLM requires that every Operator channel contains versions that form an update graph with exactly one end point, that is, the latest version of the Operator. When the filter range is applied, that graph can turn into two or more separate graphs or a graph that has more than one end point.</p>
+</li>
+<li>
+<p>To avoid this error, do not filter out the latest version of an Operator. If you still run into the error, depending on the Operator, either the <code>maxVersion</code> property must be increased or the <code>minVersion</code> property must be decreased. Because every Operator graph can be different, you might need to adjust these values until the error resolves.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. <code>ImageSetConfiguration</code> parameters</caption>
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apiVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The API version of the <code>ImageSetConfiguration</code> content.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-security-context-constraints-opting_secure-pod-workloads.html">Control pod security admission synchronization</a> | ↑ Up: <a href="_develop.html">Develop</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-operators-how-to-install-and-manage_extend-capabilities-with-operators.html">How to use Operators with a MicroShift node</a> →</p>
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>mirror.openshift.io/v2alpha1</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The configuration of the image set.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Object</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.additionalImages</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The additional images configuration of the image set.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Array of objects</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">additionalImages:
+  - name: registry.redhat.io/ubi8/ubi:latest</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.additionalImages.name</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The tag or digest of the image to mirror.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>registry.redhat.io/ubi8/ubi:latest</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.additionalImages.targetRepo</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional. Specifies the custom repository path and URL for the target image on the disconnected registry. This value overrides the default repository path.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.additionalImages.targetTag</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional. Specifies the tag applied to the mirrored image. If you do not configure this field, the image is mirrored using the tag provided in the <code>name</code> field. If no tag is provided in the <code>name</code> field, <code>oc-mirror</code> calculates and applies a tag based on the image&#8217;s partial digest.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.blockedImages</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>List of images with a tag or digest (SHA) to block from mirroring.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Array of strings
+Example: <code>docker.io/library/alpine</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The Operators configuration of the image set.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Array of objects</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">operators:
+  - catalog: registry.redhat.io/redhat/redhat-operator-index:4.22
+    packages:
+      - name: elasticsearch-operator
+        minVersion: '2.4.0'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators.catalog</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The Operator catalog to include in the image set.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>registry.redhat.io/redhat/redhat-operator-index:v4.15</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators.full</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>When <code>true</code>, downloads the full catalog, Operator package, or Operator channel.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Boolean
+The default value is <code>false</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators.packages</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The Operator packages configuration.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Array of objects</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">operators:
+  - catalog: registry.redhat.io/redhat/redhat-operator-index:4.22
+    packages:
+      - name: elasticsearch-operator
+        minVersion: '5.2.3-31'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators.packages.name</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The Operator package name to include in the image set.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>elasticsearch-operator</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators.packages.channels</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Operator package channel configuration</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Object</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators.packages.channels.name</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The Operator channel name, unique within a package, to include in the image set.</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must use explicit registry hostnames for all images listed under <code>additionalImages</code>. Without explicit hostnames, the plugin mirrors the images to unexpected target paths.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>fast</code> or <code>stable-v4.15</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators.packages.channels.maxVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The highest version of the Operator mirror across all channels in which it exists.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>5.2.3-31</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators.packages.channels.minVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The lowest version of the Operator to mirror across all channels in which it exists</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>5.2.3-31</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators.packages.maxVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The highest version of the Operator to mirror across all channels in which it exists.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>5.2.3-31</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators.packages.minVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The lowest version of the Operator to mirror across all channels in which it exists.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>5.2.3-31</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators.targetCatalog</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>An alternative name and optional namespace hierarchy to mirror the referenced catalog as</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>my-namespace/my-operator-catalog</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators.targetCatalogSourceTemplate</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Path on disk for a template to use to complete catalogSource custom resource generated by oc-mirror plugin v2.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>/tmp/catalog-source_template.yaml</code>
+Example of a template file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: discarded
+  namespace: openshift-marketplace
+spec:
+  image: discarded
+  sourceType: grpc
+  updateStrategy:
+    registryPoll:
+      interval: 30m0s</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mirror.operators.targetTag</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>An alternative tag to append to the <code>targetName</code> or <code>targetCatalog</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>v1</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect4">
+<h5 id="delete-imagset-config-parameters_extend-capabilities-with-operators">DeleteImageSetConfiguration parameters</h5>
+<div class="paragraph">
+<p>To remove images with the oc-mirror plugin v2, you must use a <code>DeleteImageSetConfiguration.yaml</code> configuration file that defines which images to delete from the mirror registry. The following table lists the available parameters for the <code>DeleteImageSetConfiguration</code> resource.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. <code>DeleteImageSetConfiguration</code> parameters</caption>
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apiVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The API version for the <code>DeleteImageSetConfiguration</code> content.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>mirror.openshift.io/v2alpha1</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The configuration of the image set to delete.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Object</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.additionalImages</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The additional images configuration of the delete image set.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Array of objects
+Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">additionalImages:
+  - name: registry.redhat.io/ubi8/ubi:latest</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.additionalImages.name</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The tag or digest of the image to delete.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>registry.redhat.io/ubi8/ubi:latest</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.additionalImages.targetRepo</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the repository path and URL of the image you want to delete.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.additionalImages.targetTag</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the tag applied to the image you want to delete.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.operators</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The Operators configuration of the delete image set.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Array of objects
+Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">operators:
+  - catalog: registry.redhat.io/redhat/redhat-operator-index:{product-version}
+    packages:
+      - name: elasticsearch-operator
+        minVersion: '2.4.0'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.operators.catalog</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The Operator catalog to include in the delete image set.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>registry.redhat.io/redhat/redhat-operator-index:v4.15</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.operators.full</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>When true, deletes the full catalog, Operator package, or Operator channel.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Boolean
+The default value is <code>false</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.operators.packages</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Operator packages configuration</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Array of objects
+Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">operators:
+  - catalog: registry.redhat.io/redhat/redhat-operator-index:{product-version}
+    packages:
+      - name: elasticsearch-operator
+        minVersion: '5.2.3-31'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.operators.packages.name</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The Operator package name to include in the delete image set.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>elasticsearch-operator</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.operators.packages.channels</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Operator package channel configuration</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Object</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.operators.packages.channels.name</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The Operator channel name, unique within a package, to include in the delete image set.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>fast</code> or <code>stable-v4.15</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.operators.packages.channels.maxVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The highest version of the Operator to delete within the selected channel.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>5.2.3-31</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.operators.packages.channels.minVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The lowest version of the Operator to delete within the selection in which it exists.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>5.2.3-31</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.operators.packages.maxVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The highest version of the Operator to delete across all channels in which it exists.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>5.2.3-31</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete.operators.packages.minVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The lowest version of the Operator to delete across all channels in which it exists.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String
+Example: <code>5.2.3-31</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-oc-mirror-mirror-to-mirror_extend-capabilities-with-operators">Mirror from mirror to mirror</h4>
+<div class="paragraph _abstract">
+<p>You can use the oc-mirror plugin to mirror an image set directly to a target mirror registry that is accessible during image set creation.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have access to the internet to get the required container images.</p>
+</li>
+<li>
+<p>You installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>You installed the <code>oc-mirror</code> CLI plugin.</p>
+</li>
+<li>
+<p>You created the image set configuration file.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Mirror the images from the specified image set configuration to a specified registry by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc-mirror --config imageset-config.yaml --workspace file://&lt;em&gt;&lt;v2_workspace&gt;&lt;/em&gt; \//
+  docker://&lt;em&gt;&lt;remote_registry&gt;&lt;/em&gt; --v2</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You must use the <code>--workspace</code> flag for the mirror-to-mirror process. Replace <em>&lt;v2_workspace&gt;</em> with the directory you want to use to store custom resources for the mirroring process.</p>
+</li>
+<li>
+<p>Replace <em>&lt;remote_registry&gt;</em> with the name of the registry to mirror the image set file to. The registry must start with <code>docker://</code>. If you specify a top-level namespace for the mirror registry, you must also use this same namespace on later executions.</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Rendering catalog image "registry.example.com/redhat/redhat-operator-index:v{ocp-version}" with file-based catalog</code></pre>
+</div>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must use the <code>ImageDigestMirrorSet</code> YAML file as reference content for manual configuration of CRI-O in MicroShift. You cannot apply the resource directly into a MicroShift node.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>List the contents of the <code>cluster-resources</code> subdirectory by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ls <em>&lt;v2_workspace&gt;</em>/working-dir/cluster-resources/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <em>&lt;v2_workspace&gt;</em> with the directory you used to store custom resources for the mirroring process.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Next steps</div>
+<ul>
+<li>
+<p>Convert the <code>ImageDigestMirrorSet</code> YAML content for use in manually configuring CRI-O.</p>
+</li>
+<li>
+<p>If required, mirror the images from mirror to disk for disconnected or offline use.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Troubleshooting</div>
+<ul>
+<li>
+<p><a href="https://access.redhat.com/solutions/7032017">Unable to retrieve source image</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-oc-mirror-transform-imageset-to-crio_extend-capabilities-with-operators">Configure CRI-O to use a registry mirror for Operators</h4>
+<div class="paragraph _abstract">
+<p>To use a registry mirror for Operators with MicroShift, you must transform the <code>ImageDigestMirrorSet</code> YAML file created by the oc-mirror plugin into a format that is compatible with the MicroShift CRI-O container runtime configuration.
+.Prerequisites</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The OpenShift CLI (<code>oc</code>) is installed.</p>
+</li>
+<li>
+<p>You installed Operator Lifecycle Manager (OLM).</p>
+</li>
+<li>
+<p>You installed the oc-mirror plugin.</p>
+</li>
+<li>
+<p>You installed the <code>yq</code> binary.</p>
+</li>
+<li>
+<p>The <code>ImageDigestMirrorSet</code> and <code>CatalogSource</code> YAML files are available in the <code>cluster-resources</code> subdirectory.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Confirm the contents of the <code>ImageDigestMirrorSet</code> YAML file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat <em>&lt;v2_workspace&gt;</em>/working-dir/cluster-resources/imagedigestmirrorset.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <em>&lt;v2_workspace&gt;</em> with the directory name that you used when you generated mirroring resources.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: config.openshift.io/v1
+kind: ImageDigestMirrorSet
+metadata:
+  labels:
+    operators.openshift.org/catalog: "true"
+  name: operator-0
+spec:
+  imageDigestMirrors:
+  - mirrors:
+    - registry.example.com/amq7
+    source: registry.redhat.io/amq7</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Transform the <code>imagedigestmirrorset.yaml</code> into a format ready for CRI-O configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ yq '.spec.imageDigestMirrors[] as $item ireduce([]; . + [{"mirror": $item.mirrors[], "source": ($item | .source)}]) | .[] |
+  "[[registry]]
+      prefix = \"" + .source + "\"
+      location = \"" + .mirror + "\"
+      mirror-by-digest-only = true
+      insecure = true
+      "' ./mirror1/working-dir/cluster-resources/imagedigestmirrorset.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[[registry]]
+      prefix = "registry.redhat.io/amq7"
+      location = "registry.example.com/amq7"
+      mirror-by-digest-only = true
+      insecure = true</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the output to the CRI-O configuration file in the <code>/etc/containers/registries.conf.d/</code> directory:</p>
+<div class="listingblock">
+<div class="title">Example <code>crio-config.yaml</code> mirror configuration file</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">[[registry]]
+      prefix = "registry.redhat.io/amq7"
+      location = "registry.example.com/amq7"
+      mirror-by-digest-only = true
+      insecure = true
+
+[[registry]]
+    prefix = ""
+    location = "quay.io"
+    mirror-by-digest-only = true
+[[registry.mirror]]
+    location = "&lt;registry_host&gt;:&lt;port&gt;"
+    insecure = false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>registry.mirror.location</code></dt>
+<dd>
+<p>Specifies the hostname and port of your mirror registry server, for example <code>microshift-quay:8443</code>.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Apply the CRI-O configuration changes by restarting MicroShift with the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart crio</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-oc-mirror-install-catalog-in-node_extend-capabilities-with-operators">Install a custom catalog created with the oc-mirror plugin</h4>
+<div class="paragraph _abstract">
+<p>After you mirror your image set to the mirror registry, you must apply the generated <code>CatalogSource</code> custom resource (CR) into the node. Operator Lifecycle Manager (OLM) uses the <code>CatalogSource</code> CR to retrieve information about the available Operators in the mirror registry. You must then create and apply a subscription CR to subscribe to your custom catalog.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You mirrored the image set to your registry mirror.</p>
+</li>
+<li>
+<p>You added image reference information to the CRI-O container runtime configuration.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Apply the catalog source configuration file from the results directory to create the catalog source object by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f ./<em>&lt;v2_workspace&gt;</em>/working-dir/cluster-resources/catalogSource-cs-redhat-catalog.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <em>&lt;v2_workspace&gt;</em> with the directory you used to store custom resources for the mirroring process.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">catalogsource.operators.coreos.com/cs-redhat-catalog created</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>For reference, see the following example file:</p>
+<div class="listingblock">
+<div class="title">Example catalog source configuration file</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: operators.coreos.com/v2alpha1
+kind: CatalogSource
+metadata:
+  name: redhat-catalog
+  namespace: openshift-marketplace
+spec:
+  sourceType: grpc
+  image: registry.example.com/redhat/redhat-catalog:v4.22
+  updateStrategy:
+    registryPoll:
+      interval: 60m</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>metadata.namespace</code></dt>
+<dd>
+<p>Specifies the global namespace. Setting the <code>metadata.namespace</code> to <code>openshift-marketplace</code> enables the catalog to reference catalogs in all namespaces. Subscriptions in any namespace can reference catalogs created in the <code>openshift-marketplace</code> namespace.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Verify that the <code>CatalogSource</code> resources were successfully installed by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get catalogsource --all-namespaces</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAMESPACE               NAME                  DISPLAY               TYPE   PUBLISHER   AGE
+openshift-marketplace   certified-operators   Certified Operators   grpc   Red Hat     37m
+openshift-marketplace   community-operators   Community Operators   grpc   Red Hat     37m
+openshift-marketplace   redhat-marketplace    Red Hat Marketplace   grpc   Red Hat     37m
+openshift-marketplace   redhat-catalog        Red Hat Catalog     grpc   Red Hat     37m</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that the catalog source is running by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n openshift-marketplace</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                             READY   STATUS    RESTARTS   AGE
+cs-redhat-catalog-4227b   2/2     Running   0          2m5s</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a <code>Subscription</code> CR, similar to the following example:</p>
+<div class="listingblock">
+<div class="title">Example <code>Subscription</code> CR</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: operators.coreos.com/v2alpha1
+kind: Subscription
+metadata:
+  name: amq-broker
+  namespace: openshift-operators
+spec:
+  channel: 7.13.x
+  name: amq-broker-rhel9
+  source: cs-redhat-catalog
+  sourceNamespace: openshift-marketplace</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the Subscription CR configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f ./<em>&lt;subscription_cr.yaml&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Specify the name of your subscription in <em>&lt;subscription_cr.yaml&gt;</em>, for example <code>amq&#8212;&#8203;broker-subscription-cr.yaml</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">subscription.operators.coreos.com/amq-broker created</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-adding-OLM-Operators-to-disconnected-node_extend-capabilities-with-operators">About adding OLM-based Operators to a disconnected node</h4>
+<div class="paragraph _abstract">
+<p>You must mirror remote registries to a highly available container registry for Operators that are installed on a disconnected node.</p>
+</div>
+<div class="paragraph">
+<p>By default, Operator Lifecycle Manager (OLM) requires full internet connectivity to access remote registries such as Red&#160;Hat-provided Operator catalogs. For a disconnected node, you must mirror remote registries to a highly available container registry.</p>
+</div>
+<div class="paragraph">
+<p>The following steps are required to use OLM to install, manage, and lifecycle Operators in disconnected situations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Include OLM in the container image list for your mirror registry.</p>
+</li>
+<li>
+<p>Configure the system to use your mirror registry by updating your CRI-O configuration directly. <code>ImageContentSourcePolicy</code> is not supported in MicroShift.</p>
+</li>
+<li>
+<p>Add a <code>CatalogSource</code> object to the node so that the OLM catalog Operator can use the local catalog on the mirror registry.</p>
+</li>
+<li>
+<p>Ensure that MicroShift is installed to run in a disconnected capacity.</p>
+</li>
+<li>
+<p>Ensure that the network settings are configured to run in disconnected mode.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>After enabling OLM in a disconnected node, you can continue to use your internet-connected workstation to keep your local catalog sources updated as newer versions of Operators are released.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-oc-mirror-dry-run_extend-capabilities-with-operators">Perform a dry run</h4>
+<div class="paragraph _abstract">
+<p>You can use oc-mirror to perform a dry run so that you can review the list of images to be mirrored. By using a dry run, you can catch any errors with your image set configuration early or use the generated list of images with other tools to conduct mirroring.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have access to the internet to obtain the necessary container images.</p>
+</li>
+<li>
+<p>You installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>You installed the oc-mirror CLI plugin.</p>
+</li>
+<li>
+<p>You created the image set configuration file.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Run the <code>oc mirror</code> command with the <code>--dry-run</code> flag to perform a dry run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc-mirror --config <em>&lt;ImageSetConfig.yaml&gt;</em> docker://localhost:5000 --workspace file://<em>&lt;outm2m&gt;</em> --dry-run --v2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>ImageSetConfig.yaml</code></dt>
+<dd>
+<p>Specifies the name of the image set configuration file that you created.</p>
+</dd>
+<dt class="hdlist1"><code>docker://localhost:5000</code></dt>
+<dd>
+<p>Specifies the mirror registry. Nothing is mirrored to this registry when you use the <code>--dry-run</code> flag.</p>
+</dd>
+<dt class="hdlist1"><code>--workspace file://<em>&lt;outm2m&gt;</em></code></dt>
+<dd>
+<p>Insert the address of the workspace path.</p>
+</dd>
+<dt class="hdlist1"><code>--dry-run</code></dt>
+<dd>
+<p>The dry run flag generates the dry run artifacts and not an actual image set file.</p>
+</dd>
+<dt class="hdlist1"><code>--v2</code></dt>
+<dd>
+<p>Specifies <code>oc mirror</code> v2.</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">2025/08/25 15:50:44  [INFO]   : 👋 Hello, welcome to oc-mirror
+2025/08/25 15:50:44  [INFO]   : ⚙  setting up the environment for you...
+2025/08/25 15:50:44  [INFO]   : 🔀 workflow mode: mirrorToMirror
+2025/08/25 15:50:44  [INFO]   : 🕵  going to discover the necessary images...
+2025/08/25 15:50:44  [INFO]   : 🔍 collecting release images...
+2025/08/25 15:50:44  [INFO]   : 🔍 collecting operator images...
+ ✓   (1m30s) Collecting catalog registry.redhat.io/redhat/redhat-operator-index:v4.20
+2025/08/25 15:52:14  [INFO]   : 🔍 collecting additional images...
+2025/08/25 15:52:14  [INFO]   : 📄 list of all images for mirroring in : wspace/working-dir/dry-run/mapping.txt
+2025/08/25 15:52:14  [INFO]   : mirror time     : 1m30.399585837s
+2025/08/25 15:52:14  [INFO]   : 👋 Goodbye, thank you for using oc-mirror</code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Review the <code>mapping.txt</code> file that was generated by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat wspace/working-dir/dry-run/mapping.txt</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">docker://registry.redhat.io/amq8/amq-broker-rhel9@sha256:47fd4ce2533496828aba37bd1f9715e2164d5c90bd0fc6b25e7e0786d723bf01=docker://mirror.com/amq8/amq-broker-rhel9:sha256-47fd4ce2533496828aba37bd1f9715e2164d5c90bd0fc6b25e7e0786d723bf01
+docker://registry.redhat.io/amq8/amq-broker-init-rhel9@sha256:9cc48eecf1442ae04b8543fa5d4381a13bc2831390850828834d387006d1342b=docker://mirror.com/amq7/amq-broker-init-rhel9:sha256-9cc48eecf1442ae04b8543fa5d4381a13bc2831390850828834d387006d1342b
+docker://registry.redhat.io/amq8/amq-broker-rhel9@sha256:bb6fbd68475a7852b4d99eea6c4ab313f9267da7963162f0d75375d7063409e7=docker://mirror.com/amq8/amq-broker-rhel9:sha256-bb6fbd68475a7852b4d99eea6c4ab313f9267da7963162f0d75375d7063409e7
+docker://registry.redhat.io/amq8/amq-broker-rhel9@sha256:d42d713da0ce6806fdc6492b6342586783e6865a82a8647d3c4288439b1751ee=docker://mirror.com/amq8/amq-broker-rhel9:sha256-d42d713da0ce6806fdc6492b6342586783e6865a82a8647d3c4288439b1751ee
+docker://registry.redhat.io/amq8/amq-broker-init-rhel9@sha256:ffffa9875f0379e9373f89f05eb06e5a193273bb04bc3aa5f85b044357b79098=docker://mirror.com/amq8/amq-broker-init-rhel9:sha256-ffffa9875f0379e9373f89f05eb06e5a193273bb04bc3aa5f85b044357b79098</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-oc-mirror-prep-ops-cat-images-disconnected-use_extend-capabilities-with-operators">Get catalogs and Operator container image references</h4>
+<div class="paragraph _abstract">
+<p>After performing a dry run with the oc-mirror plugin to review the list of images that you want to mirror, you must get all of the container image references. Then you must format the output for adding to an image builder blueprint.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For catalogs made for proprietary Operators, you can format image references for the image builder blueprint without using the following procedure.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have a catalog index for the Operators you want to use.</p>
+</li>
+<li>
+<p>You have installed the <code>jq</code> CLI tool.</p>
+</li>
+<li>
+<p>You are familiar with image builder blueprint files.</p>
+</li>
+<li>
+<p>You have an image builder blueprint TOML file.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Parse the catalog <code>index.json</code> file to get the image references that you need to include in the image builder blueprint. You can use either the unfiltered catalog or you can filter out images that cannot be mirrored:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Parse the unfiltered catalog <code>index.json</code> file to get the image references by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">jq -r --slurp '.[] | select(.relatedImages != null) | "[[containers]]\nsource = \"" + .relatedImages[].image + "\"\n"'   ./oc-mirror-workspace/src/catalogs/registry.redhat.io/redhat/redhat-operator-index/v4.22/index/index.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If you want to filter out images that cannot be mirrored, filter and parse the catalog <code>index.json</code> file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ jq -r --slurp '.[] | select(.relatedImages != null) | .relatedImages[] | select(.name |  contains("ppc") or contains("s390x") | not) | "[[containers]]\\nsource = \\"" + .image + "\\"\\n"' ./oc-mirror-workspace/src/catalogs/registry.redhat.io/redhat/redhat-operator-index/v4.22/index/index.json</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This step uses the AMQ Broker Operator as an example. You can add other criteria to the <code>jq</code> command for further filtering as required by your use case.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example image-reference output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[[containers]]
+source = "registry.redhat.io/amq8/amq-broker-init-rhel9@sha256:0b2126cfb6054fdf428c1f43b69e36e93a09a49ce15350e9273c98cc08c6598b"
+
+[[containers]]
+source = "registry.redhat.io/amq8/amq-broker-init-rhel9@sha256:0dde839c2dce7cb684094bf26523c8e16677de03149a0fff468b8c3f106e1f4f"
+...
+...
+
+[[containers]]
+source = "registry.redhat.io/amq8/amq-broker-rhel9@sha256:e8fa2a00e576ecb95561ffbdbf87b1c82d479c8791ab2c6ce741dd0d0b496d15"
+
+[[containers]]
+source = "registry.redhat.io/amq8/amq-broker-rhel9@sha256:ff6fefad518a6c997d4c5a6e475ba89640260167f0bc27715daf3cc30116fad1"
+…
+EOF</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For mirrored and disconnected use cases, ensure that all of the sources filtered from your catalog <code>index.json</code> file are digests. If any of the sources use tags instead of digests, the Operator installation fails. Tags require an internet connection.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>View the <code>imageset-config.yaml</code> to get the catalog image reference for the <code>CatalogSource</code> custom resource (CR) by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat imageset-config.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: ImageSetConfiguration
+apiVersion: mirror.openshift.io/v2alpha1
+mirror:
+  operators:
+  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.22
+    packages:
+    - name: amq-broker-rhel9
+      channels:
+      - name: 7.13.x</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use the value in the <code>mirror.catalog</code> catalog image reference for the following <code>jq</code> command to get the image digest. In this example, <em>&lt;registry.redhat.io/redhat/redhat-operator-index:v4.22&gt;</em>.</p>
+</div>
+</li>
+<li>
+<p>Get the SHA of the catalog index image by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ skopeo inspect docker://<em>&lt;registry.redhat.io/redhat/redhat-operator-index:v{product-version}&gt;</em> | jq <code>.Digest</code></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use the value in the <code>mirror.catalog</code> catalog image reference for the <code>jq</code> command to get the image digest. In this example, <em>&lt;registry.redhat.io/redhat/redhat-operator-index:v4.22&gt;</em>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">"sha256:7a76c0880a839035eb6e896d54ebd63668bb37b82040692141ba39ab4c539bc6"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To get ready to add the image references to your image builder blueprint file, format the catalog image reference by using the following example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">[[containers]]
+source = "registry.redhat.io/redhat/redhat-operator-index@sha256:7a76c0880a839035eb6e896d54ebd63668bb37b82040692141ba39ab4c539bc6"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the image references from all of the previous steps to the image builder blueprint.</p>
+<div class="listingblock">
+<div class="title">Generated image builder blueprint example snippet</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">name = "microshift_blueprint"
+description = "MicroShift 4.22.1 on x86_64 platform"
+version = "0.0.1"
+modules = []
+groups = []
+
+[[packages]] <img src="data:image/png;base64," alt="1">
+name = "microshift"
+version = "4.22.1"
+...
+...
+
+[customizations.services]
+enabled = ["microshift"]
+
+[customizations.firewall]
+ports = ["22:tcp", "80:tcp", "443:tcp", "5353:udp", "6443:tcp", "30000-32767:tcp", "30000-32767:udp"]
+...
+...
+
+[[containers]]
+source = "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:f41e79c17e8b41f1b0a5a32c3e2dd7cd15b8274554d3f1ba12b2598a347475f4"
+
+[[containers]]
+source = "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:dbc65f1fba7d92b36cf7514cd130fe83a9bd211005ddb23a8dc479e0eea645fd"
+...
+...
+
+[[containers]]
+source = "registry.redhat.io/redhat/redhat-operator-index@sha256:7a76c0880a839035eb6e896d54ebd63668bb37b82040692141ba39ab4c539bc6"
+...
+...
+
+[[containers]]
+source = "registry.redhat.io/amq8/amq-broker-init-rhel9@sha256:0dde839c2dce7cb684094bf26523c8e16677de03149a0fff468b8c3f106e1f4f"
+...
+...
+
+[[containers]]
+source = "registry.redhat.io/amq8/amq-broker-rhel9@sha256:e8fa2a00e576ecb95561ffbdbf87b1c82d479c8791ab2c6ce741dd0d0b496d15"
+
+[[containers]]
+source = "registry.redhat.io/amq8/amq-broker-rhel9@sha256:ff6fefad518a6c997d4c5a6e475ba89640260167f0bc27715daf3cc30116fad1"
+…
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>packages</code></dt>
+<dd>
+<p>Specifies the references for all non-optional MicroShift RPM packages using the same version compatible with the <code>microshift-release-info</code> RPM.</p>
+</dd>
+<dt class="hdlist1"><code>customizations.services</code></dt>
+<dd>
+<p>Specifies the references for automatically enabling MicroShift on system startup and applying default networking settings.</p>
+<div class="paragraph">
+<p>Ensure that you include the non-optional MicroShift container images necessary for a disconnected deployment and references for the catalog index in your <code>containerfile</code>. For example, source = <code>&lt;"quay.io/openshift-release-dev/ocp-v4.0-art-dev&gt;</code> and source = <code>&lt;"registry.redhat.io/redhat/redhat-operator-index&gt;</code>."</p>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-apply-ops-ostree-disconnected-use_extend-capabilities-with-operators">Apply catalogs and Operators in a disconnected-deployment RHEL for Edge image</h4>
+<div class="paragraph _abstract">
+<p>After you have created a RHEL for Edge image for a disconnected environment and configured MicroShift networking settings for disconnected use, you can configure the namespace and create catalog and Operator custom resources (CR) for running your Operators.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have a RHEL for Edge image.</p>
+</li>
+<li>
+<p>Networking is configured for disconnected use.</p>
+</li>
+<li>
+<p>You completed the oc-mirror plugin dry run procedure.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a <code>CatalogSource</code> custom resource (CR), similar to the following example:</p>
+<div class="listingblock">
+<div class="title">Example <code>my-catalog-source-cr.yaml</code> file</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: cs-redhat-operator-index
+  namespace: openshift-marketplace
+spec:
+  image: registry.example.com/redhat/redhat-operator-index:v4.17
+  sourceType: grpc
+  displayName:
+  publisher:
+  updateStrategy:
+    registryPoll:
+      interval: 60m</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>metadata.namespace</code></dt>
+<dd>
+<p>Specifies the global namespace. Setting the <code>metadata.namespace</code> to <code>openshift-marketplace</code> enables the catalog to run in all namespaces. Subscriptions in any namespace can reference catalogs created in the <code>openshift-marketplace</code> namespace.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The default pod security admission definition for <code>openshift-marketplace</code> is <code>baseline</code>, therefore a catalog source custom resource (CR) created in that namespace does not require a <code>spec.grpcPodConfig.securityContextConfig</code> value to be set. You can set a <code>legacy</code> or <code>restricted</code> value if required for the namespace and Operators you want to use.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Add the SHA of the catalog index commit to the Catalog Source (CR), similar to the following example:</p>
+<div class="listingblock">
+<div class="title">Example namespace <code>spec.image</code> configuration</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: cs-redhat-operator-index
+  namespace: openshift-marketplace
+spec:
+  image: registry.example.com/redhat/redhat-operator-index@sha256:7a76c0880a839035eb6e896d54ebd63668bb37b82040692141ba39ab4c539bc6 <img src="data:image/png;base64," alt="1">
+  sourceType: grpc
+  displayName:
+  publisher:
+  updateStrategy:
+    registryPoll:
+      interval: 60m</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>spec.image</code></dt>
+<dd>
+<p>Specifies the SHA of the image commit. Use the same SHA you added to the image builder blueprint.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must use the SHA instead of a tag in your catalog CR or the pod fails to start.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Apply the YAML file from the oc-mirror plugin dry run results directory to the node by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f ./oc-mirror-workspace/results-1708508014/catalogSource-cs-redhat-operator-index.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">catalogsource.operators.coreos.com/cs-redhat-operator-index created</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that the <code>CatalogSource</code> resources were successfully installed by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get catalogsource --all-namespaces</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that the catalog source is running by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n openshift-marketplace</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                             READY   STATUS    RESTARTS   AGE
+cs-redhat-operator-index-4227b   2/2     Running   0          2m5s</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a <code>Subscription</code> CR, similar to the following example:</p>
+<div class="listingblock">
+<div class="title">Example <code>my-subscription-cr.yaml</code> file</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: amq-broker
+  namespace: openshift-operators
+spec:
+  channel: 7.11.x
+  name: amq-broker-rhel8
+  source: cs-redhat-operator-index
+  sourceNamespace: openshift-marketplace</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the <code>Subscription</code> CR by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f ./&lt;my-subscription-cr.yaml&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>&lt;my-subscription-cr.yaml&gt;</code></dt>
+<dd>
+<p>Specifies the name of your <code>Subscription</code> CR, such as <code>my-subscription-cr.yaml</code>.</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">subscription.operators.coreos.com/amq-broker created</code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Previous: <a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a> | ↑ Up: <a href="_develop.html">Develop</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="_configure.html">Configure</a> →</p>
 </div>
 </div>
 <div id="footer">

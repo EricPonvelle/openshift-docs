@@ -437,26 +437,169 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices" class="book toc2 toc-left">
+<body id="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
 <ul class="sectlevel2">
@@ -481,20 +624,109 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-limitations-of-generic-device-plugin_configure-access-to-host-devices">Limitations and considerations for the Generic Device Plugin</a></li><li class="level-5"><a href="#microshift-devices-not-suited-generic-device-plugin_configure-access-to-host-devices">Devices not suited for the Generic Device Plugin</a></li><li class="level-5"><a href="#microshift-device-id-logging-generic-device-plugin_configure-access-to-host-devices">Device identification and logging</a></li><li class="level-5"><a href="#microshift-performance-considerations-generic-device-plugin_configure-access-to-host-devices">Performance considerations</a></li><li class="level-4"><a href="#microshift-configuring-generic-device-plugin_configure-access-to-host-devices">Configure the Generic Device Plugin</a></li><li class="level-4"><a href="#microshift-deploying-applications-with-generic-devices_configure-access-to-host-devices">Deploy applications that use generic devices</a></li><li class="level-4"><a href="#microshift-generic-device-plugin-configuration-parameters_configure-access-to-host-devices">Generic Device Plugin configuration reference</a></li><li class="level-4"><a href="#microshift-generic-device-plugin-troubleshooting_configure-access-to-host-devices">Troubleshoot configuration issues</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices">Understand the Generic Device Plugin</h3>
@@ -536,28 +768,479 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
+<div class="sect3">
+<h4 id="microshift-limitations-of-generic-device-plugin_configure-access-to-host-devices">Limitations and considerations for the Generic Device Plugin</h4>
+<div class="paragraph _abstract">
+<p>The Generic Device Plugin in Red&#160;Hat build of MicroShift has limitations and considerations for exposing host devices. You can use this information to choose suitable devices, configure stable identifiers, and plan for performance.</p>
+</div>
+<div class="sect4">
+<h5 id="microshift-devices-not-suited-generic-device-plugin_configure-access-to-host-devices">Devices not suited for the Generic Device Plugin</h5>
+<div class="paragraph">
+<p>The GDP is designed for devices that are managed directly by the operating system and do not require special setup procedures. Devices that are not well-suited for the Generic Device Plugin include:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-limitations-of-generic-device-plugin_configure-access-to-host-devices.html">Limitations and considerations for the Generic Device Plugin</a></p>
+<p>Complex hardware requiring specialized drivers such as GPUs (graphics processing units) or FPGAs (field-programmable gate arrays). These types of hardware typically require dedicated device plugins that can perform unique initialization procedures, memory management, or queue resets before a pod can use them.</p>
 </li>
 <li>
-<p><a href="microshift-configuring-generic-device-plugin_configure-access-to-host-devices.html">Configure the Generic Device Plugin</a></p>
-</li>
-<li>
-<p><a href="microshift-deploying-applications-with-generic-devices_configure-access-to-host-devices.html">Deploy applications that use generic devices</a></p>
-</li>
-<li>
-<p><a href="microshift-generic-device-plugin-configuration-parameters_configure-access-to-host-devices.html">Generic Device Plugin configuration reference</a></p>
-</li>
-<li>
-<p><a href="microshift-generic-device-plugin-troubleshooting_configure-access-to-host-devices.html">Troubleshoot configuration issues</a></p>
+<p>Devices with specific vendor-supplied software stacks. Devices that require a complex software stack or proprietary APIs beyond direct file system access might require a specialized plugin.</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect4">
+<h5 id="microshift-device-id-logging-generic-device-plugin_configure-access-to-host-devices">Device identification and logging</h5>
+<div class="paragraph">
+<p>When you use glob paths, for example, <code>/dev/ttyUSB*</code>, to expose multiple similar devices, the GDP allocates devices based on availability. However, if your application needs to connect to an exactly specified physical device, for example, <code>serial device 3</code> out of 10, using broad glob paths might be insufficient. In such cases, configure individual device entries in the <code>config.yaml</code> file using more stable and unique identifiers such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Specific device paths, for example, <code>/dev/video0</code>.</p>
+</li>
+<li>
+<p>Symbolic links provided by the operating system, for example, <code>/dev/serial/by-id/</code> or <code>/dev/serial/by-path/</code>.</p>
+</li>
+<li>
+<p>USB vendor ID, product ID, and serial number combinations for precise USB device targeting.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-performance-considerations-generic-device-plugin_configure-access-to-host-devices">Performance considerations</h5>
+<div class="paragraph">
+<p>The <code>count</code> parameter in the <code>config.yaml</code> file enables a device group to be scheduled multiple times concurrently. While there are no explicit limits set within the GDP for the count (for example, <code>1000</code> for <code>/dev/fuse</code>), the actual performance depends on the host system&#8217;s capabilities and the nature of the device itself. Running a very high number of concurrent processes that access the same device might affect performance.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-configuring-generic-device-plugin_configure-access-to-host-devices">Configure the Generic Device Plugin</h4>
+<div class="paragraph _abstract">
+<p>The Generic Device Plugin (GDP) is disabled by default in MicroShift. To expose host devices such as serial ports and cameras to pods in Red&#160;Hat build of MicroShift, you can enable the Generic Device Plugin and define devices in the <code>config.yaml</code> file or create a configuration snippet file such as <code>/etc/microshift/config.d/10-gdp.yaml</code>.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You installed MicroShift.</p>
+</li>
+<li>
+<p>You created a custom <code>config.yaml</code> file in the <code>/etc/microshift</code> directory.</p>
+</li>
+<li>
+<p>You installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>You have <code>sudo</code> privileges on the MicroShift host.</p>
+</li>
+<li>
+<p>You have identified the specific host devices that you want to expose to your MicroShift node. For example, <code>/dev/video0</code>, <code>/dev/ttyUSB*</code>, or USB Vendor/Product IDs.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>From your CLI using <code>sudo</code> privileges, open <code>/etc/microshift/config.yaml</code> in a text editor.</p>
+</li>
+<li>
+<p>Locate the <code>genericDevicePlugin</code> section. If it is not present, add it.</p>
+</li>
+<li>
+<p>Set the <code>status</code> parameter to <code>Enabled</code> and define the <code>devices</code> that should be exposed. Each device definition needs a <code>name</code> and one or more <code>groups</code>. Each group can specify devices using <code>paths</code>, for file-based devices, including glob patterns, or <code>usbs</code>, for USB devices using Vendor/Product IDs. You cannot mix <code>paths</code> and <code>usbs</code> within the same device group.</p>
+<div class="listingblock">
+<div class="title">GDP fields with default values</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+# ...
+genericDevicePlugin:
+  devices:
+  - groups:
+    - paths:
+      - path: /dev/ttyUSB*
+      - path: /dev/ttyACM*
+    name: serial
+  - groups:
+    - paths:
+      - path: /dev/fuse
+    name: fuse
+  - groups:
+    - usbs:
+      - product: "0x7523"
+        serial: ""
+        vendor: "0x1a86"
+    name: converter
+  domain: device.microshift.io
+  status: Enabled</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>/dev/ttyUSB*</code></dt>
+<dd>
+<p>Specifies the file path for all the USB serial devices that are matched by this glob.</p>
+</dd>
+<dt class="hdlist1"><code>/dev/ttyACM*</code></dt>
+<dd>
+<p>Specifies the file path for all the ACM serial devices that are matched by this glob.</p>
+</dd>
+<dt class="hdlist1"><code>/dev/fuse</code></dt>
+<dd>
+<p>Specifies the file path for a fuse device.</p>
+</dd>
+<dt class="hdlist1"><code>fuse</code></dt>
+<dd>
+<p>Specifies the name of the device.</p>
+</dd>
+<dt class="hdlist1"><code>0x7523</code></dt>
+<dd>
+<p>Specifies the Product ID for a CH340 serial converter.</p>
+</dd>
+<dt class="hdlist1"><code>0x1a86</code></dt>
+<dd>
+<p>Specifies the Vendor ID for a CH340 serial converter.</p>
+</dd>
+<dt class="hdlist1"><code>device.microshift.io</code></dt>
+<dd>
+<p>Specifies the default domain for the GDP.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The output of the <code>microshift show-config</code> parameter might include pre-configured default paths for serial devices even if you have not explicitly configured them in <code>config.yaml</code>. These paths represent the default discovery settings if the Generic Device Plugin is enabled without specific user configuration.</p>
+</li>
+<li>
+<p>For consistency and precise device targeting, especially when dealing with multiple similar devices, consider using stable device paths like <code>/dev/serial/by-id/</code> or specific USB Vendor, Product, or Serial IDs instead of broad glob patterns like <code>/dev/ttyUSB*</code>.</p>
+</li>
+<li>
+<p>The <code>count</code> parameter in a device group allows a single device, or a set of devices matched by a glob, to be allocated multiple times concurrently to different pods. If omitted, <code>count</code> defaults to <code>1</code>.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Save the <code>config.yaml</code> file.</p>
+</li>
+<li>
+<p>Restart the MicroShift service to apply the changes:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart microshift</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Allow some time for MicroShift to restart and for the GDP to register its devices with the Kubelet.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>You can check the available devices in your node by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc describe node <em>&lt;microshift_node_name&gt;</em> | grep "device.microshift.io"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Depending on your configuration, expect output that indicates that the devices are now discoverable and schedulable within your MicroShift node.</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Capacity:
+ cpu:                                2
+ device.microshift.io/audio:         0
+ device.microshift.io/capture:       0
+ device.microshift.io/custom-device: 1
+ device.microshift.io/dummy-video:   0
+ device.microshift.io/fuse:          0
+ device.microshift.io/serial:        5
+ device.microshift.io/video:         0
+Allocatable:
+ cpu:                                2
+ device.microshift.io/audio:         0
+ device.microshift.io/capture:       0
+ device.microshift.io/custom-device: 1
+ device.microshift.io/dummy-video:   0
+ device.microshift.io/fuse:          0
+ device.microshift.io/serial:        5
+ device.microshift.io/video:         0
+Allocated resources:
+ (Total limits may be over 100 percent, i.e., overcommitted.)
+ Resource                           Requests     Limits
+ --------                           --------     ------
+ cpu                                450m (22%)   500m (25%)
+ memory                             1550Mi (42%) 500Mi (13%)
+ ephemeral-storage                  0 (0%)       0 (0%)
+ hugepages-1Gi                      0 (0%)       0 (0%)
+ hugepages-2Mi                      0 (0%)       0 (0%)
+ device.microshift.io/audio         0            0
+ device.microshift.io/capture       0            0
+ device.microshift.io/custom-device 1            1
+ device.microshift.io/dummy-video   1            1
+ device.microshift.io/fuse          0            0
+ device.microshift.io/serial        0            0
+ device.microshift.io/video         0            0</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-deploying-applications-with-generic-devices_configure-access-to-host-devices">Deploy applications that use generic devices</h4>
+<div class="paragraph _abstract">
+<p>After the Generic Device Plugin (GDP) is configured and enabled in MicroShift, you can deploy Kubernetes workloads, such as pods, deployments, or <code>StatefulSets</code>, that request access to the host devices that you have exposed. Devices are made available inside the container without requiring the pod to run with elevated privileges.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You installed MicroShift.</p>
+</li>
+<li>
+<p>You enabled and configured GDP.</p>
+</li>
+<li>
+<p>You installed OpenShift CLI (<code>oc</code>).</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Define the device request in your <code>Pod</code> specification:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: device-app
+spec:
+  containers:
+  - name: container
+    image: &lt;your_application_image&gt;
+    command: ["/path/to/your/app"]
+    args: ["--device_path=/dev/video0"]
+    resources:
+      limits:
+        device.microshift.io/video: 1
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+      runAsNonRoot: true
+      seccompProfile:
+        type: "RuntimeDefault"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>spec.containers.image</code></dt>
+<dd>
+<p>Specifies the container image.</p>
+</dd>
+<dt class="hdlist1"><code>spec.containers.command</code></dt>
+<dd>
+<p>Specifies the command for your application.</p>
+</dd>
+<dt class="hdlist1"><code>spec.containers.args</code></dt>
+<dd>
+<p>Specifies the arguments for your application. For example, how your application might use the device.</p>
+</dd>
+<dt class="hdlist1"><code>spec.containers.resources.limits</code></dt>
+<dd>
+<p>Specifies the resource limit for the device. The resource name must follow the pattern <code>device.microshift.io/&lt;device_name&gt;</code>, where <code>&lt;device_name&gt;</code> matches the <code>name</code> that you specified in your configuration file. This example requests one instance of the <code>video</code> device.</p>
+</dd>
+<dt class="hdlist1"><code>spec.containers.securityContext</code></dt>
+<dd>
+<p>Specifies the privilege escalation. Define and configure with the least privilege value to ensure that the container has only required permissions, such as access to the device file, and to restrict other capabilities for the container.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Deploy the Kubernetes workload by applying the manifest to the MicroShift node by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f <em>&lt;your_workload_manifest.yaml&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the pod is running, the specified host device is available at its original path, or <code>mountPath</code> if specified, inside the container. Your application can then interact with it as if it were a local device.</p>
+</div>
+<div class="paragraph">
+<p>For example, if you requested <code>device.microshift.io/serial</code>, which maps to <code>/dev/ttyUSB*</code>, your application might find the device at <code>/dev/ttyUSB0</code> or a similar path inside the container.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify device access by running the following command inside the running pod:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc exec -it <em>&lt;pod_name&gt;</em> -- ls -l /dev/video0</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-generic-device-plugin-configuration-parameters_configure-access-to-host-devices">Generic Device Plugin configuration reference</h4>
+<div class="paragraph _abstract">
+<p>The Generic Device Plugin configuration reference lists and describes the parameters in the <code>genericDevicePlugin</code> section of the` config.yaml` file in Red&#160;Hat build of MicroShift. You can use this reference when you enable the GDP and define which host devices to expose.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 8. GDP configuration fields definitions table</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>genericDevicePlugin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>genericDevicePlugin</code> section of the MicroShift configuration file defines the configurable parameters for the implementation of the MicroShift <code>GenericDevicePlugin</code> API. All of the following parameters in this table are subsections in the <code>genericDevicePlugin</code> section of the MicroShift configuration.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Is a subgroup that lists the device definitions to be exposed by the plugin. Each <code>Device</code> entry contains a 'name' and a list of <code>groups</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.groups</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lists device groups. Devices within a group comprise a pool of devices under a common name. When you request a device from that pool, you can receive a device from different defined paths.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.groups.count</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies how many times this group of devices can be mounted concurrently. If unspecified, <code>Count</code> defaults to <code>1</code>. Setting a high count, for example, <code>1000</code> for <code>/dev/fuse</code>, is possible because are no inherent limits, but performance might be impacted depending on the host&#8217;s capabilities and the nature of the device.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.groups.paths</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lists the host device file paths. Paths can be glob patterns, for example, <code>/dev/ttyUSB*</code>, in which case each matched device is schedulable <code>Count</code> times. This field is exclusive with <code>usbs</code>; you cannot define both in the same device group.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.groups.paths.limit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies up to how many times this device can be used in the group concurrently when other devices in the group yield more matches. For example, if one path in the group matches 5 devices and another matches 1 device but has a limit of 10, then the group provides 5 pairs of devices. When unspecified, the limit defaults to <code>1</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.groups.paths.mountPath</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The file path at which the host device should be mounted within the container. When unspecified, <code>mountPath</code> defaults to <code>path</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.groups.paths.path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The file path of a device on the host, for example, <code>/dev/video0</code>, <code>/dev/ttyUSB*</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.groups.paths.permissions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The file-system permissions given to the mounted device. Applies only to mounts of type <code>Device</code>. Can be one or more of:</p>
+<p class="tableblock">* <code>r</code> - allows the container to read from the specified device.</p>
+<p class="tableblock">* <code>w</code> - allows the container to write to the specified device.</p>
+<p class="tableblock">* <code>m</code> - allows the container to create device files that do not yet exist.</p>
+<p class="tableblock">When unspecified, <code>Permissions</code> defaults to <code>mrw</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.groups.paths.readOnly</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether the path should be mounted read-only. The values are <code>true</code> or <code>false</code>. Applies only to mounts of type <code>Mount</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.groups.path.type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Describes what type of file-system node this <code>path</code> represents and thus how it should be mounted. The type can be <code>Device</code> or <code>Mount</code>. When unspecified, <code>type</code> defaults to <code>Device</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.groups.usbs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lists the USB specifications that this device group consists of. The vendor and product IDs must always match. The serial ID must match if provided, or skipped if the ID is empty, The <code>usbs</code> field is exclusive with <code>paths</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.groups.usbs.product</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The USB Product ID of the device to match on, for example, <code>0x7523</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.groups.usbs.serial</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The serial number of the device to match on. A USB device must match exactly on all the given attributes to pass.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.groups.usbs.vendor</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The USB Vendor ID of the device to match on, for example, <code>0x1a86</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devices.name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A unique string representing the kind of device this specification describes, for example, <code>serial</code>, <code>video</code>, or <code>fuse</code>. This name is used in pod resource requests, for example, <code>device.microshift.io/serial</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>domain</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>domain</code> is a subgroup that specifies the domain prefix with which devices are advertised and present in the node. For example, <code>device.microshift.io/serial</code>. The default value is <code>device.microshift.io</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>status</code> is a subgroup that specifies the default GDP status. <code>Enabled</code> or <code>Disabled</code> are valid values.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="microshift-generic-device-plugin-troubleshooting_configure-access-to-host-devices">Troubleshoot configuration issues</h4>
+<div class="paragraph _abstract">
+<p>The following entries explain common Generic Device Plugin configuration issues and how to resolve them.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>Invalid configuration: failed to parse device</code></dt>
+<dd>
+<p>Occurs when you have incorrectly mixed <code>paths</code> and <code>usbs</code> fields within the same <code>groups</code> entry for a device. Each <code>group</code> must exclusively use either <code>paths</code> or <code>usbs</code> to define its devices.</p>
+</dd>
+<dt class="hdlist1"><code>Cannot define both path and usbs at the same time</code></dt>
+<dd>
+<p>Occurs when you have incorrectly mixed <code>paths</code> and <code>usbs</code> fields within the same <code>groups</code> entry for a device. Each <code>group</code> must exclusively use either <code>paths</code> or <code>usbs</code> to define its devices.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-wiping-local-container-storage_verify-trusted-container-images.html">Wipe local container storage clean</a> | ↑ Up: <a href="_configure.html">Configure</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-limitations-of-generic-device-plugin_configure-access-to-host-devices.html">Limitations and considerations for the Generic Device Plugin</a> →</p>
+<p>← Previous: <a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a> | ↑ Up: <a href="_configure.html">Configure</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a> →</p>
 </div>
 </div>
 <div id="footer">

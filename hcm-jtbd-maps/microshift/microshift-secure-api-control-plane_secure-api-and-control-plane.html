@@ -437,26 +437,169 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-secure-api-control-plane_secure-api-and-control-plane" class="book toc2 toc-left">
+<body id="microshift-secure-api-control-plane_secure-api-and-control-plane" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
 <ul class="sectlevel2">
@@ -481,57 +624,841 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-custom-cas_secure-api-and-control-plane">Use custom certificate authorities for the MicroShift API server</a></li><li class="level-4"><a href="#microshift-custom-cas-configuring_secure-api-and-control-plane">Configure custom certificate authorities</a></li><li class="level-4"><a href="#microshift-custom-ca-reserved-name-values_secure-api-and-control-plane">Custom certificates reserved name values</a></li><li class="level-4"><a href="#microshift-custom-ca-troubleshootin_secure-api-and-control-plane">Troubleshoot custom certificates</a></li><li class="level-4"><a href="#microshift-custom-ca-certificates-cleaning_secure-api-and-control-plane">Cleaning up and recreating the custom certificates</a></li><li class="level-4"><a href="#microshift-tls-config-con_secure-api-and-control-plane">Use TLS with MicroShift</a></li><li class="level-4"><a href="#microshift-tls-config-proc_secure-api-and-control-plane">Configure TLS for MicroShift</a></li><li class="level-4"><a href="#microshift-default-cipher-suites_secure-api-and-control-plane">Default cipher suites</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-secure-api-control-plane_secure-api-and-control-plane">Secure the MicroShift API and control plane</h3>
 <div class="paragraph _abstract">
 <p>Configure certificates and TLS to ensure that only trusted clients can communicate with the MicroShift API and that traffic is authenticated and encrypted.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-custom-cas_secure-api-and-control-plane">Use custom certificate authorities for the MicroShift API server</h4>
+<div class="paragraph _abstract">
+<p>To enable external clients to verify the MicroShift API server and maintain encrypted connections, you can replace the default internal certificate with a custom server certificate issued by a trusted certificate authority (CA).</p>
+</div>
+<div class="paragraph">
+<p>By default, clients outside of the node cannot verify the MicroShift-issued API server certificate. You must update the configuration file with the certificate location and relevant domain names to ensure secure access across your network.</p>
+</div>
+<div class="paragraph">
+<p>The following steps illustrate the workflow for customizing the API server certificate configuration in MicroShift:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy the certificates and keys to the preferred directory in the host operating system. Ensure that the files are accessible only with root access.</p>
+</li>
+<li>
+<p>Update the MicroShift configuration for each custom CA by specifying the certificate names and new fully qualified domain name (FQDN) in the MicroShift <code>/etc/microshift/config.yaml</code> configuration file.</p>
+<div class="paragraph">
+<p>Each certificate configuration can contain the following values:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-custom-cas_secure-api-and-control-plane.html">Use custom certificate authorities for the MicroShift API server</a></p>
+<p>The certificate file location is a required value.</p>
 </li>
 <li>
-<p><a href="microshift-custom-cas-configuring_secure-api-and-control-plane.html">Configure custom certificate authorities</a></p>
+<p>A single common name containing the API server DNS and IP address or IP address range.</p>
+<div class="openblock">
+<div class="content">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Tip">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In most cases, MicroShift generates a new <code>kubeconfig</code> file for your custom CA that includes the IP address or range that you specify. The exception is when you specify wildcards for the IP address. In this case, MicroShift generates a <code>kubeconfig</code> file with the public IP address of the server. To use wildcards, you must update the <code>kubeconfig</code> file with your specific details.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </li>
 <li>
-<p><a href="microshift-custom-ca-reserved-name-values_secure-api-and-control-plane.html">Custom certificates reserved name values</a></p>
+<p>Multiple Subject Alternative Names (SANs) containing the API server DNS and IP addresses or a wildcard certificate.</p>
 </li>
 <li>
-<p><a href="microshift-custom-ca-troubleshootin_secure-api-and-control-plane.html">Troubleshoot custom certificates</a></p>
+<p>You can list additional DNS names for each certificate.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><a href="microshift-custom-ca-certificates-cleaning_secure-api-and-control-plane.html">Cleaning up and recreating the custom certificates</a></p>
+<p>After the MicroShift service restarts, you must copy the generated <code>kubeconfig</code> files to the client.</p>
 </li>
 <li>
-<p><a href="microshift-tls-config-con_secure-api-and-control-plane.html">Use TLS with MicroShift</a></p>
+<p>Configure additional CAs on the client system. For example, you can update CA bundles in the Red&#160;Hat Enterprise Linux (RHEL) truststore.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Custom server certificates must be validated against CA data configured in the trust root of the host operating system. For more information, see "The system-wide truststore".</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
-<p><a href="microshift-tls-config-proc_secure-api-and-control-plane.html">Configure TLS for MicroShift</a></p>
+<p>The certificates and keys are read from the specified file location on the host. You can test and validate configuration from the client.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If any validation fails, MicroShift skips the custom configuration and uses the default certificate to start. The priority is to continue the service uninterrupted. MicroShift logs errors when the service starts. Common errors include expired certificates, missing files, or wrong IP addresses.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><a href="microshift-default-cipher-suites_secure-api-and-control-plane.html">Default cipher suites</a></p>
+<p>External server certificates are not automatically renewed. You must manually rotate your external certificates.</p>
+</li>
+</ol>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/securing_networks/using-shared-system-certificates_securing-networks#the-system-wide-trust-store_using-shared-system-certificates">The system-wide truststore</a></p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-custom-cas-configuring_secure-api-and-control-plane">Configure custom certificate authorities</h4>
+<div class="paragraph _abstract">
+<p>To configure externally generated certificates and domain names by using custom certificate authorities (CAs), add them to the MicroShift <code>/etc/microshift/config.yaml</code> configuration file. You must also configure the host operating system trust root.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Externally generated <code>kubeconfig</code> files are created in the <code>/var/lib/microshift/resources/kubeadmin/&lt;hostname&gt;/kubeconfig</code> directory. If you need to use <code>localhost</code> in addition to externally generated configurations, retain the original <code>kubeconfig</code> file in its default location. The <code>localhost</code> <code>kubeconfig</code> file uses the self-signed certificate authority.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>The OpenShift CLI (<code>oc</code>) is installed.</p>
+</li>
+<li>
+<p>You have root access to the node.</p>
+</li>
+<li>
+<p>The certificate authority has issued the custom certificates.</p>
+</li>
+<li>
+<p>A MicroShift <code>/etc/microshift/config.yaml</code> configuration file exists.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Copy the custom certificates you want to add to the trust root of the MicroShift host. Ensure that the
+certificate and private keys are only accessible to MicroShift.</p>
+</li>
+<li>
+<p>For each custom CA that you need, add an <code>apiServer</code> section called <code>namedCertificates</code> to the <code>/etc/microshift/config.yaml</code> MicroShift configuration file by using the following example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  namedCertificates:
+   - certPath: ~/certs/api_fqdn_1.crt
+     keyPath:  ~/certs/api_fqdn_1.key
+   - certPath: ~/certs/api_fqdn_2.crt
+     keyPath:  ~/certs/api_fqdn_2.key
+     names:
+     - api_fqdn_1
+     - *.apps.external.com</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>apiServer.namedCertificates.certPath</code></dt>
+<dd>
+<p>Add the full path to the certificate.</p>
+</dd>
+<dt class="hdlist1"><code>apiServer.namedCertificates.keyPath</code></dt>
+<dd>
+<p>Add the full path to the certificate key.</p>
+</dd>
+<dt class="hdlist1"><code>apiServer.namedCertificates.names</code></dt>
+<dd>
+<p>Optional. Add a list of explicit DNS names. Leading wildcards are allowed. If no names are listed, the implicit names are extracted from the certificates.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Restart the MicroShift to apply the certificates by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ systemctl microshift restart</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Wait a few minutes for the system to restart and apply the custom server. New <code>kubeconfig</code> files are generated in the <code>/var/lib/microshift/resources/kubeadmin/</code> directory.</p>
+</li>
+<li>
+<p>Copy the <code>kubeconfig</code> files to the client. If you specified wildcards for the IP address, update the <code>kubeconfig</code> to remove the public IP address of the server and replace that IP address with the specific wildcard range you want to use.</p>
+</li>
+<li>
+<p>From the client, use the following steps:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Specify the <code>kubeconfig</code> to use by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export KUBECONFIG=~/custom-kubeconfigs/kubeconfig</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use the location of the copied <code>kubeconfig</code> file as the path.</p>
+</div>
+</li>
+<li>
+<p>Check that the certificates are applied by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc --certificate-authority ~/certs/ca.ca get node</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">oc get node
+NAME                             STATUS   ROLES                         AGE   VERSION
+dhcp-1-235-195.arm.example.com   Ready    control-plane,master,worker   76m   v1.35.4</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the new CA file to the $KUBECONFIG environment variable by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc config set clusters.microshift.certificate-authority /tmp/certificate-authority-data-new.crt</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that the new <code>kubeconfig</code> file contains the new CA by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc config view --flatten</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example externally generated <code>kubeconfig</code> file</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /tmp/certificate-authority-data-new.crt
+    server: https://api.ci-ln-k0gim2b-76ef8.aws-2.ci.openshift.org:6443
+  name: ci-ln-k0gim2b-76ef8
+contexts:
+- context:
+    cluster: ci-ln-k0gim2b-76ef8
+    user:
+  name:
+current-context:
+kind: Config
+preferences: {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>clusters.cluster.certificate-authority</code></dt>
+<dd>
+<p>The <code>certificate-authority-data</code> section is not present in externally generated <code>kubeconfig</code> files. It is added with the <code>oc config set</code> command used previously.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Verify the <code>subject</code> and <code>issuer</code> of your customized API server certificate authority by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ curl --cacert /tmp/caCert.pem https://${fqdn_name}:6443/healthz -v</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre>Server certificate:
+  subject: CN=kas-test-cert_server
+  start date: Mar 12 11:39:46 2024 GMT
+  expire date: Mar 12 11:39:46 2025 GMT
+  subjectAltName: host "dhcp-1-235-3.arm.eng.rdu2.redhat.com" matched cert's "dhcp-1-235-3.arm.eng.rdu2.redhat.com"
+  issuer: CN=kas-test-cert_ca
+  SSL certificate verify ok.</pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Either replace the <code>certificate-authority-data</code> in the generated <code>kubeconfig</code> file with the new <code>rootCA</code> or add the <code>certificate-authority-data</code> to the trust root of the operating system. Do not use both methods.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Configure additional CAs in the trust root of the operating system. For example, in the RHEL Client truststore on the client system. <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/securing_networks/using-shared-system-certificates_securing-networks#the-system-wide-trust-store_using-shared-system-certificates">The system-wide truststore</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updating the certificate bundle with the configuration that contains the CA is recommended.</p>
+</li>
+<li>
+<p>If you do not want to configure your certificate bundles, you can alternately use the <code>oc login localhost:8443 --certificate-authority=/path/to/cert.crt</code> command, but this method is not preferred.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-custom-ca-reserved-name-values_secure-api-and-control-plane">Custom certificates reserved name values</h4>
+<div class="paragraph _abstract">
+<p>Certificate problems cause MicroShift to ignore certificates dynamically and log an error. Problems can be caused by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The certificate files do not exist on the disk or are not readable.</p>
+</li>
+<li>
+<p>The certificate is not parsable.</p>
+</li>
+<li>
+<p>The certificate overrides the internal certificates IP addresses or DNS names in a <code>SubjectAlternativeNames</code> (SAN) field. Do not use a reserved name when configuring SANs.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 6. Reserved Names values</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Address</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>localhost</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DNS</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>127.0.0.1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP Address</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.42.0.0</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP Address</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node Network</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10.43.0.0/16,10.44.0.0/16</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP Address</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Service Network</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">169.254.169.2/29</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP Address</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">br-ex Network</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubernetes.default.svc</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DNS</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>openshift.default.svc</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DNS</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>svc.cluster.local</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DNS</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="microshift-custom-ca-troubleshootin_secure-api-and-control-plane">Troubleshoot custom certificates</h4>
+<div class="paragraph _abstract">
+<p>To troubleshoot the implementation of custom certificates, you can take the following steps.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>From MicroShift, ensure that the certificate is served by the <code>kube-apiserver</code> and verify that the certificate path is appended to the <code>--tls-sni-cert-key</code> FLAG by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ journalctl -u microshift -b0 | grep tls-sni-cert-key</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Jan 24 14:53:00 localhost.localdomain microshift[45313]: kube-apiserver I0124 14:53:00.649099   45313 flags.go:64] FLAG: --tls-sni-cert-key="[/home/eslutsky/dev/certs/server.crt,/home/eslutsky/dev/certs/server.key;/var/lib/microshift/certs/kube-apiserver-external-signer/kube-external-serving/server.crt,/var/lib/microshift/certs/kube-apiserver-external-signer/kube-external-serving/server.key;/var/lib/microshift/certs/kube-apiserver-localhost-signer/kube-apiserver-localhost-serving/server.crt,/var/lib/microshift/certs/kube-apiserver-localhost-signer/kube-apiserver-localhost-serving/server.key;/var/lib/microshift/certs/kube-apiserver-service-network-signer/kube-apiserver-service-network-serving/server.crt,/var/lib/microshift/certs/kube-apiserver-service-network-signer/kube-apiserver-service-network-serving/server.key</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>From the client, ensure that the <code>kube-apiserver</code> is serving the correct certificate by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ openssl s_client -connect &lt;SNI_ADDRESS&gt;:6443 -showcerts | openssl x509 -text -noout -in - | grep -C 1 "Alternative\|CN"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-custom-ca-certificates-cleaning_secure-api-and-control-plane">Cleaning up and recreating the custom certificates</h4>
+<div class="paragraph _abstract">
+<p>You can stop the MicroShift service, clean up the custom certificates, and re-create the custom certificates, to ensure that your system uses the most recent certificate data.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Stop the MicroShift services and clean up the custom certificates by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo microshift-cleanup-data --cert</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Stopping MicroShift services
+Removing MicroShift certificates
+MicroShift service was stopped
+Cleanup succeeded</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Restart the MicroShift services to recreate the custom certificates by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl start microshift</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-tls-config-con_secure-api-and-control-plane">Use TLS with MicroShift</h4>
+<div class="paragraph _abstract">
+<p>Transport layer security (TLS) profiles provide a way for servers to regulate which ciphers a client can use when connecting to the server. Using TLS helps to ensure that MicroShift applications use cryptographic libraries that do not allow known insecure protocols, ciphers, or algorithms. You can use either the TLS 1.2 or TLS 1.3 security profiles with MicroShift.</p>
+</div>
+<div class="paragraph">
+<p>MicroShift API server cipher suites apply automatically to the following internal control plane components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API server</p>
+</li>
+<li>
+<p>Kubelet</p>
+</li>
+<li>
+<p>Kube controller manager</p>
+</li>
+<li>
+<p>Kube scheduler</p>
+</li>
+<li>
+<p>etcd</p>
+</li>
+<li>
+<p>Route controller manager</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The API server uses the configured minimum TLS version and the associated cipher suites. If you leave the cipher suites parameter empty, the defaults for the configured minimum version are used automatically.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Default cipher suites for TLS 1.2</dt>
+<dd>
+<p>The following list specifies the default cipher suites for TLS 1.2:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TLS_AES_128_GCM_SHA256</code></p>
+</li>
+<li>
+<p><code>TLS_AES_256_GCM_SHA384</code></p>
+</li>
+<li>
+<p><code>TLS_CHACHA20_POLY1305_SHA256</code></p>
+</li>
+<li>
+<p><code>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256</code></p>
+</li>
+<li>
+<p><code>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</code></p>
+</li>
+<li>
+<p><code>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384</code></p>
+</li>
+<li>
+<p><code>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</code></p>
+</li>
+<li>
+<p><code>TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256</code></p>
+</li>
+<li>
+<p><code>TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256</code></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Default cipher suites for TLS 1.3</dt>
+<dd>
+<p>The following list specifies the default cipher suites for TLS 1.3:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TLS_AES_128_GCM_SHA256</code></p>
+</li>
+<li>
+<p><code>TLS_AES_256_GCM_SHA384</code></p>
+</li>
+<li>
+<p><code>TLS_CHACHA20_POLY1305_SHA256</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-tls-config-proc_secure-api-and-control-plane">Configure TLS for MicroShift</h4>
+<div class="paragraph _abstract">
+<p>You can choose to use either the TLS 1.2 or TLS 1.3 security profiles with MicroShift for system hardening.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have access to the node as a root user.</p>
+</li>
+<li>
+<p>MicroShift has either not started for the first time, or is stopped.</p>
+</li>
+<li>
+<p>The OpenShift CLI (<code>oc</code>) is installed.</p>
+</li>
+<li>
+<p>The certificate authority has issued the custom certificates (CAs).</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Make a copy of the provided <code>config.yaml.default</code> file in the <code>/etc/microshift/</code> directory, renaming it <code>config.yaml</code>.</p>
+</li>
+<li>
+<p>Keep the new MicroShift <code>config.yaml</code> in the <code>/etc/microshift/</code> directory. Your <code>config.yaml</code> file is read every time the MicroShift service starts.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>After you create it, the <code>config.yaml</code> file takes precedence over built-in settings.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Optional: Use a configuration snippet if you are using an existing MicroShift YAML. See "Using configuration snippets" in the Additional resources section for more information.</p>
+</li>
+<li>
+<p>Replace the default values in the <code>tls</code> section of the MicroShift YAML with your valid values.</p>
+<div class="listingblock">
+<div class="title">Example TLS 1.2 configuration</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+# ...
+  tls:
+    cipherSuites:
+    - &lt;cipher_suite_1&gt;
+    - ...
+    minVersion: VersionTLS12
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>apiServer.tls.cipherSuites</code></dt>
+<dd>
+<p>Defaults to the suites of the configured <code>minVersion</code>. If <code>minVersion</code> is not configured, the default value is TLS 1.2. You can specify the cipher suites you want to use from the list of supported cipher suites. All clients connecting to the API server must support the configured cipher suites or the connections fail during the TLS handshake phase. Be sure to add the CA certificate bundle to the list of CA certificates that the TLS client or server trusts.</p>
+</dd>
+<dt class="hdlist1"><code>apiServer.tls.minVersion</code></dt>
+<dd>
+<p>Specify <code>VersionTLS12</code> or <code>VersionTLS13</code>.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When you choose TLS 1.3 as the minimum TLS version, only the default MicroShift cipher suites can be used. Additional cipher suites are not configurable. If other cipher suites to use with TLS 1.3 are configured, those suites are ignored and overwritten by the MicroShift defaults.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Complete any other additional configurations that you require, then restart MicroShift by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart microshift</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-default-cipher-suites_secure-api-and-control-plane">Default cipher suites</h4>
+<div class="paragraph _abstract">
+<p>Default cipher suites are included with MicroShift for both TLS 1.2 and TLS 1.3. The cipher suites for TLS 1.3 cannot be customized.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Default cipher suites for TLS 1.2</dt>
+<dd>
+<p>The following list specifies the default cipher suites for TLS 1.2:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TLS_AES_128_GCM_SHA256</code></p>
+</li>
+<li>
+<p><code>TLS_AES_256_GCM_SHA384</code></p>
+</li>
+<li>
+<p><code>TLS_CHACHA20_POLY1305_SHA256</code></p>
+</li>
+<li>
+<p><code>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256</code></p>
+</li>
+<li>
+<p><code>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</code></p>
+</li>
+<li>
+<p><code>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384</code></p>
+</li>
+<li>
+<p><code>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</code></p>
+</li>
+<li>
+<p><code>TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256</code></p>
+</li>
+<li>
+<p><code>TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256</code></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Default cipher suites for TLS 1.3</dt>
+<dd>
+<p>The following list specifies the default cipher suites for TLS 1.3:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TLS_AES_128_GCM_SHA256</code></p>
+</li>
+<li>
+<p><code>TLS_AES_256_GCM_SHA384</code></p>
+</li>
+<li>
+<p><code>TLS_CHACHA20_POLY1305_SHA256</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-enabling-workload-partitioning_optimize-low-latency-performance.html">Enable workload partitioning</a> | ↑ Up: <a href="_configure.html">Configure</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-custom-cas_secure-api-and-control-plane.html">Use custom certificate authorities for the MicroShift API server</a> →</p>
+<p>← Previous: <a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a> | ↑ Up: <a href="_configure.html">Configure</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a> →</p>
 </div>
 </div>
 <div id="footer">

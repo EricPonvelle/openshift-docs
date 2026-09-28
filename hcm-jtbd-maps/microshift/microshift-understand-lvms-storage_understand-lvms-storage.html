@@ -437,38 +437,275 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-understand-lvms-storage_understand-lvms-storage" class="book toc2 toc-left">
+<body id="microshift-understand-lvms-storage_understand-lvms-storage" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
 <ul class="sectlevel2">
@@ -489,61 +726,488 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-lvms-provisioning-behavior_understand-lvms-storage">How the LVMS plugin provisions storage</a></li><li class="level-4"><a href="#microshift-dynamic-storage-lvms-plugin_understand-lvms-storage">Dynamic storage with the LVMS plugin</a></li><li class="level-4"><a href="#microshift-ephemeral-storage_understand-lvms-storage">Ephemeral storage</a></li><li class="level-4"><a href="#microshift-persistent-storage_understand-lvms-storage">Persistent storage</a></li><li class="level-4"><a href="#microshift-dynamic-provisioning-overview_understand-lvms-storage">Dynamic storage provisioning</a></li><li class="level-4"><a href="#microshift-lvms-system-requirements_understand-lvms-storage">LVMS system requirements</a></li><li class="level-5"><a href="#lvms-volume-group-name_understand-lvms-storage">Volume group name</a></li><li class="level-5"><a href="#lvms-volume-size-increments_understand-lvms-storage">Volume size increments</a></li><li class="level-4"><a href="#microshift-lvms-deployment_understand-lvms-storage">LVMS deployment</a></li><li class="level-4"><a href="#limitations-to-configure-size-of-devices_understand-lvms-storage">Limitations to configure the size of the devices used in LVM Storage</a></li><li class="level-4"><a href="#microshift-lvmd-yaml-creating_understand-lvms-storage">Creating an LVMS configuration file</a></li><li class="level-4"><a href="#microshift-lvms-config-example-basic_understand-lvms-storage">Basic LVMS configuration example</a></li><li class="level-4"><a href="#microshift-lvms-using_understand-lvms-storage">Using the LVMS</a></li><li class="level-5"><a href="#microshift-storage-device-classes_understand-lvms-storage">Device classes</a></li><li class="level-5"><a href="#microshift-storage-classes_understand-lvms-storage">Storage classes</a></li><li class="level-4"><a href="#persistent-storage-overview_understand-lvms-storage">Persistent storage overview</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-understand-lvms-storage_understand-lvms-storage">Understand LVMS storage</h3>
 <div class="paragraph _abstract">
 <p>MicroShift uses the Logical Volume Manager Storage (LVMS) plugin to provide dynamic, persistent storage for workloads. LVMS provisions local storage on the device and manages storage classes, device classes, and thin volumes. Understanding how LVMS works and what resources it manages helps you plan and configure storage for your MicroShift deployments.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-lvms-provisioning-behavior_understand-lvms-storage">How the LVMS plugin provisions storage</h4>
+<div class="paragraph _abstract">
+<p>LVMS provisions new LVM logical volumes for container workloads with appropriately configured persistent volume claims (PVCs). Each PVC references a storage class that represents an LVM Volume Group (VG) on the host node. LVs are only provisioned for scheduled pods.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-dynamic-storage-lvms-plugin_understand-lvms-storage">Dynamic storage with the LVMS plugin</h4>
+<div class="paragraph _abstract">
+<p>MicroShift provides dynamic storage provisioning that is ready for immediate use with the logical volume manager storage (LVMS) Container Storage Interface (CSI) provider. Dynamic provisioning creates storage volumes on-demand, eliminating the need for pre-provisioned storage.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-ephemeral-storage_understand-lvms-storage">Ephemeral storage</h4>
+<div class="paragraph _abstract">
+<p>Pods and containers are ephemeral or transient in nature and designed for stateless applications. Ephemeral storage allows administrators and developers to better manage the local storage for some of their operations.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-persistent-storage_understand-lvms-storage">Persistent storage</h4>
+<div class="paragraph _abstract">
+<p>Persistent storage in MicroShift enables stateful applications to retain data beyond the lifecycle of individual pods. You can use persistent volumes (PVs) to provision storage and persistent volume claims (PVCs) to request storage for your applications.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-dynamic-provisioning-overview_understand-lvms-storage">Dynamic storage provisioning</h4>
+<div class="paragraph _abstract">
+<p>In MicroShift, dynamic storage provisioning creates persistent volumes when applications request storage. You can scale your storage workloads on-demand, without manually preallocating storage.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-lvms-system-requirements_understand-lvms-storage">LVMS system requirements</h4>
+<div class="paragraph _abstract">
+<p>To prepare your infrastructure for storage operations, review the system specifications for using LVMS in MicroShift. Verifying these requirements ensures your environment meets the necessary resource standards for a successful deployment.</p>
+</div>
+<div class="sect4">
+<h5 id="lvms-volume-group-name_understand-lvms-storage">Volume group name</h5>
+<div class="paragraph">
+<p>If you did not configure LVMS in an <code>lvmd.yaml</code> file placed in the <code>/etc/microshift/</code> directory, MicroShift attempts to assign a default volume group (VG) dynamically by running the <code>vgs</code> command.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-lvms-provisioning-behavior_understand-lvms-storage.html">How the LVMS plugin provisions storage</a></p>
+<p>MicroShift assigns a default VG when only one VG is found.</p>
 </li>
 <li>
-<p><a href="microshift-dynamic-storage-lvms-plugin_understand-lvms-storage.html">Dynamic storage with the LVMS plugin</a></p>
+<p>If more than one VG is present, the VG named <code>microshift</code> is assigned as the default.</p>
 </li>
 <li>
-<p><a href="microshift-ephemeral-storage_understand-lvms-storage.html">Ephemeral storage</a></p>
+<p>If a VG named <code>microshift</code> does not exist, LVMS is not deployed.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If there are no volume groups on the MicroShift host, LVMS is disabled.</p>
+</div>
+<div class="paragraph">
+<p>If you want to use a specific VG, LVMS must be configured to select that VG. You can change the default name of the VG in the configuration file. For details, read the "Configuring the LVMS" section of this document.</p>
+</div>
+<div class="paragraph">
+<p>You can change the default name of the VG in the configuration file. For details, read the "Configuring the LVMS" section of this document.</p>
+</div>
+<div class="paragraph">
+<p>After MicroShift starts, you can update the <code>lvmd.yaml</code> to include or remove VGs. To implement changes, you must restart MicroShift. If the <code>lvmd.yaml</code> is deleted, MicroShift attempts to find a default VG again.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="lvms-volume-size-increments_understand-lvms-storage">Volume size increments</h5>
+<div class="paragraph">
+<p>The LVMS provisions storage in increments of 1 gigabyte (GB). Storage requests are rounded up to the nearest GB. When the capacity of a VG is less than 1 GB, the <code>PersistentVolumeClaim</code> registers a <code>ProvisioningFailed</code> event, for example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Warning  ProvisioningFailed    3s (x2 over 5s)  topolvm.cybozu.com_topolvm-controller-858c78d96c-xttzp_0fa83aef-2070-4ae2-bcb9-163f818dcd9f failed to provision volume with
+StorageClass "topolvm-provisioner": rpc error: code = ResourceExhausted desc = no enough space left on VG: free=(BYTES_INT), requested=(BYTES_INT)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-lvms-deployment_understand-lvms-storage">LVMS deployment</h4>
+<div class="paragraph _abstract">
+<p>To ensure local storage is ready for use, MicroShift automatically deploys LVMS into the <code>openshift-storage</code> namespace at startup. This automated process prepares the node for storage operations immediately, eliminating the need for manual installation.</p>
+</div>
+<div class="paragraph">
+<p>LVMS uses <code>StorageCapacity</code> tracking to ensure that pods with an LVMS PVC are not scheduled if the requested storage is greater than the free storage of the volume group. For more information about <code>StorageCapacity</code> tracking, see "Storage Capacity".</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="limitations-to-configure-size-of-devices_understand-lvms-storage">Limitations to configure the size of the devices used in LVM Storage</h4>
+<div class="paragraph _abstract">
+<p>To ensure your devices are compatible with storage operations, review the size configuration limitations in LVM Storage. Adhering to these constraints prevents provisioning failures by ensuring selected devices meet the required capacity specifications.</p>
+</div>
+<div class="paragraph">
+<p>When provisioning storage by using LVM Storage, the following factors limit device size:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The total storage size that you can provision is limited by the size of the underlying Logical Volume Manager (LVM) thin pool and the over-provisioning factor.</p>
 </li>
 <li>
-<p><a href="microshift-persistent-storage_understand-lvms-storage.html">Persistent storage</a></p>
+<p>The size of the logical volume depends on the size of the Physical Extent (PE) and the Logical Extent (LE).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>You can define the size of PE and LE during the physical and logical device creation.</p>
 </li>
 <li>
-<p><a href="microshift-dynamic-provisioning-overview_understand-lvms-storage.html">Dynamic storage provisioning</a></p>
+<p>The default PE and LE size is 4 MiB.</p>
 </li>
 <li>
-<p><a href="microshift-lvms-system-requirements_understand-lvms-storage.html">LVMS system requirements</a></p>
+<p>If the size of the PE is increased, the maximum size of the LVM is determined by the kernel limits and your disk space.</p>
 </li>
 <li>
-<p><a href="microshift-lvms-deployment_understand-lvms-storage.html">LVMS deployment</a></p>
+<p>The size limit for Red&#160;Hat Enterprise Linux (RHEL) 9 by using the default PE and LE size is 8 EB.</p>
 </li>
 <li>
-<p><a href="limitations-to-configure-size-of-devices_understand-lvms-storage.html">Limitations to configure the size of the devices used in LVM Storage</a></p>
+<p>The following are the minimum storage sizes that you can request for each file system type:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>block</code>: 8 MiB</p>
 </li>
 <li>
-<p><a href="microshift-lvmd-yaml-creating_understand-lvms-storage.html">Creating an LVMS configuration file</a></p>
+<p><code>xfs</code>: 300 MiB</p>
 </li>
 <li>
-<p><a href="microshift-lvms-config-example-basic_understand-lvms-storage.html">Basic LVMS configuration example</a></p>
+<p><code>ext4</code>: 32 MiB</p>
 </li>
-<li>
-<p><a href="microshift-lvms-using_understand-lvms-storage.html">Using the LVMS</a></p>
+</ul>
+</div>
 </li>
-<li>
-<p><a href="persistent-storage-overview_understand-lvms-storage.html">Persistent storage overview</a></p>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-lvmd-yaml-creating_understand-lvms-storage">Creating an LVMS configuration file</h4>
+<div class="paragraph _abstract">
+<p>To customize storage settings, create an LVMS configuration file named lvmd.yaml. You must place this file in the <code>/etc/microshift/</code> directory to ensure MicroShift detects and applies your configuration at startup.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To create the <code>lvmd.yaml</code> configuration file, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo cp /etc/microshift/lvmd.yaml.default /etc/microshift/lvmd.yaml</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-lvms-config-example-basic_understand-lvms-storage">Basic LVMS configuration example</h4>
+<div class="paragraph _abstract">
+<p>To customize storage operations, pass through your LVM configuration to MicroShift. With this flexibility, you can define custom volume groups, thin volume provisioning parameters, and reserved unallocated space by editing the LVMS configuration file.</p>
+</div>
+<div class="paragraph">
+<p>You must restart MicroShift to deploy configuration changes after editing the file.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you need to take volume snapshots, you must use thin provisioning in your <code>lvmd.conf</code> file. If you do not need to take volume snapshots, you can use thick volumes.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following <code>lvmd.yaml</code> example file shows a basic LVMS configuration:</p>
+</div>
+<div class="listingblock">
+<div class="title">LVMS configuration example</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">socket-name:
+device-classes:
+  - name: "default"
+    volume-group: "VGNAMEHERE"
+    spare-gb: 0 <img src="data:image/png;base64," alt="5">
+    default: <img src="data:image/png;base64," alt="6"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>socket-name</code></dt>
+<dd>
+<p>Specifies the UNIX domain socket endpoint of gRPC. Defaults to <code>/run/lvmd/lvmd.socket</code>. Takes a string value.</p>
+</dd>
+<dt class="hdlist1"><code>device-classes</code></dt>
+<dd>
+<p>Specifies a list of maps for the settings for each <code>device-class</code>.</p>
+</dd>
+<dt class="hdlist1"><code>device-classes.name</code></dt>
+<dd>
+<p>Specifies the name of the <code>device-class</code>. Takes a string value.</p>
+</dd>
+<dt class="hdlist1"><code>device-classes.volume-group</code></dt>
+<dd>
+<p>Specifies the group where the <code>device-class</code> creates the logical volumes. Takes a string value.</p>
+</dd>
+<dt class="hdlist1"><code>device-classes.spare-gb</code></dt>
+<dd>
+<p>Specifies the storage capacity in GB to be left unallocated in the volume group. Defaults to <code>0</code>. Takes an unsigned 64-bit integer.</p>
+</dd>
+<dt class="hdlist1"><code>device-classes.default</code></dt>
+<dd>
+<p>Specifies that the <code>device-class</code> is used by default. Defaults to <code>false</code>. At least one value must be entered in the YAML file when this value is set to <code>true</code>. Takes a boolean value.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A race condition prevents LVMS from accurately tracking the allocated space and preserving the <code>spare-gb</code> for a device class when multiple PVCs are created simultaneously. Use separate volume groups and device classes to protect the storage of highly dynamic workloads from each other.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-lvms-using_understand-lvms-storage">Using the LVMS</h4>
+<div class="paragraph _abstract">
+<p>To automatically provision and mount a logical volume to a pod, use the LVMS default <code>StorageClass</code>. By creating a <code>PersistentVolumeClaim</code> object without defining the <code>.spec.storageClassName</code> field, you trigger the dynamic provisioning of a <code>PersistentVolume</code> from this default resource.</p>
+</div>
+<div class="paragraph">
+<p>Use the following procedure to provision and mount a logical volume to a pod.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To provision and mount a logical volume to a pod, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat &lt;&lt;EOF | oc apply -f -
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: my-lv-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1G
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    command: ["/usr/bin/sh", "-c"]
+    args: ["sleep", "1h"]
+    volumeMounts:
+    - mountPath: /mnt
+      name: my-volume
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+  volumes:
+    - name: my-volume
+      persistentVolumeClaim:
+        claimName: my-lv-pvc
+EOF</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="microshift-storage-device-classes_understand-lvms-storage">Device classes</h5>
+<div class="paragraph _abstract">
+<p>To define custom storage groups, create custom device classes by adding a <code>device-classes</code> array to your logical volume manager storage (LVMS) configuration. With this configuration, you can enable MicroShift to categorize devices based on your specific storage requirements.</p>
+</div>
+<div class="paragraph">
+<p>Add the array to the <code>/etc/microshift/lvmd.yaml</code> configuration file. A single device class must be set as the default. You must restart MicroShift for configuration changes to take effect.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Warning">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Removing a device class while there are still persistent volumes or <code>VolumeSnapshotContent</code> objects connected to that device class breaks both thick and thin provisioning.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can define multiple device classes in the <code>device-classes</code> array. These classes can be a mix of thick and thin volume configurations.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of a mixed <code>device-class</code> array</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">socket-name: /run/topolvm/lvmd.sock
+device-classes:
+  - name: ssd
+    volume-group: ssd-vg
+    spare-gb: 0
+    default: true
+  - name: hdd
+    volume-group: hdd-vg
+    spare-gb: 0
+  - name: thin
+    spare-gb: 0
+    thin-pool:
+      name: thin
+      overprovision-ratio: 10
+    type: thin
+    volume-group: ssd
+  - name: striped
+    volume-group: multi-pv-vg
+    spare-gb: 0
+    stripe: 2
+    stripe-size: "64"
+    lvcreate-options:</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>device-classes.spare-gb`: Specifies the spare capacity. When you set this value to anything other than <code>0</code>, more space can be allocated than expected.</p>
+</li>
+<li>
+<p><code>device-classes.lvcreate-options</code>: Specifies extra arguments to pass to the <code>lvcreate</code> command, such as <code>--type=&lt;type&gt;</code>. Neither MicroShift nor the LVMS verifies <code>lvcreate-options</code> values. These optional values are passed as is to the <code>lvcreate</code> command. Ensure that the options specified here are correct.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-storage-classes_understand-lvms-storage">Storage classes</h5>
+<div class="paragraph _abstract">
+<p>To configure the workload layer interface for device class selection, review the supported storage class parameters in MicroShift. By understanding these parameters, you can define how storage is provisioned and managed for your specific workload requirements.</p>
+</div>
+<div class="paragraph">
+<p>The following storage class parameters are supported in MicroShift:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>csi.storage.k8s.io/fstype</code> parameter selects the file system types. Both <code>xfs</code> and <code>ext4</code> file system types are supported.</p>
+</li>
+<li>
+<p>The <code>topolvm.io/device-class</code> parameter is the name of the device class. If a device class is not provided, the default device class is assumed.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Multiple storage classes can refer to the same device class. You can provide varying sets of parameters for the same backing device class, such as <code>xfs</code> and <code>ext4</code> variants.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example MicroShift default storage class resource</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  name: topolvm-provisioner
+parameters:
+  "csi.storage.k8s.io/fstype": "xfs"
+provisioner: topolvm.io
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion:
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>storageclass.kubernetes.io/is-default-class</code></dt>
+<dd>
+<p>Specifies an example of the default storage class. If a PVC does not specify a storage class, this class is assumed. There can only be one default storage class in a MicroShift node. Having no value assigned to this annotation is also supported.</p>
+</dd>
+<dt class="hdlist1"><code>csi.storage.k8s.io/fstype</code></dt>
+<dd>
+<p>Specifies what file system to provision on the volume. Options are "xfs" and "ext4".</p>
+</dd>
+<dt class="hdlist1"><code>provisioner</code></dt>
+<dd>
+<p>Specifies what provisioner should manage this class.</p>
+</dd>
+<dt class="hdlist1"><code>volumeBindingMode</code></dt>
+<dd>
+<p>Specifies whether to provision the volume before a client pod is present or immediately. Options are <code>WaitForFirstConsumer</code> and <code>Immediate</code>. <code>WaitForFirstConsumer</code> is recommended to ensure that storage is only provisioned for pods that can be scheduled.</p>
+</dd>
+<dt class="hdlist1"><code>allowVolumeExpansion</code></dt>
+<dd>
+<p>Specifies if PVCs provisioned from the <code>StorageClass</code> permit expansion. The MicroShift LVMS CSI plugin does support volume expansion, but if this value is set to <code>false</code>, expansion is blocked.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="persistent-storage-overview_understand-lvms-storage">Persistent storage overview</h4>
+<div class="paragraph _abstract">
+<p>Stateful applications deployed in containers require persistent storage. MicroShift uses a pre-provisioned storage framework called persistent volumes (PV) to allow node administrators to provision persistent storage. The data inside these volumes can exist beyond the lifecycle of an individual pod. Developers can use persistent volume claims (PVCs) to request storage requirements.</p>
+</div>
+<div class="paragraph">
+<p>PVCs are specific to a namespace, and are created and used by developers as a means to use a PV. PV resources on their own are not scoped to any single namespace; they can be shared across the entire Red&#160;Hat build of MicroShift node and claimed from any namespace. After a PV is bound to a PVC, that PV can not then be bound to additional PVCs. This has the effect of scoping a bound PV to a single namespace.</p>
+</div>
+<div class="paragraph">
+<p>PVs are defined by a <code>PersistentVolume</code> API object, which represents a piece of existing storage in the cluster that was either statically provisioned by the cluster administrator or dynamically provisioned using a <code>StorageClass</code> object. It is a resource in the cluster just like a node is a cluster resource.</p>
+</div>
+<div class="paragraph">
+<p>PVs are volume plugins like <code>Volumes</code> but have a lifecycle that is independent of any individual pod that uses the PV. PV objects capture the details of the implementation of the storage, be that LVM, the host filesystem such as hostpath, or raw block devices.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>High availability of storage in the infrastructure is left to the underlying storage provider.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Like <code>PersistentVolumes</code>, <code>PersistentVolumeClaims</code> (PVCs) are API objects, which represents a request for storage by a developer. It is similar to a pod in that pods consume node resources and PVCs consume PV resources. For example, pods can request specific levels of resources, such as CPU and memory, while PVCs can request specific storage capacity and access modes. Access modes supported by OpenShift Container Platform are also definable in Red&#160;Hat build of MicroShift. However, because Red&#160;Hat build of MicroShift does not support multi-node deployments, only ReadWriteOnce (RWO) is pertinent.</p>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="_storage.html">Storage</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-lvms-provisioning-behavior_understand-lvms-storage.html">How the LVMS plugin provisions storage</a> →</p>
+<p>↑ Up: <a href="_storage.html">Storage</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a> →</p>
 </div>
 </div>
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
+<a href="microshift-use-oc-cli_use-oc-cli.html#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
 </div>
 </div>
 <div id="footer">

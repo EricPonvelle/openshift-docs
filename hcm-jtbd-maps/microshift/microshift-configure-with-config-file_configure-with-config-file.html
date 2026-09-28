@@ -437,26 +437,169 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-configure-with-config-file_configure-with-config-file" class="book toc2 toc-left">
+<body id="microshift-configure-with-config-file_configure-with-config-file" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
 <ul class="sectlevel2">
@@ -481,54 +624,2173 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-config-rhde-con_configure-with-config-file">Configuring Red Hat Device Edge</a></li><li class="level-5"><a href="#using-the-default-configuration-file_configure-with-config-file">Using the default configuration file</a></li><li class="level-5"><a href="#configuring-platform-features_configure-with-config-file">Configuring platform features</a></li><li class="level-4"><a href="#microshift-config-yaml_configure-with-config-file">The MicroShift configuration file</a></li><li class="level-5"><a href="#microshift-yaml-default_configure-with-config-file">Default settings</a></li><li class="level-4"><a href="#microshift-yaml-custom_configure-with-config-file">Using custom settings</a></li><li class="level-5"><a href="#microshift-yaml-custom-settings_configure-with-config-file">Separate restarts</a></li><li class="level-5"><a href="#microshift-config-parameters-table_configure-with-config-file">Parameters and values for the MicroShift config.yaml file</a></li><li class="level-5"><a href="#microshift-yaml-advertiseAddress_configure-with-config-file">Configure the advertise address network flag</a></li><li class="level-5"><a href="#microshift-nodeport-range-limits_configure-with-config-file">Extending the port range for NodePort services</a></li><li class="level-5"><a href="#microshift-resolve-custom-hostnames_configure-with-config-file">Configure custom hostnames</a></li><li class="level-4"><a href="#microshift-how-config-snippets-work_configure-with-config-file">How configuration snippets work</a></li><li class="level-4"><a href="#microshift-ex-config-snippets-lists_configure-with-config-file">Examples of configuration snippet lists or arrays</a></li><li class="level-4"><a href="#microshift-example-config-snippets-objects_configure-with-config-file">Example configuration snippets that are objects</a></li><li class="level-4"><a href="#microshift-example-mixed-config-snippets_configure-with-config-file">Examples of mixed configuration snippets</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-configure-with-config-file_configure-with-config-file">Configure MicroShift with the configuration file</h3>
 <div class="paragraph _abstract">
 <p>MicroShift uses a YAML configuration file to control networking, API server behavior, node settings, and other runtime options. You can customize MicroShift by editing the default configuration file or by providing configuration snippets that are merged at startup. Understanding the configuration file structure and parameters helps you tailor MicroShift to your deployment requirements.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-config-rhde-con_configure-with-config-file">Configuring Red&#160;Hat Device Edge</h4>
+<div class="paragraph _abstract">
+<p>The MicroShift configuration file, <code>config.yaml</code>, centralizes Red&#160;Hat Device Edge and service settings for your single-node edge platform. To create a custom configuration, you can copy the installed <code>config.yaml.default</code> file and rename it to <code>config.yaml</code>.</p>
+</div>
+<div class="paragraph">
+<p>MicroShift and Red&#160;Hat Enterprise Linux (RHEL) work together to bring a lighter-weight, single-node Kubernetes to the edge. This combination means that there is a single node that is both control-plane and worker. It also means that the operating system handles many functions. You add features by installing optional RPMs or Operators. In many cases, you must configure the operating system or other resources in addition to the MicroShift service.</p>
+</div>
+<div class="paragraph">
+<p>Bringing these components together is the MicroShift configuration file, <code>config.yaml</code>. The configuration file customizes your application platform and enables advanced functionality.</p>
+</div>
+<div class="sect4">
+<h5 id="using-the-default-configuration-file_configure-with-config-file">Using the default configuration file</h5>
+<div class="paragraph">
+<p>A <code>config.yaml.default</code> file is installed automatically. You can copy this file, rename it config.yaml, and use it as the starting point for your custom configuration.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="configuring-platform-features_configure-with-config-file">Configuring platform features</h5>
+<div class="paragraph">
+<p>You can use the MicroShift configuration file to control and customize platform features. For example:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Ingress</dt>
+<dd>
+<p>Ingress is available by default, but you can add advanced functions such as TLS and route admission specifications by using parameters in the MicroShift configuration file.</p>
+</dd>
+<dt class="hdlist1">Storage</dt>
+<dd>
+<p>If you do not need storage, you can disable the built-in storage provider by using the MicroShift configuration file. If you do want to use the built-in storage provider, you must make your adjustments in the <code>lvmd.config</code> file. The role of the MicroShift configuration file in this case is to set whether you use the default storage provider.</p>
+</dd>
+<dt class="hdlist1">Advanced networking functions</dt>
+<dd>
+<p>Advanced networking functions, such as using multiple networks. The Multus package is an installable RPM, but you set up access by using the MicroShift configuration file to set parameters. In addition, you must configure network settings on your networks through the host.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can also add features that operate without configurations to the MicroShift <code>config.yaml</code> file. For example, you can install and configure GitOps for application management without configuring MicroShift.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-config-yaml_configure-with-config-file">The MicroShift configuration file</h4>
+<div class="paragraph _abstract">
+<p>At startup, MicroShift checks the system-wide <code>/etc/microshift/</code> directory for a configuration file named <code>config.yaml</code>. If the configuration file does not exist in the directory, built-in default values are used to start the service.</p>
+</div>
+<div class="paragraph">
+<p>You must use the MicroShift configuration file in combination with host and, sometimes, application and service settings. Ensure that you configure each function in tandem when you adjust settings for your MicroShift node.</p>
+</div>
+<div class="paragraph">
+<p>For your convenience, a <code>config.yaml.default</code> file ready for your inputs is automatically installed.</p>
+</div>
+<div class="sect4">
+<h5 id="microshift-yaml-default_configure-with-config-file">Default settings</h5>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Generic Device Plugin for MicroShift is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph _abstract">
+<p>When no <code>config.yaml</code> or configuration snippet exists, MicroShift uses built-in default values. To view these defaults, run <code>microshift show-config</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows the default configuration settings.</p>
+</div>
 <div class="ulist">
+<div class="title">Procedure</div>
 <ul>
 <li>
-<p><a href="microshift-config-rhde-con_configure-with-config-file.html">Configuring Red&#160;Hat Device Edge</a></p>
-</li>
-<li>
-<p><a href="microshift-config-yaml_configure-with-config-file.html">The MicroShift configuration file</a></p>
-</li>
-<li>
-<p><a href="microshift-yaml-custom_configure-with-config-file.html">Using custom settings</a></p>
-</li>
-<li>
-<p><a href="microshift-how-config-snippets-work_configure-with-config-file.html">How configuration snippets work</a></p>
-</li>
-<li>
-<p><a href="microshift-ex-config-snippets-lists_configure-with-config-file.html">Examples of configuration snippet lists or arrays</a></p>
-</li>
-<li>
-<p><a href="microshift-example-config-snippets-objects_configure-with-config-file.html">Example configuration snippets that are objects</a></p>
-</li>
-<li>
-<p><a href="microshift-example-mixed-config-snippets_configure-with-config-file.html">Examples of mixed configuration snippets</a></p>
+<p>To see the default values, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ microshift show-config</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Default values example output in YAML form</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  advertiseAddress: 10.44.0.0/32
+  auditLog:
+    maxFileAge: 0
+    maxFileSize: 200
+    maxFiles: 10
+    profile: Default
+  namedCertificates:
+    - certPath: ""
+      keyPath: ""
+      names:
+        - ""
+  subjectAltNames: []
+  tls:
+    cipherSuites:
+    minVersion: VersionTLS12
+debugging:
+  logLevel: "Normal"
+dns:
+  baseDomain: microshift.example.com
+etcd:
+  memoryLimitMB: 0
+genericDevicePlugin:
+    devices:
+        - groups:
+            - count: 1
+              paths:
+                - limit: 1
+                  mountPath: /dev/ttyACM0
+                  path: /dev/ttyACM0
+                  permissions: mrw
+                  readOnly: false
+                  type: Device
+              usbs:
+                - product: ""
+                  serial: ""
+                  vendor: ""
+          name: serial
+    domain: device.microshift.io
+    status: Disabled
+ingress:
+  accessLogging:
+    destination:
+      type:
+      container:
+        maxLength: 1024
+      syslog:
+        address: ""
+        facility: ""
+        maxLength: 1024
+        port: 0
+        type: ""
+    httpCaptureCookies:
+      - matchType: ""
+        maxLength: 0
+        name: ""
+        namePrefix: ""
+    httpCaptureHeaders:
+      request:
+        - maxLength: 0
+          name: ""
+      response:
+        - maxLength: 0
+          name: ""
+    httpLogFormat: ""
+    status: Disabled
+  certificateSecret: router-certs-default
+  clientTLS:
+    allowedSubjectPatterns:
+    clientCA:
+      name: ""
+    clientCertificatePolicy: ""
+  defaultHTTPVersion: 1
+  forwardedHeaderPolicy: ""
+  httpCompression:
+    mimeTypes:
+      - ""
+  httpEmptyRequestsPolicy: Respond
+  httpErrorCodePages:
+      name: ""
+  listenAddress: []
+  logEmptyRequests: Log
+  ports:
+    http: 80
+    https: 443
+  routeAdmissionPolicy:
+    namespaceOwnership: InterNamespaceAllowed
+    wildcardPolicy: WildcardPolicyAllowed
+  status: Managed
+  tlsSecurityProfile:
+    type: Intermediate
+  tuningOptions:
+      clientFinTimeout: "1s"
+      clientTimeout: "30s"
+      headerBufferBytes: 0
+      headerBufferMaxRewriteBytes: 0
+      healthCheckInterval: "5s"
+      maxConnections: 0
+      serverFinTimeout: "1s"
+      serverTimeout: "30s"
+      threadCount: 0
+      tlsInspectDelay: "5s"
+      tunnelTimeout: "1h"
+kubelet:
+manifests:
+  kustomizePaths:
+    - /usr/lib/microshift/manifests
+    - /usr/lib/microshift/manifests.d/*
+    - /etc/microshift/manifests
+    - /etc/microshift/manifests.d/*
+network:
+  clusterNetwork:
+    - 10.42.0.0/16
+  cniPlugin: ""
+  multus:
+    status: Disabled
+  serviceNetwork:
+    - 10.43.0.0/16
+  serviceNodePortRange: 30000-32767
+node:
+  hostnameOverride: ""
+  nodeIP: ""
+  nodeIPv6: ""
+storage:
+  driver: ""
+  optionalCsiComponents:
+    - ""
+telemetry:
+  endpoint: https://infogw.api.openshift.com
+  proxy: ""
+  status: Enabled</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>apiserver.advertiseAddress</code></dt>
+<dd>
+<p>Specifies the address of the service network.</p>
+</dd>
+<dt class="hdlist1"><code>network.multus.status</code></dt>
+<dd>
+<p>Specifies the status of the Multus Container Network Interface (CNI).</p>
+</dd>
+<dt class="hdlist1"><code>node.nodeIP</code></dt>
+<dd>
+<p>Specifies the IP address of the default route.</p>
+</dd>
+<dt class="hdlist1"><code>storage.driver</code></dt>
+<dd>
+<p>Specifies the storage driver to use. Default null value deploys Logical Volume Managed Storage (LVMS).</p>
+</dd>
+<dt class="hdlist1"><code>storage.optionalCsiComponents</code></dt>
+<dd>
+<p>Specifies the CSI components to deploy. Default null value deploys <code>snapshot-controller</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
 </li>
 </ul>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="microshift-yaml-custom_configure-with-config-file">Using custom settings</h4>
+<div class="paragraph _abstract">
+<p>To create custom configurations, make a copy of the <code>config.yaml.default</code> file that is given in the <code>/etc/microshift/</code> directory, renaming it <code>config.yaml</code>. Keep this file in the <code>/etc/microshift/</code> directory, and then you can change supported settings that override the defaults before starting or restarting MicroShift.</p>
+</div>
+<div class="paragraph">
+<p>If you have just a few changes to make to the default settings, consider using configuration drop-in snippets as an alternative method.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Restart MicroShift after changing any configuration settings to have them take effect. The <code>config.yaml</code> file is read only when MicroShift starts.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="microshift-yaml-custom-settings_configure-with-config-file">Separate restarts</h5>
+<div class="paragraph">
+<p>Applications and other optional services used with your MicroShift node might also need to be restarted separately to apply configuration changes throughout the node. For example, when making changes to certain networking settings, you must stop and restart service and application pods to apply those changes. See each procedure for the task you are completing for more information.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Tip">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you add all of the configurations you need at the same time, you can minimize system restarts.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-config-parameters-table_configure-with-config-file">Parameters and values for the MicroShift config.yaml file</h5>
+<div class="paragraph _abstract">
+<p>The following table explains MicroShift configuration YAML parameters and valid values for each:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 10. MicroShift <code>config.yaml</code> parameters</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>advertiseAddress</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A string that specifies the IP address from which the API server is advertised to members of the node. The default value is calculated based on the address of the service network.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-feature-gates-using_test-new-kubernetes-features.html">Use feature gates for MicroShift</a> | ↑ Up: <a href="_configure.html">Configure</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-config-rhde-con_configure-with-config-file.html">Configuring Red&#160;Hat Device Edge</a> →</p>
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auditLog.maxFileAge</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>How long log files are stored before automatic deletion. The default value of <code>0</code> in the <code>maxFileAge</code> parameter means a log file is never deleted based on age. You can configure this value.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auditLog.maxFileSize</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>By default, when the <code>audit.log</code> file reaches the <code>maxFileSize</code> limit, the <code>audit.log</code> file is rotated and MicroShift begins writing to a new <code>audit.log</code> file. You can configure this value.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auditLog.maxFiles</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The total number of log files kept. By default, MicroShift retains 10 log files. The oldest is deleted when an excess file is created. You can configure this value.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auditLog.profile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Default</code>, <code>WriteRequestBodies</code>, <code>AllRequestBodies</code>, or <code>None</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Logs only metadata for read and write requests; does not log request bodies except for OAuth access token requests. If you do not specify this field, the <code>Default</code> profile is used.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>namedCertificates</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines externally generated certificates and domain names by using custom certificate authorities.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>namedCertificates.certPath</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The full path to the certificate.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>namedCertificates.keyPath</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The full path to the certificate key.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>namedCertificates.names</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional. Add a list of explicit DNS names. Leading wildcards are allowed. If you do not list names, the implicit names are extracted from the certificates.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjectAltNames</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fully qualified domain names (FQDNs), wildcards such as <code>*.domain.com</code>, or IP addresses.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Subject Alternative Names for API server certificates. SANs indicate all of the domain names and IP addresses that are secured by a certificate.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tls</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines the transport later protocol (TLS) used and the cipher suites allowed. Provides security for the exposed MicroShift API server and internal control plane endpoints.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tls.cipherSuites</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Lists the allowed cipher suites that the API server accepts and serves. Defaults to the cipher suites allowed with the TLS specification set in the <code>tls.minVersion</code> parameter.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tls.minVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>VersionTLS12</code> or <code>VersionTLS13</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the minimum version of TLS to serve from the API server. The default value is <code>VersionTLS12</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>debugging.logLevel</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Normal</code>, <code>Debug</code>, <code>Trace</code>, or <code>TraceAll</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Log verbosity. The default value is <code>Normal</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dns.baseDomain</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>valid domain</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Base domain of the node. All managed DNS records are subdomains of this base.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dns.hosts.status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Enabled</code>, <code>Disabled</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Default set to <code>Disabled</code> when not configured.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dns.hosts.file</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Filepath by default set to <code>/etc/hosts</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>etcd.memoryLimitMB</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>By default, <code>etcd</code> uses as much memory as needed to handle the load on the system. However, in memory constrained systems, it might be preferred or necessary to limit the amount of memory <code>etcd</code> can to use at a given time.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>groups</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Lists the device definitions to be exposed by the plugin. Each Device entry contains a 'name' and a list of groups.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>count</code>, <code>paths</code>, 'usbs'</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Lists device groups. Devices within a group comprise a pool of devices under a common name. When you request a device from that pool, you can receive a device from different defined paths.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.count</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies how many times this group of devices can be mounted concurrently. If unspecified, Count defaults to 1. Setting a high count, for example, <code>1000</code> for <code>/dev/fuse</code>, is possible because there are no inherent limits, but performance might be affected depending on the host capabilities and the nature of the device.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Lists the host device file paths. Paths can be glob patterns. For example, <code>/dev/ttyUSB</code>, in which case each matched device is schedulable Count times. This field is exclusive with usbs. You cannot define both parameters in the same device group.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths.limit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies up to how many times this device can be used in the group concurrently when other devices in the group yield more matches. For example, if one path in the group matches 5 devices and another matches 1 device, but has a limit of 10, then the group provides 5 pairs of devices. When unspecified, the limit defaults to <code>1</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths.mountPath</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The file path at which the host device should be mounted within the container. When unspecified, mountPath defaults to <code>path</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths.path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The file path of a device on the host. For example, <code>/dev/video0</code>, <code>/dev/ttyUSB*</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths.permissions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>r</code>, <code>w</code>, <code>m</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The file-system permissions given to the mounted device. Applies only to mounts of type <code>Device</code>. Can be one or more of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>r</code> allows the container to read from the specified device.</p>
+</li>
+<li>
+<p><code>w</code> allows the container to write to the specified device.</p>
+</li>
+<li>
+<p><code>m</code> allows the container to create device files that do not yet exist.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When unspecified, the value defaults to <code>mrw</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths.readOnly</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code>, <code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies whether the path should be mounted read-only. Applies only to mounts of type <code>Mount</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.paths.type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Device</code>, <code>Mount</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Describes what type of file-system node this <code>path</code> represents and thus how it should be mounted. When unspecified, <code>type</code> defaults to <code>Device</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.usbs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Lists the USB specifications that this device group consists of. The vendor and product IDs must always match. The serial ID must match if provided, or skipped if the ID is empty. The <code>usbs</code> field is exclusive with <code>paths</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.usbs.product</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The USB Product ID of the device to match on. For example, <code>0x7523</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.usbs.serial</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The serial number of the device to match on. A USB device must match exactly on all the given attributes to pass.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.groups.usbs.vendor</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The USB Vendor ID of the device to match on. For example, <code>0x1a86</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.devices.name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A unique string representing the kind of device this specification describes. For example, <code>serial</code>, <code>video</code>, or <code>fuse</code>. This name is used in pod resource requests. For example, <code>device.microshift.io/serial</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.domain</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the domain prefix with which devices are advertised and present in the node. For example, <code>device.microshift.io/serial</code>. The default value is <code>device.microshift.io</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generic.Device.Plugin.status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Enabled</code>, <code>Disabled</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the default GDP status.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.certificateSecret</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A reference to a secret that contains the default certificate that is served by the ingress controller. When routes do not specify their own certificate, <code>certificateSecret</code> is used.</p>
+</div>
+<div class="paragraph">
+<p>The secret must contain the following keys and data:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tls.crt</code>: certificate file contents</p>
+</li>
+<li>
+<p><code>tls.key</code>: key file contents</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you do not set one of these values, a wildcard certificate is automatically generated and used. The certificate is valid for the ingress controller <code>domain</code> and <code>subdomains</code> fields, and the generated CA for the certificate is automatically integrated with the truststore for the node.</p>
+</div>
+<div class="paragraph">
+<p>Any certificate in use is automatically integrated in the MicroShift OAuth server.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.clientTLS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>AllowedSubjectPatterns</code>, <code>spec.clientTLS.ClientCA</code>, <code>spec.clientTLS.clientCertificatePolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Authenticates client access to the node and services. Mutual TLS authentication is enabled when using these settings. If you do not set values for the <code>spec.clientTLS.clientCertificatePolicy</code> and <code>spec.clientTLS.ClientCA</code> required subfields, client TLS is not enabled.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.clientTLS.AllowedSubjectPatterns</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list in PCRE syntax</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional subfield which specifies a list of regular expressions that are matched against the distinguished name on a valid client certificate to filter requests. Use this parameter to cause the ingress controller to reject certificates based on the distinguished name. The Perl Compatible Regular Expressions (PCRE) syntax is required. If you configure this field, it must contain a valid expression or the MicroShift service fails. At least one pattern must match a client certificate&#8217;s distinguished name; otherwise, the ingress controller rejects the certificate and denies the connection.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.clientTLS.ClientCA</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Required subfield that specifies a config map in the <code>openshift-ingress</code> namespace. The config map must contain a CA certificate bundle.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.clientTLS.ClientCertificatePolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Required</code>, <code>Optional</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Required subfield that creates a secure route using reencrypt TLS termination with a custom certificate. You must have a certificate/key pair in PEM-encoded files, where the certificate is valid for the route host. The ingress controller only checks client certificates for edge-terminated and reencrypt TLS routes. Certificates for plain text HTTP or passthrough TLS routes are not checked with this setting.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.defaultHTTPVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Determines the default HTTP version to be used for ingress. The default value is <code>1</code>, which is the HTTP/1.1 protocol.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.forwardedHeaderPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Append</code>, <code>Replace</code>, <code>IfNone</code>, <code>Never</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies when and how the ingress controller sets the <code>Forwarded</code>, <code>X-Forwarded-For</code>, <code>X-Forwarded-Host</code>, <code>X-Forwarded-Port</code>, <code>X-Forwarded-Proto</code>, and <code>X-Forwarded-Proto-Version</code> HTTP headers. The default value is <code>Append</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Append</code> specifies that the ingress controller appends existing headers.</p>
+</li>
+<li>
+<p><code>Replace</code> specifies that the ingress controller sets the headers and replaces any existing <code>Forwarded</code> or <code>X-Forwarded-*</code> headers.</p>
+</li>
+<li>
+<p><code>IfNone</code> specifies that the ingress controller sets headers if they are not already set.</p>
+</li>
+<li>
+<p><code>Never</code> specifies that ingress controller never sets the headers, preserving any existing headers.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.httpCompression</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>object</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines a policy for HTTP traffic compression. There is no HTTP compression by default.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.httpCompression.mimeTypes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>array</code> or null</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A list of MIME types to compress. When the list is empty, the ingress controller does not apply any compression. To define a list, use the format of the Content-Type definition in RFC 1341 that specifies the type and subtype of data in the body of a message and the native encoding of the data. For example, <code>Content-Type := type \"/\" subtype *[\";\" parameter]</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The value of <code>Content-Type</code> can be one of the following types: application, audio, image, message, multipart, text, video, or a custom type preceded by <code>\"X-\"</code> and followed by a token. The token must be defined in one of the following ways:</p>
+</li>
+<li>
+<p>The token is a <code>string</code> of at least one character, and does not contain white spaces, control characters, or any of the characters in the <code>tspecials</code> set.</p>
+</li>
+<li>
+<p>The <code>tspecials</code> set contains the characters <code>()\u003c\u003e@,;:\\\"/[]?.=</code>.</p>
+</li>
+<li>
+<p>The subtype in Content-Type is also a token.</p>
+</li>
+<li>
+<p>The optional parameters following the subtype are defined as <code>token \"=\" (token / quoted-string)</code>.</p>
+</li>
+<li>
+<p>The <code>quoted-string</code>, as defined in RFC 822, is surrounded by double quotes and can contain white spaces plus any character except <code>\\</code>, <code>\"</code>, and <code>CR</code>. The <code>quoted-string</code> can also contain any single ASCII character if it is escaped by the following characters: <code>\\.",</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Not all MIME types benefit from compression, but <code>HAProxy</code> uses resources to try to compress files when compression is configured. Generally speaking, text formats such as <code>html</code>, <code>ccs</code>, and <code>js</code> benefit from compression. Spending CPU resources to compress file types that are already compressed, such as images, audio, and video, is probably not worth the limited benefit.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.httpEmptyRequestsPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Respond</code> or <code>Ignore</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default value is <code>Respond</code>. Describes how HTTP connections should be handled if the connection times out before a request is received. These connections typically come from the health probes of a load balancer service or a web browser&#8217;s speculative connections, such as a <code>preconnect</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the field is set to <code>Respond</code>, the ingress controller sends an "HTTP 400" or "408" response, logs the connection if access logging is enabled, and counts the connection in the appropriate metrics.</p>
+</li>
+<li>
+<p>If the field is set to <code>Ignore</code>, the ingress controller closes the connection without sending a response, logging the connection, or incrementing metrics. Setting this field to <code>Ignore</code> might impede detection and diagnosis of problems or intrusions, especially when timed-out connections are caused by network errors or port scans. In both cases, logging empty requests can be useful for diagnosing errors and detecting intrusion attempts.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.listenAddress</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP address, NIC name, or multiple</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Value defaults to the entire network of the host. The valid configurable value is a list that can be either a single IP address or NIC name or multiple IP addresses and NIC names.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.logEmptyRequests</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Log</code> or <code>Ignore</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default value is <code>Log</code>. Specifies how connections on which empty requests are received are logged. These connections typically come from the health probes of a load balancer service health or a web browser&#8217;s speculative connections, such as a <code>preconnect</code>. Logging typical requests might be undesirable, but requests can also be caused by network errors or port scans, in which case logging can be useful for diagnosing errors and detecting intrusion attempts.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.ports.http</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>80</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default port shown. Configurable. Valid value is a single, unique port in the <code>1-65535</code> range. The values of the <code>ports.http</code> and <code>ports.https</code> fields cannot be the same.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.ports.https</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>443</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default port shown. Configurable. Valid value is a single, unique port in the <code>1-65535</code> range. The values of the <code>ports.http</code> and <code>ports.https</code> fields cannot be the same.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.routeAdmissionPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>namespaceOwnership</code> or <code>wildcardPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines a policy for handling new route claims, such as allowing or denying claims across namespaces. By default, allows routes to claim different paths of the same hostname across namespaces.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.routeAdmissionPolicy.namespaceOwnership</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Strict</code> or <code>InterNamespaceAllowed</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Describes how hostname claims across namespaces should be handled. The default value is <code>InterNamespaceAllowed</code>. Specifying <code>Strict</code> prevents routes in different namespaces from claiming the same hostname. If the value is deleted in a customized MicroShift <code>config.yaml</code> file, the <code>InterNamespaceAllowed</code> value is automatically set.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Strict</code>: does not allow routes to claim the same hostname across namespaces.</p>
+</li>
+<li>
+<p><code>InterNamespaceAllowed</code>: allows routes to claim different paths of the same hostname across namespaces.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.routeAdmissionPolicy.wildcardPolicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WildcardsAllowed</code> or <code>WildcardsDisallowed</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Describes how routes with wildcard policies are handled by the ingress controller.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>WildcardsAllowed</code>: Indicates routes with any wildcard policy are admitted by the ingress controller.</p>
+</li>
+<li>
+<p><code>WildcardsDisallowed</code>: Indicates only routes with a wildcard policy of <code>None</code> are admitted by the ingress controller. Updating <code>wildcardPolicy</code> from <code>WildcardsAllowed</code> to <code>WildcardsDisallowed</code> causes admitted routes with a wildcard policy of <code>Subdomain</code> to stop working. These routes must be recreated to a wildcard policy of <code>None</code> to be readmitted by the ingress controller. <code>WildcardsDisallowed</code> is the default setting.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Managed</code> or <code>Removed</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Router status. The default is <code>Managed</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tlsSecurityProfile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>object</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies settings for ingress controllers TLS connections. If you do not set one, the default value is based on the <code>apiservers.config.openshift.io/cluster</code> resource.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tlsSecurityProfile.type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Old</code>, <code>Intermediate</code>, <code>Modern</code>, <code>Custom</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the profile type for the TLS Security. The default value is <code>Intermediate</code>.</p>
+</div>
+<div class="paragraph">
+<p>When using the <code>Old</code>, <code>Intermediate</code>, and <code>Modern</code> profile types, the effective profile configuration is subject to change between releases. For example, given a specification to use the <code>Intermediate</code> profile deployed on release <code>X.Y.Z</code>, an upgrade to release <code>X.Y.Z+1</code> might cause a new profile configuration to be applied to the ingress controller, resulting in a rollout.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tlsSecurityProfile.minTLSVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the TLS version for ingress controllers.</p>
+</div>
+<div class="paragraph">
+<p>The minimum TLS version is <code>1.1</code>, and the maximum TLS version is <code>1.3</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ciphers and the minimum TLS version of the configured security profile are reflected in the <code>TLSProfile</code> status.</p>
+</li>
+<li>
+<p>The ingress controller converts the TLS <code>1.0</code> of an <code>Old</code> or <code>Custom</code> profile to <code>1.1</code>.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objects</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies options for tuning the performance of ingress controller pods.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.clientFinTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> with format <code>duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines how long a connection is held open while waiting for a client response to the server/backend before closing the connection. The default timeout is <code>1s</code>, which is 1 second.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.clientTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> with format <code>duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines how long a connection is held open while waiting for a client response. The default timeout is <code>30s</code>, which is 30 seconds.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.headerBufferBytes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An <code>integer</code> with the <code>format</code> of <code>int32</code>; <code>16384</code> is the minimum value when HTTP/2 is enabled.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Describes how much memory in bytes must be reserved for <code>IngressController</code> connection sessions. The default value is <code>32768</code> in bytes.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Setting this field is generally not recommended because <code>headerBufferBytes</code> values that are too small can break the <code>IngressController</code> and <code>headerBufferBytes</code> values that are too large can cause the <code>IngressController</code> to use significantly more memory than necessary.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.headerBufferMaxRewriteBytes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code>, formatted <code>int32</code>; <code>4096</code> is the minimum value</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Describes how much memory in bytes must be reserved from <code>headerBufferBytes</code> for HTTP header rewriting and appending for <code>IngressController</code> connection sessions. The default value is <code>8192</code> bytes. Incoming HTTP requests are limited to the <code>headerBufferBytes</code> bytes minus the <code>headerBufferMaxRewriteBytes</code> bytes, meaning that the value of <code>headerBufferBytes</code> must be greater than the value of <code>headerBufferMaxRewriteBytes</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Setting this field is generally not recommended because <code>headerBufferMaxRewriteBytes</code> values that are too small can break the <code>IngressController</code> and <code>headerBufferMaxRewriteBytes</code> values that are too large can cause the <code>IngressController</code> to use significantly more memory than necessary.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.healthCheckInterval: ""</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> with pattern: <code>^(0|(<span class="0-9">(\\.[0-9]</span>)?(ns|us|µs|μs|ms|s|m|h))+)$</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default <code>healthCheckInterval</code> value is <code>5s</code>, which is 5 seconds. This parameter value defines how long the router waits between two consecutive health checks on the router&#8217;s configured backends. The minimum allowed value is <code>1s</code> and the maximum allowed value is <code>2147483647ms</code>, which is 24.85 days.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>This value is applied globally as a default for all routes, but can be overridden per-route by the route annotation <code>router.openshift.io/haproxy.health.check.interval</code>.</p>
+</li>
+<li>
+<p>Requires an unsigned duration string of decimal numbers, each with an optional fraction and unit suffix, such as <code>300ms</code>, <code>1.5h</code> or <code>2h45m</code>. Valid time units are <code>ns</code>, <code>us</code> (or <code>µs</code> U+00B5 or <code>μs</code> U+03BC), <code>ms</code>, <code>s</code>, <code>m</code>, <code>h</code>.</p>
+</li>
+<li>
+<p>Setting this parameter value to less than <code>5s</code> can cause excess traffic due to too frequent TCP health checks and accompanying SYN packet storms.</p>
+</li>
+<li>
+<p>Setting this parameter value too high can result in increased latency because of backend servers that are no longer available, but have not yet been detected as such.</p>
+</li>
+<li>
+<p>An empty or <code>0</code> value means "no opinion" and the ingress controller chooses a default. Note that the default value might change in future releases.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.maxConnections</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code>, valid values are: <code>empty</code>, <code>0</code>, <code>-1</code>, and the range <code>2000-2000000</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default value is <code>0</code>. defines the maximum number of simultaneous connections that can be established per <code>HAProxy</code> process. Increasing this value allows each ingress controller pod to handle more connections at the cost of additional system resources being consumed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If this field is empty or <code>0</code>, the <code>IngressController</code> uses the default value of <code>50000</code>, but the default is subject to change in future releases.</p>
+</li>
+<li>
+<p>If the value is <code>-1</code>, then <code>HAProxy</code> dynamically computes a maximum value based on the available resources set with <code>ulimit</code> values in the running container. Selecting <code>-1</code>, which means <code>auto</code>, results in a large value being computed, and therefore each <code>HAProxy</code> process incurs significant memory usage compared with the current default of <code>50000</code>.</p>
+</li>
+<li>
+<p>Setting a value that is greater than the current operating system limit prevents the <code>HAProxy</code> process from starting.</p>
+</li>
+<li>
+<p>You can monitor memory usage for router containers with the following metric:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">container_memory_working_set_bytes{container=`router`,namespace=`openshift-ingress`}`</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You can monitor memory usage of individual `HAProxy`processes in router containers with the following metric:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">container_memory_working_set_bytes{container=`router`,namespace=`openshift-ingress`}/container_processes{container=`router`,namespace=`openshift-ingress`}</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.serverFinTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> in the format <code>duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines how long a connection is held open while waiting for a server or backend response to the client before closing the connection. The default timeout is <code>1s</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.serverTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> in the format <code>duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines how long a connection is held open while waiting for a server or backend response. The default timeout is <code>30s</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.threadCount</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code> in the form <code>int32</code>; minimum value is <code>1</code>, maximum is <code>64</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines the number of threads created per <code>HAProxy</code> process. The default value is <code>4</code>. If this field is empty, the default value is used.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Setting this field is generally not recommended. Creating more threads allows each ingress controller pod to handle more connections at the cost of more system resources being used. Increasing the number of HAProxy threads allows the ingress controller pods to use more CPU time under load, potentially starving other pods if set too high. Conversely, reducing the number of threads may cause the ingress controller to perform poorly.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.tlsInspectDelay</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> in the format <code>duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines how long the router can hold data to find a matching route. Setting this interval with too short a value can cause the router to revert to the default certificate for edge-terminated clients or re-encrypt routes, even when a better-matching certificate could be used.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The default inspect delay is <code>5s</code> which is 5 seconds, which is expected to be sufficient for most cases. Increasing the value of this configuration specifically for high-latency networks can cause a delay in finishing the SSL handshake. Any configured value must be transparent to your application.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ingress.tuningOptions.tunnelTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code> in the format <code>duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines how long a tunnel connection, including websockets, are held open while the tunnel is idle. The default timeout is <code>1h</code>, which is 1 hour.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubelet</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See the MicroShift low-latency instructions</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Parameter for passthrough configuration of the kubelet node agent. Used for low-latency configuration. The default value is null.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>manifests</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list of paths</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The locations on the file system to scan for <code>kustomization</code> files to use to load manifests. Set to a list of paths to scan only those paths. Set to an empty list to disable loading manifests. The entries in the list can be glob patterns to match multiple subdirectories. The default values are <code>/usr/lib/microshift/manifests</code>, <code>/usr/lib/microshift/manifests.d/</code>, <code>/etc/microshift/manifests</code>, and <code>/etc/microshift/manifests.d/</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network.clusterNetwork</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP address block</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A block of IP addresses from which pod IP addresses are allocated. IPv4 is the default network. Dual-stack entries are supported. The first entry in this field is immutable after MicroShift starts. The default range is <code>10.42.0.0/16</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network.cniPlugin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Deploys the Open Virtual Networking - Kubernetes (OVN-K) network plugin as the default container network interface (CNI) when empty or set to <code>"ovnk"</code>. Supported values are empty, <code>""</code> or <code>"ovnk"</code>. Setting to <code>"none"</code> removes the CNI and is not recommended. Only OVN-K is managed by MicroShift.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network.multus.status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Controls the deployment of the Multus Container Network Interface (CNI). The default status is <code>Disabled</code>. If you set the value to <code>Enabled</code>, the Multus CNI cannot be deleted.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network.serviceNetwork</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP address block</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A block of virtual IP addresses for Kubernetes services. IP address pool for services. IPv4 is the default. Dual-stack entries are supported. The first entry in this field is immutable after MicroShift starts. The default range is <code>10.43.0.0/16</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network.serviceNodePortRange</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>range</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The port range allowed for Kubernetes services of type <code>NodePort</code>. If you do not specify the range, the default range of <code>30000-32767</code> is used. Services without a <code>NodePort</code> specified are automatically allocated one from this range. This parameter can be updated after MicroShift starts.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>node.hostnameOverride</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The name of the node. The default value is the hostname. If non-empty, this string is used to identify the node instead of the hostname. This value is immutable after MicroShift starts.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>node.nodeIP</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IPv4 address</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The IPv4 address of the node. The default value is the IP address of the default route.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nodeIPv6</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IPv6 address</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The IPv6 address for the node for dual-stack configurations. Cannot be configured in single stack for either IPv4 or IPv6. The default is an empty value or null.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage.driver</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>none</code> or <code>lvms</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default value is empty. An empty value or null field defaults to LVMS deployment.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage.optionalCsiComponents</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>array</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The default value is null or an empty array. A null or empty array defaults to deploying <code>snapshot-controller</code>. Expected values are <code>csi-snapshot-controller</code> or <code>none</code>. A value of <code>none</code> is mutually exclusive with all other values.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>telemetry.endpoint</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://infogw.api.openshift.com" class="bare">https://infogw.api.openshift.com</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The endpoint where telemetry data is sent. No user or private data is included in the metrics reported. The default value is <code><a href="https://infogw.api.openshift.com" class="bare">https://infogw.api.openshift.com</a></code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>telemetry.status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Telemetry status, which can be <code>Enabled</code> or <code>Disabled</code>. The default value is <code>Enabled</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="microshift-yaml-advertiseAddress_configure-with-config-file">Configure the advertise address network flag</h5>
+<div class="paragraph _abstract">
+<p>The <code>apiserver.advertiseAddress</code> flag specifies the IP address on which to advertise the API server to members of the node. This address must be reachable by the node. You can set a custom IP address here, but you must also add the IP address to a host interface. Customizing this parameter preempts MicroShift from adding a default IP address to the <code>br-ex</code> network interface.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you customize the <code>advertiseAddress</code> IP address, make sure it is reachable by the node when MicroShift starts by adding the IP address to a host interface.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If unset, the default value is set to the next immediate subnet after the service network. For example, when the service network is <code>10.43.0.0/16</code>, the <code>advertiseAddress</code> is set to <code>10.44.0.0/32</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-nodeport-range-limits_configure-with-config-file">Extending the port range for NodePort services</h5>
+<div class="paragraph _abstract">
+<p>The <code>serviceNodePortRange</code> setting extends the port range available to NodePort services. This option is useful when specific standard ports under the <code>30000-32767</code> range need to be exposed. For example, if your device needs to expose the <code>1883/tcp</code> MQ Telemetry Transport (MQTT) port on the network because client devices cannot use a different port.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>NodePorts can overlap with system ports, causing a malfunction of the system or MicroShift.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Consider the following when configuring the NodePort service ranges:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Do not create any NodePort service without an explicit <code>nodePort</code> selection. When an explicit <code>nodePort</code> is not specified, the port is assigned randomly by the <code>kube-apiserver</code> and cannot be predicted.</p>
+</li>
+<li>
+<p>Do not create any NodePort service for any system service port, MicroShift port, or other services you expose on your device <code>HostNetwork</code>.</p>
+</li>
+<li>
+<p>Table one specifies ports to avoid when extending the port range:</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 11. Ports to avoid.</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Port</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">22/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSH port</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">80/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenShift Router HTTP endpoint</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenShift Router HTTPS endpoint</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1936/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Metrics service for the openshift-router, not exposed today</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2379/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">etcd port</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2380/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">etcd port</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetes API</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8445/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openshift-route-controller-manager</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9537/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cri-o metrics</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10250/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kubelet</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10248/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kubelet healthz port</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10259/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kube scheduler</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-resolve-custom-hostnames_configure-with-config-file">Configure custom hostnames</h5>
+<div class="paragraph _abstract">
+<p>You can use the <code>hosts</code> file to resolve custom hostnames for pod workloads. This enables applications to resolve fixed hostnames, such as the local machine or external services, by applying <code>/etc/hosts</code> functionality to DNS queries within the node. The functionality is applied by adding specific configuration to the MicroShift configuration YAML file, and completing a service restart.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>You have root access to the node.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Edit the MicroShift configuration in the <code>/etc/microshift/config.yaml</code> file.</p>
+</li>
+<li>
+<p>Add the following <code>hosts</code> configuration at the end of the file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">dns:
+ hosts:
+   status: &lt;Enabled|Disabled&gt;
+   file: &lt;filepath&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Save your configuration YAML file.</p>
+</li>
+<li>
+<p>Restart the MicroShift service to activate the configuration changes:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart microshift</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After this initial restart, if <code>dns.hosts.status</code> is set to <code>Enabled</code>, MicroShift automatically monitors the <code>dns.hosts.file</code> file for updates. You do not have to restart the MicroShift service until the MicroShift configuration YAML file is changed again.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>After you save the <code>/etc/hosts</code> file, it takes up to 90 seconds for the change to be active in the pods. During this period, the pods might not properly resolve hostnames.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-how-config-snippets-work_configure-with-config-file">How configuration snippets work</h4>
+<div class="paragraph _abstract">
+<p>Configuration snippets in Red&#160;Hat build of MicroShift are YAML files in <code>/etc/microshift/config.d/</code> that merge with the existing configuration at runtime. You can use them to change one or two settings without editing the main config file.</p>
+</div>
+<div class="paragraph">
+<p>You must restart MicroShift for new configurations to apply.</p>
+</div>
+<div class="paragraph">
+<p>To return to previous values, you can delete a configuration snippet and restart MicroShift.</p>
+</div>
+<div class="paragraph">
+<p>At runtime, the YAML files inside <code>/etc/microshift/config.d</code> are merged into the existing MicroShift configuration, whether that configuration is a result of default values or a user-created <code>config.yaml</code> file. You do not need to create a <code>config.yaml</code> file to use a configuration snippet.</p>
+</div>
+<div class="paragraph">
+<p>Files in the snippet directory are sorted in lexicographical order and run sequentially. You can use numerical prefixes for snippets so that each is read in the order you want. The last-read file takes precedence when there is more than one YAML for the same parameter.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Configuration snippets take precedence over both default values and a customized <code>config.yaml</code> configuration file.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-ex-config-snippets-lists_configure-with-config-file">Examples of configuration snippet lists or arrays</h4>
+<div class="paragraph _abstract">
+<p>Lists and arrays in Red&#160;Hat build of MicroShift configuration snippets are overwritten, not merged.</p>
+</div>
+<div class="paragraph">
+<p>For example, you can replace a SAN or list of SANs by creating an additional snippet for the same field that is read after the first:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">MicroShift configuration directory contents</dt>
+<dd>
+<p><code>/etc/microshift/config.yaml.default</code> or <code>/etc/microshift/config.yaml</code></p>
+</dd>
+<dt class="hdlist1">Example MicroShift configuration snippet directory contents</dt>
+<dd>
+<p><code>/etc/microshift/config.d/10-san.yaml</code> and <code>/etc/microshift/config.d/20-san.yaml</code></p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>10-san.yaml</code> snippet</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  subjectAltNames:
+    - host1
+    - host2</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>20-san.yaml</code> snippet</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  subjectAltNames:
+    - hostZ</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example configuration result</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  subjectAltNames:
+    - hostZ</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to add a value to an existing list, you can add it to an existing snippet. For example, to add <code>hostZ</code> to an existing list of SANs, edit the snippet you have instead of creating a new one:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>10-san.yaml</code> snippet</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  subjectAltNames:
+    - host1
+    - host2
+    - hostZ</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example configuration result</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  subjectAltNames:
+    - host1
+    - host2
+    - hostZ</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-example-config-snippets-objects_configure-with-config-file">Example configuration snippets that are objects</h4>
+<div class="paragraph _abstract">
+<p>Object fields in Red&#160;Hat build of MicroShift are merged together when you use a configuration snippet.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>10-advertiseAddress.yaml</code> snippet</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  advertiseAddress: "microshift-example"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>20-audit-log.yaml</code> snippet</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  auditLog:
+    maxFileAge: 12</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example configuration result</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  advertiseAddress: "microshift-example"
+  auditLog:
+    maxFileAge: 12</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-example-mixed-config-snippets_configure-with-config-file">Examples of mixed configuration snippets</h4>
+<div class="paragraph _abstract">
+<p>When you use mixed configuration snippets in Red&#160;Hat build of MicroShift, object fields merge and the last-read snippet replaces list values. File order controls which list entries apply.</p>
+</div>
+<div class="paragraph">
+<p>In the following example, the values of both <code>advertiseAddress</code> and <code>auditLog.maxFileAge</code> fields merge into the configuration, but only the <code>c.com</code> and <code>d.com</code> <code>subjectAltNames</code> values are retained. This happens because the numbering in the filename indicates that the <code>c.com</code> and <code>d.com</code> values are higher priority.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>10-advertiseAddress.yaml</code> snippet</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  advertiseAddress: "microshift-example"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>20-audit-log.yaml</code> snippet</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  auditLog:
+    maxFileAge: 12</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>30-SAN.yaml</code> snippet</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  subjectAltNames:
+    - a.com
+    - b.com</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>40-SAN.yaml</code> snippet</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  subjectAltNames:
+    - c.com
+    - d.com</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example configuration result</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  advertiseAddress: "microshift-example"
+  auditLog:
+    maxFileAge: 12
+  subjectAltNames:
+    - c.com
+    - d.com</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Previous: <a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a> | ↑ Up: <a href="_configure.html">Configure</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="_observe.html">Observe</a> →</p>
 </div>
 </div>
 <div id="footer">

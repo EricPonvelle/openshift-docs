@@ -437,34 +437,239 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli" class="book toc2 toc-left">
+<body id="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
 <ul class="sectlevel2">
@@ -477,58 +682,1055 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#cli-installing-cli-linux_install-and-configure-oc-cli">Installing the OpenShift CLI on Linux</a></li><li class="level-4"><a href="#cli-installing-cli-windows_install-and-configure-oc-cli">Installing the OpenShift CLI on Windows</a></li><li class="level-4"><a href="#cli-installing-cli-macos_install-and-configure-oc-cli">Installing the OpenShift CLI on macOS</a></li><li class="level-4"><a href="#cli-installing-cli-brew_install-and-configure-oc-cli">Installing the OpenShift CLI by using Homebrew</a></li><li class="level-4"><a href="#cli-installing-cli-rpm_install-and-configure-oc-cli">Installing the OpenShift CLI by using an RPM</a></li><li class="level-4"><a href="#kubeconfig-files-overview_install-and-configure-oc-cli">Kubeconfig files for configuring node access</a></li><li class="level-4"><a href="#microshift-kubeconfig-local-access_install-and-configure-oc-cli">Local access kubeconfig file</a></li><li class="level-5"><a href="#accessing-microshift-node-locally_install-and-configure-oc-cli">Access the MicroShift node locally</a></li><li class="level-4"><a href="#remote-access-con_install-and-configure-oc-cli">Remote access kubeconfig files</a></li><li class="level-5"><a href="#remote-access-customization_install-and-configure-oc-cli">Remote access customization</a></li><li class="level-4"><a href="#microshift-kubeconfig-generating-additional-files_install-and-configure-oc-cli">Generating additional kubeconfig files for remote access</a></li><li class="level-5"><a href="#microshift-accessing-node-open-firewall_install-and-configure-oc-cli">Open the firewall for remote access to the MicroShift node</a></li><li class="level-5"><a href="#accessing-microshift-node-remotely_install-and-configure-oc-cli">Access the MicroShift node remotely</a></li><li class="level-4"><a href="#cli-enabling-tab-completion_install-and-configure-oc-cli">Enabling tab completion for Bash</a></li><li class="level-4"><a href="#cli-enabling-tab-completion-zsh_install-and-configure-oc-cli">Enabling tab completion for Zsh</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli">Install and configure the oc CLI</h3>
 <div class="paragraph _abstract">
 <p>The <code>oc</code> CLI tool is the primary command-line interface for interacting with MicroShift. You can install <code>oc</code> on Linux, Windows, and macOS, or install it from an RPM package on RHEL. After installation, you configure access by using a kubeconfig file to connect to the MicroShift API server, either locally on the node or remotely from another host.</p>
 </div>
+<div class="sect3">
+<h4 id="cli-installing-cli-linux_install-and-configure-oc-cli">Installing the OpenShift CLI on Linux</h4>
+<div class="paragraph _abstract">
+<p>To manage your cluster and deploy applications from the command line on Linux, install the OpenShift CLI (<code>oc</code>) binary. You can download the OpenShift CLI (<code>oc</code>) from the Red&#160; Customer Portal.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you installed an earlier version of <code>oc</code>, you cannot use it to complete all of the commands in Red&#160;Hat build of MicroShift.</p>
+</div>
+<div class="paragraph">
+<p>Download and install the new version of <code>oc</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Red&#160;Hat build of MicroShift version numbering matches OpenShift Container Platform version numbering. Use the <code>oc</code> binary that matches your MicroShift version and has the appropriate RHEL compatibility.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the <a href="https://access.redhat.com/downloads/content/290">Download OpenShift Container Platform</a> page on the Red&#160;Hat Customer Portal.</p>
+</li>
+<li>
+<p>Select the architecture from the <strong>Product Variant</strong> list.</p>
+</li>
+<li>
+<p>Select the appropriate version from the <strong>Version</strong> list.</p>
+</li>
+<li>
+<p>Click <strong>Download Now</strong> next to the <strong>OpenShift v4.22 Linux Clients</strong> entry and save the file.</p>
+</li>
+<li>
+<p>Unpack the archive:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ tar xvf &lt;file&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Place the <code>oc</code> binary in a directory that is on your <code>PATH</code>.</p>
+<div class="paragraph">
+<p>To check your <code>PATH</code>, run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo $PATH</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
 <div class="ulist">
+<div class="title">Verification</div>
 <ul>
 <li>
-<p><a href="cli-installing-cli-linux_install-and-configure-oc-cli.html">Installing the OpenShift CLI on Linux</a></p>
-</li>
-<li>
-<p><a href="cli-installing-cli-windows_install-and-configure-oc-cli.html">Installing the OpenShift CLI on Windows</a></p>
-</li>
-<li>
-<p><a href="cli-installing-cli-macos_install-and-configure-oc-cli.html">Installing the OpenShift CLI on macOS</a></p>
-</li>
-<li>
-<p><a href="cli-installing-cli-brew_install-and-configure-oc-cli.html">Installing the OpenShift CLI by using Homebrew</a></p>
-</li>
-<li>
-<p><a href="cli-installing-cli-rpm_install-and-configure-oc-cli.html">Installing the OpenShift CLI by using an RPM</a></p>
-</li>
-<li>
-<p><a href="kubeconfig-files-overview_install-and-configure-oc-cli.html">Kubeconfig files for configuring node access</a></p>
-</li>
-<li>
-<p><a href="microshift-kubeconfig-local-access_install-and-configure-oc-cli.html">Local access kubeconfig file</a></p>
-</li>
-<li>
-<p><a href="remote-access-con_install-and-configure-oc-cli.html">Remote access kubeconfig files</a></p>
-</li>
-<li>
-<p><a href="microshift-kubeconfig-generating-additional-files_install-and-configure-oc-cli.html">Generating additional kubeconfig files for remote access</a></p>
-</li>
-<li>
-<p><a href="cli-enabling-tab-completion_install-and-configure-oc-cli.html">Enabling tab completion for Bash</a></p>
-</li>
-<li>
-<p><a href="cli-enabling-tab-completion-zsh_install-and-configure-oc-cli.html">Enabling tab completion for Zsh</a></p>
+<p>After you install the OpenShift CLI, it is available using the <code>oc</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc &lt;command&gt;</code></pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="cli-installing-cli-windows_install-and-configure-oc-cli">Installing the OpenShift CLI on Windows</h4>
+<div class="paragraph _abstract">
+<p>To manage your cluster and deploy applications from the command line on Windows, install the OpenShift CLI (<code>oc</code>) binary. You can download the OpenShift CLI (<code>oc</code>) from the Red&#160; Customer Portal.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you installed an earlier version of <code>oc</code>, you cannot use it to complete all of the commands in Red&#160;Hat build of MicroShift.</p>
+</div>
+<div class="paragraph">
+<p>Download and install the new version of <code>oc</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Red&#160;Hat build of MicroShift version numbering matches OpenShift Container Platform version numbering. Use the <code>oc</code> binary that matches your MicroShift version and has the appropriate RHEL compatibility.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the <a href="https://access.redhat.com/downloads/content/290">Download OpenShift Container Platform</a> page on the Red Hat Customer Portal.</p>
+</li>
+<li>
+<p>Select the appropriate version from the <strong>Version</strong> list.</p>
+</li>
+<li>
+<p>Click <strong>Download Now</strong> next to the <strong>OpenShift v4.22 Windows Client</strong> entry and save the file.</p>
+</li>
+<li>
+<p>Extract the archive with a ZIP program.</p>
+</li>
+<li>
+<p>Move the <code>oc</code> binary to a directory that is on your <code>PATH</code> variable.</p>
+<div class="paragraph">
+<p>To check your <code>PATH</code> variable, open the Command Prompt and run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">C:\&gt; path</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>After you install the OpenShift CLI, it is available using the <code>oc</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">C:\&gt; oc &lt;command&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cli-installing-cli-macos_install-and-configure-oc-cli">Installing the OpenShift CLI on macOS</h4>
+<div class="paragraph _abstract">
+<p>To manage your cluster and deploy applications from the command line on macOS, install the OpenShift CLI (<code>oc</code>) binary. You can download the OpenShift CLI (<code>oc</code>) from the Red&#160; Customer Portal.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you installed an earlier version of <code>oc</code>, you cannot use it to complete all of the commands in Red&#160;Hat build of MicroShift.</p>
+</div>
+<div class="paragraph">
+<p>Download and install the new version of <code>oc</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Red&#160;Hat build of MicroShift version numbering matches OpenShift Container Platform version numbering. Use the <code>oc</code> binary that matches your MicroShift version and has the appropriate RHEL compatibility.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the <a href="https://access.redhat.com/downloads/content/290">Download OpenShift Container Platform</a> on the Red&#160;Hat Customer Portal.</p>
+</li>
+<li>
+<p>Select the appropriate version from the <strong>Version</strong> drop-down list.</p>
+</li>
+<li>
+<p>Click <strong>Download Now</strong> next to the <strong>OpenShift v4.22 macOS Clients</strong> entry and save the file.</p>
+</li>
+<li>
+<p>Extract the archive.</p>
+</li>
+<li>
+<p>Move the <code>oc</code> binary to a directory on your <code>PATH</code> variable.</p>
+<div class="paragraph">
+<p>To check your <code>PATH</code> variable, open a terminal and run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo $PATH</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify your installation by using an <code>oc</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc &lt;command&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cli-installing-cli-brew_install-and-configure-oc-cli">Installing the OpenShift CLI by using Homebrew</h4>
+<div class="paragraph _abstract">
+<p>For macOS, you can install the OpenShift CLI (<code>oc</code>) by using the <a href="https://brew.sh">Homebrew</a> package manager.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You must have Homebrew (<code>brew</code>) installed.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Install the <a href="https://formulae.brew.sh/formula/openshift-cli">openshift-cli</a> package by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ brew install openshift-cli</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify your installation by using an <code>oc</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc &lt;command&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cli-installing-cli-rpm_install-and-configure-oc-cli">Installing the OpenShift CLI by using an RPM</h4>
+<div class="paragraph _abstract">
+<p>For Red&#160;Hat Enterprise Linux (RHEL), you can install the OpenShift CLI (<code>oc</code>) as an RPM if you have an active Red&#160;Hat build of MicroShift subscription on your Red Hat account.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must install <code>oc</code> for RHEL 9 by downloading the binary. Installing <code>oc</code> by using an RPM package is not supported on Red&#160;Hat Enterprise Linux (RHEL) 9.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You must have root or sudo privileges.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Register with Red Hat Subscription Manager:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"># subscription-manager register</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Pull the latest subscription data:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"># subscription-manager refresh</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>List the available subscriptions:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"># subscription-manager list --available --matches '*OpenShift*'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the output for the previous command, find the pool ID for
+an Red&#160;Hat build of MicroShift
+subscription and attach the subscription to the registered system:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"># subscription-manager attach --pool=&lt;pool_id&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enable the repositories required by
+Red&#160;Hat build of MicroShift 4.22.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"># subscription-manager repos --enable="rhocp-4.22-for-rhel-8-x86_64-rpms"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install the <code>openshift-clients</code> package:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"># yum install openshift-clients</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify your installation by using an <code>oc</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc &lt;command&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="kubeconfig-files-overview_install-and-configure-oc-cli">Kubeconfig files for configuring node access</h4>
+<div class="paragraph _abstract">
+<p>The two categories of <code>kubeconfig</code> files used in MicroShift are local access and remote access. Each time MicroShift starts, it generates a set of <code>kubeconfig</code> files for accessing the API server. These files are created in the <code>/var/lib/microshift/resources/kubeadmin/</code> directory by using existing configuration information.</p>
+</div>
+<div class="paragraph">
+<p>Each access type requires a different authentication certificate signed by different Certificate Authorities (CAs). The generation of multiple <code>kubeconfig</code> files accommodates this need.</p>
+</div>
+<div class="paragraph">
+<p>You can use the appropriate <code>kubeconfig</code> file for the access type needed in each case to provide authentication details. The contents of MicroShift <code>kubeconfig</code> files are determined by either default built-in values or a <code>config.yaml</code> file.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A <code>kubeconfig</code> file must exist for the cluster to be accessible. The values are applied from built-in default values or a customized <code>config.yaml</code> file.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example contents of the kubeconfig files</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">/var/lib/microshift/resources/kubeadmin/
+├── kubeconfig
+├── alt-name-1
+│   └── kubeconfig
+├── 1.2.3.4
+│   └── kubeconfig
+└── microshift-rhel9
+    └── kubeconfig</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>kubeconfig</code></dt>
+<dd>
+<p>Specifies the local hostname. The main IP address of the host is always the default.</p>
+</dd>
+<dt class="hdlist1"><code>alt-name-1</code></dt>
+<dd>
+<p>Specifies the subject alternative name for the API server certificate.</p>
+</dd>
+<dt class="hdlist1"><code>1.2.3.4</code></dt>
+<dd>
+<p>Specifies the DNS name.</p>
+</dd>
+<dt class="hdlist1"><code>microshift-rhel9</code></dt>
+<dd>
+<p>Specifies the MicroShift hostname.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-kubeconfig-local-access_install-and-configure-oc-cli">Local access kubeconfig file</h4>
+<div class="paragraph _abstract">
+<p>The local access <code>kubeconfig</code> file in Red&#160;Hat build of MicroShift is written to <code>/var/lib/microshift/resources/kubeadmin/kubeconfig</code>. This <code>kubeconfig</code> file provides access to the API server by using <code>localhost</code>. Use this file when you connect to the node locally.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example contents of <code>kubeconfig</code> for local access</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">clusters:
+- cluster:
+    certificate-authority-data: &lt;base64_encoded_CA&gt;
+    server: https://localhost:6443</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>localhost</code> <code>kubeconfig</code> file can only be used from a client connecting to the API server from the same host. The certificates in the file do not work for remote connections.</p>
+</div>
+<div class="sect4">
+<h5 id="accessing-microshift-node-locally_install-and-configure-oc-cli">Access the MicroShift node locally</h5>
+<div class="paragraph _abstract">
+<p>Use the following procedure to access the MicroShift node locally by using a <code>kubeconfig</code> file.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Optional: to create a <code>~/.kube/</code> folder if your Red&#160;Hat Enterprise Linux (RHEL) machine does not have one, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ mkdir -p ~/.kube/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Copy the generated local access <code>kubeconfig</code> file to the <code>~/.kube/</code> directory by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo cat /var/lib/microshift/resources/kubeadmin/kubeconfig &gt; ~/.kube/config</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Update the permissions on your <code>~/.kube/config</code> file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ chmod go-r ~/.kube/config</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify that MicroShift is running by entering the following command:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -A</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAMESPACE                   NAME                                                     READY   STATUS   RESTARTS  AGE
+default                     i-06166fbb376f14a8bus-west-2computeinternal-debug-qtwcr  1/1     Running  0		    46m
+kube-system                 csi-snapshot-controller-5c6586d546-lprv4                 1/1     Running  0		    51m
+openshift-dns               dns-default-45jl7                                        2/2     Running  0		    50m
+openshift-dns               node-resolver-7wmzf                                      1/1     Running  0		    51m
+openshift-ingress           router-default-78b86fbf9d-qvj9s                          1/1     Running  0		    51m
+openshift-ovn-kubernetes    ovnkube-master-5rfhh                                     4/4     Running  0		    51m
+openshift-ovn-kubernetes    ovnkube-node-gcnt6                                       1/1     Running  0		    51m
+openshift-service-ca        service-ca-bf5b7c9f8-pn6rk                               1/1     Running  0		    51m
+openshift-storage           topolvm-controller-549f7fbdd5-7vrmv                      5/5     Running  0		    51m
+openshift-storage           topolvm-node-rht2m                                       3/3     Running  0		    50m</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This example output shows a basic MicroShift installation. If you installed optional RPMs, the status of pods running those services is displayed in the output.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remote-access-con_install-and-configure-oc-cli">Remote access kubeconfig files</h4>
+<div class="paragraph _abstract">
+<p>MicroShift generates a default <code>kubeconfig</code> file that enables external clients to connect securely to the API server. The configuration uses the node hostname and certificate validation based on Subject Alternative Name (SAN) entries.</p>
+</div>
+<div class="paragraph">
+<p>When a MicroShift node connects to the API server from an external source, a certificate with all alternative names listed in the SAN field is used for validation. MicroShift generates a default <code>kubeconfig</code> for external access by using the hostname value. The defaults are set in the <code>&lt;node.hostnameOverride&gt;</code>, <code>&lt;node.nodeIP&gt;</code>, and <code>api.&lt;dns.baseDomain&gt;</code> parameter values of the default <code>kubeconfig</code> file.</p>
+</div>
+<div class="paragraph">
+<p>The <code>/var/lib/microshift/resources/kubeadmin/&lt;hostname&gt;/kubeconfig</code> file uses the hostname of the machine, or <code>node.hostnameOverride</code> if that option is set, to reach the API server. The CA in the <code>kubeconfig</code> file can validate certificates when the API server is accessed externally.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example contents of a default <code>kubeconfig</code> file for remote access</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">clusters:
+- cluster:
+    certificate-authority-data: &lt;base64 CA&gt;
+    server: https://microshift-rhel9:6443</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="remote-access-customization_install-and-configure-oc-cli">Remote access customization</h5>
+<div class="paragraph">
+<p>Multiple remote access <code>kubeconfig</code> file values can be generated for accessing the node with different IP addresses or host names. An additional <code>kubeconfig</code> file generates for each entry in the <code>apiServer.subjectAltNames</code> parameter. You can copy remote access <code>kubeconfig</code> files from the host during times of IP connectivity and then use them to access the API server from other workstations.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-kubeconfig-generating-additional-files_install-and-configure-oc-cli">Generating additional kubeconfig files for remote access</h4>
+<div class="paragraph _abstract">
+<p>To support more host names or IP addresses for remote access than the default file provides, you can generate additional <code>kubeconfig</code> files in MicroShift. Add the entries to <code>apiServer.subjectAltNames</code> in <code>config.yaml</code> and restart the service to create the files.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must restart MicroShift for configuration changes to be implemented.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have created a <code>config.yaml</code> file for MicroShift.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Optional: You can show the contents of the <code>config.yaml</code>. Run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat /etc/microshift/config.yaml</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Optional: You can show the contents of the remote-access <code>kubeconfig</code> file. Run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat /var/lib/microshift/resources/kubeadmin/&lt;hostname&gt;/kubeconfig</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Additional remote access <code>kubeconfig</code> files must include one of the server names listed in the Red&#160;Hat build of MicroShift <code>config.yaml</code> file. Additional <code>kubeconfig</code> files must also use the same CA for validation.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>To generate additional <code>kubeconfig</code> files for additional DNS names SANs or external IP addresses, add the entries you need to the <code>apiServer.subjectAltNames</code> field. In the following example, the DNS name used is <code>alt-name-1</code> and the IP address is <code>1.2.3.4</code>.</p>
+<div class="listingblock">
+<div class="title">Example <code>config.yaml</code> with additional authentication values</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">dns:
+  baseDomain: example.com
+node:
+  hostnameOverride: "microshift-rhel9"
+  nodeIP: 10.0.0.1
+apiServer:
+  subjectAltNames:
+  - alt-name-1
+  - 1.2.3.4</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>microshift-rhel9</code></dt>
+<dd>
+<p>Specifies the hostname of the node.</p>
+</dd>
+<dt class="hdlist1"><code>alt-name-1</code></dt>
+<dd>
+<p>Specifies the DNS name.</p>
+</dd>
+<dt class="hdlist1"><code>1.2.3.4</code></dt>
+<dd>
+<p>Specifies the IP address or range.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Restart MicroShift to apply configuration changes and auto-generate the <code>kubeconfig</code> files you need by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart microshift</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To check the contents of additional remote-access <code>kubeconfig</code> files, insert the name or IP address as listed in the <code>config.yaml</code> into the <code>cat</code> command. For example, <code>alt-name-1</code> is used in the following example command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat /var/lib/microshift/resources/kubeadmin/alt-name-1/kubeconfig</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Choose the <code>kubeconfig</code> file to use that contains the SAN or IP address you want to use to connect your node. In this example, the <code>kubeconfig</code> containing <code>alt-name-1</code> in the <code>clusters.cluster.server</code> field is the correct file.</p>
+<div class="listingblock">
+<div class="title">Example contents of an additional <code>kubeconfig</code> file</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">clusters:
+- cluster:
+    certificate-authority-data: &lt;base64 CA&gt;
+    server: https://alt-name-1:6443</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>/var/lib/microshift/resources/kubeadmin/alt-name-1/kubeconfig</code> file values are from the <code>apiServer.subjectAltNames</code> configuration values.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All parameters are included as common names (CN) and subject alternative names (SAN) in the external serving certificates for the API server.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="microshift-accessing-node-open-firewall_install-and-configure-oc-cli">Open the firewall for remote access to the MicroShift node</h5>
+<div class="paragraph _abstract">
+<p>You must open the firewall before a workstation user can access the MicroShift node remotely.</p>
+</div>
+<div class="paragraph">
+<p>For this procedure, <code>user@microshift</code> is the user on the MicroShift host machine and is responsible for setting up that machine so that it can be accessed by a remote user on a separate workstation.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>Your account has cluster administration privileges.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>As <code>user@microshift</code> on the MicroShift host, open the firewall port for the Kubernetes API server (<code>6443/tcp</code>) by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[user@microshift]$ sudo firewall-cmd --permanent --zone=public --add-port=6443/tcp &amp;&amp; sudo firewall-cmd --reload</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>As <code>user@microshift</code>, verify that MicroShift is running by entering the following command:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -A</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAMESPACE                   NAME                                                     READY   STATUS   RESTARTS  AGE
+default                     i-06166fbb376f14a8bus-west-2computeinternal-debug-qtwcr  1/1     Running  0		    46m
+kube-system                 csi-snapshot-controller-5c6586d546-lprv4                 1/1     Running  0		    51m
+openshift-dns               dns-default-45jl7                                        2/2     Running  0		    50m
+openshift-dns               node-resolver-7wmzf                                      1/1     Running  0		    51m
+openshift-ingress           router-default-78b86fbf9d-qvj9s                          1/1     Running  0		    51m
+openshift-ovn-kubernetes    ovnkube-master-5rfhh                                     4/4     Running  0		    51m
+openshift-ovn-kubernetes    ovnkube-node-gcnt6                                       1/1     Running  0		    51m
+openshift-service-ca        service-ca-bf5b7c9f8-pn6rk                               1/1     Running  0		    51m
+openshift-storage           topolvm-controller-549f7fbdd5-7vrmv                      5/5     Running  0		    51m
+openshift-storage           topolvm-node-rht2m                                       3/3     Running  0		    50m</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This example output shows a basic MicroShift installation. If you installed optional RPMs, the status of pods running those services is displayed in the output.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="accessing-microshift-node-remotely_install-and-configure-oc-cli">Access the MicroShift node remotely</h5>
+<div class="paragraph _abstract">
+<p>Access the MicroShift service from a remote location by using a <code>kubeconfig</code> file.</p>
+</div>
+<div class="paragraph">
+<p>The <code>user@workstation</code> login is used to access the host machine remotely. The <code>&lt;user&gt;</code> value in the procedure is the name of the user that <code>user@workstation</code> logs in with to the MicroShift host.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>The <code>user@microshift</code> has opened the firewall from the local host.</p>
+</li>
+<li>
+<p>You generated additional <code>kubeconfig</code> files.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>As <code>user@workstation</code>, create a <code>~/.kube/</code> folder if your Red&#160;Hat Enterprise Linux (RHEL) machine does not have one by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[user@workstation]$ mkdir -p ~/.kube/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>As <code>user@workstation</code>, set a variable for the hostname of your MicroShift host by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[user@workstation]$ MICROSHIFT_MACHINE=<em>&lt;microshift_hostname&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace the value, <em>&lt;MicroShift_hostname&gt;</em>, with the either the name or the IP address of the host running .</p>
+</div>
+</li>
+<li>
+<p>As <code>user@workstation</code>, copy the generated <code>kubeconfig</code> file that has the hostname or IP address you want to connect to from the RHEL machine running MicroShift to your local machine by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[user@workstation]$ ssh <em>&lt;user&gt;</em>@$MICROSHIFT_MACHINE "sudo cat /var/lib/microshift/resources/kubeadmin/$MICROSHIFT_MACHINE/kubeconfig" &gt; ~/.kube/config #</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <em>&lt;user&gt;</em> with your SSH login credentials.</p>
+</div>
+</li>
+<li>
+<p>As <code>user@workstation</code>, update the permissions on your <code>~/.kube/config</code> file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ chmod go-r ~/.kube/config</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>As <code>user@workstation</code>, verify that MicroShift is running by entering the following command:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -A</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAMESPACE                   NAME                                                     READY   STATUS   RESTARTS  AGE
+default                     i-06166fbb376f14a8bus-west-2computeinternal-debug-qtwcr  1/1     Running  0		    46m
+kube-system                 csi-snapshot-controller-5c6586d546-lprv4                 1/1     Running  0		    51m
+openshift-dns               dns-default-45jl7                                        2/2     Running  0		    50m
+openshift-dns               node-resolver-7wmzf                                      1/1     Running  0		    51m
+openshift-ingress           router-default-78b86fbf9d-qvj9s                          1/1     Running  0		    51m
+openshift-ovn-kubernetes    ovnkube-master-5rfhh                                     4/4     Running  0		    51m
+openshift-ovn-kubernetes    ovnkube-node-gcnt6                                       1/1     Running  0		    51m
+openshift-service-ca        service-ca-bf5b7c9f8-pn6rk                               1/1     Running  0		    51m
+openshift-storage           topolvm-controller-549f7fbdd5-7vrmv                      5/5     Running  0		    51m
+openshift-storage           topolvm-node-rht2m                                       3/3     Running  0		    50m</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This example output shows a basic MicroShift installation. If you installed optional RPMs, the status of pods running those services is displayed in the output.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cli-enabling-tab-completion_install-and-configure-oc-cli">Enabling tab completion for Bash</h4>
+<div class="paragraph _abstract">
+<p>After you install the OpenShift CLI (<code>oc</code>), you can enable tab completion to automatically complete <code>oc</code> commands or suggest options when you press Tab. The following procedure enables tab completion for the Bash shell.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You must have the OpenShift CLI (<code>oc</code>) installed.</p>
+</li>
+<li>
+<p>You must have the package <code>bash-completion</code> installed.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Save the Bash completion code to a file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc completion bash &gt; oc_bash_completion</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Copy the file to <code>/etc/bash_completion.d/</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo cp oc_bash_completion /etc/bash_completion.d/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also save the file to a local directory and source it from your <code>.bashrc</code> file instead. Tab completion is enabled when you open a new terminal.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cli-enabling-tab-completion-zsh_install-and-configure-oc-cli">Enabling tab completion for Zsh</h4>
+<div class="paragraph _abstract">
+<p>After you install the OpenShift CLI (<code>oc</code>), you can enable tab completion to automatically complete <code>oc</code> commands or suggest options when you press Tab. The following procedure enables tab completion for the Zsh shell.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You must have the OpenShift CLI (<code>oc</code>) installed.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To add tab completion for <code>oc</code> to your <code>.zshrc</code> file, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat &gt;&gt;~/.zshrc&lt;&lt;EOF
+autoload -Uz compinit
+compinit
+if [ $commands[oc] ]; then
+  source &lt;(oc completion zsh)
+  compdef _oc oc
+fi
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Tab completion is enabled when you open a new terminal.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="_reference.html">Reference</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="cli-installing-cli-linux_install-and-configure-oc-cli.html">Installing the OpenShift CLI on Linux</a> →</p>
+<p>↑ Up: <a href="_reference.html">Reference</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a> →</p>
 </div>
 </div>
 <div id="footer">

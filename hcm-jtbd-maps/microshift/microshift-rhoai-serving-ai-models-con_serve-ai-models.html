@@ -437,30 +437,203 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-rhoai-serving-ai-models-con_serve-ai-models" class="book toc2 toc-left">
+<body id="microshift-rhoai-serving-ai-models-con_serve-ai-models" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
 <ul class="sectlevel2">
@@ -479,16 +652,81 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-rhoai-supported-crds_serve-ai-models">Supported RHOAI custom resource definitions</a></li><li class="level-4"><a href="#microshift-rhoai-supported-models_serve-ai-models">Supported RHOAI model-serving runtimes</a></li><li class="level-4"><a href="#microshift-rhoai-servingruntimes-ex_serve-ai-models">Create a ServingRuntime CR for use in MicroShift</a></li><li class="level-4"><a href="#microshift-rhoai-inferenceservice-ex_serve-ai-models">Create an InferenceService custom resource</a></li><li class="level-4"><a href="#microshift-rhoai-inferenceservice-more-options_serve-ai-models">More InferenceService CR options</a></li><li class="level-4"><a href="#microshift-rhoai-model-serving-rt-verify_serve-ai-models">Verify that the model-serving runtime is ready</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-rhoai-serving-ai-models-con_serve-ai-models">Serve AI models on MicroShift</h3>
@@ -551,31 +789,468 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </dd>
 </dl>
 </div>
+<div class="sect3">
+<h4 id="microshift-rhoai-supported-crds_serve-ai-models">Supported RHOAI custom resource definitions</h4>
+<div class="paragraph _abstract">
+<p>You can review the following information to learn about the RHOAI custom resource definitions (CRDs).</p>
+</div>
+<div class="paragraph">
+<p>The following CRD are supported:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-rhoai-supported-crds_serve-ai-models.html">Supported RHOAI custom resource definitions</a></p>
+<p><code>InferenceServices</code></p>
 </li>
 <li>
-<p><a href="microshift-rhoai-supported-models_serve-ai-models.html">Supported RHOAI model-serving runtimes</a></p>
+<p><code>TrainedModels</code></p>
 </li>
 <li>
-<p><a href="microshift-rhoai-servingruntimes-ex_serve-ai-models.html">Create a ServingRuntime CR for use in MicroShift</a></p>
+<p><code>ServingRuntimes</code></p>
 </li>
 <li>
-<p><a href="microshift-rhoai-inferenceservice-ex_serve-ai-models.html">Create an InferenceService custom resource</a></p>
+<p><code>InferenceGraphs</code></p>
 </li>
 <li>
-<p><a href="microshift-rhoai-inferenceservice-more-options_serve-ai-models.html">More InferenceService CR options</a></p>
+<p><code>ClusterStorageContainers</code></p>
 </li>
 <li>
-<p><a href="microshift-rhoai-model-serving-rt-verify_serve-ai-models.html">Verify that the model-serving runtime is ready</a></p>
+<p><code>ClusterLocalModels</code></p>
+</li>
+<li>
+<p><code>LocalModelNodeGroups</code></p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-rhoai-supported-models_serve-ai-models">Supported RHOAI model-serving runtimes</h4>
+<div class="paragraph _abstract">
+<p>You can review the following information to learn about the RHOAI model-serving runtimes that are verified for MicroShift deployments.</p>
+</div>
+<div class="paragraph">
+<p>The following RHOAI model-serving runtimes that are verified for MicroShift deployments:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>vLLM ServingRuntime for KServe</p>
+</li>
+<li>
+<p>OpenVINO Model Server</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The OpenVINO Model Server does not support the IPv6 networking protocol. Check each model server before use to ensure that it supports your networking configuration.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following runtimes are available for development purposes with MicroShift:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Caikit Text Generation Inference Server (Caikit-TGIS) ServingRuntime for KServe</p>
+</li>
+<li>
+<p>Caikit Standalone ServingRuntime for KServe</p>
+</li>
+<li>
+<p>Text Generation Inference Server (TGIS) Standalone ServingRuntime for KServe</p>
+</li>
+<li>
+<p>vLLM ServingRuntime with Gaudi accelerators support for KServe</p>
+</li>
+<li>
+<p>vLLM ROCm ServingRuntime for KServe</p>
+</li>
+<li>
+<p>Custom runtimes that you create and test</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-rhoai-servingruntimes-ex_serve-ai-models">Create a ServingRuntime CR for use in MicroShift</h4>
+<div class="paragraph _abstract">
+<p>You can create a <code>ServingRuntime</code> custom resource (CR) based on installed manifests and release information.</p>
+</div>
+<div class="paragraph">
+<p>The included steps are an example of reusing the included <code>microshift-ai-model-serving</code> manifest files to re-create the OpenVINO Model Server (OVMS) model-serving runtime in the workload namespace.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This approach does not require a live node, so it can be part of CI/CD automation.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Both the <code>microshift-ai-model-serving</code> and <code>microshift-ai-model-serving-release-info</code> RPMs are installed.</p>
+</li>
+<li>
+<p>You have root user access to your machine.</p>
+</li>
+<li>
+<p>The OpenShift CLI (<code>oc</code>) is installed.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Extract the image reference of the <code>ServingRuntime</code> CR you want to use from the MicroShift release information file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ OVMS_IMAGE="$(jq -r '.images | with_entries(select(.key == "ovms-image")) | .[]' /usr/share/microshift/release/release-ai-model-serving-"$(uname -i)".json)"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, the image reference for the OVMS model-serving runtime is extracted.</p>
+</div>
+</li>
+<li>
+<p>Copy the original <code>ServingRuntime</code> YAML file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cp /usr/lib/microshift/manifests.d/050-microshift-ai-model-serving-runtimes/ovms-kserve.yaml ./ovms-kserve.yaml</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the actual image reference to the <code>image:</code> parameter field value of the <code>ServingRuntime</code> YAML by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sed -i "s,image: ovms-image,image: ${OVMS_IMAGE}," ./ovms-kserve.yaml</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the <code>ServingRuntime</code> object in a custom namespace using the YAML file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc create -n <em>&lt;ai_demo&gt;</em> -f ./ovms-kserve.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code><em>&lt;ai_demo&gt;</em></code></dt>
+<dd>
+<p>Specifies the name of your namespace.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the <code>ServingRuntime</code> CR is part of a new manifest, set the namespace in the <code>kustomization.yaml</code> file, for example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example Kustomize manifest namespace value</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: ai-demo
+resources:
+  - ovms-kserve.yaml
+#...</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Next steps</div>
+<ul>
+<li>
+<p>Create the <code>InferenceService</code> object.</p>
+</li>
+<li>
+<p>Verify that your model is ready for inferencing.</p>
+</li>
+<li>
+<p>Query the model.</p>
+</li>
+<li>
+<p>Optional: Examine the model metrics.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-rhoai-inferenceservice-ex_serve-ai-models">Create an InferenceService custom resource</h4>
+<div class="paragraph _abstract">
+<p>You can create an <code>InferenceService</code> custom resource (CR) that instructs KServe how to create a deployment for serving your AI model. KServe uses the <code>ServingRuntime</code> based on the <code>modelFormat</code> value specified in the <code>InferenceService</code> CR.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You configured the <code>ServingRuntimes</code> CR.</p>
+</li>
+<li>
+<p>You have root user access to your machine.</p>
+</li>
+<li>
+<p>The OpenShift CLI (<code>oc</code>) is installed.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create the <code>InferenceService</code> CR.</p>
+<div class="listingblock">
+<div class="title">Example <code>InferenceService</code> object with an <code>openvino_ir</code> model format</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: ovms-resnet50
+spec:
+  predictor:
+    model:
+      protocolVersion: v2
+      modelFormat:
+        name: openvino_ir
+      storageUri: "oci://localhost/ovms-resnet50:test"
+      args:
+      - --layout=NHWC:NCHW</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>spec.predictor.model.args.layout</code></dt>
+<dd>
+<p>Specifies an additional argument to make OpenVINO Model Server (OVMS) accept the request input data in a different layout than the model was originally exported with. Extra arguments are passed through to the OVMS container.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Save the <code>InferenceService</code> example to a file, then create it on the cluster by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc create -n <em>&lt;ai_demo&gt;</em> -f ./FILE.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code><em>&lt;ai_demo&gt;</em></code></dt>
+<dd>
+<p>Specifies your namespace name.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">inferenceservice.serving.kserve.io/ovms-resnet50 created</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A deployment and a pod are expected to appear in the specified namespace. Depending on the size of the image specified in the <code>ServingRuntime</code> CR and the size of the ModelCar OCI image, it might take several minutes for the pod to be ready.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Next steps</div>
+<ul>
+<li>
+<p>Verify that the model-serving runtime is ready.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-rhoai-inferenceservice-more-options_serve-ai-models">More InferenceService CR options</h4>
+<div class="paragraph _abstract">
+<p>You can include many different options in the inference service YAML file, as described in the <a href="https://kserve.github.io/website/latest/reference/api/">Control Plane API Reference</a> (KServe documentation).</p>
+</div>
+<div class="paragraph">
+<p>For example, you can include a <code>resources</code> section that is passed first to the deployment and then to the pod, so that the model server gets access to your hardware through the device plugin.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example NVIDIA device <code>resources</code> snippet in an <code>InferenceService</code> CR</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: is-name
+spec:
+  predictor:
+    model:
+      resources:
+        limits:
+          nvidia.com/gpu: 1
+        requests:
+          nvidia.com/gpu: 1
+#...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For complete <code>InferenceService</code> specifications, see the <a href="https://kserve.github.io/website/latest/reference/api/">Control Plane API Reference</a> (KServe documentation).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-rhoai-model-serving-rt-verify_serve-ai-models">Verify that the model-serving runtime is ready</h4>
+<div class="paragraph _abstract">
+<p>You can use the OpenShift CLI (<code>oc</code>) to verify that your model-serving runtime is ready for use by checking that the downstream generation activities are complete.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You configured the <code>ServingRuntimes</code> CR.</p>
+</li>
+<li>
+<p>You created the <code>InferenceService</code> CR.</p>
+</li>
+<li>
+<p>You have root user access to your machine.</p>
+</li>
+<li>
+<p>The OpenShift CLI (<code>oc</code>) is installed.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Check that the AI model is deployed in your custom namespace by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get -n ai-demo deployment</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+ovms-resnet50-predictor   1/1     1            1           72s</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Confirm that your deployment is in progress by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc rollout status -n ai-demo deployment ovms-resnet50-predictor</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">deployment "ovms-resnet50-predictor" successfully rolled out</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check that the AI model workload pod is deployed in your custom namespace by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get -n ai-demo pod</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                                       READY   STATUS    RESTARTS      AGE
+ovms-resnet50-predictor-6fdb566b7f-bc9k5   2/2     Running   1 (72s ago)   74s</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check for the service that KServe created by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get svc -n ai-demo</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                      TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+ovms-resnet50-predictor   ClusterIP   None         &lt;none&gt;        80/TCP    119s</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Next steps</div>
+<ul>
+<li>
+<p>Create a <code>Route</code> object so that your applications can reach the MicroShift node.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-rhoai-model-package-oci_prepare-and-package-ai-models.html">Package your AI model into an OCI image</a> | ↑ Up: <a href="_integrate.html">Integrate</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-rhoai-supported-crds_serve-ai-models.html">Supported RHOAI custom resource definitions</a> →</p>
+<p>← Previous: <a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a> | ↑ Up: <a href="_integrate.html">Integrate</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a> →</p>
 </div>
 </div>
 <div id="footer">

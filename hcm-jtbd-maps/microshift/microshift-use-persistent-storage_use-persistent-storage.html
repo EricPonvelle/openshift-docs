@@ -437,38 +437,275 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-use-persistent-storage_use-persistent-storage" class="book toc2 toc-left">
+<body id="microshift-use-persistent-storage_use-persistent-storage" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
 <ul class="sectlevel2">
@@ -489,49 +726,1106 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#lifecycle-volume-claim_use-persistent-storage">Lifecycle of a volume and claim</a></li><li class="level-5"><a href="#provisioning_use-persistent-storage">Provision storage</a></li><li class="level-5"><a href="#binding_use-persistent-storage">Bind claims</a></li><li class="level-5"><a href="#using-pods_use-persistent-storage">Use pods and claimed PVs</a></li><li class="level-5"><a href="#releasing_use-persistent-storage">Release a persistent volume</a></li><li class="level-5"><a href="#reclaiming_use-persistent-storage">Reclaim policy for persistent volumes</a></li><li class="level-5"><a href="#reclaim-manual_use-persistent-storage">Reclaiming a persistent volume manually</a></li><li class="level-5"><a href="#reclaim-policy_use-persistent-storage">Changing the reclaim policy of a persistent volume</a></li><li class="level-4"><a href="#persistent-volumes_use-persistent-storage">Persistent volumes</a></li><li class="level-5"><a href="#pv-capacity_use-persistent-storage">Capacity</a></li><li class="level-5"><a href="#supported-access-modes_use-persistent-storage">Supported access modes</a></li><li class="level-5"><a href="#pv-phase_use-persistent-storage">Phase</a></li><li class="level-4"><a href="#microshift-pv-rwo-access-mode-permission_use-persistent-storage">Persistent volumes with RWO access mode permissions</a></li><li class="level-4"><a href="#microshift-control-permissions-security-context-constraints_use-persistent-storage">Control permissions with security context constraints</a></li><li class="level-4"><a href="#microshift-lvm-thin-volumes_use-persistent-storage">About LVM thin volumes</a></li><li class="level-4"><a href="#storage-persistent-storage-pvc_use-persistent-storage">Persistent volume claims</a></li><li class="level-5"><a href="#pvc-storage-class_use-persistent-storage">Storage classes</a></li><li class="level-5"><a href="#pvc-claims-as-volumes_use-persistent-storage">Claims as volumes</a></li><li class="level-5"><a href="#pvc-cli-command-usage_use-persistent-storage">Setting PVC viewing permissions</a></li><li class="level-5"><a href="#viewing-pvc-usage-statistics_use-persistent-storage">Viewing PVC usage statistics</a></li><li class="level-4"><a href="#storage-persistent-storage-fsgroup_use-persistent-storage">Reduce pod timeouts by using fsGroup</a></li><li class="level-4"><a href="#microshift-checking-pods-mismatch_use-persistent-storage">Checking the pods for mismatch</a></li><li class="level-5"><a href="#microshift-updating-pods-mismatch_use-persistent-storage">Updating the pods which have mismatch</a></li><li class="level-5"><a href="#microshift-verifying-pods-mismatch_use-persistent-storage">Verifying pods after resolving a mismatch</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-use-persistent-storage_use-persistent-storage">Use persistent storage</h3>
 <div class="paragraph _abstract">
 <p>Persistent storage on MicroShift lets applications retain data across pod restarts and node reboots. You can create and manage persistent volume claims (PVCs), control access modes, and use LVMS-backed thin volumes to provide durable storage to your workloads.</p>
 </div>
+<div class="sect3">
+<h4 id="lifecycle-volume-claim_use-persistent-storage">Lifecycle of a volume and claim</h4>
+<div class="paragraph _abstract">
+<p>The persistent volume (PV) lifecycle follows five phases: provision, bind, use, release, and reclaim. Each phase has behaviors that affect storage availability and data retention. Understanding the lifecycle helps you choose reclaim policies, troubleshoot binding failures, and prevent data loss.</p>
+</div>
+<div class="paragraph">
+<p>PVs are resources in the cluster. Persistent volume claims (PVCs) are requests for those resources and also act as claim checks to the resource.</p>
+</div>
+<div class="paragraph">
+<p>The interaction between PVs and PVCs has the following lifecycle.</p>
+</div>
+<div class="sect4">
+<h5 id="provisioning_use-persistent-storage">Provision storage</h5>
+<div class="paragraph">
+<p>In response to requests from a developer defined in a PVC, a cluster administrator configures one or more dynamic provisioners that provision storage and a matching PV.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="binding_use-persistent-storage">Bind claims</h5>
+<div class="paragraph">
+<p>When you create a PVC, you request a specific amount of storage, specify the required access mode, and create a storage class to describe and classify the storage. The control loop in the master watches for new PVCs and binds the new PVC to an appropriate PV. If an appropriate PV does not exist, a provisioner for the storage class creates one.</p>
+</div>
+<div class="paragraph">
+<p>The size of all PVs might exceed your PVC size. This is especially true with manually provisioned PVs. To minimize the excess,Red&#160;Hat build of MicroShift binds to the smallest PV that matches all other criteria.</p>
+</div>
+<div class="paragraph">
+<p>Claims remain unbound indefinitely if a matching volume does not exist or cannot be created with any available provisioner servicing a storage class. Claims are bound as matching volumes become available. For example, a cluster with many manually provisioned 50Gi volumes would not match a PVC requesting 100Gi. The PVC can be bound when a 100Gi PV is added to the cluster.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="using-pods_use-persistent-storage">Use pods and claimed PVs</h5>
+<div class="paragraph">
+<p>Pods use claims as volumes. The cluster inspects the claim to find the bound volume and mounts that volume for a pod. For those volumes that support multiple access modes, you must specify which mode applies when you use the claim as a volume in a pod.</p>
+</div>
+<div class="paragraph">
+<p>After you have a claim, and that claim is bound, the bound PV belongs to you for as long as you need it. You can schedule pods and access claimed PVs by including <code>persistentVolumeClaim</code> in the pod&#8217;s volumes block.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you attach persistent volumes that have high file counts to pods, those pods can fail or can take a long time to start. For
+more information, see the Red&#160;Hat Knowledgebase article "When using Persistent Volumes with high file counts in OpenShift, why do pods fail to start or take an excessive amount of time to achieve "Ready" state?".</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="releasing_use-persistent-storage">Release a persistent volume</h5>
+<div class="paragraph">
+<p>When you are finished with a volume, you can delete the PVC object from the API, which allows reclamation of the resource. The volume is
+considered released when the claim is deleted, but it is not yet available for another claim. The previous claimant&#8217;s data remains on the volume and must be handled according to policy.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="reclaiming_use-persistent-storage">Reclaim policy for persistent volumes</h5>
+<div class="paragraph">
+<p>The reclaim policy of a persistent volume tells the cluster what to do with the volume after it is released. A volume&#8217;s reclaim policy can be <code>Retain</code>, <code>Recycle</code>, or <code>Delete</code>.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="lifecycle-volume-claim_use-persistent-storage.html">Lifecycle of a volume and claim</a></p>
+<p><code>Retain</code> reclaim policy allows manual reclamation of the resource for
+those volume plugins that support it.</p>
 </li>
 <li>
-<p><a href="persistent-volumes_use-persistent-storage.html">Persistent volumes</a></p>
+<p><code>Recycle</code> reclaim policy recycles the volume back into the pool of
+unbound persistent volumes once it is released from its claim.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>Recycle</code> reclaim policy is deprecated in Red&#160;Hat build of MicroShift 4. Dynamic provisioning is recommended for equivalent and better functionality.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Delete</code> reclaim policy deletes  both the <code>PersistentVolume</code> object from Red&#160;Hat build of MicroShift and the associated storage asset in external infrastructure, such as Amazon Elastic Block Store (Amazon EBS) or VMware vSphere.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Dynamically provisioned volumes are always deleted.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="reclaim-manual_use-persistent-storage">Reclaiming a persistent volume manually</h5>
+<div class="paragraph _abstract">
+<p>Manually reclaim released persistent volumes (PVs) to make them available for new claims or to properly clean up storage assets.</p>
+</div>
+<div class="paragraph">
+<p>When a persistent volume claim (PVC) is deleted, the underlying logical volume is handled according to the <code>reclaimPolicy</code>.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Delete the persistent volume (PV) by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc delete pv &lt;pv_name&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The associated storage asset in the external infrastructure, such as an AWS EBS, GCE PD, Azure Disk, or Cinder volume, still exists after the PV is deleted.</p>
+</div>
 </li>
 <li>
-<p><a href="microshift-pv-rwo-access-mode-permission_use-persistent-storage.html">Persistent volumes with RWO access mode permissions</a></p>
+<p>Clean up the data on the associated storage asset.</p>
 </li>
 <li>
-<p><a href="microshift-control-permissions-security-context-constraints_use-persistent-storage.html">Control permissions with security context constraints</a></p>
+<p>Delete the associated storage asset. Alternately, to reuse the same storage asset, create a new PV with the storage asset definition.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Result</div>
+<p>The reclaimed PV is now available for use by another PVC.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="reclaim-policy_use-persistent-storage">Changing the reclaim policy of a persistent volume</h5>
+<div class="paragraph _abstract">
+<p>Change a persistent volume&#8217;s reclaim policy to control whether storage is automatically deleted or retained when claims are removed. Switching from Delete to Retain protects data from accidental loss, while changing to Delete enables automatic cleanup of unused volumes.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>List the persistent volumes in your cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pv</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                                       CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM             STORAGECLASS     REASON    AGE
+ pvc-b6efd8da-b7b5-11e6-9d58-0ed433a7dd94   4Gi        RWO           Delete          Bound     default/claim1    manual                     10s
+ pvc-b95650f8-b7b5-11e6-9d58-0ed433a7dd94   4Gi        RWO           Delete          Bound     default/claim2    manual                     6s
+ pvc-bb3ca71d-b7b5-11e6-9d58-0ed433a7dd94   4Gi        RWO           Delete          Bound     default/claim3    manual                     3s</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p><a href="microshift-lvm-thin-volumes_use-persistent-storage.html">About LVM thin volumes</a></p>
+<p>Choose one of your persistent volumes and change its reclaim policy:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc patch pv &lt;your-pv-name&gt; -p '{"spec":{"persistentVolumeReclaimPolicy":"Retain"}}'</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p><a href="storage-persistent-storage-pvc_use-persistent-storage.html">Persistent volume claims</a></p>
+<p>Verify that your chosen persistent volume has the right policy:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pv</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                                       CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM             STORAGECLASS     REASON    AGE
+ pvc-b6efd8da-b7b5-11e6-9d58-0ed433a7dd94   4Gi        RWO           Delete          Bound     default/claim1    manual                     10s
+ pvc-b95650f8-b7b5-11e6-9d58-0ed433a7dd94   4Gi        RWO           Delete          Bound     default/claim2    manual                     6s
+ pvc-bb3ca71d-b7b5-11e6-9d58-0ed433a7dd94   4Gi        RWO           Retain          Bound     default/claim3    manual                     3s</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the preceding output, the volume bound to claim <code>default/claim3</code> now has a <code>Retain</code> reclaim policy. The volume will not be automatically deleted when a user deletes claim <code>default/claim3</code>.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="persistent-volumes_use-persistent-storage">Persistent volumes</h4>
+<div class="paragraph _abstract">
+<p>Configure persistent volumes (PVs) with capacity, access modes, mount options, and reclaim policies to manage cluster-wide storage resources across their lifecycle phases.</p>
+</div>
+<div class="paragraph">
+<p>Each storage backend supports different access mode combinations, and volumes transition through phases (Available, Bound, Released, Failed) affecting claim availability.</p>
+</div>
+<div class="paragraph">
+<p>Each PV contains a <code>spec</code> and <code>status</code>, which is the specification and status of the volume, for example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>PersistentVolume</code> object definition</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv0001
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  ...
+status:
+  ...</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>metadata.name</code>: Specifies the name of the persistent volume.</p>
 </li>
 <li>
-<p><a href="storage-persistent-storage-fsgroup_use-persistent-storage.html">Reduce pod timeouts by using fsGroup</a></p>
+<p><code>spec.storage</code>: Specifies the amount of storage available to the volume.</p>
 </li>
 <li>
-<p><a href="microshift-checking-pods-mismatch_use-persistent-storage.html">Checking the pods for mismatch</a></p>
+<p><code>spec.accessModes</code>: Specifies the access mode, defining the read/write and mount permissions.</p>
+</li>
+<li>
+<p><code>spec.persistentVolumeReclaimPolicy</code>: Specifies the reclaim policy, indicating how the resource should be handled once it is released.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can view the name of a PVC that is bound to a PV by running the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pv &lt;pv_name&gt; -o jsonpath='{.spec.claimRef.name}'</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="pv-capacity_use-persistent-storage">Capacity</h5>
+<div class="paragraph">
+<p>Generally, a persistent volume (PV) has a specific storage capacity. This is set by using the <code>capacity</code> attribute of the PV.</p>
+</div>
+<div class="paragraph">
+<p>Currently, storage capacity is the only resource that can be set or requested. Future attributes may include IOPS, throughput, and so on.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="supported-access-modes_use-persistent-storage">Supported access modes</h5>
+<div class="paragraph">
+<p>LVMS is the only CSI plugin Red&#160;Hat build of MicroShift supports. The hostPath and LVs built in to OpenShift Container Platform also support RWO.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="pv-phase_use-persistent-storage">Phase</h5>
+<div class="paragraph">
+<p>Volumes can be found in one of the following phases:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 21. Volume phases</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Phase</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A free resource not yet bound to a claim.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bound</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The volume is bound to a claim.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Released</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The claim was deleted, but the resource is not yet reclaimed by the
+cluster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Failed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The volume has failed its automatic reclamation.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Last phase transition time</dt>
+<dd>
+<p>The <code>LastPhaseTransitionTime</code> field has a timestamp that updates every time a persistent volume (PV) transitions to a different phase (<code>pv.Status.Phase</code>). To find the time of the last phase transition for a PV, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pv &lt;pv_name&gt; -o json | jq '.status.lastPhaseTransitionTime'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For '.status.lastPhaseTransitionTime' specify the name of the PV that you want to see the last phase transition.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="pv-mount-options_use-persistent-storage" class="dlist">
+<dl>
+<dt class="hdlist1">Mount options</dt>
+<dd>
+<p>You can specify mount options while mounting a PV by using the attribute <code>mountOptions</code>.</p>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Mount options example</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  name: topolvm-provisioner
+mountOptions:
+  - uid=1500
+  - gid=1500
+parameters:
+  csi.storage.k8s.io/fstype: xfs
+provisioner: topolvm.io
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true</code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>mountOptions</code> parameter values are not validated. Incorrect values cause the mount to fail and an event to be logged to the PVC.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-pv-rwo-access-mode-permission_use-persistent-storage">Persistent volumes with RWO access mode permissions</h4>
+<div class="paragraph _abstract">
+<p>To enable concurrent access for pods on a single node, configure the <code>ReadWriteOnce</code> (RWO) access mode for your Persistent Volume Claims (PVCs). This setting allows multiple workloads on the same node to read from and write to the same Persistent Volume (PV) simultaneously.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes pods of the same node are not able to read or write into the same PV. This happens when the pods in the node do not have the same SELinux context.</p>
+</div>
+<div class="paragraph">
+<p>Persistent volumes can be mounted, while later claimed by PVCs, with the RWO access mode.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-control-permissions-security-context-constraints_use-persistent-storage">Control permissions with security context constraints</h4>
+<div class="paragraph _abstract">
+<p>You can use security context constraints (SCCs) to control permissions for the pods in your node. These permissions determine the actions that a pod can perform and what resources it can access. You can use SCCs to define a set of conditions that a pod must run with to be accepted into the system.</p>
+</div>
+<div class="paragraph">
+<p>For more information, see "Managing security context constraints".</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Only RWO volume mounts are supported. SCC could be blocked if pods are not operating with the SCC contexts.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-lvm-thin-volumes_use-persistent-storage">About LVM thin volumes</h4>
+<div class="paragraph _abstract">
+<p>To enable advanced storage capabilities, such as volume snapshots and volume cloning, complete specific configuration steps. Preparing your environment ensures that the necessary components are active and ready to support these features for your workloads.</p>
+</div>
+<div class="paragraph">
+<p>The following list describes the configuration steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Configure both the logical volume manager storage (LVMS) provider and the node.</p>
+</li>
+<li>
+<p>Provision a logical volume manager (LVM) thin-pool on the RHEL for Edge host.</p>
+</li>
+<li>
+<p>Attach LVM thin-pools to a volume group.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To create Container Storage Interface (CSI) snapshots, you must configure thin volumes on the RHEL for Edge host. The CSI does not support volume shrinking.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When using thin provisioning, you must monitor the storage pool and add more capacity as the available physical space runs out. You can configure the storage pool to auto expand when there is available space within the volume group (VG). See "Creating a thin logical volume".</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For LVMS to manage thin logical volumes (LVs), a thin-pool <code>device-class</code> array must be specified in the <code>etc/lvmd.yaml</code> configuration file. Multiple thin-pool device classes are permitted.</p>
+</div>
+<div class="paragraph">
+<p>If additional storage pools are configured with device classes, then additional storage classes must also exist to expose the storage pools to users and workloads. To enable dynamic provisioning on a thin-pool, a <code>StorageClass</code> resource must be present on the node. The <code>StorageClass</code> resource specifies the source <code>device-class</code> array in the <code>topolvm.io/device-class</code> parameter.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>lvmd.yaml</code> file that specifies a single device class for a thin-pool</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">socket-name:
+device-classes:
+  - name: thin
+    default: true
+    spare-gb: 0
+    thin-pool:
+      name: thin
+      overprovision-ratio: 1
+    type: thin
+    volume-group: ssd</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>socket-name</code></dt>
+<dd>
+<p>Specifies the UNIX domain socket endpoint of gRPC. Defaults to <code>/run/lvmd/lvmd.socket</code>. Takes a string value.</p>
+</dd>
+<dt class="hdlist1"><code>device-classes</code></dt>
+<dd>
+<p>Specifies a list of maps for the settings for each <code>device-class</code>.</p>
+</dd>
+<dt class="hdlist1"><code>device-classes.name</code></dt>
+<dd>
+<p>Specifies the unique name of the <code>device-class</code>. Takes a string value.</p>
+</dd>
+<dt class="hdlist1"><code>device-classes.spare-gb</code></dt>
+<dd>
+<p>Specifies storage capacity in GB to be left unallocated in the volume group. Defaults to <code>0</code>. Takes an unsigned 64-bit integer.</p>
+</dd>
+<dt class="hdlist1"><code>thin-pool.overprovision-ratio</code></dt>
+<dd>
+<p>Specifies a float factor by which you can provision additional storage based on the available storage in the thin pool. For example, if this field is set to <code>10</code>, you can provision up to 10 times the amount of available storage in the thin pool. To disable over-provisioning, set this field to <code>1</code>.</p>
+</dd>
+<dt class="hdlist1"><code>type</code></dt>
+<dd>
+<p>Specifies thin provisioning is required to create volume snapshots.</p>
+</dd>
+<dt class="hdlist1"><code>volume-group</code></dt>
+<dd>
+<p>Specifies the group where the <code>device-class</code> creates the logical volumes. Takes a string value.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When multiple PVCs are created simultaneously, a race condition prevents LVMS from accurately tracking the allocated space and preserving the storage capacity for a device class. Use separate volume groups and device classes to protect the storage of highly dynamic workloads from each other.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="storage-persistent-storage-pvc_use-persistent-storage">Persistent volume claims</h4>
+<div class="paragraph _abstract">
+<p>Persistent volume claims (PVCs) are namespace-scoped storage requests that specify capacity, access modes, and storage class requirements. Each claim contains a spec field defining the storage request parameters and a status field tracking the binding state and current conditions of the claim.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>PersistentVolumeClaim</code> object definition</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: myclaim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
+  storageClassName: gold
+status:
+# ...</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>apiVersion</code>: Specifies the name of the PVC.</p>
+</li>
+<li>
+<p><code>spec.accessModes</code>: Specifies the access mode, defining the read/write and mount permissions.</p>
+</li>
+<li>
+<p><code>requests.storage</code>: Specifies the amount of storage available to the PVC.</p>
+</li>
+<li>
+<p><code>storageClassName</code>: Specifies the name of the <code>StorageClass</code> required by the claim.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="pvc-storage-class_use-persistent-storage">Storage classes</h5>
+<div class="paragraph _abstract">
+<p>To request specific storage capabilities, define the <code>StorageClass</code> name in the <code>storageClassName</code> attribute of your <code>PersistentVolumeClaim</code> (PVC). This setting ensures the claim binds only to matching <code>PersistentVolumes</code> (PVs) or triggers dynamic provisioning if the cluster administrator has configured on-demand creation.</p>
+</div>
+<div class="paragraph">
+<p>The cluster administrator can also set a default storage class for all PVCs. When you configure a default storage class, the PVC must explicitly ask for <code>StorageClass</code> or <code>storageClassName</code> annotations set to <code>""</code> to be bound to a PV without a storage class.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If more than one storage class is marked as default, a PVC can only be created if the <code>storageClassName</code> is explicitly specified. Therefore, only set one storage class as the default.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="pvc-claims-as-volumes_use-persistent-storage">Claims as volumes</h5>
+<div class="paragraph _abstract">
+<p>To enable pods to access storage resources, configure Persistent Volume Claims (PVCs) as volumes. By mounting the claim to the host and into the pod, the cluster locates the backing <code>PersistentVolume</code> (PV) in the same namespace, ensuring the workload can read and write data effectively.</p>
+</div>
+<div class="paragraph">
+<p>Claims use the same conventions as volumes when requesting storage with specific access modes.</p>
+</div>
+<div class="paragraph">
+<p>Claims, such as pods, can request specific quantities of a resource. In this case, the request is for storage. The same resource model applies to volumes and claims.</p>
+</div>
+<div class="listingblock">
+<div class="title">Mount volume to the host and into the pod example</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: Pod
+apiVersion: v1
+metadata:
+  name: mypod
+spec:
+  containers:
+    - name: myfrontend
+      image: dockerfile/nginx
+      volumeMounts:
+      - mountPath: "/var/www/html"
+        name: mypd
+  volumes:
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: myclaim
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>volumeMounts.mountPath</code></dt>
+<dd>
+<p>Specifies the path to mount the volume inside the pod.</p>
+</dd>
+<dt class="hdlist1"><code>volumeMounts.name</code></dt>
+<dd>
+<p>Specifies the name of the volume to mount. Do not mount to the container root, <code>/</code>, or any path that is the same in the host and the container. This can corrupt your host system if the container is sufficiently privileged, such as the host <code>/dev/pts</code> files. Using <code>/host</code> is a safe option for mounting the host.</p>
+</dd>
+<dt class="hdlist1"><code>persistentVolumeClaim.claimName</code></dt>
+<dd>
+<p>Specifies the name of the PVC, that exists in the same namespace, to use.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="pvc-cli-command-usage_use-persistent-storage">Setting PVC viewing permissions</h5>
+<div class="paragraph _abstract">
+<p>To monitor storage resources, verify that you have the necessary privileges to view Persistent Volume Claim (PVC) usage statistics. Ensuring you have the correct permissions means that you can access usage data and track resource consumption effectively.</p>
+</div>
+<div class="paragraph">
+<p>To view PVC usage statistics, you must have the necessary privileges.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>If you have admin privileges, log on to MicroShift as an <code>admin</code>.</p>
+</li>
+<li>
+<p>If you do not have admin privileges, complete the following steps:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Create cluster roles for the user by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc create clusterrole routes-view --verb=get,list --resource=routes</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the <code>routes-view</code> cluster role for the user by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc admin policy add-cluster-role-to-user routes-view _&lt;user_name&gt;_</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Replace <code><em>&lt;user_name&gt;</em></code> with the user name.</p>
+</li>
+<li>
+<p>Add the <code>cluster-monitoring-view</code> cluster role for the user by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc admin policy add-cluster-role-to-user cluster-monitoring-view _&lt;user_name&gt;_</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Replace <code><em>&lt;user_name&gt;</em></code> with the user name.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect4">
+<h5 id="viewing-pvc-usage-statistics_use-persistent-storage">Viewing PVC usage statistics</h5>
+<div class="paragraph _abstract">
+<p>To monitor storage consumption, view the usage statistics for Persistent Volume Claims (PVCs). By accessing these metrics, you can track resource use and ensure that your workloads have sufficient capacity.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>PVC usage statistics command is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To view statistics across a cluster, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm top pvc -A</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example command output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAMESPACE     NAME         USAGE(%)
+namespace-1   data-etcd-1  3.82%
+namespace-1   data-etcd-0  3.81%
+namespace-1   data-etcd-2  3.81%
+namespace-2   mypvc-fs-gp3 0.00%
+default       mypvc-fs     98.36%</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To view PVC usage statistics for a specified namespace, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm top pvc -n <em>&lt;namespace_name&gt;</em></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Where <code><em>&lt;namespace_name&gt;</em></code> is the name of the specified namespace.</p>
+<div class="listingblock">
+<div class="title">Example command output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAMESPACE     NAME        USAGE(%)
+namespace-1   data-etcd-2 3.81%
+namespace-1   data-etcd-0 3.81%
+namespace-1   data-etcd-1 3.82%</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, the specified namespace is <code>namespace-1</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>To view usage statistics for a specified PVC and for a specified namespace, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm top pvc <em>&lt;pvc_name&gt;</em> -n <em>&lt;namespace_name&gt;</em></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Where <code><em>&lt;pvc_name&gt;</em></code> is the name of specified PVC.</p>
+</li>
+<li>
+<p>Where <code><em>&lt;namespace_name&gt;</em></code> is the name of the specified namespace.</p>
+<div class="listingblock">
+<div class="title">Example command output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAMESPACE   NAME        USAGE(%)
+namespace-1 data-etcd-0 3.81%</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, the specified namespace is <code>namespace-1</code> and the specified PVC is <code>data-etcd-0</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="storage-persistent-storage-fsgroup_use-persistent-storage">Reduce pod timeouts by using fsGroup</h4>
+<div class="paragraph _abstract">
+<p>To reduce pod timeouts when using a storage volume with many files, configure the <code>fsGroup</code> field. By specifying this field, you can manage how file ownership and permissions are applied, preventing delays caused by the default recursive permission changes on large volumes.</p>
+</div>
+<div class="paragraph">
+<p>This can occur because, by default, Red&#160;Hat build of MicroShift recursively changes ownership and permissions for the contents of each volume to match the <code>fsGroup</code> specified in the <code>securityContext</code> of the pod when that volume is mounted. For volumes with many files, checking and changing ownership and permissions can be time consuming, slowing pod startup. You can use the <code>fsGroupChangePolicy</code> field inside a <code>securityContext</code> to control the way that Red&#160;Hat build of MicroShift checks and manages ownership and permissions for a volume.</p>
+</div>
+<div class="paragraph">
+<p><code>fsGroupChangePolicy</code> defines behavior for changing ownership and permission of the volume before being exposed inside a pod. This field only applies to volume types that support <code>fsGroup</code>-controlled ownership and permissions. This field has two possible values:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>OnRootMismatch</code>: Only change permissions and ownership if permission and ownership of root directory does not match with expected permissions of the volume. This can help shorten the time it takes to change ownership and permission of a volume to reduce pod timeouts.</p>
+</li>
+<li>
+<p><code>Always</code>: (Default) Always change permission and ownership of the volume when a volume is mounted.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>fsGroupChangePolicy</code> field has no effect on ephemeral volume types, such as secret, configMap, and emptydir.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can set <code>fsGroupChangePolicy</code> at either the namespace or pod level.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-checking-pods-mismatch_use-persistent-storage">Checking the pods for mismatch</h4>
+<div class="paragraph _abstract">
+<p>To ensure workload consistency, check the pods running on MicroShift for mismatches. Identifying these discrepancies helps verify that your running workloads match the expected configuration.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>List the mount point within the first pod by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n <em>&lt;pod_name_a&gt;</em> -ojsonpath='{.spec.containers[<strong>].volumeMounts[</strong>].mountPath}'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code><em>&lt;pod_name_a&gt;</em></code> with the name of the first pod.</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">/files /var/run/secrets/kubernetes.io/serviceaccount</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>List the mount point within the second pod by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n <em>&lt;pod_name_b&gt;</em> -ojsonpath='{.spec.containers[<strong>].volumeMounts[</strong>].mountPath}'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code><em>&lt;pod_name_b&gt;</em></code> with the name of the second pod.</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">/files /var/run/secrets/kubernetes.io/serviceaccount</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Check the context and permissions inside the first pod by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc rsh <em>&lt;pod_name_a&gt;</em> ls -lZah <em>&lt;pvc_mountpoint&gt;</em></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code><em>&lt;pod_name_a&gt;</em></code> with the name of the first pod.</p>
+</li>
+<li>
+<p>Replace <code><em>&lt;pvc_mountpoint&gt;</em></code> with the mount point within the first pod.</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">total 12K
+dr-xr-xr-x.   1 root root system_u:object_r:container_file_t:s0:c398,c806   40 Feb 17 13:36 .
+dr-xr-xr-x.   1 root root system_u:object_r:container_file_t:s0:c398,c806   40 Feb 17 13:36 ..
+[...]</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Check the context and permissions inside the second pod by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc rsh <em>&lt;pod_name_b&gt;</em> ls -lZah <em>&lt;pvc_mountpoint&gt;</em></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code><em>&lt;pod_name_b&gt;</em></code> with the name of the second pod.</p>
+</li>
+<li>
+<p>Replace <code><em>&lt;pvc_mountpoint&gt;</em></code> with the mount point within the second pod.</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">total 12K
+dr-xr-xr-x.   1 root root system_u:object_r:container_file_t:s0:c15,c25   40 Feb 17 13:34 .
+dr-xr-xr-x.   1 root root system_u:object_r:container_file_t:s0:c15,c25   40 Feb 17 13:34 ..
+[...]</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Compare both the outputs to check if there is a mismatch of SELinux context.</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="microshift-updating-pods-mismatch_use-persistent-storage">Updating the pods which have mismatch</h5>
+<div class="paragraph _abstract">
+<p>To resolve configuration discrepancies, update the SELinux context of the pods that display a mismatch status. This process ensures that your running workloads align with the expected configuration, maintaining consistency across your cluster.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>When there is a mismatch of the SELinux content, create a new security context constraint (SCC) and assign it to both pods. To create a SCC, see "Creating security context constraints".</p>
+</li>
+<li>
+<p>Update the SELinux context as shown in the following example:</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"> [...]
+ securityContext:privileged
+      seLinuxOptions:MustRunAs
+        level: "s0:cXX,cYY"
+  [...]</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-verifying-pods-mismatch_use-persistent-storage">Verifying pods after resolving a mismatch</h5>
+<div class="paragraph _abstract">
+<p>To confirm that the mismatch is resolved, verify the security context constraint (SCC) and the SELinux label of the pods. Checking these settings ensures that your workloads are functioning with the correct security configurations.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Verify that the same SCC is assigned to the first pod by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc describe pod <em>&lt;pod_name_a&gt;</em> |grep -i scc</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code><em>&lt;pod_name_a&gt;</em></code> with the name of the first pod.</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">openshift.io/scc: restricted</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Verify that the same SCC is assigned to first second pod by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc describe pod <em>&lt;pod_name_b&gt;</em> |grep -i scc</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code><em>&lt;pod_name_b&gt;</em></code> with the name of the second pod.</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">openshift.io/scc: restricted</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Verify that the same SELinux label is applied to first pod by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc exec <em>&lt;pod_name_a&gt;</em> -- ls -laZ <em>&lt;pvc_mountpoint&gt;</em></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code><em>&lt;pod_name_a&gt;</em></code> with the name of the first pod.</p>
+</li>
+<li>
+<p>Replace <code><em>&lt;pvc_mountpoint&gt;</em></code> with the mount point within the first pod.</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">total 4
+drwxrwsrwx. 2 root       1000670000 system_u:object_r:container_file_t:s0:c10,c26 19 Aug 29 18:17 .
+dr-xr-xr-x. 1 root       root       system_u:object_r:container_file_t:s0:c10,c26 61 Aug 29 18:16 ..
+-rw-rw-rw-. 1 1000670000 1000670000 system_u:object_r:container_file_t:s0:c10,c26 29 Aug 29 18:17 test1
+[...]</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Verify that the same SELinux label is applied to second pod by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc exec <em>&lt;pod_name_b&gt;</em> -- ls -laZ <em>&lt;pvc_mountpoint&gt;</em></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code><em>&lt;pod_name_b&gt;</em></code> with the name of the second pod.</p>
+</li>
+<li>
+<p>Replace <code><em>&lt;pvc_mountpoint&gt;</em></code> with the mount point within the second pod.</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">total 4
+drwxrwsrwx. 2 root       1000670000 system_u:object_r:container_file_t:s0:c10,c26 19 Aug 29 18:17 .
+dr-xr-xr-x. 1 root       root       system_u:object_r:container_file_t:s0:c10,c26 61 Aug 29 18:16 ..
+-rw-rw-rw-. 1 1000670000 1000670000 system_u:object_r:container_file_t:s0:c10,c26 29 Aug 29 18:17 test1
+[...]</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="persistent-storage-overview_understand-lvms-storage.html">Persistent storage overview</a> | ↑ Up: <a href="_storage.html">Storage</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="lifecycle-volume-claim_use-persistent-storage.html">Lifecycle of a volume and claim</a> →</p>
+<p>← Previous: <a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a> | ↑ Up: <a href="_storage.html">Storage</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a> →</p>
 </div>
 </div>
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
+<a href="microshift-use-oc-cli_use-oc-cli.html#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
 </div>
 </div>
 <div id="footer">

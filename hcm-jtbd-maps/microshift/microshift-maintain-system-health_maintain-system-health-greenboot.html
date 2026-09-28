@@ -437,26 +437,169 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-maintain-system-health_maintain-system-health-greenboot" class="book toc2 toc-left">
+<body id="microshift-maintain-system-health_maintain-system-health-greenboot" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
 <ul class="sectlevel2">
@@ -481,81 +624,1148 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-greenboot-dir-structure_maintain-system-health-greenboot">How greenboot uses directories to run scripts</a></li><li class="level-4"><a href="#microshift-greenboot-directories-details_maintain-system-health-greenboot">Greenboot directories details</a></li><li class="level-4"><a href="#microshift-greenboot-included-health-checks_maintain-system-health-greenboot">Included greenboot health checks</a></li><li class="level-4"><a href="#microshift-health-script_maintain-system-health-greenboot">The MicroShift health check script</a></li><li class="level-5"><a href="#validation-wait-period_maintain-system-health-greenboot">Validation wait period</a></li><li class="level-4"><a href="#microshift-greenboot-systemd-journal-data_maintain-system-health-greenboot">Enable systemd journal service data persistency</a></li><li class="level-4"><a href="#microshift-greenboot-updates-workloads_maintain-system-health-greenboot">Updates and third-party workloads</a></li><li class="level-4"><a href="#microshift-greenboot-workloads-validation_maintain-system-health-greenboot">Check the results of an update</a></li><li class="level-4"><a href="#microshift-greenboot-access-health-check_maintain-system-health-greenboot">Accessing health check output in the system log</a></li><li class="level-4"><a href="#microshift-greenboot-access-prerollback-check_maintain-system-health-greenboot">Accessing prerollback health check output in the system log</a></li><li class="level-4"><a href="#greenboot-check-updates_maintain-system-health-greenboot">Check updates with a health check script</a></li><li class="level-4"><a href="#microshift-greenboot-how-workload-health-checks-work_maintain-system-health-greenboot">How workload health checks work</a></li><li class="level-4"><a href="#microshift-greenboot-microshift-health-check-command_maintain-system-health-greenboot">How to use the MicroShift health check command</a></li><li class="level-4"><a href="#microshift-greenboot-app-health-check-script_maintain-system-health-greenboot">How to create a health check script for your application</a></li><li class="level-4"><a href="#microshift-greenboot-workload-health-check-script-ex_maintain-system-health-greenboot">Workload max duration or timeout script example</a></li><li class="level-5"><a href="#microshift-greenboot-app-health-check-basic-prereqs_maintain-system-health-greenboot">Basic prerequisites for creating a health check script</a></li><li class="level-5"><a href="#microshift-greenboot-app-health-check-ex_maintain-system-health-greenboot">Example and functional requirements</a></li><li class="level-4"><a href="#microshift-greenboot-test-workload-health-check-script_maintain-system-health-greenboot">Test a workload health check script</a></li><li class="level-4"><a href="#microshift-greenboot-check-status_maintain-system-health-greenboot">Check the status of greenboot health checks</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-maintain-system-health_maintain-system-health-greenboot">Maintain system health with the greenboot health check framework</h3>
 <div class="paragraph _abstract">
 <p>Use the greenboot health check framework to verify that your MicroShift system is healthy at boot time. If problems are detected, greenboot automatically rolls back to a previous working version so that you do not have to fix the system in person at remote edge locations.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-greenboot-dir-structure_maintain-system-health-greenboot">How greenboot uses directories to run scripts</h4>
+<div class="paragraph _abstract">
+<p>Greenboot uses directory-based framework to execute health check scripts during the system boot process. By organizing your custom scripts into specific directories, you can define the boot validation workflow and determine whether the system successfully applies an update or initiates an automated rollback.</p>
+</div>
+<div class="paragraph">
+<p>Health check scripts run from four <code>/etc/greenboot</code> directories. These scripts run in alphabetical order. Keep this in mind when you configure the scripts for your workloads.</p>
+</div>
+<div class="paragraph">
+<p>When the system starts, greenboot runs the scripts in the <code>required.d</code> and <code>wanted.d</code> directories. Depending on the outcome of those scripts, greenboot continues the startup or attempts a rollback as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>System as expected: When all of the scripts in the <code>required.d</code> directory are successfully run, greenboot runs any scripts present in the <code>/etc/greenboot/green.d</code> directory.</p>
+</li>
+<li>
+<p>System trouble: If any of the scripts in the <code>required.d</code> directory fail, greenboot runs any prerollback scripts present in the <code>red.d</code> directory, then restarts the system.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Greenboot redirects script and health check output to the system log. When you are logged in, a daily message provides the overall system health output.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-greenboot-directories-details_maintain-system-health-greenboot">Greenboot directories details</h4>
+<div class="paragraph _abstract">
+<p>You can control how greenboot handles errors by placing your health check scripts in specific directories. The directories determine which scripts are strictly required for a successful boot and which ones can fail without causing a rollback.</p>
+</div>
+<div class="paragraph">
+<p>Returning a nonzero exit code from any script means that script has failed. Greenboot restarts the system a few times to retry the scripts before attempting to roll back to the previous version.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-greenboot-dir-structure_maintain-system-health-greenboot.html">How greenboot uses directories to run scripts</a></p>
+<p><code>/etc/greenboot/check/required.d</code> contains the health checks that must not fail.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If the scripts fail, greenboot retries them three times by default. You can configure the number of retries in the <code>/etc/greenboot/greenboot.conf</code> file by setting the <code>GREENBOOT_MAX_BOOTS</code> parameter to the desired number of retries.</p>
 </li>
 <li>
-<p><a href="microshift-greenboot-directories-details_maintain-system-health-greenboot.html">Greenboot directories details</a></p>
+<p>After all retries fail, greenboot automatically initiates a rollback if one is available. If a rollback is not available, the system log output shows that manual intervention is required.</p>
 </li>
 <li>
-<p><a href="microshift-greenboot-included-health-checks_maintain-system-health-greenboot.html">Included greenboot health checks</a></p>
+<p>The <code>40_microshift_running_check.sh</code> health check script for MicroShift is installed into this directory.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><a href="microshift-health-script_maintain-system-health-greenboot.html">The MicroShift health check script</a></p>
+<p><code>/etc/greenboot/check/wanted.d</code> contains health scripts that are allowed to fail without causing the system to be rolled back.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If any of these scripts fail, greenboot logs the failure but does not initiate a rollback.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><a href="microshift-greenboot-systemd-journal-data_maintain-system-health-greenboot.html">Enable systemd journal service data persistency</a></p>
+<p><code>/etc/greenboot/green.d</code> contains scripts that run after greenboot has declared the start successful.</p>
 </li>
 <li>
-<p><a href="microshift-greenboot-updates-workloads_maintain-system-health-greenboot.html">Updates and third-party workloads</a></p>
+<p><code>/etc/greenboot/red.d</code> contains scripts that run after greenboot has declared the startup as failed, including the <code>40_microshift_pre_rollback.sh</code> prerollback script. This script is executed right before a system rollback. The script performs MicroShift pod and OVN-Kubernetes cleanup to avoid potential conflicts after the system is rolled back to a previous version.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you customize the values of any environment variable in the <code>/etc/greenboot/greenboot.conf</code> file, these changes can be lost when the greenboot RPM package is updated or downgraded.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To retain customizations when building system images with MicroShift, add the <code>greenboot.conf</code> file to a blueprint.</p>
 </li>
 <li>
-<p><a href="microshift-greenboot-workloads-validation_maintain-system-health-greenboot.html">Check the results of an update</a></p>
+<p>To retain customizations when using an RPM installation, apply changes to the <code>greenboot.conf</code> file after you install MicroShift and greenboot RPMs.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-greenboot-included-health-checks_maintain-system-health-greenboot">Included greenboot health checks</h4>
+<div class="paragraph _abstract">
+<p>By default, Red&#160;Hat Enterprise Linux for Edge (RHEL for Edge) includes a set of built-in greenboot health checks designed to verify functions, such as network connectivity to update repositories and hardware watchdog status. Health check scripts are available in <code>/usr/lib/greenboot/check</code>, a read-only directory in Red&#160;Hat Enterprise Linux for Edge (RHEL for Edge) image mode for RHEL systems.</p>
+</div>
+<div class="paragraph">
+<p>The following health checks are included with the <code>greenboot-default-health-checks</code> framework.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Check if repository URLs are still DNS solvable:</p>
+<div class="paragraph">
+<p>This script is under <code>/usr/lib/greenboot/check/required.d/01_repository_dns_check.sh</code> and ensures that DNS queries to repository URLs are still available.</p>
+</div>
 </li>
 <li>
-<p><a href="microshift-greenboot-access-health-check_maintain-system-health-greenboot.html">Accessing health check output in the system log</a></p>
+<p>Check if update platforms are still reachable:</p>
+<div class="paragraph">
+<p>This script is under <code>/usr/lib/greenboot/check/wanted.d/01_update_platform_check.sh</code> and tries to connect and get a 2XX or 3XX HTTP code from the update platforms defined in <code>/etc/ostree/remotes.d</code>.</p>
+</div>
 </li>
 <li>
-<p><a href="microshift-greenboot-access-prerollback-check_maintain-system-health-greenboot.html">Accessing prerollback health check output in the system log</a></p>
+<p>Check if the current boot has been triggered by the hardware watchdog:</p>
+<div class="paragraph">
+<p>This script is under <code>/usr/lib/greenboot/check/required.d/02_watchdog.sh</code> and checks whether the current boot has been watchdog-triggered or not.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the watchdog-triggered reboot occurs within the grace period, the current boot is marked as red. Greenboot does not trigger a rollback to the previous deployment.</p>
 </li>
 <li>
-<p><a href="greenboot-check-updates_maintain-system-health-greenboot.html">Check updates with a health check script</a></p>
+<p>If the watchdog-triggered reboot occurs after the grace period, the current boot is not marked as red. Greenboot does not trigger a rollback to the previous deployment.</p>
 </li>
 <li>
-<p><a href="microshift-greenboot-how-workload-health-checks-work_maintain-system-health-greenboot.html">How workload health checks work</a></p>
+<p>A 24-hour grace period is enabled by default. This grace period can be either disabled by modifying <code>GREENBOOT_WATCHDOG_CHECK_ENABLED</code> in <code>/etc/greenboot/greenboot.conf to false</code>, or configured by changing the <code>GREENBOOT_WATCHDOG_GRACE_PERIOD=number_of_hours</code> variable value in <code>/etc/greenboot/greenboot.conf</code>.</p>
 </li>
-<li>
-<p><a href="microshift-greenboot-microshift-health-check-command_maintain-system-health-greenboot.html">How to use the MicroShift health check command</a></p>
-</li>
-<li>
-<p><a href="microshift-greenboot-app-health-check-script_maintain-system-health-greenboot.html">How to create a health check script for your application</a></p>
-</li>
-<li>
-<p><a href="microshift-greenboot-workload-health-check-script-ex_maintain-system-health-greenboot.html">Workload max duration or timeout script example</a></p>
-</li>
-<li>
-<p><a href="microshift-greenboot-test-workload-health-check-script_maintain-system-health-greenboot.html">Test a workload health check script</a></p>
-</li>
-<li>
-<p><a href="microshift-greenboot-check-status_maintain-system-health-greenboot.html">Check the status of greenboot health checks</a></p>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-health-script_maintain-system-health-greenboot">The MicroShift health check script</h4>
+<div class="paragraph _abstract">
+<p>The <code>40_microshift_running_check.sh</code> health check script only performs validation of core MicroShift services. Install your customized workload health check scripts in the greenboot directories to ensure successful application operations after system updates. Scripts run in alphabetical order.</p>
+</div>
+<div class="paragraph">
+<p>MicroShift health checks are listed in the following table:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 9. Validation statuses and outcome for MicroShift</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Validation</th>
+<th class="tableblock halign-left valign-top">Pass</th>
+<th class="tableblock halign-left valign-top">Fail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check that the script runs with <code>root</code> permissions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Next</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exit 0</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check that the <code>microshift.service</code> is enabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Next</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exit 0</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wait for the <code>microshift.service</code> to be active (!failed)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Next</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exit 1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For each core namespace, wait for readiness of the workload</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Next</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exit 1</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect4">
+<h5 id="validation-wait-period_maintain-system-health-greenboot">Validation wait period</h5>
+<div class="paragraph">
+<p>The wait period in each validation is 10 minutes by default. After the wait period, if the validation has not succeeded, it is declared a failure. This wait period is incrementally increased by the base wait period after each boot in the verification loop.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can override the base-time wait period by setting the <code>MICROSHIFT_WAIT_TIMEOUT_SEC</code> environment variable in the <code>/etc/greenboot/greenboot.conf</code> configuration file. For example, you can change the wait time to 5 minutes by resetting the value to 300 seconds, such as <code>MICROSHIFT_WAIT_TIMEOUT_SEC=300</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-greenboot-systemd-journal-data_maintain-system-health-greenboot">Enable systemd journal service data persistency</h4>
+<div class="paragraph _abstract">
+<p>The default configuration of the <code>systemd</code> journal service stores the data in the volatile <code>/run/log/journal</code> directory. To view system logs across system starts and restarts, you must enable log persistence and set limits on the maximal journal data size.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Make the directory by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo mkdir -p /etc/systemd/journald.conf.d</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the configuration file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">cat &lt;&lt;EOF | sudo tee /etc/systemd/journald.conf.d/microshift.conf &amp;&gt;/dev/null
+[Journal]
+Storage=persistent
+SystemMaxUse=1G
+RuntimeMaxUse=1G
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Edit the configuration file values for your size requirements.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-greenboot-updates-workloads_maintain-system-health-greenboot">Updates and third-party workloads</h4>
+<div class="paragraph _abstract">
+<p>After the update, you can examine the output of greenboot health checks and determine whether the update was declared valid. This health check can help you determine if the system is working properly.</p>
+</div>
+<div class="paragraph">
+<p>Health check scripts for updates are installed into the <code>/etc/greenboot/check/required.d</code> directory and are automatically executed during each system start. Exiting scripts with a nonzero status means the system start is declared as failed.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Wait until after an update is declared valid before starting third-party workloads. If a rollback is performed after workloads start, you can lose data. Some third-party workloads create or update data on a device before an update is complete. Upon rollback, the file system reverts to its state before the update.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-greenboot-workloads-validation_maintain-system-health-greenboot">Check the results of an update</h4>
+<div class="paragraph _abstract">
+<p>You can view the overall status of system health checks after an update in the system log. After a successful start, greenboot sets the variable <code>boot_success=</code> to <code>1</code> in GRUB.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To access the overall status of system health checks, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo grub2-editenv - list | grep ^boot_success</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output for a successful system start</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">boot_success=1</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If your command returns <code>boot_success=0</code>, either the greenboot health check is still running, or the update is a failure.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-greenboot-access-health-check_maintain-system-health-greenboot">Accessing health check output in the system log</h4>
+<div class="paragraph _abstract">
+<p>If the system update fails or the boot process stops, you can query the system logs for detailed troubleshooting information. These logs provide the detailed steps necessary to troubleshoot failed boot checks.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To access the results of a health check, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo journalctl -o cat -u greenboot-healthcheck.service</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output of a failed health check</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">...
+...
+Running Required Health Check Scripts...
+STARTED
+GRUB boot variables:
+boot_success=0
+boot_indeterminate=0
+boot_counter=2
+...
+...
+Waiting 600s for MicroShift service to be active and not failed
+FAILURE
+...
+...</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-greenboot-access-prerollback-check_maintain-system-health-greenboot">Accessing prerollback health check output in the system log</h4>
+<div class="paragraph _abstract">
+<p>When a system update fails and greenboot triggers a rollback, it executes prerollback scripts to clean up services and prevent data conflicts. Using the output of the health check scripts, you can verify that the cleanup tasks are completed successfully before the system reboots into the previous deployment.</p>
+</div>
+<div class="paragraph">
+<p>For example, check the results of a pre-rollback script using the following procedure.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To access the results of a prerollback script, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo journalctl -o cat -u redboot-task-runner.service</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output of a prerollback script</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">...
+...
+Running Red Scripts...
+STARTED
+GRUB boot variables:
+boot_success=0
+boot_indeterminate=0
+boot_counter=0
+The ostree status:
+* rhel c0baa75d9b585f3dd989a9cf05f647eb7ca27ee0dbd4b94fe8c93ed3a4b9e4a5.0
+    Version: 9.8
+    origin: &lt;unknown origin type&gt;
+  rhel 6869c1347b0e0ba1bbf0be750cdf32da5138a1fcbc5a4c6325ab9eb647b64663.0 (rollback)
+    Version: 9.8
+    origin refspec: edge:rhel/9/x86_64/edge
+System rollback imminent - preparing MicroShift for a clean start
+Stopping MicroShift services
+Removing MicroShift pods
+Killing conmon, pause and OVN processes
+Removing OVN configuration
+Finished greenboot Failure Scripts Runner.
+Cleanup succeeded
+Script '40_microshift_pre_rollback.sh' SUCCESS
+FINISHED
+redboot-task-runner.service: Deactivated successfully.</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In case of a rollback, the pre-rollback script runs the <code>sudo microshift-cleanup-data --ovn</code> command to prepare the system for a potential software downgrade.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="greenboot-check-updates_maintain-system-health-greenboot">Check updates with a health check script</h4>
+<div class="paragraph _abstract">
+<p>To verify the success or failure of a recent system update, you can review the output of greenboot health check scripts in the system log after an update.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To access the result of update checks, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo grub2-editenv - list | grep ^boot_success</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output for a successful update</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">boot_success=1</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If your command returns <code>boot_success=0</code>, either the greenboot health check is still running, or the update is a failure.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-greenboot-how-workload-health-checks-work_maintain-system-health-greenboot">How workload health checks work</h4>
+<div class="paragraph _abstract">
+<p>You can use greenboot health checks to assess the health of your workloads and applications. You can also write your own health check scripts for your applications. Greenboot health checks are helpful on edge devices where direct serviceability is either limited or non-existent.</p>
+</div>
+<div class="paragraph">
+<p>These additional health checks are useful for software problem detection and automatic system rollbacks.</p>
+</div>
+<div class="paragraph">
+<p>Workload or application health checks can use the MicroShift basic health check functions already implemented for the MicroShift core services. Creating your own comprehensive scripts for your applications is recommended. For example, you can write one that verifies that a service has started.</p>
+</div>
+<div class="paragraph">
+<p>You can also use the <code>microshift healthcheck</code> command, which can run checks that the basic functions of the workload are operating as expected.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The following functions related to checking workload health in <code>/usr/share/microshift/functions/greenboot.sh</code> are deprecated and planned for removal in a future release:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>wait_for</code></p>
+</li>
+<li>
+<p><code>namespace_images_downloaded</code></p>
+</li>
+<li>
+<p><code>namespace_deployment_ready</code></p>
+</li>
+<li>
+<p><code>namespace_daemonset_ready</code></p>
+</li>
+<li>
+<p><code>namespace_pods_ready</code></p>
+</li>
+<li>
+<p><code>namespace_pods_not_restarting</code></p>
+</li>
+<li>
+<p><code>print_failure_logs</code></p>
+</li>
+<li>
+<p><code>log_failure_cmd</code></p>
+</li>
+<li>
+<p><code>log_script_exit</code></p>
+</li>
+<li>
+<p><code>lvmsDriverShouldExist</code></p>
+</li>
+<li>
+<p><code>csiComponentShouldBeDeploy</code></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-greenboot-microshift-health-check-command_maintain-system-health-greenboot">How to use the MicroShift health check command</h4>
+<div class="paragraph _abstract">
+<p>The <code>microshift healthcheck</code> command checks whether a workload of the provided type exists and verifies its
+status for the specified timeout duration. The number of ready replicas, that is, pods, must match the expected amount.</p>
+</div>
+<div class="paragraph">
+<p>To run the <code>microshift healthcheck</code> command successfully, use the following prerequisites:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Execute commands from a root user account.</p>
+</li>
+<li>
+<p>Enable the MicroShift service.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can add the following actions to the <code>microshift healthcheck</code> command:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>-v=2</code> to increase verbosity of the output</p>
+</li>
+<li>
+<p><code>--timeout="${WAIT_TIMEOUT_SECS}s"</code> to override default 600s timeout value</p>
+</li>
+<li>
+<p><code>--namespace `<em>&lt;namespace&gt;</em></code> to specify the namespace of the workloads</p>
+</li>
+<li>
+<p><code>--deployments `<em>&lt;application-deployment&gt;</em></code> to check the readiness of a specific deployment</p>
+<div class="listingblock">
+<div class="title">Example command</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo microshift healthcheck -v=2 --timeout="300s" --namespace busybox --deployments busybox-deployment</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">??? I0410 08:54:03.766578    5898 service.go:29] microshift.service is enabled
+??? I0410 08:54:03.766699    5898 service.go:31] Waiting 5m0s for microshift.service to be ready
+??? I0410 08:54:03.768794    5898 service.go:38] microshift.service is ready
+??? I0410 08:54:03.770585    5898 utils.go:34] Waiting for 1 goroutines
+??? I0410 08:54:03.770955    5898 workloads.go:94] Waiting 5m0s for deployment/busybox-deployment in busybox
+??? I0410 08:54:03.777830    5898 workloads.go:132] Deployment/busybox-deployment in busybox is ready
+??? I0410 08:54:03.777858    5898 healthcheck.go:75] Workloads are ready</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>microshift healthcheck</code> command also accepts the following additional parameters to specify other kinds
+of workloads:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>--daemonsets</code></p>
+</li>
+<li>
+<p><code>--statefulsets</code></p>
+</li>
+<li>
+<p>These options take a comma-delimited list of resources, for example, <code>--daemonsets ovnkube-master,ovnkube-node</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternatively, a <code>--custom</code> option can be used with a <code>JSON</code> string, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo microshift healthcheck --custom '{"openshift-storage":{"deployments":
+    ["lvms-operator"], "daemonsets": ["vg-manager"]}, "openshift-ovn-kubernetes":
+    {"daemonsets": ["ovnkube-master", "ovnkube-node"]}}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">??? I0410 08:54:25.291059    5979 service.go:29] microshift.service is enabled
+??? I0410 08:54:25.291167    5979 service.go:31] Waiting 5m0s for microshift.service to be ready
+??? I0410 08:54:25.293188    5979 service.go:38] microshift.service is ready
+??? I0410 08:54:25.294331    5979 workloads.go:58] Waiting 5m0s for daemonset/ovnkube-node in openshift-ovn-kubernetes
+??? I0410 08:54:25.294351    5979 workloads.go:58] Waiting 5m0s for daemonset/ovnkube-master in openshift-ovn-kubernetes
+??? I0410 08:54:25.294331    5979 workloads.go:58] Waiting 5m0s for daemonset/vg-manager in openshift-storage
+??? I0410 08:54:25.294341    5979 workloads.go:94] Waiting 5m0s for deployment/lvms-operator in openshift-storage
+??? I0410 08:54:25.309739    5979 workloads.go:89] Daemonset/ovnkube-node in openshift-ovn-kubernetes is ready
+??? I0410 08:54:25.310213    5979 workloads.go:89] Daemonset/vg-manager in openshift-storage is ready
+??? I0410 08:54:25.310731    5979 workloads.go:132] Deployment/lvms-operator in openshift-storage is ready
+??? I0410 08:54:25.311017    5979 workloads.go:89] Daemonset/ovnkube-master in openshift-ovn-kubernetes is ready
+??? I0410 08:54:25.311189    5979 healthcheck.go:52] Workloads are ready</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-greenboot-app-health-check-script_maintain-system-health-greenboot">How to create a health check script for your application</h4>
+<div class="paragraph _abstract">
+<p>You can create workload or application health check scripts in the text editor of your choice. Save the scripts in the <code>/etc/greenboot/check/required.d</code> directory.</p>
+</div>
+<div class="paragraph">
+<p>When a script in the <code>/etc/greenboot/check/required.d</code> directory exits with an error, greenboot triggers a reboot in an attempt to heal the system.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Any script in the <code>/etc/greenboot/check/required.d</code> directory triggers a reboot if it exits with an error.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If your health check logic requires any post-check steps, you can also create additional scripts and save them in the relevant greenboot directories. For example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can also place shell scripts you want to run after a boot has been declared successful in <code>/etc/greenboot/green.d</code>.</p>
+</li>
+<li>
+<p>You can place shell scripts you want to run after a boot has been declared failed in <code>/etc/greenboot/red.d</code>. For example, if you have steps to heal the system before restarting, you can create scripts for your use case and place them in the <code>/etc/greenboot/red.d</code> directory.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-greenboot-workload-health-check-script-ex_maintain-system-health-greenboot">Workload max duration or timeout script example</h4>
+<div class="paragraph _abstract">
+<p>You can use the MicroShift core services health check script as a template to write your own health check scripts for your applications.</p>
+</div>
+<div class="sect4">
+<h5 id="microshift-greenboot-app-health-check-basic-prereqs_maintain-system-health-greenboot">Basic prerequisites for creating a health check script</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>The workload must be installed.</p>
+</li>
+<li>
+<p>You must have root access.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-greenboot-app-health-check-ex_maintain-system-health-greenboot">Example and functional requirements</h5>
+<div class="paragraph">
+<p>You can start with the following example health check script. Add to it for your use case. In your custom workload health check script, you must define the relevant namespace, deployment, <code>daemonset</code>, and <code>statefulset</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Choose a name prefix for your application that ensures it runs after the <code>40_microshift_running_check.sh</code> script, which implements the MicroShift health check procedure for its core services.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example greenboot health check script</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">#!/bin/bash
+set -e
+
+SCRIPT_NAME=$(basename $0)
+
+# Load the workload health check functions library
+source /usr/share/microshift/functions/greenboot.sh
+
+# Stop the script if the user running it is not 'root'
+if [ $(id -u) -ne 0 ] ; then
+    echo "The '${SCRIPT_NAME}' script must be run with the 'root' user privileges"
+    exit 1
+fi
+
+echo "STARTED"
+
+# Set the wait timeout for the current check based on the boot counter
+WAIT_TIMEOUT_SECS=$(get_wait_timeout)
+
+/usr/bin/microshift healthcheck -v=2 --timeout="${WAIT_TIMEOUT_SECS}s" --namespace busybox --deployments busybox-deployment</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Functions related to checking workload health previously included in the <code>/usr/share/microshift/functions/greenboot.sh</code> script file are deprecated. You can write a custom script, or use the <code>microshift healthcheck</code> command with various options instead. See "How workload health check scripts work" for more information.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-greenboot-test-workload-health-check-script_maintain-system-health-greenboot">Test a workload health check script</h4>
+<div class="paragraph _abstract">
+<p>You can look at the output of the greenboot workload health check script to see how it works. While the output varies with the host system type, the example outputs for Red&#160;Hat Enterprise Linux (RHEL) system types are included for reference only.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have root access.</p>
+</li>
+<li>
+<p>You installed a workload.</p>
+</li>
+<li>
+<p>You created a health check script for the workload.</p>
+</li>
+<li>
+<p>The MicroShift service is enabled.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>To test that greenboot is running a health check script file, reboot the host by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo reboot</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Examine the output of greenboot health checks by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo journalctl -o cat -u greenboot-healthcheck.service</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>MicroShift core service health checks run before the workload health checks.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example output for an image mode for RHEL system</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Starting greenboot Health Checks Runner...
+Running Required Health Check Scripts...
+Script '00_required_scripts_start.sh' SUCCESS
+Running Wanted Health Check Scripts...
+Script '00_wanted_scripts_start.sh' SUCCESS
+Running Required Health Check Scripts...
+--------------------
+DEPRECATION NOTICE:
+/usr/share/microshift/functions/greenboot.sh is now deprecated and will be removed in future release.
+As a replacement consider using 'microshift healthcheck' command
+--------------------
+STARTED
+GRUB boot variables:
+boot_success=0
+Greenboot variables:
+GREENBOOT_WATCHDOG_CHECK_ENABLED=true
+MICROSHIFT_GREENBOOT_FAIL_MARKER=/run/microshift-greenboot-healthcheck-failed
+System installation type:
+bootc
+System installation status:
+bootcHost
+??? I0403 11:54:30.526488     979 service.go:29] microshift.service is enabled
+??? I0403 11:54:30.527145     979 service.go:31] Waiting 10m0s for microshift.service to be ready
+??? I0403 11:58:52.530299     979 service.go:38] microshift.service is ready
+??? I0403 11:58:52.532292     979 net.go:79] host gateway IP address: 192.168.112.125
+??? I0403 11:58:52.555077     979 microshift_core_workloads.go:71] vgs reported: {"report":[{"vg":[{"vg_name":"rhel"}]}],"log":[]}
+??? I0403 11:58:52.555138     979 microshift_core_workloads.go:93] Detected 1 volume group (rhel) - LVMS is expected
+??? I0403 11:58:52.555143     979 microshift_core_workloads.go:126] Configured optional CSI components: []
+??? I0403 11:58:52.555147     979 microshift_core_workloads.go:117] At least one CSI Component is enabled
+??? I0403 11:58:52.555770     979 utils.go:34] Waiting for 9 goroutines
+??? I0403 11:58:52.555791     979 workloads.go:94] Waiting 10m0s for deployment/service-ca in openshift-service-ca
+??? I0403 11:58:52.555890     979 workloads.go:58] Waiting 10m0s for daemonset/ovnkube-master in openshift-ovn-kubernetes
+??? I0403 11:58:52.555999     979 workloads.go:94] Waiting 10m0s for deployment/router-default in openshift-ingress
+??? I0403 11:58:52.556096     979 workloads.go:58] Waiting 10m0s for daemonset/dns-default in openshift-dns
+??? I0403 11:58:52.556244     979 workloads.go:58] Waiting 10m0s for daemonset/ovnkube-node in openshift-ovn-kubernetes
+??? I0403 11:58:52.556330     979 workloads.go:94] Waiting 10m0s for deployment/lvms-operator in openshift-storage
+??? I0403 11:58:52.556382     979 workloads.go:58] Waiting 10m0s for daemonset/vg-manager in openshift-storage
+??? I0403 11:58:52.556425     979 workloads.go:94] Waiting 10m0s for deployment/csi-snapshot-controller in kube-system
+??? I0403 11:58:52.556474     979 workloads.go:58] Waiting 10m0s for daemonset/node-resolver in openshift-dns
+??? I0403 11:58:52.574284     979 workloads.go:89] Daemonset/ovnkube-node in openshift-ovn-kubernetes is ready
+??? I0403 11:58:52.574344     979 workloads.go:89] Daemonset/dns-default in openshift-dns is ready
+??? I0403 11:59:12.871058     979 workloads.go:89] Daemonset/node-resolver in openshift-dns is ready
+??? I0403 11:59:12.871621     979 workloads.go:89] Daemonset/ovnkube-master in openshift-ovn-kubernetes is ready
+??? I0403 11:59:12.871748     979 workloads.go:132] Deployment/csi-snapshot-controller in kube-system is ready
+??? I0403 11:59:25.175015     979 workloads.go:132] Deployment/service-ca in openshift-service-ca is ready
+??? I0403 11:59:42.559264     979 workloads.go:132] Deployment/lvms-operator in openshift-storage is ready
+??? I0403 11:59:52.557786     979 workloads.go:132] Deployment/router-default in openshift-ingress is ready
+??? I0403 11:59:52.558489     979 workloads.go:89] Daemonset/vg-manager in openshift-storage is ready
+??? I0403 11:59:52.558505     979 healthcheck.go:28] MicroShift is ready
+Script '40_microshift_running_check.sh' SUCCESS
+--------------------
+DEPRECATION NOTICE:
+/usr/share/microshift/functions/greenboot.sh is now deprecated and will be removed in future release.
+Planned removal: MicroShift 4.21
+As a replacement consider using 'microshift healthcheck' command
+--------------------
+STARTED
+GRUB boot variables:
+boot_success=0
+Greenboot variables:
+GREENBOOT_WATCHDOG_CHECK_ENABLED=true
+MICROSHIFT_GREENBOOT_FAIL_MARKER=/run/microshift-greenboot-healthcheck-failed
+System installation type:
+bootc
+System installation status:
+bootcHost
+??? I0403 11:59:52.750474    4059 service.go:29] microshift.service is enabled
+??? I0403 11:59:52.750873    4059 service.go:31] Waiting 10m0s for microshift.service to be ready
+??? I0403 11:59:52.752273    4059 service.go:38] microshift.service is ready
+??? I0403 11:59:52.753263    4059 utils.go:34] Waiting for 1 goroutines
+??? I0403 11:59:52.753393    4059 workloads.go:94] Waiting 10m0s for deployment/kserve-controller-manager in redhat-ods-applications
+??? I0403 12:00:02.755475    4059 workloads.go:132] Deployment/kserve-controller-manager in redhat-ods-applications is ready
+??? I0403 12:00:02.755605    4059 healthcheck.go:75] Workloads are ready
+Script '41_microshift_running_check_ai_model_serving.sh' SUCCESS
+--------------------
+DEPRECATION NOTICE:
+/usr/share/microshift/functions/greenboot.sh is now deprecated and will be removed in future release.
+Planned removal: MicroShift 4.21
+As a replacement consider using 'microshift healthcheck' command
+--------------------
+STARTED
+GRUB boot variables:
+boot_success=0
+Greenboot variables:
+GREENBOOT_WATCHDOG_CHECK_ENABLED=true
+MICROSHIFT_GREENBOOT_FAIL_MARKER=/run/microshift-greenboot-healthcheck-failed
+System installation type:
+bootc
+System installation status:
+bootcHost
+??? I0403 12:00:02.896949    4128 service.go:29] microshift.service is enabled
+??? I0403 12:00:02.897208    4128 service.go:31] Waiting 10m0s for microshift.service to be ready
+??? I0403 12:00:02.899492    4128 service.go:38] microshift.service is ready
+??? I0403 12:00:02.900279    4128 utils.go:34] Waiting for 2 goroutines
+??? I0403 12:00:02.900363    4128 workloads.go:94] Waiting 10m0s for deployment/istiod-openshift-gateway-api in openshift-gateway-api
+??? I0403 12:00:02.900948    4128 workloads.go:94] Waiting 10m0s for deployment/servicemesh-operator3 in openshift-gateway-api
+??? I0403 12:00:42.913338    4128 workloads.go:132] Deployment/servicemesh-operator3 in openshift-gateway-api is ready
+??? I0403 12:01:12.902297    4128 workloads.go:132] Deployment/istiod-openshift-gateway-api in openshift-gateway-api is ready
+??? I0403 12:01:12.902418    4128 healthcheck.go:75] Workloads are ready
+Script '41_microshift_running_check_gateway_api.sh' SUCCESS
+--------------------
+DEPRECATION NOTICE:
+/usr/share/microshift/functions/greenboot.sh is now deprecated and will be removed in future release.
+Planned removal: MicroShift 4.21
+As a replacement consider using 'microshift healthcheck' command
+--------------------
+STARTED
+GRUB boot variables:
+boot_success=0
+Greenboot variables:
+GREENBOOT_WATCHDOG_CHECK_ENABLED=true
+MICROSHIFT_GREENBOOT_FAIL_MARKER=/run/microshift-greenboot-healthcheck-failed
+System installation type:
+bootc
+System installation status:
+bootcHost
+??? I0403 12:01:13.057998    4772 service.go:29] microshift.service is enabled
+??? I0403 12:01:13.058107    4772 service.go:31] Waiting 10m0s for microshift.service to be ready
+??? I0403 12:01:13.059839    4772 service.go:38] microshift.service is ready
+??? I0403 12:01:13.060617    4772 utils.go:34] Waiting for 2 goroutines
+??? I0403 12:01:13.060644    4772 workloads.go:58] Waiting 10m0s for daemonset/dhcp-daemon in openshift-multus
+??? I0403 12:01:13.060686    4772 workloads.go:58] Waiting 10m0s for daemonset/multus in openshift-multus
+??? I0403 12:01:13.069341    4772 workloads.go:89] Daemonset/multus in openshift-multus is ready
+??? I0403 12:01:13.069450    4772 workloads.go:89] Daemonset/dhcp-daemon in openshift-multus is ready
+??? I0403 12:01:13.069503    4772 healthcheck.go:75] Workloads are ready
+Script '41_microshift_running_check_multus.sh' SUCCESS
+--------------------
+DEPRECATION NOTICE:
+/usr/share/microshift/functions/greenboot.sh is now deprecated and will be removed in future release.
+Planned removal: MicroShift 4.21
+As a replacement consider using 'microshift healthcheck' command
+--------------------
+STARTED
+GRUB boot variables:
+boot_success=0
+Greenboot variables:
+GREENBOOT_WATCHDOG_CHECK_ENABLED=true
+MICROSHIFT_GREENBOOT_FAIL_MARKER=/run/microshift-greenboot-healthcheck-failed
+System installation type:
+bootc
+System installation status:
+bootcHost
+??? I0403 12:01:13.206381    4804 service.go:29] microshift.service is enabled
+??? I0403 12:01:13.206583    4804 service.go:31] Waiting 10m0s for microshift.service to be ready
+??? I0403 12:01:13.207979    4804 service.go:38] microshift.service is ready
+??? I0403 12:01:13.208717    4804 utils.go:34] Waiting for 2 goroutines
+??? I0403 12:01:13.208779    4804 workloads.go:94] Waiting 10m0s for deployment/catalog-operator in openshift-operator-lifecycle-manager
+??? I0403 12:01:13.209285    4804 workloads.go:94] Waiting 10m0s for deployment/olm-operator in openshift-operator-lifecycle-manager
+??? I0403 12:01:13.215578    4804 workloads.go:132] Deployment/catalog-operator in openshift-operator-lifecycle-manager is ready
+??? I0403 12:01:13.215673    4804 workloads.go:132] Deployment/olm-operator in openshift-operator-lifecycle-manager is ready
+??? I0403 12:01:13.215684    4804 healthcheck.go:75] Workloads are ready
+Script '50_microshift_running_check_olm.sh' SUCCESS
+Running Wanted Health Check Scripts...
+Finished greenboot Health Checks Runner.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example partial output for a RHEL for Edge system</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">#...
+GRUB boot variables:
+boot_success=0
+boot_indeterminate=0
+Greenboot variables:
+GREENBOOT_WATCHDOG_CHECK_ENABLED=true
+MICROSHIFT_WAIT_TIMEOUT_SEC=600
+System installation type:
+ostree
+System installation status:
+* rhel 19619bd269094510180c845c44d0944fd9aa15925376f249c4d680a3355e51ae.0
+    Version: 9.8
+    origin refspec: edge:rhel-9.8-microshift-4.22
+#...</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example partial output for an RPM system</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">#...
+GRUB boot variables:
+boot_success=1
+boot_indeterminate=0
+Greenboot variables:
+GREENBOOT_WATCHDOG_CHECK_ENABLED=true
+System installation type:
+RPM
+System installation status:
+Not an ostree / bootc system
+#...</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-greenboot-check-status_maintain-system-health-greenboot">Check the status of greenboot health checks</h4>
+<div class="paragraph _abstract">
+<p>You can check the status of greenboot health checks before making changes to the system or while troubleshooting. By using helpful commands to verify that greenboot scripts have finished running.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Check the current greenboot health check status by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ systemctl show --property=SubState --value greenboot-healthcheck.service</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>start</code></dt>
+<dd>
+<p>Greenboot checks are still running.</p>
+</dd>
+<dt class="hdlist1"><code>exited</code></dt>
+<dd>
+<p>Checks have passed and greenboot has exited. Greenboot runs the scripts in the <code>green.d</code> directory when the system is in a healthy state.</p>
+</dd>
+<dt class="hdlist1"><code>failed</code></dt>
+<dd>
+<p>Checks have not passed. Greenboot runs the scripts in the <code>red.d</code> directory when the system is in this state and restarts the system.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Check the numerical exit code of the greenboot health check service by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ systemctl show --property=ExecMainStatus --value greenboot-healthcheck.service</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An exit code of <code>0</code> means the health check succeeded. A non-zero exit code means the health check failed.</p>
+</div>
+</li>
+<li>
+<p>To see a report showing a message about boot status, such as <code>Boot Status is GREEN - Health Check SUCCESS</code>, use the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat /run/motd.d/boot-status</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">Boot Status is GREEN - Health Check SUCCESS</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-disabling-lvms-csi-driver_ensure-host-control-plane-resilience.html">Disable deployments that run the CSI driver implementations</a> | ↑ Up: <a href="_configure.html">Configure</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-greenboot-dir-structure_maintain-system-health-greenboot.html">How greenboot uses directories to run scripts</a> →</p>
+<p>← Previous: <a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a> | ↑ Up: <a href="_configure.html">Configure</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a> →</p>
 </div>
 </div>
 <div id="footer">

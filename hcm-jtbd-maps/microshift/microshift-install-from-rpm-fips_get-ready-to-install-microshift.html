@@ -437,18 +437,81 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-install-from-rpm-fips_get-ready-to-install-microshift" class="book toc2 toc-left">
+<body id="microshift-install-from-rpm-fips_get-ready-to-install-microshift" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
 <ul class="sectlevel2">
@@ -475,68 +538,804 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-install-rpm-before_get-ready-to-install-microshift">Before you install MicroShift from an RPM package</a></li><li class="level-5"><a href="#microshift-configuring-volume-groups_get-ready-to-install-microshift">Configuring volume groups</a></li><li class="level-5"><a href="#microshift-prepare-for-fips-mode_get-ready-to-install-microshift">Prepare for FIPS mode</a></li><li class="level-4"><a href="#microshift-install-rpm-preparing_get-ready-to-install-microshift">Prepare to install MicroShift from an RPM package</a></li><li class="level-4"><a href="#installing-microshift-from-rpm-package_get-ready-to-install-microshift">Install MicroShift from an RPM package</a></li><li class="level-4"><a href="#microshift-fips-considerations_get-ready-to-install-microshift">Considerations for enabling FIPS mode</a></li><li class="level-4"><a href="#microshift-fips-rpm-system_get-ready-to-install-microshift">FIPS mode with RHEL RPM-based installations</a></li><li class="level-5"><a href="#microshift-fips-limitations_get-ready-to-install-microshift">Limitations</a></li><li class="level-4"><a href="#microshift-installing-multus_get-ready-to-install-microshift">Install the multiple networks plugin</a></li><li class="level-4"><a href="#microshift-installing-with-olm-from-rpm-package_get-ready-to-install-microshift">Install the Operator Lifecycle Manager (OLM) from an RPM package</a></li><li class="level-4"><a href="#microshift-rhoai-install_get-ready-to-install-microshift">Install the Red Hat OpenShift AI RPM</a></li><li class="level-4"><a href="#microshift-kickstart-rpm-install_get-ready-to-install-microshift">Create a Kickstart file for a MicroShift RPM installation</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-install-from-rpm-fips_get-ready-to-install-microshift">Install from an RPM package</h3>
 <div class="paragraph _abstract">
 <p>You can install MicroShift from an RPM package on an existing RHEL 9 system. You can also prepare for FIPS mode and add optional extensions such as GitOps or Observability.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-install-rpm-before_get-ready-to-install-microshift">Before you install MicroShift from an RPM package</h4>
+<div class="paragraph _abstract">
+<p>Before installing MicroShift for memory configuration and FIPS mode, you must prepare the host.</p>
+</div>
+<div class="sect4">
+<h5 id="microshift-configuring-volume-groups_get-ready-to-install-microshift">Configuring volume groups</h5>
+<div class="paragraph">
+<p>MicroShift uses the logical volume manager storage (LVMS) Container Storage Interface (CSI) plugin for providing storage to persistent volumes (PVs). LVMS relies on the Linux logical volume manager (LVM) to dynamically manage the backing logical volumes (LVs) for PVs. For this reason, your machine must have an LVM volume group (VG) with unused space in which LVMS can create the LVs for your workload&#8217;s PVs.</p>
+</div>
+<div class="paragraph">
+<p>To configure a volume group (VG) that allows LVMS to create the LVs for your workload&#8217;s PVs, lower the <strong>Desired Size</strong> of your root volume during the installation of RHEL. Lowering the size of your root volume allows unallocated space on the disk for additional LVs created by LVMS at runtime.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-prepare-for-fips-mode_get-ready-to-install-microshift">Prepare for FIPS mode</h5>
+<div class="paragraph">
+<p>If your use case requires running MicroShift containers in FIPS mode, you must install RHEL with FIPS enabled. After the worker machine is configured to run in FIPS mode, your MicroShift containers are automatically configured to also run in FIPS mode.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Because FIPS must be enabled before the operating system that your node uses starts for the first time, you cannot enable FIPS after you deploy a node.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-install-rpm-preparing_get-ready-to-install-microshift">Prepare to install MicroShift from an RPM package</h4>
+<div class="paragraph _abstract">
+<p>When you are getting ready to install MicroShift RPMs, make sure you have enough storage capacity for the workload you want to run.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>The system requirements for installing MicroShift have been met.</p>
+</li>
+<li>
+<p>You have root user access to your machine.</p>
+</li>
+<li>
+<p>You have configured your LVM VG with the capacity needed for the PVs of your workload.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In the graphical installer under <strong>Installation Destination</strong> in the <strong>Storage Configuration</strong> subsection, select <strong>Custom</strong> &#8594; <strong>Done</strong> to open the dialog for configuring partitions and volumes. The Manual Partitioning window is displayed.</p>
+</li>
+<li>
+<p>Under <strong>New Red Hat Enterprise Linux 9.x Installation</strong>, select <strong>Click here to create them automatically</strong>.</p>
+</li>
+<li>
+<p>Select the root partition, <strong>/</strong>, reduce <strong>Desired Capacity</strong> so that the VG has sufficient capacity for your PVs, and then click <strong>Update Settings</strong>.</p>
+</li>
+<li>
+<p>Complete your installation.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For more options on partition configuration, read the guide linked in the Additional information section for Configuring Manual Partitioning.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>As a root user, verify the VG capacity available on your system by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo vgs</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">VG   #PV #LV #SN Attr   VSize    VFree
+rhel   1   2   0 wz--n- 127.00g 54.94g</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="installing-microshift-from-rpm-package_get-ready-to-install-microshift">Install MicroShift from an RPM package</h4>
+<div class="paragraph _abstract">
+<p>Use the following procedure to install MicroShift from an RPM package.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>The system requirements for installing MicroShift have been met.</p>
+</li>
+<li>
+<p>You completed the steps of preparing to install MicroShift from an RPM package.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>For all lifecycles, enable the repository for your release by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo subscription-manager repos \
+    --enable rhocp-4.22-for-rhel-9-$(uname -m)-rpms \
+    --enable fast-datapath-for-rhel-9-$(uname -m)-rpms</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>For extended support (EUS) releases, also enable the EUS repositories by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo subscription-manager repos \
+    --enable rhel-9-for-$(uname -m)-appstream-eus-rpms \
+    --enable rhel-9-for-$(uname -m)-baseos-eus-rpms</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Avoid unintended future updates into an unsupported configuration by locking your operating system version with the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo subscription-manager release --set=9.8</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install MicroShift by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo dnf install -y microshift</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Download your installation pull secret to a temporary folder, for example, <code>$HOME/openshift-pull-secret</code>. This pull secret allows you to authenticate with the container registries that serve the container images used by Red&#160;Hat build of MicroShift.</p>
+</li>
+<li>
+<p>To copy the pull secret to the <code>/etc/crio</code> folder of your RHEL machine, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo cp $HOME/openshift-pull-secret /etc/crio/openshift-pull-secret</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Make the root user the owner of the <code>/etc/crio/openshift-pull-secret</code> file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo chown root:root /etc/crio/openshift-pull-secret</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Make the <code>/etc/crio/openshift-pull-secret</code> file readable and writeable by the root user only by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo chmod 600 /etc/crio/openshift-pull-secret</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If your RHEL machine has a firewall enabled, you must configure a few mandatory firewall rules. For <code>firewalld</code>, run the following commands:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo firewall-cmd --permanent --zone=trusted --add-source=10.42.0.0/16</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo firewall-cmd --permanent --zone=trusted --add-source=169.254.169.1</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo firewall-cmd --reload</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the Volume Group (VG) that you have prepared for MicroShift used the default name <code>rhel</code>, no further configuration is necessary. If you have used a different name, or if you want to change more configuration settings, see the "Using the MicroShift configuration file" section.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-fips-considerations_get-ready-to-install-microshift">Considerations for enabling FIPS mode</h4>
+<div class="paragraph _abstract">
+<p>You must enable FIPS mode for RPM-based installations of MicroShift on Red&#160;Hat Enterprise Linux (RHEL) 9 to ensure that your edge deployments comply with security mandates.</p>
+</div>
+<div class="paragraph">
+<p>The following considerations apply when enabling FIPS mode:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-install-rpm-before_get-ready-to-install-microshift.html">Before you install MicroShift from an RPM package</a></p>
+<p>To enable FIPS mode in MicroShift containers, the worker machine kernel must be enabled to run in FIPS mode before the machine starts.</p>
 </li>
 <li>
-<p><a href="microshift-install-rpm-preparing_get-ready-to-install-microshift.html">Prepare to install MicroShift from an RPM package</a></p>
+<p>Using FIPS with Red&#160;Hat Enterprise Linux for Edge (RHEL for Edge) images is not supported.</p>
 </li>
 <li>
-<p><a href="installing-microshift-from-rpm-package_get-ready-to-install-microshift.html">Install MicroShift from an RPM package</a></p>
-</li>
-<li>
-<p><a href="microshift-fips-considerations_get-ready-to-install-microshift.html">Considerations for enabling FIPS mode</a></p>
-</li>
-<li>
-<p><a href="microshift-fips-rpm-system_get-ready-to-install-microshift.html">FIPS mode with RHEL RPM-based installations</a></p>
-</li>
-<li>
-<p><a href="microshift-installing-multus_get-ready-to-install-microshift.html">Install the multiple networks plugin</a></p>
-</li>
-<li>
-<p><a href="microshift-installing-with-olm-from-rpm-package_get-ready-to-install-microshift.html">Install the Operator Lifecycle Manager (OLM) from an RPM package</a></p>
-</li>
-<li>
-<p><a href="microshift-rhoai-install_get-ready-to-install-microshift.html">Install the Red&#160;Hat OpenShift AI RPM</a></p>
-</li>
-<li>
-<p><a href="microshift-kickstart-rpm-install_get-ready-to-install-microshift.html">Create a Kickstart file for a MicroShift RPM installation</a></p>
+<p>Using FIPS with image mode for RHEL is not supported.</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-fips-rpm-system_get-ready-to-install-microshift">FIPS mode with RHEL RPM-based installations</h4>
+<div class="paragraph _abstract">
+<p>Using FIPS with MicroShift requires enabling the cryptographic module self-checks in your Red&#160;Hat Enterprise Linux (RHEL) installation. After the host operating system has been configured to start with the FIPS modules, MicroShift containers are automatically enabled to run in FIPS mode.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When RHEL is started in FIPS mode, MicroShift core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 validation on only the x86_64 architectures.</p>
+</li>
+<li>
+<p>You must enable FIPS mode when you install RHEL 9 on the machines that you plan to use as worker machines.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Because FIPS must be enabled before the operating system that your node uses starts for the first time, you cannot enable FIPS after you deploy a node.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>MicroShift uses a FIPS-compatible Golang compiler.</p>
+</li>
+<li>
+<p>FIPS is supported in the CRI-O container runtime.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="microshift-fips-limitations_get-ready-to-install-microshift">Limitations</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>TLS implementation FIPS support is not complete.</p>
+</li>
+<li>
+<p>The FIPS implementation does not offer a single function that both computes hash functions and validates the keys that are based on that hash. This limitation continues to be evaluated for improvement in future MicroShift releases.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-installing-multus_get-ready-to-install-microshift">Install the multiple networks plugin</h4>
+<div class="paragraph _abstract">
+<p>You can install the MicroShift Multus Container Network Interface (CNI) plugin alongside a new MicroShift installation. If you want to attach additional networks to a pod for high-performance network configurations, install the <code>microshift-multus</code> RPM package.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The MicroShift Multus CNI plugin manifests are included in the MicroShift binary. To enable multiple networks, you can either set the value in the MicroShift <code>config.yaml</code> file to <code>Enabled</code>, or use the configuration snippet in the <code>microshift-multus</code> RPM. Uninstalling the MicroShift Multus CNI is not supported in either case.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Install the Multus RPM package by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo dnf install microshift-multus</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Tip">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you create your custom resources (CRs) while you are completing your installation of MicroShift, you can avoid restarting the service to apply them.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Next steps</div>
+<ul>
+<li>
+<p>Continue with your new MicroShift installation, including any add-ons.</p>
+</li>
+<li>
+<p>Create the custom resources (CRs) needed for your MicroShift Multus CNI plugin.</p>
+</li>
+<li>
+<p>Configure other networking CNIs as needed.</p>
+</li>
+<li>
+<p>After you have finished installing all of the RPMs that you want to include, start the MicroShift service. The MicroShift Multus CNI plugin is automatically deployed.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-installing-with-olm-from-rpm-package_get-ready-to-install-microshift">Install the Operator Lifecycle Manager (OLM) from an RPM package</h4>
+<div class="paragraph _abstract">
+<p>When you install MicroShift, the Operator Lifecycle Manager (OLM) package is not installed by default. You can install the OLM on your MicroShift instance by using an RPM package. OLM helps you install, update, and manage the lifecycle of Kubernetes native applications (Operators) and their associated services running in each MicroShift node.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Install the OLM package by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo dnf install microshift-olm</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To apply the manifest from the package to an active node, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart microshift</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-rhoai-install_get-ready-to-install-microshift">Install the Red&#160;Hat OpenShift AI RPM</h4>
+<div class="paragraph _abstract">
+<p>To use AI models in MicroShift deployments, install the Red&#160;Hat OpenShift AI (RHOAI) RPM with a new MicroShift installation. You can also install the RPM on an existing MicroShift instance if you restart the system.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>microshift-ai-model-serving</code> RPM contains manifests that deploy <code>kserve</code>, with the raw deployment mode enabled, and <code>ServingRuntimes</code> objects in the <code>redhat-ods-applications</code> namespace.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift AI is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>The system requirements for installing MicroShift have been met.</p>
+</li>
+<li>
+<p>You have root user access to your machine.</p>
+</li>
+<li>
+<p>The OpenShift CLI (<code>oc</code>) is installed.</p>
+</li>
+<li>
+<p>You configured your LVM VG with the capacity needed for the PVs of your workload.</p>
+</li>
+<li>
+<p>You have the RAM and disk space required for your AI model.</p>
+</li>
+<li>
+<p>You configured the required accelerators, hardware, operating system, and MicroShift to provide the resources your model needs.</p>
+</li>
+<li>
+<p>Your AI model is ready to use.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Install the MicroShift AI-model-serving RPM package by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo dnf install microshift-ai-model-serving</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>As a root user, restart the MicroShift service by entering the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart microshift</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Optional: Install the release information package by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo dnf install microshift-ai-model-serving-release-info</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>microshift-ai-model-serving-release-info</code> RPM contains a JSON file with image references useful for offline procedures or deploying a copy of a <code>ServingRuntime</code> custom resource (CR) to your namespace during a bootc image build.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify that the <code>kserve</code> pod is running in the <code>redhat-ods-applications</code> namespace by entering the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n redhat-ods-applications</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">NAME                                        READY   STATUS    RESTARTS   AGE
+kserve-controller-manager-7fc9fc688-kttmm   1/1     Running   0          1h</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Next steps</div>
+<ul>
+<li>
+<p>Create a namespace for your AI model.</p>
+</li>
+<li>
+<p>Package your model into an OCI image.</p>
+</li>
+<li>
+<p>Configure a model-serving runtime.</p>
+</li>
+<li>
+<p>Verify that your model is ready for inferencing.</p>
+</li>
+<li>
+<p>Make requests against the model server.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-kickstart-rpm-install_get-ready-to-install-microshift">Create a Kickstart file for a MicroShift RPM installation</h4>
+<div class="paragraph _abstract">
+<p>You can use the Kickstart file provided with MicroShift to provision an RPM-based virtual machine.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You set up the MicroShift Kickstart file.</p>
+</li>
+<li>
+<p>You know the <a href="https://console.redhat.com/insights/connector/activation-keys">Activation Keys</a> and organization ID to activate your Red&#160;Hat subscription.</p>
+</li>
+<li>
+<p>You have the information needed to set the <code>BOOTC_IMAGE_URL</code>, <code>AUTH_CONFIG</code>, and <code>REGISTRY_CONFIG</code> required variables.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The subscription must include access to the <code>rhocp-4.x-for-rhel-9-$(uname -m)-rpms</code> and <code>fast-datapath-for-rhel-9-$(uname -m)-rpms</code> RPM repositories.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Add the following variables to create an RPM Kickstart file:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>RHSM_ORG</code> variable contains a Red&#160;Hat Subscription Manager organization ID for the subscription registration command in the Kickstart file.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export RHSM_ORG="$(cat ~/.rhsm-activation-org)"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The <code>RHSM_KEY</code> variable contains a Red&#160;Hat Subscription Manager activation key for the subscription registration command in the Kickstart file.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export RHSM_KEY="$(cat ~/.rhsm-activation-key)"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The <code>MICROSHIFT_VER</code> variable references the MicroShift version to install using the <code>4.y</code> format. The latest available <code>.z</code> version of the <code>4.y</code> version set in this variable is automatically installed.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export MICROSHIFT_VER={product-version}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, the latest <code>.z</code> of the minor version that you set is installed.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Run the following command to create the <code>kickstart.ks</code> file to be used during the virtual machine installation:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">envsubst &lt; \
+    /usr/share/microshift/kickstart/kickstart-rpm.ks.template &gt; \
+    "${HOME}/kickstart.ks"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-encrypt-etcd-data_get-ready-to-install-microshift.html">Encrypt etcd data</a> | ↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-install-rpm-before_get-ready-to-install-microshift.html">Before you install MicroShift from an RPM package</a> →</p>
+<p>← Previous: <a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a> | ↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a> →</p>
 </div>
 </div>
 <div id="footer">

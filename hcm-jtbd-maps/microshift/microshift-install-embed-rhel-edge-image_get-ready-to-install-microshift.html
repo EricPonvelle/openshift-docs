@@ -437,18 +437,81 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift" class="book toc2 toc-left">
+<body id="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
 <ul class="sectlevel2">
@@ -475,89 +538,1568 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-preparing-for-image-building_get-ready-to-install-microshift">Prepare for image building</a></li><li class="level-4"><a href="#microshift-enable-eus-repos_get-ready-to-install-microshift">Enable extended support repositories for image building</a></li><li class="level-4"><a href="#adding-microshift-repos-image-builder_get-ready-to-install-microshift">Add MicroShift repositories to image builder</a></li><li class="level-4"><a href="#adding-microshift-service-to-blueprint_get-ready-to-install-microshift">Add the MicroShift service to a blueprint</a></li><li class="level-4"><a href="#microshift-adding-other-services-to-blueprint_get-ready-to-install-microshift">Add other packages to a blueprint</a></li><li class="level-4"><a href="#microshift-ca-adding-bundle_get-ready-to-install-microshift">Certificate authority bundle configuration</a></li><li class="level-4"><a href="#microshift-ca-adding-bundle-ostree_get-ready-to-install-microshift">Add a certificate authority bundle to a blueprint</a></li><li class="level-4"><a href="#microshift-creating-ostree-iso_get-ready-to-install-microshift">Create the RHEL for Edge image with image builder</a></li><li class="level-4"><a href="#microshift-add-blueprint-build-iso_get-ready-to-install-microshift">Add the blueprint to image builder and build the ISO</a></li><li class="level-4"><a href="#microshift-download-iso-prep-for-use_get-ready-to-install-microshift">Download the ISO and prepare it for use</a></li><li class="level-4"><a href="#microshift-embed-kickstart-iso_get-ready-to-install-microshift">Embed a Kickstart file in an ISO</a></li><li class="level-4"><a href="#microshift-about-offline-deployment-rhel-edge_get-ready-to-install-microshift">About offline deployments with RHEL for Edge</a></li><li class="level-4"><a href="#microshift-embed-microshift-image-offline-deployment_get-ready-to-install-microshift">Embed MicroShift containers for offline deployments</a></li><li class="level-4"><a href="#microshift-embed-registry-auth-image-building_get-ready-to-install-microshift">Add registry authentication to prepare for image building</a></li><li class="level-4"><a href="#microshift-embed-microshift-build-image-offline-deployment_get-ready-to-install-microshift">Build and use the rpm-ostree image for offline deployments</a></li><li class="level-5"><a href="#microshift-embed-microshift-build-image-offline-deployment-prereqs_get-ready-to-install-microshift">Additional prerequisites for offline deployments</a></li><li class="level-4"><a href="#microshift-kickstart-ostree-install_get-ready-to-install-microshift">Create a Kickstart file for a MicroShift RHEL for Edge installation</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift">Embed in a RHEL for Edge image</h3>
 <div class="paragraph _abstract">
 <p>You can embed MicroShift in a RHEL for Edge image to deploy a customized, bootable edge operating system with Kubernetes pre-installed.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-preparing-for-image-building_get-ready-to-install-microshift">Prepare for image building</h4>
+<div class="paragraph _abstract">
+<p>Use the image builder tool to compose customized Red&#160;Hat Enterprise Linux for Edge (RHEL for Edge) images optimized for edge deployments.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This procedure is for use with RHEL 9 images only. RHEL 10 images require bootc image building tools. For more information, see the following link:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-preparing-for-image-building_get-ready-to-install-microshift.html">Prepare for image building</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/composing_installing_and_managing_rhel_for_edge_images/index">Composing, installing, and managing RHEL for Edge images</a></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can run a MicroShift node with your applications on a RHEL for Edge virtual machine for development and testing first, then use your whole solution in edge production environments.</p>
+</div>
+<div class="paragraph">
+<p>Use the RHEL documentation in "Introduction to RHEL for Edge images" to understand the full details of using RHEL for Edge.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To build an Red&#160;Hat Enterprise Linux for Edge (RHEL for Edge) 9.8 image for a given CPU architecture, you need a RHEL 9.8 build host of the same CPU architecture that meets the image builder system requirements.</p>
 </li>
 <li>
-<p><a href="microshift-enable-eus-repos_get-ready-to-install-microshift.html">Enable extended support repositories for image building</a></p>
+<p>To install image builder and the <code>composer-cli</code> tool, see "Installing image builder".</p>
+</li>
+</ul>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/composing_installing_and_managing_rhel_for_edge_images/introducing-rhel-for-edge-images_composing-installing-managing-rhel-for-edge-images">Introduction to RHEL for Edge images</a></p>
 </li>
 <li>
-<p><a href="adding-microshift-repos-image-builder_get-ready-to-install-microshift.html">Add MicroShift repositories to image builder</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/composing_installing_and_managing_rhel_for_edge_images/setting-up-image-builder_composing-installing-managing-rhel-for-edge-images#edge-image-builder-system-requirements_setting-up-image-builder">Image builder system requirements</a></p>
 </li>
 <li>
-<p><a href="adding-microshift-service-to-blueprint_get-ready-to-install-microshift.html">Add the MicroShift service to a blueprint</a></p>
-</li>
-<li>
-<p><a href="microshift-adding-other-services-to-blueprint_get-ready-to-install-microshift.html">Add other packages to a blueprint</a></p>
-</li>
-<li>
-<p><a href="microshift-ca-adding-bundle_get-ready-to-install-microshift.html">Certificate authority bundle configuration</a></p>
-</li>
-<li>
-<p><a href="microshift-ca-adding-bundle-ostree_get-ready-to-install-microshift.html">Add a certificate authority bundle to a blueprint</a></p>
-</li>
-<li>
-<p><a href="microshift-creating-ostree-iso_get-ready-to-install-microshift.html">Create the RHEL for Edge image with image builder</a></p>
-</li>
-<li>
-<p><a href="microshift-add-blueprint-build-iso_get-ready-to-install-microshift.html">Add the blueprint to image builder and build the ISO</a></p>
-</li>
-<li>
-<p><a href="microshift-download-iso-prep-for-use_get-ready-to-install-microshift.html">Download the ISO and prepare it for use</a></p>
-</li>
-<li>
-<p><a href="microshift-embed-kickstart-iso_get-ready-to-install-microshift.html">Embed a Kickstart file in an ISO</a></p>
-</li>
-<li>
-<p><a href="microshift-about-offline-deployment-rhel-edge_get-ready-to-install-microshift.html">About offline deployments with RHEL for Edge</a></p>
-</li>
-<li>
-<p><a href="microshift-embed-microshift-image-offline-deployment_get-ready-to-install-microshift.html">Embed MicroShift containers for offline deployments</a></p>
-</li>
-<li>
-<p><a href="microshift-embed-registry-auth-image-building_get-ready-to-install-microshift.html">Add registry authentication to prepare for image building</a></p>
-</li>
-<li>
-<p><a href="microshift-embed-microshift-build-image-offline-deployment_get-ready-to-install-microshift.html">Build and use the rpm-ostree image for offline deployments</a></p>
-</li>
-<li>
-<p><a href="microshift-kickstart-ostree-install_get-ready-to-install-microshift.html">Create a Kickstart file for a MicroShift RHEL for Edge installation</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/composing_installing_and_managing_rhel_for_edge_images/setting-up-image-builder_composing-installing-managing-rhel-for-edge-images#edge-installing-image-builder_setting-up-image-builder">Installing image builder</a></p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-enable-eus-repos_get-ready-to-install-microshift">Enable extended support repositories for image building</h4>
+<div class="paragraph _abstract">
+<p>If you have an extended support (EUS) release of MicroShift or Red&#160;Hat Enterprise Linux (RHEL), you must enable the RHEL EUS repositories for image builder to use. If you do not have an EUS version, you can skip these steps.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have either an EUS version of MicroShift or RHEL, or you are updating to one.</p>
+</li>
+<li>
+<p>You have root-user access to your build host.</p>
+</li>
+<li>
+<p>You have reviewed the following link:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/getting_ready_to_install_microshift/microshift-install-get-ready#get-ready-install-rhde-compatibility-table_microshift-install-get-ready">Red&#160;Hat Device Edge release compatibility matrix</a></p>
+<div class="openblock">
+<div class="content">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Warning">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Keeping component versions in a supported configuration of Red&#160;Hat Device Edge can require updating MicroShift and RHEL at the same time. Ensure that your version of RHEL is compatible with the version of MicroShift you are updating to, especially if you are updating MicroShift across two minor versions. Otherwise, you can create an unsupported configuration, break your node, or both. For more information, see the following link:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/getting_ready_to_install_microshift/microshift-install-get-ready#get-ready-install-rhde-compatibility-table_microshift-install-get-ready">Red Hat Device Edge release compatibility matrix</a></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create the <code>/etc/osbuild-composer/repositories</code> directory by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo mkdir -p /etc/osbuild-composer/repositories</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Copy the <code>/usr/share/osbuild-composer/repositories/rhel-9.8.json</code> file into the <code>/etc/osbuild-composer/repositories</code> directory by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo cp /usr/share/osbuild-composer/repositories/rhel-9.8.json /etc/osbuild-composer/repositories/rhel-9.8.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Update the <code>baseos</code> source by modifying the <code>/etc/osbuild-composer/repositories/rhel-9.8.json</code> file with the following values:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"># ...
+"baseurl": "https://cdn.redhat.com/content/eus/rhel9/9.8//baseos/os",
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can replace <em>9</em> with the major RHEL version you are using if different from the value in this example, and replace <em>9.8</em> with the <em>&lt;major.minor&gt;</em> version. Be certain that the RHEL version you choose is compatible with the MicroShift version you are using.</p>
+</div>
+</li>
+<li>
+<p>Optional: Apply the <code>baseos</code> update by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo sed -i "s,dist/rhel9/9.8/$(uname -m)/baseos/,eus/rhel9/9.8/$(uname -m)/baseos/,g" \
+/etc/osbuild-composer/repositories/rhel-9.8.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can replace <em>9</em> with the major RHEL version you are using if different from the value in this example, and replace <em>9.8</em> with the <em>&lt;major.minor&gt;</em> version. Be certain that the RHEL version you choose is compatible with the MicroShift version you are using.</p>
+</div>
+</li>
+<li>
+<p>Update the <code>appstream</code> source by modifying the <code>/etc/osbuild-composer/repositories/rhel-&lt;major.minor&gt;.json</code> file with the following values:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"># ...
+"baseurl": "https://cdn.redhat.com/content/eus/rhel9/9.8//appstream/os",
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can replace <em>9</em> with the major RHEL version you are using if different from the value in this example, and replace <em>9.8</em> with the <em>&lt;major.minor&gt;</em> version. Be certain that the RHEL version you choose is compatible with the MicroShift version you are using.</p>
+</div>
+</li>
+<li>
+<p>Optional. Apply the <code>appstream</code> update by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo sed -i "s,dist/rhel9/9.8/$(uname -m)/appstream/,eus/rhel9/9.8/$(uname -m)/appstream/,g" \
+/etc/osbuild-composer/repositories/rhel-9.8.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can replace <em>9</em> with the major RHEL version you are using if different from the value in this example, and replace <em>9.8</em> with the <em>&lt;major.minor&gt;</em> version. Be certain that the RHEL version you choose is compatible with the MicroShift version you are using.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Verify the <code>baseos</code> source by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli sources info baseos | grep 'url ='</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">url = "https://cdn.redhat.com/content/eus/rhel9/9.8/x86_64/baseos/os"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify the <code>appstream</code> source by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli sources info appstream | grep 'url ='</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">url = "https://cdn.redhat.com/content/eus/rhel9/9.8/x86_64/appstream/os"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-microshift-repos-image-builder_get-ready-to-install-microshift">Add MicroShift repositories to image builder</h4>
+<div class="paragraph _abstract">
+<p>Add the MicroShift repositories to image builder on your build host.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This procedure is for use with RHEL 9 images only. RHEL 10 images require bootc image building tools. For more information, see the following link:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/composing_installing_and_managing_rhel_for_edge_images/index">Composing, installing, and managing RHEL for Edge images</a></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Your build host meets the image builder system requirements.</p>
+</li>
+<li>
+<p>You have installed and set up image builder and the <code>composer-cli</code> tool.</p>
+</li>
+<li>
+<p>You have root-user access to your build host.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create an image builder configuration file for adding the <code>rhocp-4.22</code> RPM repository source required to pull MicroShift RPMs by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">cat &gt; rhocp-4.22.toml &lt;&lt;EOF
+id = "rhocp-4.22"
+name = "Red Hat OpenShift Container Platform 4.22 for RHEL 9"
+type = "yum-baseurl"
+url = "https://cdn.redhat.com/content/dist/layered/rhel9/$(uname -m)/rhocp/4.22/os"
+check_gpg = true
+check_ssl = true
+system = false
+rhsm = true
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create an image builder configuration file for adding the <code>fast-datapath</code> RPM repository by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">cat &gt; fast-datapath.toml &lt;&lt;EOF
+id = "fast-datapath"
+name = "Fast Datapath for RHEL 9"
+type = "yum-baseurl"
+url = "https://cdn.redhat.com/content/dist/layered/rhel9/$(uname -m)/fast-datapath/os"
+check_gpg = true
+check_ssl = true
+system = false
+rhsm = true
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the sources to the image builder by running the following commands:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli sources add rhocp-4.22.toml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli sources add fast-datapath.toml</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Confirm that the sources were added properly by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli sources list</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">appstream
+baseos
+fast-datapath
+rhocp-4.22</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Next steps</div>
+<ul>
+<li>
+<p>Create the blueprint. For more information, see the following links:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://osbuild.org/docs/user-guide/blueprint-reference">Blueprint Reference</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/composing_installing_and_managing_rhel_for_edge_images/composing-a-rhel-for-edge-image-using-image-builder-command-line_composing-installing-managing-rhel-for-edge-images">Creating a RHEL for Edge Container blueprint using image builder CLI</a></p>
+</li>
+<li>
+<p><a href="https://osbuild.org/docs/on-premises/commandline/building-ostree-images">Building OSTree image</a></p>
+</li>
+<li>
+<p><a href="https://podman.io/docs/installation">Installing Podman</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-microshift-service-to-blueprint_get-ready-to-install-microshift">Add the MicroShift service to a blueprint</h4>
+<div class="paragraph _abstract">
+<p>Adding the MicroShift RPM package to an image builder blueprint enables the build of a RHEL for Edge image with MicroShift embedded.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Use the blueprint installed in the <code>/usr/share/microshift/blueprint</code> directory that is specific to your platform architecture. See the following example snippet for an explanation of the blueprint sections:</p>
+<div class="listingblock">
+<div class="title">Generated image builder blueprint example snippet</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">name = "microshift_blueprint"
+description = "MicroShift 4.22.1 on x86_64 platform"
+version = "0.0.1"
+modules = []
+groups = []
+
+[[packages]]
+name = "microshift"
+version = "4.22.1"
+...
+...
+
+[customizations.services]
+enabled = ["microshift"]
+
+[customizations.firewall]
+ports = ["ssh"]
+...
+...
+
+[[containers]]
+source = "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:f41e79c17e8b41f1b0a5a32c3e2dd7cd15b8274554d3f1ba12b2598a347475f4"
+
+[[containers]]
+source = "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:dbc65f1fba7d92b36cf7514cd130fe83a9bd211005ddb23a8dc479e0eea645fd"
+...
+…
+EOF</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>[[packages]] name = "microshift"</code>: references for all non-optional MicroShift RPM packages using the same version compatible with the <code>microshift-release-info</code> RPM.</p>
+</li>
+<li>
+<p><code>[customizations.services] enabled = ["microshift"]</code>: references for automatically enabling MicroShift on system startup and applying default networking settings.</p>
+</li>
+<li>
+<p><code>[[containers]] source = "quay.io/openshift-release-dev/&#8230;&#8203;</code>: references for all non-optional MicroShift container images necessary for an offline deployment. The SHA depends on the release you are using.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Add the blueprint to the image builder by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli blueprints push microshift_blueprint.toml</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Verify the image builder configuration listing only MicroShift packages by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli blueprints depsolve microshift_blueprint | grep microshift</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">blueprint: microshift_blueprint v0.0.1
+    microshift-release-info-4.22.1-202511250827.p0.g4105d3b.assembly.4.22.1.el9.noarch
+    microshift-4.22.1-202511250827.p0.g4105d3b.assembly.4.22.1.el9.x86_64</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Optional: Verify the image builder configuration that lists all of the components to be installed by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli blueprints depsolve microshift_blueprint</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-adding-other-services-to-blueprint_get-ready-to-install-microshift">Add other packages to a blueprint</h4>
+<div class="paragraph _abstract">
+<p>Add the references for optional RPM packages to your <code>ostree</code> blueprint to enable them.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You created an image builder blueprint file.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Edit your <code>ostree</code> blueprint by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ vi <em>&lt;microshift_blueprint.toml&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;microshift_blueprint.toml&gt;</em></code> with the name of the blueprint file used for the MicroShift service.</p>
+</div>
+</li>
+<li>
+<p>Add the following example text to your blueprint:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">[[packages]]
+name = "<em>&lt;microshift_additional_package_name&gt;</em>"
+version = "*"</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>[[packages]] name =</code> Include one stanza for each additional service that you want to add. For example, replace <code><em>&lt;microshift_additional_package_name&gt;</em></code> in with the name the RPM for the service you want to include such as <code>microshift-olm</code>. Add another stanza as needed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Next steps</div>
+<ol class="arabic">
+<li>
+<p>Add custom certificate authorities to the blueprint as needed. For more information, see the following links:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/securing_networks/using-shared-system-certificates_securing-networks">Using Shared System Certificates (RHEL 9)</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/composing_a_customized_rhel_system_image/creating-system-images-with-composer-command-line-interface_composing-a-customized-rhel-system-image#image-customizations_creating-system-images-with-composer-command-line-interface">Supported image customizations (RHEL 9)</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/composing_installing_and_managing_rhel_for_edge_images/creating-and-managing-ostree-image-updates_composing-installing-managing-rhel-for-edge-images">Creating and managing OSTree image updates</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>After you finish adding to your blueprint, you can apply the manifests to an active node by building a new RHEL for Edge system and deploying it on the client:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Create the ISO.</p>
+</li>
+<li>
+<p>Add the blueprint and build the ISO.</p>
+</li>
+<li>
+<p>Download the ISO and prepare it for use.</p>
+</li>
+<li>
+<p>Do any provisioning that is needed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-ca-adding-bundle_get-ready-to-install-microshift">Certificate authority bundle configuration</h4>
+<div class="paragraph _abstract">
+<p>MicroShift uses the host trust bundle when clients evaluate server certificates.</p>
+</div>
+<div class="paragraph">
+<p>You can also use a customized security certificate chain to improve the compatibility of your endpoint certificates with clients specific to your deployments. To do this, you can add a certificate authority (CA) bundle with root and intermediate certificates to the Red&#160;Hat Enterprise Linux for Edge (RHEL for Edge) system-wide truststore.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-ca-adding-bundle-ostree_get-ready-to-install-microshift">Add a certificate authority bundle to a blueprint</h4>
+<div class="paragraph _abstract">
+<p>You can include additional certificate authorities (CAs) to be trusted by the operating system when pulling images from an image registry. To add the additional CAs to the Red&#160;Hat Enterprise Linux for Edge (RHEL for Edge) <code>rpm-ostree</code> image, configure them in the blueprint that you use to create the image.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This procedure requires you to configure the CA bundle customizations in the blueprint, and then add steps to your Kickstart file to enable the bundle. In the following steps, <code>data</code> is the key, and <code>&lt;value&gt;</code> represents the PEM-encoded certificate.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have root user access to your build host.</p>
+</li>
+<li>
+<p>Your build host meets the image builder system requirements.</p>
+</li>
+<li>
+<p>You have installed and set up image builder and the <code>composer-cli</code> tool.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Add the following custom values to your blueprint to add a directory.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add instructions to your blueprint on the host where the image is built to create the directory, for example, <code>/etc/pki/ca-trust/source/anchors/</code> for your certificate bundles.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[[customizations.directories]]
+path = "/etc/pki/ca-trust/source/anchors"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>After the image has booted, create the certificate bundles, for example, <code>/etc/pki/ca-trust/source/anchors/cert1.pem</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[[customizations.files]]
+path = "/etc/pki/ca-trust/source/anchors/cert1.pem"
+data = "&lt;value&gt;"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To enable the certificate bundle in the system-wide truststore configuration, use the <code>update-ca-trust</code> command on the host where the image you are using has booted, for example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo update-ca-trust</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>update-ca-trust</code> command might be included in the <code>%post</code> section of a Kickstart file used for MicroShift host installation so that all the necessary certificate trust is enabled on the first boot. You must configure the CA bundle customizations in the blueprint before adding steps to your Kickstart file to enable the bundle.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">%post
+# Update certificate trust storage in case new certificates were
+# installed at /etc/pki/ca-trust/source/anchors directory
+update-ca-trust
+%end</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-creating-ostree-iso_get-ready-to-install-microshift">Create the RHEL for Edge image with image builder</h4>
+<div class="paragraph _abstract">
+<p>The RHEL for Edge Installer image pulls the commit from the running container and creates an installable boot ISO with a Kickstart file configured to use the embedded <code>rpm-ostree</code> commit.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Your build host meets the image builder system requirements.</p>
+</li>
+<li>
+<p>You installed and set up image builder and the <code>composer-cli</code> tool.</p>
+</li>
+<li>
+<p>You root-user access to your build host.</p>
+</li>
+<li>
+<p>You installed the <code>podman</code> tool.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Start an <code>ostree</code> container image build by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ BUILDID=$(sudo composer-cli compose start-ostree --ref "rhel/{op-system-version-major}/$(uname -m)/edge" <em>&lt;microshift_blueprint&gt;</em> edge-container | awk '/^Compose/ {print $2}')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;microshift_blueprint&gt;</em></code> with the name of your blueprint.</p>
+</div>
+<div class="paragraph">
+<p>This command also returns the identification (ID) of the build for monitoring.</p>
+</div>
+</li>
+<li>
+<p>You can check the status of the build periodically by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli compose status</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output of a running build</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">ID                                     Status     Time                     Blueprint                 Version   Type               Size
+cc3377ec-4643-4483-b0e7-6b0ad0ae6332   RUNNING    Wed Jun 7 12:26:23 2023  microshift_blueprint      0.0.1     edge-container</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output of a completed build</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">ID                                     Status     Time                      Blueprint              Version   Type               Size
+cc3377ec-4643-4483-b0e7-6b0ad0ae6332   FINISHED   Wed Jun 7 12:32:37 2023   microshift_blueprint   0.0.1     edge-container</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can use the <code>watch</code> command to monitor your build if you are familiar with how to start and stop it.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Download the container image using the ID and get the image ready for use by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli compose image ${BUILDID}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Change the ownership of the downloaded container image to the current user by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo chown $(whoami). ${BUILDID}-container.tar</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add read permissions for the current user to the image by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo chmod a+r ${BUILDID}-container.tar</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Bootstrap a server on port 8085 for the <code>ostree</code> container image to be consumed by the ISO build by completing the following steps:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Get the <code>IMAGEID</code> variable result by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ IMAGEID=$(cat &lt; "./${BUILDID}-container.tar" | sudo podman load | grep -o -P '(?&lt;=sha256[@:])[a-z0-9]*')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use the <code>IMAGEID</code> variable result to run the Podman command step by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo podman run -d --name=minimal-microshift-server -p 8085:8080 ${IMAGEID}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command also returns the ID of the container saved in the <code>IMAGEID</code> variable for monitoring.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Generate the installation program blueprint file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">cat &gt; microshift-installer.toml &lt;&lt;EOF
+name = "microshift-installer"
+
+description = ""
+version = "0.0.0"
+modules = []
+groups = []
+packages = []
+EOF</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-add-blueprint-build-iso_get-ready-to-install-microshift">Add the blueprint to image builder and build the ISO</h4>
+<div class="paragraph _abstract">
+<p>You must add the blueprint to an image builder to build the ISO.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Add the blueprint to the image builder by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli blueprints push microshift-installer.toml</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Start the <code>ostree</code> ISO build by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ BUILDID=$(sudo composer-cli compose start-ostree --url http://localhost:8085/repo/ --ref "rhel/9/$(uname -m)/edge" microshift-installer edge-installer | awk '{print $2}')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command also returns the identification (ID) of the build for monitoring.</p>
+</div>
+</li>
+<li>
+<p>You can check the status of the build periodically by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli compose status</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output for a running build</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">ID                                     Status     Time                      Blueprint              Version   Type               Size
+c793c24f-ca2c-4c79-b5b7-ba36f5078e8d   RUNNING    Wed Jun 7 13:22:20 2023   microshift-installer   0.0.0     edge-installer</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output for a completed build</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">ID                                     Status     Time                      Blueprint              Version   Type               Size
+c793c24f-ca2c-4c79-b5b7-ba36f5078e8d   FINISHED   Wed Jun 7 13:34:49 2023   microshift-installer   0.0.0     edge-installer</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-download-iso-prep-for-use_get-ready-to-install-microshift">Download the ISO and prepare it for use</h4>
+<div class="paragraph _abstract">
+<p>After creating the ISO, you must download it and prepare it for use.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Download the ISO using the ID by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli compose image ${BUILDID}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Change the ownership of the downloaded container image to the current user by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo chown $(whoami). ${BUILDID}-installer.iso</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add read permissions for the current user to the image by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo chmod a+r ${BUILDID}-installer.iso</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Next steps</div>
+<ul>
+<li>
+<p>Provision a virtual machine with a Kickstart file.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-embed-kickstart-iso_get-ready-to-install-microshift">Embed a Kickstart file in an ISO</h4>
+<div class="paragraph _abstract">
+<p>You can use the Kickstart file provided with MicroShift, or you can update an existing RHEL for Edge Installer (ISO) Kickstart file.</p>
+</div>
+<div class="paragraph">
+<p>When ready, embed the Kickstart file into the ISO. Your Kickstart file must include detailed instructions about how to create a user and how to fetch and deploy the RHEL for Edge image.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You created a RHEL for Edge Installer (ISO) image containing your RHEL for Edge commit with MicroShift.</p>
+</li>
+<li>
+<p>You have an existing Kickstart file ready for updating. You can use the <code>microshift-starter.ks</code> Kickstart file provided with the MicroShift RPMs.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In the main section of the Kickstart file, update the setup of the filesystem such that it contains an LVM volume group called <code>rhel</code> with at least 10GB system root. Leave free space for the LVMS CSI driver to use for storing the data for your workloads.</p>
+<div class="listingblock">
+<div class="title">Example Kickstart file snippet for configuring the filesystem</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text"># Partition disk such that it contains an LVM volume group called `rhel` with a
+# 10GB+ system root but leaving free space for the LVMS CSI driver for storing data.
+#
+# For example, a 20GB disk would be partitioned in the following way:
+#
+# NAME          MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+# sda             8:0    0  20G  0 disk
+# ├─sda1          8:1    0 200M  0 part /boot/efi
+# ├─sda1          8:1    0 800M  0 part /boot
+# └─sda2          8:2    0  19G  0 part
+#  └─rhel-root  253:0    0  10G  0 lvm  /sysroot
+#
+ostreesetup --nogpg --osname=rhel --remote=edge \
+--url=file:///run/install/repo/ostree/repo --ref=rhel/&lt;RHEL VERSION NUMBER&gt;/x86_64/edge
+zerombr
+clearpart --all --initlabel
+part /boot/efi --fstype=efi --size=200
+part /boot --fstype=xfs --asprimary --size=800
+# Uncomment this line to add a SWAP partition of the recommended size
+#part swap --fstype=swap --recommended
+part pv.01 --grow
+volgroup rhel pv.01
+logvol / --vgname=rhel --fstype=xfs --size=10000 --name=root
+# To add users, use a line such as the following
+user --name=&lt;YOUR_USER_NAME&gt; \
+--password=&lt;YOUR_HASHED_PASSWORD&gt; \
+--iscrypted --groups=&lt;YOUR_USER_GROUPS&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the <code>%post</code> section of the Kickstart file, add your pull secret and the mandatory firewall rules.</p>
+<div class="listingblock">
+<div class="title">Example Kickstart file snippet for adding the pull secret and firewall rules</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">%post --log=/var/log/anaconda/post-install.log --erroronfail
+
+# Add the pull secret to CRI-O and set root user-only read/write permissions
+cat &gt; /etc/crio/openshift-pull-secret &lt;&lt; EOF
+YOUR_OPENSHIFT_PULL_SECRET_HERE
+EOF
+chmod 600 /etc/crio/openshift-pull-secret
+
+# Configure the firewall with the mandatory rules for MicroShift
+firewall-offline-cmd --zone=trusted --add-source=10.42.0.0/16
+firewall-offline-cmd --zone=trusted --add-source=169.254.169.1
+
+%end</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install the <code>mkksiso</code> tool by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo yum install -y lorax</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Update the ISO with your new Kickstart file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo mkksiso &lt;your_kickstart&gt;.ks &lt;your_installer&gt;.iso &lt;updated_installer&gt;.iso</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/automatically_installing_rhel/creating-kickstart-files_rhel-installer">Creating Kickstart files</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/automatically_installing_rhel/kickstart-script-file-format-reference_rhel-installer#kickstart-file-format_kickstart-script-file-format-reference">A.1. Kickstart file format</a></p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/solutions/60959">How to embed a Kickstart file into an ISO image</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-about-offline-deployment-rhel-edge_get-ready-to-install-microshift">About offline deployments with RHEL for Edge</h4>
+<div class="paragraph _abstract">
+<p>Embedding MicroShift containers in an <code>rpm-ostree</code> commit means that you can run a node in disconnected or offline environments.</p>
+</div>
+<div class="paragraph">
+<p>You can embed Red&#160;Hat build of MicroShift containers in a Red&#160;Hat Enterprise Linux for Edge (RHEL for Edge) image so that container engines do not need to pull images over a network from a container registry. Workloads can start immediately without network connectivity.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-embed-microshift-image-offline-deployment_get-ready-to-install-microshift">Embed MicroShift containers for offline deployments</h4>
+<div class="paragraph _abstract">
+<p>You can use image builder to create RHEL for Edge images with embedded MicroShift container images. To embed container images, you must add the image references to your image builder blueprint file.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Warning">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For offline or disconnected configurations, embed all container image dependencies as part of the system image. When container images are downloaded without being embedded into the system image, CRI-O wipes them off during unclean shutdowns, such as when a power loss occurs. In this case, you can only restore those container images when the system is online.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This procedure is for use with RHEL 9 images only. RHEL 10 images require bootc image building tools. For more information, see the following link:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/composing_installing_and_managing_rhel_for_edge_images/index">Composing, installing, and managing RHEL for Edge images</a></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have root-user access to your build host.</p>
+</li>
+<li>
+<p>Your build host meets the image builder system requirements.</p>
+</li>
+<li>
+<p>You installed and set up image builder and the <code>composer-cli</code> tool.</p>
+</li>
+<li>
+<p>You created a RHEL for Edge image blueprint.</p>
+</li>
+<li>
+<p>You installed jq.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Get the exact list of container image references used by the MicroShift version you are deploying. You can either install the <code>microshift-release-info</code> RPM package by following step 2 or download and unpack the RPM by following step 3.</p>
+</li>
+<li>
+<p>To install the <code>microshift-release-info</code> RPM package:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Install the <code>microshift-release-info</code> RPM package by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo dnf install -y microshift-release-info-<em>&lt;release_version&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;release_version&gt;</em></code> with the numerical value of the release you are deploying, using the entire version number, such as <code>4.22.0</code>.</p>
+</div>
+</li>
+<li>
+<p>List the contents of the <code>/usr/share/microshift/release</code> directory to verify the presence of the release information files by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo ls /usr/share/microshift/release</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">release-x86_64.json
+release-aarch64.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you installed the <code>microshift-release-info</code> RPM, proceed to step 4.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>If you did not complete step 2, download and unpack the <code>microshift-release-info</code> RPM without installing it:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Download the RPM package by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo dnf download microshift-release-info-<em>&lt;release_version&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;release_version&gt;</em></code> with the numerical value of the release you are deploying, using the entire version number, such as <code>4.22.0</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example RPM output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">microshift-release-info-4.22.0.-202605191402.p0.g4f61957.assembly.rc.4.el9.noarch.rpm</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Unpack the RPM package without installing it by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rpm2cpio <em>&lt;my_microshift_release_info&gt;</em> | cpio -idmv
+./usr/share/microshift/release/release-aarch64.json
+./usr/share/microshift/release/release-x86_64.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;my_microshift_release_info&gt;</em></code> with the name of the RPM package from the previous step.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Define the location of your JSON file, which contains the container reference information, by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ RELEASE_FILE=<em>&lt;/path/to/your/release-$(uname -m).json&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;/path/to/your/release-$(uname -m).json&gt;</em></code> with the full path to your JSON file. Be sure to use the file needed for your architecture.</p>
+</div>
+</li>
+<li>
+<p>Define the location of your TOML file, which contains instructions for building the image, by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ BLUEPRINT_FILE=<em>&lt;/path/to/your/blueprint.toml&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;/path/to/your/blueprint.toml&gt;</em></code> with the full path to your TOML file.</p>
+</div>
+</li>
+<li>
+<p>Generate and then embed the container image references in your blueprint TOML file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$  jq -r '.images | .[] | ("[[containers]]\nsource = \"" + . + "\"\n")' "${RELEASE_FILE}" &gt;&gt; "${BLUEPRINT_FILE}"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example resulting TOML fragment showing container references</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[[containers]]
+source = "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:82cfef91557f9a70cff5a90accba45841a37524e9b93f98a97b20f6b2b69e5db"
+
+[[containers]]
+source = "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:82cfef91557f9a70cff5a90accba45841a37524e9b93f98a97b20f6b2b69e5db"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You can manually embed any container image by adding it to an image builder blueprint file using the following example:</p>
+<div class="listingblock">
+<div class="title">Example section for manually embedding container image to a blueprint</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">[[containers]]
+source = "<em>&lt;my_image_pullspec_with_tag_or_digest&gt;</em>"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;my_image_pullspec_with_tag_or_digest&gt;</em></code> with the exact reference to a container image used by the MicroShift version you are deploying.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-embed-registry-auth-image-building_get-ready-to-install-microshift">Add registry authentication to prepare for image building</h4>
+<div class="paragraph _abstract">
+<p>After you have updated the blueprint, you must add authentication for the container registries to build the image with embedded MicroShift containers. To do this, update one of the systemd service files that are part of the image builder configuration.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have root-user access to your build host.</p>
+</li>
+<li>
+<p>Your build host meets the image builder system requirements.</p>
+</li>
+<li>
+<p>You have installed and set up image builder and the <code>composer-cli</code> tool.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create an <code>/etc/osbuild-worker/osbuild-worker.toml</code> directory and configuration file if they do not exist.</p>
+</li>
+<li>
+<p>Add a pull secret for authenticating to the registry by setting the <code>auth_file_path</code> in the <code>[containers]</code> section of the <code>/etc/osbuild-worker/osbuild-worker.toml</code> configuration file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[containers]
+auth_file_path = "/etc/osbuild-worker/pull-secret.json"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Restart the host to apply configuration changes.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-embed-microshift-build-image-offline-deployment_get-ready-to-install-microshift">Build and use the rpm-ostree image for offline deployments</h4>
+<div class="paragraph _abstract">
+<p>You can use image builder to create <code>rpm-ostree</code> system images with embedded MicroShift container images.</p>
+</div>
+<div class="paragraph">
+<p>To embed container images, you must add the image references to your image builder blueprint. You can create the commit and ISO as needed for your use case.</p>
+</div>
+<div class="paragraph">
+<p>Add the prerequisites listed here to the ones that are included in the procedures that follow.</p>
+</div>
+<div class="sect4">
+<h5 id="microshift-embed-microshift-build-image-offline-deployment-prereqs_get-ready-to-install-microshift">Additional prerequisites for offline deployments</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>You have created and updated a RHEL for Edge image blueprint for offline use. The following procedures use the example of a blueprint created with container images. You must use the updated blueprint you created in the "Embedding MicroShift containers for offline deployments" procedure.</p>
+</li>
+<li>
+<p>You have updated the <code>/etc/osbuild-worker/osbuild-worker.toml</code> configuration file for offline use.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Replace <code>minimal-microshift.toml</code> in the following procedures with the name of the TOML you updated for offline use, &lt;my_blueprint_name&gt;.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-kickstart-ostree-install_get-ready-to-install-microshift">Create a Kickstart file for a MicroShift RHEL for Edge installation</h4>
+<div class="paragraph _abstract">
+<p>You can use the Kickstart file provided with MicroShift to provision a RHEL for Edge-based virtual machine.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You set up the MicroShift Kickstart file.</p>
+</li>
+<li>
+<p>You have the information needed to set required and optional variables.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Add the following required variables to create an RHEL for Edge Kickstart file:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>OSTREE_SERVER_URL</code> variable contains an <code>rpm-ostree</code> server URL that is passed to the <code>ostreesetup</code> Kickstart command.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export OSTREE_SERVER_URL="<em>&lt;http://my_ostree_server_url&gt;</em>"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <em><a href="http://my_ostree_server_url" class="bare">http://my_ostree_server_url</a></em> with your server URL.</p>
+</div>
+</li>
+<li>
+<p>The <code>OSTREE_COMMIT_REF</code> variable contains an <code>rpm-ostree</code> commit reference that is installed from the server.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export OSTREE_COMMIT_REF="<em>&lt;myostree_commit_reference&gt;</em>"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <em>&lt;myostree_commit_reference&gt;</em> with the <code>rpm-ostree</code> commit reference.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Optional. Add the following variable for server authentication:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>AUTH_CONFIG</code> contents are copied to <code>/etc/ostree/auth.json</code> at the pre-install stage to authenticate access to the <code>OSTREE_SERVER_URL</code> server. If no server authentication is required, skip this setting.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export AUTH_CONFIG="$(cat ~/.ostree-auth.json)"</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Run the following command to create the <code>kickstart.ks</code> file to be used during the installation:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">envsubst &lt; \
+    /usr/share/microshift/kickstart/kickstart-ostree.ks.template &gt; \
+    "${HOME}/kickstart.ks"</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The MicroShift version specified in the <code>rpm-ostree</code> commit is installed. To change the version of MicroShift, you must create a new commit.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-kickstart-bootc-install_get-ready-to-install-microshift.html">Create a Kickstart file to install MicroShift on image mode for RHEL</a> | ↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-preparing-for-image-building_get-ready-to-install-microshift.html">Prepare for image building</a> →</p>
+<p>← Previous: <a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a> | ↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a> →</p>
 </div>
 </div>
 <div id="footer">

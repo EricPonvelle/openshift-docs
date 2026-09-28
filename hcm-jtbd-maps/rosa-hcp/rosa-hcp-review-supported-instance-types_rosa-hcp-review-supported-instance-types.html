@@ -437,16 +437,199 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-left-nav-toggle-start -->
+<style>
+  #toc .toc-toggle {
+    display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .75em;
+    padding: 0 .3em 0 0;
+    margin: 0;
+    color: #555;
+    transition: transform .15s ease;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  #toc .toc-toggle:hover { color: #0066cc; }
+  #toc .toc-toggle.open { transform: rotate(90deg); }
+  #toc li > ul.sectlevel2,
+  #toc li > ul.sectlevel3,
+  #toc li > ul.sectlevel4 { display: none; }
+  #toc li.toc-expanded > ul.sectlevel2,
+  #toc li.toc-expanded > ul.sectlevel3,
+  #toc li.toc-expanded > ul.sectlevel4 { display: block; }
+</style>
+<script>
+(function() {
+  var previewPath = window.location.pathname.slice(
+    0,
+    window.location.pathname.lastIndexOf('/')
+  ) || '/';
+  var STORAGE_KEY = 'navmap-toc-state:' + previewPath;
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch(e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var state = loadState();
+    var currentPage = location.pathname.split('/').pop();
+    var buttons = document.querySelectorAll('#toc .toc-toggle');
+
+    buttons.forEach(function(btn) {
+      var key = btn.getAttribute('data-toc-key');
+      var li = btn.parentElement;
+      var isCurrentSection = false;
+
+      /* Auto-expand the section containing the current page */
+      var links = li.querySelectorAll('a[href]');
+      links.forEach(function(a) {
+        var href = a.getAttribute('href').split('#')[0];
+        if (href === currentPage) { isCurrentSection = true; }
+      });
+
+      if (state[key] === true || isCurrentSection) {
+        li.classList.add('toc-expanded');
+        btn.classList.add('open');
+        if (isCurrentSection) { state[key] = true; }
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var expanded = li.classList.toggle('toc-expanded');
+        btn.classList.toggle('open', expanded);
+        state[key] = expanded;
+        saveState(state);
+      });
+    });
+
+    saveState(state);
+
+    /* --- Scroll current page into view in the TOC --- */
+    var toc = document.getElementById('toc');
+    if (toc) {
+      var cur = toc.querySelector('a[href="' + currentPage + '"]');
+      if (!cur) { cur = toc.querySelector('a[href$="/' + currentPage + '"]'); }
+      if (cur) {
+        cur.style.fontWeight = 'bold';
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            cur.scrollIntoView({ block: 'center', behavior: 'instant' });
+          }, 0);
+        });
+      }
+    }
+  });
+})();
+</script>
+<!-- navmap-left-nav-toggle-end -->
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
+<!-- navmap-preview-warning-start -->
+<style>
+  .navmap-preview-warning {
+    background: #fff1f1;
+    border: 2px solid #c9190b;
+    border-radius: 4px;
+    color: #3b0a0a;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    margin: 1em auto;
+    max-width: 70em;
+    padding: 1em 1.25em;
+  }
+  .navmap-preview-warning strong { color: #a30000; }
+  .navmap-preview-warning details { margin-top: .75em; }
+  .navmap-preview-warning pre {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    max-height: 20em;
+    overflow: auto;
+    padding: .75em;
+    white-space: pre-wrap;
+  }
+</style>
+<!-- navmap-preview-warning-end -->
 </head>
-<body id="rosa-hcp-review-supported-instance-types_rosa-hcp-review-supported-instance-types" class="book toc2 toc-left">
+<body id="rosa-hcp-review-supported-instance-types_rosa-hcp-review-supported-instance-types" class="book toc2 toc-left navmap-has-right-toc">
+<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-hcp/navigation.adoc
+
+Missing include targets:
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-cli.adoc:104
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-hybrid-cloud-console.adoc:104
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-terraform.adoc:23
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli.adoc:92
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+
+How to fix these errors:
+  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
+  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
+  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
+</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
-<li><a href="_whats_new.html">What&#8217;s new</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-whats-new_rosa-hcp-whats-new.html">What&#8217;s new for Red Hat OpenShift Service on AWS</a>
 </li>
-<li><a href="_discover.html">Discover</a>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
 <ul class="sectlevel2">
 <li><a href="rosa-hcp-learn-about-benefits-and-use-cases_rosa-hcp-learn-about-benefits-and-use-cases.html">Learn about benefits and use cases</a>
 </li>
@@ -472,34 +655,2918 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
-<li><a href="_install.html">Install</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-intro_rosa-hcp-create-a-rosa-hcp-cluster.html">Create a ROSA HCP Cluster</a>
 </li>
-<li><a href="_upgrade.html">Upgrade</a>
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-intro_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc.html">Create a ROSA HCP Cluster in a Shared VPC</a>
 </li>
-<li><a href="_observe.html">Observe</a>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_upgrade.html">▶</button><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-plan-cluster-upgrades_rosa-hcp-plan-cluster-upgrades.html">Plan cluster upgrades</a>
+</li>
+<li><a href="rosa-hcp-upgrade-a-cluster_rosa-hcp-upgrade-a-cluster.html">Upgrade a cluster</a>
+</li>
+<li><a href="rosa-hcp-upgrade-karpenter-managed-nodes_rosa-hcp-upgrade-karpenter-managed-nodes.html">Upgrade Karpenter-managed nodes</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_observe.html">▶</button><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a>
+</li>
+<li><a href="rosa-hcp-monitor-cluster-health_rosa-hcp-monitor-cluster-health.html">Monitor cluster health</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-sdpolicy-aws-instance-types_rosa-hcp-review-supported-instance-types">AWS x86-based instance types</a></li><li class="level-4"><a href="#rosa-sdpolicy-aws-instance-types-graviton_rosa-hcp-review-supported-instance-types">AWS Arm-based Graviton instance types</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-hcp-review-supported-instance-types_rosa-hcp-review-supported-instance-types">Review supported instance types</h3>
 <div class="paragraph _abstract">
 <p>ROSA with HCP offers a variety of worker node instance types and sizes. Learn about the supported AWS compute instance types, including ARM-based Graviton instances.</p>
 </div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-aws-instance-types_rosa-hcp-review-supported-instance-types">AWS x86-based instance types</h4>
+<details>
+<summary class="title">General purpose</summary>
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-sdpolicy-aws-instance-types_rosa-hcp-review-supported-instance-types.html">AWS x86-based instance types</a></p>
+<p>m5.xlarge (4 vCPU, 16 GiB)</p>
 </li>
 <li>
-<p><a href="rosa-sdpolicy-aws-instance-types-graviton_rosa-hcp-review-supported-instance-types.html">AWS Arm-based Graviton instance types</a></p>
+<p>m5.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m5.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m5.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m5.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5.metal (96 vCPU, 384 GiB)
+These instance types offer 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.</p>
+</li>
+<li>
+<p>m5a.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m5a.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5a.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m5a.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m5a.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5a.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m5a.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5dn.metal (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5zn.metal (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5d.metal (96&#8224;  vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5n.metal (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m6a.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m6a.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m6a.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m6a.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m6a.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m6a.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m6a.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m6a.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m6a.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m6a.metal (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m6i.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m6i.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m6i.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m6i.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m6i.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m6i.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m6i.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m6i.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m6i.metal (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m6id.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m6id.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m6id.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m6id.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m6id.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m6id.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m6id.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m6id.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m6id.metal (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m6idn.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m6idn.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m6idn.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m6idn.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m6idn.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m6idn.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m6idn.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m6idn.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m6in.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m6in.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m6in.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m6in.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m6in.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m6in.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m6in.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m6in.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m7a.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m7a.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m7a.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m7a.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m7a.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m7a.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m7a.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m7a.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m7a.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m7a.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m7i-flex.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m7i-flex.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m7i-flex.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m7i-flex.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m7i.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m7i.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m7i.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m7i.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m7i.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m7i.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m7i.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m7i.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m7i.metal-24xl (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m7i.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8i.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8i.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m8i.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m8i.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m8i.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8i.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m8i.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8i.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m8i.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8i.96xlarge (384 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>m8i.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8i.metal-96xl (384 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.large (2 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8i-flex.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m8id.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8id.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m8id.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m8id.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m8id.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8id.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m8id.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8id.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>m8id.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8id.96xlarge (384 vCPU, 1536 GiB)</p>
+</li>
+<li>
+<p>m8id.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8id.metal-96xl (384 vCPU, 1536 GiB)</p>
+</li>
+<li>
+<p>m8a.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8a.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m8a.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m8a.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m8a.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8a.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m8a.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8a.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8a.metal-24xl (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8a.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8azn.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8azn.3xlarge (12 vCPU, 48 GiB)</p>
+</li>
+<li>
+<p>m8azn.6xlarge (24 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>m8azn.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8azn.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8azn.metal-12xl (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8azn.metal-24xl (96 vCPU, 384 GiB)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#8224; These instance types offer 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Burstable general purpose</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>t3.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>t3.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>t3a.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>t3a.2xlarge (8 vCPU, 32 GiB)</p>
 </li>
 </ul>
 </div>
 </div>
+</details>
+<details>
+<summary class="title">Memory intensive</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>u7i-6tb.112xlarge (448 vCPU, 6,144 GiB)</p>
+</li>
+<li>
+<p>u7i-8tb.112xlarge (448 vCPU, 6,144 GiB)</p>
+</li>
+<li>
+<p>u7i-12tb.224xlarge (896 vCPU, 12,288 GiB)</p>
+</li>
+<li>
+<p>u7in-16tb.224xlarge (896 vCPU, 16,384 GiB)</p>
+</li>
+<li>
+<p>u7in-24tb.224xlarge (896 vCPU, 24,576 GiB)</p>
+</li>
+<li>
+<p>u7in-32tb.224xlarge (896 vCPU, 32,768 GiB)</p>
+</li>
+<li>
+<p>u7inh-32tb.480xlarge (1920 vCPU, 32,768 GiB)</p>
+</li>
+<li>
+<p>x1.16xlarge (64 vCPU, 976 GiB)</p>
+</li>
+<li>
+<p>x1.32xlarge (128 vCPU, 1,952 GiB)</p>
+</li>
+<li>
+<p>x1e.xlarge (4 vCPU, 122 GiB)</p>
+</li>
+<li>
+<p>x1e.2xlarge (8 vCPU, 244 GiB)</p>
+</li>
+<li>
+<p>x1e.4xlarge (16 vCPU, 488 GiB)</p>
+</li>
+<li>
+<p>x1e.8xlarge (32 vCPU, 976 GiB)</p>
+</li>
+<li>
+<p>x1e.16xlarge (64 vCPU, 1,952 GiB)</p>
+</li>
+<li>
+<p>x1e.32xlarge (128 vCPU, 3,904 GiB)</p>
+</li>
+<li>
+<p>x2idn.16xlarge (64 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>x2idn.24xlarge (96 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>x2idn.32xlarge (128 vCPU, 2,048 GiB)</p>
+</li>
+<li>
+<p>x2iedn.xlarge (4 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>x2iedn.2xlarge (8 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>x2iedn.4xlarge (16 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>x2iedn.8xlarge (32 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>x2iedn.16xlarge (64 vCPU, 2,048 GiB)</p>
+</li>
+<li>
+<p>x2iedn.24xlarge (96 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>x2iedn.32xlarge (128 vCPU, 4,096 GiB)</p>
+</li>
+<li>
+<p>x2iezn.2xlarge (8 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>x2iezn.4xlarge (16 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>x2iezn.6xlarge (24 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>x2iezn.8xlarge (32 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>x2iezn.12xlarge (48 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>x2iezn.metal (48 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>x2idn.metal (128 vCPU, 2,048 GiB)</p>
+</li>
+<li>
+<p>x2iedn.metal (128 vCPU, 4,096 GiB)</p>
+</li>
+<li>
+<p>x8aedz.xlarge (4 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>x8aedz.3xlarge (12 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>x8aedz.6xlarge (24 vCPU, 756 GiB)</p>
+</li>
+<li>
+<p>x8aedz.12xlarge (48 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>x8aedz.24xlarge (96 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>x8aedz.metal-12xl (48 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>x8aedz.metal-24xl (96 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>x8i.xlarge (4 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>x8i.2xlarge (8 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>x8i.4xlarge (16 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>x8i.8xlarge (32 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>x8i.12xlarge (48 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>x8i.16xlarge (64 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>x8i.24xlarge (96 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>x8i.32xlarge (128 vCPU, 2,048 GiB)</p>
+</li>
+<li>
+<p>x8i.48xlarge (192 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>x8i.64xlarge (256 vCPU, 4,096 GiB)</p>
+</li>
+<li>
+<p>x8i.96xlarge (384 vCPU, 6,144 GiB)</p>
+</li>
+<li>
+<p>x8i.metal-48xl (192 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>x8i.metal-96xl (384 vCPU, 6,144 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Memory optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>r4.xlarge (4 vCPU, 30.5 GiB)</p>
+</li>
+<li>
+<p>r4.2xlarge (8 vCPU, 61 GiB)</p>
+</li>
+<li>
+<p>r4.4xlarge (16 vCPU, 122 GiB)</p>
+</li>
+<li>
+<p>r4.8xlarge (32 vCPU, 244 GiB)</p>
+</li>
+<li>
+<p>r4.16xlarge (64 vCPU, 488 GiB)</p>
+</li>
+<li>
+<p>r5.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r5.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r5.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r5.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r5.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r5.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5.metal (96 vCPU, 768 GiB)
+These instance types offer 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.</p>
+</li>
+<li>
+<p>r5a.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5a.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r5a.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r5a.8xlarge  (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r5a.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r5a.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r5a.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5ad.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5ad.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r5ad.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r5ad.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r5ad.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r5ad.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r5ad.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5b.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5b.2xlarge (8 vCPU, 364 GiB)</p>
+</li>
+<li>
+<p>r5b.4xlarge (16 vCPU, 3,128 GiB)</p>
+</li>
+<li>
+<p>r5b.8xlarge (32 vCPU, 3,256 GiB)</p>
+</li>
+<li>
+<p>r5b.12xlarge (48 vCPU, 3,384 GiB)</p>
+</li>
+<li>
+<p>r5b.16xlarge (64 vCPU, 3,512 GiB)</p>
+</li>
+<li>
+<p>r5b.24xlarge (96 vCPU, 3,768 GiB)</p>
+</li>
+<li>
+<p>r5b.metal (96 768 GiB)</p>
+</li>
+<li>
+<p>r5d.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5d.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r5d.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r5d.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r5d.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r5d.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r5d.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5d.metal (96 vCPU, 768 GiB)
+These instance types offer 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.</p>
+</li>
+<li>
+<p>r5n.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5n.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r5n.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r5n.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r5n.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r5n.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r5n.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5n.metal (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5dn.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r5dn.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r5dn.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r5dn.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r5dn.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r5dn.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r5dn.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r5dn.metal (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r6a.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r6a.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r6a.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r6a.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r6a.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r6a.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r6a.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r6a.32xlarge (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r6a.48xlarge (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>r6a.metal	(192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>r6i.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r6i.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r6i.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r6i.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r6i.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r6i.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r6i.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r6i.32xlarge (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r6i.metal (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r6id.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r6id.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r6id.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r6id.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r6id.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r6id.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r6id.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r6id.32xlarge (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r6id.metal (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r6idn.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r6idn.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r6idn.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r6idn.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r6idn.32xlarge (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r6idn.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r6idn.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r6idn.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r6in.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r6in.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r6in.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r6in.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r6in.32xlarge (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r6in.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r6in.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r6in.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r7a.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r7a.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r7a.4xlarge  (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r7a.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r7a.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r7a.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r7a.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r7a.32xlarge (128 vCPU, 1024 GiB)</p>
+</li>
+<li>
+<p>r7a.48xlarge (192 vCPU, 1536 GiB)</p>
+</li>
+<li>
+<p>r7a.metal-48xl (192 vCPU, 1536 GiB)</p>
+</li>
+<li>
+<p>r7i.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r7i.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r7i.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r7i.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r7i.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r7i.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r7i.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r7i.metal-24xl (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r7iz.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r7iz.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r7iz.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r7iz.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r7iz.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r7iz.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r7iz.32xlarge (128 vCPU, 1024 GiB)</p>
+</li>
+<li>
+<p>r7iz.metal-16xl (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r7iz.metal-32xl (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r8i.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r8i.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r8i.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r8i.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r8i.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r8i.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r8i.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r8i.32xlarge (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r8i.48xlarge (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>r8i.96xlarge (384 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>r8i.metal-48xl (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>r8i.metal-96xl (384 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>r8i-flex.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r8i-flex.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r8i-flex.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r8i-flex.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r8i-flex.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r8i-flex.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r8id.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r8id.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r8id.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r8id.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r8id.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r8id.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r8id.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r8id.32xlarge (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>r8id.48xlarge (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>r8id.96xlarge (384 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>r8id.metal-48xl (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>r8id.metal-96xl (384 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>z1d.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>z1d.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>z1d.3xlarge (12 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>z1d.6xlarge (24 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>z1d.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>z1d.metal (48 vCPU, 384 GiB)
+This instance type offers 48 logical processors on 24 physical cores.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Accelerated computing</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>p3.2xlarge (8 vCPU, 61 GiB)</p>
+</li>
+<li>
+<p>p3.8xlarge (32 vCPU, 244 GiB)</p>
+</li>
+<li>
+<p>p3.16xlarge (64 vCPU, 488 GiB)</p>
+</li>
+<li>
+<p>p3dn.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>p4d.24xlarge (96 vCPU, 1,152 GiB)</p>
+</li>
+<li>
+<p>p4de.24xlarge (96 vCPU, 1,152 GiB)</p>
+</li>
+<li>
+<p>p5.4xlarge (16 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>p5.48xlarge (192 vCPU, 2,048 GiB)</p>
+</li>
+<li>
+<p>p5e.48xlarge (192 vCPU, 2,048 GiB)</p>
+</li>
+<li>
+<p>p5en.48xlarge (192 vCPU, 2,048 GiB)</p>
+</li>
+<li>
+<p>g4ad.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>g4ad.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>g4ad.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>g4ad.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g4ad.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>g4dn.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>g4dn.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>g4dn.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>g4dn.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g4dn.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>g4dn.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>g4dn.metal (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>g5.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>g5.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>g5.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>g5.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g5.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>g5.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>g5.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>g5.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>g7e.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>g7e.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g7e.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>g7e.12xlarge (48 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>g7e.24xlarge (96 vCPU, 1024 GiB)</p>
+</li>
+<li>
+<p>g7e.48xlarge (192 vCPU, 2048 GiB)</p>
+</li>
+<li>
+<p>dl1.24xlarge (96 vCPU, 768 GiB)
+Intel specific; not covered by Nvidia.</p>
+</li>
+<li>
+<p>g6.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>g6.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>g6.4xlarge (16 vCPU,	64 GiB)</p>
+</li>
+<li>
+<p>g6.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g6.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>g6.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>g6.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>g6.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>g6e.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>g6e.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>g6e.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g6e.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>g6e.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>g6e.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>g6e.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>g6e.48xlarge (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>gr6.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>gr6.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>p6-b200.48xlarge (192 vCPU, 2,048 GiB)</p>
+</li>
+<li>
+<p>p6-b300.48xlarge (192 vCPU, 4,096 GiB)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Support for the GPU instance type software stack is provided by AWS. Ensure that your AWS service quotas can accommodate the desired GPU instance types.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Accelerated computing - AWS Trainium and Inferentia</summary>
+<div class="content">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Warning">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For more information about AWS Trainium and Inferentia instance types, see <a href="https://access.redhat.com/articles/7117097">Inferentia &amp; Trainium instances on ROSA</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>trn1.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>trn1.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>trn1n.32xlarge (128 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>trn2.48xlarge (192 vCPU, 2048 GiB)</p>
+</li>
+<li>
+<p>trn2u.48xlarge (192 vCPU, 2048 GiB)</p>
+</li>
+<li>
+<p>inf1.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>inf1.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>inf1.6xlarge (24 vCPU, 48 GiB)</p>
+</li>
+<li>
+<p>inf1.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>inf2.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>inf2.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>inf2.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>inf2.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Compute optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>c5.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c5.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c5.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c5.9xlarge (36 vCPU, 72 GiB)</p>
+</li>
+<li>
+<p>c5.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c5.18xlarge (72 vCPU, 144 GiB)</p>
+</li>
+<li>
+<p>c5.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5.metal (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5d.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c5d.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c5d.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c5d.9xlarge (36 vCPU, 72 GiB)</p>
+</li>
+<li>
+<p>c5d.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c5d.18xlarge (72 vCPU, 144 GiB)</p>
+</li>
+<li>
+<p>c5d.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5d.metal (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5a.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c5a.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c5a.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c5a.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c5a.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c5a.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c5a.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5ad.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c5ad.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c5ad.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c5ad.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c5ad.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c5ad.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c5ad.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5n.xlarge (4 vCPU, 10.5 GiB)</p>
+</li>
+<li>
+<p>c5n.2xlarge (8 vCPU, 21 GiB)</p>
+</li>
+<li>
+<p>c5n.4xlarge (16 vCPU, 42 GiB)</p>
+</li>
+<li>
+<p>c5n.9xlarge (36 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c5n.18xlarge (72 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5n.metal (72 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c6a.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c6a.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c6a.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c6a.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c6a.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c6a.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c6a.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c6a.32xlarge (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c6a.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c6a.metal	(192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c6i.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c6i.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c6i.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c6i.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c6i.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c6i.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c6i.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c6i.32xlarge (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c6i.metal (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c6id.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c6id.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c6id.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c6id.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c6id.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c6id.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c6id.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c6id.32xlarge (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c6id.metal (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c6in.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c6in.16xlarge (64 vCPU,  128 GiB)</p>
+</li>
+<li>
+<p>c6in.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c6in.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c6in.32xlarge (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c6in.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c6in.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c6in.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c7a.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c7a.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c7a.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c7a.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c7a.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c7a.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c7a.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c7a.32xlarge (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c7a.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c7a.metal-48xl (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c7i.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c7i.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c7i.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c7i.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c7i.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c7i.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c7i.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c7i.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c7i-flex.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c7i-flex.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c7i-flex.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c7i-flex.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c7i.metal-24xl (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c7i.metal-48xl (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8a.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c8a.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c8a.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c8a.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c8a.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c8a.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c8a.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c8a.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8a.metal-24xl (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c8a.metal-48xl (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8i.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c8i.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c8i.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c8i.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c8i.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c8i.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c8i.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c8i.32xlarge (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c8i.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8i.96xlarge (384 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>c8i.metal-48xl (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8i.metal-96xl (384 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>c8i-flex.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c8i-flex.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c8i-flex.4xlarge (16 vCPU, 48 GiB)</p>
+</li>
+<li>
+<p>c8i-flex.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c8i-flex.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c8i-flex.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c8id.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c8id.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c8id.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c8id.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c8id.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c8id.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c8id.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c8id.32xlarge (128 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>c8id.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8id.96xlarge (384 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>c8id.metal-48xl (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8id.metal-96xl (384 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>hpc6a.48xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>hpc6id.32xlarge (64 vCPU, 1024 GiB)</p>
+</li>
+<li>
+<p>hpc7a.12xlarge (24 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>hpc7a.24xlarge (48 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>hpc7a.48xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>hpc7a.96xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m5zn.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5zn.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5zn.3xlarge (16 vCPU, 48 GiB)</p>
+</li>
+<li>
+<p>m5zn.6xlarge (32 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>m5zn.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Storage optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>c5ad.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c5ad.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c5ad.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c5ad.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c5ad.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c5ad.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c5ad.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>i3.xlarge	(4 vCPU, 30.5 GiB)</p>
+</li>
+<li>
+<p>i3.2xlarge (8 vCPU, 61 GiB)</p>
+</li>
+<li>
+<p>i3.4xlarge (16 vCPU, 122 GiB)</p>
+</li>
+<li>
+<p>i3.8xlarge (32 vCPU, 244 GiB)</p>
+</li>
+<li>
+<p>i3.16xlarge (64 vCPU, 488 GiB)</p>
+</li>
+<li>
+<p>i3.metal (72 vCPU, 512 GiB)
+This instance type offers 72 logical processors on 36 physical cores.</p>
+</li>
+<li>
+<p>i3en.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>i3en.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>i3en.3xlarge (12 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>i3en.6xlarge (24 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>i3en.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>i3en.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>i3en.metal (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>i4i.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>i4i.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>i4i.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>i4i.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>i4i.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>i4i.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>i4i.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>i4i.32xlarge (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>i4i.metal (128 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>i7i.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>i7i.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>i7i.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>i7i.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>i7i.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>i7i.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>i7i.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>i7i.48xlarge (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>i7i.metal-24xl (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>i7i.metal-48xl (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>i7ie.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>i7ie.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>i7ie.3xlarge (12 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>i7ie.6xlarge (24 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>i7ie.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>i7ie.18xlarge	(72 vCPU, 576 GiB)</p>
+</li>
+<li>
+<p>i7ie.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>i7ie.48xlarge (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>i7ie.metal-24xl (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>i7ie.metal-48xl (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>m5ad.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m5ad.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5ad.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m5ad.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m5ad.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5ad.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m5ad.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5d.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m5d.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5d.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m5d.8xlarge (32 vCPU, 28 GiB)</p>
+</li>
+<li>
+<p>m5d.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5d.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m5d.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Virtual instance types initialize faster than ".metal" instance types.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<details>
+<summary class="title">High memory</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>u-3tb1.56xlarge (224 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>u-6tb1.56xlarge (224 vCPU, 6,144 GiB)</p>
+</li>
+<li>
+<p>u-6tb1.112xlarge (448 vCPU, 6,144 GiB)</p>
+</li>
+<li>
+<p>u-6tb1.metal (448 vCPU, 6,144 GiB)</p>
+</li>
+<li>
+<p>u-9tb1.112xlarge (448 vCPU, 9,216 GiB)</p>
+</li>
+<li>
+<p>u-9tb1.metal (448 vCPU, 9,216 GiB)</p>
+</li>
+<li>
+<p>u-12tb1.112xlarge (448 vCPU, 12,288 GiB)</p>
+</li>
+<li>
+<p>u-12tb1.metal (448 vCPU, 12,288 GiB)</p>
+</li>
+<li>
+<p>u-18tb1.metal (448 vCPU, 18,432 GiB)</p>
+</li>
+<li>
+<p>u-24tb1.metal (448 vCPU, 24,576 GiB)</p>
+</li>
+<li>
+<p>u-24tb1.112xlarge (448 vCPU, 24,576 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Network Optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>c5n.xlarge (4 vCPU, 10.5 GiB)</p>
+</li>
+<li>
+<p>c5n.2xlarge (8 vCPU, 21 GiB)</p>
+</li>
+<li>
+<p>c5n.4xlarge (16 vCPU, 42 GiB)</p>
+</li>
+<li>
+<p>c5n.9xlarge (36 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c5n.18xlarge (72 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5dn.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m5dn.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5dn.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m5dn.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m5dn.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5dn.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m5dn.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5n.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m5n.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m5n.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m5n.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m5n.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m5n.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m5n.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="rosa-sdpolicy-aws-instance-types-graviton_rosa-hcp-review-supported-instance-types">AWS Arm-based Graviton instance types</h4>
+<div class="paragraph">
+<p>In addition to x86-based architecture, ROSA with HCP offers the following Arm-based Graviton worker node instance types and sizes:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Graviton instance types are only available for new clusters created after 24 July, 2024.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<details>
+<summary class="title">General purpose</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>a1.xlarge (2 vCPU, 4 GiB)</p>
+</li>
+<li>
+<p>a1.2xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>a1.4xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>a1.metal (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m6g.xlarge (2 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>m6g.2xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m6g.4xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m6g.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m6g.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m6g.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m6g.metal (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m6gd.xlarge (2 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>m6gd.2xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m6gd.4xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m6gd.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m6gd.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m6gd.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m6gd.metal (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m7g.xlarge (2 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>m7g.2xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m7g.4xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m7g.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m7g.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m7g.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m7g.metal (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m7gd.2xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m7gd.4xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m7gd.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m7gd.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m7gd.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m7gd.xlarge (2 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>m7gd.metal (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m8g.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8g.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m8g.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m8g.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m8g.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8g.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m8g.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8g.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8g.metal-24xl (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8g.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8gb.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8gb.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m8gb.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m8gb.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m8gb.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8gb.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m8gb.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8gb.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8gb.metal-24xl (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8gb.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8gd.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8gd.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m8gd.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m8gd.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m8gd.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8gd.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m8gd.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8gd.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8gd.metal-24xl (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8gd.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8gn.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>m8gn.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>m8gn.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>m8gn.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>m8gn.12xlarge (48 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>m8gn.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>m8gn.24xlarge (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8gn.48xlarge (192 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>m8gn.metal-24xl (96 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>m8gn.metal-48xl (192 vCPU, 768 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Burstable general purpose</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>t4g.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>t4g.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Memory intensive</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>x2gd.xlarge (2 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>x2gd.2xlarge (4 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>x2gd.4xlarge (8 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>x2gd.8xlarge (16 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>x2gd.12xlarge (32 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>x2gd.16xlarge (64 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>x2gd.metal (64 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>x8g.xlarge (4 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>x8g.2xlarge (8 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>x8g.4xlarge (16 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>x8g.8xlarge (32 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>x8g.12xlarge (48 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>x8g.16xlarge (64 vCPU, 1,024 GiB)</p>
+</li>
+<li>
+<p>x8g.24xlarge (96 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>x8g.48xlarge (192 vCPU, 3,072 GiB)</p>
+</li>
+<li>
+<p>x8g.metal-24xl (96 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>x8g.metal-48xl (192 vCPU, 3,072 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Memory optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>r6g.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r6g.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r6g.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r6g.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r6g.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r6g.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r6g.metal (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r6gd.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r6gd.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r6gd.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r6gd.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r6gd.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r6gd.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r6gd.metal (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r7g.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r7g.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r7g.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r7g.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r7g.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r7g.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r7g.metal (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r7gd.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r7gd.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r7gd.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r7gd.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r7gd.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r7gd.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r7gd.metal (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r8g.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>r8g.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>r8g.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>r8g.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>r8g.12xlarge (48 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>r8g.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>r8g.24xlarge (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r8g.48xlarge (192 vCPU, 1,536 GiB)</p>
+</li>
+<li>
+<p>r8g.metal-24xl (96 vCPU, 768 GiB)</p>
+</li>
+<li>
+<p>r8g.metal-48xl (192 vCPU, 1,536 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Accelerated computing</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>g5g.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>g5g.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>g5g.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>g5g.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>g5g.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>g5g.metal (64 vCPU, 128 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Compute optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>c6g.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c6g.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c6g.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c6g.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c6g.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c6g.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c6g.metal (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c6gd.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c6gd.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c6gd.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c6gd.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c6gd.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c6gd.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c6gd.metal (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c6gn.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c6gn.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c6gn.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c6gn.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c6gn.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c6gn.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c7g.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c7g.2xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c7g.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c7g.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c7g.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c7g.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c7g.metal (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c7gd.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c7gd.2xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c7gd.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c7gd.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c7gd.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c7gd.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c7gd.metal (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c7gn.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c7gn.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c7gn.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c7gn.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c7gn.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c7gn.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c7gn.metal (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c8g.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c8g.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c8g.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c8g.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c8g.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c8g.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c8g.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c8g.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8g.metal-24xl (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c8g.metal-48xl (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8gd.xlarge (4 vCPU, 8 GiB)</p>
+</li>
+<li>
+<p>c8gd.2xlarge (8 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>c8gd.4xlarge (16 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>c8gd.8xlarge (32 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>c8gd.12xlarge (48 vCPU, 96 GiB)</p>
+</li>
+<li>
+<p>c8gd.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>c8gd.24xlarge (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c8gd.48xlarge (192 vCPU, 384 GiB)</p>
+</li>
+<li>
+<p>c8gd.metal-24xl (96 vCPU, 192 GiB)</p>
+</li>
+<li>
+<p>c8gd.metal-48xl (192 vCPU, 384 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Storage optimized</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>i4g.xlarge (4 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>i4g.2xlarge (8 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>i4g.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>i4g.8xlarge (32 vCPU, 256 GiB)</p>
+</li>
+<li>
+<p>i4g.16xlarge (64 vCPU, 512 GiB)</p>
+</li>
+<li>
+<p>is4gen.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>is4gen.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>is4gen.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>is4gen.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>im4gn.xlarge (4 vCPU, 16 GiB)</p>
+</li>
+<li>
+<p>im4gn.2xlarge (8 vCPU, 32 GiB)</p>
+</li>
+<li>
+<p>im4gn.4xlarge (16 vCPU, 64 GiB)</p>
+</li>
+<li>
+<p>im4gn.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>im4gn.16xlarge (64 vCPU, 256 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">High performance computing (HPC)</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>hpc7g.4xlarge (16 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>hpc7g.8xlarge (32 vCPU, 128 GiB)</p>
+</li>
+<li>
+<p>hpc7g.16xlarge (64 vCPU, 128 GiB)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-sdpolicy-etcd-encryption_rosa-hcp-review-the-service-definition.html">etcd encryption</a> | ↑ Up: <a href="_discover.html">Discover</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-sdpolicy-aws-instance-types_rosa-hcp-review-supported-instance-types.html">AWS x86-based instance types</a> →</p>
+<p>← Previous: <a href="rosa-hcp-review-the-service-definition_rosa-hcp-review-the-service-definition.html">Review the service definition</a> | ↑ Up: <a href="_discover.html">Discover</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-update-life-cycle_rosa-hcp-update-life-cycle.html">Update life cycle</a> →</p>
 </div>
 </div>
 <div id="footer">

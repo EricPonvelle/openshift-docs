@@ -437,34 +437,239 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-use-oc-cli_use-oc-cli" class="book toc2 toc-left">
+<body id="microshift-use-oc-cli_use-oc-cli" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
 <ul class="sectlevel2">
@@ -477,46 +682,373 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-cli-tools-available_use-oc-cli">Available CLI tools</a></li><li class="level-4"><a href="#microshift-oc-extended-features_use-oc-cli">Extended features of the oc CLI tool</a></li><li class="level-4"><a href="#microshift-oc-kubectl-version-compat_use-oc-cli">oc and server version compatibility</a></li><li class="level-4"><a href="#microshift-cli-oc-about_use-oc-cli">About the OpenShift CLI</a></li><li class="level-4"><a href="#cli-getting-help_use-oc-cli">Getting help</a></li><li class="level-4"><a href="#cli-using-cli_use-oc-cli">Using oc with a MicroShift node</a></li><li class="level-4"><a href="#microshift-oc-apis-errors_use-oc-cli">oc command errors in MicroShift</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-use-oc-cli_use-oc-cli">Use the oc CLI</h3>
 <div class="paragraph _abstract">
 <p>The <code>oc</code> CLI tool provides a superset of <code>kubectl</code> functionality for interacting with MicroShift. You can use <code>oc</code> to view resource status, retrieve logs, and run commands against the cluster. MicroShift supports a subset of <code>oc</code> commands that are relevant to single-node edge deployments.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-cli-tools-available_use-oc-cli">Available CLI tools</h4>
+<div class="paragraph _abstract">
+<p>You can use different command-line interface (CLI) tools to build, deploy, and manage a MicroShift node and workloads. With CLI tools, you can complete various administration and development operations from the terminal to manage deployments and interact with each component of the system.</p>
+</div>
+<div class="paragraph">
+<p>The following CLI tools are available to use with MicroShift:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-cli-tools-available_use-oc-cli.html">Available CLI tools</a></p>
+<p>Kubernetes CLI (<code>kubectl</code>)</p>
 </li>
 <li>
-<p><a href="microshift-oc-extended-features_use-oc-cli.html">Extended features of the oc CLI tool</a></p>
+<p>The OpenShift CLI (<code>oc</code>) tool with an enabled subset of commands</p>
 </li>
 <li>
-<p><a href="microshift-oc-kubectl-version-compat_use-oc-cli.html">oc and server version compatibility</a></p>
+<p>Built-in <code>microshift</code> command types</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Commands for multi-node deployments, projects, and developer tools are not supported by MicroShift.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-oc-extended-features_use-oc-cli">Extended features of the oc CLI tool</h4>
+<div class="paragraph _abstract">
+<p>The <code>oc</code> CLI tool offers the same capabilities as the <code>kubectl</code> CLI tool, but it extends to natively support additional OpenShift Container Platform features, including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Route resource</strong></p>
+<div class="paragraph">
+<p>The <code>Route</code> resource object is specific to OpenShift Container Platform distributions, and builds upon standard Kubernetes primitives.</p>
+</div>
 </li>
 <li>
-<p><a href="microshift-cli-oc-about_use-oc-cli.html">About the OpenShift CLI</a></p>
-</li>
-<li>
-<p><a href="cli-getting-help_use-oc-cli.html">Getting help</a></p>
-</li>
-<li>
-<p><a href="cli-using-cli_use-oc-cli.html">Using oc with a MicroShift node</a></p>
-</li>
-<li>
-<p><a href="microshift-oc-apis-errors_use-oc-cli.html">oc command errors in MicroShift</a></p>
+<p><strong>Additional commands</strong></p>
+<div class="paragraph">
+<p>The additional command <code>oc new-app</code>, for example, makes it easier to get new applications started using existing source code or pre-built images.</p>
+</div>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-oc-kubectl-version-compat_use-oc-cli">oc and server version compatibility</h4>
+<div class="paragraph _abstract">
+<p>Using new capabilities often requires the latest <code>oc</code> binary. A 4.22 server might have additional capabilities that a previous version of the <code>oc</code> binary cannot use. In addition, the 4.22 <code>oc</code> binary might have additional capabilities that are unsupported by a previous-version server.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you installed an earlier version of <code>oc</code>, you might not be able use it to complete all of the commands in MicroShift 4.22. If you want the latest features, you must download and install the latest version of <code>oc</code> that corresponds with your MicroShift version.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 12. Compatibility Matrix</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>X.Y</strong> (<code>oc</code> Client)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>X.Y+N</strong> <sup class="footnote" id="_footnote_versionpolicyn">[<a id="_footnoteref_1" class="footnote" href="_networking.html#_footnotedef_1" title="View footnote.">1</a>]</sup> (<code>oc</code> Client)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>X.Y</strong> (Server)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fully compatible.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>oc</code> CLI tool might provide options and features that are not compatible with the accessed server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>X.Y+N</strong> <sup class="footnoteref">[<a class="footnote" href="_networking.html#_footnotedef_1" title="View footnote.">1</a>]</sup> (Server)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>oc</code> CLI tool might not be able to access server features.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fully compatible.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="microshift-cli-oc-about_use-oc-cli">About the OpenShift CLI</h4>
+<div class="paragraph _abstract">
+<p>With the OpenShift command-line interface (CLI), the <code>oc</code> command, you can deploy and manage MicroShift projects from a terminal. The CLI <code>oc</code> tool is ideal in the following situations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Working directly with project source code</p>
+</li>
+<li>
+<p>Scripting Red&#160;Hat build of MicroShift operations</p>
+</li>
+<li>
+<p>Managing projects while restricted by bandwidth resources</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A <code>kubeconfig</code> file must exist for the node to be accessible. The values are applied from built-in default values or a <code>config.yaml</code>, if you created one.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cli-getting-help_use-oc-cli">Getting help</h4>
+<div class="paragraph _abstract">
+<p>You can get help with CLI commands and MicroShift resources in the following ways.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <code>oc help --flag</code> to get information about a specific CLI command:</p>
+<div class="listingblock">
+<div class="title">Example: Get help for the <code>oc create</code> command</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc create --help</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Create a resource by filename or stdin
+
+JSON and YAML formats are accepted.
+
+Usage:
+  oc create -f FILENAME [flags]
+
+...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use the <code>oc explain</code> command to view the description and fields for a particular resource:</p>
+<div class="listingblock">
+<div class="title">Example: View documentation for the <code>Pod</code> resource</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc explain pods</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">KIND:     Pod
+VERSION:  v1
+
+DESCRIPTION:
+     Pod is a collection of containers that can run on a host. This resource is
+     created by clients and scheduled onto hosts.
+
+FIELDS:
+   apiVersion	&lt;string&gt;
+     APIVersion defines the versioned schema of this representation of an
+     object. Servers should convert recognized schemas to the latest internal
+     value, and may reject unrecognized values. More info:
+     https://git.k8s.io/community/contributors/devel/api-conventions.md#resources
+
+...</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cli-using-cli_use-oc-cli">Using oc with a MicroShift node</h4>
+<div class="paragraph _abstract">
+<p>You can complete common tasks in MicroShift by using the <code>oc</code> CLI.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When you run <code>oc</code> inside a pod and do not specify a namespace, the namespace of the pod is used by default.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To view the pods for the current project, run the <code>oc get pods</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -o wide</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                  READY   STATUS      RESTARTS   AGE     IP            NODE                           NOMINATED NODE
+cakephp-ex-1-build    0/1     Completed   0          5m45s   10.131.0.10   ip-10-0-141-74.ec2.internal    &lt;none&gt;
+cakephp-ex-1-deploy   0/1     Completed   0          3m44s   10.129.2.9    ip-10-0-147-65.ec2.internal    &lt;none&gt;
+cakephp-ex-1-ktz97    1/1     Running     0          3m33s   10.128.2.11   ip-10-0-168-105.ec2.internal   &lt;none&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To view logs for a particular pod, run the <code>oc logs</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc logs cakephp-ex-1-deploy</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">--&gt; Scaling cakephp-ex-1 to 1
+--&gt; Success</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To view the list of supported API resources on the server, run the <code>oc api-resources</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc api-resources</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                                  SHORTNAMES       APIGROUP                              NAMESPACED   KIND
+bindings                                                                                     true         Binding
+componentstatuses                     cs                                                     false        ComponentStatus
+configmaps                            cm                                                     true         ConfigMap
+...</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-oc-apis-errors_use-oc-cli">oc command errors in MicroShift</h4>
+<div class="paragraph _abstract">
+<p>Not all OpenShift CLI (<code>oc</code>) commands are relevant for MicroShift deployments. When you use <code>oc</code> to make a request call against an unsupported API, the <code>oc</code> binary usually generates an error message about a resource that cannot be found.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For example, when you run the following <code>new-project</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc new-project test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following error message can be generated:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Error from server (NotFound): the server could not find the requested resource (get projectrequests.project.openshift.io)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>When you run the <code>get projects</code> command, another error can be generated as follows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get projects</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following error message can be generated:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">error: the server doesn't have a resource type "projects"</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="cli-enabling-tab-completion-zsh_install-and-configure-oc-cli.html">Enabling tab completion for Zsh</a> | ↑ Up: <a href="_reference.html">Reference</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-cli-tools-available_use-oc-cli.html">Available CLI tools</a> →</p>
+<p>← Previous: <a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a> | ↑ Up: <a href="_reference.html">Reference</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a> →</p>
 </div>
 </div>
 <div id="footnotes">

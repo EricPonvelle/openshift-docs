@@ -437,18 +437,81 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-install-in-disconnected-environments_get-ready-to-install-microshift" class="book toc2 toc-left">
+<body id="microshift-install-in-disconnected-environments_get-ready-to-install-microshift" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
 <ul class="sectlevel2">
@@ -475,59 +538,633 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-mirror-container-images_get-ready-to-install-microshift">Mirror container images into an existing registry</a></li><li class="level-4"><a href="#microshift-get-mirror-reg-container-image-list_get-ready-to-install-microshift">Get the mirror registry container image list</a></li><li class="level-4"><a href="#microshift-configuring-mirroring-prereqs_get-ready-to-install-microshift">Configure mirroring prerequisites</a></li><li class="level-5"><a href="#microshift-example-mirror-pull-secret-entry_get-ready-to-install-microshift">Example mirror registry pull secret entry</a></li><li class="level-4"><a href="#microshift-downloading-container-images_get-ready-to-install-microshift">Download container images</a></li><li class="level-4"><a href="#microshift-uploading-container-images-to-mirror_get-ready-to-install-microshift">Upload container images to a mirror registry</a></li><li class="level-4"><a href="#microshift-configuring-hosts-for-mirror_get-ready-to-install-microshift">Configure hosts for mirror registry access</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-install-in-disconnected-environments_get-ready-to-install-microshift">Install in disconnected environments</h3>
 <div class="paragraph _abstract">
 <p>If your edge nodes operate in a disconnected or restricted network, you can mirror the MicroShift container images into a private registry so that you can install the platform without internet access.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-mirror-container-images_get-ready-to-install-microshift">Mirror container images into an existing registry</h4>
+<div class="paragraph _abstract">
+<p>Using a custom air-gapped container registry, or mirror, is necessary with certain user environments and workload requirements. Mirroring allows for the transfer of container images and updates to air-gapped environments where they can be installed on a MicroShift instance.</p>
+</div>
+<div class="paragraph">
+<p>To create an air-gapped mirror registry for MicroShift containers, you must complete the following steps:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-mirror-container-images_get-ready-to-install-microshift.html">Mirror container images into an existing registry</a></p>
+<p>Get the container image list to be mirrored.</p>
 </li>
 <li>
-<p><a href="microshift-get-mirror-reg-container-image-list_get-ready-to-install-microshift.html">Get the mirror registry container image list</a></p>
+<p>Configure the mirroring prerequisites, including secure signatures management.</p>
 </li>
 <li>
-<p><a href="microshift-configuring-mirroring-prereqs_get-ready-to-install-microshift.html">Configure mirroring prerequisites</a></p>
+<p>Download images on a host with internet access.</p>
 </li>
 <li>
-<p><a href="microshift-downloading-container-images_get-ready-to-install-microshift.html">Download container images</a></p>
+<p>Copy the downloaded image directory to an air-gapped site.</p>
 </li>
 <li>
-<p><a href="microshift-uploading-container-images-to-mirror_get-ready-to-install-microshift.html">Upload container images to a mirror registry</a></p>
+<p>Upload images to a mirror registry in an air-gapped site.</p>
 </li>
 <li>
-<p><a href="microshift-configuring-hosts-for-mirror_get-ready-to-install-microshift.html">Configure hosts for mirror registry access</a></p>
+<p>Configure your MicroShift hosts to use the mirror registry.</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-get-mirror-reg-container-image-list_get-ready-to-install-microshift">Get the mirror registry container image list</h4>
+<div class="paragraph _abstract">
+<p>To use a mirror registry, you must know which container image references are used by a specific version of MicroShift. These references are provided in the <code>release-&lt;arch&gt;.json</code> files that are part of the <code>microshift-release-info</code> RPM package.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To mirror the Operator Lifecycle Manager (OLM) in disconnected environments, add the references provided in the <code>release-olm-$ARCH.json</code> that is included in the <code>microshift-olm</code> RPM and follow the same procedure. Use the <code>oc-mirror</code> CLI plugin for mirroring Operator catalogs and Operators.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have installed jq.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Access the list of container image references by using one of the following methods:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If the package is installed on the MicroShift host, get the location of the files by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rpm -ql microshift-release-info</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">/usr/share/microshift/release/release-x86_64.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the package is not installed on a MicroShift host, download and unpack the RPM package without installing it by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rpm2cpio microshift-release-info*.noarch.rpm | cpio -idmv</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">/usr/share/microshift/release/release-x86_64.json</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Extract the list of container images into the <code>microshift-container-refs.txt</code> file by running the following commands:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ RELEASE_FILE=/usr/share/microshift/release/release-$(uname -m).json</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ jq -r '.images | .[]' ${RELEASE_FILE} &gt; microshift-container-refs.txt</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>After the <code>microshift-container-refs.txt</code> file is created with the MicroShift container image list, you can append the file with other user-specific image references before running the mirroring procedure.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-configuring-mirroring-prereqs_get-ready-to-install-microshift">Configure mirroring prerequisites</h4>
+<div class="paragraph _abstract">
+<p>You must create a container image registry credentials file that allows the mirroring of images from your internet-connected mirror host to your air-gapped mirror. Follow the instructions in the "Configuring credentials that allow images to be mirrored" link provided in the "Additional resources" section. These instructions guide you to create a <code>~/.pull-secret-mirror.json</code> file on the mirror registry host that includes the user credentials for accessing the mirror.</p>
+</div>
+<div class="sect4">
+<h5 id="microshift-example-mirror-pull-secret-entry_get-ready-to-install-microshift">Example mirror registry pull secret entry</h5>
+<div class="paragraph">
+<p>In this example, the following section is added to the pull secret file for the <code>microshift_quay:8443</code> mirror registry by using <code>microshift:microshift</code> as username and password.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example mirror registry section for pull secret file</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">"&lt;microshift_quay:8443&gt;": {
+    "auth": "&lt;microshift_auth&gt;",
+    "email": "&lt;microshift_quay@example.com&gt;"
+},</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace the <code>&lt;registry_host&gt;:&lt;port&gt;</code> value <code>microshift_quay:8443</code> with the hostname and port of your mirror registry server.</p>
+</li>
+<li>
+<p>Replace the <code><em>&lt;microshift_auth&gt;</em></code> value with the user password.</p>
+</li>
+<li>
+<p>Replace the <code><em>&lt;/microshift_quay@example.com&gt;</em></code> value with the user email.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-downloading-container-images_get-ready-to-install-microshift">Download container images</h4>
+<div class="paragraph _abstract">
+<p>After you have located the container list and completed the mirroring prerequisites, download the container images to a host with internet access.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You logged into a host with access to the internet.</p>
+</li>
+<li>
+<p>The <code>.pull-secret-mirror.json</code> file and <code>microshift-containers</code> directory contents are available locally.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Install the <code>skopeo</code> tool used for copying the container images by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo dnf install -y skopeo</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the environment variable that points to the pull secret file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ PULL_SECRET_FILE=~/.pull-secret-mirror.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the environment variable that points to the list of container images:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ IMAGE_LIST_FILE=~/microshift-container-refs.txt</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the environment variable that points to the destination directory for storing the downloaded data:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ IMAGE_LOCAL_DIR=~/microshift-containers</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the following script to download the container images to the <code>${IMAGE_LOCAL_DIR}</code> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">while read -r src_img ; do
+   # Remove the source registry prefix
+   dst_img=$(echo "${src_img}" | cut -d '/' -f 2-)
+
+   # Run the image download command
+   echo "Downloading '${src_img}' to '${IMAGE_LOCAL_DIR}'"
+   mkdir -p "${IMAGE_LOCAL_DIR}/${dst_img}"
+   skopeo copy --all --quiet \
+      --preserve-digests \
+      --authfile "${PULL_SECRET_FILE}" \
+      docker://"${src_img}" dir://"${IMAGE_LOCAL_DIR}/${dst_img}"
+
+done &lt; "${IMAGE_LIST_FILE}"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-uploading-container-images-to-mirror_get-ready-to-install-microshift">Upload container images to a mirror registry</h4>
+<div class="paragraph _abstract">
+<p>To use your container images at an air-gapped site, upload them to the mirror registry by using the following procedure.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You logged into a host with access to <code>microshift-quay</code>.</p>
+</li>
+<li>
+<p>The <code>.pull-secret-mirror.json</code> file is available locally.</p>
+</li>
+<li>
+<p>The <code>microshift-containers</code> directory contents are available locally.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Install the <code>skopeo</code> tool used for copying the container images by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo dnf install -y skopeo</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the environment variables pointing to the pull secret file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ IMAGE_PULL_FILE=~/.pull-secret-mirror.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the environment variables pointing to the local container image directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ IMAGE_LOCAL_DIR=~/microshift-containers</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the environment variables pointing to the mirror registry URL for uploading the container images:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ TARGET_REGISTRY=<em>&lt;registry_host&gt;:&lt;port&gt;</em></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code><em>&lt;registry_host&gt;:&lt;port&gt;</em></code> with the hostname and port of your mirror registry server.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Run the following script to upload the container images to the <code>${TARGET_REGISTRY}</code> mirror registry:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">pushd "${IMAGE_LOCAL_DIR}" &gt;/dev/null
+while read -r src_manifest ; do
+  local src_img
+  src_img=$(dirname "${src_manifest}")
+  # Add the target registry prefix and remove SHA
+  local -r dst_img="${TARGET_REGISTRY}/${src_img}"
+  local -r dst_img_no_tag="${TARGET_REGISTRY}/${src_img%%[@:]*}"
+  # Run the image upload
+  echo "Uploading '${src_img}' to '${dst_img}'"
+  skopeo copy --all --quiet \
+     --preserve-digests \
+     --authfile "${IMAGE_PULL_FILE}" \
+     dir://"${IMAGE_LOCAL_DIR}/${src_img}" docker://"${dst_img}"
+done &lt; &lt;(find . -type f -name manifest.json -printf '%P\n')
+popd &gt;/dev/null</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-configuring-hosts-for-mirror_get-ready-to-install-microshift">Configure hosts for mirror registry access</h4>
+<div class="paragraph _abstract">
+<p>To configure a MicroShift host to use a mirror registry, you must give the MicroShift host access to the registry by creating a configuration file that maps the Red Hat registry host names to the mirror.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Your mirror host has access to the internet.</p>
+</li>
+<li>
+<p>The mirror host can access the mirror registry.</p>
+</li>
+<li>
+<p>You configured the mirror registry for use in your restricted network.</p>
+</li>
+<li>
+<p>You downloaded the pull secret and modified it to include authentication to your mirror repository.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Log in to your MicroShift host.</p>
+</li>
+<li>
+<p>Enable the SSL certificate trust on any host accessing the mirror registry by completing the following steps:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Copy the <code>rootCA.pem</code> file from the mirror registry, for example, <code>&lt;registry_path&gt;/quay-rootCA</code>, to the MicroShift host at the <code>/etc/pki/ca-trust/source/anchors</code> directory.</p>
+</li>
+<li>
+<p>Enable the certificate in the system-wide truststore configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo update-ca-trust</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Create the <code>/etc/containers/registries.conf.d/999-microshift-mirror.conf</code> configuration file that maps the Red Hat registry host names to the mirror registry:</p>
+<div class="listingblock">
+<div class="title">Example mirror configuration file</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[[registry]]
+    prefix = ""
+    location = "&lt;registry_host&gt;:&lt;port&gt;"
+    mirror-by-digest-only = true
+    insecure = false
+
+[[registry]]
+    prefix = ""
+    location = "quay.io"
+    mirror-by-digest-only = true
+[[registry.mirror]]
+    location = "&lt;registry_host&gt;:&lt;port&gt;"
+    insecure = false
+
+[[registry]]
+    prefix = ""
+    location = "registry.redhat.io"
+    mirror-by-digest-only = true
+[[registry.mirror]]
+    location = "&lt;registry_host&gt;:&lt;port&gt;"
+    insecure = false
+
+[[registry]]
+    prefix = ""
+    location = "registry.access.redhat.com"
+    mirror-by-digest-only = true
+[[registry.mirror]]
+    location = "&lt;registry_host&gt;:&lt;port&gt;"
+    insecure = false</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code>&lt;registry_host&gt;:&lt;port&gt;</code> with the hostname and port of your mirror registry server, for example, <code>&lt;microshift-quay:8443&gt;</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enable the MicroShift service by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl enable microshift</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Reboot the host by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo reboot</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-kickstart-rpm-install_get-ready-to-install-microshift.html">Create a Kickstart file for a MicroShift RPM installation</a> | ↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-mirror-container-images_get-ready-to-install-microshift.html">Mirror container images into an existing registry</a> →</p>
+<p>← Previous: <a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a> | ↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a> →</p>
 </div>
 </div>
 <div id="footer">

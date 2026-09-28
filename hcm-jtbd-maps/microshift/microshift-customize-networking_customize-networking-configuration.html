@@ -437,36 +437,250 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-customize-networking_customize-networking-configuration" class="book toc2 toc-left">
+<body id="microshift-customize-networking_customize-networking-configuration" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
 <ul class="sectlevel2">
@@ -493,74 +707,1225 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-networking-pod-connectivity_customize-networking-configuration">About pod network connectivity</a></li><li class="level-4"><a href="#microshift-config-OVN-K_customize-networking-configuration">Create an OVN-Kubernetes configuration file</a></li><li class="level-4"><a href="#microshift-restart-ovnkube-master_customize-networking-configuration">Restart the ovnkube-master pod</a></li><li class="level-4"><a href="#microshift-yaml-advertiseAddress_customize-networking-configuration">Configure the advertise address network flag</a></li><li class="level-4"><a href="#microshift-nodeport-range-limits_customize-networking-configuration">Extending the port range for NodePort services</a></li><li class="level-4"><a href="#microshift-resolve-custom-hostnames_customize-networking-configuration">Configure custom hostnames</a></li><li class="level-4"><a href="#microshift-intro-ipv6_customize-networking-configuration">IPv6 networking with MicroShift</a></li><li class="level-4"><a href="#microshift-configuring-ipv6-single-stack-config_customize-networking-configuration">Configure IPv6 single-stack networking</a></li><li class="level-4"><a href="#microshift-configuring-ipv6-dual-stack-config_customize-networking-configuration">Configure IPv6 dual-stack networking before MicroShift starts</a></li><li class="level-4"><a href="#microshift-nw-ipv6-dual-stack-migrating-config_customize-networking-configuration">Migrating a MicroShift node to IPv6 dual-stack networking</a></li><li class="level-4"><a href="#microshift-nw-ipv6-dual-stack-reset-ipfam_customize-networking-configuration">Resetting the IP family policy for application pods and services</a></li><li class="level-4"><a href="#nw-ovn-kubernetes-limitations_customize-networking-configuration">OVN-Kubernetes IPv6 and dual-stack limitations</a></li><li class="level-4"><a href="#microshift-http-proxy_customize-networking-configuration">Deploy MicroShift behind an HTTP or HTTPS proxy</a></li><li class="level-4"><a href="#microshift-rpm-ostree-https_customize-networking-configuration">Use the RPM-OStree HTTP or HTTPS proxy</a></li><li class="level-4"><a href="#microshift-mdns_customize-networking-configuration">The multicast DNS protocol</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-customize-networking_customize-networking-configuration">Customize networking configuration</h3>
 <div class="paragraph _abstract">
 <p>After installing MicroShift, customize the default networking settings to match your edge deployment needs. You can configure OVN-Kubernetes options, IPv6 networking, HTTP proxy settings, and hostname resolution.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-networking-pod-connectivity_customize-networking-configuration">About pod network connectivity</h4>
+<div class="paragraph _abstract">
+<p>MicroShift administrators have several options for exposing applications that run inside a node to external traffic and securing network connections:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-networking-pod-connectivity_customize-networking-configuration.html">About pod network connectivity</a></p>
+<p>A service such as NodePort</p>
 </li>
 <li>
-<p><a href="microshift-config-OVN-K_customize-networking-configuration.html">Create an OVN-Kubernetes configuration file</a></p>
+<p>API resources, such as <code>Ingress</code> and <code>Route</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By default, Kubernetes allocates each pod an internal IP address for applications running within the pod. Pods and their containers can have traffic between them, but clients outside the node do not have direct network access to pods except when exposed with a service such as NodePort.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-config-OVN-K_customize-networking-configuration">Create an OVN-Kubernetes configuration file</h4>
+<div class="paragraph _abstract">
+<p>MicroShift uses built-in default OVN-Kubernetes values if an OVN-Kubernetes configuration file is not created. To apply custom OVN-Kubernetes values such as pod <code>mtu</code> instead of using built-in defaults, you can copy <code>ovn.yaml.default</code> to <code>/etc/microshift/ovn.yaml</code> and edit the file.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>To create your <code>ovn.yaml</code> file, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">$ sudo cp /etc/microshift/ovn.yaml.default /etc/microshift/ovn.yaml</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p><a href="microshift-restart-ovnkube-master_customize-networking-configuration.html">Restart the ovnkube-master pod</a></p>
+<p>To list the contents of the configuration file you created, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">$ cat /etc/microshift/ovn.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example YAML file with default maximum transmission unit (MTU) value</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">mtu: 1400</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p><a href="microshift-yaml-advertiseAddress_customize-networking-configuration.html">Configure the advertise address network flag</a></p>
+<p>To customize your configuration, you can change the MTU value. The table that follows provides details:</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 14. Supported optional OVN-Kubernetes configurations for MicroShift</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mtu</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">uint32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">auto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MTU value used for the pods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1300</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you change the <code>mtu</code> configuration value in the <code>ovn.yaml</code> file, you must restart the host that Red&#160;Hat build of MicroShift is running on to apply the updated setting.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example custom <code>ovn.yaml</code> configuration file</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">mtu: 1300</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-restart-ovnkube-master_customize-networking-configuration">Restart the ovnkube-master pod</h4>
+<div class="paragraph _abstract">
+<p>To replace the <code>ovnkube-master</code> pod with a new instance on MicroShift, you can delete the existing pod in the <code>openshift-ovn-kubernetes</code> namespace. Confirm that a new pod appears when you list pods in that namespace.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>The OpenShift CLI (<code>oc</code>) is installed.</p>
 </li>
 <li>
-<p><a href="microshift-nodeport-range-limits_customize-networking-configuration.html">Extending the port range for NodePort services</a></p>
+<p>You have root access to the node.</p>
 </li>
 <li>
-<p><a href="microshift-resolve-custom-hostnames_customize-networking-configuration.html">Configure custom hostnames</a></p>
+<p>A node installed on infrastructure configured with the OVN-Kubernetes network plugin.</p>
 </li>
 <li>
-<p><a href="microshift-intro-ipv6_customize-networking-configuration.html">IPv6 networking with MicroShift</a></p>
+<p>The KUBECONFIG environment variable is set.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Access the remote node by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export KUBECONFIG=$PWD/kubeconfig</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p><a href="microshift-configuring-ipv6-single-stack-config_customize-networking-configuration.html">Configure IPv6 single-stack networking</a></p>
+<p>Find the name of the <code>ovnkube-master</code> pod that you want to restart by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ pod=$(oc get pods -n openshift-ovn-kubernetes | awk -F " " '/ovnkube-master/{print $1}')</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p><a href="microshift-configuring-ipv6-dual-stack-config_customize-networking-configuration.html">Configure IPv6 dual-stack networking before MicroShift starts</a></p>
+<p>Delete the <code>ovnkube-master</code> pod by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc -n openshift-ovn-kubernetes delete pod $pod</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p><a href="microshift-nw-ipv6-dual-stack-migrating-config_customize-networking-configuration.html">Migrating a MicroShift node to IPv6 dual-stack networking</a></p>
+<p>Confirm that a new <code>ovnkube-master</code> pod is running by using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n openshift-ovn-kubernetes</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The listing of the running pods shows a new <code>ovnkube-master</code> pod name and age.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-yaml-advertiseAddress_customize-networking-configuration">Configure the advertise address network flag</h4>
+<div class="paragraph _abstract">
+<p>The <code>apiserver.advertiseAddress</code> flag specifies the IP address on which to advertise the API server to members of the node. This address must be reachable by the node. You can set a custom IP address here, but you must also add the IP address to a host interface. Customizing this parameter preempts MicroShift from adding a default IP address to the <code>br-ex</code> network interface.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you customize the <code>advertiseAddress</code> IP address, make sure it is reachable by the node when MicroShift starts by adding the IP address to a host interface.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If unset, the default value is set to the next immediate subnet after the service network. For example, when the service network is <code>10.43.0.0/16</code>, the <code>advertiseAddress</code> is set to <code>10.44.0.0/32</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-nodeport-range-limits_customize-networking-configuration">Extending the port range for NodePort services</h4>
+<div class="paragraph _abstract">
+<p>The <code>serviceNodePortRange</code> setting extends the port range available to NodePort services. This option is useful when specific standard ports under the <code>30000-32767</code> range need to be exposed. For example, if your device needs to expose the <code>1883/tcp</code> MQ Telemetry Transport (MQTT) port on the network because client devices cannot use a different port.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>NodePorts can overlap with system ports, causing a malfunction of the system or MicroShift.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Consider the following when configuring the NodePort service ranges:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Do not create any NodePort service without an explicit <code>nodePort</code> selection. When an explicit <code>nodePort</code> is not specified, the port is assigned randomly by the <code>kube-apiserver</code> and cannot be predicted.</p>
 </li>
 <li>
-<p><a href="microshift-nw-ipv6-dual-stack-reset-ipfam_customize-networking-configuration.html">Resetting the IP family policy for application pods and services</a></p>
+<p>Do not create any NodePort service for any system service port, MicroShift port, or other services you expose on your device <code>HostNetwork</code>.</p>
 </li>
 <li>
-<p><a href="nw-ovn-kubernetes-limitations_customize-networking-configuration.html">OVN-Kubernetes IPv6 and dual-stack limitations</a></p>
-</li>
-<li>
-<p><a href="microshift-http-proxy_customize-networking-configuration.html">Deploy MicroShift behind an HTTP or HTTPS proxy</a></p>
-</li>
-<li>
-<p><a href="microshift-rpm-ostree-https_customize-networking-configuration.html">Use the RPM-OStree HTTP or HTTPS proxy</a></p>
-</li>
-<li>
-<p><a href="microshift-mdns_customize-networking-configuration.html">The multicast DNS protocol</a></p>
+<p>Table one specifies ports to avoid when extending the port range:</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 15. Ports to avoid.</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Port</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">22/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSH port</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">80/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenShift Router HTTP endpoint</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenShift Router HTTPS endpoint</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1936/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Metrics service for the openshift-router, not exposed today</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2379/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">etcd port</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2380/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">etcd port</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetes API</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8445/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openshift-route-controller-manager</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9537/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cri-o metrics</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10250/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kubelet</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10248/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kubelet healthz port</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10259/tcp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kube scheduler</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-resolve-custom-hostnames_customize-networking-configuration">Configure custom hostnames</h4>
+<div class="paragraph _abstract">
+<p>You can use the <code>hosts</code> file to resolve custom hostnames for pod workloads. This enables applications to resolve fixed hostnames, such as the local machine or external services, by applying <code>/etc/hosts</code> functionality to DNS queries within the node. The functionality is applied by adding specific configuration to the MicroShift configuration YAML file, and completing a service restart.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>You have root access to the node.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Edit the MicroShift configuration in the <code>/etc/microshift/config.yaml</code> file.</p>
+</li>
+<li>
+<p>Add the following <code>hosts</code> configuration at the end of the file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">dns:
+ hosts:
+   status: &lt;Enabled|Disabled&gt;
+   file: &lt;filepath&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Save your configuration YAML file.</p>
+</li>
+<li>
+<p>Restart the MicroShift service to activate the configuration changes:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart microshift</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After this initial restart, if <code>dns.hosts.status</code> is set to <code>Enabled</code>, MicroShift automatically monitors the <code>dns.hosts.file</code> file for updates. You do not have to restart the MicroShift service until the MicroShift configuration YAML file is changed again.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>After you save the <code>/etc/hosts</code> file, it takes up to 90 seconds for the change to be active in the pods. During this period, the pods might not properly resolve hostnames.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-intro-ipv6_customize-networking-configuration">IPv6 networking with MicroShift</h4>
+<div class="paragraph _abstract">
+<p>The Red&#160;Hat build of MicroShift service defaults to IPv4. IPv6 single-stack and IPv4/IPv6 dual-stack networking is available on supported platforms. You configure IPv6 or dual-stack networking in the configuration file.</p>
+</div>
+<div class="paragraph">
+<p>Consider the following when configuring IPv6 or dual-stack networking with MicroShift:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When you set the values for IPv6 in the MicroShift configuration file and restart the service, settings managed by the OVN-Kubernetes network plugin are updated automatically.</p>
+</li>
+<li>
+<p>After migrating to dual-stack networking, both new and existing pods have dual-stack networking enabled.</p>
+</li>
+<li>
+<p>If you require node-wide IPv6 access, such as for the control plane and other services, use the following configuration examples. The MicroShift Multus Container Network Interface (CNI) plugin can enable IPv6 for pods.</p>
+</li>
+<li>
+<p>For dual-stack networking, each MicroShift node network and service network supports up to two values in the node and service network configuration parameters.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Plan for IPv6 before starting MicroShift for the first time. Switching a node to and from different IP families is not supported unless you are migrating a node from default single-stack to dual-stack networking.</p>
+</div>
+<div class="paragraph">
+<p>If you configure your networking for either IPv6 single stack or IPv4/IPv6 dual stack, you must restart application pods and services. Otherwise pods and services remain configured with the default IP family.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-configuring-ipv6-single-stack-config_customize-networking-configuration">Configure IPv6 single-stack networking</h4>
+<div class="paragraph _abstract">
+<p>To run MicroShift with IPv6-only networking, you can update the service configuration file and set the network section with your cluster and service CIDRs. You can verify the configuration by checking that pods and services use IPv6 addresses.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>You have root access to the node.</p>
+</li>
+<li>
+<p>Your node uses the OVN-Kubernetes network plugin.</p>
+</li>
+<li>
+<p>The host has an IPv6 address and IPv6 routes, including the default.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>If you have not done so, make a copy of the provided <code>config.yaml.default</code> file in the <code>/etc/microshift/</code> directory, renaming it <code>config.yaml</code>.</p>
+</li>
+<li>
+<p>Keep the new MicroShift <code>config.yaml</code> in the <code>/etc/microshift/</code> directory. Your <code>config.yaml</code> file is read every time the MicroShift service starts.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>After you create it, the <code>config.yaml</code> file takes precedence over built-in settings.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Replace the default values in the <code>network</code> section of the MicroShift YAML with your valid values.</p>
+<div class="listingblock">
+<div class="title">Example single-stack IPv6 networking configuration</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+# ...
+network:
+  clusterNetwork:
+  - fd01::/48
+  serviceNetwork:
+  - fd02::/112
+node:
+  nodeIP: 2600:1f14:1c48:ee00:2d76:3190:5bc2:5aef
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>networking.clusterNetwork</code></dt>
+<dd>
+<p>Specifies a <code>clusterNetwork</code> address with a CIDR value that is less than <code>64</code>. For example, <code>fd01::/48</code>.</p>
+</dd>
+<dt class="hdlist1"><code>network.serviceNetwork</code></dt>
+<dd>
+<p>Specifies an IPv6 CIDR with a prefix of <code>112</code>, for example, <code>fd02::/112</code>. Kubernetes uses only the lowest 16 bits. For a prefix of <code>112</code>, IP addresses are assigned from <code>112</code> to <code>128</code> bits.</p>
+</dd>
+<dt class="hdlist1"><code>node.nodeIP</code></dt>
+<dd>
+<p>Specifies a node IP address. Valid values are IP addresses in the IPv6 address family. You must only specify an IPv6 address when an IPv4 network is also present. If an IPv4 network is not present, the MicroShift service automatically fills in this value upon restart.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Complete any other configurations you require, then start MicroShift by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl start microshift</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Retrieve the networks defined in the node resource by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get node -o jsonpath='{.items[].spec.podCIDRs[]}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">fd01::/48</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Retrieve the status of the pods by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pod -A -o wide</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">NAMESPACE                  NAME                                      READY   STATUS    RESTARTS   AGE   IP                      NODE           NOMINATED NODE   READINESS GATES
+kube-system                csi-snapshot-controller-bb7cb654b-rqrt6   1/1     Running   0          65s   fd01:0:0:1::5           microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-dns              dns-default-cjn66                         2/2     Running   0          62s   fd01:0:0:1::9           microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-dns              node-resolver-ppnjb                       1/1     Running   0          63s   2001:db9:ca7:ff::1db8   microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-ingress          router-default-6d97d7b8b6-wdtmg           1/1     Running   0          61s   fd01:0:0:1::8           microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-ovn-kubernetes   ovnkube-master-gfvp5                      4/4     Running   0          63s   2001:db9:ca7:ff::1db8   microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-ovn-kubernetes   ovnkube-node-bnpjh                        1/1     Running   0          63s   2001:db9:ca7:ff::1db8   microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-service-ca       service-ca-5d7bd9db6-j25bd                1/1     Running   0          60s   fd01:0:0:1::4           microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-storage          lvms-operator-656cd9b59b-bwr47            1/1     Running   0          63s   fd01:0:0:1::7           microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-storage          vg-manager-f7dmk                          1/1     Running   0          27s   fd01:0:0:1::a           microshift-9   &lt;none&gt;           &lt;none&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Retrieve the status of services by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get svc -A</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">NAMESPACE           NAME                            TYPE           CLUSTER-IP   EXTERNAL-IP                                             PORT(S)                      AGE
+default             kubernetes                      ClusterIP      fd02::1      &lt;none&gt;                                                  443/TCP                      3m42s
+openshift-dns       dns-default                     ClusterIP      fd02::a      &lt;none&gt;                                                  53/UDP,53/TCP,9154/TCP       2m58s
+openshift-ingress   router-default                  LoadBalancer   fd02::f2e6   2001:db9:ca7:ff::1db8,fd01:0:0:1::2,fd02::1:0,fd69::2   80:31133/TCP,443:31996/TCP   2m58s
+openshift-ingress   router-internal-default         ClusterIP      fd02::c55e   &lt;none&gt;                                                  80/TCP,443/TCP,1936/TCP      2m58s
+openshift-storage   lvms-operator-metrics-service   ClusterIP      fd02::7afb   &lt;none&gt;                                                  443/TCP                      2m58s
+openshift-storage   lvms-webhook-service            ClusterIP      fd02::d8dd   &lt;none&gt;                                                  443/TCP                      2m58s
+openshift-storage   vg-manager-metrics-service      ClusterIP      fd02::fc1    &lt;none&gt;                                                  443/TCP                      2m58s</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-configuring-ipv6-dual-stack-config_customize-networking-configuration">Configure IPv6 dual-stack networking before MicroShift starts</h4>
+<div class="paragraph _abstract">
+<p>To run your MicroShift node with IPv4 and IPv6 dual-stack networking, you can configure the network section in the configuration file before starting the service.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The first IP family in the configuration is the primary IP stack in the node.</p>
+</li>
+<li>
+<p>After the node is running with dual-stack networking, enable application pods and add-on services for dual-stack by restarting them.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The OVN-Kubernetes network plugin requires that both IPv4 and IPv6 default routes be on the same network device. IPv4 and IPv6 default routes on separate network devices is not supported.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When using dual-stack networking where IPv6 is required, you cannot use IPv4-mapped IPv6 addresses, such as <code>::FFFF:198.51.100.1</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>You have root access to the node.</p>
+</li>
+<li>
+<p>Your node uses the OVN-Kubernetes network plugin.</p>
+</li>
+<li>
+<p>The host has both IPv4 and IPv6 addresses and routes, including a default for each.</p>
+</li>
+<li>
+<p>The host has at least two L3 networks, IPv4 and IPv6.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>If you have not done so, make a copy of the provided <code>config.yaml.default</code> file in the <code>/etc/microshift/</code> directory, renaming it <code>config.yaml</code>.</p>
+</li>
+<li>
+<p>Keep the new MicroShift <code>config.yaml</code> in the <code>/etc/microshift/</code> directory. Your <code>config.yaml</code> file is read every time the MicroShift service starts.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>After you create it, the <code>config.yaml</code> file takes precedence over built-in settings.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>If you have not started MicroShift, replace the default values in the <code>network</code> section of the MicroShift YAML with your valid values.</p>
+<div class="listingblock">
+<div class="title">Example dual-stack IPv6 networking configuration with network assignments</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+# ...
+apiServer:
+  subjectAltNames:
+  - 192.168.113.117
+  - 2001:db9:ca7:ff::1db8
+network:
+  clusterNetwork:
+  - 10.42.0.0/16
+  - fd01::/48
+  serviceNetwork:
+  - 10.43.0.0/16
+  - fd02::/112
+node:
+  nodeIP: 192.168.113.117
+  nodeIPv6: 2001:db9:ca7:ff::1db8
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>network.clusterNetwork</code></dt>
+<dd>
+<p>Specifies an IPv6 <code>clusterNetwork</code> with a CIDR value that is less than <code>64</code>.</p>
+</dd>
+<dt class="hdlist1"><code>network.serviceNetwork</code></dt>
+<dd>
+<p>Specifies an IPv6 CIDR with a prefix of <code>112</code>. Kubernetes uses only the lowest 16 bits. For a prefix of <code>112</code>, IP addresses are assigned from <code>112</code> to <code>128</code> bits.</p>
+</dd>
+<dt class="hdlist1"><code>node.nodeIP</code></dt>
+<dd>
+<p>Specifies an IPv4 address family.</p>
+</dd>
+<dt class="hdlist1"><code>node.nodeIPv6</code></dt>
+<dd>
+<p>Specifies an IPv6 address family. Configurable only with dual-stack networking.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Complete any other MicroShift configurations you require, then start MicroShift by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl start microshift</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Reset the IP family policy for application pods and services as needed, then restart those application pods and services to enable dual-stack networking. See "Resetting the IP family policy for application pods and services" for a simple example.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>You can verify that all of the system services and pods to have two IP addresses, one for each family, by using the following steps:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Retrieve the networks defined in the node resource by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pod -n openshift-ingress router-default-5b75594b4-w7w6s -o jsonpath='{.status.podIPs}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">[{"ip":"10.42.0.4"},{"ip":"fd01:0:0:1::4"}]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Retrieve the networks defined by the host network pods by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pod -n openshift-ovn-kubernetes ovnkube-master-2fm2k -o jsonpath='{.status.podIPs}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[{"ip":"192.168.113.117"},{"ip":"2001:db9:ca7:ff::1db8"}]</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-nw-ipv6-dual-stack-migrating-config_customize-networking-configuration">Migrating a MicroShift node to IPv6 dual-stack networking</h4>
+<div class="paragraph _abstract">
+<p>To convert a single-stack node to dual-stack node networking that supports IPv4 and IPv6 address families, set two entries in the service and node network parameters in the MicroShift configuration file and restart the service.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The first IP family in the configuration is the primary IP stack in the node.</p>
+</li>
+<li>
+<p>MicroShift system pods and services are automatically updated upon MicroShift restart.</p>
+</li>
+<li>
+<p>After the node is migrated to dual-stack networking and has restarted, enable workload pods and services for dual-stack networking by restarting them.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The OVN-Kubernetes network plugin requires that both IPv4 and IPv6 default routes be on the same network device. IPv4 and IPv6 default routes on separate network devices is not supported.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When using dual-stack networking where IPv6 is required, you cannot use IPv4-mapped IPv6 addresses, such as <code>::FFFF:198.51.100.1</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>You have root access to the node.</p>
+</li>
+<li>
+<p>Your node uses the OVN-Kubernetes network plugin.</p>
+</li>
+<li>
+<p>The host has both IPv4 and IPv6 addresses and routes, including a default for each.</p>
+</li>
+<li>
+<p>The host has at least two L3 networks, IPv4 and IPv6.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>If you have not done so, make a copy of the provided <code>config.yaml.default</code> file in the <code>/etc/microshift/</code> directory, renaming it <code>config.yaml</code>.</p>
+</li>
+<li>
+<p>Keep the new MicroShift <code>config.yaml</code> in the <code>/etc/microshift/</code> directory. Your <code>config.yaml</code> file is read every time the MicroShift service starts.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>After you create it, the <code>config.yaml</code> file takes precedence over built-in settings.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Add IPv6 configurations to the <code>network</code> section of the MicroShift YAML with your valid values:</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Warning">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must keep the same first entry across restarts and migrations. This is true for any migration: single-to-dual stack, or dual-to-single stack. A complete wipe of the etcd database is required if a change to the first entry is needed. This might result in application data loss and is not supported.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add an IPv6 configuration for a second network in the <code>network</code> section of the MicroShift YAML with your valid values.</p>
+</li>
+<li>
+<p>Add network assignments to the <code>network</code> section of the MicroShift <code>config.yaml</code> to enable dual stack with IPv6 as secondary network.</p>
+<div class="listingblock">
+<div class="title">Example dual-stack IPv6 configuration with network assignments</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
+apiServer:
+  subjectAltNames:
+  - 192.168.113.117
+  - 2001:db9:ca7:ff::1db8
+network:
+  clusterNetwork:
+  - 10.42.0.0/16
+  - fd01::/48
+  serviceNetwork:
+  - 10.43.0.0/16
+  - fd02::/112
+node:
+  nodeIP: 192.168.113.117
+  nodeIPv6: 2001:db9:ca7:ff::1db8
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>2001:db9:ca7:ff::1db8</code></dt>
+<dd>
+<p>Specifies an IPv6 node address.</p>
+</dd>
+<dt class="hdlist1"><code>10.42.0.0/16</code></dt>
+<dd>
+<p>Specifies an IPv4 <code>clusterNetwork</code> address with a CIDR value that is less than <code>24</code>.</p>
+</dd>
+<dt class="hdlist1"><code>fd01::/48</code></dt>
+<dd>
+<p>Specifies an IPv6 <code>clusterNetwork</code> address with a CIDR value that is less than <code>64</code>.</p>
+</dd>
+<dt class="hdlist1"><code>fd02::/112</code></dt>
+<dd>
+<p>Specifies an IPv6 CIDR with a prefix of <code>112</code>. Kubernetes uses only the lowest 16 bits. For a prefix of <code>112</code>, IP addresses are assigned from <code>112</code> to <code>128</code> bits.</p>
+</dd>
+<dt class="hdlist1"><code>192.168.113.117</code></dt>
+<dd>
+<p>Specifies an IPv4 node IP address. Maintain the previous IPv4 IP address.</p>
+</dd>
+<dt class="hdlist1"><code>2001:db9:ca7:ff::1db8</code></dt>
+<dd>
+<p>Specifies an IPv6 node IP address. Must be an IPv6 address family.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Complete any other configurations you require, then restart MicroShift by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart microshift</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Reset the IP family policy for application pods and services as needed, then restart those application pods and services to enable dual-stack networking. See "Resetting the IP family policy for application pods and services" for a simple example.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Verification</div>
+<p>You can verify that all of the system services and pods to have two IP addresses, one for each family, by using the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Retrieve the status of the pods by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pod -A -o wide</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">NAMESPACE                  NAME                                      READY   STATUS    RESTARTS        AGE     IP                NODE           NOMINATED NODE   READINESS GATES
+kube-system                csi-snapshot-controller-bb7cb654b-7s5ql   1/1     Running   0               46m     10.42.0.6         microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-dns              dns-default-zxkqn                         2/2     Running   0               46m     10.42.0.5         microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-dns              node-resolver-r2h5z                       1/1     Running   0               46m     192.168.113.117   microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-ingress          router-default-5b75594b4-228z7            1/1     Running   0               2m5s    10.42.0.3         microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-ovn-kubernetes   ovnkube-master-bltk7                      4/4     Running   2 (2m32s ago)   2m36s   192.168.113.117   microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-ovn-kubernetes   ovnkube-node-9ghgs                        1/1     Running   2 (2m32s ago)   46m     192.168.113.117   microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-service-ca       service-ca-5d7bd9db6-qgwgw                1/1     Running   0               46m     10.42.0.7         microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-storage          lvms-operator-656cd9b59b-8rpf4            1/1     Running   0               46m     10.42.0.8         microshift-9   &lt;none&gt;           &lt;none&gt;
+openshift-storage          vg-manager-wqmh4                          1/1     Running   2 (2m39s ago)   46m     10.42.0.10        microshift-9   &lt;none&gt;           &lt;none&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Retrieve the networks defined by the OVN-K network plugin by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pod -n openshift-ovn-kubernetes ovnkube-master-bltk7 -o jsonpath='{.status.podIPs}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">[{"ip":"192.168.113.117"},{"ip":"2001:db9:ca7:ff::1db8"}]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Retrieve the networks defined in the node resource by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pod -n openshift-ingress router-default-5b75594b4-228z7 -o jsonpath='{.status.podIPs}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">[{"ip":"10.42.0.3"},{"ip":"fd01:0:0:1::3"}]</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To return to single-stack networking, you can remove the second entry to the networks and return to the single stack that was configured before migrating to dual-stack.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-nw-ipv6-dual-stack-reset-ipfam_customize-networking-configuration">Resetting the IP family policy for application pods and services</h4>
+<div class="paragraph _abstract">
+<p>The default <code>PreferSingleStack</code> value does not change when you migrate the MicroShift node to dual-stack.
+To enable dual-stack networking in application pods and services on a node that uses dual-stack, set the <code>ipFamilyPolicy</code> field to <code>PreferDualStack</code> or <code>RequireDualStack</code> and restart the pods.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You used the MicroShift <code>config.yaml</code> to define a dual-stack network with an IPv6 address family.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Set the <code>spec.ipFamilyPolicy</code> field to a valid value for dual-stack networking in your service or pod by using the following example:</p>
+<div class="listingblock">
+<div class="title">Example dual-stack network configuration for a service</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: Service
+apiVersion: v1
+metadata:
+  name: microshift-new-service
+  labels: app: microshift-application
+spec:
+  type: NodePort
+  ipFamilyPolicy: PreferDualStack
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>spec.ipFamilyPolicy</code></dt>
+<dd>
+<p>Required. Specifies the IP family policy for the service. Valid values are <code>PreferDualStack</code> and <code>RequireDualStack</code>. The value you set depends on the requirements of your application. <code>PreferSingleStack</code> is the default value for the <code>ipFamilyPolicy</code> field.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Restart any application pods that do not have a <code>hostNetwork</code> defined. Pods that do have a <code>hostNetwork</code> defined do not need to be restarted to update the <code>ipFamilyPolicy</code> value.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>MicroShift system services and pods are automatically updated when the <code>ipFamilyPolicy</code> value is updated.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="nw-ovn-kubernetes-limitations_customize-networking-configuration">OVN-Kubernetes IPv6 and dual-stack limitations</h4>
+<div class="paragraph _abstract">
+<p>The OVN-Kubernetes network plugin has specific IPv6 and dual-stack networking configuration limitations. These limitations affect gateway configuration, routing layouts, and infrastructure environment stability.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For a cluster configured for dual-stack networking, both IPv4 and IPv6 traffic must use the same network interface as the default gateway.</p>
+<div class="paragraph">
+<p>If this requirement is not met, pods on the host in the <code>ovnkube-node</code> daemon set enter the <code>CrashLoopBackOff</code> state.</p>
+</div>
+<div class="paragraph">
+<p>If you display a pod with a command such as <code>oc get pod -n openshift-ovn-kubernetes -l app=ovnkube-node -o yaml</code>, the <code>status</code> field has more than one message about the default gateway, as shown in the following output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">I1006 16:09:50.985852   60651 helper_linux.go:73] Found default gateway interface br-ex 192.168.127.1
+I1006 16:09:50.985923   60651 helper_linux.go:73] Found default gateway interface ens4 fe80::5054:ff:febe:bcd4
+F1006 16:09:50.985939   60651 ovnkube.go:130] multiple gateway interfaces detected: br-ex ens4</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The only resolution is to reconfigure the host networking so that both IP families use the same network interface for the default gateway.</p>
+</div>
+</li>
+<li>
+<p>For a cluster configured for dual-stack networking, both the IPv4 and IPv6 routing tables must contain the default gateway.</p>
+<div class="paragraph">
+<p>If this requirement is not met, pods on the host in the <code>ovnkube-node</code> daemon set enter the <code>CrashLoopBackOff</code> state.</p>
+</div>
+<div class="paragraph">
+<p>If you display a pod with a command such as <code>oc get pod -n openshift-ovn-kubernetes -l app=ovnkube-node -o yaml</code>, the <code>status</code> field has more than one message about the default gateway, as shown in the following output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">I0512 19:07:17.589083  108432 helper_linux.go:74] Found default gateway interface br-ex 192.168.123.1
+F0512 19:07:17.589141  108432 ovnkube.go:133] failed to get default gateway interface</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The only resolution is to reconfigure the host networking so that both IP families contain the default gateway.</p>
+</div>
+</li>
+<li>
+<p>If you set the <code>ipv6.disable</code> parameter to <code>1</code> in the <code>kernelArgument</code> section of the <code>MachineConfig</code> custom resource (CR) for your cluster, OVN-Kubernetes pods enter a <code>CrashLoopBackOff</code> state. Additionally, updating your cluster to a later version of Red&#160;Hat build of MicroShift fails because the Network Operator remains on a <code>Degraded</code> state. Red&#160;Hat does not support disabling IPv6 addresses for your cluster so do not set the <code>ipv6.disable</code> parameter to <code>1</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-http-proxy_customize-networking-configuration">Deploy MicroShift behind an HTTP or HTTPS proxy</h4>
+<div class="paragraph _abstract">
+<p>To add basic anonymity and security measures to your pods, you can deploy MicroShift behind an HTTP or HTTPS proxy.</p>
+</div>
+<div class="paragraph">
+<p>You must configure the host operating system to use the proxy service with all components initiating HTTP or HTTPS requests when deploying MicroShift behind a proxy.</p>
+</div>
+<div class="paragraph">
+<p>All the user-specific workloads or pods with egress traffic, such as accessing cloud services, must be configured to use the proxy. There is no built-in transparent proxying of egress traffic in MicroShift.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-rpm-ostree-https_customize-networking-configuration">Use the RPM-OStree HTTP or HTTPS proxy</h4>
+<div class="paragraph _abstract">
+<p>To use the HTTP or HTTPS proxy in RPM-OStree, add a <code>Service</code> section to the configuration file and set the <code>http_proxy environment</code> variable for the <code>rpm-ostreed</code> service.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Add this setting to the <code>/etc/systemd/system/rpm-ostreed.service.d/00-proxy.conf</code> file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[Service]
+Environment="http_proxy=http://$PROXY_USER:$PROXY_PASSWORD@$PROXY_SERVER:$PROXY_PORT/"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Next, reload the configuration settings and restart the service to apply your changes.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Reload the configuration settings by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl daemon-reload</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Restart the <code>rpm-ostreed</code> service by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart rpm-ostreed.service</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-mdns_customize-networking-configuration">The multicast DNS protocol</h4>
+<div class="paragraph _abstract">
+<p>To allow name resolution and service discovery within a Local Area Network (LAN) using multicast exposed on the <code>5353/UDP</code> port, you can use the multicast DNS protocol (mDNS).</p>
+</div>
+<div class="paragraph">
+<p>MicroShift includes an embedded mDNS server for deployment scenarios in which the authoritative DNS server cannot be reconfigured to point clients to services on MicroShift. The embedded DNS server allows <code>.local</code> domains exposed by MicroShift to be discovered by other elements on the LAN.</p>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-description-connections-network-topology_understand-default-networking.html">Description of the connections in the network topology figure</a> | ↑ Up: <a href="_networking.html">Networking</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-networking-pod-connectivity_customize-networking-configuration.html">About pod network connectivity</a> →</p>
+<p>← Previous: <a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a> | ↑ Up: <a href="_networking.html">Networking</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a> →</p>
 </div>
 </div>
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
+<a href="microshift-use-oc-cli_use-oc-cli.html#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
 </div>
 </div>
 <div id="footer">

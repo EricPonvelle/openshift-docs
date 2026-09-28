@@ -437,36 +437,250 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-optimize-network-performance_optimize-network-performance" class="book toc2 toc-left">
+<body id="microshift-optimize-network-performance_optimize-network-performance" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
 <ul class="sectlevel2">
@@ -493,44 +707,548 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-network-performance_optimize-network-performance">Network performance optimizations</a></li><li class="level-4"><a href="#microshift-config-OVN-K_optimize-network-performance">Create an OVN-Kubernetes configuration file</a></li><li class="level-4"><a href="#microshift-understanding-sriov-con_optimize-network-performance">Understand the SR-IOV Network Operator</a></li><li class="level-4"><a href="#microshift-installing-sriov-proc_optimize-network-performance">Install the SR-IOV Network Operator</a></li><li class="level-4"><a href="#supported-devices_optimize-network-performance">SR-IOV Network Operator supported devices</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-optimize-network-performance_optimize-network-performance">Optimize network performance</h3>
 <div class="paragraph _abstract">
 <p>Improve network performance on your MicroShift node by tuning OVN-Kubernetes settings and leveraging high-performance networking options such as SR-IOV.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-network-performance_optimize-network-performance">Network performance optimizations</h4>
+<div class="paragraph _abstract">
+<p>By default, three performance optimizations are applied to OVS services to minimize resource consumption:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-network-performance_optimize-network-performance.html">Network performance optimizations</a></p>
+<p>CPU affinity to <code>ovs-vswitchd.service</code> and <code>ovsdb-server.service</code></p>
 </li>
 <li>
-<p><a href="microshift-config-OVN-K_optimize-network-performance.html">Create an OVN-Kubernetes configuration file</a></p>
+<p><code>no-mlockall</code> to <code>openvswitch.service</code></p>
 </li>
 <li>
-<p><a href="microshift-understanding-sriov-con_optimize-network-performance.html">Understand the SR-IOV Network Operator</a></p>
-</li>
-<li>
-<p><a href="microshift-installing-sriov-proc_optimize-network-performance.html">Install the SR-IOV Network Operator</a></p>
-</li>
-<li>
-<p><a href="supported-devices_optimize-network-performance.html">SR-IOV Network Operator supported devices</a></p>
+<p>Limit handler and <code>revalidator</code> threads to <code>ovs-vswitchd.service</code></p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-config-OVN-K_optimize-network-performance">Create an OVN-Kubernetes configuration file</h4>
+<div class="paragraph _abstract">
+<p>MicroShift uses built-in default OVN-Kubernetes values if an OVN-Kubernetes configuration file is not created. To apply custom OVN-Kubernetes values such as pod <code>mtu</code> instead of using built-in defaults, you can copy <code>ovn.yaml.default</code> to <code>/etc/microshift/ovn.yaml</code> and edit the file.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>To create your <code>ovn.yaml</code> file, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">$ sudo cp /etc/microshift/ovn.yaml.default /etc/microshift/ovn.yaml</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To list the contents of the configuration file you created, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">$ cat /etc/microshift/ovn.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example YAML file with default maximum transmission unit (MTU) value</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">mtu: 1400</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To customize your configuration, you can change the MTU value. The table that follows provides details:</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 16. Supported optional OVN-Kubernetes configurations for MicroShift</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mtu</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">uint32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">auto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MTU value used for the pods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1300</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you change the <code>mtu</code> configuration value in the <code>ovn.yaml</code> file, you must restart the host that Red&#160;Hat build of MicroShift is running on to apply the updated setting.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example custom <code>ovn.yaml</code> configuration file</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">mtu: 1300</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-understanding-sriov-con_optimize-network-performance">Understand the SR-IOV Network Operator</h4>
+<div class="paragraph _abstract">
+<p>SR-IOV (Single Root I/O Virtualization) is a specification that allows a single physical Peripheral Component Interconnect Express (PCIe) device that supports SR-IOV, for example, a Physical Function (PF), to appear as multiple separate physical devices known as Virtual Functions (VFs). You can directly assign VFs to pods, which bypasses the host operating system network stack, improves throughput, and reduces latency for network intensive workloads.</p>
+</div>
+<div class="paragraph">
+<p>The integration of the SR-IOV Network Operator and CNI provider into MicroShift enables declarative access to VFs. As a result, you can expose supported SR-IOV devices as specialized resources within your MicroShift pod for more predictable high-speed networking for demanding workloads. The deployed SR-IOV resources operate in the <code>sriov-network-operator</code> namespace.</p>
+</div>
+<div class="paragraph">
+<p>You do not need to manually configure SR-IOV through the operating system. You can also treat VFs as resources that can be reliably mapped to your containerized applications. These resources reduce manual error and ensure consistent, low-latency networking for critical applications.</p>
+</div>
+<div class="paragraph">
+<p>Here are the components of SR-IOV functionality:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SR-IOV Network Operator: The SR-IOV Network Operator is a Kubernetes component that detects and manages SR-IOV devices. This component exposes the SR-IOV devices as schedulable resources within MicroShift.</p>
+</li>
+<li>
+<p>SR-IOV CNI Provider: This Container Network Interface (CNI) provider works with Multus to assign the exposed VFs to the application pods.</p>
+</li>
+<li>
+<p>Virtual Functions (VFs): VFs are lightweight PCIe functions exposed by the PF that are assigned to pods.</p>
+</li>
+<li>
+<p>NetworkAttachment Definitions: NetworkAttachmentDefinitions are custom resources (CRs) that are used to define the specific network configuration so that application developers can specify the VFs they need access. NetworkAttachmentDefinitions provide the declarative method for accessing VFs.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-installing-sriov-proc_optimize-network-performance">Install the SR-IOV Network Operator</h4>
+<div class="paragraph _abstract">
+<p>Install the necessary SR-IOV components to enable MicroShift to discover SR-IOV devices and expose them as resources for scheduling.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have the required RPM package containing the SR-IOV Network Operator.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>If provided as an optional RPM, install the required <code>microshift-sriov</code> RPM package.</p>
+</li>
+<li>
+<p>Restart the MicroShift service to deploy the SR-IOV resources in the <code>sriov-network-operator</code> namespace.</p>
+</li>
+<li>
+<p>To specify the required VF configuration based on the available hardware, create an <code>SriovNetworkNodePolicy</code> custom resource (CR). For example, save the following YAML as the file <code>policyoneflag-sriov-node-network.yaml</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetworkNodePolicy
+metadata:
+  name: policyoneflag
+  namespace: sriov-network-operator
+spec:
+  resourceName: policyoneflag
+  nodeSelector:
+    node.kubernetes.io/instance-type: rhde
+  priority: 10
+  numVfs: 5
+  nicSelector:
+    pfNames: ["ens5"]
+  deviceType: "netdevice"
+  isRdma: false</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>metadata.name</code> parameter specifies the name for the custom resource object.</p>
+</li>
+<li>
+<p>The <code>metadata.namespace</code> parameter specifies the namespace where the SR-IOV Network Operator is installed.</p>
+</li>
+<li>
+<p>The <code>spec.resourceName</code> parameter specifies the resource name of the SR-IOV network device plugin. You can create multiple SR-IOV network node policies for a resource name.</p>
+</li>
+<li>
+<p>(Optional) The <code>spec.priority</code> parameter specifies a priority value. The priority is an integer value between <code>0</code> and <code>99</code>. A smaller value receives higher priority. For example, a priority of <code>10</code> is a higher priority than <code>99</code>. The default value is <code>99</code>.</p>
+</li>
+<li>
+<p>The <code>spec.numVfs</code> parameter specifies the number of the virtual functions (VFs) to create for the SR-IOV physical network device. For an Intel network interface controller (NIC), the number of VFs cannot be larger than the total VFs supported by the device. For a Mellanox NIC, the number of VFs cannot be larger than <code>127</code>.</p>
+</li>
+<li>
+<p>The <code>spec.nicSelector</code> parameter identifies the device for the Operator to configure. You do not have to specify values for all the parameters. It is recommended to identify the network device with enough precision to avoid selecting a device unintentionally. If you specify <code>rootDevices</code>, you must also specify a value for <code>vendor</code>, <code>deviceID</code>, or <code>pfNames</code>. If you specify both <code>pfNames</code> and <code>rootDevices</code> at the same time, ensure that they refer to the same device. If you specify a value for <code>netFilter</code>, then you do not need to specify any other parameter because a network ID is unique.</p>
+</li>
+<li>
+<p>(Optional) The <code>spec.nicSelector.pfNames</code> parameter specifies an array of one or more physical function (PF) names for the device.</p>
+</li>
+<li>
+<p>(Optional) The <code>spec.deviceType</code> parameter specifies the driver type for the virtual functions. The only allowed value is <code>netdevice</code>.</p>
+</li>
+<li>
+<p>(Optional) The <code>spec.isRDMA</code> parameter configures whether to enable remote direct memory access (RDMA) mode. The default value is <code>false</code>. If the <code>spec.isRdma</code> parameter is set to <code>true</code>, you can continue to use the RDMA-enabled VF as a normal network device. A device can be used in either mode. To configure a Mellanox NIC for use with DPDK applications that require a fast data path, set <code>spec.isRdma</code> to <code>true</code> and additionally set the <code>needVhostNet</code> parameter to <code>true</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>vfio-pci</code> driver type is not supported.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Create the <code>SriovNetworkNodePolicy</code> object by entering the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc create -f policyoneflag-sriov-node-network.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After applying the configuration update, the workload contains the required resources and dependencies for VF access.</p>
+</div>
+</li>
+<li>
+<p>To verify that the SR-IOV network device is configured, enter the following command. Replace <code>&lt;node_name&gt;</code> with the name of a node with the SR-IOV network device that you just configured. Expected output shows <code>Succeeded</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get sriovnetworknodestates -n sriov-network-operator &lt;node_name&gt; -o jsonpath='{.status.syncStatus}'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Deploy an <code>SriovNetwork</code> custom resource (CR) which references the <code>SriovNetworkNodePolicy</code> CR and insert the <code>metaPlugins</code> configuration, as in the following example CR. The Operator generates a <code>NetworkAttachmentDefinition</code> CR and the VFs become available to the pods. Save the YAML as the file <code>sriov-network-interface-sysctl.yaml</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetwork
+metadata:
+  name: onevalidflag
+  namespace: sriov-network-operator
+spec:
+  resourceName: policyoneflag
+  networkNamespace: sysctl-tuning-test
+  ipam: '{ "type": "static" }'
+  capabilities: '{ "mac": true, "ips": true }'
+  metaPlugins : |
+    {
+      "type": "tuning",
+      "capabilities":{
+        "mac":true
+      },
+      "sysctl":{
+         "net.ipv4.conf.IFNAME.accept_redirects": "1"
+      }
+    }</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>metadata.name</code> parameter specifies the name for the object. The SR-IOV Network Operator creates a <code>NetworkAttachmentDefinition</code> object with the same name.</p>
+</li>
+<li>
+<p>The <code>metadata.namespace</code> parameter specifies the namespace where the SR-IOV Network Operator is installed.</p>
+</li>
+<li>
+<p>The <code>spec.resourceName</code> parameter displays the value from the <code>SriovNetworkNodePolicy</code> object that defines the SR-IOV hardware for this additional network.</p>
+</li>
+<li>
+<p>The <code>spec.networkNamespace</code> parameter specifies the target namespace for the <code>SriovNetwork</code> object. Only pods in the target namespace can attach to the additional network.</p>
+</li>
+<li>
+<p>The <code>spec.ipam</code> parameter specifies a configuration object for the IPAM CNI plugin as a YAML block scalar. The plugin manages IP address assignment for the attachment definition.</p>
+</li>
+<li>
+<p>(Optional) The <code>spec.capabilities</code> parameter sets capabilities for the additional network. You can specify <code>"{ "ips": true }"</code> to enable IP address support or <code>"{ "mac": true }"</code> to enable MAC address support.</p>
+</li>
+<li>
+<p>(Optional) The <code>spec.metaPlugins</code> parameter is used to add additional capabilities to the device. In this use case set the <code>type</code> field to <code>tuning</code>. Specify the interface-level network <code>sysctl</code> you want to set in the <code>sysctl</code> field.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Create the <code>SriovNetwork</code> resource by entering the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc create -f sriov-network-interface-sysctl.yaml</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Confirm that the SR-IOV Network Operator created the <code>NetworkAttachmentDefinition</code> CR by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get network-attachment-definitions -n &lt;namespace&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;namespace&gt;</code> with the value for <code>networkNamespace</code> parameter that you specified in the <code>SriovNetwork</code> object, for example, <code>sysctl-tuning-test</code>. The expected output shows the name of the NAD CRD and the creation age in minutes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>There might be a delay before the SR-IOV Network Operator creates the CR.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Verify that the tuning CNI is correctly configured and the additional SR-IOV network is attached:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Create a <code>Pod</code> CR. Save the following YAML as the file <code>examplepod.yaml</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: tunepod
+  namespace: sysctl-tuning-test
+  annotations:
+    k8s.v1.cni.cncf.io/networks: |-
+      [
+        {
+          "name": "onevalidflag",
+          "mac": "0a:56:0a:83:04:0c",
+          "ips": ["10.100.100.200/24"]
+       }
+      ]
+spec:
+  containers:
+  - name: podexample
+    image: centos
+    command: ["/bin/bash", "-c", "sleep INF"]
+    securityContext:
+      runAsUser: 2000
+      runAsGroup: 3000
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+  securityContext:
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>annotations.name</code> parameter specifies the name of the SR-IOV network attachment definition CR.</p>
+</li>
+<li>
+<p>(Optional) The <code>annotations.mac</code> parameter specifies the MAC address for the SR-IOV device that is allocated from the resource type defined in the SR-IOV network attachment definition CR. To use this feature, you also must specify <code>{ "mac": true }</code> in the <code>SriovNetwork</code> object.</p>
+</li>
+<li>
+<p>(Optional) The <code>annotations.ips</code> parameter specifies the IP addresses for the SR-IOV device that are allocated from the resource type defined in the SR-IOV network attachment definition CR. Both IPv4 and IPv6 addresses are supported. To use this feature, you also must specify <code>{ "ips": true }</code> in the <code>SriovNetwork</code> object.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Create the <code>Pod</code> CR by entering the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f examplepod.yaml</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that the pod is created by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pod -n sysctl-tuning-test</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output:</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME      READY   STATUS    RESTARTS   AGE
+tunepod   1/1     Running   0          47s</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Log in to the pod by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc rsh -n sysctl-tuning-test tunepod</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify the values of the configured sysctl flag. Find the value  <code>net.ipv4.conf.IFNAME.accept_redirects</code> by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sysctl net.ipv4.conf.net1.accept_redirects</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="supported-devices_optimize-network-performance">SR-IOV Network Operator supported devices</h4>
+<div class="paragraph _abstract">
+<p>The <code>config.yaml</code> file lists the supported network devices for the SR-IOV Network Operator.</p>
+</div>
+<div class="listingblock">
+<div class="title">SR-IOV Network Operator configuration file</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: supported-nic-ids
+data:
+  Intel_i40e_XXV710: "8086 158a 154c"
+  Intel_i40e_25G_SFP28: "8086 158b 154c"
+  Intel_i40e_10G_X710_SFP: "8086 1572 154c"
+  Intel_ixgbe_10G_X550: "8086 1563 1565"
+  Intel_ixgbe_82576: "8086 10c9 10ca"
+  Intel_i40e_X710_X557_AT_10G: "8086 1589 154c"
+  Intel_i40e_10G_X710_BACKPLANE: "8086 1581 154c"
+  Intel_i40e_10G_X710_BASE_T: "8086 15ff 154c"
+  Intel_i40e_XXV710_N3000: "8086 0d58 154c"
+  Intel_i40e_40G_XL710_QSFP: "8086 1583 154c"
+  Intel_ice_Columbiaville_E810-CQDA2_2CQDA2: "8086 1592 1889"
+  Intel_ice_Columbiaville_E810-XXVDA4: "8086 1593 1889"
+  Intel_ice_Columbiaville_E810-XXVDA2: "8086 159b 1889"
+  Intel_ice_Columbiaville_E810-XXV_BACKPLANE: "8086 1599 1889"
+  Intel_ice_Columbiaville_E810: "8086 1591 1889"
+  Intel_ice_Columbiapark_E823C: "8086 188a 1889"
+  Intel_ice_Columbiapark_E823L_SFP: "8086 124d 1889"
+  Intel_ice_Columbiapark_E823L_BACKPLANE: "8086 124c 1889"
+  Intel_ice_Columbiapark_E825C_BACKPLANE: "8086 579c 1889"
+  Intel_ice_Columbiapark_E825C_QSFP: "8086 579d 1889"
+  Intel_ice_Columbiapark_E825C_SFP: "8086 579e 1889"
+  Intel_ice_Connorsville_E830_QSFP: "8086 12d2 1889"
+  Intel_ice_Connorsville_E830_SFP: "8086 12d3 1889"
+  Intel_ice_Connorsville_E835CC_QSFP: "8086 1249 1889"
+  Intel_ice_Connorsville_E835CC_SFP: "8086 124a 1889"
+  Nvidia_mlx5_ConnectX-4: "15b3 1013 1014"
+  Nvidia_mlx5_ConnectX-4LX: "15b3 1015 1016"
+  Nvidia_mlx5_ConnectX-5: "15b3 1017 1018"
+  Nvidia_mlx5_ConnectX-5_Ex: "15b3 1019 101a"
+  Nvidia_mlx5_ConnectX-6: "15b3 101b 101c"
+  Nvidia_mlx5_ConnectX-6_Dx: "15b3 101d 101e"
+  Nvidia_mlx5_ConnectX-6_Lx: "15b3 101f 101e"
+  Nvidia_mlx5_ConnectX-7: "15b3 1021 101e"
+  Nvidia_mlx5_ConnectX-8: "15b3 1023 101e"
+  Nvidia_mlx5_MT42822_BlueField-2_integrated_ConnectX-6_Dx: "15b3 a2d6 101e"
+  Nvidia_mlx5_MT43244_BlueField-3_integrated_ConnectX-7_Dx: "15b3 a2dc 101e"
+  Broadcom_bnxt_BCM57414_2x25G: "14e4 16d7 16dc"
+  Broadcom_bnxt_BCM75508_2x100G: "14e4 1750 1806"
+  Qlogic_qede_QL45000_50G: "1077 1654 1664"
+  Red_Hat_Virtio_network_device: "1af4 1000 1000"
+  Red_Hat_Virtio_1_0_network_device: "1af4 1041 1041"
+  Marvell_OCTEON_TX2_CN96XX: "177d b200 b203"
+  Marvell_OCTEON_TX2_CN98XX: "177d b100 b103"
+  Marvell_OCTEON_Fusion_CNF95XX: "177d b600 b603"
+  Marvell_OCTEON10_CN10XXX: "177d b900 b903"
+  Marvell_OCTEON_Fusion_CNF105XX: "177d ba00 ba03"
+  Amazon_Elastic_Network_Adapter: "1d0f ec20 ec20"</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For the most up-to-date list of supported cards and compatible Red&#160;Hat build of MicroShift versions available, see <a href="https://access.redhat.com/articles/6954499">Openshift Single Root I/O Virtualization (SR-IOV) and PTP hardware networks Support Matrix</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-mdns_customize-networking-configuration.html">The multicast DNS protocol</a> | ↑ Up: <a href="_networking.html">Networking</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-network-performance_optimize-network-performance.html">Network performance optimizations</a> →</p>
+<p>← Previous: <a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a> | ↑ Up: <a href="_networking.html">Networking</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a> →</p>
 </div>
 </div>
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
+<a href="microshift-use-oc-cli_use-oc-cli.html#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
 </div>
 </div>
 <div id="footer">

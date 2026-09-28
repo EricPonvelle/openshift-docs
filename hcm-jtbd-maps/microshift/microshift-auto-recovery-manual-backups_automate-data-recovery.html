@@ -437,22 +437,127 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-auto-recovery-manual-backups_automate-data-recovery" class="book toc2 toc-left">
+<body id="microshift-auto-recovery-manual-backups_automate-data-recovery" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
 <ul class="sectlevel2">
@@ -475,24 +580,153 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-creating-backups-auto-recovery_automate-data-recovery">Create backups using the auto-recovery feature</a></li><li class="level-4"><a href="#microshift-restoring-backups-auto-recovery_automate-data-recovery">Restore backups using the auto-recovery feature</a></li><li class="level-5"><a href="#microshift-auto-recovery-rpm-systems_automate-data-recovery">Use automatic recovery in RPM systems</a></li><li class="level-5"><a href="#microshift-auto-recovery-ostree-systems_automate-data-recovery">Use automatic recovery with RHEL for Edge</a></li><li class="level-5"><a href="#microshift-auto-recovery-example-bootc-systems_automate-data-recovery">Use automatic recovery in image mode for RHEL systems</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-auto-recovery-manual-backups_automate-data-recovery">Automate data recovery</h3>
@@ -529,19 +763,626 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </table>
 </div>
+<div class="sect3">
+<h4 id="microshift-creating-backups-auto-recovery_automate-data-recovery">Create backups using the auto-recovery feature</h4>
+<div class="paragraph _abstract">
+<p>To create backups for Red&#160;Hat build of MicroShift automatic recovery, you can run <code>microshift backup --auto-recovery</code> with a directory path. The command then stores each backup in that directory so that the latest is available when you restore.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Creating backups requires stopping MicroShift. You must decide on the best time to stop MicroShift.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You stopped MicroShift.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Create and store backups in the directory you choose by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo microshift backup --auto-recovery <em>&lt;path_of_directory&gt;</em></code></pre>
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-creating-backups-auto-recovery_automate-data-recovery.html">Create backups using the auto-recovery feature</a></p>
+<p>For <code><em>&lt;path_of_directory&gt;</em></code>, specify the path of the directory that stores backups. For example, <code>/var/lib/microshift-auto-recovery</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>--auto-recovery</code> option modifies the interpretation of the <code>PATH</code> argument from the final backup path to a directory that holds all of the backups for automated recovery.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">??? I1104 09:18:52.100725    8906 system.go:58] "OSTree deployments" deployments=[{"id":"default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1","booted":true,"staged":false,"pinned":false},{"id":"default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0","booted":false,"staged":false,"pinned":false}]
+??? I1104 09:18:52.100895    8906 data_manager.go:83] "Copying data to backup directory" storage="/var/lib/microshift-auto-recovery" name="20241104091852_default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1" data="/var/lib/microshift"
+??? I1104 09:18:52.102296    8906 disk_space.go:33] Calculated size of "/var/lib/microshift": 261M - increasing by 10% for safety: 287M
+??? I1104 09:18:52.102321    8906 disk_space.go:44] Calculated available disk space for "/var/lib/microshift-auto-recovery": 1658M
+??? I1104 09:18:52.105700    8906 atomic_dir_copy.go:66] "Made an intermediate copy" cmd="/bin/cp --verbose --recursive --preserve --reflink=auto /var/lib/microshift /var/lib/microshift-auto-recovery/20241104091852_default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1.tmp.99142"
+??? I1104 09:18:52.105732    8906 atomic_dir_copy.go:115] "Renamed to final destination" src="/var/lib/microshift-auto-recovery/20241104091852_default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1.tmp.99142" dest="/var/lib/microshift-auto-recovery/20241104091852_default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1"
+??? I1104 09:18:52.105749    8906 data_manager.go:120] "Copied data to backup directory" backup="/var/lib/microshift-auto-recovery/20241104091852_default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1" data="/var/lib/microshift"
+/var/lib/microshift-auto-recovery/20241104091852_default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1</code></pre>
+</div>
+</div>
 </li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
 <li>
-<p><a href="microshift-restoring-backups-auto-recovery_automate-data-recovery.html">Restore backups using the auto-recovery feature</a></p>
+<p>Verify that the backup you created exists in your customized storage directory by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo ls -la <em>&lt;path_of_directory&gt;</em></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For <code><em>&lt;path_of_directory&gt;</em></code>, specify the path of the directory that stores backups. For example, <code>/var/lib/microshift-auto-recovery</code>.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-restoring-backups-auto-recovery_automate-data-recovery">Restore backups using the auto-recovery feature</h4>
+<div class="paragraph _abstract">
+<p>To recover Red&#160;Hat build of MicroShift data after loss or damage, you can run the <code>microshift restore --auto-recovery</code> command with your backups directory, which restores the latest backup.
+Previously restored backups that used automatic recovery are moved to your <code>PATH/restored</code> directory.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have stopped MicroShift.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Restore the latest backup from your backups directory by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo microshift restore --auto-recovery <em>&lt;path_of_directory&gt;</em></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For <code><em>&lt;path_of_directory&gt;</em></code>, specify the path of the directory that stores backups. For example, <code>/var/lib/microshift-auto-recovery</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>--auto-recovery</code> option copies the MicroShift data to <code>/var/lib/microshift-auto-recovery/failed/</code> for later investigation, selects the most recent backup, and restores it.</p>
+</li>
+<li>
+<p>The <code>--dont-save-failed</code> option disables the backing up of failed MicroShift data.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">??? I1104 09:19:28.617225    8950 state.go:80] "Read state from the disk" state={"LastBackup":"20241022101528_default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0"}
+??? I1104 09:19:28.617323    8950 storage.go:78] "Auto-recovery backup storage read and parsed" dirs=["20241022101255_default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0","20241022101520_default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0","20241022101528_default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0","20241104091852_default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1","restored"] backups=[{"CreationTime":"2024-10-22T10:12:55Z","Version":"default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0"},{"CreationTime":"2024-10-22T10:15:20Z","Version":"default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0"},{"CreationTime":"2024-10-22T10:15:28Z","Version":"default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0"},{"CreationTime":"2024-11-04T09:18:52Z","Version":"default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1"}]
+??? I1104 09:19:28.617350    8950 storage.go:40] "Filtered list of backups - removed previously restored backup" removed="20241022101528_default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0" newList=[{"CreationTime":"2024-10-22T10:12:55Z","Version":"default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0"},{"CreationTime":"2024-10-22T10:15:20Z","Version":"default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0"},{"CreationTime":"2024-11-04T09:18:52Z","Version":"default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1"}]
+??? I1104 09:19:28.633237    8950 system.go:58] "OSTree deployments" deployments=[{"id":"default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1","booted":true,"staged":false,"pinned":false},{"id":"default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0","booted":false,"staged":false,"pinned":false}]
+??? I1104 09:19:28.633258    8950 storage.go:49] "Filtered list of backups by version" version="default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1" newList=[{"CreationTime":"2024-11-04T09:18:52Z","Version":"default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1"}]
+??? I1104 09:19:28.633268    8950 restore.go:170] "Potential backups" bz=[{"CreationTime":"2024-11-04T09:18:52Z","Version":"default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1"}]
+??? I1104 09:19:28.633277    8950 restore.go:173] "Candidate backup for restore" b={"CreationTime":"2024-11-04T09:18:52Z","Version":"default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1"}
+??? I1104 09:19:28.634007    8950 disk_space.go:33] Calculated size of "/var/lib/microshift-auto-recovery/20241104091852_default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1": 261M - increasing by 10% for safety: 287M
+??? I1104 09:19:28.634096    8950 disk_space.go:44] Calculated available disk space for "/var/lib": 1658M
+??? I1104 09:19:28.634507    8950 disk_space.go:33] Calculated size of "/var/lib/microshift": 261M - increasing by 10% for safety: 287M
+??? I1104 09:19:28.634522    8950 disk_space.go:44] Calculated available disk space for "/var/lib/microshift-auto-recovery": 1658M
+??? I1104 09:19:28.649719    8950 system.go:58] "OSTree deployments" deployments=[{"id":"default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1","booted":true,"staged":false,"pinned":false},{"id":"default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0","booted":false,"staged":false,"pinned":false}]
+??? I1104 09:19:28.653880    8950 atomic_dir_copy.go:66] "Made an intermediate copy" cmd="/bin/cp --verbose --recursive --preserve --reflink=auto /var/lib/microshift /var/lib/microshift-auto-recovery/failed/20241104091928_default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1.tmp.22742"
+??? I1104 09:19:28.657362    8950 atomic_dir_copy.go:66] "Made an intermediate copy" cmd="/bin/cp --verbose --recursive --preserve --reflink=auto /var/lib/microshift-auto-recovery/20241104091852_default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1 /var/lib/microshift.tmp.482"
+??? I1104 09:19:28.657385    8950 state.go:40] "Saving intermediate state" state="{\"LastBackup\":\"20241104091852_default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1\"}" path="/var/lib/microshift-auto-recovery/state.json.tmp.41544"
+??? I1104 09:19:28.662438    8950 atomic_dir_copy.go:115] "Renamed to final destination" src="/var/lib/microshift.tmp.482" dest="/var/lib/microshift"
+??? I1104 09:19:28.662451    8950 state.go:46] "Moving state file to final path" intermediatePath="/var/lib/microshift-auto-recovery/state.json.tmp.41544" finalPath="/var/lib/microshift-auto-recovery/state.json"
+??? I1104 09:19:28.662521    8950 atomic_dir_copy.go:115] "Renamed to final destination" src="/var/lib/microshift-auto-recovery/failed/20241104091928_default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1.tmp.22742" dest="/var/lib/microshift-auto-recovery/failed/20241104091928_default-b3442053c9ce69310cd54140d8d592234c5306e4c5132de6efe615f79c84300a.1"
+??? I1104 09:19:28.662969    8950 atomic_dir_copy.go:115] "Renamed to final destination" src="/var/lib/microshift-auto-recovery/20241022101528_default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0" dest="/var/lib/microshift-auto-recovery/restored/20241022101528_default-a129624b9233fa54fe3574f1aa211bc2d85e1052b52245fe7d83f10c2f6d28e3.0"
+??? I1104 09:19:28.662983    8950 restore.go:141] "Auto-recovery restore completed".</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>restore</code> command does not restart MicroShift after restoration. When you execute this command, MicroShift service has already failed or you stopped it.</p>
+</li>
+<li>
+<p>MicroShift does not monitor the disk space of any filesystem. You must ensure that your automation handles old backup removal. For example, you can add this process to the auto-recovery service or add another service that runs periodically.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Restart MicroShift by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart microshift</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify that MicroShift has started successfully by running the following command:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -A</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAMESPACE                   NAME                                                     READY   STATUS   RESTARTS  AGE
+default                     i-06166fbb376f14a8bus-west-2computeinternal-debug-qtwcr  1/1     Running  0		    46m
+kube-system                 csi-snapshot-controller-5c6586d546-lprv4                 1/1     Running  0		    51m
+openshift-dns               dns-default-45jl7                                        2/2     Running  0		    50m
+openshift-dns               node-resolver-7wmzf                                      1/1     Running  0		    51m
+openshift-ingress           router-default-78b86fbf9d-qvj9s                          1/1     Running  0		    51m
+openshift-ovn-kubernetes    ovnkube-master-5rfhh                                     4/4     Running  0		    51m
+openshift-ovn-kubernetes    ovnkube-node-gcnt6                                       1/1     Running  0		    51m
+openshift-service-ca        service-ca-bf5b7c9f8-pn6rk                               1/1     Running  0		    51m
+openshift-storage           topolvm-controller-549f7fbdd5-7vrmv                      5/5     Running  0		    51m
+openshift-storage           topolvm-node-rht2m                                       3/3     Running  0		    50m</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This example output shows a basic MicroShift installation. If you installed optional RPMs, the status of pods running those services is displayed in the output.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="microshift-auto-recovery-rpm-systems_automate-data-recovery">Use automatic recovery in RPM systems</h5>
+<div class="paragraph _abstract">
+<p>To use automatic recovery for Red&#160;Hat build of MicroShift on RPM systems, you can create the <code>10-auto-recovery.conf</code> file, the <code>microshift-auto-recovery.service</code> unit, and the <code>microshift-auto-recovery</code> script. Systemd runs the recovery service when the Red&#160;Hat build of MicroShift service does not start, and the script restores the latest backup.</p>
+</div>
+<div class="paragraph">
+<p>As a use case, consider the following example situation in which you want to automate the automatic recovery process for RPM systems that use the systemd service.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a directory for the <code>microshift</code> systemd service by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo mkdir -p /usr/lib/systemd/system/microshift.service.d</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To instruct <code>systemd</code> to run <code>microshift-auto-recovery.service</code> when the <code>microshift.service</code> fails, create the <code>10-auto-recovery.conf</code> file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo tee /usr/lib/systemd/system/microshift.service.d/10-auto-recovery.conf &gt; /dev/null &lt;&lt;'EOF'
+[Unit]
+OnFailure=microshift-auto-recovery.service
+StartLimitIntervalSec=25s
+
+[Service]
+RestartMode=direct
+EOF</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For <code>StartLimitIntervalSec</code>, specify a value greater than the default <code>10s</code> for slower systems. A value that is too low can result in systemd never marking the <code>microshift</code> systemd service as failed, which means that the <code>OnFailure=</code> service does not get triggered.</p>
+</li>
+<li>
+<p><code>RestartMode=direct</code> prevents systemd from entering failed state on every restart attempt. This ensures <code>OnFailure</code> is triggered only after <code>StartLimitBurst</code> is exceeded, not on each failure. In systemd v254 (RHEL-10), <code>OnFailure</code> behavior changed to trigger on every failure instead of only when restart limits are reached. <code>RestartMode=direct</code> restores the v249 behavior. This setting is ignored on RHEL-9.6 (systemd v252) where it does not exist.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Create the <code>microshift-auto-recovery.service</code> file by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo tee /usr/lib/systemd/system/microshift-auto-recovery.service &gt; /dev/null &lt;&lt;'EOF'
+[Unit]
+Description=MicroShift auto-recovery
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/microshift-auto-recovery
+
+[Install]
+WantedBy=multi-user.target
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the <code>microshift-auto-recovery</code> script by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo tee /usr/bin/microshift-auto-recovery &gt; /dev/null &lt;&lt;'EOF'
+#!/usr/bin/env bash
+set -xeuo pipefail
+
+# If greenboot uses a non-default file for clearing boot_counter, use boot_success instead.
+if grep -q  "/boot/grubenv" /usr/libexec/greenboot/greenboot-grub2-set-success; then
+    if grub2-editenv - list | grep -q ^boot_success=0; then
+        echo "Greenboot didn't decide the system is healthy after staging new deployment."
+        echo "Quitting to not interfere with the process"
+        exit 0
+    fi
+else
+    if grub2-editenv - list | grep -q ^boot_counter=; then
+        echo "Greenboot didn't decide the system is healthy after staging a new deployment."
+        echo "Quitting to not interfere with the process"
+        exit 0
+    fi
+fi
+
+/usr/bin/microshift restore --auto-recovery /var/lib/microshift-auto-recovery
+/usr/bin/systemctl reset-failed microshift
+/usr/bin/systemctl start microshift
+
+echo "DONE"
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Make the script executable by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo chmod +x /usr/bin/microshift-auto-recovery</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Reload the system configuration by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl daemon-reload</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-auto-recovery-ostree-systems_automate-data-recovery">Use automatic recovery with RHEL for Edge</h5>
+<div class="paragraph _abstract">
+<p>To use automatic recovery for Red&#160;Hat build of MicroShift on RHEL for Edge systems, you can add the auto-recovery systemd service, <code>10-auto-recovery.conf</code>, and the <code>microshift-auto-recovery</code> script to your blueprint. Use blueprint customizations so the image includes these files and recovery runs automatically.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must include the entire <code>auto-recovery</code> process for RHEL for Edge systems that use <code>systemd</code> in the blueprint file.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You installed Podman.</p>
+</li>
+<li>
+<p>You installed the command-line <code>composer-cli</code> tool.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Optional: Because the <code>composer-cli</code> can only create files in the <code>/etc</code> directory, package your files into an RPM that you include the blueprint.</p>
+</li>
+<li>
+<p>Use the following example to create your blueprint file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[[customizations.directories]]
+path = "/etc/systemd/system/microshift.service.d"
+
+[[customizations.directories]]
+path = "/etc/bin"
+
+[[customizations.files]]
+path = "/etc/systemd/system/microshift.service.d/10-auto-recovery.conf"
+data = """
+[Unit]
+OnFailure=microshift-auto-recovery.service
+"""
+
+[[customizations.files]]
+path = "/etc/systemd/system/microshift-auto-recovery.service"
+data = """
+[Unit]
+Description=MicroShift auto-recovery
+[Service]
+Type=oneshot
+ExecStart=/etc/bin/microshift-auto-recovery
+[Install]
+WantedBy=multi-user.target
+"""
+
+[[customizations.files]]
+path = "/etc/bin/microshift-auto-recovery"
+mode = "0755"
+data = """
+#!/usr/bin/env bash
+set -xeuo pipefail
+# If greenboot uses a non-default file for clearing boot_counter, use boot_success instead.
+if grep -q  "/boot/grubenv" /usr/libexec/greenboot/greenboot-grub2-set-success; then
+    if grub2-editenv - list | grep -q ^boot_success=0; then
+        echo "Greenboot didn't decide the system is healthy after staging a new deployment."
+        echo "Quitting to not interfere with the process"
+        exit 0
+    fi
+else
+    if grub2-editenv - list | grep -q ^boot_counter=; then
+        echo "Greenboot didn't decide the system is healthy after staging a new deployment."
+        echo "Quitting to not interfere with the process"
+        exit 0
+    fi
+fi
+/usr/bin/microshift restore --auto-recovery /var/lib/microshift-auto-recovery
+/usr/bin/systemctl reset-failed microshift
+/usr/bin/systemctl start microshift
+echo "DONE"
+"""</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>For the next steps, see <a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/embedding_in_a_rhel_for_edge_image/microshift-embed-in-rpm-ostree#preparing-for-image-building_microshift-embed-in-rpm-ostree">Preparing for image building</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-auto-recovery-example-bootc-systems_automate-data-recovery">Use automatic recovery in image mode for RHEL systems</h5>
+<div class="paragraph _abstract">
+<p>To use automatic recovery for Red&#160;Hat build of MicroShift on RHEL image-based systems, you can embed the <code>10-auto-recovery.conf</code> and <code>microshift-auto-recovery.service</code> files in your Containerfile and rebuild the bootc image.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must include the entire <code>auto-recovery</code> process for image mode for RHEL systems that use <code>systemd</code> in the container file.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You created a Containerfile as instructed in <a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.18/html/installing_with_rhel_image_mode/installing-with-rhel-image-mode#microshift-rhel-image-mode-build-image_microshift-install-rhel-image-mode">Building the bootc image</a>.</p>
+</li>
+<li>
+<p>You created the <code>10-auto-recovery.conf</code> and <code>microshift-auto-recovery.service</code> files as explained in the "Using auto-recovery in RPM systems" section.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The location of the <code>10-auto-recovery.conf</code> and <code>microshift-auto-recovery.service</code> files must be relative to the Containerfile.</p>
+</div>
+<div class="paragraph">
+<p>For example, if the path to the Containerfile is <code>/home/microshift/my-build/Containerfile</code>, the systemd files need to be adjacent for proper embedding. The following paths are correct for this example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>/home/microshift/my-build/auto-rec/10-auto-recovery.conf</code></p>
+</li>
+<li>
+<p><code>/home/microshift/my-build/auto-rec/microshift-auto-recovery.service</code></p>
+</li>
+<li>
+<p><code>/home/microshift/my-build/auto-rec/microshift-auto-recovery</code></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>You created the <code>microshift-auto-recovery</code> script as explained in the "Using auto-recovery in RPM systems" section.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Use the following example snippet to update the container file that you use to prepare the image mode for RHEL image.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">RUN mkdir -p /usr/lib/systemd/system/microshift.service.d
+COPY ./auto-rec/10-auto-recovery.conf /usr/lib/systemd/system/microshift.service.d/10-auto-recovery.conf
+COPY ./auto-rec/microshift-auto-recovery.service /usr/lib/systemd/system/
+COPY ./auto-rec/microshift-auto-recovery /usr/bin/
+RUN chmod +x /usr/bin/microshift-auto-recovery</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Podman uses the host subscription information and repositories inside the container when building the container image. If the <code>rhocp</code> and <code>fast-datapath</code> repositories are not available on the host, the build fails.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Rebuild your local bootc image by running the following image build command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">PULL_SECRET=~/.pull-secret.json
+USER_PASSWD=&lt;your_redhat_user_password&gt;
+IMAGE_NAME=microshift-4.18-bootc
+
+sudo podman build --authfile "${PULL_SECRET}" -t "${IMAGE_NAME}" \
+    --build-arg USER_PASSWD="${USER_PASSWD}" \
+    -f Containerfile</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Secrets are used during the image build in the following ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The podman <code>--authfile</code> argument is required to pull the base <code>rhel-bootc:9.4</code> image from the <code>registry.redhat.io</code> registry.</p>
+</li>
+<li>
+<p>The build <code>USER_PASSWD</code> argument is used to set a password for the <code>redhat user</code>.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify that the local bootc image was created by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo podman images "${IMAGE_NAME}"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">REPOSITORY                       TAG         IMAGE ID      CREATED        SIZE
+localhost/microshift-4.18-bootc  latest      193425283c00  2 minutes ago  2.31 GB</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-restoring-data-backups-manually_back-up-and-restore-microshift-data.html">Restore MicroShift data backups manually</a> | ↑ Up: <a href="_administer.html">Administer</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-creating-backups-auto-recovery_automate-data-recovery.html">Create backups using the auto-recovery feature</a> →</p>
+<p>← Previous: <a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a> | ↑ Up: <a href="_administer.html">Administer</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a> →</p>
 </div>
 </div>
 <div id="footer">

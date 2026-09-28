@@ -437,36 +437,250 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-multus-intro_extend-with-multiple-networks" class="book toc2 toc-left">
+<body id="microshift-multus-intro_extend-with-multiple-networks" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
 <ul class="sectlevel2">
@@ -493,10 +707,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-supported-additional-networks_extend-with-multiple-networks">Supported secondary networks for network isolation</a></li><li class="level-4"><a href="#microshift-additional-network-use-cases_extend-with-multiple-networks">Use case: Secondary networks for network isolation</a></li><li class="level-4"><a href="#microshift-additional-network-how-implemented_extend-with-multiple-networks">How secondary networks are implemented</a></li><li class="level-4"><a href="#microshift-additional-network-how-attached-pods_extend-with-multiple-networks">How to attach secondary networks to pods</a></li><li class="level-4"><a href="#microshift-config-examples-additional-networks_extend-with-multiple-networks">Configurations for secondary network types</a></li><li class="level-4"><a href="#microshift-multus-installing-on-running-node_extend-with-multiple-networks">Install the Multus CNI plugin on a running node</a></li><li class="level-4"><a href="#nw-multus-bridge-object_extend-with-multiple-networks">Configuration for a bridge secondary network</a></li><li class="level-5"><a href="#microshift-nw-multus-bridge-config-example_extend-with-multiple-networks">Bridge CNI plugin configuration example</a></li><li class="level-4"><a href="#nw-multus-ipvlan-object_extend-with-multiple-networks">Configuration for an IPVLAN secondary network</a></li><li class="level-5"><a href="#nw-multus-ipvlan-config-example_extend-with-multiple-networks">IPVLAN CNI plugin configuration example</a></li><li class="level-4"><a href="#nw-multus-macvlan-object_extend-with-multiple-networks">Configuration for a MACVLAN secondary network</a></li><li class="level-5"><a href="#nw-multus-macvlan-config-example_extend-with-multiple-networks">MACVLAN CNI plugin configuration example</a></li><li class="level-4"><a href="#IP-address-management-types-and-additional-networks_extend-with-multiple-networks">IP address management types and additional networks</a></li><li class="level-5"><a href="#bridge-interface-specifics_extend-with-multiple-networks">bridge interface specifics</a></li><li class="level-5"><a href="#macvlan-interface-specifics_extend-with-multiple-networks">macvlan interface specifics</a></li><li class="level-5"><a href="#ipvlan-interface-specifics_extend-with-multiple-networks">ipvlan interface specifics</a></li><li class="level-4"><a href="#microshift-cni-multus-nad-additional-network_extend-with-multiple-networks">Create a NetworkAttachmentDefinition for an additional network</a></li><li class="level-4"><a href="#microshift-nw-multus-add-pod_extend-with-multiple-networks">Add a pod to an additional network</a></li><li class="level-4"><a href="#microshift-cni-multus-add-network-example-config_extend-with-multiple-networks">Configure an additional network</a></li><li class="level-4"><a href="#nw-multus-remove-pod_extend-with-multiple-networks">Remove a pod from a secondary network</a></li><li class="level-4"><a href="#microshift-cni-multus-troubleshoot_extend-with-multiple-networks">Troubleshoot Multus networking</a></li><li class="level-5"><a href="#Pod-networking-cannot-be-configured_extend-with-multiple-networks">Pod networking cannot be configured</a></li><li class="level-5"><a href="#missing-nad_extend-with-multiple-networks">Missing configuration file</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-multus-intro_extend-with-multiple-networks">Secondary networks in MicroShift</h3>
@@ -506,64 +736,1258 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>During node installation, the <em>default</em> pod network is configured with default values unless you customize the configuration. The default network handles all ordinary network traffic for the node.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-supported-additional-networks_extend-with-multiple-networks">Supported secondary networks for network isolation</h4>
+<div class="paragraph">
+<p>The following secondary networks are supported in MicroShift 4.22:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-supported-additional-networks_extend-with-multiple-networks.html">Supported secondary networks for network isolation</a></p>
+<p>Bridge: Allows pods on the same host to communicate with each other and the host.</p>
 </li>
 <li>
-<p><a href="microshift-additional-network-use-cases_extend-with-multiple-networks.html">Use case: Secondary networks for network isolation</a></p>
+<p>IPVLAN: Allows pods on a host to communicate with other hosts.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This is similar to a MACVLAN-based secondary network.</p>
 </li>
 <li>
-<p><a href="microshift-additional-network-how-implemented_extend-with-multiple-networks.html">How secondary networks are implemented</a></p>
+<p>Each pod shares the same MAC address as the parent physical network interface, unlike a MACVLAN-based secondary network.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><a href="microshift-additional-network-how-attached-pods_extend-with-multiple-networks.html">How to attach secondary networks to pods</a></p>
+<p>MACVLAN: Allows pods on a host to communicate with other hosts and the pods on those other hosts by using a physical network interface. Each pod that is attached to a MACVLAN-based secondary network is provided with a unique MAC address.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Setting network policies for secondary networks is not supported.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-additional-network-use-cases_extend-with-multiple-networks">Use case: Secondary networks for network isolation</h4>
+<div class="paragraph">
+<p>You can use an secondary network in situations where network isolation is needed, including control plane and data plane separation. For example, you can configure an secondary interface if you want pods to access a network on the host and also communicate with devices deployed to the edge. These edge devices might be on an isolated operator network or are periodically disconnected.</p>
+</div>
+<div class="paragraph">
+<p>Isolating network traffic is useful for the following performance and security reasons:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Performance</dt>
+<dd>
+<p>You can send traffic on two different planes to manage the amount of traffic on each plane.</p>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<p>You can send sensitive traffic onto a network plane that is managed specifically for security considerations, and you can separate private data that must not be shared between tenants or customers.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Multus CNI plugin is deployed when the MicroShift service starts up. Therefore, a host restart is required if the <code>microshift-multus</code> RPM package is added after MicroShift has started. Restarting ensures that all containers are re-created with Multus annotations.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-additional-network-how-implemented_extend-with-multiple-networks">How secondary networks are implemented</h4>
+<div class="paragraph">
+<p>All of the pods in the node still use the node-wide default network to maintain connectivity across the node. Every pod has an <code>eth0</code> interface that is attached to the node-wide pod network.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can view the interfaces for a pod by using the <code>oc get pod &lt;pod_name&gt; -o=jsonpath='{ .metadata.annotations.k8s\.v1\.cni\.cncf\.io/network-status }'</code> command.</p>
 </li>
 <li>
-<p><a href="microshift-config-examples-additional-networks_extend-with-multiple-networks.html">Configurations for secondary network types</a></p>
+<p>If you add secondary network interfaces that use the MicroShift Multus CNI, they are named <code>net1</code>, <code>net2</code>, &#8230;&#8203;, <code>netN</code>.</p>
 </li>
 <li>
-<p><a href="microshift-multus-installing-on-running-node_extend-with-multiple-networks.html">Install the Multus CNI plugin on a running node</a></p>
-</li>
-<li>
-<p><a href="nw-multus-bridge-object_extend-with-multiple-networks.html">Configuration for a bridge secondary network</a></p>
-</li>
-<li>
-<p><a href="nw-multus-ipvlan-object_extend-with-multiple-networks.html">Configuration for an IPVLAN secondary network</a></p>
-</li>
-<li>
-<p><a href="nw-multus-macvlan-object_extend-with-multiple-networks.html">Configuration for a MACVLAN secondary network</a></p>
-</li>
-<li>
-<p><a href="IP-address-management-types-and-additional-networks_extend-with-multiple-networks.html">IP address management types and additional networks</a></p>
-</li>
-<li>
-<p><a href="microshift-cni-multus-nad-additional-network_extend-with-multiple-networks.html">Create a NetworkAttachmentDefinition for an additional network</a></p>
-</li>
-<li>
-<p><a href="microshift-nw-multus-add-pod_extend-with-multiple-networks.html">Add a pod to an additional network</a></p>
-</li>
-<li>
-<p><a href="microshift-cni-multus-add-network-example-config_extend-with-multiple-networks.html">Configure an additional network</a></p>
-</li>
-<li>
-<p><a href="nw-multus-remove-pod_extend-with-multiple-networks.html">Remove a pod from a secondary network</a></p>
-</li>
-<li>
-<p><a href="microshift-cni-multus-troubleshoot_extend-with-multiple-networks.html">Troubleshoot Multus networking</a></p>
+<p>The CNI configuration is created when the MicroShift Multus DaemonSet starts. This configuration is autogenerated and includes the primary CNI that is the default delegate. For MicroShift, the default CNI is OVN-Kubernetes.</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-additional-network-how-attached-pods_extend-with-multiple-networks">How to attach secondary networks to pods</h4>
+<div class="paragraph">
+<p>To attach secondary network interfaces to a pod, you must create and apply configurations that define how the interfaces are attached.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You must configure any secondary networks you want to use. Because of individual differences in networks, no default configuration is provided.</p>
+</li>
+<li>
+<p>You must apply YAML manifest to specify each interface by using a <code>NetworkAttachmentDefinition</code> custom resource (CR). A configuration inside each of these CRs defines how that interface is created.</p>
+</li>
+<li>
+<p>CRI-O must be configured to use Multus. A default configuration is included in the <code>microshift-multus</code> RPM.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If the Multus CNI is installed on an existing MicroShift instance, the host must be restarted.</p>
+</li>
+<li>
+<p>If the Multus CNI is installed alongside MicroShift, you can add CRs and pods and then start the MicroShift service. Restarting the host in this scenario is not needed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-config-examples-additional-networks_extend-with-multiple-networks">Configurations for secondary network types</h4>
+<div class="paragraph">
+<p>The specific configuration fields for secondary networks is described in the following sections.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-multus-installing-on-running-node_extend-with-multiple-networks">Install the Multus CNI plugin on a running node</h4>
+<div class="paragraph _abstract">
+<p>If you want to attach additional networks to a pod for high-performance network configurations, you can install the MicroShift Multus RPM package. After installation, a host restart is required to re-create all the pods with the Multus annotation.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Uninstalling the Multus CNI plugin is not supported.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have root access to the host.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Install the Multus RPM package by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo dnf install microshift-multus</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Tip">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you create your custom resources (CRs) for additional networks now, you can complete your installation and apply configurations with one restart.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>To apply the package manifest to an active node, restart the host by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo systemctl restart</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>After restarting, ensure that the Multus CNI plugin components are created by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pod -A | grep multus</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">openshift-multus      dhcp-daemon-ktzqf     1/1   Running   0     45h
+openshift-multus      multus-4frf4          1/1   Running   0     45h</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Next steps</div>
+<ol class="arabic">
+<li>
+<p>If you have not done so, configure and apply the additional networks you want to use.</p>
+</li>
+<li>
+<p>Deploy your applications that use the created CRs.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="nw-multus-bridge-object_extend-with-multiple-networks">Configuration for a bridge secondary network</h4>
+<div class="paragraph _abstract">
+<p>The Bridge CNI plugin JSON configuration object describes the configuration parameters for the Bridge CNI plugin.</p>
+</div>
+<div class="paragraph">
+<p>The following table details the configuration parameters:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Field</th>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>cniVersion</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The CNI specification version. The <code>0.4.0</code> value is required.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>type</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the CNI plugin to configure: <code>bridge</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>ipam</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>object</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The configuration object for the IPAM CNI plugin. The plugin manages IP address assignment for the attachment definition.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>bridge</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Specify the name of the virtual bridge to use. If the bridge interface does not exist on the host, the bridge interface gets created. The default value is <code>cni0</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>ipMasq</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Set to <code>true</code> to enable IP masquerading for traffic that leaves the virtual network. The source IP address for all traffic is rewritten to the bridge&#8217;s IP address. If the bridge does not have an IP address, this setting has no effect. The default value is <code>false</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>disableContainerInterface</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Controls the container interface (<code>veth</code> peer inside the <code>netns</code> container). When set to <code>true</code>, the container interface link-state is set to <code>down</code>, you cannot use the IPAM CNI plugin. The default value is <code>false</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>isGateway</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Set to <code>true</code> to assign an IP address to the bridge. The default value is <code>false</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>isDefaultGateway</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Set to <code>true</code> to configure the bridge as the default gateway for the virtual network. The assigned IP address of the bridge is used as the default route. If <code>isDefaultGateway</code> is set to <code>true</code>, <code>isGateway</code> is also set to <code>true</code> automatically. The default value is <code>false</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>forceAddress</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Set to <code>true</code> to allow assignment of a previously assigned IP address to the virtual bridge. When set to <code>false</code>, if an IPv4 address or an IPv6 address from overlapping subsets is assigned to the virtual bridge, an error occurs. The default value is <code>false</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>hairpinMode</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Set to <code>true</code> to allow the virtual bridge to send an Ethernet frame back through the virtual port it was received on. This mode is also known as <em>reflective relay</em>. The default value is <code>false</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>promiscMode</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Set to <code>true</code> to enable promiscuous mode on the bridge. The default value is <code>false</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>mtu</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Set the maximum transmission unit (MTU) to the specified value. The default value is automatically set by the kernel.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>enabledad</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Enables duplicate address detection for the container side <code>veth</code>. The default value is <code>false</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>macspoofchk</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Enables mac spoof check, limiting the traffic originating from the container to the mac address of the interface. The default value is <code>false</code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect4">
+<h5 id="microshift-nw-multus-bridge-config-example_extend-with-multiple-networks">Bridge CNI plugin configuration example</h5>
+<div class="paragraph">
+<p>The following example configures a secondary network named <code>bridge-conf</code> for use with the MicroShift Multus CNI:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: bridge-conf
+spec:
+  config: '{
+      "cniVersion": "0.4.0",
+      "type": "bridge",
+      "bridge": "test-bridge",
+      "mode": "bridge",
+      "ipam": {
+        "type": "host-local",
+        "ranges": [
+          [
+            {
+              "subnet": "10.10.0.0/16",
+              "rangeStart": "10.10.1.20",
+              "rangeEnd": "10.10.3.50",
+              "gateway": "10.10.0.254"
+            }
+          ]
+        ],
+        "dataDir": "/var/lib/cni/test-bridge"
+      }
+    }'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="nw-multus-ipvlan-object_extend-with-multiple-networks">Configuration for an IPVLAN secondary network</h4>
+<div class="paragraph _abstract">
+<p>The IPVLAN CNI plugin JSON configuration object describes the configuration parameters for the IPVLAN, <code>ipvlan</code>, CNI plugin. The following table details these parameters:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Field</th>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>cniVersion</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The CNI specification version. A minimum version of <code>0.3.1</code> is required.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>type</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the CNI plugin to configure: <code>ipvlan</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>ipam</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>object</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The configuration object for the IPAM CNI plugin. The plugin manages IP address assignment for the attachment definition. This is required unless the plugin is chained.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>mode</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: The operating mode for the virtual network. The value must be <code>l2</code>, <code>l3</code>, or <code>l3s</code>. The default value is <code>l2</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>master</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: The Ethernet interface to associate with the network attachment. If a <code>master</code> is not specified, the interface for the default network route is used.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>mtu</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Set the maximum transmission unit (MTU) to the specified value. The default value is automatically set by the kernel.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>linkInContainer</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Specifies whether the <code>master</code> interface is in the container network namespace or the main network namespace. Set the value to <code>true</code> to request the use of a container namespace <code>master</code> interface.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>ipvlan</code> object does not allow virtual interfaces to communicate with the <code>master</code> interface. Therefore the container is not able to reach the host by using the <code>ipvlan</code> interface. Be sure that the container joins a network that provides connectivity to the host, such as a network supporting the Precision Time Protocol (<code>PTP</code>).</p>
+</li>
+<li>
+<p>A single <code>master</code> interface cannot simultaneously be configured to use both <code>macvlan</code> and <code>ipvlan</code>.</p>
+</li>
+<li>
+<p>For IP allocation schemes that cannot be interface agnostic, the <code>ipvlan</code> plugin can be chained with an earlier plugin that handles this logic. If the <code>master</code> is omitted, then the previous result must contain a single interface name for the <code>ipvlan</code> plugin to enslave. If <code>ipam</code> is omitted, then the previous result is used to configure the <code>ipvlan</code> interface.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="nw-multus-ipvlan-config-example_extend-with-multiple-networks">IPVLAN CNI plugin configuration example</h5>
+<div class="paragraph">
+<p>The following example configures a secondary network named <code>ipvlan-net</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "cniVersion": "0.3.1",
+  "name": "ipvlan-net",
+  "type": "ipvlan",
+  "master": "eth1",
+  "linkInContainer": false,
+  "mode": "l3",
+  "ipam": {
+    "type": "static",
+    "addresses": [
+       {
+         "address": "192.168.10.10/24"
+       }
+    ]
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="nw-multus-macvlan-object_extend-with-multiple-networks">Configuration for a MACVLAN secondary network</h4>
+<div class="paragraph _abstract">
+<p>The MACVLAN CNI plugin JSON configuration object describes the configuration parameters for the MAC Virtual LAN (MACVLAN) Container Network Interface (CNI) plugin. The following table describes these parameters:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Field</th>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>cniVersion</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The CNI specification version. A minimum version of <code>0.3.1</code> is required.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>type</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The name of the CNI plugin to configure: <code>macvlan</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>ipam</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>object</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The configuration object for the IPAM CNI plugin. The plugin manages IP address assignment for the attachment definition.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>mode</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Configures traffic visibility on the virtual network. Must be either <code>bridge</code>, <code>passthru</code>, <code>private</code>, or <code>vepa</code>. If a value is not provided, the default value is <code>bridge</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>master</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: The host network interface to associate with the newly created macvlan interface. If a value is not specified, then the default route interface is used.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>mtu</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: The maximum transmission unit (MTU) to the specified value. The default value is automatically set by the kernel.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>linkInContainer</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Optional: Specifies whether the <code>master</code> interface is in the container network namespace or the main network namespace. Set the value to <code>true</code> to request the use of a container namespace <code>master</code> interface.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you specify the <code>master</code> key for the plugin configuration, use a different physical network interface than the one that is associated with your primary network plugin to avoid possible conflicts.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="nw-multus-macvlan-config-example_extend-with-multiple-networks">MACVLAN CNI plugin configuration example</h5>
+<div class="paragraph">
+<p>The following example configures a secondary network named <code>macvlan-net</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "cniVersion": "0.3.1",
+  "name": "macvlan-net",
+  "type": "macvlan",
+  "master": "eth1",
+  "linkInContainer": false,
+  "mode": "bridge",
+  "ipam": {
+    "type": "dhcp"
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="IP-address-management-types-and-additional-networks_extend-with-multiple-networks">IP address management types and additional networks</h4>
+<div class="paragraph _abstract">
+<p>IP addresses are provisioned for an additional network through an IP Address Management (IPAM) CNI plugin that you configure. Supported IP address provisioning types in MicroShift are <code>host-local</code>, <code>static</code>, and <code>dhcp</code>.</p>
+</div>
+<div class="sect4">
+<h5 id="bridge-interface-specifics_extend-with-multiple-networks">bridge interface specifics</h5>
+<div class="paragraph">
+<p>When using the <code>bridge</code> type interface and the <code>dhcp</code> IPAM, a DHCP server listening on the bridged network is required. If you are using a firewall, configuring the <code>firewalld</code> service by running the <code>firewall-cmd --remove-service=dhcp</code> command to allow DHCP traffic on the network zone is also required.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="macvlan-interface-specifics_extend-with-multiple-networks">macvlan interface specifics</h5>
+<div class="paragraph">
+<p>The <code>macvlan</code> type interface accesses the network that the host is connected to. This means that the interface can receive an IP address from the DHCP server on the host network if the <code>dhcp</code> IPAM plugin is used.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="ipvlan-interface-specifics_extend-with-multiple-networks">ipvlan interface specifics</h5>
+<div class="paragraph">
+<p>The <code>ipvlan</code> interface also has direct access to the host network, but shares a MAC address with the host interface. The <code>ipvlan</code> type interface cannot be used with the <code>dhcp</code> plugin because of the shared MAC address. The IPAM plugin does not support the DHCP protocol with <code>ClientID</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-cni-multus-nad-additional-network_extend-with-multiple-networks">Create a NetworkAttachmentDefinition for an additional network</h4>
+<div class="paragraph _abstract">
+<p>You can create a <code>NetworkAttachmentDefinition</code> configuration file for an additional network in order to use other CNI plugins.</p>
+</div>
+<div class="paragraph">
+<p>In this example, a bridge-type interface is used. You can also use the example workflow here that uses <code>host-local</code> IP address management (IPAM) to configure other supported additional network types.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you use <code>bridge</code> and the <code>dhcp</code> IPAM, a DHCP server listening on the bridged network is required. If you are also using a firewall, configuring the firewalld service to allow DHCP traffic on the network zone is also required. You can run the <code>firewall-cmd --remove-service=dhcp</code> command in this case.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>The MicroShift Multus CNI is installed.</p>
+</li>
+<li>
+<p>The OpenShift CLI (<code>oc</code>) is installed.</p>
+</li>
+<li>
+<p>MicroShift is running.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Optional: Verify that the MicroShift node is running with the Multus CNI by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n openshift-multus</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                READY   STATUS    RESTARTS   AGE
+dhcp-daemon-dfbzw   1/1     Running   0          5h
+multus-rz8xc        1/1     Running   0          5h</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a <code>NetworkAttachmentDefinition</code> configuration file by running the following command and using the following example file for reference:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f network-attachment-definition.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>NetworkAttachmentDefinition</code> file</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: bridge-conf
+spec:
+  config: '{
+      "cniVersion": "0.4.0",
+      "type": "bridge",
+      "bridge": "br-test",
+      "mode": "bridge",
+      "ipam": {
+        "type": "host-local",
+        "ranges": [
+          [
+            {
+              "subnet": "10.10.0.0/24",
+              "rangeStart": "10.10.0.20",
+              "rangeEnd": "10.10.0.50",
+              "gateway": "10.10.0.254"
+             }
+          ],
+          [
+            {
+              "subnet": "fd00:IJKL:MNOP:10::0/64",
+              "rangeStart": "fd00:IJKL:MNOP:10::1",
+              "rangeEnd": "fd00:IJKL:MNOP:10::9"
+        "dataDir": "/var/lib/cni/br-test"
+      }
+    }'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>type</code></dt>
+<dd>
+<p>Specifies a name of the CNI plugin. This example uses the <code>bridge</code> type.</p>
+</dd>
+<dt class="hdlist1"><code>bridge</code></dt>
+<dd>
+<p>Specifies the name of the bridge on the MicroShift host that is used. The additional interface of the pod is connected to that bridge. If the interface does not exist on the host, the Bridge CNI creates it. If the interface already exists, it is reused. In this example, the name of the interface is <code>br-test</code>.</p>
+</dd>
+<dt class="hdlist1"><code>ipam</code></dt>
+<dd>
+<p>Specifies the IPAM type.</p>
+</dd>
+<dt class="hdlist1"><code>ipam.ranges.</code></dt>
+<dd>
+<p>Specifies the IP address range for the additional network. IPv6 addresses can be added to the secondary interface.</p>
+<div class="openblock">
+<div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Using the name of the bridge is specific to the <code>bridge</code> type of plugin. Other plugins use different fields in their <code>NetworkAttachmentDefinitions</code>. For example, the <code>macvlan</code> and <code>ipvlan</code> configurations use <code>master</code> to specify the host interface to attach.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-nw-multus-add-pod_extend-with-multiple-networks">Add a pod to an additional network</h4>
+<div class="paragraph _abstract">
+<p>You can add a pod to an additional network. At the time a pod is created, additional networks are attached to it. The pod continues to send normal node-related network traffic over the default network.</p>
+</div>
+<div class="paragraph">
+<p>If you want to attach additional networks to a pod that is already running, you must restart the pod.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>The OpenShift CLI (<code>oc</code>) is installed.</p>
+</li>
+<li>
+<p>The node is running.</p>
+</li>
+<li>
+<p>A network defined by a <code>NetworkAttachmentDefinition</code> object that you want to attach the pod to exists.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Add an annotation to a <code>Pod</code> YAML file. Only one of the following annotation formats can be used:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>To attach an additional network without any customization, add an annotation with the following format. Replace <code><em>&lt;network&gt;</em></code> with the name of the additional network to associate with the pod:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    k8s.v1.cni.cncf.io/networks: <em>&lt;network&gt;</em>[,<em>&lt;network&gt;</em>,...]
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;network&gt;</em></code> with the name of each additional network to associate with the pod. To specify more than one additional network, separate each network with a comma. Do not include whitespaces between the commas. If you specify the same additional network multiple times, that pod has multiple network interfaces attached to that network.</p>
+</div>
+<div class="paragraph">
+<p>The following example annotation specifies a bridge-type additional network:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    k8s.v1.cni.cncf.io/networks: bridge-conf
+# ...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To attach an additional network with customizations, add an annotation with the following format:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    k8s.v1.cni.cncf.io/networks: |-
+      [
+        {
+          "name": "&lt;network&gt;",
+          "namespace": "&lt;namespace&gt;",
+          "default-route": ["&lt;default-route&gt;"]
+        }
+      ]
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>name</code></dt>
+<dd>
+<p>Specifies the name of the additional network defined by a <code>NetworkAttachmentDefinition</code> object.</p>
+</dd>
+<dt class="hdlist1"><code>namespace</code></dt>
+<dd>
+<p>Specifies the namespace where the <code>NetworkAttachmentDefinition</code> object is defined.</p>
+</dd>
+<dt class="hdlist1"><code>default-route</code></dt>
+<dd>
+<p>Specifies an optional field to provide an override for the default route, such as <code>192.168.17.1</code>.</p>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To create a <code>Pod</code> YAML file and add the  <code>NetworkAttachmentDefinition</code> annotation for an additional network, run the following command and use the example YAML:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f ./<em>&lt;test_bridge&gt;</em>.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;test_bridge&gt;</em></code> with the pod name that you want to use.</p>
+</div>
+<div class="paragraph">
+<p>The following example output shows that the <code>test_bridge</code> pod has been created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">pod/test_bridge created</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>test_bridge</code> pod YAML</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: test_bridge
+  annotations:
+    k8s.v1.cni.cncf.io/networks: bridge-conf
+  labels:
+    app: test_bridge
+spec:
+  terminationGracePeriodSeconds: 0
+  containers:
+  - name: hello-microshift
+    image: quay.io/microshift/busybox:1.36
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do echo -ne \"HTTP/1.0 200 OK\r\nContent-Length: 16\r\n\r\nHello MicroShift\" | nc -l -p 8080 ; done"]
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsNonRoot: true
+      runAsUser: 1001
+      runAsGroup: 1001
+      seccompProfile:
+        type: RuntimeDefault</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Make sure that the <code>NetworkAttachmentDefinition</code> annotation is correct:</p>
+<div class="paragraph">
+<p>The following example <code>NetworkAttachmentDefinition</code> annotation specifies a bridge-type additional network:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    k8s.v1.cni.cncf.io/networks: bridge-conf
+# ...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Optional: To confirm that the <code>NetworkAttachmentDefinition</code> annotation exists in a <code>Pod</code> YAML, run the following command, replacing <code><em>&lt;name&gt;</em></code> with the name of the pod.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pod <em>&lt;name&gt;</em> -o yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;name&gt;</em></code> with the pod name you want to use. In the following example, <code><em>&lt;test_bridge&gt;</em></code> is used.</p>
+</div>
+<div class="paragraph">
+<p>In the following example, the <code>test_bridge</code> is attached to the <code>net1</code> additional network:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pod <em>&lt;test_bridge&gt;</em> -o yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;test_bridge&gt;</em></code> with the name of the bridge you want to use.</p>
+</div>
+<div class="paragraph">
+<p>The following example output shows that the <code>test_bridge</code> pod is attached to the <code>net1</code> additional network:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    k8s.v1.cni.cncf.io/networks: bridge-conf
+    k8s.v1.cni.cncf.io/network-status: |-
+      [{
+          "name": "ovn-kubernetes",
+          "interface": "eth0",
+          "ips": [
+              "10.42.0.18"
+          ],
+          "default": true,
+          "dns": {}
+      },{
+          "name": "bridge-conf",
+          "interface": "net1",
+          "ips": [
+              "20.2.2.100"
+          ],
+          "mac": "22:2f:60:a5:f8:00",
+          "dns": {}
+      }]
+  name: pod
+  namespace: default
+spec:
+# ...
+status:
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>k8s.v1.cni.cncf.io/network-status</code> parameter is a JSON array of objects. Each object describes the status of an additional network attached to the pod. The annotation value is stored as a plain text value.</p>
+</div>
+</li>
+<li>
+<p>Verify that the pod is running by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pod</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME          READY   STATUS    RESTARTS   AGE
+test_bridge   1/1     Running   0          81s</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-cni-multus-add-network-example-config_extend-with-multiple-networks">Configure an additional network</h4>
+<div class="paragraph _abstract">
+<p>After you have created the <code>NetworkAttachmentDefinition</code> object and applied it, you can configure an additional network.</p>
+</div>
+<div class="paragraph">
+<p>In this example, the <code>bridge</code> type additional network is used. You can also use this workflow for other network types.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You created and applied the <code>NetworkAttachmentDefinition</code> object configuration.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Verify that the bridge was created on the host by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ip a show br-test</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">22: br-test: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 96:bf:ca:be:1d:15 brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::34e2:bbff:fed2:31f2/64 scope link
+       valid_lft forever preferred_lft forever</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure an IP address for the bridge by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo ip addr add 10.10.0.10/24 dev br-test</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that the IP address configuration is added to the bridge by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ip a show br-test</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">22: br-test: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 96:bf:ca:be:1d:15 brd ff:ff:ff:ff:ff:ff
+    inet 10.10.0.10/24 scope global br-test
+       valid_lft forever preferred_lft forever
+    inet6 fe80::34e2:bbff:fed2:31f2/64 scope link
+       valid_lft forever preferred_lft forever</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Confirm that the IP address is configured as expected.</p>
+</div>
+</li>
+<li>
+<p>Verify the IP address of the pod by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pod test-bridge --output=jsonpath='{.metadata.annotations.k8s\.v1\.cni\.cncf\.io/network-status}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">[{
+    "name": "ovn-kubernetes",
+    "interface": "eth0",
+    "ips": [
+        "10.42.0.17"
+    ],
+    "mac": "0a:58:0a:2a:00:11",
+    "default": true,
+    "dns": {}
+},{
+    "name": "default/bridge-conf",
+    "interface": "net1",
+    "ips": [
+        "10.10.0.20"
+    ],
+    "mac": "82:01:98:e5:0c:b7",
+    "dns": {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Confirm that the bridge additional network is attached as expected-<code>"default/bridge-conf"</code>.</p>
+</div>
+</li>
+<li>
+<p>Optional: You can use <code>oc exec</code> to access the pod and confirm its interfaces by using the <code>ip</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc exec -ti test-bridge -- ip a</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0@if21: &lt;BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN&gt; mtu 1500 qdisc noqueue
+    link/ether 0a:58:0a:2a:00:11 brd ff:ff:ff:ff:ff:ff
+    inet 10.42.0.17/24 brd 10.42.0.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::858:aff:fe2a:11/64 scope link
+       valid_lft forever preferred_lft forever
+3: net1@if23: &lt;BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN&gt; mtu 1500 qdisc noqueue
+    link/ether 82:01:98:e5:0c:b7 brd ff:ff:ff:ff:ff:ff
+    inet 10.10.0.20/24 brd 10.10.0.255 scope global net1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::8001:98ff:fee5:cb7/64 scope link
+       valid_lft forever preferred_lft forever</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the example the pod is attached to the 10.10.0.20 IP address on the <code>net1 interface</code> as expected.</p>
+</div>
+</li>
+<li>
+<p>Confirm that the connection is working as expected by accessing the HTTP server in the pod from the MicroShift host. Use the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ curl 10.10.0.20:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Hello MicroShift</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="nw-multus-remove-pod_extend-with-multiple-networks">Remove a pod from a secondary network</h4>
+<div class="paragraph _abstract">
+<p>To disconnect a pod from specific network configurations in Red&#160;Hat build of MicroShift, you can remove the pod from a secondary network. Delete the pod using the <code>oc delete pod</code> command to remove its connection to the secondary network.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>A secondary network is attached to the pod.</p>
+</li>
+<li>
+<p>Install the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>Log in to the cluster.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Delete the pod by entering the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc delete pod &lt;name&gt; -n &lt;namespace&gt;</code></pre>
+</div>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>&lt;name&gt;</code></dt>
+<dd>
+<p>Specifies the name of the pod.</p>
+</dd>
+<dt class="hdlist1"><code>&lt;namespace&gt;</code></dt>
+<dd>
+<p>Specifies the namespace that contains the pod.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-cni-multus-troubleshoot_extend-with-multiple-networks">Troubleshoot Multus networking</h4>
+<div class="paragraph _abstract">
+<p>If the settings for multiple networks are not configured properly, pods can fail to start. You can check pod network status and the configuration to help you solve a couple common scenarios.</p>
+</div>
+<div class="sect4">
+<h5 id="Pod-networking-cannot-be-configured_extend-with-multiple-networks">Pod networking cannot be configured</h5>
+<div class="paragraph">
+<p>If the Multus CNI plugin cannot apply networking annotations to a pod, the pod does not start. Pods can also fail to start if any of the additional network CNIs fail.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example error</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Warning  NoNetworkFound     0s     multus    cannot find a network-attachment-definitio (asdasd) in namespace (default): network-attachment-definitions.k8s.cni.cncf.io "bad-ref-doesnt-exist" not found</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, you can take the following steps to trouble CNI failures:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify the values in both the <code>NetworkAttachmentDefinitions</code> and the annotations.</p>
+</li>
+<li>
+<p>Remove the annotation to verify whether the pod is created successfully with just the default network. If not, this might indicate a networking problem other than the Multus configuration.</p>
+</li>
+<li>
+<p>If you are a device administrator, you can inspect the <code>crio.service</code> or <code>microshift.service</code> logs, paying special attention to those that are generated by the <code>kubelet</code>.</p>
+<div class="paragraph">
+<p>For example, the following error from the <code>kubelet</code> shows that the primary CNI is not running. This situation can be caused by pods not starting or because of a CRI-O misconfiguration such as an incorrect <code>cni_default_network</code> setting.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example kubelet-generated error</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Feb 06 13:47:31 dev microshift[1494]: kubelet E0206 13:47:31.163290    1494 pod_workers.go:1298] "Error syncing pod, skipping" err="network is not ready: container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: No CNI configuration file in /etc/cni/net.d/. Has your network provider started?" pod="default/samplepod" podUID="fe0f7f7a-8c47-4488-952b-8abc0d8e2602"</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="missing-nad_extend-with-multiple-networks">Missing configuration file</h5>
+<div class="paragraph">
+<p>Sometimes a pod cannot be created because the annotations reference a <code>NetworkAttachmentDefinition</code> configuration YAML that does not exist. In this case an error such as the following is usually produced:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example log</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">cannot find a network-attachment-definition (bad-conf) in namespace (default): network-attachment-definitions.k8s.cni.cncf.io "bad-conf" not found" pod="default/samplepod"`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example error output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">"CreatePodSandbox for pod failed" err="rpc error: code = Unknown desc = failed to create pod network sandbox k8s_samplepod_default_5fa13105-1bfb-4c6b-aee7-3437cfb50e25_0(7517818bd8e85f07b551f749c7529be88b4e7daef0dd572d049aa636950c76c6): error adding pod default_samplepod to CNI network \"multus-cni-network\": plugin type=\"multus\" name=\"multus-cni-network\" failed (add): Multus: [default/samplepod/5fa13105-1bfb-4c6b-aee7-3437cfb50e25]: error loading k8s delegates k8s args: TryLoadPodDelegates: error in getting k8s network for pod: GetNetworkDelegates: failed getting the delegate: getKubernetesDelegate: cannot find a network-attachment-definition (bad-conf) in namespace (default): network-attachment-definitions.k8s.cni.cncf.io \"bad-conf\" not found" pod="default/samplepod"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To fix this error, create and apply the <code>NetworkAttachmentDefinitions</code> YAML.</p>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="supported-devices_optimize-network-performance.html">SR-IOV Network Operator supported devices</a> | ↑ Up: <a href="_networking.html">Networking</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-supported-additional-networks_extend-with-multiple-networks.html">Supported secondary networks for network isolation</a> →</p>
+<p>← Previous: <a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a> | ↑ Up: <a href="_networking.html">Networking</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a> →</p>
 </div>
 </div>
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
+<a href="microshift-use-oc-cli_use-oc-cli.html#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
 </div>
 </div>
 <div id="footer">

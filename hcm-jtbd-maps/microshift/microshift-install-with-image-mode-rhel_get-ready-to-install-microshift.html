@@ -437,18 +437,81 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift" class="book toc2 toc-left">
+<body id="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
 <ul class="sectlevel2">
@@ -475,74 +538,1092 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-default-networking_understand-default-networking.html">Understand default networking capabilities</a>
+</li>
+<li><a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a>
+</li>
+<li><a href="microshift-optimize-network-performance_optimize-network-performance.html">Optimize network performance</a>
+</li>
+<li><a href="microshift-multus-intro_extend-with-multiple-networks.html">Secondary networks in MicroShift</a>
+</li>
+<li><a href="microshift-provide-external-access_provide-external-access.html">Provide external access to edge applications</a>
+</li>
+<li><a href="microshift-secure-control-traffic_secure-and-control-traffic.html">Secure and control traffic</a>
+</li>
+<li><a href="microshift-configure-disconnected-networking_configure-disconnected-networking.html">Configure networking for a fully disconnected host</a>
+</li>
+<li><a href="microshift-about-load-balancer-service_expose-app-with-loadbalancer.html">The MicroShift LoadBalancer service for workloads</a>
+</li>
+<li><a href="microshift-restrict-nodeport-access_restrict-nodeport-access.html">Restrict external access to NodePort services on MicroShift</a>
+</li>
+<li><a href="microshift-configure-crio-proxy_configure-crio-proxy.html">Configure HTTP or HTTPS proxy settings for CRI-O</a>
+</li>
+</ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-bootc-conc_get-ready-to-install-microshift">About image mode for Red Hat Enterprise Linux (RHEL)</a></li><li class="level-4"><a href="#microshift-preparing-for-image-building-bootc_get-ready-to-install-microshift">Prepare for bootc image building</a></li><li class="level-4"><a href="#microshift-install-rhel-image-mode-conc_get-ready-to-install-microshift">The image mode for RHEL with MicroShift workflow</a></li><li class="level-5"><a href="#microshift-install-rhel-image-mode-resources_get-ready-to-install-microshift">Required resources</a></li><li class="level-5"><a href="#microshift-install-rhel-image-mode-workflow_get-ready-to-install-microshift">Workflow</a></li><li class="level-4"><a href="#microshift-install-bootc-get-published-image_get-ready-to-install-microshift">Get the published bootc image for MicroShift</a></li><li class="level-4"><a href="#microshift-install-bootc-build-image_get-ready-to-install-microshift">Build the bootc image</a></li><li class="level-4"><a href="#microshift-bootc-publish-image_get-ready-to-install-microshift">Publish the bootc image to the remote registry</a></li><li class="level-4"><a href="#microshift-install-bootc-physically-bound_get-ready-to-install-microshift">About physically bound bootc image building</a></li><li class="level-4"><a href="#microshift-embed-cont-images-bootc-image_get-ready-to-install-microshift">Embed container images into a bootc image</a></li><li class="level-4"><a href="#microshift-install-bootc-prepare-kickstart_get-ready-to-install-microshift">Create the Kickstart file</a></li><li class="level-4"><a href="#microshift-install-bootc-creating-vm_get-ready-to-install-microshift">Create a virtual machine</a></li><li class="level-4"><a href="#microshift-kickstart-bootc-install_get-ready-to-install-microshift">Create a Kickstart file to install MicroShift on image mode for RHEL</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift">Install with image mode for RHEL</h3>
 <div class="paragraph _abstract">
 <p>You can install MicroShift with image mode for RHEL to deploy and manage your edge OS and Kubernetes platform as a single container image.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-bootc-conc_get-ready-to-install-microshift">About image mode for Red&#160;Hat Enterprise Linux (RHEL)</h4>
+<div class="paragraph _abstract">
+<p>By using image mode for RHEL, you can use the same tools and techniques for the operating system that you use with application containers. Image mode for RHEL is a deployment method that uses a container-native approach to build, deploy, and manage the operating system as a <code>rhel-bootc</code> image.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-bootc-conc_get-ready-to-install-microshift.html">About image mode for Red&#160;Hat Enterprise Linux (RHEL)</a></p>
+<p>This container image uses standard OCI or Docker containers as a transport and delivery format for base operating system updates.</p>
 </li>
 <li>
-<p><a href="microshift-preparing-for-image-building-bootc_get-ready-to-install-microshift.html">Prepare for bootc image building</a></p>
+<p>A bootc image includes a Linux kernel that is used to start the operating system.</p>
 </li>
 <li>
-<p><a href="microshift-install-rhel-image-mode-conc_get-ready-to-install-microshift.html">The image mode for RHEL with MicroShift workflow</a></p>
+<p>By using bootc containers, developers, operations administrators, and solution providers can all use the same container-native tools and techniques.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Image mode for RHEL splits the creation and installation of software changes into two steps: one on a build system and one on a running target system.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In the build-system step, a Podman build inspects the RPM files available for installation, determines any dependencies, and creates an ordered list of chained steps to complete. Along with any other system configuration steps taking place, the end result is a new operating system available to install.</p>
 </li>
 <li>
-<p><a href="microshift-install-bootc-get-published-image_get-ready-to-install-microshift.html">Get the published bootc image for MicroShift</a></p>
-</li>
-<li>
-<p><a href="microshift-install-bootc-build-image_get-ready-to-install-microshift.html">Build the bootc image</a></p>
-</li>
-<li>
-<p><a href="microshift-bootc-publish-image_get-ready-to-install-microshift.html">Publish the bootc image to the remote registry</a></p>
-</li>
-<li>
-<p><a href="microshift-install-bootc-physically-bound_get-ready-to-install-microshift.html">About physically bound bootc image building</a></p>
-</li>
-<li>
-<p><a href="microshift-embed-cont-images-bootc-image_get-ready-to-install-microshift.html">Embed container images into a bootc image</a></p>
-</li>
-<li>
-<p><a href="microshift-install-bootc-prepare-kickstart_get-ready-to-install-microshift.html">Create the Kickstart file</a></p>
-</li>
-<li>
-<p><a href="microshift-install-bootc-creating-vm_get-ready-to-install-microshift.html">Create a virtual machine</a></p>
-</li>
-<li>
-<p><a href="microshift-kickstart-bootc-install_get-ready-to-install-microshift.html">Create a Kickstart file to install MicroShift on image mode for RHEL</a></p>
+<p>In the running-target-system step, a bootc update downloads, unpacks, and prepares the new operating system to be started alongside the currently running system. Local configuration changes are carried forward to the new operating system. These changes take effect only when the system is restarted and the new operating system image replaces the previously running one.</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-preparing-for-image-building-bootc_get-ready-to-install-microshift">Prepare for bootc image building</h4>
+<div class="paragraph _abstract">
+<p>Use the image builder tool to compose customized MicroShift bootc images optimized for edge deployments. You can run a MicroShift node with your applications on a image mode for RHEL virtual machine for development and testing first, then use your whole solution in edge production environments.</p>
+</div>
+<div class="paragraph">
+<p>Use the RHEL documentation in "Using image mode for RHEL to build, deploy, and manage operating systems" to understand the full details of using image mode for RHEL.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Warning">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For offline or disconnected configurations, embed all container image dependencies as part of the system image. When container images are downloaded without being embedded into the system image, CRI-O wipes them off during unclean shutdowns, such as when a power loss occurs. In this case, you can only restore those container images when the system is online.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/using_image_mode_for_rhel_to_build_deploy_and_manage_operating_systems/index">Using image mode for RHEL to build, deploy, and manage operating systems</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-install-rhel-image-mode-conc_get-ready-to-install-microshift">The image mode for RHEL with MicroShift workflow</h4>
+<div class="paragraph _abstract">
+<p>Before you can use image mode for RHEL with MicroShift, you must verify the availability of required resources.</p>
+</div>
+<div class="sect4">
+<h5 id="microshift-install-rhel-image-mode-resources_get-ready-to-install-microshift">Required resources</h5>
+<div class="paragraph">
+<p>Ensure that the following resources are available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A RHEL 9.8 host with an active Red&#160;Hat subscription for building MicroShift bootc images.</p>
+</li>
+<li>
+<p>A remote registry for storing and accessing <code>rhel-bootc</code> images.</p>
+</li>
+<li>
+<p>An AArch64 or x86_64 system architecture.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-install-rhel-image-mode-workflow_get-ready-to-install-microshift">Workflow</h5>
+<div class="paragraph">
+<p>The workflow for using image mode for RHEL with MicroShift includes the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Find and use a prebuilt MicroShift container image to install RHEL.</p>
+</li>
+<li>
+<p>If the prebuilt MicroShift container image requires customization, build a custom MicroShift container image.</p>
+</li>
+<li>
+<p>Run the container image.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>rpm-ostree</code> file system used by RHEL for Edge is not supported in image mode for RHEL. Do not use the <code>rpm-ostree</code> file system to modify deployments that use image mode for RHEL.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-install-bootc-get-published-image_get-ready-to-install-microshift">Get the published bootc image for MicroShift</h4>
+<div class="paragraph _abstract">
+<p>You can use the MicroShift container images to install image mode for RHEL.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have an x86_64 or AArch64 platform.</p>
+</li>
+<li>
+<p>You have access to the <code>registry.redhat.io</code> registry.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the <a href="https://catalog.redhat.com/">Red&#160;Hat Ecosystem Catalog</a>.</p>
+</li>
+<li>
+<p>Search for the MicroShift container image by using the <code>microshift-bootc</code> keyword.</p>
+</li>
+<li>
+<p>Open the container image page of the MicroShift container image.</p>
+</li>
+<li>
+<p>Select the <code>Get this image</code> tab to view instructions for downloading the image.</p>
+</li>
+<li>
+<p>Get access to the latest image on x86_64 and AArch64 platforms by logging into the registry using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo podman login registry.redhat.io</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Download the bootc image by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ podman pull registry.redhat.io/openshift4/microshift-bootc-rhel9:v4.22</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-install-bootc-build-image_get-ready-to-install-microshift">Build the bootc image</h4>
+<div class="paragraph _abstract">
+<p>Build your Red&#160;Hat Enterprise Linux (RHEL) that contains MicroShift as a bootable container image by using a Containerfile.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>A RHEL 9.8 host with an active Red&#160;Hat subscription for building MicroShift bootc images and running containers.</p>
+</li>
+<li>
+<p>You logged into the RHEL 9.8 host by using the user credentials that have <code>sudo</code> permissions.</p>
+</li>
+<li>
+<p>The <code>rhocp</code> and <code>fast-datapath</code> repositories are accessible in the host subscription. The repositories do not necessarily need to be enabled on the host.</p>
+</li>
+<li>
+<p>You have a remote registry such as <a href="https://quay.io">Red&#160;Hat Quay</a> for storing and accessing bootc images.</p>
+</li>
+<li>
+<p>You used the <code>dnf install -y container-tools</code> command to install the <code>container-tools</code> meta-package on the host. The meta-package contains all container tools, such as Podman, Buildah, and Skopeo for additional support and troubleshooting. These tools are required for obtaining assistance from Red&#160;Hat Support when you are building and installing the image.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a Containerfile that includes the following instructions:</p>
+<div class="listingblock">
+<div class="title">Example Containerfile for RHEL image mode</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">FROM registry.redhat.io/rhel9/rhel-bootc:9.8
+
+ARG USHIFT_VER=4.22
+RUN dnf config-manager \
+        --set-enabled rhocp-${USHIFT_VER}-for-rhel-9-$(uname -m)-rpms \
+        --set-enabled fast-datapath-for-rhel-9-$(uname -m)-rpms
+RUN dnf install -y firewalld microshift &amp;&amp; \
+    systemctl enable microshift &amp;&amp; \
+    dnf clean all
+
+# Create a default 'redhat' user with the specified password.
+# Add it to the 'wheel' group to allow for running sudo commands.
+ARG USER_PASSWD
+RUN if [ -z "${USER_PASSWD}" ] ; then \
+        echo USER_PASSWD is a mandatory build argument &amp;&amp; exit 1 ; \
+    fi
+RUN useradd -m -d /var/home/redhat -G wheel redhat &amp;&amp; \
+    echo "redhat:${USER_PASSWD}" | chpasswd
+
+# Mandatory firewall configuration
+RUN firewall-offline-cmd --zone=public --add-port=22/tcp &amp;&amp; \
+    firewall-offline-cmd --zone=trusted --add-source=10.42.0.0/16 &amp;&amp; \
+    firewall-offline-cmd --zone=trusted --add-source=169.254.169.1
+
+# Create a systemd unit to recursively make the root filesystem subtree
+# shared as required by OVN images
+RUN cat &gt; /etc/systemd/system/microshift-make-rshared.service &lt;&lt;'EOF'
+[Unit]
+Description=Make root filesystem shared
+Before=microshift.service
+ConditionVirtualization=container
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mount --make-rshared /
+[Install]
+WantedBy=multi-user.target
+EOF
+RUN systemctl enable microshift-make-rshared.service</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Podman uses the host subscription information and repositories inside the container when building the container image. If the <code>rhocp</code> and <code>fast-datapath</code> repositories are not available on the host, the build fails.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Set the <code>PULL_SECRET</code> environment variable:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ PULL_SECRET=~/.pull-secret.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure the <code>USER_PASSWD</code> environment variable:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ USER_PASSWD=<em>&lt;redhat_user_password&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;redhat_user_password&gt;</em></code> with your password.</p>
+</div>
+</li>
+<li>
+<p>Configure the <code>IMAGE_NAME</code> environment variable:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ IMAGE_NAME=microshift-4.22-bootc</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a local bootc image by running the following image build command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo podman build --authfile "${PULL_SECRET}" -t "${IMAGE_NAME}" \
+    --build-arg USER_PASSWD="${USER_PASSWD}" \
+    -f Containerfile</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>How secrets are used during the image build:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The podman <code>--authfile</code> argument is required to pull the base <code>rhel-bootc:9.8</code> image from the <code>registry.redhat.io</code> registry.</p>
+</li>
+<li>
+<p>The build <code>USER_PASSWD</code> argument is used to set a password for the <code>redhat</code> user.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Verify that the local MicroShift bootc image was created by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo podman images "${IMAGE_NAME}"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">REPOSITORY                       TAG         IMAGE ID      CREATED        SIZE
+localhost/microshift-4.22-bootc  latest      193425283c00  2 minutes ago  2.31 GB</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-bootc-publish-image_get-ready-to-install-microshift">Publish the bootc image to the remote registry</h4>
+<div class="paragraph _abstract">
+<p>Publish your bootc image to the remote registry so that the image can be used for running the container on another host, or for when you want to install a new operating system with the bootc image layer.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You are logged in to the RHEL 9.8 host where the image was built using the user credentials that have <code>sudo</code> permissions.</p>
+</li>
+<li>
+<p>You have a remote registry such as <a href="https://quay.io">Red&#160;Hat Quay</a> for storing and accessing bootc images.</p>
+</li>
+<li>
+<p>You created the Containerfile and built the image.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Set the <code>REGISTRY_URL</code> variable for the image by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ REGISTRY_URL=<em>&lt;quay.io&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;quay.io&gt;</em></code> with the URL for your image registry.</p>
+</div>
+</li>
+<li>
+<p>Log in to your remote registry by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo podman login "${REGISTRY_URL}"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the <code>IMAGE_NAME</code> variable for the image by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ IMAGE_NAME=<em>&lt;microshift-4.22-bootc&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <em>&lt;microshift-4.22-bootc&gt;</em> with the name of the image you want to publish.</p>
+</div>
+</li>
+<li>
+<p>Set the <code>REGISTRY_IMG</code> variable for the image by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ REGISTRY_IMG=<em>&lt;myorg/mypath&gt;</em>/"${IMAGE_NAME}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code><em>&lt;myorg/mypath&gt;</em></code> with your remote registry organization name and path.</p>
+</div>
+</li>
+<li>
+<p>Publish the image by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo podman push localhost/"${IMAGE_NAME}" "${REGISTRY_URL}/${REGISTRY_IMG}"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Run the container using the image you pushed to your registry as described in the "Running the MicroShift bootc container" section.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-install-bootc-physically-bound_get-ready-to-install-microshift">About physically bound bootc image building</h4>
+<div class="paragraph _abstract">
+<p>When a bootc image is fully self-contained, everything you need to run workloads is embedded with the bootc image, including MicroShift and application container images. The underlying mechanism is to pre-pull physically-bound images during image build and then make them available at runtime.</p>
+</div>
+<div class="paragraph">
+<p>Because embedded images might change with each system update, you cannot pull the images directly to the default container storage. Additional image stores do not work in this case because of current implementation limits. These limits do not allow bootc image updates for those container images.</p>
+</div>
+<div class="paragraph">
+<p>The manifest, layer tarballs, and signatures are exported as individual files into the directory. The <code>dir</code> transport type preserves the digest of the image, which is crucial for the original digest to reference the image.</p>
+</div>
+<div class="paragraph">
+<p>Technical details to understand include the following items:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Each image goes into the same top-level directory, but a separate subdirectory.</p>
+</li>
+<li>
+<p>Subdirectories are named after the image reference string <code>SHA</code>.</p>
+</li>
+<li>
+<p>An image list file maps image references to their name <code>SHA</code>.</p>
+</li>
+<li>
+<p>You must install the <code>microshift-release-info</code> RPM to get the image references required by MicroShift.</p>
+</li>
+<li>
+<p>You must have image references for your workloads. Apply the same methods to workload image references that you use for MicroShift image references.</p>
+</li>
+<li>
+<p>When you build the container, you must install the <code>microshift-release-info</code> RPM. The <code>release-x86_64.json</code> and <code>release-aarch64.json</code> files from this RPM reside in the <code>/usr/share/microshift/release/</code> directory. These files contain image references required by MicroShift.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must keep track of the name of the image. A tag, digest, or a mix of both can reference images. Choosing the best way to reference the images you need can impact the quality and robustness of workloads.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-embed-cont-images-bootc-image_get-ready-to-install-microshift">Embed container images into a bootc image</h4>
+<div class="paragraph _abstract">
+<p>You embed container images by adding instructions to an existing Containerfile to copy the images you want and list them in a file to keep track of the copied image names.</p>
+</div>
+<div class="paragraph">
+<p>Then, you must copy images locally from the <code>/usr/lib/containers/storage</code> directory to the local container storage.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You cannot store images in the default or additional container storage directory when you build bootc images. For example, if you update the additional container store setting in <code>/etc/containers/storage.conf</code> to point to the <code>/usr/lib/containers/storage</code> directory, bootc image updates fail.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have root access to the host.</p>
+</li>
+<li>
+<p>You installed Podman.</p>
+</li>
+<li>
+<p>You installed skopeo.</p>
+</li>
+<li>
+<p>You have workload image references.</p>
+</li>
+<li>
+<p>You have a Containerfile for building MicroShift images.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Add the pull secret to the container build procedure to ensure that images can be pulled by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ podman build --secret id=pullsecret,src=/<em>&lt;path/to/pull/secret&gt;</em>.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Specify the path to your pull secret in <em>&lt;path/to/pull/secret&gt;</em>.</p>
+</div>
+</li>
+<li>
+<p>Add the instructions to physically embed the image at build time by adding the following to your Containerfile:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">ENV IMAGE_STORAGE_DIR=/usr/lib/containers/storage
+ENV IMAGE_LIST_FILE=${IMAGE_STORAGE_DIR}/image-list.txt
+
+RUN dnf install -y microshift-release-info
+RUN --mount=type=secret,id=pullsecret,dst=/run/secrets/pull-secret.json \
+    images="$(jq -r ".images[]" /usr/share/microshift/release/release-"$(uname -m)".json)" ; \
+    mkdir -p "${IMAGE_STORAGE_DIR}" ; \
+    for img in ${images} ; do \
+        sha="$(echo "${img}" | sha256sum | awk '{print $1}')" ; \
+        skopeo copy --all --preserve-digests \
+            --authfile /run/secrets/pull-secret.json \
+            "docker://${img}" "dir:$IMAGE_STORAGE_DIR/${sha}" ; \
+        echo "${img},${sha}" &gt;&gt; "${IMAGE_LIST_FILE}" ; \
+    done</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When run, the Containerfile extracts the list of MicroShift container image dependencies from the <code>microshift-release-info</code> RPM and pulls them into a custom <code>/usr/lib/containers/storage</code> directory. The resulting image list file is saved at <code>/usr/lib/containers/storage/image-list.txt</code>.</p>
+</div>
+</li>
+<li>
+<p>Next, you must copy container images from the custom directory to the main container storage directory so that they are available to MicroShift. Add a script and a systemd service to your Containerfile to copy the embedded images from the <code>/usr/lib/containers/storage</code> directory to the local container storage. Copying happens at runtime before each MicroShift start. Use the following example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">RUN cat &gt; /usr/bin/microshift-copy-images &lt;&lt;EOF
+#!/bin/bash
+set -eux -o pipefail
+while IFS="," read -r img sha ; do
+    skopeo copy --preserve-digests \
+        "dir:${IMAGE_STORAGE_DIR}/\${sha}" \
+        "containers-storage:\${img}"
+done &lt; "${IMAGE_LIST_FILE}"
+EOF
+
+RUN chmod 755 /usr/bin/microshift-copy-images &amp;&amp; \
+    mkdir -p /usr/lib/systemd/system/microshift.service.d
+
+RUN cat &gt; /usr/lib/systemd/system/microshift.service.d/microshift-copy-images.conf &lt;&lt;EOF
+[Service]
+ExecStartPre=/usr/bin/microshift-copy-images
+EOF</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Next steps</div>
+<ol class="arabic">
+<li>
+<p>Build the image.</p>
+</li>
+<li>
+<p>Test and deploy per your use case.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-install-bootc-prepare-kickstart_get-ready-to-install-microshift">Create the Kickstart file</h4>
+<div class="paragraph _abstract">
+<p>You must create the Kickstart file to use during installation.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have root-user access.</p>
+</li>
+<li>
+<p>You are logged in to the physical hypervisor host.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Set the <code>AUTH_CONFIG</code> environment variable to reference the secret file in the <code>kickstart.ks</code> file to authenticate private container registry access by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ AUTH_CONFIG=~/.quay-auth.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the <code>PULL_SECRET</code> environment variable to reference the secret files in the <code>kickstart.ks</code> file to authenticate the OpenShift Container Platform registry access by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ PULL_SECRET=~/.pull-secret.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the <code>IMAGE_REF</code> environment variable to reference the image mode for your container image to use during installation by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ IMAGE_REF="quay.io/<em>&lt;myorg&gt;/&lt;mypath&gt;</em>/microshift-4.22-bootc"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <em>&lt;myorg/&lt;mypath&gt;</em> with your remote registry organization name and path.</p>
+</div>
+</li>
+<li>
+<p>Create the <code>kickstart.ks</code> file to use during installation by running the following script:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat &gt; kickstart.ks &lt;&lt;EOFKS
+lang en_US.UTF-8
+keyboard us
+timezone UTC
+text
+reboot
+
+# Partition the disk with hardware-specific boot and swap partitions, adding an
+# LVM volume that contains a 10GB+ system root. The remainder of the volume will
+# be used by the CSI driver for storing data.
+zerombr
+clearpart --all --initlabel
+# Create boot and swap partitions as required by the current hardware platform
+reqpart --add-boot
+# Add an LVM volume group and allocate a system root logical volume
+part pv.01 --grow
+volgroup rhel pv.01
+logvol / --vgname=rhel --fstype=xfs --size=10240 --name=root
+
+# Lock root user account
+rootpw --lock
+
+# Configure network to use DHCP and activate on boot
+network --bootproto=dhcp --device=link --activate --onboot=on
+
+%pre-install --log=/dev/console --erroronfail
+
+# Create a 'bootc' image registry authentication file
+mkdir -p /etc/ostree
+cat &gt; /etc/ostree/auth.json &lt;&lt;'EOF'
+$(cat "${AUTH_CONFIG}")
+EOF
+
+%end
+
+# Pull a 'bootc' image from a remote registry
+ostreecontainer --url "${IMAGE_REF}"
+
+%post --log=/dev/console --erroronfail
+
+# Create an OpenShift pull secret file
+cat &gt; /etc/crio/openshift-pull-secret &lt;&lt;'EOF'
+$(cat "${PULL_SECRET}")
+EOF
+chmod 600 /etc/crio/openshift-pull-secret
+
+%end
+EOFKS</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-install-bootc-creating-vm_get-ready-to-install-microshift">Create a virtual machine</h4>
+<div class="paragraph _abstract">
+<p>You can create a virtual machine by using the Red&#160;Hat Enterprise Linux (RHEL) boot ISO image.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You created the Kickstart file.</p>
+</li>
+<li>
+<p>You installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>You have <code>redhat</code> credentials.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Download the Red&#160;Hat Enterprise Linux (RHEL) boot ISO image from the <a href="https://developers.redhat.com/products/rhel/download">Download Red&#160;Hat Enterprise Linux</a>.</p>
+</li>
+<li>
+<p>Copy the downloaded file to the <code>/var/lib/libvirt/images</code> directory.</p>
+</li>
+<li>
+<p>Configure the VMNAME environment variable with your value by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ VMNAME=microshift-4.22-bootc</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure the NETNAME environment variable with your value by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ NETNAME=default</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a RHEL virtual machine with 2 cores, 2GB of RAM and 20GB of storage by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo virt-install \
+    --name ${VMNAME} \
+    --vcpus 2 \
+    --memory 2048 \
+    --disk path=/var/lib/libvirt/images/${VMNAME}.qcow2,size=20 \
+    --network network=${NETNAME},model=virtio \
+    --events on_reboot=restart \
+    --location /var/lib/libvirt/images/rhel-9.8-$(uname -m)-boot.iso \
+    --initrd-inject kickstart.ks \
+    --extra-args "inst.ks=file://kickstart.ks" \
+    --wait</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>sudo virt-install</code> command uses the Kickstart file to pull a bootc image from the remote registry and install the RHEL operating system.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Log in to the virtual machine by using your <code>redhat</code> credentials.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Verify that all of the MicroShift pods are running without error by entering the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ watch sudo oc get pods -A \
+    --kubeconfig /var/lib/microshift/resources/kubeadmin/kubeconfig</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">NAMESPACE                  NAME                                       READY   STATUS    RESTARTS      AGE
+kube-system                csi-snapshot-controller-7cfb9df49c-kc9dx   1/1     Running   0             31s
+openshift-dns              dns-default-rpnlt                          2/2     Running   0             14s
+openshift-dns              node-resolver-rxvdk                        1/1     Running   0             31s
+openshift-ingress          router-default-69cd7b5545-7zcw7            1/1     Running   0             29s
+openshift-ovn-kubernetes   ovnkube-master-c7hlh                       4/4     Running   1 (16s ago)   31s
+openshift-ovn-kubernetes   ovnkube-node-mkpht                         1/1     Running   1 (17s ago)   31s
+openshift-service-ca       service-ca-5d5d96459d-5pd5s                1/1     Running   0             28s
+openshift-storage          topolvm-controller-677cbfcdb9-28dqr        5/5     Running   0             31s
+openshift-storage          topolvm-node-6fzbl                         3/3     Running   0             14s</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-kickstart-bootc-install_get-ready-to-install-microshift">Create a Kickstart file to install MicroShift on image mode for RHEL</h4>
+<div class="paragraph _abstract">
+<p>You can use the Kickstart file provided with MicroShift for an image mode for RHEL installation.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You set up the MicroShift Kickstart file.</p>
+</li>
+<li>
+<p>You have the information needed to set required and optional variables.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Set the required <code>BOOTC_IMAGE_URL</code> variable value to point to an image used in the RHEL Kickstart file installation process by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export BOOTC_IMAGE_URL=<em>&lt;myregistry&gt;/&lt;myorg&gt;/&lt;mypath&gt;</em>/microshift-image:tag</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <em>&lt;myregistry&gt;</em>, <em>&lt;myorg&gt;</em>, and <em>&lt;mypath&gt;</em> with your information.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>BOOTC_IMAGE_URL</code> variable contains a reference to the image that the <code>ostreecontainer</code> command installs. You can specify a z-stream release other than the latest by using the tag if required.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Optional. Add variables and values for registry authentication and configuration by using the following commands:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set the <code>AUTH_CONFIG</code> variable to authenticate access to the <code>BOOTC_IMAGE_URL</code> image by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export AUTH_CONFIG="$(cat ~/.quay-auth.json)"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, see the <code>containers-auth.json(5)</code> manual page for more information about this file format.</p>
+</div>
+</li>
+<li>
+<p>Set the <code>REGISTRY_CONFIG</code> variable to configure access to the registry containing the <code>BOOTC_IMAGE_URL</code> image by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export REGISTRY_CONFIG="$(cat ~/.quay-config.conf)"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, see the <code>containers-registries.conf(5)</code> manual page for more information about this file format.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Create the <code>kickstart.ks</code> file to be used during the installation by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">envsubst &lt; \
+    /usr/share/microshift/kickstart/kickstart-bootc.ks.template &gt; \
+    "${HOME}/kickstart.ks"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="microshift-configuring-hosts-for-mirror_get-ready-to-install-microshift.html">Configure hosts for mirror registry access</a> | ↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-bootc-conc_get-ready-to-install-microshift.html">About image mode for Red&#160;Hat Enterprise Linux (RHEL)</a> →</p>
+<p>← Previous: <a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a> | ↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a> →</p>
 </div>
 </div>
 <div id="footer">

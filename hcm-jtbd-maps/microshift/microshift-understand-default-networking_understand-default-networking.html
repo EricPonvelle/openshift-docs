@@ -437,36 +437,250 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="microshift-understand-default-networking_understand-default-networking" class="book toc2 toc-left">
+<body id="microshift-understand-default-networking_understand-default-networking" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat build of MicroShift</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red Hat build of MicroShift</a></span></p><ul class="sectlevel1">
 <li><a href="_whats_new.html">What&#8217;s New</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-review-release-notes_review-release-notes.html">Review MicroShift release notes</a>
+</li>
+</ul>
 </li>
 <li><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand_understand-microshift.html">Understand MicroShift</a>
+</li>
+<li><a href="microshift-list-release-container-images_list-release-container-images.html">List the container images included in a MicroShift release</a>
+</li>
+</ul>
 </li>
 <li><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-verify-environment-requirements_verify-environment-requirements.html">Verify your environment meets MicroShift requirements</a>
+</li>
+<li><a href="microshift-install-rhel-types_choose-rhel-installation-type.html">RHEL installation types</a>
+</li>
+<li><a href="microshift-install-rhde-steps_prepare-installation-prerequisites.html">Red&#160;Hat Device Edge installation steps</a>
+</li>
+<li><a href="microshift-encrypt-etcd-data_plan-etcd-security.html">Encrypt etcd data</a>
+</li>
+</ul>
 </li>
 <li><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-get-ready-to-install_get-ready-to-install-microshift.html">Get ready to install MicroShift</a>
+</li>
+<li><a href="microshift-install-from-rpm-fips_get-ready-to-install-microshift.html">Install from an RPM package</a>
+</li>
+<li><a href="microshift-install-in-disconnected-environments_get-ready-to-install-microshift.html">Install in disconnected environments</a>
+</li>
+<li><a href="microshift-install-with-image-mode-rhel_get-ready-to-install-microshift.html">Install with image mode for RHEL</a>
+</li>
+<li><a href="microshift-install-embed-rhel-edge-image_get-ready-to-install-microshift.html">Embed in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-install-verify-your-installation_get-ready-to-install-microshift.html">Verify your installation</a>
+</li>
+<li><a href="microshift-install-uninstall_get-ready-to-install-microshift.html">Uninstall MicroShift</a>
+</li>
+<li><a href="microshift-stop-and-start-microshift_stop-and-start-microshift.html">Stop and start MicroShift</a>
+</li>
+<li><a href="microshift-install-optional-rpms_install-optional-rpms.html">Install optional RPM packages</a>
+</li>
+<li><a href="microshift-install-with-kickstart_install-with-kickstart.html">Install with a Kickstart file</a>
+</li>
+</ul>
 </li>
 <li><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhde-updates_update-options-rhde.html">Red&#160;Hat Device Edge updates</a>
+</li>
+<li><a href="microshift-updates-rpms-ostree-con_update-rpms-rhel-edge.html">MicroShift updates on an RHEL for Edge system</a>
+</li>
+<li><a href="microshift-updates-rpms-con_update-package-mode-deployments.html">About updates using RPMs</a>
+</li>
+<li><a href="microshift-update-options-edge-to-image-mode_migrate-rhel-edge-to-image-mode.html">Migrate MicroShift to image mode for RHEL</a>
+</li>
+<li><a href="microshift-list-rpm-update-contents-intro_list-rpm-update-contents.html">Listing RPM update package contents</a>
+</li>
+<li><a href="microshift-update-kubernetes-storage_update-kubernetes-storage.html">Update existing Kubernetes storage objects</a>
+</li>
+<li><a href="microshift-troubleshoot-update-problems-con_troubleshoot-update-problems.html">Troubleshoot update problems</a>
+</li>
+<li><a href="microshift-migrate-rhel9-to-rhel10_migrate-rhel9-to-rhel10.html">Migrate from RHEL 9 to RHEL 10</a>
+</li>
+</ul>
 </li>
 <li><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-about-data-backups_back-up-and-restore-microshift-data.html">Back up and restore MicroShift data</a>
+</li>
+<li><a href="microshift-auto-recovery-manual-backups_automate-data-recovery.html">Automate data recovery</a>
+</li>
+<li><a href="microshift-check-the-installed-version_check-the-installed-version.html">Check the installed version</a>
+</li>
+<li><a href="microshift-check-audit-logs_check-audit-logs.html">Check audit logs</a>
+</li>
+<li><a href="microshift-manage-responsive-restarts-and-security-certificates_manage-responsive-restarts-and-security-certificates.html">Manage responsive restarts and security certificates</a>
+</li>
+<li><a href="microshift-about-remote-health-monitoring_understand-remote-health-monitoring.html">About remote health monitoring with MicroShift</a>
+</li>
+<li><a href="microshift-use-sos-reports_use-sos-reports.html">Use sos reports</a>
+</li>
+<li><a href="microshift-get-node-id_get-node-id.html">Get your node ID</a>
+</li>
+</ul>
 </li>
 <li><a href="_develop.html">Develop</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-manifests-overview_deploy-with-kustomize.html">How Kustomize works with manifests to deploy applications</a>
+</li>
+<li><a href="microshift-cert-manager-tasks_manage-certificates.html">MicroShift certificate manager functions</a>
+</li>
+<li><a href="microshift-observability-overview_monitor-applications.html">MicroShift Observability overview</a>
+</li>
+<li><a href="microshift-embed-apps-edge-overview_embed-apps-for-edge.html">Embed applications in a RHEL for Edge image</a>
+</li>
+<li><a href="microshift-greenboot-how-workload-health-checks-work_ensure-application-reliability.html">How workload health checks work</a>
+</li>
+<li><a href="microshift-gitops-can-do_automate-deployments-with-gitops.html">What you can do with the GitOps agent</a>
+</li>
+<li><a href="microshift-security-context-constraints_secure-pod-workloads.html">Security context constraint synchronization with pod security standards</a>
+</li>
+<li><a href="microshift-about-using-operators_extend-capabilities-with-operators.html">About using Operators with a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-low-latency-concept_optimize-low-latency-performance.html">Lower latency in MicroShift applications</a>
+</li>
+<li><a href="microshift-secure-api-control-plane_secure-api-and-control-plane.html">Secure the MicroShift API and control plane</a>
+</li>
+<li><a href="microshift-configure-audit-logging_configure-audit-logging.html">Configure audit logging for compliance, monitoring, and incident investigation</a>
+</li>
+<li><a href="microshift-verify-container-signatures-sigstore-con_verify-trusted-container-images.html">Understand how to use sigstore to verify container signatures</a>
+</li>
+<li><a href="microshift-understanding-generic-device-plugin-con_configure-access-to-host-devices.html">Understand the Generic Device Plugin</a>
+</li>
+<li><a href="microshift-ensure-host-resilience_ensure-host-control-plane-resilience.html">Ensure host and control plane resilience against application resource exhaustion</a>
+</li>
+<li><a href="microshift-maintain-system-health_maintain-system-health-greenboot.html">Maintain system health with the greenboot health check framework</a>
+</li>
+<li><a href="microshift-test-new-k8s-features_test-new-kubernetes-features.html">Test new Kubernetes features in MicroShift</a>
+</li>
+<li><a href="microshift-configure-with-config-file_configure-with-config-file.html">Configure MicroShift with the configuration file</a>
+</li>
+</ul>
 </li>
 <li><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-monitor-ephemeral-storage_monitor-ephemeral-storage.html">Monitor ephemeral storage usage to prevent pod eviction</a>
+</li>
+<li><a href="microshift-exposed-audit-ports_audit-exposed-network-ports.html">Auditing exposed network ports</a>
+</li>
+<li><a href="microshift-capture-ovs-interface-state_capture-ovs-interface-state.html">Capture OVS interface state on a MicroShift node</a>
+</li>
+</ul>
 </li>
 <li><a href="_integrate.html">Integrate</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-rhoai-con_install-ai-capabilities.html">How Red&#160;Hat OpenShift AI works in MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-prepare-models-con_prepare-and-package-ai-models.html">Prepare and package AI models for MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-serving-ai-models-con_serve-ai-models.html">Serve AI models on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-query-model-con_expose-and-query-ai-models.html">About querying your AI model</a>
+</li>
+<li><a href="microshift-rhoai-monitor-model-performance-con_monitor-ai-model-performance.html">Monitor AI model performance on MicroShift</a>
+</li>
+<li><a href="microshift-rhoai-override-kserve-config_customize-ai-serving-environment.html">Override KServe configuration</a>
+</li>
+</ul>
 </li>
 <li><a href="_troubleshooting.html">Troubleshooting</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-troubleshoot-data-backup-and-restore_troubleshoot-data-backup-and-restore.html">Troubleshoot data backup and restore</a>
+</li>
+<li><a href="microshift-troubleshoot-a-node_troubleshoot-a-node.html">Troubleshoot a node</a>
+</li>
+<li><a href="microshift-troubleshoot-installation-issues_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
+</li>
+<li><a href="microshift-troubleshoot-updates_troubleshoot-updates.html">Troubleshoot updates</a>
+</li>
+<li><a href="microshift-troubleshooting-etcd_troubleshoot-etcd.html">Troubleshoot etcd</a>
+</li>
+<li><a href="microshift-clean-up-data-with-support_clean-up-data-with-support.html">Clean up data with support</a>
+</li>
+<li><a href="microshift-get-support_get-support.html">Get support</a>
+</li>
+</ul>
 </li>
 <li><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-install-and-configure-oc-cli_install-and-configure-oc-cli.html">Install and configure the oc CLI</a>
+</li>
+<li><a href="microshift-use-oc-cli_use-oc-cli.html">Use the oc CLI</a>
+</li>
+<li><a href="microshift-oc-cli-commands-reference_oc-cli-commands-reference.html">oc CLI commands reference</a>
+</li>
+</ul>
 </li>
 <li><a href="_networking.html">Networking</a>
 <ul class="sectlevel2">
@@ -493,53 +707,710 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_storage.html">Storage</a>
+
+<ul class="sectlevel2">
+<li><a href="microshift-understand-lvms-storage_understand-lvms-storage.html">Understand LVMS storage</a>
+</li>
+<li><a href="microshift-use-persistent-storage_use-persistent-storage.html">Use persistent storage</a>
+</li>
+<li><a href="microshift-expand-persistent-volumes_expand-persistent-volumes.html">Expand persistent volumes</a>
+</li>
+<li><a href="microshift-use-ephemeral-storage_use-ephemeral-storage.html">Use ephemeral storage</a>
+</li>
+<li><a href="microshift-work-with-volume-snapshots_work-with-volume-snapshots.html">Work with volume snapshots</a>
+</li>
+<li><a href="microshift-disable-lvms-csi_disable-lvms-csi.html">Disable the LVMS CSI provider and CSI snapshot</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#microshift-default-networking-plugin_understand-default-networking">MicroShift default networking plugin</a></li><li class="level-4"><a href="#microshift-nw-customization-matrix_understand-default-networking">MicroShift networking configuration matrix</a></li><li class="level-4"><a href="#microshift-yaml-default_understand-default-networking">Default settings</a></li><li class="level-4"><a href="#microshift-network-features_understand-default-networking">Network features</a></li><li class="level-4"><a href="#microshift-ip-forward_understand-default-networking">IP forward</a></li><li class="level-4"><a href="#microshift-nw-components-svcs_understand-default-networking">MicroShift networking components and services</a></li><li class="level-4"><a href="#microshift-bridge-mappings_understand-default-networking">Bridge mappings</a></li><li class="level-4"><a href="#microshift-network-topology_understand-default-networking">Network topology</a></li><li class="level-5"><a href="#microshift-description-ovn-logical-components_understand-default-networking">Description of the OVN logical components of the virtualized network</a></li><li class="level-5"><a href="#microshift-description-connections-network-topology_understand-default-networking">Description of the connections in the network topology figure</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="microshift-understand-default-networking_understand-default-networking">Understand default networking capabilities</h3>
 <div class="paragraph _abstract">
 <p>Understand how networking works out of the box in MicroShift so that you can determine if the default configuration suits your needs or identify where you need to customize it.</p>
 </div>
+<div class="sect3">
+<h4 id="microshift-default-networking-plugin_understand-default-networking">MicroShift default networking plugin</h4>
+<div class="paragraph _abstract">
+<p>The OVN-Kubernetes Container Network Interface (CNI) plugin is the default networking solution for a MicroShift node. OVN-Kubernetes is a virtualized network for pods and services that is based on Open Virtual Network (OVN).</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="microshift-default-networking-plugin_understand-default-networking.html">MicroShift default networking plugin</a></p>
+<p>Changing the CNI is not supported on MicroShift.</p>
 </li>
 <li>
-<p><a href="microshift-nw-customization-matrix_understand-default-networking.html">MicroShift networking configuration matrix</a></p>
+<p>Default network configuration and connections are applied automatically in MicroShift with the <code>microshift-networking</code> RPM during installation.</p>
 </li>
 <li>
-<p><a href="microshift-yaml-default_understand-default-networking.html">Default settings</a></p>
+<p>A node that uses the OVN-Kubernetes network plugin also runs Open vSwitch (OVS) on the node.</p>
 </li>
 <li>
-<p><a href="microshift-network-features_understand-default-networking.html">Network features</a></p>
+<p>OVN-K configures OVS on the node to implement the declared network configuration.</p>
 </li>
 <li>
-<p><a href="microshift-ip-forward_understand-default-networking.html">IP forward</a></p>
+<p>Host physical interfaces are not bound by default to the OVN-K gateway bridge, <code>br-ex</code>. You can use standard tools on the host for managing the default gateway, such as the Network Manager CLI (<code>nmcli</code>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Using configuration files or custom scripts, you can configure the following networking settings:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can use subnet CIDR ranges to allocate IP addresses to pods.</p>
 </li>
 <li>
-<p><a href="microshift-nw-components-svcs_understand-default-networking.html">MicroShift networking components and services</a></p>
+<p>You can change the maximum transmission unit (MTU) value.</p>
 </li>
 <li>
-<p><a href="microshift-bridge-mappings_understand-default-networking.html">Bridge mappings</a></p>
+<p>You can configure firewall ingress and egress.</p>
 </li>
 <li>
-<p><a href="microshift-network-topology_understand-default-networking.html">Network topology</a></p>
+<p>You can define network policies in the MicroShift, including ingress and egress rules.</p>
+</li>
+<li>
+<p>You can use the MicroShift Multus plugin to chain other CNI plugins.</p>
+</li>
+<li>
+<p>You can configure or remove the ingress router.</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="microshift-nw-customization-matrix_understand-default-networking">MicroShift networking configuration matrix</h4>
+<div class="paragraph _abstract">
+<p>The following table summarizes the status of networking features and capabilities that are either present as defaults, supported for configuration, or not available with the MicroShift service:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 13. MicroShift networking features and capabilities overview</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 20%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Network capability</th>
+<th class="tableblock halign-left valign-top">Availability</th>
+<th class="tableblock halign-left valign-top">Configuration supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Advertise address</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetes network policy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetes network policy logs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Load balancing</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multicast DNS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Network proxies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CRI-O</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Network performance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MTU configuration</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Egress IPs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Egress firewall</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Egress router</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Firewall</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hardware offloading</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hybrid networking</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IPsec encryption for intra-cluster communication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not available</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IPv6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Supported</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ingress router</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multiple networks plugin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Additional details about networking capabilities</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Advertise address</code>: If unset, the default value is set to the next immediate subnet after the service network. For example, when the service network is <code>10.43.0.0/16</code>, the <code>advertiseAddress</code> is set to <code>10.44.0.0/32</code>.</p>
+</li>
+<li>
+<p><code>Multicast DNS</code>: You can use the multicast DNS protocol (mDNS) to allow name resolution and service discovery within a Local Area Network (LAN) using multicast exposed on the <code>5353/UDP</code> port.</p>
+</li>
+<li>
+<p><code>Network proxies</code>: There is no built-in transparent proxying of egress traffic in MicroShift. Egress must be manually configured.</p>
+</li>
+<li>
+<p><code>Firewall</code>: Setting up the firewalld service is supported by RHEL for Edge.</p>
+</li>
+<li>
+<p><code>IPv6</code>: Is supported in both single-stack and dual-stack networks with the OVN-Kubernetes network plugin. You can also use IPv6 by connecting to other networks with the MicroShift Multus CNI plugin.</p>
+</li>
+<li>
+<p><code>Ingress router</code>: Configure by using the MicroShift <code>config.yaml</code> file.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-yaml-default_understand-default-networking">Default settings</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Generic Device Plugin for MicroShift is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph _abstract">
+<p>When no <code>config.yaml</code> or configuration snippet exists, MicroShift uses built-in default values. To view these defaults, run <code>microshift show-config</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows the default configuration settings.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To see the default values, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ microshift show-config</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Default values example output in YAML form</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiServer:
+  advertiseAddress: 10.44.0.0/32
+  auditLog:
+    maxFileAge: 0
+    maxFileSize: 200
+    maxFiles: 10
+    profile: Default
+  namedCertificates:
+    - certPath: ""
+      keyPath: ""
+      names:
+        - ""
+  subjectAltNames: []
+  tls:
+    cipherSuites:
+    minVersion: VersionTLS12
+debugging:
+  logLevel: "Normal"
+dns:
+  baseDomain: microshift.example.com
+etcd:
+  memoryLimitMB: 0
+genericDevicePlugin:
+    devices:
+        - groups:
+            - count: 1
+              paths:
+                - limit: 1
+                  mountPath: /dev/ttyACM0
+                  path: /dev/ttyACM0
+                  permissions: mrw
+                  readOnly: false
+                  type: Device
+              usbs:
+                - product: ""
+                  serial: ""
+                  vendor: ""
+          name: serial
+    domain: device.microshift.io
+    status: Disabled
+ingress:
+  accessLogging:
+    destination:
+      type:
+      container:
+        maxLength: 1024
+      syslog:
+        address: ""
+        facility: ""
+        maxLength: 1024
+        port: 0
+        type: ""
+    httpCaptureCookies:
+      - matchType: ""
+        maxLength: 0
+        name: ""
+        namePrefix: ""
+    httpCaptureHeaders:
+      request:
+        - maxLength: 0
+          name: ""
+      response:
+        - maxLength: 0
+          name: ""
+    httpLogFormat: ""
+    status: Disabled
+  certificateSecret: router-certs-default
+  clientTLS:
+    allowedSubjectPatterns:
+    clientCA:
+      name: ""
+    clientCertificatePolicy: ""
+  defaultHTTPVersion: 1
+  forwardedHeaderPolicy: ""
+  httpCompression:
+    mimeTypes:
+      - ""
+  httpEmptyRequestsPolicy: Respond
+  httpErrorCodePages:
+      name: ""
+  listenAddress: []
+  logEmptyRequests: Log
+  ports:
+    http: 80
+    https: 443
+  routeAdmissionPolicy:
+    namespaceOwnership: InterNamespaceAllowed
+    wildcardPolicy: WildcardPolicyAllowed
+  status: Managed
+  tlsSecurityProfile:
+    type: Intermediate
+  tuningOptions:
+      clientFinTimeout: "1s"
+      clientTimeout: "30s"
+      headerBufferBytes: 0
+      headerBufferMaxRewriteBytes: 0
+      healthCheckInterval: "5s"
+      maxConnections: 0
+      serverFinTimeout: "1s"
+      serverTimeout: "30s"
+      threadCount: 0
+      tlsInspectDelay: "5s"
+      tunnelTimeout: "1h"
+kubelet:
+manifests:
+  kustomizePaths:
+    - /usr/lib/microshift/manifests
+    - /usr/lib/microshift/manifests.d/*
+    - /etc/microshift/manifests
+    - /etc/microshift/manifests.d/*
+network:
+  clusterNetwork:
+    - 10.42.0.0/16
+  cniPlugin: ""
+  multus:
+    status: Disabled
+  serviceNetwork:
+    - 10.43.0.0/16
+  serviceNodePortRange: 30000-32767
+node:
+  hostnameOverride: ""
+  nodeIP: ""
+  nodeIPv6: ""
+storage:
+  driver: ""
+  optionalCsiComponents:
+    - ""
+telemetry:
+  endpoint: https://infogw.api.openshift.com
+  proxy: ""
+  status: Enabled</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>apiserver.advertiseAddress</code></dt>
+<dd>
+<p>Specifies the address of the service network.</p>
+</dd>
+<dt class="hdlist1"><code>network.multus.status</code></dt>
+<dd>
+<p>Specifies the status of the Multus Container Network Interface (CNI).</p>
+</dd>
+<dt class="hdlist1"><code>node.nodeIP</code></dt>
+<dd>
+<p>Specifies the IP address of the default route.</p>
+</dd>
+<dt class="hdlist1"><code>storage.driver</code></dt>
+<dd>
+<p>Specifies the storage driver to use. Default null value deploys Logical Volume Managed Storage (LVMS).</p>
+</dd>
+<dt class="hdlist1"><code>storage.optionalCsiComponents</code></dt>
+<dd>
+<p>Specifies the CSI components to deploy. Default null value deploys <code>snapshot-controller</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-network-features_understand-default-networking">Network features</h4>
+<div class="paragraph _abstract">
+<p>Understand which networking feature are available and which are not for your MicroShift deployments.</p>
+</div>
+<div class="paragraph">
+<p>Networking features available with MicroShift 4.22 include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Kubernetes network policy</p>
+</li>
+<li>
+<p>Dynamic node IP</p>
+</li>
+<li>
+<p>Custom gateway interface</p>
+</li>
+<li>
+<p>Second gateway interface</p>
+</li>
+<li>
+<p>Node network on specified host interface</p>
+</li>
+<li>
+<p>Blocking external access to NodePort service on specific host interfaces</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Networking features not available with MicroShift 4.22:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Egress IP/firewall/QoS: disabled</p>
+</li>
+<li>
+<p>Hybrid networking: not supported</p>
+</li>
+<li>
+<p>IPsec: not supported</p>
+</li>
+<li>
+<p>Hardware offload: not supported</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-ip-forward_understand-default-networking">IP forward</h4>
+<div class="paragraph _abstract">
+<p>You must use <code>ip_forward</code> to access network connectivity.</p>
+</div>
+<div class="paragraph">
+<p>The host network <code>sysctl net.ipv4.ip_forward</code> kernel parameter is automatically enabled by the <code>ovnkube-master</code> container when started. This is required to forward incoming traffic to the CNI. For example, accessing the NodePort service from outside of a node fails if <code>ip_forward</code> is disabled.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-nw-components-svcs_understand-default-networking">MicroShift networking components and services</h4>
+<div class="paragraph _abstract">
+<p>Understand networking components and services and their operation in MicroShift.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>microshift-networking</code> RPM is a package that automatically pulls in any networking-related dependencies and systemd services to initialize networking, for example, the <code>microshift-ovs-init</code> systemd service.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">NetworkManager</dt>
+<dd>
+<p>NetworkManager is required to set up the initial gateway bridge on the MicroShift node. The NetworkManager and <code>NetworkManager-ovs</code> RPM packages are installed as dependencies to the <code>microshift-networking</code> RPM package, which contains the necessary configuration files. NetworkManager in MicroShift uses the <code>keyfile</code> plugin and is restarted after installation of the <code>microshift-networking</code> RPM package.</p>
+</dd>
+<dt class="hdlist1">microshift-ovs-init</dt>
+<dd>
+<p>The <code>microshift-ovs-init.service</code> is installed by the <code>microshift-networking</code> RPM package as a dependent systemd service to <code>microshift.service</code>. It is responsible for setting up the OVS gateway bridge.</p>
+</dd>
+<dt class="hdlist1">OVN containers</dt>
+<dd>
+<p>Two OVN-Kubernetes daemon sets are rendered and applied by MicroShift.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>ovnkube-master</strong>
+Includes the <code>northd</code>, <code>nbdb</code>, <code>sbdb</code> and <code>ovnkube-master</code> containers.</p>
+</li>
+<li>
+<p><strong>ovnkube-node</strong>
+The ovnkube-node includes the OVN-Controller container.</p>
+<div class="paragraph">
+<p>After MicroShift starts, the OVN-Kubernetes daemon sets are deployed in the <code>openshift-ovn-kubernetes</code> namespace.</p>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Packaging</dt>
+<dd>
+<p>OVN-Kubernetes manifests and startup logic are built into MicroShift. The systemd services and configurations included in the <code>microshift-networking</code> RPM are:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>/etc/NetworkManager/conf.d/microshift-nm.conf</code> for <code>NetworkManager.service</code></p>
+</li>
+<li>
+<p><code>/etc/systemd/system/ovs-vswitchd.service.d/microshift-cpuaffinity.conf</code> for <code>ovs-vswitchd.service</code></p>
+</li>
+<li>
+<p><code>/etc/systemd/system/ovsdb-server.service.d/microshift-cpuaffinity.conf</code> for <code>ovs-server.service</code></p>
+</li>
+<li>
+<p><code>/usr/bin/configure-ovs-microshift.sh</code> for <code>microshift-ovs-init.service</code></p>
+</li>
+<li>
+<p><code>/usr/bin/configure-ovs.sh</code> for <code>microshift-ovs-init.service</code></p>
+</li>
+<li>
+<p><code>/etc/crio/crio.conf.d/microshift-ovn.conf</code> for the CRI-O service</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-bridge-mappings_understand-default-networking">Bridge mappings</h4>
+<div class="paragraph _abstract">
+<p>Understand how provider network traffic reaches the physical network through bridge mappings. The following concepts apply:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Traffic leaves the provider network and arrives at the <code>br-int</code> bridge.</p>
+</li>
+<li>
+<p>A patch port between <code>br-int</code> and <code>br-ex</code> then allows the traffic to traverse to and from the provider network and the edge network.</p>
+</li>
+<li>
+<p>Kubernetes pods are connected to the <code>br-int</code> bridge through a virtual ethernet pair. One end of the virtual ethernet pair is attached to the pod namespace, and the other end is attached to the <code>br-int</code> bridge.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="microshift-network-topology_understand-default-networking">Network topology</h4>
+<div class="paragraph _abstract">
+<p>OVN-Kubernetes provides an overlay-based networking implementation. This overlay includes an OVS-based implementation of <code>Service</code> and <code>NetworkPolicy</code> resources.</p>
+</div>
+<div class="paragraph">
+<p>The overlay network uses the Geneve (Generic Network Virtualization Encapsulation) tunnel protocol. The pod maximum transmission unit (MTU) for the Geneve tunnel is set to the default route MTU if it is not configured.</p>
+</div>
+<div class="paragraph">
+<p>To configure the MTU, you must set an equal-to or less-than value than the MTU of the physical interface on the host. A less-than value for the MTU makes room for the required information that is added to the tunnel header before it is transmitted.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The MTU value of the OVN overlay networking in MicroShift must be 100 bytes smaller than the MTU value of the base network. If no MTU value is configured, MicroShift autoconfigures the value using the MTU value of the default gateway (Internet Protocol version 4 (IPv4) or Internet Protocol version 6 (IPv6)) of the host. If the auto-configuration does not work correctly, the MTU value can be configured manually. For example, if the MTU value of the network is <code>9000</code>, the OVN MTU size must be set to <code>8900</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>OVS runs as a systemd service on the MicroShift node. The OVS RPM package is installed as a dependency to the <code>microshift-networking</code> RPM package. OVS starts immediately when the <code>microshift-networking</code> RPM is installed.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="data:image/png;base64," alt="317 RHbM OVN topology 0923" title="MicroShift uses an overlay-based networking implementation, details follow."></span></p>
+</div>
+<div class="sect4">
+<h5 id="microshift-description-ovn-logical-components_understand-default-networking">Description of the OVN logical components of the virtualized network</h5>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">OVN node switch</dt>
+<dd>
+<p>A virtual switch named <code>&lt;node-name&gt;</code>. The OVN node switch is named according to the hostname of the node.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>In this example, the <code>node-name</code> is <code>microshift-dev</code>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">OVN cluster router</dt>
+<dd>
+<p>A virtual router named <code>ovn_cluster_router</code>, also known as the distributed router.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>In this example, the node network is <code>10.42.0.0/16</code>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">OVN join switch</dt>
+<dd>
+<p>A virtual switch named <code>join</code>.</p>
+</dd>
+<dt class="hdlist1">OVN gateway router</dt>
+<dd>
+<p>A virtual router named <code>GR_&lt;node-name&gt;</code>, also known as the external gateway router.</p>
+</dd>
+<dt class="hdlist1">OVN external switch</dt>
+<dd>
+<p>A virtual switch named <code>ext_&lt;node-name&gt;.</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="microshift-description-connections-network-topology_understand-default-networking">Description of the connections in the network topology figure</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>The north-south traffic between the network service and the OVN external switch <code>ext_microshift-dev</code> is provided through the host kernel by the gateway bridge <code>br-ex</code>.</p>
+</li>
+<li>
+<p>The OVN gateway router <code>GR_microshift-dev</code> is connected to the external network switch <code>ext_microshift-dev</code> through the logical router port 4. Port 4 is attached with the node IP address 192.168.122.14.</p>
+</li>
+<li>
+<p>The join switch <code>join</code> connects the OVN gateway router <code>GR_microshift-dev</code> to the OVN cluster router <code>ovn_cluster_router</code>. The IP address range is 100.62.0.0/16.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The OVN gateway router <code>GR_microshift-dev</code> connects to the OVN join switch <code>join</code> through the logical router port 3. Port 3 attaches with the internal IP address 100.64.0.2.</p>
+</li>
+<li>
+<p>The OVN cluster router <code>ovn_cluster_router</code> connects to the join switch <code>join</code> through the logical router port 2. Port 2 attaches with the internal IP address 100.64.0.1.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The OVN cluster router <code>ovn_cluster_router</code> connects to the node switch <code>microshift-dev</code> through the logical router port 1. Port 1 is attached with the OVN cluster network IP address 10.42.0.1.</p>
+</li>
+<li>
+<p>The east-west traffic between the pods and the network service is provided by the OVN cluster router <code>ovn_cluster_router</code> and the node switch <code>microshift-dev</code>. The IP address range is 10.42.0.0/24.</p>
+</li>
+<li>
+<p>The east-west traffic between pods is provided by the node switch <code>microshift-dev</code> without network address translation (NAT).</p>
+</li>
+<li>
+<p>The north-south traffic between the pods and the external network is provided by the OVN cluster router <code>ovn_cluster_router</code> and the host network. This router is connected through the <code>ovn-kubernetes</code> management port <code>ovn-k8s-mp0</code>, with the IP address 10.42.0.2.</p>
+</li>
+<li>
+<p>All the pods are connected to the OVN node switch through their interfaces.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>In this example, Pod 1 and Pod 2 are connected to the node switch through <code>Interface 1</code> and <code>Interface 2</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="_networking.html">Networking</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-default-networking-plugin_understand-default-networking.html">MicroShift default networking plugin</a> →</p>
+<p>↑ Up: <a href="_networking.html">Networking</a> | ⌂ Home: <a href="navigation.html">Red Hat build of MicroShift</a> | Next: <a href="microshift-customize-networking_customize-networking-configuration.html">Customize networking configuration</a> →</p>
 </div>
 </div>
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
+<a href="microshift-use-oc-cli_use-oc-cli.html#_footnoteref_1">1</a>. Where <strong>N</strong> is a number greater than or equal to 1.
 </div>
 </div>
 <div id="footer">

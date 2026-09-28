@@ -437,16 +437,199 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-left-nav-toggle-start -->
+<style>
+  #toc .toc-toggle {
+    display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .75em;
+    padding: 0 .3em 0 0;
+    margin: 0;
+    color: #555;
+    transition: transform .15s ease;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  #toc .toc-toggle:hover { color: #0066cc; }
+  #toc .toc-toggle.open { transform: rotate(90deg); }
+  #toc li > ul.sectlevel2,
+  #toc li > ul.sectlevel3,
+  #toc li > ul.sectlevel4 { display: none; }
+  #toc li.toc-expanded > ul.sectlevel2,
+  #toc li.toc-expanded > ul.sectlevel3,
+  #toc li.toc-expanded > ul.sectlevel4 { display: block; }
+</style>
+<script>
+(function() {
+  var previewPath = window.location.pathname.slice(
+    0,
+    window.location.pathname.lastIndexOf('/')
+  ) || '/';
+  var STORAGE_KEY = 'navmap-toc-state:' + previewPath;
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch(e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var state = loadState();
+    var currentPage = location.pathname.split('/').pop();
+    var buttons = document.querySelectorAll('#toc .toc-toggle');
+
+    buttons.forEach(function(btn) {
+      var key = btn.getAttribute('data-toc-key');
+      var li = btn.parentElement;
+      var isCurrentSection = false;
+
+      /* Auto-expand the section containing the current page */
+      var links = li.querySelectorAll('a[href]');
+      links.forEach(function(a) {
+        var href = a.getAttribute('href').split('#')[0];
+        if (href === currentPage) { isCurrentSection = true; }
+      });
+
+      if (state[key] === true || isCurrentSection) {
+        li.classList.add('toc-expanded');
+        btn.classList.add('open');
+        if (isCurrentSection) { state[key] = true; }
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var expanded = li.classList.toggle('toc-expanded');
+        btn.classList.toggle('open', expanded);
+        state[key] = expanded;
+        saveState(state);
+      });
+    });
+
+    saveState(state);
+
+    /* --- Scroll current page into view in the TOC --- */
+    var toc = document.getElementById('toc');
+    if (toc) {
+      var cur = toc.querySelector('a[href="' + currentPage + '"]');
+      if (!cur) { cur = toc.querySelector('a[href$="/' + currentPage + '"]'); }
+      if (cur) {
+        cur.style.fontWeight = 'bold';
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            cur.scrollIntoView({ block: 'center', behavior: 'instant' });
+          }, 0);
+        });
+      }
+    }
+  });
+})();
+</script>
+<!-- navmap-left-nav-toggle-end -->
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
+<!-- navmap-preview-warning-start -->
+<style>
+  .navmap-preview-warning {
+    background: #fff1f1;
+    border: 2px solid #c9190b;
+    border-radius: 4px;
+    color: #3b0a0a;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    margin: 1em auto;
+    max-width: 70em;
+    padding: 1em 1.25em;
+  }
+  .navmap-preview-warning strong { color: #a30000; }
+  .navmap-preview-warning details { margin-top: .75em; }
+  .navmap-preview-warning pre {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    max-height: 20em;
+    overflow: auto;
+    padding: .75em;
+    white-space: pre-wrap;
+  }
+</style>
+<!-- navmap-preview-warning-end -->
 </head>
-<body id="rosa-hcp-update-life-cycle_rosa-hcp-update-life-cycle" class="book toc2 toc-left">
+<body id="rosa-hcp-update-life-cycle_rosa-hcp-update-life-cycle" class="book toc2 toc-left navmap-has-right-toc">
+<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-hcp/navigation.adoc
+
+Missing include targets:
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-cli.adoc:104
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-hybrid-cloud-console.adoc:104
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-terraform.adoc:23
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli.adoc:92
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+
+How to fix these errors:
+  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
+  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
+  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
+</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
-<li><a href="_whats_new.html">What&#8217;s new</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-whats-new_rosa-hcp-whats-new.html">What&#8217;s new for Red Hat OpenShift Service on AWS</a>
 </li>
-<li><a href="_discover.html">Discover</a>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
 <ul class="sectlevel2">
 <li><a href="rosa-hcp-learn-about-benefits-and-use-cases_rosa-hcp-learn-about-benefits-and-use-cases.html">Learn about benefits and use cases</a>
 </li>
@@ -472,64 +655,451 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
-<li><a href="_install.html">Install</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-intro_rosa-hcp-create-a-rosa-hcp-cluster.html">Create a ROSA HCP Cluster</a>
 </li>
-<li><a href="_upgrade.html">Upgrade</a>
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-intro_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc.html">Create a ROSA HCP Cluster in a Shared VPC</a>
 </li>
-<li><a href="_observe.html">Observe</a>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_upgrade.html">▶</button><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-plan-cluster-upgrades_rosa-hcp-plan-cluster-upgrades.html">Plan cluster upgrades</a>
+</li>
+<li><a href="rosa-hcp-upgrade-a-cluster_rosa-hcp-upgrade-a-cluster.html">Upgrade a cluster</a>
+</li>
+<li><a href="rosa-hcp-upgrade-karpenter-managed-nodes_rosa-hcp-upgrade-karpenter-managed-nodes.html">Upgrade Karpenter-managed nodes</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_observe.html">▶</button><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a>
+</li>
+<li><a href="rosa-hcp-monitor-cluster-health_rosa-hcp-monitor-cluster-health.html">Monitor cluster health</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#life-cycle-overview_rosa-hcp-update-life-cycle">Overview</a></li><li class="level-4"><a href="#rosa-life-cycle-definitions_rosa-hcp-update-life-cycle">Definitions</a></li><li class="level-4"><a href="#rosa-major-versions_rosa-hcp-update-life-cycle">Major versions (X.y.z)</a></li><li class="level-4"><a href="#rosa-minor-versions_rosa-hcp-update-life-cycle">Minor versions (x.Y.z)</a></li><li class="level-4"><a href="#rosa-patch-versions_rosa-hcp-update-life-cycle">Patch versions (x.y.Z)</a></li><li class="level-4"><a href="#rosa-limited-support_rosa-hcp-update-life-cycle">Limited support status</a></li><li class="level-4"><a href="#rosa-supported-versions_rosa-hcp-update-life-cycle">Supported versions exception policy</a></li><li class="level-4"><a href="#rosa-install-policy_rosa-hcp-update-life-cycle">Installation policy</a></li><li class="level-4"><a href="#rosa-delete-policy_rosa-hcp-update-life-cycle">Deletion policy</a></li><li class="level-4"><a href="#rosa-mandatory-upgrades_rosa-hcp-update-life-cycle">Mandatory upgrades</a></li><li class="level-4"><a href="#sd-life-cycle-dates_rosa-hcp-update-life-cycle">Life cycle dates</a></li><li class="level-4"><a href="#govcloud-life-cycle-dates_rosa-hcp-update-life-cycle">Life cycle dates for Red Hat OpenShift Services on AWS in AWS GovCloud</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-hcp-update-life-cycle_rosa-hcp-update-life-cycle">Update life cycle</h3>
 <div class="paragraph _abstract">
 <p>Learn about the Red&#160;Hat OpenShift Services on AWS update life cycle, including major, minor, and patch version policies, limited support status, installation and deletion policies, and life cycle dates.</p>
 </div>
+<div class="sect3">
+<h4 id="life-cycle-overview_rosa-hcp-update-life-cycle">Overview</h4>
+<div class="paragraph _abstract">
+<p>Red&#160;Hat provides a published product life cycle for Red&#160;Hat OpenShift Services on AWS in order for customers and partners to effectively plan, deploy, and support their applications running on the platform. Red&#160;Hat publishes this life cycle to provide as much transparency as possible and might make exceptions from these policies as conflicts arise.</p>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS is a managed deployment of Red&#160;Hat OpenShift and maintains an independent release schedule. More details about the managed offering can be found in the Red&#160;Hat OpenShift Services on AWS service definition. The availability of Security Advisories and Bug Fix Advisories for a specific version are dependent upon the Red&#160;Hat OpenShift Container Platform life cycle policy and subject to the Red&#160;Hat OpenShift Services on AWS maintenance schedule.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-life-cycle-definitions_rosa-hcp-update-life-cycle">Definitions</h4>
+<div class="paragraph _abstract">
+<p>The following table defines the versioning scheme used for Red&#160;Hat OpenShift Services on AWS releases.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 20. Version reference</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Version format</th>
+<th class="tableblock halign-left valign-top">Major</th>
+<th class="tableblock halign-left valign-top">Minor</th>
+<th class="tableblock halign-left valign-top">Patch</th>
+<th class="tableblock halign-left valign-top">Major.minor.patch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">z</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x.y.z</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Example</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">21</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.5.21</p></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Major releases or X-releases</dt>
+<dd>
+<p>Referred to only as <em>major releases</em> or <em>X-releases</em> (X.y.z).</p>
+<div class="openblock">
+<div class="content">
 <div class="ulist">
+<div class="title">Examples</div>
 <ul>
 <li>
-<p><a href="life-cycle-overview_rosa-hcp-update-life-cycle.html">Overview</a></p>
+<p>"Major release 5" &#8594; 5.y.z</p>
 </li>
 <li>
-<p><a href="rosa-life-cycle-definitions_rosa-hcp-update-life-cycle.html">Definitions</a></p>
+<p>"Major release 4" &#8594; 4.y.z</p>
 </li>
 <li>
-<p><a href="rosa-major-versions_rosa-hcp-update-life-cycle.html">Major versions (X.y.z)</a></p>
-</li>
-<li>
-<p><a href="rosa-minor-versions_rosa-hcp-update-life-cycle.html">Minor versions (x.Y.z)</a></p>
-</li>
-<li>
-<p><a href="rosa-patch-versions_rosa-hcp-update-life-cycle.html">Patch versions (x.y.Z)</a></p>
-</li>
-<li>
-<p><a href="rosa-limited-support_rosa-hcp-update-life-cycle.html">Limited support status</a></p>
-</li>
-<li>
-<p><a href="rosa-supported-versions_rosa-hcp-update-life-cycle.html">Supported versions exception policy</a></p>
-</li>
-<li>
-<p><a href="rosa-install-policy_rosa-hcp-update-life-cycle.html">Installation policy</a></p>
-</li>
-<li>
-<p><a href="rosa-delete-policy_rosa-hcp-update-life-cycle.html">Deletion policy</a></p>
-</li>
-<li>
-<p><a href="rosa-mandatory-upgrades_rosa-hcp-update-life-cycle.html">Mandatory upgrades</a></p>
-</li>
-<li>
-<p><a href="sd-life-cycle-dates_rosa-hcp-update-life-cycle.html">Life cycle dates</a></p>
-</li>
-<li>
-<p><a href="govcloud-life-cycle-dates_rosa-hcp-update-life-cycle.html">Life cycle dates for Red&#160;Hat OpenShift Services on AWS in AWS GovCloud</a></p>
+<p>"Major release 3" &#8594; 3.y.z</p>
 </li>
 </ul>
 </div>
 </div>
+</div>
+</dd>
+<dt class="hdlist1">Minor releases or Y-releases</dt>
+<dd>
+<p>Referred to only as <em>minor releases</em> or <em>Y-releases</em> (x.Y.z).</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<div class="title">Examples</div>
+<ul>
+<li>
+<p>"Minor release 4" &#8594; 4.4.z</p>
+</li>
+<li>
+<p>"Minor release 5" &#8594; 4.5.z</p>
+</li>
+<li>
+<p>"Minor release 6" &#8594; 4.6.z</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Patch releases or Z-releases</dt>
+<dd>
+<p>Referred to only as <em>patch releases</em> or <em>Z-releases</em> (x.y.Z).</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<div class="title">Examples</div>
+<ul>
+<li>
+<p>"Patch release 14 of minor release 5" &#8594; 4.5.14</p>
+</li>
+<li>
+<p>"Patch release 25 of minor release 5" &#8594; 4.5.25</p>
+</li>
+<li>
+<p>"Patch release 26 of minor release 6" &#8594; 4.6.26</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-major-versions_rosa-hcp-update-life-cycle">Major versions (X.y.z)</h4>
+<div class="paragraph _abstract">
+<p>Major versions of Red&#160;Hat OpenShift Services on AWS, for example version 4, are supported for one year following the
+release of a subsequent major version or the retirement of the product.</p>
+</div>
+<div class="ulist">
+<div class="title">Example</div>
+<ul>
+<li>
+<p>If version 5 were made available on Red&#160;Hat OpenShift Services on AWS on January 1, version 4 would be allowed to
+continue running on managed clusters for 12 months, until December 31. After this time, clusters
+would need to be upgraded or migrated to version 5.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-minor-versions_rosa-hcp-update-life-cycle">Minor versions (x.Y.z)</h4>
+<div class="paragraph _abstract">
+<p>Starting with the 4.8 OpenShift Container Platform minor version, Red&#160;Hat supports all minor versions for at least a 16 month period following general availability of the given minor version. Patch versions are not affected by the support period.</p>
+</div>
+<div class="paragraph">
+<p>Customers are notified 60, 30, and 15 days before the end of the support period. Clusters must be upgraded to the latest patch version of the oldest supported minor version before the end of the support period, or
+Red&#160;Hat will automatically upgrade the control plane to the next supported minor version.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Example</div>
+<ol class="arabic">
+<li>
+<p>A customer&#8217;s cluster is currently running on 4.13.8. The 4.13 minor version became generally available on May 17, 2023.</p>
+</li>
+<li>
+<p>On July 19, August 16, and September 2, 2024, the customer is notified that their cluster will enter "Limited Support" status on September 17, 2024 if the cluster has not already been upgraded to a supported minor version.</p>
+</li>
+<li>
+<p>The cluster must be upgraded to 4.14 or later by September 17, 2024.</p>
+</li>
+<li>
+<p>If the upgrade has not been performed, the cluster&#8217;s control plane will be automatically upgraded to 4.14.26, and there will be no automatic upgrades to the cluster&#8217;s worker nodes.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-patch-versions_rosa-hcp-update-life-cycle">Patch versions (x.y.Z)</h4>
+<div class="paragraph _abstract">
+<p>During the period in which a minor version is supported, Red&#160;Hat supports all OpenShift Container Platform patch versions unless otherwise specified.</p>
+</div>
+<div class="paragraph">
+<p>For reasons of platform security and stability, a patch release may be deprecated, which would prevent installations of that release and trigger mandatory upgrades off that release.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Example</div>
+<ol class="arabic">
+<li>
+<p>4.7.6 is found to contain a critical CVE.</p>
+</li>
+<li>
+<p>Any releases impacted by the CVE will be removed from the supported patch release list. In
+addition, any clusters running 4.7.6 will be scheduled for automatic upgrades within 48 hours.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-limited-support_rosa-hcp-update-life-cycle">Limited support status</h4>
+<div class="paragraph _abstract">
+<p>When a cluster transitions to a <em>Limited Support</em> status, Red&#160;Hat no longer proactively monitors the cluster, the SLA is no longer applicable, and credits requested against the SLA are denied. It does not mean that you no longer have product support. In some cases, the cluster can return to a fully-supported status if you remediate the violating factors. However, in other cases, you might have to delete and recreate the cluster.</p>
+</div>
+<div class="paragraph">
+<p>A cluster might transition to a Limited Support status for many reasons, including the following scenarios:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">If you remove or replace any native Red&#160;Hat OpenShift Services on AWS components or any other component that is installed and managed by Red&#160;Hat</dt>
+<dd>
+<p>If cluster administrator permissions were used, Red&#160;Hat is not responsible for any of your or your authorized users’ actions, including those that affect infrastructure services, service availability, or data loss. If Red&#160;Hat detects any such actions, the cluster might transition to a Limited Support status. Red&#160;Hat notifies you of the status change and you should either revert the action or create a support case to explore remediation steps that might require you to delete and recreate the cluster.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>If you have questions about a specific action that might cause a cluster to transition to a Limited Support status or need further assistance, open a support ticket.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-supported-versions_rosa-hcp-update-life-cycle">Supported versions exception policy</h4>
+<div class="paragraph _abstract">
+<p>Red&#160;Hat reserves the right to add or remove new or existing versions, or delay upcoming minor release versions, that have been identified to have one or more critical production impacting bugs or security issues without advance notice.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-install-policy_rosa-hcp-update-life-cycle">Installation policy</h4>
+<div class="paragraph _abstract">
+<p>While Red&#160;Hat recommends installation of the latest support release, Red&#160;Hat OpenShift Services on AWS supports installation of any supported release as covered by the preceding policy.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-delete-policy_rosa-hcp-update-life-cycle">Deletion policy</h4>
+<div class="paragraph">
+<p>Red&#160;Hat reserves the right to delete Red&#160;Hat OpenShift Services on AWS clusters within 15 days if the service notifications requiring actions are not addressed. These actions include upgrading the cluster to a supported OpenShift version or resolving cluster health issues so that the service can auto-upgrade the cluster to a supported OpenShift version.</p>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS services will notify you when the cluster is unhealthy and when the OpenShift version is approaching EOL.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS clusters configured with delete protection enabled can still be deleted based on the deletion policy.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If a Red&#160;Hat OpenShift Services on AWS cluster is deleted, any applications or business hosted on the cluster will be impacted. Additionally, cloud resources may remain in the AWS account after cluster deletion, which will continue to incur costs.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-mandatory-upgrades_rosa-hcp-update-life-cycle">Mandatory upgrades</h4>
+<div class="paragraph _abstract">
+<p>If a critical or important CVE, or other bug identified by Red&#160;Hat, significantly impacts the security or stability of the cluster, the customer must upgrade to the next supported patch release within two <a href="https://access.redhat.com/articles/2623321">business days</a>.</p>
+</div>
+<div class="paragraph">
+<p>In extreme circumstances and based on Red&#160;Hat&#8217;s assessment of the CVE criticality to the environment, Red&#160;Hat will notify customers that they have two <a href="https://access.redhat.com/articles/2623321">business days</a> to schedule or manually update their cluster to the latest, secure patch release. In the case that an update is not performed after two <a href="https://access.redhat.com/articles/2623321">business days</a>, Red&#160;Hat will automatically update the
+cluster&#8217;s control plane
+to the latest, secure patch release to mitigate potential security breach(es) or instability. Red&#160;Hat might, at its own discretion, temporarily delay an automated update if requested by a customer through a <a href="https://access.redhat.com/support">support case</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sd-life-cycle-dates_rosa-hcp-update-life-cycle">Life cycle dates</h4>
+<div class="paragraph _abstract">
+<p>The following table lists the general availability, maintenance support end date, and Extended Update Support Add-On - Term 1 end date for each supported Red&#160;Hat OpenShift Services on AWS version.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Version</th>
+<th class="tableblock halign-left valign-top">General availability</th>
+<th class="tableblock halign-left valign-top">Maintenance support ends</th>
+<th class="tableblock halign-left valign-top">Extended Update Support Add-On - Term 1 ends</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.22</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jun  9, 2026</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dec 31, 2027</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jun 30, 2028</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.21</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Feb  4, 2026</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aug  3, 2027</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oct 21, 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apr 21, 2027</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oct 21, 2027</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.19</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jun 17, 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dec 17, 2026</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Feb 25, 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aug 25, 2026</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Feb 25, 2027</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.17</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oct  1, 2024</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apr  1, 2026</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jun 27, 2024</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dec 27, 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jun 27, 2026</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The Extended Update Support Add-On - Term 1 is available for Red&#160;Hat OpenShift Services on AWS customers using even-numbered versions, starting with 4.16, and is included with your Red&#160;Hat OpenShift Services on AWS subscription.</p>
+</div>
+<div class="paragraph">
+<p>The Extended Update Support Add-On - Term 1 provides the key benefit of extending the support lifecycle for an eligible minor release from 18 months to a total of 24 months. This 6-month extension allows organizations to maintain stability for mission-critical applications, meet complex regulatory validation schedules, and manage limited maintenance windows by providing continued access to critical and important security updates and urgent-priority bug fixes without requiring a full version upgrade.</p>
+</div>
+<div class="paragraph">
+<p>To apply Extended Update Support Add-On - Term 1 to your Red&#160;Hat OpenShift Services on AWS cluster, you must update the channel group to <code>eus</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Before upgrading your cluster from version 4.16 to version 4.18, confirm that your control plane and machines pools are using version 4.16.
+See <em>Upgrade options for Red&#160;Hat OpenShift Services on AWS clusters</em> in the <em>Additional resources</em> section for more information.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="govcloud-life-cycle-dates_rosa-hcp-update-life-cycle">Life cycle dates for Red&#160;Hat OpenShift Services on AWS in AWS GovCloud</h4>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS in AWS GovCloud is subject to FedRAMP high security controls which require the use of cryptographic modules that have received a validation status of active or implementation under test from the Cryptographic Module Validation Program (CMVP). As a result, OpenSSL which is the module that is applicable to RHEL CoreOS in an OpenShift implementation is the determining factor for what OpenShift versions Red&#160;Hat OpenShift Services on AWS in AWS GovCloud offers, which may create drift from the standard OpenShift support lifecycle.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Version</th>
+<th class="tableblock halign-left valign-top">General availability</th>
+<th class="tableblock halign-left valign-top">Maintenance support ends</th>
+<th class="tableblock halign-left valign-top">Extended Update Support Add-On - Term 1 ends</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Feb 25, 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aug 25, 2026</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Feb 25, 2027</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.17</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oct  1, 2024</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apr  1, 2026</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oct 20, 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jun 27, 2026</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jun 27, 2026</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">May 9, 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dec 1, 2025</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The Extended Update Support Add-On - Term 1 is available for Red&#160;Hat OpenShift Services on AWS in AWS GovCloud customers using even-numbered versions, starting with 4.16, and is included with your Red&#160;Hat OpenShift Services on AWS in AWS GovCloud subscription.</p>
+</div>
+<div class="paragraph">
+<p>The Extended Update Support Add-On - Term 1 provides the key benefit of extending the support lifecycle for an eligible minor release from 18 months to a total of 24 months. This 6-month extension allows organizations to maintain stability for mission-critical applications, meet complex regulatory validation schedules, and manage limited maintenance windows by providing continued access to critical and important security updates and urgent-priority bug fixes without requiring a full version upgrade.</p>
+</div>
+<div class="paragraph">
+<p>To apply Extended Update Support Add-On - Term 1 to your Red&#160;Hat OpenShift Services on AWS in AWS GovCloud cluster, you must update the channel group to <code>eus</code>.</p>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-sdpolicy-aws-instance-types-graviton_rosa-hcp-review-supported-instance-types.html">AWS Arm-based Graviton instance types</a> | ↑ Up: <a href="_discover.html">Discover</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="life-cycle-overview_rosa-hcp-update-life-cycle.html">Overview</a> →</p>
+<p>← Previous: <a href="rosa-hcp-review-supported-instance-types_rosa-hcp-review-supported-instance-types.html">Review supported instance types</a> | ↑ Up: <a href="_discover.html">Discover</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="_install.html">Install</a> →</p>
 </div>
 </div>
 <div id="footer">

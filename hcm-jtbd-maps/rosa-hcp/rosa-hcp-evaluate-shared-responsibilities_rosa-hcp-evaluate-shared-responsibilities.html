@@ -437,16 +437,199 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-left-nav-toggle-start -->
+<style>
+  #toc .toc-toggle {
+    display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .75em;
+    padding: 0 .3em 0 0;
+    margin: 0;
+    color: #555;
+    transition: transform .15s ease;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  #toc .toc-toggle:hover { color: #0066cc; }
+  #toc .toc-toggle.open { transform: rotate(90deg); }
+  #toc li > ul.sectlevel2,
+  #toc li > ul.sectlevel3,
+  #toc li > ul.sectlevel4 { display: none; }
+  #toc li.toc-expanded > ul.sectlevel2,
+  #toc li.toc-expanded > ul.sectlevel3,
+  #toc li.toc-expanded > ul.sectlevel4 { display: block; }
+</style>
+<script>
+(function() {
+  var previewPath = window.location.pathname.slice(
+    0,
+    window.location.pathname.lastIndexOf('/')
+  ) || '/';
+  var STORAGE_KEY = 'navmap-toc-state:' + previewPath;
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch(e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var state = loadState();
+    var currentPage = location.pathname.split('/').pop();
+    var buttons = document.querySelectorAll('#toc .toc-toggle');
+
+    buttons.forEach(function(btn) {
+      var key = btn.getAttribute('data-toc-key');
+      var li = btn.parentElement;
+      var isCurrentSection = false;
+
+      /* Auto-expand the section containing the current page */
+      var links = li.querySelectorAll('a[href]');
+      links.forEach(function(a) {
+        var href = a.getAttribute('href').split('#')[0];
+        if (href === currentPage) { isCurrentSection = true; }
+      });
+
+      if (state[key] === true || isCurrentSection) {
+        li.classList.add('toc-expanded');
+        btn.classList.add('open');
+        if (isCurrentSection) { state[key] = true; }
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var expanded = li.classList.toggle('toc-expanded');
+        btn.classList.toggle('open', expanded);
+        state[key] = expanded;
+        saveState(state);
+      });
+    });
+
+    saveState(state);
+
+    /* --- Scroll current page into view in the TOC --- */
+    var toc = document.getElementById('toc');
+    if (toc) {
+      var cur = toc.querySelector('a[href="' + currentPage + '"]');
+      if (!cur) { cur = toc.querySelector('a[href$="/' + currentPage + '"]'); }
+      if (cur) {
+        cur.style.fontWeight = 'bold';
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            cur.scrollIntoView({ block: 'center', behavior: 'instant' });
+          }, 0);
+        });
+      }
+    }
+  });
+})();
+</script>
+<!-- navmap-left-nav-toggle-end -->
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
+<!-- navmap-preview-warning-start -->
+<style>
+  .navmap-preview-warning {
+    background: #fff1f1;
+    border: 2px solid #c9190b;
+    border-radius: 4px;
+    color: #3b0a0a;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    margin: 1em auto;
+    max-width: 70em;
+    padding: 1em 1.25em;
+  }
+  .navmap-preview-warning strong { color: #a30000; }
+  .navmap-preview-warning details { margin-top: .75em; }
+  .navmap-preview-warning pre {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    max-height: 20em;
+    overflow: auto;
+    padding: .75em;
+    white-space: pre-wrap;
+  }
+</style>
+<!-- navmap-preview-warning-end -->
 </head>
-<body id="rosa-hcp-evaluate-shared-responsibilities_rosa-hcp-evaluate-shared-responsibilities" class="book toc2 toc-left">
+<body id="rosa-hcp-evaluate-shared-responsibilities_rosa-hcp-evaluate-shared-responsibilities" class="book toc2 toc-left navmap-has-right-toc">
+<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-hcp/navigation.adoc
+
+Missing include targets:
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-cli.adoc:104
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-hybrid-cloud-console.adoc:104
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-terraform.adoc:23
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli.adoc:92
+    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
+
+How to fix these errors:
+  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
+  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
+  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
+</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
 <p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
-<li><a href="_whats_new.html">What&#8217;s new</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-whats-new_rosa-hcp-whats-new.html">What&#8217;s new for Red Hat OpenShift Service on AWS</a>
 </li>
-<li><a href="_discover.html">Discover</a>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
 <ul class="sectlevel2">
 <li><a href="rosa-hcp-learn-about-benefits-and-use-cases_rosa-hcp-learn-about-benefits-and-use-cases.html">Learn about benefits and use cases</a>
 </li>
@@ -472,55 +655,3338 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
-<li><a href="_install.html">Install</a>
+<li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-intro_rosa-hcp-create-a-rosa-hcp-cluster.html">Create a ROSA HCP Cluster</a>
 </li>
-<li><a href="_upgrade.html">Upgrade</a>
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-intro_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc.html">Create a ROSA HCP Cluster in a Shared VPC</a>
 </li>
-<li><a href="_observe.html">Observe</a>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_upgrade.html">▶</button><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-plan-cluster-upgrades_rosa-hcp-plan-cluster-upgrades.html">Plan cluster upgrades</a>
+</li>
+<li><a href="rosa-hcp-upgrade-a-cluster_rosa-hcp-upgrade-a-cluster.html">Upgrade a cluster</a>
+</li>
+<li><a href="rosa-hcp-upgrade-karpenter-managed-nodes_rosa-hcp-upgrade-karpenter-managed-nodes.html">Upgrade Karpenter-managed nodes</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_observe.html">▶</button><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a>
+</li>
+<li><a href="rosa-hcp-monitor-cluster-health_rosa-hcp-monitor-cluster-health.html">Monitor cluster health</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-policy-responsibilities_rosa-hcp-evaluate-shared-responsibilities">Shared responsibilities for Red Hat OpenShift Services on AWS</a></li><li class="level-4"><a href="#rosa-policy-shared-responsibility_rosa-hcp-evaluate-shared-responsibilities">Tasks for shared responsibilities by area</a></li><li class="level-4"><a href="#managed-cluster-notification-policy_rosa-hcp-evaluate-shared-responsibilities">Cluster notification policy</a></li><li class="level-4"><a href="#rosa-policy-incident_rosa-hcp-evaluate-shared-responsibilities">Incident and operations management</a></li><li class="level-5"><a href="#rosa-policy-platform-monitoring_rosa-hcp-evaluate-shared-responsibilities">Platform monitoring</a></li><li class="level-5"><a href="#rosa-policy-incident-management_rosa-hcp-evaluate-shared-responsibilities">Incident management</a></li><li class="level-5"><a href="#rosa-policy-cluster-capacity_rosa-hcp-evaluate-shared-responsibilities">Cluster capacity</a></li><li class="level-4"><a href="#rosa-policy-change-management_rosa-hcp-evaluate-shared-responsibilities">Change management</a></li><li class="level-5"><a href="#rosa-policy-customer-initiated-changes_rosa-hcp-evaluate-shared-responsibilities">Customer-initiated changes</a></li><li class="level-5"><a href="#rosa-policy-red-hat-initiated-changes_rosa-hcp-evaluate-shared-responsibilities">Red Hat-initiated changes</a></li><li class="level-5"><a href="#rosa-policy-patch-management_rosa-hcp-evaluate-shared-responsibilities">Patch management</a></li><li class="level-5"><a href="#rosa-policy-release-management_rosa-hcp-evaluate-shared-responsibilities">Release management</a></li><li class="level-5"><a href="#rosa-policy-resource-responsibilities_rosa-hcp-evaluate-shared-responsibilities">Service and Customer resource responsibilities</a></li><li class="level-4"><a href="#rosa-policy-security-compliance_rosa-hcp-evaluate-shared-responsibilities">Security and regulation compliance</a></li><li class="level-4"><a href="#rosa-policy-disaster-recovery_rosa-hcp-evaluate-shared-responsibilities">Disaster recovery</a></li><li class="level-4"><a href="#sd-redhat-managed-resources_rosa-hcp-evaluate-shared-responsibilities">Red Hat managed resources</a></li><li class="level-5"><a href="#sd-managed-resources-overview_sd-managed-resources">Overview</a></li><li class="level-5"><a href="#sd-managed-resources-all_sd-managed-resources">Managed resources</a></li><li class="level-5"><a href="#sd-core-namespaces_sd-managed-resources">Red Hat OpenShift Services on AWS core namespaces</a></li><li class="level-5"><a href="#sd-add-on-managed-namespaces_sd-managed-resources">Red Hat OpenShift Services on AWS add-on namespaces</a></li><li class="level-5"><a href="#sd-validating-webhooks_sd-managed-resources">Red Hat OpenShift Services on AWS validating webhooks</a></li><li class="level-4"><a href="#rosa-policy-customer-responsibility_sd-managed-resources">Additional customer responsibilities for data and applications</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-hcp-evaluate-shared-responsibilities_rosa-hcp-evaluate-shared-responsibilities">Evaluate shared responsibilities</h3>
 <div class="paragraph _abstract">
 <p>This section outlines Red&#160;Hat, Amazon Web Services (AWS), and customer responsibilities for the Red&#160;Hat OpenShift Services on AWS managed service, including incident and operations management, change management, security and compliance, and disaster recovery.</p>
 </div>
+<div class="sect3">
+<h4 id="rosa-policy-responsibilities_rosa-hcp-evaluate-shared-responsibilities">Shared responsibilities for Red&#160;Hat OpenShift Services on AWS</h4>
+<div class="paragraph">
+<p>While Red&#160;Hat and Amazon Web Services (AWS) manage the Red&#160;Hat OpenShift Services on AWS services, the customer shares certain responsibilities. The Red&#160;Hat OpenShift Services on AWS services are accessed remotely, hosted on public cloud resources, created in customer-owned AWS accounts, and have underlying platform and data security that is owned by Red&#160;Hat.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the <code>cluster-admin</code> role is added to a user, see the responsibilities and exclusion notes in the <a href="https://www.redhat.com/en/about/agreements">Red&#160;Hat Enterprise Agreement Appendix 4 (Online Subscription Services)</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.7647%;">
+<col style="width: 17.647%;">
+<col style="width: 17.647%;">
+<col style="width: 17.647%;">
+<col style="width: 17.647%;">
+<col style="width: 17.6473%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Resource</th>
+<th class="tableblock halign-left valign-top">Incident and operations management</th>
+<th class="tableblock halign-left valign-top">Change management</th>
+<th class="tableblock halign-left valign-top">Access and identity authorization</th>
+<th class="tableblock halign-left valign-top">Security and regulation compliance</th>
+<th class="tableblock halign-left valign-top">Disaster recovery</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer data</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer applications</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Developer services</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Platform monitoring</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Logging</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Application networking</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Cluster networking</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red Hat <sup>[1]</sup></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red Hat and Customer <sup>[2]</sup></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red Hat <sup>[1]</sup></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red Hat <sup>[1]</sup></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual networking management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual compute management (control plane, infrastructure and worker nodes)</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Cluster version</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Capacity management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat and Customer</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual storage management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Red&#160;Hat</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS software (public AWS services)</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Hardware/AWS global infrastructure</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the customer chooses to use their own CNI plugin, the responsibility shifts to the customer.</p>
+</li>
+<li>
+<p>The customer must configure their firewall to grant access to the required OpenShift and AWS domains and ports before the cluster is provisioned. For more information, see "AWS firewall prerequisites".</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-policy-shared-responsibility_rosa-hcp-evaluate-shared-responsibilities">Tasks for shared responsibilities by area</h4>
+<div class="paragraph">
+<p>Red&#160;Hat, AWS, and the customer all share responsibility for the monitoring, maintenance, and overall health of a Red&#160;Hat OpenShift Services on AWS (ROSA) cluster. This documentation illustrates the delineation of responsibilities for each of the listed resources as shown in the tables below.</p>
+</div>
+<div class="paragraph">
+<p>Cluster notifications are the primary way that Red Hat Site Reliability Engineering (SRE) communicates with you about the health of your managed cluster. Red Hat SRE may also use cluster notifications to prompt you to perform an action in order to resolve or prevent an issue with your cluster.</p>
+</div>
+<div class="paragraph">
+<p>Cluster owners and administrators must regularly review and action cluster notifications to ensure clusters remain healthy and supported.</p>
+</div>
+<div class="paragraph">
+<p>You can view cluster notifications in the Red Hat Hybrid Cloud Console, in the <strong>Cluster history</strong> tab for your cluster. By default, only the cluster owner receives cluster notifications as emails. If other users need to receive cluster notification emails, add each user as a notification contact for your cluster.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="managed-cluster-notification-policy_rosa-hcp-evaluate-shared-responsibilities">Cluster notification policy</h4>
+<div class="paragraph _abstract">
+<p>Cluster notifications are designed to keep you informed about the health of your cluster and high impact events that affect it.</p>
+</div>
+<div class="paragraph">
+<p>Most cluster notifications are generated and sent automatically to ensure that you are immediately informed of problems or important changes to the state of your cluster.</p>
+</div>
+<div class="paragraph">
+<p>In certain situations, Red&#160;Hat Site Reliability Engineering (SRE) creates and sends cluster notifications to provide additional context and guidance for a complex issue.</p>
+</div>
+<div class="paragraph">
+<p>Cluster notifications are not sent for low-impact events, low-risk security updates, routine operations and maintenance, or minor, transient issues that are quickly resolved by Red&#160;Hat SRE.</p>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat services automatically send notifications when:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-policy-responsibilities_rosa-hcp-evaluate-shared-responsibilities.html">Shared responsibilities for Red&#160;Hat OpenShift Services on AWS</a></p>
+<p>Remote health monitoring or environment verification checks detect an issue in your cluster, for example, when a worker node has low disk space.</p>
 </li>
 <li>
-<p><a href="rosa-policy-shared-responsibility_rosa-hcp-evaluate-shared-responsibilities.html">Tasks for shared responsibilities by area</a></p>
+<p>Significant cluster life cycle events occur, for example, when scheduled maintenance or upgrades begin, or cluster operations are impacted by an event, but do not require customer intervention.</p>
 </li>
 <li>
-<p><a href="managed-cluster-notification-policy_rosa-hcp-evaluate-shared-responsibilities.html">Cluster notification policy</a></p>
+<p>Significant cluster management changes occur, for example, when cluster ownership or administrative control is transferred from one user to another.</p>
 </li>
 <li>
-<p><a href="rosa-policy-incident_rosa-hcp-evaluate-shared-responsibilities.html">Incident and operations management</a></p>
+<p>Your cluster subscription is changed or updated, for example, when Red&#160;Hat makes updates to subscription terms or features available to your cluster.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>SRE creates and sends notifications when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>An incident results in a degradation or outage that impacts your cluster&#8217;s availability or performance, for example, your cloud provider has a regional outage. SRE sends subsequent notifications to inform you of incident resolution progress, and when the incident is resolved.</p>
 </li>
 <li>
-<p><a href="rosa-policy-change-management_rosa-hcp-evaluate-shared-responsibilities.html">Change management</a></p>
+<p>A security vulnerability, security breach, or unusual activity is detected on your cluster.</p>
 </li>
 <li>
-<p><a href="rosa-policy-security-compliance_rosa-hcp-evaluate-shared-responsibilities.html">Security and regulation compliance</a></p>
+<p>Red&#160;Hat detects that changes you have made are creating or may result in cluster instability.</p>
 </li>
 <li>
-<p><a href="rosa-policy-disaster-recovery_rosa-hcp-evaluate-shared-responsibilities.html">Disaster recovery</a></p>
-</li>
-<li>
-<p><a href="sd-redhat-managed-resources_rosa-hcp-evaluate-shared-responsibilities.html">Red&#160;Hat managed resources</a></p>
-</li>
-<li>
-<p><a href="rosa-policy-customer-responsibility_sd-managed-resources.html">Additional customer responsibilities for data and applications</a></p>
+<p>Red&#160;Hat detects that your workloads are causing performance degradation or instability in your cluster.</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="rosa-policy-incident_rosa-hcp-evaluate-shared-responsibilities">Incident and operations management</h4>
+<div class="paragraph _abstract">
+<p>Red&#160;Hat is responsible for overseeing the service components required for default platform networking.
+AWS is responsible for protecting the hardware infrastructure that runs all of the services offered in the AWS Cloud. The customer is responsible for incident and operations management of customer application data and any custom networking the customer has configured for the cluster network or virtual network.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Resource</th>
+<th class="tableblock halign-left valign-top">Service responsibilities</th>
+<th class="tableblock halign-left valign-top">Customer responsibilities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Application networking</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-next-steps-cluster_rosa-hcp-learn-about-benefits-and-use-cases.html">Before creating your first Red&#160;Hat OpenShift Services on AWS cluster</a> | ↑ Up: <a href="_discover.html">Discover</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-policy-responsibilities_rosa-hcp-evaluate-shared-responsibilities.html">Shared responsibilities for Red&#160;Hat OpenShift Services on AWS</a> →</p>
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Monitor native OpenShift router service, and respond to alerts.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Monitor health of application routes, and the endpoints behind them.</p>
+</li>
+<li>
+<p>Report outages to Red&#160;Hat and AWS.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Cluster networking</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Monitor, alert, and address incidents related to cluster DNS, network plugin connectivity between cluster components, and the default Ingress Controller.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Monitor and address incidents related to optional Ingress Controllers, additional Operators installed through the software catalog, and network plugins replacing the default OpenShift Container Network Interface (CNI) plugins.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual networking management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Monitor AWS load balancers, Amazon Virtual Private Cloud (VPC) subnets, and AWS service components necessary for default platform networking. Respond to alerts.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Monitor health of AWS load balancer endpoints.</p>
+</li>
+<li>
+<p>Monitor network traffic that is optionally configured through Amazon VPC-to-VPC connection, AWS VPN connection, or AWS Direct Connect for potential issues or security threats.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual storage management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Monitor Amazon Elastic Block Store (EBS) volumes attached to cluster nodes and Amazon S3 buckets used for the Red&#160;Hat OpenShift Services on AWS service&#8217;s built-in container image registry. Respond to alerts.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Monitor health of application data.</p>
+</li>
+<li>
+<p>If customer managed AWS Key Management Service (KMS) keys are used, create and control the key lifecycle and key policies for Amazon EBS encryption.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Platform monitoring</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Maintain a centralized monitoring and alerting system for all Red&#160;Hat OpenShift Services on AWS cluster components, site reliability engineer (SRE) services, and underlying AWS accounts.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Monitor capacity of worker nodes.</p>
+</li>
+<li>
+<p>Configure cluster monitoring stack components for monitoring and alerts.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Incident management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Raise and manage known incidents.</p>
+</li>
+<li>
+<p>Share root cause analysis (RCA) drafts with the customer.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Raise known incidents through a support case.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Infrastructure and data resiliency</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>There is no Red&#160;Hat-provided backup method available for Red&#160;Hat OpenShift Services on AWS clusters with the Security Token Service (STS).</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Take regular backups of data and deploy multi-AZ clusters with workloads that follow Kubernetes best practices to ensure high availability within a region.</p>
+</li>
+<li>
+<p>If an entire cloud region is unavailable, install a new cluster in a different region and restore apps using backup data.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Cluster capacity</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Manage the capacity of all control plane and infrastructure nodes on the cluster.</p>
+</li>
+<li>
+<p>Evaluate cluster capacity during upgrades and in response to cluster alerts.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS software (public AWS services)</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>AWS</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For information regarding AWS incident and operations management, see "How AWS maintains operational resilience and continuity of service" in the AWS whitepaper linked in <em>Additional resources</em>.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Monitor health of AWS resources in the customer account.</p>
+</li>
+<li>
+<p>Use IAM tools to apply the appropriate permissions to AWS resources in the customer account.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Hardware/AWS global infrastructure</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>AWS</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For information regarding AWS incident and operations management, see "How AWS maintains operational resilience and continuity of service" in the AWS whitepaper linked in <em>Additional resources</em>.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Configure, manage, and monitor customer applications and data to ensure application and data security controls are properly enforced.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect4">
+<h5 id="rosa-policy-platform-monitoring_rosa-hcp-evaluate-shared-responsibilities">Platform monitoring</h5>
+<div class="paragraph">
+<p>Platform audit logs are securely forwarded to a centralized security information and event monitoring (SIEM) system, where they may trigger configured alerts to the Red&#160;Hat SRE team and are also subject to manual review. Audit logs are retained in the SIEM system for one year. Audit logs for a given cluster are not deleted at the time the cluster is deleted.</p>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat monitors the cluster using monitoring and alerting systems that run on Red&#160;Hat managed infrastructure and operate independently of the cluster. Customers retain full access to the Cluster Monitoring Operator stack for their own in-cluster monitoring, alerting, and observability needs.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-policy-incident-management_rosa-hcp-evaluate-shared-responsibilities">Incident management</h5>
+<div class="paragraph">
+<p>An incident is an event that results in a degradation or outage of one or more Red&#160;Hat services.</p>
+</div>
+<div class="paragraph">
+<p>An incident can be raised by a customer or a Customer Experience and Engagement (CEE) member through a support case, directly by the centralized monitoring and alerting system, or directly by a member of the SRE team.</p>
+</div>
+<div class="paragraph">
+<p>Depending on the impact on the service and customer, the incident is categorized in terms of severity. To learn more, see "Production Support Terms of Service" in <em>Additional resources</em>.</p>
+</div>
+<div class="paragraph">
+<p>When managing a new incident, Red&#160;Hat uses the following general workflow:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>An SRE first responder is alerted to a new incident and begins an initial investigation.</p>
+</li>
+<li>
+<p>After the initial investigation, the incident is assigned an incident lead, who coordinates the recovery efforts.</p>
+</li>
+<li>
+<p>The incident lead manages all communication and coordination around recovery, including any relevant notifications and support case updates.</p>
+</li>
+<li>
+<p>When the incident is resolved a brief summary of the incident and resolution are provided in the customer-initiated support ticket. This summary helps the customers understand the incident and its resolution in more detail.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If customers require more information in addition to what is provided in the support ticket, they can request the following workflow:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The customer must make a request for the additional information within 5 business days of the incident resolution.</p>
+</li>
+<li>
+<p>Depending on the severity of the incident, Red&#160;Hat may provide customers with a root cause summary, or a root cause analysis (RCA) in the support ticket. The additional information will be provided within 7 business days for root cause summary and 30 business days for root cause analysis from the incident resolution.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat also assists with customer incidents raised through support cases.
+Red&#160;Hat can assist with activities including but not limited to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Forensic gathering, including isolating virtual compute</p>
+</li>
+<li>
+<p>Guiding compute image collection</p>
+</li>
+<li>
+<p>Providing collected audit logs</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-policy-cluster-capacity_rosa-hcp-evaluate-shared-responsibilities">Cluster capacity</h5>
+<div class="paragraph">
+<p>The impact of a cluster upgrade on capacity is evaluated as part of the upgrade testing process to ensure that capacity is not negatively impacted by new additions to the cluster. During a cluster upgrade, additional worker nodes are added to make sure that total cluster capacity is maintained during the upgrade process.</p>
+</div>
+<div class="paragraph">
+<p>Capacity evaluations by the Red&#160;Hat SRE staff also happen in response to alerts from the cluster, after usage thresholds are exceeded for a certain period of time. Such alerts can also result in a notification to the customer.</p>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.aws.amazon.com/whitepapers/latest/aws-operational-resilience/how-aws-maintains-operational-resilience-and-continuity-of-service.html#incident-management">How AWS maintains operational resilience and continuity of service</a></p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/support/offerings/production/sla">Production Support Terms of Service</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-policy-change-management_rosa-hcp-evaluate-shared-responsibilities">Change management</h4>
+<div class="paragraph _abstract">
+<p>This section describes the policies about how cluster and configuration changes, patches, and releases are managed.</p>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat is responsible for enabling changes to the cluster infrastructure and services that the customer will control, as well as maintaining versions for the control plane nodes, infrastructure nodes and services, and worker nodes. AWS is responsible for protecting the hardware infrastructure that runs all of the services offered in the
+AWS Cloud. The customer is responsible for initiating infrastructure change requests and installing and maintaining optional services and networking configurations on the cluster, as well as all changes to customer data and customer applications.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-policy-customer-initiated-changes_rosa-hcp-evaluate-shared-responsibilities">Customer-initiated changes</h5>
+<div class="paragraph">
+<p>You can initiate changes using self-service capabilities such as cluster deployment, worker node scaling, or cluster deletion.</p>
+</div>
+<div class="paragraph">
+<p>Change history is captured in the <strong>Cluster History</strong> section in the OpenShift Cluster Manager <strong>Overview tab</strong>, and is available for you to view. The change history includes, but is not limited to, logs from the following changes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Adding or removing identity providers</p>
+</li>
+<li>
+<p>Adding or removing users to or from the <code>dedicated-admins</code> group</p>
+</li>
+<li>
+<p>Scaling the cluster compute nodes</p>
+</li>
+<li>
+<p>Scaling the cluster load balancer</p>
+</li>
+<li>
+<p>Scaling the cluster persistent storage</p>
+</li>
+<li>
+<p>Upgrading the cluster</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can implement a maintenance exclusion by avoiding changes in OpenShift Cluster Manager for the following components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Deleting a cluster</p>
+</li>
+<li>
+<p>Adding, modifying, or removing identity providers</p>
+</li>
+<li>
+<p>Adding, modifying, or removing a user from an elevated group</p>
+</li>
+<li>
+<p>Installing or removing add-ons</p>
+</li>
+<li>
+<p>Modifying cluster networking configurations</p>
+</li>
+<li>
+<p>Adding, modifying, or removing machine pools</p>
+</li>
+<li>
+<p>Enabling or disabling user workload monitoring</p>
+</li>
+<li>
+<p>Initiating an upgrade</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To enforce the maintenance exclusion, ensure machine pool autoscaling or automatic upgrade policies have been disabled. After the maintenance exclusion has been lifted, proceed with enabling machine pool autoscaling or automatic upgrade policies as desired.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-policy-red-hat-initiated-changes_rosa-hcp-evaluate-shared-responsibilities">Red&#160;Hat-initiated changes</h5>
+<div class="paragraph">
+<p>Red&#160;Hat site reliability engineering (SRE) manages the infrastructure, code, and configuration of Red&#160;Hat OpenShift Services on AWS using a GitOps workflow and fully automated CI/CD pipelines. This process ensures that Red&#160;Hat can safely introduce service improvements on a continuous basis without negatively impacting customers.</p>
+</div>
+<div class="paragraph">
+<p>Every proposed change undergoes a series of automated verifications immediately upon check-in. Changes are then deployed to a staging environment where they undergo automated integration testing. Finally, changes are deployed to the production environment. Each step is fully automated.</p>
+</div>
+<div class="paragraph">
+<p>An authorized Red&#160;Hat SRE reviewer must approve advancement to each step. The reviewer cannot be the same individual who proposed the change. All changes and approvals are fully auditable as part of the GitOps workflow.</p>
+</div>
+<div class="paragraph">
+<p>Some changes are released to production incrementally, using feature flags to control availability of new features to specified clusters or customers, such as private or public previews.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-policy-patch-management_rosa-hcp-evaluate-shared-responsibilities">Patch management</h5>
+<div class="paragraph">
+<p>OpenShift Container Platform software and the underlying immutable Red&#160;Hat CoreOS (RHCOS) operating system image are patched for bugs and vulnerabilities in regular z-stream upgrades. Read more about <a href="https://access.redhat.com/documentation/en-us/openshift_container_platform/4.6/html/architecture/architecture-rhcos">RHCOS architecture</a> in the OpenShift Container Platform documentation.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-policy-release-management_rosa-hcp-evaluate-shared-responsibilities">Release management</h5>
+<div class="paragraph">
+<p>Red&#160;Hat does not automatically upgrade your clusters. You can schedule to upgrade the clusters at regular intervals (recurring upgrade) or just once (individual upgrade) using the OpenShift Cluster Manager web console. Red&#160;Hat might forcefully upgrade a cluster to a new z-stream version only if the cluster is affected by a critical impact CVE.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Because the required permissions can change between y-stream releases, the AWS managed policies are automatically updated before an upgrade can be performed.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can review the history of all cluster upgrade events in the OpenShift Cluster Manager web console.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-policy-resource-responsibilities_rosa-hcp-evaluate-shared-responsibilities">Service and Customer resource responsibilities</h5>
+<div class="paragraph">
+<p>The following table defines the responsibilities for cluster resources.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Resource</th>
+<th class="tableblock halign-left valign-top">Service responsibilities</th>
+<th class="tableblock halign-left valign-top">Customer responsibilities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Logging</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Centrally aggregate and monitor platform audit logs.</p>
+</li>
+<li>
+<p>Provide and maintain a logging Operator to enable the customer to deploy a logging stack for default application logging.</p>
+</li>
+<li>
+<p>Provide audit logs upon customer request.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Install the optional default application logging Operator on the cluster.</p>
+</li>
+<li>
+<p>Install, configure, and maintain any optional application logging solutions, such as logging sidecar containers or third-party logging applications.</p>
+</li>
+<li>
+<p>Tune size and frequency of application logs being produced by customer applications if they are affecting the stability of the logging stack or the cluster.</p>
+</li>
+<li>
+<p>Request platform audit logs through a support case for researching specific incidents.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Application networking</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up public load balancers. Provide the ability to set up private load balancers and up to one additional load balancer when required.</p>
+</li>
+<li>
+<p>Set up native OpenShift router service. Provide the ability to set the router as private and add up to one additional router shard.</p>
+</li>
+<li>
+<p>Install, configure, and maintain OVN-Kubernetes components for default internal pod traffic.</p>
+</li>
+<li>
+<p>Provide the ability for the customer to manage <code>NetworkPolicy</code> and <code>EgressNetworkPolicy</code> (firewall) objects.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Configure non-default pod network permissions for project and pod networks, pod ingress, and pod egress using <code>NetworkPolicy</code> objects.</p>
+</li>
+<li>
+<p>Use OpenShift Cluster Manager to request a private load balancer for default application routes.</p>
+</li>
+<li>
+<p>Use OpenShift Cluster Manager to configure up to one additional public or private router shard and corresponding load balancer.</p>
+</li>
+<li>
+<p>Request and configure any additional service load balancers for specific services.</p>
+</li>
+<li>
+<p>Configure any necessary DNS forwarding rules.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Cluster networking</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up cluster management components, such as public or private service endpoints and necessary integration with Amazon VPC components.</p>
+</li>
+<li>
+<p>Set up internal networking components required for internal cluster communication between worker
+clusters and control planes.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Configure your firewall to grant access to the required OpenShift and AWS domains and ports before the cluster is provisioned. For more information, see "AWS firewall prerequisites".</p>
+</li>
+<li>
+<p>Provide optional non-default IP address ranges for machine CIDR, service CIDR, and pod CIDR if needed through OpenShift Cluster Manager when the cluster is provisioned.</p>
+</li>
+<li>
+<p>Request that the API service endpoint be made public or private on cluster creation or after cluster creation through OpenShift Cluster Manager.</p>
+</li>
+<li>
+<p>Create additional Ingress Controllers to publish additional application routes.</p>
+</li>
+<li>
+<p>Install, configure, and upgrade optional CNI plugins if clusters are installed without the default OpenShift CNI plugins.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual networking management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up and configure Amazon VPC components required to provision the cluster, such as subnets, load balancers, internet gateways, and NAT gateways.</p>
+</li>
+<li>
+<p>Provide the ability for the customer to
+manage AWS VPN connectivity with on-premise resources, Amazon VPC-to-VPC connectivity, and AWS Direct Connect as required through  OpenShift Cluster Manager.</p>
+</li>
+<li>
+<p>Enable customers to create and deploy AWS load balancers for use with service load balancers.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Set up and maintain optional Amazon VPC components, such as Amazon VPC-to-VPC connection, AWS VPN connection, or AWS Direct Connect.</p>
+</li>
+<li>
+<p>Request and configure any additional service load balancers for specific services.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual compute management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up and configure the ROSA control plane and data plane to use Amazon EC2 instances for cluster compute.</p>
+</li>
+<li>
+<p>Monitor and manage the deployment of Amazon EC2 control plane and infrastructure nodes on the cluster.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Monitor and manage Amazon EC2 worker nodes by creating a
+machine pool using the OpenShift Cluster Manager or the ROSA CLI (<code>rosa</code>).</p>
+</li>
+<li>
+<p>Manage changes to customer-deployed applications and application data.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Cluster version</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enable upgrade scheduling process.</p>
+</li>
+<li>
+<p>Monitor upgrade progress and remedy any issues encountered.</p>
+</li>
+<li>
+<p>Publish change logs and release notes for patch release upgrades.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Either set up automatic upgrades or schedule patch release upgrades immediately or for the future.</p>
+</li>
+<li>
+<p>Acknowledge and schedule minor version upgrades.</p>
+</li>
+<li>
+<p>Test customer applications on patch releases to ensure compatibility.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Capacity management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Monitor the use of the control plane.</p>
+</li>
+<li>
+<p>Scale and resize control plane to maintain quality of service.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Monitor worker node utilization and, if appropriate, enables the auto-scaling feature.</p>
+</li>
+<li>
+<p>Determine the scaling strategy of the cluster. See the additional resources for more information on machine pools.</p>
+</li>
+<li>
+<p>Use the provided OpenShift Cluster Manager controls to add or remove additional worker nodes as required.</p>
+</li>
+<li>
+<p>Respond to Red&#160;Hat notifications regarding cluster resource requirements.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual storage management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up and configure Amazon EBS to provision local node storage and persistent volume storage for the cluster.</p>
+</li>
+<li>
+<p>Set up and configure the built-in image registry to use Amazon S3 bucket storage. <sup>[1]</sup></p>
+</li>
+<li>
+<p>Regularly prune image registry resources in
+Amazon S3 to optimize Amazon S3 usage and cluster performance. <sup>[2]</sup></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Optionally configure the Amazon EBS CSI driver or the Amazon
+EFS CSI driver to provision persistent volumes on the cluster.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS software (public AWS services)</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>AWS</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Compute:</strong> Provide the Amazon EC2 service, used for ROSA relevant resources.</p>
+</div>
+<div class="paragraph">
+<p><strong>Storage:</strong> Provide Amazon EBS, used by ROSA to provision local node storage and persistent volume storage for the cluster.</p>
+</div>
+<div class="paragraph">
+<p><strong>Storage:</strong> Provide Amazon S3, used for the ROSA
+built-in image registry.</p>
+</div>
+<div class="paragraph">
+<p><strong>Networking:</strong>
+Provide the following AWS Cloud services, used by ROSA
+to satisfy virtual networking
+infrastructure needs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Amazon VPC</p>
+</li>
+<li>
+<p>Elastic Load Balancing</p>
+</li>
+<li>
+<p>AWS IAM</p>
+</li>
+<li>
+<p>AWS STS</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Networking:</strong>
+Provide the following AWS services, which customers can optionally integrate with ROSA:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>AWS VPN</p>
+</li>
+<li>
+<p>AWS Direct Connect</p>
+</li>
+<li>
+<p>AWS PrivateLink</p>
+</li>
+<li>
+<p>AWS Transit Gateway</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Sign requests using an access key ID and secret access key
+associated with an IAM principal or STS temporary security
+credentials.</p>
+</li>
+<li>
+<p>Specify VPC subnets for the cluster to use during cluster
+creation.</p>
+</li>
+<li>
+<p>Optionally configure a customer-managed VPC for use with ROSA clusters (required for PrivateLink and HCP clusters).</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Hardware/AWS global infrastructure</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>AWS</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For information regarding  management controls for AWS data centers, see <a href="https://aws.amazon.com/compliance/data-center/controls">Our Controls</a> on the AWS Cloud Security page.</p>
+</li>
+<li>
+<p>For information regarding change management best practices, see <a href="https://aws.amazon.com/solutions/guidance/change-management-on-aws/">Guidance for Change Management on AWS</a> in the AWS Solutions Library.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Implement change management best practices for customer
+applications and data hosted on the AWS Cloud.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>For more information on authentication flow for AWS STS, see <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/authentication_and_authorization/managing-cloud-provider-credentials#cco-short-term-creds-auth-flow-aws-diagram_cco-short-term-creds">Authentication flow for AWS STS</a>.</p>
+</li>
+<li>
+<p>For more information on pruning images, see <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/building_applications/pruning-objects">Automatically pruning Images</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-policy-security-compliance_rosa-hcp-evaluate-shared-responsibilities">Security and regulation compliance</h4>
+<div class="paragraph">
+<p>The following table outlines the  the responsibilities in regards to security and regulation compliance:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Resource</th>
+<th class="tableblock halign-left valign-top">Service responsibilities</th>
+<th class="tableblock halign-left valign-top">Customer responsibilities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Logging</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Send cluster audit logs to a Red&#160;Hat SIEM to analyze for security events. Retain audit logs for a defined period of time to support forensic analysis.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Analyze application logs for security events.</p>
+</li>
+<li>
+<p>Send application logs to an external endpoint through logging sidecar containers or third-party logging applications if longer retention is required than is offered by the default logging stack.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual networking management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Monitor virtual networking components for potential issues and security threats.</p>
+</li>
+<li>
+<p>Use public AWS tools for additional monitoring and protection.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Monitor optional configured virtual networking components for potential issues and security threats.</p>
+</li>
+<li>
+<p>Configure any necessary firewall rules or customer data center protections as required.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual storage management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Monitor virtual storage components for potential issues and security threats.</p>
+</li>
+<li>
+<p>Use public AWS tools for additional monitoring and protection.</p>
+</li>
+<li>
+<p>Configure the ROSA service to encrypt control plane, infrastructure, and worker node volume data by default using the
+AWS managed Key Management Service (KMS) key that Amazon EBS provides.</p>
+</li>
+<li>
+<p>Configure the ROSA service to encrypt customer persistent volumes that use the default storage class with the AWS
+managed KMS key that Amazon EBS provides.</p>
+</li>
+<li>
+<p>Provide the ability for the customer to use a customer managed AWS KMS key to encrypt persistent volumes.</p>
+</li>
+<li>
+<p>Configure the container image registry to encrypt image registry data at rest using server-side encryption with Amazon S3 managed keys (SSE-3).</p>
+</li>
+<li>
+<p>Provide the ability for the customer to create a public or private Amazon S3 image registry to protect their container
+images from unauthorized user access.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Provision Amazon EBS volumes.</p>
+</li>
+<li>
+<p>Manage Amazon EBS volume storage to ensure enough storage is available to mount as a volume in ROSA.</p>
+</li>
+<li>
+<p>Create the persistent volume claim and generate a
+persistent volume though OpenShift Cluster Manager.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual compute management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Monitor virtual compute components for potential issues and security threats.</p>
+</li>
+<li>
+<p>Use public AWS tools for additional monitoring and protection.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Monitor optional configured virtual networking components for
+potential issues and security threats.</p>
+</li>
+<li>
+<p>Configure any necessary firewall rules or customer data center protections as required.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS  software (public AWS services)</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>AWS</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Compute:</strong> Secure Amazon EC2, used for ROSA
+used for ROSA
+control plane and worker nodes.
+For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/infrastructure-security.html">
+Infrastructure security in Amazon EC2</a> in the Amazon EC2 User Guide.</p>
+</div>
+<div class="paragraph">
+<p><strong>Storage:</strong> Secure Amazon Elastic Block Store (EBS),
+used for ROSA
+control plane and worker node volumes,
+as well as Kubernetes persistent volumes. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/data-protection.html">Data protection in Amazon EC2</a> in the Amazon EC2 User Guide.</p>
+</div>
+<div class="paragraph">
+<p><strong>Storage:</strong> Provide AWS KMS, which ROSA uses to
+encrypt control plane, worker node volumes and persistent volumes.
+For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon EBS encryption</a> in the Amazon EC2 User Guide.</p>
+</div>
+<div class="paragraph">
+<p><strong>Storage:</strong> Secure Amazon S3, used for the ROSA service’s built-in container image registry. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/security.html">Amazon S3 security</a> in the S3 User Guide.</p>
+</div>
+<div class="paragraph">
+<p><strong>Networking:</strong> Provide security capabilities and services
+to increase privacy and control network access on AWS global infrastructure, including network firewalls built into
+Amazon VPC, private or dedicated network connections, and automatic encryption of all traffic on the AWS global
+and regional networks between AWS secured facilities. For more information, see the <a href="https://aws.amazon.com/compliance/shared-responsibility-model/">AWS Shared Responsibility Model</a>
+and <a href="https://docs.aws.amazon.com/whitepapers/latest/introduction-aws-security/infrastructure-security.html">Infrastructure security</a> in the Introduction to AWS Security whitepaper.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Ensure security best practices and the principle of least
+privilege are followed to protect data on the Amazon EC2
+instance. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/infrastructure-security.html">Infrastructure security in Amazon EC2</a>
+ and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/data-protection.html">Data protection in Amazon EC2</a>.</p>
+</li>
+<li>
+<p>Monitor optional configured virtual networking components for
+potential issues and security threats.</p>
+</li>
+<li>
+<p>Configure any necessary firewall rules or customer data center protections as required.</p>
+</li>
+<li>
+<p>Create an optional customer managed KMS key and encrypt
+the Amazon EBS persistent volume using the KMS key.</p>
+</li>
+<li>
+<p>Monitor the customer data in virtual storage
+for potential issues and security threats. For more information,
+see the <a href="https://aws.amazon.com/compliance/shared-responsibility-model/">shared responsibility model</a>.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Hardware/AWS global infrastructure</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>AWS</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provide the AWS global infrastructure that ROSA uses to deliver service functionality. For more information regarding AWS security
+controls, see <a href="https://docs.aws.amazon.com/whitepapers/latest/introduction-aws-security/security-of-the-aws-infrastructure.html">Security of the AWS Infrastructure</a> in the AWS whitepaper.</p>
+</li>
+<li>
+<p>Provide documentation for the customer to
+manage compliance needs and check their
+security state in AWS using tools such as
+AWS Artifact and AWS Security Hub. For
+more information, see <a href="https://docs.aws.amazon.com/ROSA/latest/userguide/compliance-validation.html">Compliance
+validation for ROSA</a> in the ROSA User
+Guide.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Configure, manage, and monitor customer applications and data
+to ensure application and data security controls are properly
+enforced.</p>
+</li>
+<li>
+<p>Use IAM tools to apply the appropriate permissions to AWS
+resources in the customer account.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="rosa-policy-disaster-recovery_rosa-hcp-evaluate-shared-responsibilities">Disaster recovery</h4>
+<div class="paragraph _abstract">
+<p>Disaster recovery includes backing up data and configurations, replicating them to a disaster recovery environment, and failing over during a disaster event.</p>
+</div>
+<div class="paragraph">
+<p>The effectiveness of disaster recovery depends on the architecture. Deploy highly available applications, storage, and clusters to achieve your required level of resilience, for example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Zone outages</strong>: Deploy a cluster with multiple machine pools distributed across multiple availability zones (AZs) and manage your own failover.</p>
+</li>
+<li>
+<p><strong>Regional outages</strong>: Deploy multiple clusters in several regions with multiple machine pools in more than one AZ and manage your own failover.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information, see “Disaster recovery options in the cloud” in <em>Additional resources</em>.</p>
+</div>
+<div class="paragraph">
+<p>The following responsibility matrix provides details about disaster recovery practices as part of Red&#160;Hat OpenShift Services on AWS.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Disaster recovery responsibilities</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Resource</th>
+<th class="tableblock halign-left valign-top">Service responsibilities</th>
+<th class="tableblock halign-left valign-top">Customer responsibilities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual networking management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Re-create affected virtual network components that are necessary for the platform to function.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Configure virtual networking connections with more than one tunnel where possible for protection against outages as recommended by the public cloud provider.</p>
+</li>
+<li>
+<p>Maintain failover DNS and load balancing if using a global load balancer with multiple clusters.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual storage management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Back up customer applications and application data.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Virtual compute management</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provide the ability for the customer to manually or automatically replace failed worker nodes.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Replace failed Amazon EC2 worker nodes by editing the machine pool configuration through OpenShift Cluster Manager or the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Control plane</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use snapshots, troubleshooting tools, and control planes deployed in multiple AZs to minimize downtime during service-side disaster events.</p>
+</li>
+<li>
+<p>Take a full snapshot of the control plane etcd database every hour and retain the snapshot for 24 hours. This backup schedule supports the Recovery Point Objective (RPO) of one hour.</p>
+<div class="paragraph">
+<p>Note that these backups are intended for use within service-side disaster recovery scenarios and are not available for customer-requested restorations.</p>
+</div>
+</li>
+<li>
+<p>Commit to a Recovery Time Objective (RTO) of up to one hour, covering complete cluster restoration and post-validation checks.</p>
+</li>
+<li>
+<p>During disaster events, notify the customer that control plane recovery is in progress. If both the control and data planes are impacted, coordinate recovery efforts with the customer.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Cooperate with Red&#160;Hat during disaster recovery events.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Data plane (worker nodes)</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Red&#160;Hat is available to support customer efforts to restore data and applications upon submission of a support case.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Back up data plane contents and configuration.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AWS software (public AWS services)</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>AWS</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Compute:</strong> Provide Amazon EC2 features that support data resiliency such as Amazon EBS snapshots and Amazon EC2 Auto Scaling. For more information, see "Resilience in Amazon EC2" in <em>Additional resources</em>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Storage:</strong> Provide the ability for the Red&#160;Hat OpenShift Services on AWS service and customers to back up the Amazon EBS volume on the cluster through Amazon EBS volume snapshots.</p>
+</div>
+<div class="paragraph">
+<p><strong>Storage:</strong> For information about Amazon S3 features that support data resiliency, see "Resilience in Amazon S3" in <em>Additional resources</em>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Networking:</strong> For information about Amazon VPC features that support data resiliency, see "Resilience in Amazon Virtual Private Cloud" in <em>Additional resources</em>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Configure Red&#160;Hat OpenShift Services on AWS clusters with multiple machine pools across multiple AZs to improve fault tolerance and cluster availability.</p>
+</li>
+<li>
+<p>Provision persistent volumes using the Amazon EBS CSI driver to enable volume snapshots.</p>
+</li>
+<li>
+<p>Create CSI volume snapshots of Amazon EBS persistent volumes.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Hardware/AWS global infrastructure</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>AWS</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provide AWS global infrastructure that allows Red&#160;Hat OpenShift Services on AWS to scale
+nodes
+across AZs. This functionality enables orchestration of automatic failover between zones without interruption.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Configure Red&#160;Hat OpenShift Services on AWS clusters with multiple machine pools across multiple AZs to improve fault tolerance and cluster availability.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="sd-redhat-managed-resources_rosa-hcp-evaluate-shared-responsibilities">Red&#160;Hat managed resources</h4>
+<!-- toc disabled -->
+<div class="sect4">
+<h5 id="sd-managed-resources-overview_sd-managed-resources">Overview</h5>
+<div class="paragraph">
+<p>The following covers all Red&#160;Hat OpenShift Services on AWS resources that are managed or protected by the Service Reliability Engineering Platform (SRE-P) Team. Customers should not try to change these resources because doing so can lead to cluster instability.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="sd-managed-resources-all_sd-managed-resources">Managed resources</h5>
+<div class="paragraph">
+<p>The following list displays the Red&#160;Hat OpenShift Services on AWS resources managed by OpenShift Hive, the centralized fleet configuration management system. These resources are in addition to the OpenShift/ROSA platform resources created during installation. OpenShift Hive continually reconciles consistency across all Red&#160;Hat OpenShift Services on AWS clusters. Changes to Red&#160;Hat OpenShift Services on AWS resources should be made through OpenShift Cluster Manager so that OpenShift Cluster Manager and Hive are synchronized. Contact <a href="mailto:ocm-feedback@redhat.com">ocm-feedback@redhat.com</a> if OpenShift Cluster Manager does not support modifying the resources in question.</p>
+</div>
+<div class="paragraph">
+<div class="title">List of Red&#160;Hat managed resources</div>
+<p>(Note that the following may not be visible in your ROSA cluster)</p>
+</div>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/master/resources/managed/all-osd-resources.yaml[role=include]</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect4">
+<h5 id="sd-core-namespaces_sd-managed-resources">Red&#160;Hat OpenShift Services on AWS core namespaces</h5>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS core namespaces are installed by default during cluster installation.</p>
+</div>
+<div class="paragraph">
+<div class="title">List of core namespaces</div>
+<p>(Note that the following may not be visible in your ROSA cluster)</p>
+</div>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/master/deploy/osd-managed-resources/ocp-namespaces.ConfigMap.yaml[role=include]</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect4">
+<h5 id="sd-add-on-managed-namespaces_sd-managed-resources">Red&#160;Hat OpenShift Services on AWS add-on namespaces</h5>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS add-ons are services available for installation after cluster installation. These additional services include Red Hat OpenShift Dev Spaces, Red&#160;Hat OpenShift API Management, and Cluster Logging Operator. Any changes to resources within the following namespaces can be overridden by the add-on during upgrades, which can lead to unsupported configurations for the add-on functionality.</p>
+</div>
+<details>
+<summary class="title">List of add-on managed namespaces</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">link:https://raw.githubusercontent.com/openshift/managed-cluster-config/master/resources/addons-namespaces/main.yaml[role=include]</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect4">
+<h5 id="sd-validating-webhooks_sd-managed-resources">Red&#160;Hat OpenShift Services on AWS validating webhooks</h5>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS validating webhooks are a set of dynamic admission controls maintained by the OpenShift SRE team. These HTTP callbacks, also known as webhooks, are called for various types of requests to ensure cluster stability. The following list describes the various webhooks with rules containing the registered operations and resources that are controlled. Any attempt to circumvent these validating webhooks could affect the stability and supportability of the cluster.</p>
+</div>
+<details>
+<summary class="title">List of validating webhooks</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">link:https://raw.githubusercontent.com/openshift/managed-cluster-validating-webhooks/master/docs/webhooks.json[role=include]</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-policy-customer-responsibility_sd-managed-resources">Additional customer responsibilities for data and applications</h4>
+<div class="paragraph">
+<p>The customer is responsible for the applications, workloads, and data that they deploy to Red&#160;Hat
+OpenShift Service on AWS. However, Red&#160;Hat and AWS provide various tools to help the customer
+manage data and applications on the platform.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Resource</th>
+<th class="tableblock halign-left valign-top">Red&#160;Hat and AWS</th>
+<th class="tableblock halign-left valign-top">Customer responsibilities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer data</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Maintain platform-level standards for data encryption as defined by industry security and
+compliance standards.</p>
+</li>
+<li>
+<p>Provide OpenShift components to help manage application data, such as secrets.</p>
+</li>
+<li>
+<p>Enable integration with data services such as
+Amazon RDS to store and manage data outside of the cluster and/or AWS.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>AWS</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provide Amazon RDS to allow customers to store and manage data outside of the cluster and/or AWS.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Maintain responsibility for all customer data stored on the platform and how customer applications consume and expose this data.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Customer applications</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Red&#160;Hat</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provision clusters with OpenShift components installed so that customers can access the OpenShift and Kubernetes APIs to deploy and manage containerized applications.</p>
+</li>
+<li>
+<p>Create clusters with image pull secrets so that customer deployments can pull images from the Red&#160;Hat Container Catalog registry.</p>
+</li>
+<li>
+<p>Provide access to OpenShift APIs that a customer can use to set up Operators to add community, third-party, and Red&#160;Hat services to the cluster.</p>
+</li>
+<li>
+<p>Provide storage classes and plugins to support persistent volumes for use with customer applications.</p>
+</li>
+<li>
+<p>Provide a container image registry so customers can securely store application container images on the cluster to deploy and manage applications.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>AWS</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provide Amazon EBS to support persistent volumes for use with customer applications.</p>
+</li>
+<li>
+<p>Provide Amazon S3 to support Red&#160;Hat provisioning of the container image registry.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Maintain responsibility for customer and third-party applications, data, and their complete lifecycle.</p>
+</li>
+<li>
+<p>If a customer adds Red&#160;Hat, community, third-party, their own, or other services to the cluster by using Operators or external images, the customer is responsible for these services and for working with the appropriate provider, including Red&#160;Hat, to troubleshoot any issues.</p>
+</li>
+<li>
+<p>Use the provided tools and features to configure and deploy; keep up to date; set up resource requests and limits; size the cluster to have enough resources to run apps; set up permissions; integrate with other services; manage any image streams or templates that the customer deploys; externally serve; save, back up, and restore data; and otherwise manage their highly available and resilient workloads.</p>
+</li>
+<li>
+<p>Maintain responsibility for monitoring the applications run on Red&#160;Hat OpenShift Services on AWS, including
+installing and operating software to gather metrics, create alerts, and protect secrets in the application.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Previous: <a href="rosa-hcp-learn-about-benefits-and-use-cases_rosa-hcp-learn-about-benefits-and-use-cases.html">Learn about benefits and use cases</a> | ↑ Up: <a href="_discover.html">Discover</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-get-sre-and-service-account-access_rosa-hcp-get-sre-and-service-account-access.html">Get SRE and service account access</a> →</p>
 </div>
 </div>
 <div id="footer">
