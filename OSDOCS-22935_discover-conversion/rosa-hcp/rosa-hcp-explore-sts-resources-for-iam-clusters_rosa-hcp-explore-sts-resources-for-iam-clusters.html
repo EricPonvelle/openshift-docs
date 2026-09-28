@@ -570,53 +570,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 <!-- navmap-right-toc-end -->
-<!-- navmap-preview-warning-start -->
-<style>
-  .navmap-preview-warning {
-    background: #fff1f1;
-    border: 2px solid #c9190b;
-    border-radius: 4px;
-    color: #3b0a0a;
-    font-family: "Open Sans", "DejaVu Sans", sans-serif;
-    margin: 1em auto;
-    max-width: 70em;
-    padding: 1em 1.25em;
-  }
-  .navmap-preview-warning strong { color: #a30000; }
-  .navmap-preview-warning details { margin-top: .75em; }
-  .navmap-preview-warning pre {
-    background: #fff;
-    border: 1px solid #d7d7d7;
-    max-height: 20em;
-    overflow: auto;
-    padding: .75em;
-    white-space: pre-wrap;
-  }
-</style>
-<!-- navmap-preview-warning-end -->
 </head>
 <body id="rosa-hcp-explore-sts-resources-for-iam-clusters_rosa-hcp-explore-sts-resources-for-iam-clusters" class="book toc2 toc-left navmap-has-right-toc">
-<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-hcp/navigation.adoc
-
-Missing include targets:
-  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-cli.adoc:104
-    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
-  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-hybrid-cloud-console.adoc:104
-    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
-  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-terraform.adoc:23
-    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
-  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli.adoc:92
-    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
-
-How to fix these errors:
-  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
-  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
-  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
-</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
@@ -691,7 +646,7 @@ How to fix these errors:
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-sts-understanding-ocm-role_rosa-hcp-explore-sts-resources-for-iam-clusters">Understanding the OpenShift Cluster Manager role</a></li><li class="level-5"><a href="#rosa-sts-understanding-user-role_rosa-hcp-explore-sts-resources-for-iam-clusters">Understanding the user role</a></li><li class="level-4"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-explore-sts-resources-for-iam-clusters">Creating an ocm-role IAM role</a></li><li class="level-4"><a href="#rosa-sts-account-wide-roles-and-policies_rosa-hcp-explore-sts-resources-for-iam-clusters">Account-wide IAM role and policy reference</a></li><li class="level-5"><a href="#rosa-sts-account-wide-roles-and-policies-creation-methods_rosa-hcp-explore-sts-resources-for-iam-clusters">Methods of account-wide role creation</a></li><li class="level-6"><a href="#rosa-sts-account-wide-roles-and-policies-creation-methods-manual_rosa-hcp-explore-sts-resources-for-iam-clusters">Manual ocm-role resource creation</a></li><li class="level-6"><a href="#rosa-sts-account-wide-roles-and-policies-creation-methods-auto_rosa-hcp-explore-sts-resources-for-iam-clusters">Automatic ocm-role resource creation</a></li><li class="level-4"><a href="#rosa-sts-account-wide-role-and-policy-aws-cli_rosa-hcp-explore-sts-resources-for-iam-clusters">Account-wide IAM role and policy AWS CLI reference</a></li><li class="level-5"><a href="#rosa-sts-account-wide-role-and-policy-aws-cli-manual-mode_rosa-hcp-explore-sts-resources-for-iam-clusters">Using manual mode for account role creation</a></li><li class="level-5"><a href="#rosa-sts-account-wide-role-and-policy-aws-cli-auto-mode_rosa-hcp-explore-sts-resources-for-iam-clusters">Using auto mode for role creation</a></li><li class="level-4"><a href="#rosa-sts-aws-requirements-attaching-boundary-policy_rosa-hcp-explore-sts-resources-for-iam-clusters">Permission boundaries for the installer role</a></li><li class="level-4"><a href="#rosa-sts-operator-roles_rosa-hcp-explore-sts-resources-for-iam-clusters">Cluster-specific Operator IAM role reference</a></li><li class="level-4"><a href="#rosa-sts-operator-role-aws-cli_rosa-hcp-explore-sts-resources-for-iam-clusters">Operator IAM role AWS CLI reference</a></li><li class="level-4"><a href="#rosa-sts-about-operator-role-prefixes_rosa-hcp-explore-sts-resources-for-iam-clusters">About custom Operator IAM role prefixes</a></li><li class="level-4"><a href="#rosa-sts-oidc-provider-for-operators-aws-cli_rosa-hcp-explore-sts-resources-for-iam-clusters">Creating an OIDC provider using the CLI</a></li><li class="level-4"><a href="#rosa-byo-odic-overview_rosa-hcp-explore-sts-resources-for-iam-clusters">Creating an OpenID Connect Configuration</a></li><li class="level-4"><a href="#rosa-sts-byo-oidc_rosa-hcp-explore-sts-resources-for-iam-clusters">Creating an OpenID Connect configuration</a></li><li class="level-4"><a href="#rosa-sts-byo-oidc-options_rosa-hcp-explore-sts-resources-for-iam-clusters">Parameter options for creating your own OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-raw-files_rosa-hcp-explore-sts-resources-for-iam-clusters">raw-files</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-mode_rosa-hcp-explore-sts-resources-for-iam-clusters">mode</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-managed_rosa-hcp-explore-sts-resources-for-iam-clusters">managed</a></li><li class="level-4"><a href="#rosa-minimum-scp_rosa-hcp-explore-sts-resources-for-iam-clusters">Minimum set of effective permissions for service control policies (SCP)</a></li><li class="level-4"><a href="#rosa-aws-customer-managed-policies_rosa-hcp-explore-sts-resources-for-iam-clusters">Customer-managed policies</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-sts-understanding-ocm-role_rosa-hcp-explore-sts-resources-for-iam-clusters">Understanding the OpenShift Cluster Manager role</a></li><li class="level-5"><a href="#rosa-sts-understanding-user-role_rosa-hcp-explore-sts-resources-for-iam-clusters">Understanding the user role</a></li><li class="level-4"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-explore-sts-resources-for-iam-clusters">Creating an ocm-role IAM role</a></li><li class="level-4"><a href="#rosa-sts-account-wide-roles-and-policies_rosa-hcp-explore-sts-resources-for-iam-clusters">Account-wide IAM role and policy reference</a></li><li class="level-5"><a href="#rosa-sts-account-wide-roles-and-policies-creation-methods_rosa-hcp-explore-sts-resources-for-iam-clusters">Methods of account-wide role creation</a></li><li class="level-6"><a href="#rosa-sts-account-wide-roles-and-policies-creation-methods-manual_rosa-hcp-explore-sts-resources-for-iam-clusters">Manual ocm-role resource creation</a></li><li class="level-6"><a href="#rosa-sts-account-wide-roles-and-policies-creation-methods-auto_rosa-hcp-explore-sts-resources-for-iam-clusters">Automatic ocm-role resource creation</a></li><li class="level-4"><a href="#rosa-sts-account-wide-role-and-policy-aws-cli_rosa-hcp-explore-sts-resources-for-iam-clusters">Account-wide IAM role and policy AWS CLI reference</a></li><li class="level-5"><a href="#rosa-sts-account-wide-role-and-policy-aws-cli-manual-mode_rosa-hcp-explore-sts-resources-for-iam-clusters">Using manual mode for account role creation</a></li><li class="level-5"><a href="#rosa-sts-account-wide-role-and-policy-aws-cli-auto-mode_rosa-hcp-explore-sts-resources-for-iam-clusters">Using auto mode for role creation</a></li><li class="level-4"><a href="#rosa-sts-aws-requirements-attaching-boundary-policy_rosa-hcp-explore-sts-resources-for-iam-clusters">Permission boundaries for the installer role</a></li><li class="level-4"><a href="#rosa-sts-operator-roles_rosa-hcp-explore-sts-resources-for-iam-clusters">Cluster-specific Operator IAM role reference</a></li><li class="level-4"><a href="#rosa-sts-operator-role-aws-cli_rosa-hcp-explore-sts-resources-for-iam-clusters">Operator IAM role AWS CLI reference</a></li><li class="level-4"><a href="#rosa-sts-about-operator-role-prefixes_rosa-hcp-explore-sts-resources-for-iam-clusters">About custom Operator IAM role prefixes</a></li><li class="level-4"><a href="#rosa-sts-oidc-provider-for-operators-aws-cli_rosa-hcp-explore-sts-resources-for-iam-clusters">Create an OIDC provider using the ROSA CLI</a></li><li class="level-4"><a href="#rosa-byo-odic-overview_rosa-hcp-explore-sts-resources-for-iam-clusters">OpenID Connect configuration overview</a></li><li class="level-4"><a href="#rosa-sts-byo-oidc_rosa-hcp-explore-sts-resources-for-iam-clusters">Create an OpenID Connect configuration</a></li><li class="level-4"><a href="#rosa-sts-byo-oidc-options_rosa-hcp-explore-sts-resources-for-iam-clusters">Parameter options for creating your own OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-raw-files_rosa-hcp-explore-sts-resources-for-iam-clusters">raw-files</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-mode_rosa-hcp-explore-sts-resources-for-iam-clusters">mode</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-managed_rosa-hcp-explore-sts-resources-for-iam-clusters">managed</a></li><li class="level-4"><a href="#rosa-minimum-scp_rosa-hcp-explore-sts-resources-for-iam-clusters">Minimum set of effective permissions for service control policies (SCP)</a></li><li class="level-4"><a href="#rosa-aws-customer-managed-policies_rosa-hcp-explore-sts-resources-for-iam-clusters">Customer-managed policies</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-hcp-explore-sts-resources-for-iam-clusters_rosa-hcp-explore-sts-resources-for-iam-clusters">Explore STS resources for IAM clusters</h3>
@@ -2043,9 +1998,9 @@ requires cluster-specific Operator IAM roles.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-sts-oidc-provider-for-operators-aws-cli_rosa-hcp-explore-sts-resources-for-iam-clusters">Creating an OIDC provider using the CLI</h4>
-<div class="paragraph">
-<p>You can create an OIDC provider that is hosted in your AWS account with the Red&#160;Hat OpenShift Services on AWS (ROSA) CLI, <code>rosa</code>.</p>
+<h4 id="rosa-sts-oidc-provider-for-operators-aws-cli_rosa-hcp-explore-sts-resources-for-iam-clusters">Create an OIDC provider using the ROSA CLI</h4>
+<div class="paragraph _abstract">
+<p>Create an OpenID Connect (OIDC) provider that is hosted in your AWS account with the ROSA command-line interface (CLI) (<code>rosa</code>) to enable in-cluster Operators to authenticate with AWS resources.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -2059,7 +2014,7 @@ requires cluster-specific Operator IAM roles.</p>
 <div class="title">Procedure</div>
 <ul>
 <li>
-<p>To create an OIDC provider, by using an unregistered or a registered OIDC configuration.</p>
+<p>To create an OIDC provider, use an unregistered or a registered OIDC configuration.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2084,25 +2039,32 @@ requires cluster-specific Operator IAM roles.</p>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Command output</div>
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">aws iam create-open-id-connect-provider \
-	--url https://oidc.op1.openshiftapps.com/&lt;oidc_config_id&gt; \<img src="data:image/png;base64," alt="1">
+	--url https://oidc.op1.openshiftapps.com/&lt;oidc_config_id&gt; \
 	--client-id-list openshift sts.&lt;aws_region&gt;.amazonaws.com \
-	--thumbprint-list &lt;thumbprint&gt; <img src="data:image/png;base64," alt="2"></code></pre>
+	--thumbprint-list &lt;thumbprint&gt;</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><img src="data:image/png;base64," alt="1"></td>
-<td>The URL used to reach the OpenID Connect (OIDC) identity provider after the cluster is created.</td>
-</tr>
-<tr>
-<td><img src="data:image/png;base64," alt="2"></td>
-<td>The thumbprint is generated automatically when you run the <code>rosa create oidc-provider</code> command. For more information about using thumbprints with AWS Identity and Access Management (IAM) OIDC identity providers, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html">the AWS documentation</a>.</td>
-</tr>
-</table>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>&lt;oidc_config_id&gt;</code></dt>
+<dd>
+<p>Specifies the URL used to reach the OIDC identity provider after the cluster is created.</p>
+</dd>
+<dt class="hdlist1"><code>&lt;thumbprint&gt;</code></dt>
+<dd>
+<p>Specifies the thumbprint, which is generated automatically when you run the <code>rosa create oidc-provider</code> command. For more information about using thumbprints with AWS Identity and Access Management (IAM) OIDC identity providers, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html">Obtain the thumbprint for OIDC</a> (AWS documentation).</p>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </li>
 <li>
@@ -2113,7 +2075,7 @@ requires cluster-specific Operator IAM roles.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Command output</div>
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Creating OIDC provider using 'arn:aws:iam::4540112244:user/userName'
 I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdztaeq9o.cloudfront.net/241rh9ql5gpu99d7leokhvkp8icnalpf'</code></pre>
@@ -2127,15 +2089,21 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-byo-odic-overview_rosa-hcp-explore-sts-resources-for-iam-clusters">Creating an OpenID Connect Configuration</h4>
+<h4 id="rosa-byo-odic-overview_rosa-hcp-explore-sts-resources-for-iam-clusters">OpenID Connect configuration overview</h4>
+<div class="paragraph _abstract">
+<p>When using a cluster hosted by Red&#160;Hat, you can create a managed or unmanaged OpenID Connect (OIDC) configuration by using the ROSA command-line interface (CLI) (<code>rosa</code>). Your choice of OIDC configuration determines where the OIDC keys are stored.</p>
+</div>
 <div class="paragraph">
-<p>When using a cluster hosted by Red&#160;Hat, you can create a managed or unmanaged OpenID Connect (OIDC) configuration by using the Red&#160;Hat OpenShift Services on AWS (ROSA) CLI, <code>rosa</code>. A managed OIDC configuration is stored within Red&#160;Hat&#8217;s AWS account, while a generated unmanaged OIDC configuration is stored within your AWS account. The OIDC configuration is registered to be used with OpenShift Cluster Manager. When creating an unmanaged OIDC configuration, the CLI provides the private key for you.</p>
+<p>A managed OIDC configuration is stored within Red&#160;Hat&#8217;s AWS account, while a generated unmanaged OIDC configuration is stored within your AWS account. The OIDC configuration is registered to be used with OpenShift Cluster Manager. When creating an unmanaged OIDC configuration, the ROSA CLI provides the private key for you.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-sts-byo-oidc_rosa-hcp-explore-sts-resources-for-iam-clusters">Creating an OpenID Connect configuration</h4>
+<h4 id="rosa-sts-byo-oidc_rosa-hcp-explore-sts-resources-for-iam-clusters">Create an OpenID Connect configuration</h4>
 <div class="paragraph _abstract">
-<p>Red&#160;Hat OpenShift Services on AWS clusters use OIDC and the AWS Security Token Service (STS) to authenticate Operator access to AWS resources they require to perform their functions. Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS cluster, you can create the OpenID Connect (OIDC) configuration before creating your cluster.</p>
+<p>Red&#160;Hat OpenShift Services on AWS clusters use OpenID Connect (OIDC) and the AWS Security Token Service (STS) to authenticate Operator access to required AWS resources.</p>
+</div>
+<div class="paragraph">
+<p>Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS cluster, you can create the OIDC configuration before creating your cluster.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -2158,15 +2126,10 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create oidc-config --mode=auto --yes</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>This command returns the following information.</p>
-</div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red Hat hosted) OIDC Configuration Yes
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red{nbsp}Hat hosted) OIDC Configuration Yes
 I: Setting up managed OIDC configuration
 I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace &lt;user-defined&gt; with a prefix of your choice:
 	rosa create operator-roles --prefix &lt;user-defined&gt; --oidc-config-id 13cdr6b
@@ -2208,10 +2171,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo $OIDC_ID</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">13cdr6b</code></pre>
 </div>
@@ -2232,10 +2193,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list oidc-config</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">ID                                MANAGED  ISSUER URL                                                             SECRET ARN
 2330dbs0n8m3chkkr25gkkcd8pnj3lk2  true     https://dvbwgdztaeq9o.cloudfront.net/2330dbs0n8m3chkkr25gkkcd8pnj3lk2
@@ -2248,8 +2207,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 </div>
 <div class="sect3">
 <h4 id="rosa-sts-byo-oidc-options_rosa-hcp-explore-sts-resources-for-iam-clusters">Parameter options for creating your own OpenID Connect configuration</h4>
-<div class="paragraph">
-<p>The following options may be added to the <code>rosa create oidc-config</code> command. All of these parameters are optional. Running the <code>rosa create oidc-config</code> command without parameters creates an unmanaged OIDC configuration.</p>
+<div class="paragraph _abstract">
+<p>The <code>rosa create oidc-config</code> command accepts several optional parameters. Running the <code>rosa create oidc-config</code> command without parameters creates an unmanaged OpenID Connect (OIDC) configuration.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2271,7 +2230,7 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <p>Allows you to provide raw files for the private RSA key. This key is named <code>rosa-private-key-oidc-&lt;random_label_of_length_4&gt;.key</code>. You also receive a discovery document, named <code>discovery-document-oidc-&lt;random_label_of_length_4&gt;.json</code>, and a JSON Web Key Set, named <code>jwks-oidc-&lt;random_label_of_length_4&gt;.json</code>.</p>
 </div>
 <div class="paragraph">
-<p>You use these files to set up the endpoint. This endpoint responds to <code>/.well-known/openid-configuration</code> with the discovery document and on <code>keys.json</code> with the JSON Web Key Set. The private key is stored in Amazon Web Services (AWS) Secrets Manager Service (SMS) as plaintext.</p>
+<p>You use these files to set up the endpoint. This endpoint responds to <code>/.well-known/openid-configuration</code> with the discovery document and on <code>keys.json</code> with the JSON Web Key Set. The private key is stored in Amazon Web Services (AWS) Secrets Manager Service (SMS) as plain text.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example</div>
@@ -2283,10 +2242,10 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <div class="sect4">
 <h5 id="rosa-sts-byo-oidc-mode_rosa-hcp-explore-sts-resources-for-iam-clusters">mode</h5>
 <div class="paragraph">
-<p>Allows you to specify the mode to create your OIDC configuration. With the <code>manual</code> option, you receive AWS commands that set up the OIDC configuration in an S3 bucket. This option stores the private key in the Secrets Manager. With the <code>manual</code> option, the OIDC Endpoint URL is the URL for the S3 bucket. You must retrieve the Secrets Manager ARN to register the OIDC configuration with OpenShift Cluster Manager.</p>
+<p>Allows you to specify the mode to create your OIDC configuration. With the <code>manual</code> option, you receive AWS commands that set up the OIDC configuration in an S3 bucket. This option stores the private key in the Secrets Manager. With the <code>manual</code> option, the OIDC Endpoint URL is the URL for the S3 bucket. You must retrieve the Secrets Manager Amazon Resource Name (ARN) to register the OIDC configuration with OpenShift Cluster Manager.</p>
 </div>
 <div class="paragraph">
-<p>You receive the same OIDC configuration and AWS resources as the <code>manual</code> mode when using the <code>auto</code> option. A significant difference between the two options is that when using the <code>auto</code> option, ROSA calls AWS, so you do not need to take any further actions. The OIDC Endpoint URL is the URL for the S3 bucket. The CLI retrieves the Secrets Manager ARN, registers the OIDC configuration with OpenShift Cluster Manager, and reports the second <code>rosa</code> command that the user can run to continue with the creation of the STS cluster.</p>
+<p>You receive the same OIDC configuration and AWS resources as the <code>manual</code> mode when using the <code>auto</code> option. A significant difference between the two options is that when using the <code>auto</code> option, Red&#160;Hat OpenShift Services on AWS calls AWS, so you do not need to take any further actions. The OIDC Endpoint URL is the URL for the S3 bucket. The ROSA CLI retrieves the Secrets Manager ARN, registers the OIDC configuration with OpenShift Cluster Manager, and reports the second <code>rosa</code> command that the user can run to continue with the creation of the STS cluster.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example</div>

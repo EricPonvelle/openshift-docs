@@ -570,50 +570,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 <!-- navmap-right-toc-end -->
-<!-- navmap-preview-warning-start -->
-<style>
-  .navmap-preview-warning {
-    background: #fff1f1;
-    border: 2px solid #c9190b;
-    border-radius: 4px;
-    color: #3b0a0a;
-    font-family: "Open Sans", "DejaVu Sans", sans-serif;
-    margin: 1em auto;
-    max-width: 70em;
-    padding: 1em 1.25em;
-  }
-  .navmap-preview-warning strong { color: #a30000; }
-  .navmap-preview-warning details { margin-top: .75em; }
-  .navmap-preview-warning pre {
-    background: #fff;
-    border: 1px solid #d7d7d7;
-    max-height: 20em;
-    overflow: auto;
-    padding: .75em;
-    white-space: pre-wrap;
-  }
-</style>
-<!-- navmap-preview-warning-end -->
 </head>
 <body id="rosa-classic-understand-architecture_understand-rosa-classic-architecture" class="book toc2 toc-left navmap-has-right-toc">
-<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-classic/navigation.adoc
-
-Missing include targets:
-  maps/rosa-classic/hcm-jobs/rosa-classic-create-a-rosa-classic-cluster-using-the-cli.adoc:134
-    include::modules/rosa-deleting-cluster.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-classic/hcm-jobs/modules/rosa-deleting-cluster.adoc
-  maps/rosa-classic/hcm-jobs/rosa-classic-create-a-rosa-classic-cluster-using-ocm.adoc:137
-    include::modules/rosa-deleting-cluster.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-classic/hcm-jobs/modules/rosa-deleting-cluster.adoc
-  maps/rosa-classic/hcm-jobs/rosa-classic-delete-the-cluster.adoc:8
-    include::modules/rosa-deleting-cluster.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-classic/hcm-jobs/modules/rosa-deleting-cluster.adoc
-
-How to fix these errors:
-  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
-  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
-  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
-</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS (classic architecture)</h1>
 <div id="toc" class="toc2">
@@ -662,7 +620,7 @@ How to fix these errors:
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-sdpolicy-billing_understand-rosa-classic-architecture">Billing and pricing</a></li><li class="level-4"><a href="#rosa-classic-overview-of-responsibilities_overview-of-responsibilities">Overview of responsibilities</a></li><li class="level-5"><a href="#rosa-policy-responsibilities_overview-of-responsibilities">Shared responsibilities for Red Hat OpenShift Services on AWS (classic architecture)</a></li><li class="level-5"><a href="#rosa-policy-shared-responsibility_overview-of-responsibilities">Tasks for shared responsibilities by area</a></li><li class="level-5"><a href="#managed-cluster-notification-policy_overview-of-responsibilities">Cluster notification policy</a></li><li class="level-5"><a href="#rosa-policy-incident_overview-of-responsibilities">Incident and operations management</a></li><li class="level-6"><a href="#rosa-policy-platform-monitoring_overview-of-responsibilities">Platform monitoring</a></li><li class="level-6"><a href="#rosa-policy-incident-management_overview-of-responsibilities">Incident management</a></li><li class="level-6"><a href="#rosa-policy-cluster-capacity_overview-of-responsibilities">Cluster capacity</a></li><li class="level-5"><a href="#rosa-policy-change-management_overview-of-responsibilities">Change management</a></li><li class="level-6"><a href="#rosa-policy-customer-initiated-changes_overview-of-responsibilities">Customer-initiated changes</a></li><li class="level-6"><a href="#rosa-policy-red-hat-initiated-changes_overview-of-responsibilities">Red Hat-initiated changes</a></li><li class="level-6"><a href="#rosa-policy-patch-management_overview-of-responsibilities">Patch management</a></li><li class="level-6"><a href="#rosa-policy-release-management_overview-of-responsibilities">Release management</a></li><li class="level-6"><a href="#rosa-policy-resource-responsibilities_overview-of-responsibilities">Service and Customer resource responsibilities</a></li><li class="level-5"><a href="#rosa-policy-security-compliance_overview-of-responsibilities">Security and regulation compliance</a></li><li class="level-5"><a href="#rosa-policy-disaster-recovery_overview-of-responsibilities">Disaster recovery</a></li><li class="level-5"><a href="#sd-redhat-managed-resources_overview-of-responsibilities">Red Hat managed resources</a></li><li class="level-6"><a href="#sd-managed-resources-overview_sd-managed-resources">Overview</a></li><li class="level-6"><a href="#sd-managed-resources-all_sd-managed-resources">Managed resources</a></li><li class="level-6"><a href="#sd-core-namespaces_sd-managed-resources">Red Hat OpenShift Services on AWS (classic architecture) core namespaces</a></li><li class="level-6"><a href="#sd-add-on-managed-namespaces_sd-managed-resources">Red Hat OpenShift Services on AWS (classic architecture) add-on namespaces</a></li><li class="level-6"><a href="#sd-validating-webhooks_sd-managed-resources">Red Hat OpenShift Services on AWS (classic architecture) validating webhooks</a></li><li class="level-5"><a href="#rosa-policy-customer-responsibility_sd-managed-resources">Additional customer responsibilities for data and applications</a></li><li class="level-4"><a href="#rosa-classic-understanding-process-and-security_understanding-process-and-security">Understanding process and security</a></li><li class="level-5"><a href="#rosa-policy-security-regulation-compliance_understanding-process-and-security">Security and regulation compliance</a></li><li class="level-6"><a href="#rosa-policy-data-classification_understanding-process-and-security">Data classification</a></li><li class="level-6"><a href="#rosa-policy-data-management_understanding-process-and-security">Data management</a></li><li class="level-6"><a href="#rosa-policy-vulnerability-management_understanding-process-and-security">Vulnerability management</a></li><li class="level-6"><a href="#rosa-policy-network-security_understanding-process-and-security">Network security</a></li><li class="level-6"><a href="#rosa-policy-penetration-testing_understanding-process-and-security">Penetration testing</a></li><li class="level-6"><a href="#rosa-policy-compliance_understanding-process-and-security">Compliance</a></li><li class="level-4"><a href="#rosa-classic-sre-and-service-account-access_sre-and-service-account-access">SRE and service account access</a></li><li class="level-5"><a href="#rosa-policy-identity-access-management_sre-and-service-account-access">Identity and access management</a></li><li class="level-5"><a href="#sre-rosa-policy-subprocessors_sre-and-service-account-access">Subprocessors</a></li><li class="level-5"><a href="#sre-cluster-access_sre-and-service-account-access">SRE cluster access</a></li><li class="level-6"><a href="#rosa-policy-privileged-access-control_sre-and-service-account-access">Privileged access controls in ROSA</a></li><li class="level-6"><a href="#rosa-policy-sre-aws-infra-access_sre-and-service-account-access">SRE access to AWS accounts</a></li><li class="level-6"><a href="#rosa-sre-sts-view-aws-account_sre-and-service-account-access">SRE STS view of AWS accounts</a></li><li class="level-6"><a href="#rosa-sre-access-privatelink-vpc_sre-and-service-account-access">SRE access through PrivateLink VPC endpoint service</a></li><li class="level-5"><a href="#rosa-policy-rh-access_sre-and-service-account-access">Red Hat support access</a></li><li class="level-5"><a href="#rosa-policy-customer-access_sre-and-service-account-access">Customer access</a></li><li class="level-5"><a href="#rosa-policy-access-approval_sre-and-service-account-access">Access approval and review</a></li><li class="level-5"><a href="#how-service-accounts-assume-aws-iam-roles-in-sre-owned-projects_sre-and-service-account-access">How service accounts assume AWS IAM roles in SRE-owned projects</a></li><li class="level-6"><a href="#workflow-for-assuming-aws-iam-roles-in-sre-owned-projects_sre-and-service-account-access">Workflow for assuming AWS IAM roles in Red Hat SRE-owned projects</a></li><li class="level-4"><a href="#rosa-classic-about-iam-resources_about-iam-resources-for-sts-clusters">About IAM resources for STS clusters</a></li><li class="level-5"><a href="#rosa-sts-understanding-ocm-role_about-iam-resources-for-sts-clusters">Understanding the OpenShift Cluster Manager role</a></li><li class="level-6"><a href="#rosa-sts-understanding-user-role_about-iam-resources-for-sts-clusters">Understanding the user role</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_about-iam-resources-for-sts-clusters">Creating an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-account-wide-roles-and-policies_about-iam-resources-for-sts-clusters">Account-wide IAM role and policy reference</a></li><li class="level-6"><a href="#rosa-sts-account-wide-roles-and-policies-creation-methods_about-iam-resources-for-sts-clusters">Methods of account-wide role creation</a></li><li class="level-5"><a href="#rosa-sts-account-wide-role-and-policy-aws-cli_about-iam-resources-for-sts-clusters">Account-wide IAM role and policy AWS CLI reference</a></li><li class="level-6"><a href="#rosa-sts-account-wide-role-and-policy-aws-cli-manual-mode_about-iam-resources-for-sts-clusters">Using manual mode for account role creation</a></li><li class="level-6"><a href="#rosa-sts-account-wide-role-and-policy-aws-cli-auto-mode_about-iam-resources-for-sts-clusters">Using auto mode for role creation</a></li><li class="level-5"><a href="#rosa-sts-aws-requirements-attaching-boundary-policy_about-iam-resources-for-sts-clusters">Permission boundaries for the installer role</a></li><li class="level-5"><a href="#rosa-sts-operator-roles_about-iam-resources-for-sts-clusters">Cluster-specific Operator IAM role reference</a></li><li class="level-5"><a href="#rosa-sts-operator-role-aws-cli_about-iam-resources-for-sts-clusters">Operator IAM role AWS CLI reference</a></li><li class="level-5"><a href="#rosa-sts-about-operator-role-prefixes_about-iam-resources-for-sts-clusters">About custom Operator IAM role prefixes</a></li><li class="level-5"><a href="#rosa-sts-oidc-provider-for-operators-aws-cli_about-iam-resources-for-sts-clusters">Creating an OIDC provider using the CLI</a></li><li class="level-5"><a href="#rosa-byo-odic-overview_about-iam-resources-for-sts-clusters">Creating an OpenID Connect Configuration</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc_about-iam-resources-for-sts-clusters">Creating an OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-options_about-iam-resources-for-sts-clusters">Parameter options for creating your own OpenID Connect configuration</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-raw-files_about-iam-resources-for-sts-clusters">raw-files</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-mode_about-iam-resources-for-sts-clusters">mode</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-managed_about-iam-resources-for-sts-clusters">managed</a></li><li class="level-5"><a href="#rosa-minimum-scp_about-iam-resources-for-sts-clusters">Minimum set of effective permissions for service control policies (SCP)</a></li><li class="level-5"><a href="#rosa-aws-customer-managed-policies_about-iam-resources-for-sts-clusters">Customer-managed policies</a></li><li class="level-4"><a href="#rosa-classic-openid-connect-overview_openid-connect-overview">OpenID Connect Overview</a></li><li class="level-5"><a href="#rosa-oidc-understanding_openid-connect-overview">Understanding the OIDC verification options</a></li><li class="level-5"><a href="#rosa-byo-odic-overview_openid-connect-overview">Creating an OpenID Connect Configuration</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc_openid-connect-overview">Creating an OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-options_openid-connect-overview">Parameter options for creating your own OpenID Connect configuration</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-raw-files_openid-connect-overview">raw-files</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-mode_openid-connect-overview">mode</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-managed_openid-connect-overview">managed</a></li><li class="level-5"><a href="#rosa-sts-oidc-provider-for-operators-aws-cli_openid-connect-overview">Creating an OIDC provider using the CLI</a></li><li class="level-4"><a href="#rosa-classic-about-availability_about-availability">About Availability</a></li><li class="level-5"><a href="#rosa-policy-failure-points_about-availability">Potential points of failure</a></li><li class="level-6"><a href="#rosa-policy-container-pod-failure_about-availability">Container or pod failure</a></li><li class="level-6"><a href="#rosa-policy-worker-node-failure_about-availability">Worker node failure</a></li><li class="level-6"><a href="#rosa-policy-container-cluster-failure_about-availability">Cluster failure</a></li><li class="level-6"><a href="#rosa-policy-container-zone-failure_about-availability">Zone failure</a></li><li class="level-6"><a href="#rosa-policy-container-storage-failure_about-availability">Storage failure</a></li><li class="level-4"><a href="#rosa-classic-service-definition_service-definition">Service definition</a></li><li class="level-5"><a href="#rosa-sdpolicy-account-management_service-definition">Account management</a></li><li class="level-5"><a href="#rosa-sdpolicy-billing_service-definition">Billing and pricing</a></li><li class="level-5"><a href="#rosa-sdpolicy-cluster-self-service_service-definition">Cluster self-service</a></li><li class="level-5"><a href="#rosa-sdpolicy-instance-types_service-definition">Instance types</a></li><li class="level-5"><a href="#rosa-sdpolicy-regions-az_service-definition">Regions and availability zones</a></li><li class="level-5"><a href="#rosa-sdpolicy-am-local-zones_service-definition">Local Zones</a></li><li class="level-5"><a href="#rosa-sdpolicy-sla_service-definition">Service Level Agreement (SLA)</a></li><li class="level-5"><a href="#rosa-limited-support_service-definition">Limited support status</a></li><li class="level-5"><a href="#rosa-sdpolicy-support_service-definition">Support</a></li><li class="level-5"><a href="#rosa-sdpolicy-logging_service-definition">Logging</a></li><li class="level-6"><a href="#rosa-sdpolicy-cluster-audit-logging_service-definition">Cluster audit logging</a></li><li class="level-6"><a href="#rosa-sdpolicy-application-logging_service-definition">Application logging</a></li><li class="level-5"><a href="#rosa-sdpolicy-monitoring_service-definition">Monitoring</a></li><li class="level-6"><a href="#rosa-sdpolicy-cluster-metrics_service-definition">Cluster metrics</a></li><li class="level-6"><a href="#rosa-sdpolicy-cluster-status-notifications_service-definition">Cluster notifications</a></li><li class="level-5"><a href="#rosa-sdpolicy-networking_service-definition">Networking</a></li><li class="level-6"><a href="#rosa-sdpolicy-custom-domains_service-definition">Custom domains for applications</a></li><li class="level-6"><a href="#rosa-sdpolicy-validated-certificates_service-definition">Domain validated certificates</a></li><li class="level-6"><a href="#rosa-sdpolicy-custom-certificates_service-definition">Custom certificate authorities for builds</a></li><li class="level-6"><a href="#rosa-sdpolicy-load-balancers_service-definition">Load balancers</a></li><li class="level-6"><a href="#rosa-sdpolicy-cluster-ingress_service-definition">Cluster ingress</a></li><li class="level-6"><a href="#rosa-sdpolicy-cluster-egress_service-definition">Cluster egress</a></li><li class="level-6"><a href="#rosa-sdpolicy-cloud-network-config_service-definition">Cloud network configuration</a></li><li class="level-6"><a href="#rosa-sdpolicy-dns-forwarding_service-definition">DNS forwarding</a></li><li class="level-6"><a href="#rosa-sdpolicy-network-verification_service-definition">Network verification</a></li><li class="level-5"><a href="#rosa-sdpolicy-storage_service-definition">Storage</a></li><li class="level-6"><a href="#rosa-sdpolicy-encrytpted-at-rest-storage_service-definition">Encrypted-at-rest OS and node storage</a></li><li class="level-6"><a href="#rosa-sdpolicy-encrytpted-at-rest-pv_service-definition">Encrypted-at-rest PV</a></li><li class="level-6"><a href="#rosa-sdpolicy-block-storage_service-definition">Block storage (RWO)</a></li><li class="level-6"><a href="#_shared_storage_rwx">Shared Storage (RWX)</a></li><li class="level-5"><a href="#rosa-sdpolicy-platform_service-definition">Platform</a></li><li class="level-6"><a href="#rosa-sdpolicy-autoscaling_service-definition">Autoscaling</a></li><li class="level-6"><a href="#rosa-sdpolicy-daemonsets_service-definition">Daemonsets</a></li><li class="level-6"><a href="#rosa-sdpolicy-multiple-availability-zone_service-definition">Multiple availability zone</a></li><li class="level-6"><a href="#rosa-sdpolicy-node-labels_service-definition">Node labels</a></li><li class="level-6"><a href="#rosa-sdpolicy-node-lifecycle_service-definition">Node lifecycle</a></li><li class="level-6"><a href="#rosa-sdpolicy-backup-policy_service-definition">Cluster backup policy</a></li><li class="level-6"><a href="#rosa-sdpolicy-openshift-version_service-definition">OpenShift version</a></li><li class="level-6"><a href="#rosa-sdpolicy-upgrades_service-definition">Upgrades</a></li><li class="level-6"><a href="#rosa-sdpolicy-window-containers_service-definition">Windows Containers</a></li><li class="level-6"><a href="#rosa-sdpolicy-container-engine_service-definition">Container engine</a></li><li class="level-6"><a href="#rosa-sdpolicy-operating-system_service-definition">Operating system</a></li><li class="level-6"><a href="#rosa-sdpolicy-red-hat-operator_service-definition">Red Hat Operator support</a></li><li class="level-6"><a href="#rosa-sdpolicy-kubernetes-operator_service-definition">Kubernetes Operator support</a></li><li class="level-5"><a href="#rosa-sdpolicy-security_service-definition">Security</a></li><li class="level-6"><a href="#rosa-sdpolicy-auth-provider_service-definition">Authentication provider</a></li><li class="level-6"><a href="#rosa-sdpolicy-privileged-containers_service-definition">Privileged containers</a></li><li class="level-6"><a href="#rosa-sdpolicy-customer-admin-user_service-definition">Customer administrator user</a></li><li class="level-6"><a href="#rosa-sdpolicy-cluster-admin-role_service-definition">Cluster administration role</a></li><li class="level-6"><a href="#rosa-sdpolicy-project-self-service_service-definition">Project self-service</a></li><li class="level-6"><a href="#rosa-sdpolicy-regulatory-compliance_service-definition">Regulatory compliance</a></li><li class="level-6"><a href="#rosa-sdpolicy-network-security_service-definition">Network security</a></li><li class="level-6"><a href="#rosa-sdpolicy-etcd-encryption_service-definition">etcd encryption</a></li><li class="level-4"><a href="#rosa-classic-instance-types_instance-types">Instance types</a></li><li class="level-5"><a href="#rosa-sdpolicy-aws-instance-types_instance-types">AWS x86-based instance types</a></li><li class="level-4"><a href="#rosa-classic-update-life-cycle_update-life-cycle">Update life cycle</a></li><li class="level-5"><a href="#life-cycle-overview_update-life-cycle">Overview</a></li><li class="level-5"><a href="#rosa-life-cycle-definitions_update-life-cycle">Definitions</a></li><li class="level-5"><a href="#rosa-major-versions_update-life-cycle">Major versions (X.y.z)</a></li><li class="level-5"><a href="#rosa-minor-versions_update-life-cycle">Minor versions (x.Y.z)</a></li><li class="level-5"><a href="#rosa-patch-versions_update-life-cycle">Patch versions (x.y.Z)</a></li><li class="level-5"><a href="#rosa-limited-support_update-life-cycle">Limited support status</a></li><li class="level-5"><a href="#rosa-supported-versions_update-life-cycle">Supported versions exception policy</a></li><li class="level-5"><a href="#rosa-install-policy_update-life-cycle">Installation policy</a></li><li class="level-5"><a href="#rosa-mandatory-upgrades_update-life-cycle">Mandatory upgrades</a></li><li class="level-5"><a href="#sd-life-cycle-dates_update-life-cycle">Life cycle dates</a></li><li class="level-5"><a href="#govcloud-life-cycle-dates_update-life-cycle">Life cycle dates for Red Hat OpenShift Services on AWS (classic architecture) in AWS GovCloud</a></li><li class="level-4"><a href="#rosa-classic-cluster-manager-overview_red-hat-openshift-cluster-manager-overview">Red Hat OpenShift Cluster Manager overview</a></li><li class="level-5"><a href="#accessing-ocm_red-hat-openshift-cluster-manager-overview">Access Red Hat OpenShift Cluster Manager</a></li><li class="level-5"><a href="#ocm-general-actions_red-hat-openshift-cluster-manager-overview">General actions</a></li><li class="level-5"><a href="#ocm-cluster-tabs_red-hat-openshift-cluster-manager-overview">Cluster tabs</a></li><li class="level-5"><a href="#ocm-overview-tab_red-hat-openshift-cluster-manager-overview">Overview tab</a></li><li class="level-5"><a href="#ocm-accesscontrol-tab_red-hat-openshift-cluster-manager-overview">Access control tab</a></li><li class="level-5"><a href="#ocm-accesscontrol-tab-identity-providers_red-hat-openshift-cluster-manager-overview">Identity providers</a></li><li class="level-5"><a href="#ocm-accesscontrol-tab-cluster-roles-access_red-hat-openshift-cluster-manager-overview">Cluster roles and access</a></li><li class="level-5"><a href="#ocm-accesscontrol-tab-ocm-roles-access_red-hat-openshift-cluster-manager-overview">OCM roles and access</a></li><li class="level-5"><a href="#ocm-accesscontrol-tab-transfer-ownership_red-hat-openshift-cluster-manager-overview">Transfer ownership</a></li><li class="level-5"><a href="#ocm-addons-tab_red-hat-openshift-cluster-manager-overview">Add-ons tab</a></li><li class="level-5"><a href="#ocm-cluster-history-tab_red-hat-openshift-cluster-manager-overview">Cluster history tab</a></li><li class="level-5"><a href="#ocm-networking-tab_red-hat-openshift-cluster-manager-overview">Networking tab</a></li><li class="level-5"><a href="#ocm-networking-tab-adding-ingress_red-hat-openshift-cluster-manager-overview">Adding a network Ingress to your Red Hat OpenShift Services on AWS (classic architecture) cluster</a></li><li class="level-5"><a href="#ocm-machinepools-tab_red-hat-openshift-cluster-manager-overview">Machine pools tab</a></li><li class="level-5"><a href="#ocm-support-tab_red-hat-openshift-cluster-manager-overview">Support tab</a></li><li class="level-5"><a href="#ocm-settings-tab_red-hat-openshift-cluster-manager-overview">Settings tab</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-sdpolicy-billing_understand-rosa-classic-architecture">Billing and pricing</a></li><li class="level-4"><a href="#rosa-classic-overview-of-responsibilities_overview-of-responsibilities">Overview of responsibilities</a></li><li class="level-5"><a href="#rosa-policy-responsibilities_overview-of-responsibilities">Shared responsibilities for Red Hat OpenShift Services on AWS (classic architecture)</a></li><li class="level-5"><a href="#rosa-policy-shared-responsibility_overview-of-responsibilities">Tasks for shared responsibilities by area</a></li><li class="level-5"><a href="#managed-cluster-notification-policy_overview-of-responsibilities">Cluster notification policy</a></li><li class="level-5"><a href="#rosa-policy-incident_overview-of-responsibilities">Incident and operations management</a></li><li class="level-6"><a href="#rosa-policy-platform-monitoring_overview-of-responsibilities">Platform monitoring</a></li><li class="level-6"><a href="#rosa-policy-incident-management_overview-of-responsibilities">Incident management</a></li><li class="level-6"><a href="#rosa-policy-cluster-capacity_overview-of-responsibilities">Cluster capacity</a></li><li class="level-5"><a href="#rosa-policy-change-management_overview-of-responsibilities">Change management</a></li><li class="level-6"><a href="#rosa-policy-customer-initiated-changes_overview-of-responsibilities">Customer-initiated changes</a></li><li class="level-6"><a href="#rosa-policy-red-hat-initiated-changes_overview-of-responsibilities">Red Hat-initiated changes</a></li><li class="level-6"><a href="#rosa-policy-patch-management_overview-of-responsibilities">Patch management</a></li><li class="level-6"><a href="#rosa-policy-release-management_overview-of-responsibilities">Release management</a></li><li class="level-6"><a href="#rosa-policy-resource-responsibilities_overview-of-responsibilities">Service and Customer resource responsibilities</a></li><li class="level-5"><a href="#rosa-policy-security-compliance_overview-of-responsibilities">Security and regulation compliance</a></li><li class="level-5"><a href="#rosa-policy-disaster-recovery_overview-of-responsibilities">Disaster recovery</a></li><li class="level-5"><a href="#sd-redhat-managed-resources_overview-of-responsibilities">Red Hat managed resources</a></li><li class="level-6"><a href="#sd-managed-resources-overview_sd-managed-resources">Overview</a></li><li class="level-6"><a href="#sd-managed-resources-all_sd-managed-resources">Managed resources</a></li><li class="level-6"><a href="#sd-core-namespaces_sd-managed-resources">Red Hat OpenShift Services on AWS (classic architecture) core namespaces</a></li><li class="level-6"><a href="#sd-add-on-managed-namespaces_sd-managed-resources">Red Hat OpenShift Services on AWS (classic architecture) add-on namespaces</a></li><li class="level-6"><a href="#sd-validating-webhooks_sd-managed-resources">Red Hat OpenShift Services on AWS (classic architecture) validating webhooks</a></li><li class="level-5"><a href="#rosa-policy-customer-responsibility_sd-managed-resources">Additional customer responsibilities for data and applications</a></li><li class="level-4"><a href="#rosa-classic-understanding-process-and-security_understanding-process-and-security">Understanding process and security</a></li><li class="level-5"><a href="#rosa-policy-security-regulation-compliance_understanding-process-and-security">Security and regulation compliance</a></li><li class="level-6"><a href="#rosa-policy-data-classification_understanding-process-and-security">Data classification</a></li><li class="level-6"><a href="#rosa-policy-data-management_understanding-process-and-security">Data management</a></li><li class="level-6"><a href="#rosa-policy-vulnerability-management_understanding-process-and-security">Vulnerability management</a></li><li class="level-6"><a href="#rosa-policy-network-security_understanding-process-and-security">Network security</a></li><li class="level-6"><a href="#rosa-policy-penetration-testing_understanding-process-and-security">Penetration testing</a></li><li class="level-6"><a href="#rosa-policy-compliance_understanding-process-and-security">Compliance</a></li><li class="level-4"><a href="#rosa-classic-sre-and-service-account-access_sre-and-service-account-access">SRE and service account access</a></li><li class="level-5"><a href="#rosa-policy-identity-access-management_sre-and-service-account-access">Identity and access management</a></li><li class="level-5"><a href="#sre-rosa-policy-subprocessors_sre-and-service-account-access">Subprocessors</a></li><li class="level-5"><a href="#sre-cluster-access_sre-and-service-account-access">SRE cluster access</a></li><li class="level-6"><a href="#rosa-policy-privileged-access-control_sre-and-service-account-access">Privileged access controls in ROSA</a></li><li class="level-6"><a href="#rosa-policy-sre-aws-infra-access_sre-and-service-account-access">SRE access to AWS accounts</a></li><li class="level-6"><a href="#rosa-sre-sts-view-aws-account_sre-and-service-account-access">SRE STS view of AWS accounts</a></li><li class="level-6"><a href="#rosa-sre-access-privatelink-vpc_sre-and-service-account-access">SRE access through PrivateLink VPC endpoint service</a></li><li class="level-5"><a href="#rosa-policy-rh-access_sre-and-service-account-access">Red Hat support access</a></li><li class="level-5"><a href="#rosa-policy-customer-access_sre-and-service-account-access">Customer access</a></li><li class="level-5"><a href="#rosa-policy-access-approval_sre-and-service-account-access">Access approval and review</a></li><li class="level-5"><a href="#how-service-accounts-assume-aws-iam-roles-in-sre-owned-projects_sre-and-service-account-access">How service accounts assume AWS IAM roles in SRE-owned projects</a></li><li class="level-6"><a href="#workflow-for-assuming-aws-iam-roles-in-sre-owned-projects_sre-and-service-account-access">Workflow for assuming AWS IAM roles in Red Hat SRE-owned projects</a></li><li class="level-4"><a href="#rosa-classic-about-iam-resources_about-iam-resources-for-sts-clusters">About IAM resources for STS clusters</a></li><li class="level-5"><a href="#rosa-sts-understanding-ocm-role_about-iam-resources-for-sts-clusters">Understanding the OpenShift Cluster Manager role</a></li><li class="level-6"><a href="#rosa-sts-understanding-user-role_about-iam-resources-for-sts-clusters">Understanding the user role</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_about-iam-resources-for-sts-clusters">Creating an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-account-wide-roles-and-policies_about-iam-resources-for-sts-clusters">Account-wide IAM role and policy reference</a></li><li class="level-6"><a href="#rosa-sts-account-wide-roles-and-policies-creation-methods_about-iam-resources-for-sts-clusters">Methods of account-wide role creation</a></li><li class="level-5"><a href="#rosa-sts-account-wide-role-and-policy-aws-cli_about-iam-resources-for-sts-clusters">Account-wide IAM role and policy AWS CLI reference</a></li><li class="level-6"><a href="#rosa-sts-account-wide-role-and-policy-aws-cli-manual-mode_about-iam-resources-for-sts-clusters">Using manual mode for account role creation</a></li><li class="level-6"><a href="#rosa-sts-account-wide-role-and-policy-aws-cli-auto-mode_about-iam-resources-for-sts-clusters">Using auto mode for role creation</a></li><li class="level-5"><a href="#rosa-sts-aws-requirements-attaching-boundary-policy_about-iam-resources-for-sts-clusters">Permission boundaries for the installer role</a></li><li class="level-5"><a href="#rosa-sts-operator-roles_about-iam-resources-for-sts-clusters">Cluster-specific Operator IAM role reference</a></li><li class="level-5"><a href="#rosa-sts-operator-role-aws-cli_about-iam-resources-for-sts-clusters">Operator IAM role AWS CLI reference</a></li><li class="level-5"><a href="#rosa-sts-about-operator-role-prefixes_about-iam-resources-for-sts-clusters">About custom Operator IAM role prefixes</a></li><li class="level-5"><a href="#rosa-sts-oidc-provider-for-operators-aws-cli_about-iam-resources-for-sts-clusters">Create an OIDC provider using the ROSA CLI</a></li><li class="level-5"><a href="#rosa-byo-odic-overview_about-iam-resources-for-sts-clusters">OpenID Connect configuration overview</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc_about-iam-resources-for-sts-clusters">Create an OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-options_about-iam-resources-for-sts-clusters">Parameter options for creating your own OpenID Connect configuration</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-raw-files_about-iam-resources-for-sts-clusters">raw-files</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-mode_about-iam-resources-for-sts-clusters">mode</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-managed_about-iam-resources-for-sts-clusters">managed</a></li><li class="level-5"><a href="#rosa-minimum-scp_about-iam-resources-for-sts-clusters">Minimum set of effective permissions for service control policies (SCP)</a></li><li class="level-5"><a href="#rosa-aws-customer-managed-policies_about-iam-resources-for-sts-clusters">Customer-managed policies</a></li><li class="level-4"><a href="#rosa-classic-openid-connect-overview_openid-connect-overview">OpenID Connect Overview</a></li><li class="level-5"><a href="#rosa-oidc-understanding_openid-connect-overview">Understanding the OIDC verification options</a></li><li class="level-5"><a href="#rosa-byo-odic-overview_openid-connect-overview">OpenID Connect configuration overview</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc_openid-connect-overview">Create an OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-options_openid-connect-overview">Parameter options for creating your own OpenID Connect configuration</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-raw-files_openid-connect-overview">raw-files</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-mode_openid-connect-overview">mode</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-managed_openid-connect-overview">managed</a></li><li class="level-5"><a href="#rosa-sts-oidc-provider-for-operators-aws-cli_openid-connect-overview">Create an OIDC provider using the ROSA CLI</a></li><li class="level-4"><a href="#rosa-classic-about-availability_about-availability">About Availability</a></li><li class="level-5"><a href="#rosa-policy-failure-points_about-availability">Potential points of failure</a></li><li class="level-6"><a href="#rosa-policy-container-pod-failure_about-availability">Container or pod failure</a></li><li class="level-6"><a href="#rosa-policy-worker-node-failure_about-availability">Worker node failure</a></li><li class="level-6"><a href="#rosa-policy-container-cluster-failure_about-availability">Cluster failure</a></li><li class="level-6"><a href="#rosa-policy-container-zone-failure_about-availability">Zone failure</a></li><li class="level-6"><a href="#rosa-policy-container-storage-failure_about-availability">Storage failure</a></li><li class="level-4"><a href="#rosa-classic-service-definition_service-definition">Service definition</a></li><li class="level-5"><a href="#rosa-sdpolicy-account-management_service-definition">Account management</a></li><li class="level-5"><a href="#rosa-sdpolicy-billing_service-definition">Billing and pricing</a></li><li class="level-5"><a href="#rosa-sdpolicy-cluster-self-service_service-definition">Cluster self-service</a></li><li class="level-5"><a href="#rosa-sdpolicy-instance-types_service-definition">Instance types</a></li><li class="level-5"><a href="#rosa-sdpolicy-regions-az_service-definition">Regions and availability zones</a></li><li class="level-5"><a href="#rosa-sdpolicy-am-local-zones_service-definition">Local Zones</a></li><li class="level-5"><a href="#rosa-sdpolicy-sla_service-definition">Service Level Agreement (SLA)</a></li><li class="level-5"><a href="#rosa-limited-support_service-definition">Limited support status</a></li><li class="level-5"><a href="#rosa-sdpolicy-support_service-definition">Support</a></li><li class="level-5"><a href="#rosa-sdpolicy-logging_service-definition">Logging</a></li><li class="level-6"><a href="#rosa-sdpolicy-cluster-audit-logging_service-definition">Cluster audit logging</a></li><li class="level-6"><a href="#rosa-sdpolicy-application-logging_service-definition">Application logging</a></li><li class="level-5"><a href="#rosa-sdpolicy-monitoring_service-definition">Monitoring</a></li><li class="level-6"><a href="#rosa-sdpolicy-cluster-metrics_service-definition">Cluster metrics</a></li><li class="level-6"><a href="#rosa-sdpolicy-cluster-status-notifications_service-definition">Cluster notifications</a></li><li class="level-5"><a href="#rosa-sdpolicy-networking_service-definition">Networking</a></li><li class="level-6"><a href="#rosa-sdpolicy-custom-domains_service-definition">Custom domains for applications</a></li><li class="level-6"><a href="#rosa-sdpolicy-validated-certificates_service-definition">Domain validated certificates</a></li><li class="level-6"><a href="#rosa-sdpolicy-custom-certificates_service-definition">Custom certificate authorities for builds</a></li><li class="level-6"><a href="#rosa-sdpolicy-load-balancers_service-definition">Load balancers</a></li><li class="level-6"><a href="#rosa-sdpolicy-cluster-ingress_service-definition">Cluster ingress</a></li><li class="level-6"><a href="#rosa-sdpolicy-cluster-egress_service-definition">Cluster egress</a></li><li class="level-6"><a href="#rosa-sdpolicy-cloud-network-config_service-definition">Cloud network configuration</a></li><li class="level-6"><a href="#rosa-sdpolicy-dns-forwarding_service-definition">DNS forwarding</a></li><li class="level-6"><a href="#rosa-sdpolicy-network-verification_service-definition">Network verification</a></li><li class="level-5"><a href="#rosa-sdpolicy-storage_service-definition">Storage</a></li><li class="level-6"><a href="#rosa-sdpolicy-encrytpted-at-rest-storage_service-definition">Encrypted-at-rest OS and node storage</a></li><li class="level-6"><a href="#rosa-sdpolicy-encrytpted-at-rest-pv_service-definition">Encrypted-at-rest PV</a></li><li class="level-6"><a href="#rosa-sdpolicy-block-storage_service-definition">Block storage (RWO)</a></li><li class="level-6"><a href="#_shared_storage_rwx">Shared Storage (RWX)</a></li><li class="level-5"><a href="#rosa-sdpolicy-platform_service-definition">Platform</a></li><li class="level-6"><a href="#rosa-sdpolicy-autoscaling_service-definition">Autoscaling</a></li><li class="level-6"><a href="#rosa-sdpolicy-daemonsets_service-definition">Daemonsets</a></li><li class="level-6"><a href="#rosa-sdpolicy-multiple-availability-zone_service-definition">Multiple availability zone</a></li><li class="level-6"><a href="#rosa-sdpolicy-node-labels_service-definition">Node labels</a></li><li class="level-6"><a href="#rosa-sdpolicy-node-lifecycle_service-definition">Node lifecycle</a></li><li class="level-6"><a href="#rosa-sdpolicy-backup-policy_service-definition">Cluster backup policy</a></li><li class="level-6"><a href="#rosa-sdpolicy-openshift-version_service-definition">OpenShift version</a></li><li class="level-6"><a href="#rosa-sdpolicy-upgrades_service-definition">Upgrades</a></li><li class="level-6"><a href="#rosa-sdpolicy-window-containers_service-definition">Windows Containers</a></li><li class="level-6"><a href="#rosa-sdpolicy-container-engine_service-definition">Container engine</a></li><li class="level-6"><a href="#rosa-sdpolicy-operating-system_service-definition">Operating system</a></li><li class="level-6"><a href="#rosa-sdpolicy-red-hat-operator_service-definition">Red Hat Operator support</a></li><li class="level-6"><a href="#rosa-sdpolicy-kubernetes-operator_service-definition">Kubernetes Operator support</a></li><li class="level-5"><a href="#rosa-sdpolicy-security_service-definition">Security</a></li><li class="level-6"><a href="#rosa-sdpolicy-auth-provider_service-definition">Authentication provider</a></li><li class="level-6"><a href="#rosa-sdpolicy-privileged-containers_service-definition">Privileged containers</a></li><li class="level-6"><a href="#rosa-sdpolicy-customer-admin-user_service-definition">Customer administrator user</a></li><li class="level-6"><a href="#rosa-sdpolicy-cluster-admin-role_service-definition">Cluster administration role</a></li><li class="level-6"><a href="#rosa-sdpolicy-project-self-service_service-definition">Project self-service</a></li><li class="level-6"><a href="#rosa-sdpolicy-regulatory-compliance_service-definition">Regulatory compliance</a></li><li class="level-6"><a href="#rosa-sdpolicy-network-security_service-definition">Network security</a></li><li class="level-6"><a href="#rosa-sdpolicy-etcd-encryption_service-definition">etcd encryption</a></li><li class="level-4"><a href="#rosa-classic-instance-types_instance-types">Instance types</a></li><li class="level-5"><a href="#rosa-sdpolicy-aws-instance-types_instance-types">AWS x86-based instance types</a></li><li class="level-4"><a href="#rosa-classic-update-life-cycle_update-life-cycle">Update life cycle</a></li><li class="level-5"><a href="#life-cycle-overview_update-life-cycle">Overview</a></li><li class="level-5"><a href="#rosa-life-cycle-definitions_update-life-cycle">Definitions</a></li><li class="level-5"><a href="#rosa-major-versions_update-life-cycle">Major versions (X.y.z)</a></li><li class="level-5"><a href="#rosa-minor-versions_update-life-cycle">Minor versions (x.Y.z)</a></li><li class="level-5"><a href="#rosa-patch-versions_update-life-cycle">Patch versions (x.y.Z)</a></li><li class="level-5"><a href="#rosa-limited-support_update-life-cycle">Limited support status</a></li><li class="level-5"><a href="#rosa-supported-versions_update-life-cycle">Supported versions exception policy</a></li><li class="level-5"><a href="#rosa-install-policy_update-life-cycle">Installation policy</a></li><li class="level-5"><a href="#rosa-mandatory-upgrades_update-life-cycle">Mandatory upgrades</a></li><li class="level-5"><a href="#sd-life-cycle-dates_update-life-cycle">Life cycle dates</a></li><li class="level-5"><a href="#govcloud-life-cycle-dates_update-life-cycle">Life cycle dates for Red Hat OpenShift Services on AWS (classic architecture) in AWS GovCloud</a></li><li class="level-4"><a href="#rosa-classic-cluster-manager-overview_red-hat-openshift-cluster-manager-overview">Red Hat OpenShift Cluster Manager overview</a></li><li class="level-5"><a href="#accessing-ocm_red-hat-openshift-cluster-manager-overview">Access Red Hat OpenShift Cluster Manager</a></li><li class="level-5"><a href="#ocm-general-actions_red-hat-openshift-cluster-manager-overview">General actions</a></li><li class="level-5"><a href="#ocm-cluster-tabs_red-hat-openshift-cluster-manager-overview">Cluster tabs</a></li><li class="level-5"><a href="#ocm-overview-tab_red-hat-openshift-cluster-manager-overview">Overview tab</a></li><li class="level-5"><a href="#ocm-accesscontrol-tab_red-hat-openshift-cluster-manager-overview">Access control tab</a></li><li class="level-5"><a href="#ocm-accesscontrol-tab-identity-providers_red-hat-openshift-cluster-manager-overview">Identity providers</a></li><li class="level-5"><a href="#ocm-accesscontrol-tab-cluster-roles-access_red-hat-openshift-cluster-manager-overview">Cluster roles and access</a></li><li class="level-5"><a href="#ocm-accesscontrol-tab-ocm-roles-access_red-hat-openshift-cluster-manager-overview">OCM roles and access</a></li><li class="level-5"><a href="#ocm-accesscontrol-tab-transfer-ownership_red-hat-openshift-cluster-manager-overview">Transfer ownership</a></li><li class="level-5"><a href="#ocm-addons-tab_red-hat-openshift-cluster-manager-overview">Add-ons tab</a></li><li class="level-5"><a href="#ocm-cluster-history-tab_red-hat-openshift-cluster-manager-overview">Cluster history tab</a></li><li class="level-5"><a href="#ocm-networking-tab_red-hat-openshift-cluster-manager-overview">Networking tab</a></li><li class="level-5"><a href="#ocm-networking-tab-adding-ingress_red-hat-openshift-cluster-manager-overview">Adding a network Ingress to your Red Hat OpenShift Services on AWS (classic architecture) cluster</a></li><li class="level-5"><a href="#ocm-machinepools-tab_red-hat-openshift-cluster-manager-overview">Machine pools tab</a></li><li class="level-5"><a href="#ocm-support-tab_red-hat-openshift-cluster-manager-overview">Support tab</a></li><li class="level-5"><a href="#ocm-settings-tab_red-hat-openshift-cluster-manager-overview">Settings tab</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-classic-understand-architecture_understand-rosa-classic-architecture">Understand Red Hat OpenShift Service on AWS classic architecture</h3>
@@ -6695,9 +6653,9 @@ that uses the AWS Security Token Service (STS) requires cluster-specific Operato
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-oidc-provider-for-operators-aws-cli_about-iam-resources-for-sts-clusters">Creating an OIDC provider using the CLI</h5>
-<div class="paragraph">
-<p>You can create an OIDC provider that is hosted in your AWS account with the Red&#160;Hat OpenShift Services on AWS (classic architecture) (ROSA) CLI, <code>rosa</code>.</p>
+<h5 id="rosa-sts-oidc-provider-for-operators-aws-cli_about-iam-resources-for-sts-clusters">Create an OIDC provider using the ROSA CLI</h5>
+<div class="paragraph _abstract">
+<p>Create an OpenID Connect (OIDC) provider that is hosted in your AWS account with the ROSA command-line interface (CLI) (<code>rosa</code>) to enable in-cluster Operators to authenticate with AWS resources.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -6711,7 +6669,7 @@ that uses the AWS Security Token Service (STS) requires cluster-specific Operato
 <div class="title">Procedure</div>
 <ul>
 <li>
-<p>To create an OIDC provider, by using an unregistered or a registered OIDC configuration.</p>
+<p>To create an OIDC provider, use an unregistered or a registered OIDC configuration.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -6736,25 +6694,32 @@ that uses the AWS Security Token Service (STS) requires cluster-specific Operato
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Command output</div>
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">aws iam create-open-id-connect-provider \
-	--url https://oidc.op1.openshiftapps.com/&lt;oidc_config_id&gt; \<img src="data:image/png;base64," alt="1">
+	--url https://oidc.op1.openshiftapps.com/&lt;oidc_config_id&gt; \
 	--client-id-list openshift sts.&lt;aws_region&gt;.amazonaws.com \
-	--thumbprint-list &lt;thumbprint&gt; <img src="data:image/png;base64," alt="2"></code></pre>
+	--thumbprint-list &lt;thumbprint&gt;</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><img src="data:image/png;base64," alt="1"></td>
-<td>The URL used to reach the OpenID Connect (OIDC) identity provider after the cluster is created.</td>
-</tr>
-<tr>
-<td><img src="data:image/png;base64," alt="2"></td>
-<td>The thumbprint is generated automatically when you run the <code>rosa create oidc-provider</code> command. For more information about using thumbprints with AWS Identity and Access Management (IAM) OIDC identity providers, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html">the AWS documentation</a>.</td>
-</tr>
-</table>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>&lt;oidc_config_id&gt;</code></dt>
+<dd>
+<p>Specifies the URL used to reach the OIDC identity provider after the cluster is created.</p>
+</dd>
+<dt class="hdlist1"><code>&lt;thumbprint&gt;</code></dt>
+<dd>
+<p>Specifies the thumbprint, which is generated automatically when you run the <code>rosa create oidc-provider</code> command. For more information about using thumbprints with AWS Identity and Access Management (IAM) OIDC identity providers, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html">Obtain the thumbprint for OIDC</a> (AWS documentation).</p>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </li>
 <li>
@@ -6765,7 +6730,7 @@ that uses the AWS Security Token Service (STS) requires cluster-specific Operato
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Command output</div>
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Creating OIDC provider using 'arn:aws:iam::4540112244:user/userName'
 I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdztaeq9o.cloudfront.net/241rh9ql5gpu99d7leokhvkp8icnalpf'</code></pre>
@@ -6779,15 +6744,21 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-byo-odic-overview_about-iam-resources-for-sts-clusters">Creating an OpenID Connect Configuration</h5>
+<h5 id="rosa-byo-odic-overview_about-iam-resources-for-sts-clusters">OpenID Connect configuration overview</h5>
+<div class="paragraph _abstract">
+<p>When using a cluster hosted by Red&#160;Hat, you can create a managed or unmanaged OpenID Connect (OIDC) configuration by using the ROSA command-line interface (CLI) (<code>rosa</code>). Your choice of OIDC configuration determines where the OIDC keys are stored.</p>
+</div>
 <div class="paragraph">
-<p>When using a cluster hosted by Red&#160;Hat, you can create a managed or unmanaged OpenID Connect (OIDC) configuration by using the Red&#160;Hat OpenShift Services on AWS (classic architecture) (ROSA) CLI, <code>rosa</code>. A managed OIDC configuration is stored within Red&#160;Hat&#8217;s AWS account, while a generated unmanaged OIDC configuration is stored within your AWS account. The OIDC configuration is registered to be used with OpenShift Cluster Manager. When creating an unmanaged OIDC configuration, the CLI provides the private key for you.</p>
+<p>A managed OIDC configuration is stored within Red&#160;Hat&#8217;s AWS account, while a generated unmanaged OIDC configuration is stored within your AWS account. The OIDC configuration is registered to be used with OpenShift Cluster Manager. When creating an unmanaged OIDC configuration, the ROSA CLI provides the private key for you.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-byo-oidc_about-iam-resources-for-sts-clusters">Creating an OpenID Connect configuration</h5>
+<h5 id="rosa-sts-byo-oidc_about-iam-resources-for-sts-clusters">Create an OpenID Connect configuration</h5>
 <div class="paragraph _abstract">
-<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters use OIDC and the AWS Security Token Service (STS) to authenticate Operator access to AWS resources they require to perform their functions. Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, you can create the OpenID Connect (OIDC) configuration before creating your cluster.</p>
+<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters use OpenID Connect (OIDC) and the AWS Security Token Service (STS) to authenticate Operator access to required AWS resources.</p>
+</div>
+<div class="paragraph">
+<p>Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, you can create the OIDC configuration before creating your cluster.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -6810,15 +6781,10 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create oidc-config --mode=auto --yes</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>This command returns the following information.</p>
-</div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red Hat hosted) OIDC Configuration Yes
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red{nbsp}Hat hosted) OIDC Configuration Yes
 I: Setting up managed OIDC configuration
 I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace &lt;user-defined&gt; with a prefix of your choice:
 	rosa create operator-roles --prefix &lt;user-defined&gt; --oidc-config-id 13cdr6b
@@ -6860,10 +6826,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo $OIDC_ID</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">13cdr6b</code></pre>
 </div>
@@ -6884,10 +6848,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list oidc-config</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">ID                                MANAGED  ISSUER URL                                                             SECRET ARN
 2330dbs0n8m3chkkr25gkkcd8pnj3lk2  true     https://dvbwgdztaeq9o.cloudfront.net/2330dbs0n8m3chkkr25gkkcd8pnj3lk2
@@ -6900,8 +6862,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 </div>
 <div class="sect4">
 <h5 id="rosa-sts-byo-oidc-options_about-iam-resources-for-sts-clusters">Parameter options for creating your own OpenID Connect configuration</h5>
-<div class="paragraph">
-<p>The following options may be added to the <code>rosa create oidc-config</code> command. All of these parameters are optional. Running the <code>rosa create oidc-config</code> command without parameters creates an unmanaged OIDC configuration.</p>
+<div class="paragraph _abstract">
+<p>The <code>rosa create oidc-config</code> command accepts several optional parameters. Running the <code>rosa create oidc-config</code> command without parameters creates an unmanaged OpenID Connect (OIDC) configuration.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -6923,7 +6885,7 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <p>Allows you to provide raw files for the private RSA key. This key is named <code>rosa-private-key-oidc-&lt;random_label_of_length_4&gt;.key</code>. You also receive a discovery document, named <code>discovery-document-oidc-&lt;random_label_of_length_4&gt;.json</code>, and a JSON Web Key Set, named <code>jwks-oidc-&lt;random_label_of_length_4&gt;.json</code>.</p>
 </div>
 <div class="paragraph">
-<p>You use these files to set up the endpoint. This endpoint responds to <code>/.well-known/openid-configuration</code> with the discovery document and on <code>keys.json</code> with the JSON Web Key Set. The private key is stored in Amazon Web Services (AWS) Secrets Manager Service (SMS) as plaintext.</p>
+<p>You use these files to set up the endpoint. This endpoint responds to <code>/.well-known/openid-configuration</code> with the discovery document and on <code>keys.json</code> with the JSON Web Key Set. The private key is stored in Amazon Web Services (AWS) Secrets Manager Service (SMS) as plain text.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example</div>
@@ -6935,10 +6897,10 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <div class="sect5">
 <h6 id="rosa-sts-byo-oidc-mode_about-iam-resources-for-sts-clusters">mode</h6>
 <div class="paragraph">
-<p>Allows you to specify the mode to create your OIDC configuration. With the <code>manual</code> option, you receive AWS commands that set up the OIDC configuration in an S3 bucket. This option stores the private key in the Secrets Manager. With the <code>manual</code> option, the OIDC Endpoint URL is the URL for the S3 bucket. You must retrieve the Secrets Manager ARN to register the OIDC configuration with OpenShift Cluster Manager.</p>
+<p>Allows you to specify the mode to create your OIDC configuration. With the <code>manual</code> option, you receive AWS commands that set up the OIDC configuration in an S3 bucket. This option stores the private key in the Secrets Manager. With the <code>manual</code> option, the OIDC Endpoint URL is the URL for the S3 bucket. You must retrieve the Secrets Manager Amazon Resource Name (ARN) to register the OIDC configuration with OpenShift Cluster Manager.</p>
 </div>
 <div class="paragraph">
-<p>You receive the same OIDC configuration and AWS resources as the <code>manual</code> mode when using the <code>auto</code> option. A significant difference between the two options is that when using the <code>auto</code> option, ROSA calls AWS, so you do not need to take any further actions. The OIDC Endpoint URL is the URL for the S3 bucket. The CLI retrieves the Secrets Manager ARN, registers the OIDC configuration with OpenShift Cluster Manager, and reports the second <code>rosa</code> command that the user can run to continue with the creation of the STS cluster.</p>
+<p>You receive the same OIDC configuration and AWS resources as the <code>manual</code> mode when using the <code>auto</code> option. A significant difference between the two options is that when using the <code>auto</code> option, Red&#160;Hat OpenShift Services on AWS (classic architecture) calls AWS, so you do not need to take any further actions. The OIDC Endpoint URL is the URL for the S3 bucket. The ROSA CLI retrieves the Secrets Manager ARN, registers the OIDC configuration with OpenShift Cluster Manager, and reports the second <code>rosa</code> command that the user can run to continue with the creation of the STS cluster.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example</div>
@@ -7800,8 +7762,8 @@ The ability to attach these policies to ROSA-specific IAM roles extends a ROSA c
 </div>
 <div class="sect4">
 <h5 id="rosa-oidc-understanding_openid-connect-overview">Understanding the OIDC verification options</h5>
-<div class="paragraph">
-<p>You can configure the following types of OIDC verification:</p>
+<div class="paragraph _abstract">
+<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) supports three OpenID Connect (OIDC) configuration types: unregistered managed, registered managed, and registered unmanaged. Each offers different levels of control over where the configuration is hosted and who manages the private key.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -7820,7 +7782,7 @@ The ability to attach these policies to ROSA-specific IAM roles extends a ROSA c
 <li>
 <p>Registered, unmanaged OIDC configuration</p>
 <div class="paragraph">
-<p>You can create a registered, unmanaged OIDC configuration before you start creating your clusters. This configuration is hosted under your AWS account. When you use this option, you are responsible for managing the private key. You can register the configuration with Red Hat OpenShift Cluster Manager by storing the private key in an AWS secrets file by using the AWS Secrets Manager (SM) service and the issuer URL which hosts the configuration. You can use the Red&#160;Hat OpenShift Services on AWS (classic architecture) (ROSA) CLI, <code>rosa</code>, to create a registered, unmanaged OIDC configuration with the <code>rosa create oidc-config --managed=false</code> command. This command creates and hosts the configuration under your account and creates the necessary files and private secret key. This command also registers the configuration with OpenShift Cluster Manager.</p>
+<p>You can create a registered, unmanaged OIDC configuration before you start creating your clusters. This configuration is hosted under your AWS account. When you use this option, you are responsible for managing the private key. You can register the configuration with Red Hat OpenShift Cluster Manager by storing the private key in an AWS secrets file by using the AWS Secrets Manager (SM) service and the issuer URL which hosts the configuration. You can use the ROSA command-line interface (CLI) (<code>rosa</code>), to create a registered, unmanaged OIDC configuration with the <code>rosa create oidc-config --managed=false</code> command. This command creates and hosts the configuration under your account and creates the necessary files and private secret key. This command also registers the configuration with OpenShift Cluster Manager.</p>
 </div>
 </li>
 </ul>
@@ -7829,7 +7791,7 @@ The ability to attach these policies to ROSA-specific IAM roles extends a ROSA c
 <p>The registered options can be used to create the required IAM resources before you start creating a cluster. This option results in faster install times since there is a waiting period during cluster creation where the installation pauses until you create an OIDC provider and Operator roles.</p>
 </div>
 <div class="paragraph">
-<p>For ROSA Classic, you may use any of the OIDC configuration options. If you are using ROSA with HCP, you must create registered OIDC configuration, either as managed or unmanaged. You can share the registered OIDC configurations with other clusters. This ability to share the configuration also allows you to share the provider and Operator roles.</p>
+<p>For Red Hat OpenShift Service on AWS (classic architecture), you can use any of the OIDC configuration options. If you are using ROSA with HCP, you must create registered OIDC configuration, either as managed or unmanaged. You can share the registered OIDC configurations with other clusters. This ability to share the configuration also allows you to share the provider and Operator roles.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -7847,15 +7809,21 @@ The ability to attach these policies to ROSA-specific IAM roles extends a ROSA c
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-byo-odic-overview_openid-connect-overview">Creating an OpenID Connect Configuration</h5>
+<h5 id="rosa-byo-odic-overview_openid-connect-overview">OpenID Connect configuration overview</h5>
+<div class="paragraph _abstract">
+<p>When using a cluster hosted by Red&#160;Hat, you can create a managed or unmanaged OpenID Connect (OIDC) configuration by using the ROSA command-line interface (CLI) (<code>rosa</code>). Your choice of OIDC configuration determines where the OIDC keys are stored.</p>
+</div>
 <div class="paragraph">
-<p>When using a cluster hosted by Red&#160;Hat, you can create a managed or unmanaged OpenID Connect (OIDC) configuration by using the Red&#160;Hat OpenShift Services on AWS (classic architecture) (ROSA) CLI, <code>rosa</code>. A managed OIDC configuration is stored within Red&#160;Hat&#8217;s AWS account, while a generated unmanaged OIDC configuration is stored within your AWS account. The OIDC configuration is registered to be used with OpenShift Cluster Manager. When creating an unmanaged OIDC configuration, the CLI provides the private key for you.</p>
+<p>A managed OIDC configuration is stored within Red&#160;Hat&#8217;s AWS account, while a generated unmanaged OIDC configuration is stored within your AWS account. The OIDC configuration is registered to be used with OpenShift Cluster Manager. When creating an unmanaged OIDC configuration, the ROSA CLI provides the private key for you.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-byo-oidc_openid-connect-overview">Creating an OpenID Connect configuration</h5>
+<h5 id="rosa-sts-byo-oidc_openid-connect-overview">Create an OpenID Connect configuration</h5>
 <div class="paragraph _abstract">
-<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters use OIDC and the AWS Security Token Service (STS) to authenticate Operator access to AWS resources they require to perform their functions. Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, you can create the OpenID Connect (OIDC) configuration before creating your cluster.</p>
+<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters use OpenID Connect (OIDC) and the AWS Security Token Service (STS) to authenticate Operator access to required AWS resources.</p>
+</div>
+<div class="paragraph">
+<p>Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, you can create the OIDC configuration before creating your cluster.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -7878,15 +7846,10 @@ The ability to attach these policies to ROSA-specific IAM roles extends a ROSA c
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create oidc-config --mode=auto --yes</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>This command returns the following information.</p>
-</div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red Hat hosted) OIDC Configuration Yes
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red{nbsp}Hat hosted) OIDC Configuration Yes
 I: Setting up managed OIDC configuration
 I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace &lt;user-defined&gt; with a prefix of your choice:
 	rosa create operator-roles --prefix &lt;user-defined&gt; --oidc-config-id 13cdr6b
@@ -7928,10 +7891,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo $OIDC_ID</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">13cdr6b</code></pre>
 </div>
@@ -7952,10 +7913,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list oidc-config</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">ID                                MANAGED  ISSUER URL                                                             SECRET ARN
 2330dbs0n8m3chkkr25gkkcd8pnj3lk2  true     https://dvbwgdztaeq9o.cloudfront.net/2330dbs0n8m3chkkr25gkkcd8pnj3lk2
@@ -7968,8 +7927,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 </div>
 <div class="sect4">
 <h5 id="rosa-sts-byo-oidc-options_openid-connect-overview">Parameter options for creating your own OpenID Connect configuration</h5>
-<div class="paragraph">
-<p>The following options may be added to the <code>rosa create oidc-config</code> command. All of these parameters are optional. Running the <code>rosa create oidc-config</code> command without parameters creates an unmanaged OIDC configuration.</p>
+<div class="paragraph _abstract">
+<p>The <code>rosa create oidc-config</code> command accepts several optional parameters. Running the <code>rosa create oidc-config</code> command without parameters creates an unmanaged OpenID Connect (OIDC) configuration.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -7991,7 +7950,7 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <p>Allows you to provide raw files for the private RSA key. This key is named <code>rosa-private-key-oidc-&lt;random_label_of_length_4&gt;.key</code>. You also receive a discovery document, named <code>discovery-document-oidc-&lt;random_label_of_length_4&gt;.json</code>, and a JSON Web Key Set, named <code>jwks-oidc-&lt;random_label_of_length_4&gt;.json</code>.</p>
 </div>
 <div class="paragraph">
-<p>You use these files to set up the endpoint. This endpoint responds to <code>/.well-known/openid-configuration</code> with the discovery document and on <code>keys.json</code> with the JSON Web Key Set. The private key is stored in Amazon Web Services (AWS) Secrets Manager Service (SMS) as plaintext.</p>
+<p>You use these files to set up the endpoint. This endpoint responds to <code>/.well-known/openid-configuration</code> with the discovery document and on <code>keys.json</code> with the JSON Web Key Set. The private key is stored in Amazon Web Services (AWS) Secrets Manager Service (SMS) as plain text.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example</div>
@@ -8003,10 +7962,10 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <div class="sect5">
 <h6 id="rosa-sts-byo-oidc-mode_openid-connect-overview">mode</h6>
 <div class="paragraph">
-<p>Allows you to specify the mode to create your OIDC configuration. With the <code>manual</code> option, you receive AWS commands that set up the OIDC configuration in an S3 bucket. This option stores the private key in the Secrets Manager. With the <code>manual</code> option, the OIDC Endpoint URL is the URL for the S3 bucket. You must retrieve the Secrets Manager ARN to register the OIDC configuration with OpenShift Cluster Manager.</p>
+<p>Allows you to specify the mode to create your OIDC configuration. With the <code>manual</code> option, you receive AWS commands that set up the OIDC configuration in an S3 bucket. This option stores the private key in the Secrets Manager. With the <code>manual</code> option, the OIDC Endpoint URL is the URL for the S3 bucket. You must retrieve the Secrets Manager Amazon Resource Name (ARN) to register the OIDC configuration with OpenShift Cluster Manager.</p>
 </div>
 <div class="paragraph">
-<p>You receive the same OIDC configuration and AWS resources as the <code>manual</code> mode when using the <code>auto</code> option. A significant difference between the two options is that when using the <code>auto</code> option, ROSA calls AWS, so you do not need to take any further actions. The OIDC Endpoint URL is the URL for the S3 bucket. The CLI retrieves the Secrets Manager ARN, registers the OIDC configuration with OpenShift Cluster Manager, and reports the second <code>rosa</code> command that the user can run to continue with the creation of the STS cluster.</p>
+<p>You receive the same OIDC configuration and AWS resources as the <code>manual</code> mode when using the <code>auto</code> option. A significant difference between the two options is that when using the <code>auto</code> option, Red&#160;Hat OpenShift Services on AWS (classic architecture) calls AWS, so you do not need to take any further actions. The OIDC Endpoint URL is the URL for the S3 bucket. The ROSA CLI retrieves the Secrets Manager ARN, registers the OIDC configuration with OpenShift Cluster Manager, and reports the second <code>rosa</code> command that the user can run to continue with the creation of the STS cluster.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example</div>
@@ -8042,9 +8001,9 @@ I: Created OIDC provider with ARN 'arn:aws:iam::242819244:oidc-provider/dvbwgdzt
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-oidc-provider-for-operators-aws-cli_openid-connect-overview">Creating an OIDC provider using the CLI</h5>
-<div class="paragraph">
-<p>You can create an OIDC provider that is hosted in your AWS account with the Red&#160;Hat OpenShift Services on AWS (classic architecture) (ROSA) CLI, <code>rosa</code>.</p>
+<h5 id="rosa-sts-oidc-provider-for-operators-aws-cli_openid-connect-overview">Create an OIDC provider using the ROSA CLI</h5>
+<div class="paragraph _abstract">
+<p>Create an OpenID Connect (OIDC) provider that is hosted in your AWS account with the ROSA command-line interface (CLI) (<code>rosa</code>) to enable in-cluster Operators to authenticate with AWS resources.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -8058,7 +8017,7 @@ I: Created OIDC provider with ARN 'arn:aws:iam::242819244:oidc-provider/dvbwgdzt
 <div class="title">Procedure</div>
 <ul>
 <li>
-<p>To create an OIDC provider, by using an unregistered or a registered OIDC configuration.</p>
+<p>To create an OIDC provider, use an unregistered or a registered OIDC configuration.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -8083,25 +8042,32 @@ I: Created OIDC provider with ARN 'arn:aws:iam::242819244:oidc-provider/dvbwgdzt
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Command output</div>
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">aws iam create-open-id-connect-provider \
-	--url https://oidc.op1.openshiftapps.com/&lt;oidc_config_id&gt; \<img src="data:image/png;base64," alt="1">
+	--url https://oidc.op1.openshiftapps.com/&lt;oidc_config_id&gt; \
 	--client-id-list openshift sts.&lt;aws_region&gt;.amazonaws.com \
-	--thumbprint-list &lt;thumbprint&gt; <img src="data:image/png;base64," alt="2"></code></pre>
+	--thumbprint-list &lt;thumbprint&gt;</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><img src="data:image/png;base64," alt="1"></td>
-<td>The URL used to reach the OpenID Connect (OIDC) identity provider after the cluster is created.</td>
-</tr>
-<tr>
-<td><img src="data:image/png;base64," alt="2"></td>
-<td>The thumbprint is generated automatically when you run the <code>rosa create oidc-provider</code> command. For more information about using thumbprints with AWS Identity and Access Management (IAM) OIDC identity providers, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html">the AWS documentation</a>.</td>
-</tr>
-</table>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>&lt;oidc_config_id&gt;</code></dt>
+<dd>
+<p>Specifies the URL used to reach the OIDC identity provider after the cluster is created.</p>
+</dd>
+<dt class="hdlist1"><code>&lt;thumbprint&gt;</code></dt>
+<dd>
+<p>Specifies the thumbprint, which is generated automatically when you run the <code>rosa create oidc-provider</code> command. For more information about using thumbprints with AWS Identity and Access Management (IAM) OIDC identity providers, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html">Obtain the thumbprint for OIDC</a> (AWS documentation).</p>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </li>
 <li>
@@ -8112,7 +8078,7 @@ I: Created OIDC provider with ARN 'arn:aws:iam::242819244:oidc-provider/dvbwgdzt
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Command output</div>
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Creating OIDC provider using 'arn:aws:iam::4540112244:user/userName'
 I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdztaeq9o.cloudfront.net/241rh9ql5gpu99d7leokhvkp8icnalpf'</code></pre>

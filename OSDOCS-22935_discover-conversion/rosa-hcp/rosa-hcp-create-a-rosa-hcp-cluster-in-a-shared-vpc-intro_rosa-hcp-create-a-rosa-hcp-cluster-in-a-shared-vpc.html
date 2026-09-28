@@ -570,53 +570,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 <!-- navmap-right-toc-end -->
-<!-- navmap-preview-warning-start -->
-<style>
-  .navmap-preview-warning {
-    background: #fff1f1;
-    border: 2px solid #c9190b;
-    border-radius: 4px;
-    color: #3b0a0a;
-    font-family: "Open Sans", "DejaVu Sans", sans-serif;
-    margin: 1em auto;
-    max-width: 70em;
-    padding: 1em 1.25em;
-  }
-  .navmap-preview-warning strong { color: #a30000; }
-  .navmap-preview-warning details { margin-top: .75em; }
-  .navmap-preview-warning pre {
-    background: #fff;
-    border: 1px solid #d7d7d7;
-    max-height: 20em;
-    overflow: auto;
-    padding: .75em;
-    white-space: pre-wrap;
-  }
-</style>
-<!-- navmap-preview-warning-end -->
 </head>
 <body id="rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-intro_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc" class="book toc2 toc-left navmap-has-right-toc">
-<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-hcp/navigation.adoc
-
-Missing include targets:
-  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-cli.adoc:104
-    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
-  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-the-hybrid-cloud-console.adoc:104
-    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
-  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-using-terraform.adoc:23
-    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
-  maps/rosa-hcp/hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli.adoc:92
-    include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-set-environment-variables.adoc
-
-How to fix these errors:
-  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
-  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
-  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
-</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
@@ -691,7 +646,7 @@ How to fix these errors:
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli-intro_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Create a ROSA HCP Cluster in a Shared VPC using the CLI</a></li><li class="level-5"><a href="#rosa-hcp-sharing-vpc-creation-and-sharing_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Step One - VPC Owner: Configuring a VPC to share within your AWS organization</a></li><li class="level-5"><a href="#rosa-hcp-sharing-vpc-dns-and-roles_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Step Two - Cluster Creator: Reserving your DNS entries and creating cluster Operator roles</a></li><li class="level-5"><a href="#rosa-hcp-sharing-vpc-hosted-zones_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Step Three - VPC Owner: Updating the shared VPC role and creating hosted zones</a></li><li class="level-5"><a href="#rosa-hcp-sharing-vpc-cluster-creation_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Step Four - Cluster Creator: Creating your cluster in a shared VPC</a></li><li class="level-5"><a href="#rosa-hcp-prerequisites_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Red Hat OpenShift Services on AWS prerequisites</a></li><li class="level-5"><a href="#rosa-hcp-quickstart-creating-vpc_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Virtual Private Cloud for your Red Hat OpenShift Services on AWS clusters</a></li><li class="level-5"><a href="#rosa-hcp-create-network_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating an AWS VPC using the ROSA CLI</a></li><li class="level-5"><a href="#rosa-hcp-vpc-manual_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Requirements for manually creating an AWS Virtual Private Cloud</a></li><li class="level-5"><a href="#troubleshooting_shared-vpc-hcp_vpc-creation_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Troubleshooting cluster creation</a></li><li class="level-5"><a href="#rosa-hcp-vpc-subnet-tagging_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Tagging your subnets</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-creating-account-wide-sts-roles-and-policies_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating the account-wide STS roles and policies</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating an OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-operator-config_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating Operator roles and policies</a></li><li class="level-5"><a href="#creating-cluster-with-aws-kms-key_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Red Hat OpenShift Services on AWS cluster using a custom AWS KMS key</a></li><li class="level-5"><a href="#aws-encryption-key_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Create an AWS KMS encryption key</a></li><li class="level-5"><a href="#rosa-glossary-disconnected_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Glossary of network environment terms</a></li><li class="level-5"><a href="#rosa-hcp-aws-private-create-cluster_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a private Red Hat OpenShift Services on AWS cluster using the ROSA CLI</a></li><li class="level-5"><a href="#rosa-hcp-aws-private-security-groups_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Adding additional AWS security groups to the AWS PrivateLink endpoint</a></li><li class="level-5"><a href="#rosa-additional-principals-overview_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Additional principals on your Red Hat OpenShift Services on AWS cluster</a></li><li class="level-5"><a href="#rosa-additional-principals-create_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Adding additional principals while creating your Red Hat OpenShift Services on AWS cluster</a></li><li class="level-5"><a href="#rosa-additional-principals-edit_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Adding additional principals to your existing Red Hat OpenShift Services on AWS cluster</a></li><li class="level-5"><a href="#rosa-hcp-sts-creating-a-cluster-egress-lockdown-cli_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating Red Hat OpenShift Services on AWS clusters with egress zero using the CLI</a></li><li class="level-5"><a href="#rosa-hcp-sts-creating-a-cluster-cli_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli-no-cni">Creating the cluster without a CNI plugin</a></li><li class="level-5"><a href="#rosa-hcp-no-cni-install-cni-plugin_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Installing a CNI plugin</a></li><li class="level-5"><a href="#rosa-hcp-egress-zero-additional-prerequisites_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Additional prerequisites for egress zero install</a></li><li class="level-5"><a href="#rosa-hcp-egress-zero-install-creating_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Virtual Private Cloud for your Red Hat OpenShift Services on AWS clusters</a></li><li class="level-5"><a href="#rosa-hcp-vpc-subnet-tagging-rosa-network_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Tagging your subnets</a></li><li class="level-5"><a href="#rosa-hcp-vpc-terraform_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Virtual Private Cloud using Terraform</a></li><li class="level-5"><a href="#rosa-hcp-vpc-aws_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a VPC using the AWS CLI</a></li><li class="level-5"><a href="#rosa-hcp-sts-creating-a-cluster-external-auth-cluster-cli_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Red Hat OpenShift Services on AWS cluster that uses external authentication</a></li><li class="level-5"><a href="#rosa-hcp-sts-creating-a-cluster-external-auth-provider-cli_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating an external authentication provider</a></li><li class="level-5"><a href="#rosa-hcp-sts-example-microsoft-entra-id-configuration_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Configuring Microsoft Entra ID as an external provider</a></li><li class="level-5"><a href="#creating-cluster-with-fips-encryption_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Red Hat OpenShift Services on AWS cluster using FIPS encryption</a></li><li class="level-5"><a href="#creating-cluster-with-fips-encryption-cli_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Red Hat OpenShift Services on AWS cluster using FIPS encryption in the CLI</a></li><li class="level-5"><a href="#creating-cluster-with-fips-encryption-ui_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Red Hat OpenShift Services on AWS cluster using FIPS encryption in Red Hat OpenShift Cluster Manager</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli-intro_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Create a ROSA HCP Cluster in a Shared VPC using the CLI</a></li><li class="level-5"><a href="#rosa-hcp-sharing-vpc-creation-and-sharing_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Step One - VPC Owner: Configuring a VPC to share within your AWS organization</a></li><li class="level-5"><a href="#rosa-hcp-sharing-vpc-dns-and-roles_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Step Two - Cluster Creator: Reserving your DNS entries and creating cluster Operator roles</a></li><li class="level-5"><a href="#rosa-hcp-sharing-vpc-hosted-zones_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Step Three - VPC Owner: Updating the shared VPC role and creating hosted zones</a></li><li class="level-5"><a href="#rosa-hcp-sharing-vpc-cluster-creation_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Step Four - Cluster Creator: Creating your cluster in a shared VPC</a></li><li class="level-5"><a href="#rosa-hcp-prerequisites_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Red Hat OpenShift Services on AWS prerequisites</a></li><li class="level-5"><a href="#rosa-hcp-quickstart-creating-vpc_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Virtual Private Cloud for your Red Hat OpenShift Services on AWS clusters</a></li><li class="level-5"><a href="#rosa-hcp-create-network_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating an AWS VPC using the ROSA CLI</a></li><li class="level-5"><a href="#rosa-hcp-vpc-manual_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Requirements for manually creating an AWS Virtual Private Cloud</a></li><li class="level-5"><a href="#troubleshooting_shared-vpc-hcp_vpc-creation_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Troubleshooting cluster creation</a></li><li class="level-5"><a href="#rosa-hcp-vpc-subnet-tagging_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Tagging your subnets</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-creating-account-wide-sts-roles-and-policies_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating the account-wide STS roles and policies</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Create an OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-operator-config_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating Operator roles and policies</a></li><li class="level-5"><a href="#creating-cluster-with-aws-kms-key_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Red Hat OpenShift Services on AWS cluster using a custom AWS KMS key</a></li><li class="level-5"><a href="#aws-encryption-key_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Create an AWS KMS encryption key</a></li><li class="level-5"><a href="#rosa-glossary-disconnected_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Glossary of network environment terms</a></li><li class="level-5"><a href="#rosa-hcp-aws-private-create-cluster_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a private Red Hat OpenShift Services on AWS cluster using the ROSA CLI</a></li><li class="level-5"><a href="#rosa-hcp-aws-private-security-groups_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Adding additional AWS security groups to the AWS PrivateLink endpoint</a></li><li class="level-5"><a href="#rosa-additional-principals-overview_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Additional principals on your Red Hat OpenShift Services on AWS cluster</a></li><li class="level-5"><a href="#rosa-additional-principals-create_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Adding additional principals while creating your Red Hat OpenShift Services on AWS cluster</a></li><li class="level-5"><a href="#rosa-additional-principals-edit_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Adding additional principals to your existing Red Hat OpenShift Services on AWS cluster</a></li><li class="level-5"><a href="#rosa-hcp-sts-creating-a-cluster-egress-lockdown-cli_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating Red Hat OpenShift Services on AWS clusters with egress zero using the CLI</a></li><li class="level-5"><a href="#rosa-hcp-sts-creating-a-cluster-cli_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli-no-cni">Creating the cluster without a CNI plugin</a></li><li class="level-5"><a href="#rosa-hcp-no-cni-install-cni-plugin_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Installing a CNI plugin</a></li><li class="level-5"><a href="#rosa-hcp-egress-zero-additional-prerequisites_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Additional prerequisites for egress zero install</a></li><li class="level-5"><a href="#rosa-hcp-egress-zero-install-creating_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Virtual Private Cloud for your Red Hat OpenShift Services on AWS clusters</a></li><li class="level-5"><a href="#rosa-hcp-set-environment-variables_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Setting environment variables for cluster creation</a></li><li class="level-5"><a href="#rosa-hcp-vpc-subnet-tagging-rosa-network_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Tagging your subnets</a></li><li class="level-5"><a href="#rosa-hcp-vpc-terraform_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Virtual Private Cloud using Terraform</a></li><li class="level-5"><a href="#rosa-hcp-vpc-aws_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a VPC using the AWS CLI</a></li><li class="level-5"><a href="#rosa-hcp-sts-creating-a-cluster-external-auth-cluster-cli_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Red Hat OpenShift Services on AWS cluster that uses external authentication</a></li><li class="level-5"><a href="#rosa-hcp-sts-creating-a-cluster-external-auth-provider-cli_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating an external authentication provider</a></li><li class="level-5"><a href="#rosa-hcp-sts-example-microsoft-entra-id-configuration_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Configuring Microsoft Entra ID as an external provider</a></li><li class="level-5"><a href="#creating-cluster-with-fips-encryption_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Red Hat OpenShift Services on AWS cluster using FIPS encryption</a></li><li class="level-5"><a href="#creating-cluster-with-fips-encryption-cli_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Red Hat OpenShift Services on AWS cluster using FIPS encryption in the CLI</a></li><li class="level-5"><a href="#creating-cluster-with-fips-encryption-ui_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating a Red Hat OpenShift Services on AWS cluster using FIPS encryption in Red Hat OpenShift Cluster Manager</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-intro_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc">Create a ROSA HCP Cluster in a Shared VPC</h3>
@@ -1987,9 +1942,12 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-byo-oidc_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Creating an OpenID Connect configuration</h5>
+<h5 id="rosa-sts-byo-oidc_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Create an OpenID Connect configuration</h5>
 <div class="paragraph _abstract">
-<p>Red&#160;Hat OpenShift Services on AWS clusters use OIDC and the AWS Security Token Service (STS) to authenticate Operator access to AWS resources they require to perform their functions. Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS cluster, you can create the OpenID Connect (OIDC) configuration before creating your cluster.</p>
+<p>Red&#160;Hat OpenShift Services on AWS clusters use OpenID Connect (OIDC) and the AWS Security Token Service (STS) to authenticate Operator access to required AWS resources.</p>
+</div>
+<div class="paragraph">
+<p>Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS cluster, you can create the OIDC configuration before creating your cluster.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -2012,15 +1970,10 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create oidc-config --mode=auto --yes</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>This command returns the following information.</p>
-</div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red Hat hosted) OIDC Configuration Yes
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red{nbsp}Hat hosted) OIDC Configuration Yes
 I: Setting up managed OIDC configuration
 I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace &lt;user-defined&gt; with a prefix of your choice:
 	rosa create operator-roles --prefix &lt;user-defined&gt; --oidc-config-id 13cdr6b
@@ -2062,10 +2015,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo $OIDC_ID</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">13cdr6b</code></pre>
 </div>
@@ -2086,10 +2037,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list oidc-config</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">ID                                MANAGED  ISSUER URL                                                             SECRET ARN
 2330dbs0n8m3chkkr25gkkcd8pnj3lk2  true     https://dvbwgdztaeq9o.cloudfront.net/2330dbs0n8m3chkkr25gkkcd8pnj3lk2
@@ -3498,8 +3447,37 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Unresolved directive in hcm-jobs/rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli.adoc - include::modules/rosa-hcp-set-environment-variables.adoc[leveloffset=+1,toc="no"]</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-hcp-set-environment-variables_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-using-the-cli">Setting environment variables for cluster creation</h5>
+<div class="paragraph _abstract">
+<p>You can set environment variables to streamline resource creation for your Red&#160;Hat OpenShift Services on AWS cluster.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Set your environment variable by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export &lt;variable_name&gt;=&lt;variable_value&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>You can confirm that your variable has been set by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo &lt;variable_name&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect4">
