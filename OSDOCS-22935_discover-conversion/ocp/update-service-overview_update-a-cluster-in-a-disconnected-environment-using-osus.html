@@ -1908,7 +1908,10 @@ data:
 <div class="sect3">
 <h4 id="update-service-graph-data_update-a-cluster-in-a-disconnected-environment-using-osus">Creating the OpenShift Update Service graph data container image</h4>
 <div class="paragraph _abstract">
-<p>The OpenShift Update Service requires a graph data container image, from which the OpenShift Update Service retrieves information about channel membership and blocked update edges. Graph data is typically fetched directly from the update graph data repository. In environments where an internet connection is unavailable, loading this information from an init container is another way to make the graph data available to the OpenShift Update Service.</p>
+<p>The OpenShift Update Service requires a graph data container image, from which the OpenShift Update Service retrieves information about channel membership and blocked update edges.</p>
+</div>
+<div class="paragraph">
+<p>Graph data is typically fetched directly from the update graph data repository. In environments where an internet connection is unavailable, loading this information from an init container is another way to make the graph data available to the OpenShift Update Service.</p>
 </div>
 <div class="paragraph">
 <p>The role of the init container is to provide a local copy of the graph data, and during pod initialization, the init container copies the data to a volume that is accessible by the service.</p>
