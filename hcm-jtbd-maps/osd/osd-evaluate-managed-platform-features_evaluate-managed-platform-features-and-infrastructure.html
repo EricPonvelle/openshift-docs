@@ -530,8 +530,48 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 })();
 </script>
 <!-- navmap-left-nav-toggle-end -->
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="osd-evaluate-managed-platform-features_evaluate-managed-platform-features-and-infrastructure" class="book toc2 toc-left">
+<body id="osd-evaluate-managed-platform-features_evaluate-managed-platform-features-and-infrastructure" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Openshift Dedicated</h1>
 <div id="toc" class="toc2">
@@ -586,11 +626,86 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#osd-intro_evaluate-managed-platform-features-and-infrastructure">An overview of Openshift Dedicated</a></li><li class="level-5"><a href="#rhcos_evaluate-managed-platform-features-and-infrastructure">Custom operating system</a></li><li class="level-5"><a href="#osd-key-features_evaluate-managed-platform-features-and-infrastructure">Other key features</a></li><li class="level-5"><a href="#telemetry_evaluate-managed-platform-features-and-infrastructure">Internet and Telemetry access for Openshift Dedicated</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="osd-evaluate-managed-platform-features_evaluate-managed-platform-features-and-infrastructure">Evaluate managed platform features and infrastructure</h3>
 <div class="paragraph _abstract">
 <p>Evaluate the core platform features and infrastructure capabilities of Openshift Dedicated to determine how the managed service meets your requirements.</p>
+</div>
+<div class="sect3">
+<h4 id="osd-intro_evaluate-managed-platform-features-and-infrastructure">An overview of Openshift Dedicated</h4>
+<div class="paragraph _abstract">
+<p>Openshift Dedicated is professionally managed by Red Hat and hosted on Amazon Web Services (AWS) or Google Cloud. Each Openshift Dedicated cluster comes with a fully managed <a href="https://access.redhat.com/documentation/en-us/openshift_container_platform/4.19/html/architecture/control-plane">control plane</a> (Control and Infrastructure nodes), application nodes, installation and management by Red Hat Site Reliability Engineers (SRE), premium Red Hat Support, and cluster services such as logging, metrics, monitoring, notifications portal, and a cluster portal.</p>
+</div>
+<div class="paragraph">
+<p>Openshift Dedicated provides enterprise-ready enhancements to Kubernetes, including the following enhancements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Openshift Dedicated clusters are deployed on AWS or Google Cloud environments and can be used as part of a hybrid approach for application management.</p>
+</li>
+<li>
+<p>Integrated Red Hat technology. Major components in Openshift Dedicated come from Red Hat Enterprise Linux and related Red Hat technologies. Openshift Dedicated benefits from the intense testing and certification initiatives for Red Hat’s enterprise quality software.</p>
+</li>
+<li>
+<p>Open source development model. Development is completed in the open, and the source code is available from public software repositories. This open collaboration fosters rapid innovation and development.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To learn about options for assets you can create when you build and deploy containerized Kubernetes applications in OpenShift Container Platform, see <a href="https://docs.openshift.com/container-platform/4.19/architecture/understanding-development.html">Understanding OpenShift Container Platform development</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="rhcos_evaluate-managed-platform-features-and-infrastructure">Custom operating system</h5>
+<div class="paragraph">
+<p>Openshift Dedicated uses Red Hat Enterprise Linux CoreOS (RHCOS), a container-oriented operating system that combines some of the best features and functions of the CoreOS and Red Hat Atomic Host operating systems. RHCOS is specifically designed for running containerized applications from Openshift Dedicated and works with new tools to provide fast installation, Operator-based management, and simplified upgrades.</p>
+</div>
+<div class="paragraph">
+<p>RHCOS includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ignition, which Openshift Dedicated uses as a firstboot system configuration for initially bringing up and configuring machines.</p>
+</li>
+<li>
+<p>CRI-O, a Kubernetes native container runtime implementation that integrates closely with the operating system to deliver an efficient and optimized Kubernetes experience. CRI-O provides facilities for running, stopping, and restarting containers.</p>
+</li>
+<li>
+<p>Kubelet, the primary node agent for Kubernetes that is responsible for launching and monitoring containers.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="osd-key-features_evaluate-managed-platform-features-and-infrastructure">Other key features</h5>
+<div class="paragraph">
+<p>Operators are both the fundamental unit of the Openshift Dedicated code base and a convenient way to deploy applications and software components for your applications to use. In Openshift Dedicated, Operators serve as the platform foundation and remove the need for manual upgrades of operating systems and control plane applications. Openshift Dedicated Operators such as the Cluster Version Operator and Machine Config Operator allow simplified, cluster-wide management of those critical components.</p>
+</div>
+<div class="paragraph">
+<p>Operator Lifecycle Manager (OLM) and the software catalog provide facilities for storing and distributing Operators to people developing and deploying applications.</p>
+</div>
+<div class="paragraph">
+<p>The Red&#160;Hat Quay Container Registry is a Quay.io container registry that serves most of the container images and Operators to Openshift Dedicated clusters. Quay.io is a public registry version of Red&#160;Hat Quay that stores millions of images and tags.</p>
+</div>
+<div class="paragraph">
+<p>Other enhancements to Kubernetes in Openshift Dedicated include improvements in software defined networking (SDN), authentication, log aggregation, monitoring, and routing. Openshift Dedicated also offers a comprehensive web console and the custom OpenShift CLI (<code>oc</code>) interface.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="telemetry_evaluate-managed-platform-features-and-infrastructure">Internet and Telemetry access for Openshift Dedicated</h5>
+<div class="paragraph">
+<p>In Openshift Dedicated, you require access to the internet to install and upgrade your cluster.</p>
+</div>
+<div class="paragraph">
+<p>Through the Telemetry service, information is sent to Red Hat from Openshift Dedicated clusters to enable subscription management automation, monitor the health of clusters, assist with support, and improve customer experience.</p>
+</div>
+<div class="paragraph">
+<p>The Telemetry service runs automatically and your cluster is registered to Red Hat OpenShift Cluster Manager. In Openshift Dedicated, remote health reporting is always enabled and you cannot opt out. The Red Hat Site Reliability Engineering (SRE) team requires the information to provide effective support for your Openshift Dedicated cluster.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph nav-footer">
@@ -599,7 +714,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-18 11:19:39 -0500
+Last updated 2026-09-29 15:22:06 -0500
 </div>
 </div>
 </body>

@@ -702,7 +702,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>Provide a path from the OpenShift Dedicated cluster to the internet for the domains and ports listed in the <em>Google Cloud firewall prerequisites</em> in the <em>Additional resources</em> section.</p>
+<p>Provide a path from the OpenShift Dedicated cluster to the internet for the domains and ports listed in the <em>Google Cloud firewall prerequisites</em> in the <em>Next steps</em> section.</p>
 </li>
 <li>
 <p>Enabled <a href="https://console.cloud.google.com/marketplace/product/google/iap.googleapis.com?q=search&amp;referrer=search&amp;hl=en&amp;project=openshift-gce-devel">Cloud Identity-Aware Proxy API</a> at the Google Cloud project level.</p>
@@ -1670,13 +1670,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="create-wif-configuration_osd-create-an-osd-cluster-on-google-cloud-with-wif-authentication">Create a Workload Identity Federation configuration</h5>
 <div class="paragraph _abstract">
-<p>You can create a WIF configuration using the <code>auto</code> mode or the <code>manual</code> mode in the <code>ocm</code> CLI.</p>
+<p>You can create a Workload Identity Federation (WIF) configuration using the <code>auto</code> mode or the <code>manual</code> mode in the <code>ocm</code> CLI.</p>
 </div>
 <div class="paragraph">
-<p>The <code>auto</code> mode enables you to automatically create the service accounts for Openshift Dedicated components as well as other IAM resources.</p>
+<p>In <code>auto</code> mode, the service accounts for Openshift Dedicated components and other IAM resources are created automatically.</p>
 </div>
 <div class="paragraph">
-<p>Alternatively, you can use the <code>manual</code> mode. In <code>manual</code> mode, you are provided with commands within a <code>script.sh</code> file which you use to manually create the service accounts for Openshift Dedicated components as well as other IAM resources.</p>
+<p>You can also use the <code>manual</code> mode, where a <code>script.sh</code> file has commands that you use to manually create the service accounts for Openshift Dedicated components and other IAM resources.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -1702,13 +1702,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><code>--version &lt;osd_version&gt;</code></dt>
+<dt class="hdlist1"><code>--wif_name</code></dt>
 <dd>
-<p>Optional: Replace <code>&lt;osd_version&gt;</code> with the desired Openshift Dedicated version the wif-config will need to support. If you do not specify a version, the wif-config will support the latest Openshift Dedicated y-stream version as well as the last three supported Openshift Dedicated y-stream versions (beginning with version 4.17).</p>
+<p>Specifies the name of the WIF configuration. The name must be unique within your Google Cloud project.</p>
 </dd>
-<dt class="hdlist1"><code>--federated-project &lt;gcp_project_id&gt;</code></dt>
+<dt class="hdlist1"><code>--project</code></dt>
 <dd>
-<p>Optional: Replace <code>&lt;gcp_project_id&gt;</code> with the ID of the dedicated project where the workload identity pools and providers will be created and managed. If the <code>--federated-project</code> flag is not specified, the workload identity pools and providers will be created and managed in the project specified by the <code>--project</code> flag.</p>
+<p>Specifies the ID of the Google Cloud project where the WIF configuration will be implemented.</p>
+</dd>
+<dt class="hdlist1"><code>--version</code></dt>
+<dd>
+<p>Optional. Specifies the desired Openshift Dedicated version the wif-config will need to support. If you do not specify a version, the wif-config will support the latest Openshift Dedicated y-stream version as well as the last three supported Openshift Dedicated y-stream versions (beginning with version 4.17).</p>
+</dd>
+<dt class="hdlist1"><code>--federated-project</code></dt>
+<dd>
+<p>Optional. Specifies the ID of the dedicated project where the workload identity pools and providers will be created and managed. If this flag is not specified, the workload identity pools and providers will be created and managed in the project specified by the <code>--project</code> flag.</p>
 </dd>
 </dl>
 </div>
@@ -1742,20 +1750,20 @@ Using a dedicated project helps you to establish centralized governance over the
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">2024/09/26 13:05:41 Creating workload identity configuration...
-2024/09/26 13:05:47 Workload identity pool created with name 2e1kcps6jtgla8818vqs8tbjjls4oeub
-2024/09/26 13:05:47 workload identity provider created with name oidc
-2024/09/26 13:05:48 IAM service account osd-worker-oeub created
-2024/09/26 13:05:49 IAM service account osd-control-plane-oeub created
-2024/09/26 13:05:49 IAM service account openshift-gcp-ccm-oeub created
-2024/09/26 13:05:50 IAM service account openshift-gcp-pd-csi-driv-oeub created
-2024/09/26 13:05:50 IAM service account openshift-image-registry-oeub created
-2024/09/26 13:05:51 IAM service account openshift-machine-api-gcp-oeub created
-2024/09/26 13:05:51 IAM service account osd-deployer-oeub created
-2024/09/26 13:05:52 IAM service account cloud-credential-operator-oeub created
-2024/09/26 13:05:52 IAM service account openshift-cloud-network-c-oeub created
-2024/09/26 13:05:53 IAM service account openshift-ingress-gcp-oeub created
-2024/09/26 13:05:55 Role "osd_deployer_v4.19" updated</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">2026/09/26 13:05:41 Creating workload identity configuration...
+2026/09/26 13:05:47 Workload identity pool created with name 2e1kcps6jtgla8818vqs8tbjjls4oeub
+2026/09/26 13:05:47 workload identity provider created with name oidc
+2026/09/26 13:05:48 IAM service account osd-worker-oeub created
+2026/09/26 13:05:49 IAM service account osd-control-plane-oeub created
+2026/09/26 13:05:49 IAM service account openshift-gcp-ccm-oeub created
+2026/09/26 13:05:50 IAM service account openshift-gcp-pd-csi-driv-oeub created
+2026/09/26 13:05:50 IAM service account openshift-image-registry-oeub created
+2026/09/26 13:05:51 IAM service account openshift-machine-api-gcp-oeub created
+2026/09/26 13:05:51 IAM service account osd-deployer-oeub created
+2026/09/26 13:05:52 IAM service account cloud-credential-operator-oeub created
+2026/09/26 13:05:52 IAM service account openshift-cloud-network-c-oeub created
+2026/09/26 13:05:53 IAM service account openshift-ingress-gcp-oeub created
+2026/09/26 13:05:55 Role "osd_deployer_v4.22" updated</code></pre>
 </div>
 </div>
 </div>
@@ -1771,6 +1779,22 @@ Using a dedicated project helps you to establish centralized governance over the
 </div>
 </div>
 <div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>--wif_name</code></dt>
+<dd>
+<p>Specifies the name of the WIF configuration. The name must be unique within your Google Cloud project.</p>
+</dd>
+<dt class="hdlist1"><code>--project</code></dt>
+<dd>
+<p>Specifies the ID of the Google Cloud project where the WIF configuration will be implemented.</p>
+</dd>
+<dt class="hdlist1"><code>--mode=manual</code></dt>
+<dd>
+<p>Specifies that the WIF configuration is created in manual mode. In this mode, a <code>script.sh</code> file is generated that contains commands to manually create the service accounts for Openshift Dedicated components and other IAM resources.</p>
+<div class="paragraph">
 <p>Once the WIF is configured, the following service accounts, roles, and groups are created.</p>
 </div>
 <div class="admonitionblock note">
@@ -1781,14 +1805,14 @@ Using a dedicated project helps you to establish centralized governance over the
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Red&#160;Hat custom roles are versioned with every OpenShift y-stream release, for example 4.19.</p>
+<p>Red&#160;Hat custom roles are versioned with every OpenShift y-stream release, for example 4.22.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 6. WIF configuration service accounts, group and roles</caption>
+<caption class="title">Table 6. WIF configuration service accounts, group, and roles</caption>
 <colgroup>
 <col style="width: 40%;">
 <col style="width: 60%;">
@@ -1796,7 +1820,7 @@ Using a dedicated project helps you to establish centralized governance over the
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Service Account/Group</th>
-<th class="tableblock halign-left valign-top">Google Cloud pre-defined roles and Red Hat custom roles</th>
+<th class="tableblock halign-left valign-top">Google Cloud predefined roles and Red&#160;Hat custom roles</th>
 </tr>
 </thead>
 <tbody>
@@ -1969,9 +1993,6 @@ Using a dedicated project helps you to establish centralized governance over the
 <p>compute.storageAdmin</p>
 </li>
 <li>
-<p>iam.serviceAccountUser</p>
-</li>
-<li>
 <p>resourcemanager.tagUser</p>
 </li>
 <li>
@@ -2042,8 +2063,15 @@ Using a dedicated project helps you to establish centralized governance over the
 <div class="paragraph nav-footer">
 <p></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>iam.serviceAccountUser (scoped to <code>osd-worker</code> and <code>osd-control-plane</code> service accounts)</p>
+</li>
+<li>
 <p>openshift_machine_api_gcp_v&lt;y-stream-version&gt;</p>
+</li>
+</ul>
 </div>
 <div class="ulist">
 <ul>
@@ -2078,7 +2106,10 @@ Using a dedicated project helps you to establish centralized governance over the
 </tbody>
 </table>
 <div class="paragraph">
-<p>For the complete list of WIF configuration roles and their assigned permissions, see <a href="https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.19/vanilla.yaml">managed-cluster-config</a>.</p>
+<p>For the complete list of WIF configuration roles and their assigned permissions, see <a href="https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.22/vanilla.yaml">managed-cluster-config</a>.</p>
+</div>
+</dd>
+</dl>
 </div>
 </li>
 </ul>
@@ -2362,7 +2393,7 @@ With this option, the etcd key values are encrypted, but not the keys. This opti
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Private Service Connect is supported only with <strong>Install into an existing VPC</strong>.</p>
+<p>Private Service Connect (PSC) is supported only with <strong>Install into an existing VPC</strong>.</p>
 </div>
 </td>
 </tr>
@@ -2467,6 +2498,9 @@ Leave the field empty if all routes should remain eligible based on your other c
 <p><code>roles/dns.admin</code></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>You can significantly reduce these permissions by using a custom role with minimal permissions. For more information, see <em>Configure reduced permissions for a Shared VPC host project on Google Cloud</em> in the <em>Additional resources</em> section.</p>
 </div>
 <div class="paragraph">
 <p>If you use a managed DNS zone (by selecting a zone from the <strong>DNS Zone</strong> list), the <code>roles/dns.admin</code> role is not required on the host project.</p>
@@ -2735,6 +2769,9 @@ By default, clusters are created with the delete protection feature disabled.</p
 <p>You have created a WIF configuration. For more information, see "Create a Workload Identity Federation configuration".</p>
 </li>
 <li>
+<p>You have created the required firewall rules in your Google Cloud project if you are installing a cluster by using Openshift Dedicated version 4.21 or later. For more information, see <em>Create firewall rules for reduced Workload Identity Federation permissions on Google Cloud</em> .</p>
+</li>
+<li>
 <p>You have downloaded the latest version of the OpenShift Cluster Manager CLI (<code>ocm</code>) for your operating system from the <a href="https://console.redhat.com/openshift/downloads">Downloads</a> page on OpenShift Cluster Manager.</p>
 </li>
 </ul>
@@ -2965,7 +3002,7 @@ If this occurs, update the assigned WIF configuration to the required version or
 <p>As part of Red&#160;Hat&#8217;s ongoing commitment to the principle of least privilege, certain permissions previously assigned to the <code>osd-deployer</code> service account in WIF configurations have been removed. These changes help enhance the security of your clusters by ensuring that service accounts have only the permissions they need to perform their functions.</p>
 </div>
 <div class="paragraph">
-<p>For the complete list of WIF configuration roles and their assigned permissions, see <a href="https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.19/vanilla.yaml">managed-cluster-config</a>.</p>
+<p>For the complete list of WIF configuration roles and their assigned permissions, see <a href="https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.22/vanilla.yaml">managed-cluster-config</a>.</p>
 </div>
 <div class="paragraph">
 <p>To align your existing WIF configurations with these updated permissions, you can run the <code>ocm gcp update wif-config</code> command. This command updates the WIF configuration to include the latest permissions and roles required for optimal operation.</p>
@@ -2983,10 +3020,10 @@ If this occurs, update the assigned WIF configuration to the required version or
 </div>
 </div>
 <div class="paragraph">
-<p>You can also update an existing Openshift Dedicated cluster that is already using WIF by adding a dedicated project to manage workload identity pools and providers using the <code>--federated-project</code> flag. This best-practice model separates the workload identity pools and providers into a dedicated, centralized Google Cloud project.</p>
+<p>You can also update an existing Openshift Dedicated cluster that is already using WIF by adding a dedicated project to manage workload identity pools and providers by using the <code>--federated-project</code> flag. This best-practice model separates the workload identity pools and providers into a dedicated, centralized Google Cloud project.</p>
 </div>
 <div class="paragraph">
-<p>When you update the configuration using the <code>--federated-project</code> flag, any associated workload identity pools move to the new federated project you specify, while the existing IAM service accounts and custom roles remain in the original cluster-associated project.</p>
+<p>When you update the configuration by using the <code>--federated-project</code> flag, any associated workload identity pools move to the new federated project you specify, while the existing IAM service accounts and custom roles remain in the original cluster-associated project.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -3006,9 +3043,9 @@ If this occurs, update the assigned WIF configuration to the required version or
 <p>Update a wif-config to a specific Openshift Dedicated version by running the following command:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">ocm gcp update wif-config &lt;wif_name&gt; \
---version &lt;version&gt;
---federated-project &lt;gcp_project_id&gt;</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ocm gcp update wif-config &lt;wif_name&gt; \
+  --version &lt;version&gt; \
+  --federated-project &lt;gcp_project_id&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3022,7 +3059,7 @@ If this occurs, update the assigned WIF configuration to the required version or
 </dd>
 <dt class="hdlist1"><code>&lt;version&gt;</code></dt>
 <dd>
-<p>Optional: The Openshift Dedicated y-stream version you plan to update the cluster to. If you do not specify a version, the wif-config will be updated to support the latest Openshift Dedicated y-stream version as well as the last three Openshift Dedicated supported y-stream versions (beginning with version 4.17).</p>
+<p>Optional: The Openshift Dedicated y-stream version you plan to update the cluster to. If you do not specify a version, the wif-config is updated to support the latest Openshift Dedicated y-stream version and the last three Openshift Dedicated supported y-stream versions (beginning with version 4.17).</p>
 </dd>
 <dt class="hdlist1"><code>--federated-project &lt;gcp_project_id&gt;</code></dt>
 <dd>
@@ -3035,7 +3072,10 @@ If this occurs, update the assigned WIF configuration to the required version or
 </div>
 <div class="paragraph">
 <div class="title">Next steps</div>
-<p>The stale set of permissions previously assigned to the <code>osd-deployer</code> service account will remain on the account after updating the wif-config. You need to manually access the roles and remove these stale permissions from them.</p>
+<p>If you are upgrading a cluster across multiple y-stream versions, update the WIF configuration to each intermediate version before upgrading the cluster to that version. For example, to upgrade from 4.20 to 4.22, update the WIF configuration to 4.21 first, upgrade the cluster to 4.21, then update the WIF configuration to 4.22 and upgrade the cluster to 4.22.</p>
+</div>
+<div class="paragraph">
+<p>The stale set of permissions previously assigned to the <code>osd-deployer</code> service account will remain on the account after updating the <code>wif-config</code>. You need to manually access the roles and remove these stale permissions from them.</p>
 </div>
 <div class="paragraph">
 <p>Follow the instructions in the "Removing stale deployer permissions from service accounts managed by a WIF configuration" and "Removing stale support permissions from service accounts managed by a WIF configuration" guides to remove these stale permissions.</p>
@@ -3050,17 +3090,30 @@ For more information, see <a href="https://docs.cloud.google.com/iam/docs/manage
 <div class="paragraph _abstract">
 <p>To remove the stale deployer permissions from service accounts managed by a WIF configuration, run the following commands on a terminal with access to the Google Cloud project hosting the service accounts.</p>
 </div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have set the <code>PROJECT_ID</code> environment variable to your Google Cloud project ID:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export PROJECT_ID=&lt;your_gcp_project_id&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Retrieve the existing role definition, ensuring the <code>PROJECT_ID</code> environment variable points to your Google Cloud project:</p>
+<p>Retrieve the existing role definition:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ gcloud iam roles describe \
-  osd_deployer_v4.18 \
+  osd_deployer_v4.22 \
   --project $PROJECT_ID \
-  --format=yaml &gt; /tmp/role.yaml</code></pre>
+  --format=yaml &gt; /tmp/deployer_role.yaml</code></pre>
 </div>
 </div>
 </li>
@@ -3068,33 +3121,55 @@ For more information, see <a href="https://docs.cloud.google.com/iam/docs/manage
 <p>Remove the unwanted permissions. You can do this by filtering out the unwanted permissions from the role definition file and saving the updated definition to a new file:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat /tmp/role.yaml | \
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat /tmp/deployer_role.yaml | \
 grep -v "resourcemanager.projects.setIamPolicy" | \
 grep -v "iam.serviceAccounts.signBlob" | \
-grep -v "iam.serviceAccounts.actAs" &gt; /tmp/updated_role.yaml</code></pre>
+grep -v "iam.serviceAccounts.actAs" &gt; /tmp/updated_deployer_role.yaml</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Review the changes in the output between the original and updated role definitions to ensure only the unwanted permissions have been removed:</p>
+<p>Review the changes in the output between the original and updated role definitions to ensure only the intended permission lines were removed.
+Verify that no comments, descriptions, or other metadata lines were unintentionally filtered:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ diff /tmp/role.yaml /tmp/updated_role.yaml</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ diff /tmp/deployer_role.yaml /tmp/updated_deployer_role.yaml</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Update the role in Google Cloud with the updated role definition file, ensuring the <code>PROJECT_ID</code> environment variable points to your Google Cloud project:</p>
+<p>Update the role in Google Cloud with the updated role definition file:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ gcloud iam roles update \
-  osd_deployer_v4.18 \
+  osd_deployer_v4.22 \
   --project=$PROJECT_ID \
-  --file=/tmp/updated_role.yaml</code></pre>
+  --file=/tmp/updated_deployer_role.yaml</code></pre>
 </div>
 </div>
 </li>
 </ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify that the stale permissions are no longer listed in the role:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ gcloud iam roles describe \
+  osd_deployer_v4.22 \
+  --project=$PROJECT_ID</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Confirm that <code>resourcemanager.projects.setIamPolicy</code>, <code>iam.serviceAccounts.signBlob</code>, and <code>iam.serviceAccounts.actAs</code> are no longer present in the <code>includedPermissions</code> list.</p>
+</div>
+<div class="paragraph">
+<p>Confirm that <code>compute.firewalls.create</code> is no longer present in the <code>includedPermissions</code> list.</p>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect4">
@@ -3102,14 +3177,27 @@ grep -v "iam.serviceAccounts.actAs" &gt; /tmp/updated_role.yaml</code></pre>
 <div class="paragraph _abstract">
 <p>To remove stale support permissions, run the following commands on a terminal with access to the Google Cloud project hosting the service accounts.</p>
 </div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have set the <code>PROJECT_ID</code> environment variable to your Google Cloud project ID:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export PROJECT_ID=&lt;your_gcp_project_id&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Retrieve the existing role definition, ensuring the <code>PROJECT_ID</code> environment variable points to your Google Cloud project:</p>
+<p>Retrieve the existing role definition:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ gcloud iam roles describe sre_managed_support --project $PROJECT_ID --format=yaml &gt; /tmp/role.yaml</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ gcloud iam roles describe sre_managed_support --project $PROJECT_ID --format=yaml &gt; /tmp/support_role.yaml</code></pre>
 </div>
 </div>
 </li>
@@ -3117,27 +3205,44 @@ grep -v "iam.serviceAccounts.actAs" &gt; /tmp/updated_role.yaml</code></pre>
 <p>Remove the unwanted permissions. You can do this by filtering out the unwanted permissions from the role definition file and saving the updated definition to a new file:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat /tmp/role.yaml | grep -v "compute.firewalls.create"  &gt; /tmp/updated_role.yaml</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat /tmp/support_role.yaml | grep -v "compute.firewalls.create"  &gt; /tmp/updated_support_role.yaml</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Review the changes in the output between the original and updated role definitions to ensure only the unwanted permissions have been removed:</p>
+<p>Review the changes in the output between the original and updated role definitions to ensure only the intended permission lines were removed.
+Verify that no comments, descriptions, or other metadata lines were unintentionally filtered:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ diff /tmp/role.yaml /tmp/updated_role.yaml</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ diff /tmp/support_role.yaml /tmp/updated_support_role.yaml</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Update the role in Google Cloud with the updated role definition file, ensuring the <code>PROJECT_ID</code> environment variable points to your Google Cloud project:</p>
+<p>Update the role in Google Cloud with the updated role definition file:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ gcloud iam roles update sre_managed_support --project $PROJECT_ID --file=/tmp/updated_role.yaml</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ gcloud iam roles update sre_managed_support --project $PROJECT_ID --file=/tmp/updated_support_role.yaml</code></pre>
 </div>
 </div>
 </li>
 </ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify that the stale permissions are no longer listed in the role:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ gcloud iam roles describe sre_managed_support --project $PROJECT_ID</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Confirm that <code>compute.firewalls.create</code> is no longer present in the <code>includedPermissions</code> list.</p>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect4">
@@ -4442,7 +4547,17 @@ By default, clusters are created with the delete protection feature disabled.</p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If you delete a cluster that was installed into a Google Cloud Shared VPC, inform the VPC owner of the host project to remove the IAM policy roles granted to the service account that was referenced during cluster creation.</p>
+<p>If you delete a cluster that was installed into a Google Cloud Shared VPC, inform the VPC owner of the host project to complete the following cleanup steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Remove the IAM policy roles or custom roles granted to the service accounts that were referenced during cluster creation.</p>
+</li>
+<li>
+<p>If firewall rules were pre-created on the host project for reduced permissions, delete the firewall rules associated with the cluster.</p>
+</li>
+</ul>
 </div>
 </td>
 </tr>
@@ -4460,7 +4575,7 @@ By default, clusters are created with the delete protection feature disabled.</p
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-18 11:19:39 -0500
+Last updated 2026-09-29 15:22:06 -0500
 </div>
 </div>
 </body>

@@ -2259,7 +2259,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If you delete a cluster that was installed into a Google Cloud Shared VPC, inform the VPC owner of the host project to remove the IAM policy roles granted to the service account that was referenced during cluster creation.</p>
+<p>If you delete a cluster that was installed into a Google Cloud Shared VPC, inform the VPC owner of the host project to complete the following cleanup steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Remove the IAM policy roles or custom roles granted to the service accounts that were referenced during cluster creation.</p>
+</li>
+<li>
+<p>If firewall rules were pre-created on the host project for reduced permissions, delete the firewall rules associated with the cluster.</p>
+</li>
+</ul>
 </div>
 </td>
 </tr>
@@ -2277,7 +2287,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-18 11:19:39 -0500
+Last updated 2026-09-29 15:22:06 -0500
 </div>
 </div>
 </body>

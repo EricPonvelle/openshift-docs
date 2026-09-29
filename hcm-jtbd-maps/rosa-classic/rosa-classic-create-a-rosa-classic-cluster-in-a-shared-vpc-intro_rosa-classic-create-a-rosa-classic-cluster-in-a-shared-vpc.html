@@ -570,50 +570,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 <!-- navmap-right-toc-end -->
-<!-- navmap-preview-warning-start -->
-<style>
-  .navmap-preview-warning {
-    background: #fff1f1;
-    border: 2px solid #c9190b;
-    border-radius: 4px;
-    color: #3b0a0a;
-    font-family: "Open Sans", "DejaVu Sans", sans-serif;
-    margin: 1em auto;
-    max-width: 70em;
-    padding: 1em 1.25em;
-  }
-  .navmap-preview-warning strong { color: #a30000; }
-  .navmap-preview-warning details { margin-top: .75em; }
-  .navmap-preview-warning pre {
-    background: #fff;
-    border: 1px solid #d7d7d7;
-    max-height: 20em;
-    overflow: auto;
-    padding: .75em;
-    white-space: pre-wrap;
-  }
-</style>
-<!-- navmap-preview-warning-end -->
 </head>
 <body id="rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc-intro_rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc" class="book toc2 toc-left navmap-has-right-toc">
-<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-classic/navigation.adoc
-
-Missing include targets:
-  maps/rosa-classic/hcm-jobs/rosa-classic-create-a-rosa-classic-cluster-using-the-cli.adoc:134
-    include::modules/rosa-deleting-cluster.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-classic/hcm-jobs/modules/rosa-deleting-cluster.adoc
-  maps/rosa-classic/hcm-jobs/rosa-classic-create-a-rosa-classic-cluster-using-ocm.adoc:137
-    include::modules/rosa-deleting-cluster.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-classic/hcm-jobs/modules/rosa-deleting-cluster.adoc
-  maps/rosa-classic/hcm-jobs/rosa-classic-delete-the-cluster.adoc:8
-    include::modules/rosa-deleting-cluster.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-classic/hcm-jobs/modules/rosa-deleting-cluster.adoc
-
-How to fix these errors:
-  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
-  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
-  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
-</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS (classic architecture)</h1>
 <div id="toc" class="toc2">
@@ -662,7 +620,7 @@ How to fix these errors:
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-classic-prepare-to-create-the-cluster-intro_rosa-classic-prepare-to-create-the-cluster">Prepare to create the cluster</a></li><li class="level-5"><a href="#rosa-sharing-vpc-creation-and-sharing_rosa-classic-prepare-to-create-the-cluster">Step One - VPC Owner: Configuring a VPC to share within your AWS organization</a></li><li class="level-5"><a href="#rosa-sharing-vpc-dns-and-roles_rosa-classic-prepare-to-create-the-cluster">Step Two - Cluster Creator: Reserving your DNS and creating cluster operator roles</a></li><li class="level-5"><a href="#rosa-sharing-vpc-hosted-zones_rosa-classic-prepare-to-create-the-cluster">Step Three - VPC Owner: Updating the shared VPC role and creating hosted zones</a></li><li class="level-5"><a href="#rosa-sharing-vpc-cluster-creation_rosa-classic-prepare-to-create-the-cluster">Step Four - Cluster Creator: Creating your cluster in a shared VPC</a></li><li class="level-5"><a href="#mos-checklist-cli-requirements_rosa-classic-prepare-to-create-the-cluster">CLI requirements</a></li><li class="level-5"><a href="#mos-checklist-aws-cli_rosa-classic-prepare-to-create-the-cluster">AWS CLI (aws)</a></li><li class="level-5"><a href="#mos-checklist-_rosa-classic-prepare-to-create-the-cluster">ROSA command-line interface (CLI) (rosa)</a></li><li class="level-5"><a href="#mos-checklist-oc-cli_rosa-classic-prepare-to-create-the-cluster">OpenShift CLI (oc)</a></li><li class="level-5"><a href="#rosa-getting-started-install-configure-cli-tools_rosa-classic-prepare-to-create-the-cluster">Install and configure the required CLI tools</a></li><li class="level-5"><a href="#mos-checklist-aws-infra-prereqs_rosa-classic-prepare-to-create-the-cluster">AWS infrastructure prerequisites</a></li><li class="level-5"><a href="#mos-checklist-scp-prereqs_rosa-classic-prepare-to-create-the-cluster">Service Control Policy (SCP) prerequisites</a></li><li class="level-5"><a href="#rosa-sts-setting-up-environment_rosa-classic-prepare-to-create-the-cluster">Setting up the environment for STS</a></li><li class="level-5"><a href="#rosa-requirements-deploying-in-opt-in-regions_rosa-classic-prepare-to-create-the-cluster">Requirements for deploying a cluster in an opt-in region</a></li><li class="level-5"><a href="#rosa-prereq-roles-overview_rosa-classic-prepare-to-create-the-cluster">Overview of required roles</a></li><li class="level-5"><a href="#rosa-sts-about-ocm-role_rosa-classic-prepare-to-create-the-cluster">About the ocm-role IAM resource</a></li><li class="level-6"><a href="#rosa-sts-about-ocm-role-profiles_rosa-classic-prepare-to-create-the-cluster">ocm-role IAM resource profiles</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-classic-prepare-to-create-the-cluster">Creating an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-about-user-role_rosa-classic-prepare-to-create-the-cluster">About the user-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-user-role-iam-basic-role_rosa-classic-prepare-to-create-the-cluster">Creating a user-role IAM role</a></li><li class="level-5"><a href="#rosa-ocm-requirements_rosa-classic-prepare-to-create-the-cluster">Requirements for using OpenShift Cluster Manager</a></li><li class="level-6"><a href="#rosa-associating-concept_rosa-classic-prepare-to-create-the-cluster">AWS account association</a></li><li class="level-5"><a href="#rosa-associating-account_rosa-classic-prepare-to-create-the-cluster">Associating your AWS account with IAM roles</a></li><li class="level-5"><a href="#rosa-associating-multiple-account_rosa-classic-prepare-to-create-the-cluster">Associating multiple AWS accounts with your Red Hat organization</a></li><li class="level-5"><a href="#rosa-sts-aws-requirements-attaching-boundary-policy_rosa-classic-prepare-to-create-the-cluster">Permission boundaries for the installer role</a></li><li class="level-4"><a href="#rosa-classic-overview-of-default-cluster-properties-intro_rosa-classic-overview-of-default-cluster-properties">Overview of default cluster properties</a></li><li class="level-5"><a href="#rosa-sts-overview-of-the-default-cluster-specifications_rosa-classic-overview-of-default-cluster-properties">Overview of the default cluster specifications</a></li><li class="level-4"><a href="#rosa-classic-create-the-cluster-intro_rosa-classic-create-the-cluster">Create the cluster</a></li><li class="level-5"><a href="#rosa-sts-creating-cluster-customizations-cli_rosa-classic-create-the-cluster">Creating a cluster with customizations using the CLI</a></li><li class="level-4"><a href="#rosa-classic-cluster-configuration-properties-reference-intro_rosa-classic-cluster-configuration-properties-reference">Cluster configuration properties reference</a></li><li class="level-5"><a href="#rosa-sts-interactive-cluster-creation-mode-options_rosa-classic-cluster-configuration-properties-reference">Interactive cluster creation mode options</a></li><li class="level-4"><a href="#rosa-classic-configure-dns-forwarding-intro_rosa-classic-configure-dns-forwarding">(PrivateLink cluster only) Configure DNS forwarding</a></li><li class="level-5"><a href="#osd-aws-privatelink-config-dns-forwarding_rosa-classic-configure-dns-forwarding">Configuring AWS PrivateLink DNS forwarding</a></li><li class="level-4"><a href="#rosa-classic-set-up-initial-access-to-the-cluster-intro_rosa-classic-set-up-initial-access-to-the-cluster">Set up initial access to the cluster</a></li><li class="level-5"><a href="#understanding-idp_rosa-classic-set-up-initial-access-to-the-cluster">Supported identity providers</a></li><li class="level-5"><a href="#identity-provider-parameters_rosa-classic-set-up-initial-access-to-the-cluster">Identity provider parameters</a></li><li class="level-5"><a href="#config-github-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure a GitHub identity provider</a></li><li class="level-5"><a href="#config-gitlab-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure a GitLab identity provider</a></li><li class="level-5"><a href="#config-google-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure a Google identity provider</a></li><li class="level-5"><a href="#config-ldap-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure an LDAP identity provider</a></li><li class="level-5"><a href="#config-openid-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure an OpenID identity provider</a></li><li class="level-5"><a href="#config-htpasswd-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configuring an htpasswd identity provider</a></li><li class="level-5"><a href="#rosa-create-cluster-admins_rosa-classic-set-up-initial-access-to-the-cluster">Granting cluster-admin access</a></li><li class="level-5"><a href="#rosa-create-dedicated-cluster-admins_rosa-classic-set-up-initial-access-to-the-cluster">Granting dedicated-admin access</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster-quick_rosa-classic-set-up-initial-access-to-the-cluster">Accessing your cluster quickly</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster_rosa-classic-set-up-initial-access-to-the-cluster">Accessing your cluster with an IDP account</a></li><li class="level-4"><a href="#rosa-classic-delete-the-cluster-intro_rosa-classic-delete-the-cluster">Delete the cluster</a></li><li class="level-5"><a href="#rosa-deleting-cluster-troubleshooting_rosa-classic-delete-the-cluster">Troubleshooting cluster deletion</a></li><li class="level-5"><a href="#rosa-deleting-sts-resources-account-wide_rosa-classic-delete-the-cluster">Deleting the account-wide IAM resources</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-classic-prepare-to-create-the-cluster-intro_rosa-classic-prepare-to-create-the-cluster">Prepare to create the cluster</a></li><li class="level-5"><a href="#rosa-sharing-vpc-creation-and-sharing_rosa-classic-prepare-to-create-the-cluster">Step One - VPC Owner: Configuring a VPC to share within your AWS organization</a></li><li class="level-5"><a href="#rosa-sharing-vpc-dns-and-roles_rosa-classic-prepare-to-create-the-cluster">Step Two - Cluster Creator: Reserving your DNS and creating cluster operator roles</a></li><li class="level-5"><a href="#rosa-sharing-vpc-hosted-zones_rosa-classic-prepare-to-create-the-cluster">Step Three - VPC Owner: Updating the shared VPC role and creating hosted zones</a></li><li class="level-5"><a href="#rosa-sharing-vpc-cluster-creation_rosa-classic-prepare-to-create-the-cluster">Step Four - Cluster Creator: Creating your cluster in a shared VPC</a></li><li class="level-5"><a href="#mos-checklist-cli-requirements_rosa-classic-prepare-to-create-the-cluster">CLI requirements</a></li><li class="level-5"><a href="#mos-checklist-aws-cli_rosa-classic-prepare-to-create-the-cluster">AWS CLI (aws)</a></li><li class="level-5"><a href="#mos-checklist-_rosa-classic-prepare-to-create-the-cluster">ROSA command-line interface (CLI) (rosa)</a></li><li class="level-5"><a href="#mos-checklist-oc-cli_rosa-classic-prepare-to-create-the-cluster">OpenShift CLI (oc)</a></li><li class="level-5"><a href="#rosa-getting-started-install-configure-cli-tools_rosa-classic-prepare-to-create-the-cluster">Install and configure the required CLI tools</a></li><li class="level-5"><a href="#mos-checklist-aws-infra-prereqs_rosa-classic-prepare-to-create-the-cluster">AWS infrastructure prerequisites</a></li><li class="level-5"><a href="#mos-checklist-scp-prereqs_rosa-classic-prepare-to-create-the-cluster">Service Control Policy (SCP) prerequisites</a></li><li class="level-5"><a href="#rosa-sts-setting-up-environment_rosa-classic-prepare-to-create-the-cluster">Setting up the environment for STS</a></li><li class="level-5"><a href="#rosa-requirements-deploying-in-opt-in-regions_rosa-classic-prepare-to-create-the-cluster">Requirements for deploying a cluster in an opt-in region</a></li><li class="level-5"><a href="#rosa-prereq-roles-overview_rosa-classic-prepare-to-create-the-cluster">Overview of required roles</a></li><li class="level-5"><a href="#rosa-sts-about-ocm-role_rosa-classic-prepare-to-create-the-cluster">About the ocm-role IAM resource</a></li><li class="level-6"><a href="#rosa-sts-about-ocm-role-profiles_rosa-classic-prepare-to-create-the-cluster">ocm-role IAM resource profiles</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-classic-prepare-to-create-the-cluster">Creating an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-about-user-role_rosa-classic-prepare-to-create-the-cluster">About the user-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-user-role-iam-basic-role_rosa-classic-prepare-to-create-the-cluster">Creating a user-role IAM role</a></li><li class="level-5"><a href="#rosa-ocm-requirements_rosa-classic-prepare-to-create-the-cluster">Requirements for using OpenShift Cluster Manager</a></li><li class="level-6"><a href="#rosa-associating-concept_rosa-classic-prepare-to-create-the-cluster">AWS account association</a></li><li class="level-5"><a href="#rosa-associating-account_rosa-classic-prepare-to-create-the-cluster">Associating your AWS account with IAM roles</a></li><li class="level-5"><a href="#rosa-associating-multiple-account_rosa-classic-prepare-to-create-the-cluster">Associating multiple AWS accounts with your Red Hat organization</a></li><li class="level-5"><a href="#rosa-sts-aws-requirements-attaching-boundary-policy_rosa-classic-prepare-to-create-the-cluster">Permission boundaries for the installer role</a></li><li class="level-4"><a href="#rosa-classic-overview-of-default-cluster-properties-intro_rosa-classic-overview-of-default-cluster-properties">Overview of default cluster properties</a></li><li class="level-5"><a href="#rosa-sts-overview-of-the-default-cluster-specifications_rosa-classic-overview-of-default-cluster-properties">Overview of the default cluster specifications</a></li><li class="level-4"><a href="#rosa-classic-create-the-cluster-intro_rosa-classic-create-the-cluster">Create the cluster</a></li><li class="level-5"><a href="#rosa-sts-creating-cluster-customizations-cli_rosa-classic-create-the-cluster">Creating a cluster with customizations using the CLI</a></li><li class="level-4"><a href="#rosa-classic-cluster-configuration-properties-reference-intro_rosa-classic-cluster-configuration-properties-reference">Cluster configuration properties reference</a></li><li class="level-5"><a href="#rosa-sts-interactive-cluster-creation-mode-options_rosa-classic-cluster-configuration-properties-reference">Interactive cluster creation mode options</a></li><li class="level-4"><a href="#rosa-classic-configure-dns-forwarding-intro_rosa-classic-configure-dns-forwarding">(PrivateLink cluster only) Configure DNS forwarding</a></li><li class="level-5"><a href="#osd-aws-privatelink-config-dns-forwarding_rosa-classic-configure-dns-forwarding">Configuring AWS PrivateLink DNS forwarding</a></li><li class="level-4"><a href="#rosa-classic-set-up-initial-access-to-the-cluster-intro_rosa-classic-set-up-initial-access-to-the-cluster">Set up initial access to the cluster</a></li><li class="level-5"><a href="#understanding-idp_rosa-classic-set-up-initial-access-to-the-cluster">Supported identity providers</a></li><li class="level-5"><a href="#identity-provider-parameters_rosa-classic-set-up-initial-access-to-the-cluster">Identity provider parameters</a></li><li class="level-5"><a href="#config-github-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure a GitHub identity provider</a></li><li class="level-5"><a href="#config-gitlab-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure a GitLab identity provider</a></li><li class="level-5"><a href="#config-google-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure a Google identity provider</a></li><li class="level-5"><a href="#config-ldap-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure an LDAP identity provider</a></li><li class="level-5"><a href="#config-openid-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure an OpenID identity provider</a></li><li class="level-5"><a href="#config-htpasswd-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configuring an htpasswd identity provider</a></li><li class="level-5"><a href="#rosa-create-cluster-admins_rosa-classic-set-up-initial-access-to-the-cluster">Granting cluster-admin access</a></li><li class="level-5"><a href="#rosa-create-dedicated-cluster-admins_rosa-classic-set-up-initial-access-to-the-cluster">Granting dedicated-admin access</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster-quick_rosa-classic-set-up-initial-access-to-the-cluster">Accessing your cluster quickly</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster_rosa-classic-set-up-initial-access-to-the-cluster">Accessing your cluster with an IDP account</a></li><li class="level-4"><a href="#rosa-classic-delete-the-cluster-intro_rosa-classic-delete-the-cluster">Delete the cluster</a></li><li class="level-5"><a href="#rosa-deleting-cluster-non-sts_rosa-classic-delete-the-cluster">Deleting a Red Hat OpenShift Services on AWS (classic architecture) cluster</a></li><li class="level-5"><a href="#rosa-deleting-cluster-troubleshooting_rosa-classic-delete-the-cluster">Troubleshooting cluster deletion</a></li><li class="level-5"><a href="#rosa-deleting-sts-resources-account-wide_rosa-classic-delete-the-cluster">Deleting the account-wide IAM resources</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc-intro_rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc">Create a ROSA classic cluster in a shared VPC</h3>
@@ -5949,8 +5907,57 @@ Kubernetes Version: v1.16.2</code></pre>
 <div class="paragraph _abstract">
 <p>Delete the cluster by completing the tasks in this section. Review each step to prepare, configure, and verify your Red&#160;Hat OpenShift Services on AWS (classic architecture) environment.</p>
 </div>
+<div class="sect4">
+<h5 id="rosa-deleting-cluster-non-sts_rosa-classic-delete-the-cluster">Deleting a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster</h5>
+<div class="paragraph _abstract">
+<p>You can delete a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Unresolved directive in hcm-jobs/rosa-classic-delete-the-cluster.adoc - include::modules/rosa-deleting-cluster.adoc[leveloffset=+1,toc="no"]</p>
+<p>If the cluster that created the VPC during the installation is deleted, the associated installation program-created VPC will also be deleted, resulting in the failure of all the clusters that are using the same VPC. Additionally, any resources created with the same <code>tagSet</code> key-value pair of the resources created by the installation program and labeled with a value of <code>owned</code> will also be deleted.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have installed a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster.</p>
+</li>
+<li>
+<p>You have installed and configured the latest ROSA CLI on your installation host.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Enter the following command to delete a cluster and watch the logs, replacing <code>&lt;cluster_name&gt;</code> with the name or ID of your cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa delete cluster --cluster=&lt;cluster_name&gt; --watch</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To clean up your CloudFormation stack, enter the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init --delete</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 <div class="sect4">
 <h5 id="rosa-deleting-cluster-troubleshooting_rosa-classic-delete-the-cluster">Troubleshooting cluster deletion</h5>
@@ -6013,7 +6020,7 @@ Kubernetes Version: v1.16.2</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-18 11:19:39 -0500
+Last updated 2026-09-29 15:22:06 -0500
 </div>
 </div>
 </body>

@@ -570,50 +570,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 <!-- navmap-right-toc-end -->
-<!-- navmap-preview-warning-start -->
-<style>
-  .navmap-preview-warning {
-    background: #fff1f1;
-    border: 2px solid #c9190b;
-    border-radius: 4px;
-    color: #3b0a0a;
-    font-family: "Open Sans", "DejaVu Sans", sans-serif;
-    margin: 1em auto;
-    max-width: 70em;
-    padding: 1em 1.25em;
-  }
-  .navmap-preview-warning strong { color: #a30000; }
-  .navmap-preview-warning details { margin-top: .75em; }
-  .navmap-preview-warning pre {
-    background: #fff;
-    border: 1px solid #d7d7d7;
-    max-height: 20em;
-    overflow: auto;
-    padding: .75em;
-    white-space: pre-wrap;
-  }
-</style>
-<!-- navmap-preview-warning-end -->
 </head>
 <body id="rosa-classic-create-a-rosa-classic-cluster-intro_rosa-classic-create-a-rosa-classic-cluster" class="book toc2 toc-left navmap-has-right-toc">
-<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-classic/navigation.adoc
-
-Missing include targets:
-  maps/rosa-classic/hcm-jobs/rosa-classic-create-a-rosa-classic-cluster-using-the-cli.adoc:134
-    include::modules/rosa-deleting-cluster.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-classic/hcm-jobs/modules/rosa-deleting-cluster.adoc
-  maps/rosa-classic/hcm-jobs/rosa-classic-create-a-rosa-classic-cluster-using-ocm.adoc:137
-    include::modules/rosa-deleting-cluster.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-classic/hcm-jobs/modules/rosa-deleting-cluster.adoc
-  maps/rosa-classic/hcm-jobs/rosa-classic-delete-the-cluster.adoc:8
-    include::modules/rosa-deleting-cluster.adoc[leveloffset=+1,toc=&quot;no&quot;]
-    expected: maps/rosa-classic/hcm-jobs/modules/rosa-deleting-cluster.adoc
-
-How to fix these errors:
-  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
-  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
-  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
-</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS (classic architecture)</h1>
 <div id="toc" class="toc2">
@@ -662,7 +620,7 @@ How to fix these errors:
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-classic-create-a-rosa-classic-cluster-using-the-cli-intro_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Create a ROSA classic cluster using the CLI</a></li><li class="level-5"><a href="#mos-checklist-cli-requirements_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">CLI requirements</a></li><li class="level-5"><a href="#mos-checklist-aws-cli_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">AWS CLI (aws)</a></li><li class="level-5"><a href="#mos-checklist-_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">ROSA command-line interface (CLI) (rosa)</a></li><li class="level-5"><a href="#mos-checklist-oc-cli_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">OpenShift CLI (oc)</a></li><li class="level-5"><a href="#mos-checklist-aws-infra-prereqs_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">AWS infrastructure prerequisites</a></li><li class="level-5"><a href="#mos-checklist-scp-prereqs_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Service Control Policy (SCP) prerequisites</a></li><li class="level-5"><a href="#rosa-sts-setting-up-environment_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Setting up the environment for STS</a></li><li class="level-5"><a href="#mos-checklist-vpc-privatelink_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">VPC requirements for PrivateLink clusters</a></li><li class="level-5"><a href="#rosa-hcp-firewall-prerequisites_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Firewall prerequisites for Red Hat OpenShift Services on AWS (classic architecture)</a></li><li class="level-6"><a href="#_domains_for_installation_packages_and_tools">Domains for installation packages and tools</a></li><li class="level-6"><a href="#_domains_for_telemetry">Domains for telemetry</a></li><li class="level-6"><a href="#_domains_for_amazon_web_services_aws_apis">Domains for Amazon Web Services (AWS) APIs</a></li><li class="level-6"><a href="#_domains_for_your_workload">Domains for your workload</a></li><li class="level-6"><a href="#_optional_domains_to_enable_third_party_content">Optional domains to enable third-party content</a></li><li class="level-6"><a href="#firewall-cli-bastion_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Outbound firewall rules for the ROSA CLI for clusters with egress zero</a></li><li class="level-6"><a href="#firewall-hcm-bastion_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Outbound firewall rules from Red Hat Hybrid Cloud Console for clusters with egress zero</a></li><li class="level-5"><a href="#mos-checklist-add-custom-sgs_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Additional custom security groups</a></li><li class="level-5"><a href="#mos-checklist-custom-dns-domains_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Custom DNS and domains</a></li><li class="level-5"><a href="#rosa-hcp-vpc-subnet-tagging_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Tagging your subnets</a></li><li class="level-5"><a href="#rosa-prereq-roles-overview_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Overview of required roles</a></li><li class="level-5"><a href="#rosa-sts-about-ocm-role_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">About the ocm-role IAM resource</a></li><li class="level-6"><a href="#rosa-sts-about-ocm-role-profiles_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">ocm-role IAM resource profiles</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Creating an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-about-user-role_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">About the user-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-user-role-iam-basic-role_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Creating a user-role IAM role</a></li><li class="level-5"><a href="#rosa-ocm-requirements_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Requirements for using OpenShift Cluster Manager</a></li><li class="level-6"><a href="#rosa-associating-concept_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">AWS account association</a></li><li class="level-5"><a href="#rosa-associating-account_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Associating your AWS account with IAM roles</a></li><li class="level-5"><a href="#rosa-associating-multiple-account_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Associating multiple AWS accounts with your Red Hat organization</a></li><li class="level-5"><a href="#rosa-sts-aws-requirements-attaching-boundary-policy_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Permission boundaries for the installer role</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Creating an OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-sts-oidc-provider-for-operators-aws-cli_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Creating an OIDC provider using the CLI</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-options_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Parameter options for creating your own OpenID Connect configuration</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-raw-files_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">raw-files</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-mode_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">mode</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-managed_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">managed</a></li><li class="level-5"><a href="#aws-encryption-key_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Create an AWS KMS encryption key</a></li><li class="level-5"><a href="#rosa-sts-overview-of-the-default-cluster-specifications_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Overview of the default cluster specifications</a></li><li class="level-5"><a href="#rosa-sts-creating-a-cluster-quickly-cli_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Creating a cluster quickly using the CLI</a></li><li class="level-5"><a href="#rosa-sts-creating-cluster-customizations-cli_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Creating a cluster with customizations using the CLI</a></li><li class="level-5"><a href="#rosa-sts-interactive-cluster-creation-mode-options_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Interactive cluster creation mode options</a></li><li class="level-5"><a href="#osd-aws-privatelink-config-dns-forwarding_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configuring AWS PrivateLink DNS forwarding</a></li><li class="level-5"><a href="#understanding-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Supported identity providers</a></li><li class="level-5"><a href="#identity-provider-parameters_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Identity provider parameters</a></li><li class="level-5"><a href="#config-github-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configure a GitHub identity provider</a></li><li class="level-5"><a href="#config-gitlab-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configure a GitLab identity provider</a></li><li class="level-5"><a href="#config-google-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configure a Google identity provider</a></li><li class="level-5"><a href="#config-ldap-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configure an LDAP identity provider</a></li><li class="level-5"><a href="#config-openid-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configure an OpenID identity provider</a></li><li class="level-5"><a href="#config-htpasswd-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configuring an htpasswd identity provider</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster-quick_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Accessing your cluster quickly</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Accessing your cluster with an IDP account</a></li><li class="level-5"><a href="#rosa-create-cluster-admins_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Granting cluster-admin access</a></li><li class="level-5"><a href="#rosa-create-dedicated-cluster-admins_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Granting dedicated-admin access</a></li><li class="level-5"><a href="#rosa-deleting-cluster-troubleshooting_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Troubleshooting cluster deletion</a></li><li class="level-5"><a href="#rosa-deleting-sts-resources-account-wide_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Deleting the account-wide IAM resources</a></li><li class="level-4"><a href="#rosa-classic-create-a-rosa-classic-cluster-using-ocm-intro_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Create a ROSA classic cluster using OCM</a></li><li class="level-5"><a href="#mos-checklist-cli-requirements_rosa-classic-create-a-rosa-classic-cluster-using-ocm">CLI requirements</a></li><li class="level-5"><a href="#mos-checklist-aws-cli_rosa-classic-create-a-rosa-classic-cluster-using-ocm">AWS CLI (aws)</a></li><li class="level-5"><a href="#mos-checklist-_rosa-classic-create-a-rosa-classic-cluster-using-ocm">ROSA command-line interface (CLI) (rosa)</a></li><li class="level-5"><a href="#mos-checklist-oc-cli_rosa-classic-create-a-rosa-classic-cluster-using-ocm">OpenShift CLI (oc)</a></li><li class="level-5"><a href="#rosa-getting-started-install-configure-cli-tools_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Install and configure the required CLI tools</a></li><li class="level-5"><a href="#mos-checklist-aws-infra-prereqs_rosa-classic-create-a-rosa-classic-cluster-using-ocm">AWS infrastructure prerequisites</a></li><li class="level-5"><a href="#mos-checklist-scp-prereqs_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Service Control Policy (SCP) prerequisites</a></li><li class="level-5"><a href="#rosa-sts-setting-up-environment_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Setting up the environment for STS</a></li><li class="level-5"><a href="#rosa-requirements-deploying-in-opt-in-regions_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Requirements for deploying a cluster in an opt-in region</a></li><li class="level-5"><a href="#mos-checklist-vpc-privatelink_rosa-classic-create-a-rosa-classic-cluster-using-ocm">VPC requirements for PrivateLink clusters</a></li><li class="level-5"><a href="#rosa-hcp-firewall-prerequisites_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Firewall prerequisites for Red Hat OpenShift Services on AWS (classic architecture)</a></li><li class="level-6"><a href="#_domains_for_installation_packages_and_tools_2">Domains for installation packages and tools</a></li><li class="level-6"><a href="#_domains_for_telemetry_2">Domains for telemetry</a></li><li class="level-6"><a href="#_domains_for_amazon_web_services_aws_apis_2">Domains for Amazon Web Services (AWS) APIs</a></li><li class="level-6"><a href="#_domains_for_your_workload_2">Domains for your workload</a></li><li class="level-6"><a href="#_optional_domains_to_enable_third_party_content_2">Optional domains to enable third-party content</a></li><li class="level-6"><a href="#firewall-cli-bastion_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Outbound firewall rules for the ROSA CLI for clusters with egress zero</a></li><li class="level-6"><a href="#firewall-hcm-bastion_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Outbound firewall rules from Red Hat Hybrid Cloud Console for clusters with egress zero</a></li><li class="level-5"><a href="#mos-checklist-add-custom-sgs_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Additional custom security groups</a></li><li class="level-5"><a href="#mos-checklist-custom-dns-domains_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Custom DNS and domains</a></li><li class="level-5"><a href="#rosa-hcp-vpc-subnet-tagging_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Tagging your subnets</a></li><li class="level-5"><a href="#rosa-prereq-roles-overview_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Overview of required roles</a></li><li class="level-5"><a href="#rosa-sts-about-ocm-role_rosa-classic-create-a-rosa-classic-cluster-using-ocm">About the ocm-role IAM resource</a></li><li class="level-6"><a href="#rosa-sts-about-ocm-role-profiles_rosa-classic-create-a-rosa-classic-cluster-using-ocm">ocm-role IAM resource profiles</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Creating an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-about-user-role_rosa-classic-create-a-rosa-classic-cluster-using-ocm">About the user-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-user-role-iam-basic-role_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Creating a user-role IAM role</a></li><li class="level-5"><a href="#rosa-ocm-requirements_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Requirements for using OpenShift Cluster Manager</a></li><li class="level-6"><a href="#rosa-associating-concept_rosa-classic-create-a-rosa-classic-cluster-using-ocm">AWS account association</a></li><li class="level-5"><a href="#rosa-associating-account_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Associating your AWS account with IAM roles</a></li><li class="level-5"><a href="#rosa-associating-multiple-account_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Associating multiple AWS accounts with your Red Hat organization</a></li><li class="level-5"><a href="#rosa-sts-aws-requirements-attaching-boundary-policy_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Permission boundaries for the installer role</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Creating an OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-options_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Parameter options for creating your own OpenID Connect configuration</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-raw-files_rosa-classic-create-a-rosa-classic-cluster-using-ocm">raw-files</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-mode_rosa-classic-create-a-rosa-classic-cluster-using-ocm">mode</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-managed_rosa-classic-create-a-rosa-classic-cluster-using-ocm">managed</a></li><li class="level-5"><a href="#rosa-creating-operator-roles-and-oidc-manually-ocm_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Creating the Operator roles and OIDC provider using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#aws-container-persistent-volumes-encrypt_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Encrypting container persistent volumes on AWS with a KMS key</a></li><li class="level-5"><a href="#aws-encryption-key_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Create an AWS KMS encryption key</a></li><li class="level-5"><a href="#rosa-sts-creating-a-cluster-using-defaults-ocm_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Create a cluster with the default options using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#rosa-sts-creating-cluster-customizations-ocm_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Creating a cluster with customizations by using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#osd-aws-privatelink-config-dns-forwarding_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configuring AWS PrivateLink DNS forwarding</a></li><li class="level-5"><a href="#understanding-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Supported identity providers</a></li><li class="level-5"><a href="#identity-provider-parameters_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Identity provider parameters</a></li><li class="level-5"><a href="#config-github-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configure a GitHub identity provider</a></li><li class="level-5"><a href="#config-gitlab-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configure a GitLab identity provider</a></li><li class="level-5"><a href="#config-google-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configure a Google identity provider</a></li><li class="level-5"><a href="#config-ldap-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configure an LDAP identity provider</a></li><li class="level-5"><a href="#config-openid-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configure an OpenID identity provider</a></li><li class="level-5"><a href="#config-htpasswd-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configuring an htpasswd identity provider</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster-quick_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Accessing your cluster quickly</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Accessing your cluster with an IDP account</a></li><li class="level-5"><a href="#rosa-create-cluster-admins_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Granting cluster-admin access</a></li><li class="level-5"><a href="#rosa-create-dedicated-cluster-admins_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Granting dedicated-admin access</a></li><li class="level-5"><a href="#rosa-deleting-cluster-troubleshooting_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Troubleshooting cluster deletion</a></li><li class="level-5"><a href="#rosa-deleting-sts-resources-account-wide_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Deleting the account-wide IAM resources</a></li><li class="level-4"><a href="#rosa-classic-create-a-rosa-classic-cluster-using-terraform-intro_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Create a ROSA classic cluster using Terraform</a></li><li class="level-5"><a href="#mos-checklist-cli-requirements_rosa-classic-create-a-rosa-classic-cluster-using-terraform">CLI requirements</a></li><li class="level-5"><a href="#mos-checklist-aws-cli_rosa-classic-create-a-rosa-classic-cluster-using-terraform">AWS CLI (aws)</a></li><li class="level-5"><a href="#mos-checklist-_rosa-classic-create-a-rosa-classic-cluster-using-terraform">ROSA command-line interface (CLI) (rosa)</a></li><li class="level-5"><a href="#mos-checklist-oc-cli_rosa-classic-create-a-rosa-classic-cluster-using-terraform">OpenShift CLI (oc)</a></li><li class="level-5"><a href="#rosa-getting-started-install-configure-cli-tools_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Install and configure the required CLI tools</a></li><li class="level-5"><a href="#mos-checklist-aws-infra-prereqs_rosa-classic-create-a-rosa-classic-cluster-using-terraform">AWS infrastructure prerequisites</a></li><li class="level-5"><a href="#mos-checklist-scp-prereqs_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Service Control Policy (SCP) prerequisites</a></li><li class="level-5"><a href="#rosa-sts-setting-up-environment_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Setting up the environment for STS</a></li><li class="level-5"><a href="#rosa-requirements-deploying-in-opt-in-regions_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Requirements for deploying a cluster in an opt-in region</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Creating an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-terraform-considerations_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Considerations when using Terraform</a></li><li class="level-5"><a href="#rosa-sts-cluster-terraform-setup_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Preparing your environment for Terraform</a></li><li class="level-5"><a href="#rosa-classic-cluster-terraform-file-creation_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Creating your Terraform files locally</a></li><li class="level-5"><a href="#rosa-sts-cluster-terraform-execute_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Using Terraform to create your Red Hat OpenShift Services on AWS (classic architecture) cluster</a></li><li class="level-5"><a href="#config-htpasswd-idp_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Configuring an htpasswd identity provider</a></li><li class="level-5"><a href="#rosa-create-cluster-admins_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Granting cluster-admin access</a></li><li class="level-5"><a href="#rosa-create-dedicated-cluster-admins_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Granting dedicated-admin access</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster-quick_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Accessing your cluster quickly</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Accessing your cluster with an IDP account</a></li><li class="level-5"><a href="#sd-terraform-cluster-destroy_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Deleting your Red Hat OpenShift Services on AWS (classic architecture) cluster with Terraform</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-classic-create-a-rosa-classic-cluster-using-the-cli-intro_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Create a ROSA classic cluster using the CLI</a></li><li class="level-5"><a href="#mos-checklist-cli-requirements_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">CLI requirements</a></li><li class="level-5"><a href="#mos-checklist-aws-cli_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">AWS CLI (aws)</a></li><li class="level-5"><a href="#mos-checklist-_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">ROSA command-line interface (CLI) (rosa)</a></li><li class="level-5"><a href="#mos-checklist-oc-cli_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">OpenShift CLI (oc)</a></li><li class="level-5"><a href="#mos-checklist-aws-infra-prereqs_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">AWS infrastructure prerequisites</a></li><li class="level-5"><a href="#mos-checklist-scp-prereqs_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Service Control Policy (SCP) prerequisites</a></li><li class="level-5"><a href="#rosa-sts-setting-up-environment_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Setting up the environment for STS</a></li><li class="level-5"><a href="#mos-checklist-vpc-privatelink_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">VPC requirements for PrivateLink clusters</a></li><li class="level-5"><a href="#rosa-hcp-firewall-prerequisites_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Firewall prerequisites for Red Hat OpenShift Services on AWS (classic architecture)</a></li><li class="level-6"><a href="#_domains_for_installation_packages_and_tools">Domains for installation packages and tools</a></li><li class="level-6"><a href="#_domains_for_telemetry">Domains for telemetry</a></li><li class="level-6"><a href="#_domains_for_amazon_web_services_aws_apis">Domains for Amazon Web Services (AWS) APIs</a></li><li class="level-6"><a href="#_domains_for_your_workload">Domains for your workload</a></li><li class="level-6"><a href="#_optional_domains_to_enable_third_party_content">Optional domains to enable third-party content</a></li><li class="level-6"><a href="#firewall-cli-bastion_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Outbound firewall rules for the ROSA CLI for clusters with egress zero</a></li><li class="level-6"><a href="#firewall-hcm-bastion_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Outbound firewall rules from Red Hat Hybrid Cloud Console for clusters with egress zero</a></li><li class="level-5"><a href="#mos-checklist-add-custom-sgs_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Additional custom security groups</a></li><li class="level-5"><a href="#mos-checklist-custom-dns-domains_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Custom DNS and domains</a></li><li class="level-5"><a href="#rosa-hcp-vpc-subnet-tagging_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Tagging your subnets</a></li><li class="level-5"><a href="#rosa-prereq-roles-overview_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Overview of required roles</a></li><li class="level-5"><a href="#rosa-sts-about-ocm-role_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">About the ocm-role IAM resource</a></li><li class="level-6"><a href="#rosa-sts-about-ocm-role-profiles_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">ocm-role IAM resource profiles</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Creating an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-about-user-role_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">About the user-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-user-role-iam-basic-role_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Creating a user-role IAM role</a></li><li class="level-5"><a href="#rosa-ocm-requirements_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Requirements for using OpenShift Cluster Manager</a></li><li class="level-6"><a href="#rosa-associating-concept_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">AWS account association</a></li><li class="level-5"><a href="#rosa-associating-account_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Associating your AWS account with IAM roles</a></li><li class="level-5"><a href="#rosa-associating-multiple-account_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Associating multiple AWS accounts with your Red Hat organization</a></li><li class="level-5"><a href="#rosa-sts-aws-requirements-attaching-boundary-policy_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Permission boundaries for the installer role</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Create an OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-sts-oidc-provider-for-operators-aws-cli_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Create an OIDC provider using the ROSA CLI</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-options_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Parameter options for creating your own OpenID Connect configuration</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-raw-files_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">raw-files</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-mode_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">mode</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-managed_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">managed</a></li><li class="level-5"><a href="#aws-encryption-key_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Create an AWS KMS encryption key</a></li><li class="level-5"><a href="#rosa-sts-overview-of-the-default-cluster-specifications_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Overview of the default cluster specifications</a></li><li class="level-5"><a href="#rosa-sts-creating-a-cluster-quickly-cli_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Creating a cluster quickly using the CLI</a></li><li class="level-5"><a href="#rosa-sts-creating-cluster-customizations-cli_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Creating a cluster with customizations using the CLI</a></li><li class="level-5"><a href="#rosa-sts-interactive-cluster-creation-mode-options_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Interactive cluster creation mode options</a></li><li class="level-5"><a href="#osd-aws-privatelink-config-dns-forwarding_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configuring AWS PrivateLink DNS forwarding</a></li><li class="level-5"><a href="#understanding-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Supported identity providers</a></li><li class="level-5"><a href="#identity-provider-parameters_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Identity provider parameters</a></li><li class="level-5"><a href="#config-github-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configure a GitHub identity provider</a></li><li class="level-5"><a href="#config-gitlab-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configure a GitLab identity provider</a></li><li class="level-5"><a href="#config-google-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configure a Google identity provider</a></li><li class="level-5"><a href="#config-ldap-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configure an LDAP identity provider</a></li><li class="level-5"><a href="#config-openid-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configure an OpenID identity provider</a></li><li class="level-5"><a href="#config-htpasswd-idp_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Configuring an htpasswd identity provider</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster-quick_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Accessing your cluster quickly</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Accessing your cluster with an IDP account</a></li><li class="level-5"><a href="#rosa-create-cluster-admins_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Granting cluster-admin access</a></li><li class="level-5"><a href="#rosa-create-dedicated-cluster-admins_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Granting dedicated-admin access</a></li><li class="level-5"><a href="#rosa-deleting-cluster-non-sts_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Deleting a Red Hat OpenShift Services on AWS (classic architecture) cluster</a></li><li class="level-5"><a href="#rosa-deleting-cluster-troubleshooting_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Troubleshooting cluster deletion</a></li><li class="level-5"><a href="#rosa-deleting-sts-resources-account-wide_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Deleting the account-wide IAM resources</a></li><li class="level-4"><a href="#rosa-classic-create-a-rosa-classic-cluster-using-ocm-intro_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Create a ROSA classic cluster using OCM</a></li><li class="level-5"><a href="#mos-checklist-cli-requirements_rosa-classic-create-a-rosa-classic-cluster-using-ocm">CLI requirements</a></li><li class="level-5"><a href="#mos-checklist-aws-cli_rosa-classic-create-a-rosa-classic-cluster-using-ocm">AWS CLI (aws)</a></li><li class="level-5"><a href="#mos-checklist-_rosa-classic-create-a-rosa-classic-cluster-using-ocm">ROSA command-line interface (CLI) (rosa)</a></li><li class="level-5"><a href="#mos-checklist-oc-cli_rosa-classic-create-a-rosa-classic-cluster-using-ocm">OpenShift CLI (oc)</a></li><li class="level-5"><a href="#rosa-getting-started-install-configure-cli-tools_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Install and configure the required CLI tools</a></li><li class="level-5"><a href="#mos-checklist-aws-infra-prereqs_rosa-classic-create-a-rosa-classic-cluster-using-ocm">AWS infrastructure prerequisites</a></li><li class="level-5"><a href="#mos-checklist-scp-prereqs_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Service Control Policy (SCP) prerequisites</a></li><li class="level-5"><a href="#rosa-sts-setting-up-environment_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Setting up the environment for STS</a></li><li class="level-5"><a href="#rosa-requirements-deploying-in-opt-in-regions_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Requirements for deploying a cluster in an opt-in region</a></li><li class="level-5"><a href="#mos-checklist-vpc-privatelink_rosa-classic-create-a-rosa-classic-cluster-using-ocm">VPC requirements for PrivateLink clusters</a></li><li class="level-5"><a href="#rosa-hcp-firewall-prerequisites_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Firewall prerequisites for Red Hat OpenShift Services on AWS (classic architecture)</a></li><li class="level-6"><a href="#_domains_for_installation_packages_and_tools_2">Domains for installation packages and tools</a></li><li class="level-6"><a href="#_domains_for_telemetry_2">Domains for telemetry</a></li><li class="level-6"><a href="#_domains_for_amazon_web_services_aws_apis_2">Domains for Amazon Web Services (AWS) APIs</a></li><li class="level-6"><a href="#_domains_for_your_workload_2">Domains for your workload</a></li><li class="level-6"><a href="#_optional_domains_to_enable_third_party_content_2">Optional domains to enable third-party content</a></li><li class="level-6"><a href="#firewall-cli-bastion_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Outbound firewall rules for the ROSA CLI for clusters with egress zero</a></li><li class="level-6"><a href="#firewall-hcm-bastion_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Outbound firewall rules from Red Hat Hybrid Cloud Console for clusters with egress zero</a></li><li class="level-5"><a href="#mos-checklist-add-custom-sgs_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Additional custom security groups</a></li><li class="level-5"><a href="#mos-checklist-custom-dns-domains_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Custom DNS and domains</a></li><li class="level-5"><a href="#rosa-hcp-vpc-subnet-tagging_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Tagging your subnets</a></li><li class="level-5"><a href="#rosa-prereq-roles-overview_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Overview of required roles</a></li><li class="level-5"><a href="#rosa-sts-about-ocm-role_rosa-classic-create-a-rosa-classic-cluster-using-ocm">About the ocm-role IAM resource</a></li><li class="level-6"><a href="#rosa-sts-about-ocm-role-profiles_rosa-classic-create-a-rosa-classic-cluster-using-ocm">ocm-role IAM resource profiles</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Creating an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-about-user-role_rosa-classic-create-a-rosa-classic-cluster-using-ocm">About the user-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-user-role-iam-basic-role_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Creating a user-role IAM role</a></li><li class="level-5"><a href="#rosa-ocm-requirements_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Requirements for using OpenShift Cluster Manager</a></li><li class="level-6"><a href="#rosa-associating-concept_rosa-classic-create-a-rosa-classic-cluster-using-ocm">AWS account association</a></li><li class="level-5"><a href="#rosa-associating-account_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Associating your AWS account with IAM roles</a></li><li class="level-5"><a href="#rosa-associating-multiple-account_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Associating multiple AWS accounts with your Red Hat organization</a></li><li class="level-5"><a href="#rosa-sts-aws-requirements-attaching-boundary-policy_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Permission boundaries for the installer role</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Create an OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-options_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Parameter options for creating your own OpenID Connect configuration</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-raw-files_rosa-classic-create-a-rosa-classic-cluster-using-ocm">raw-files</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-mode_rosa-classic-create-a-rosa-classic-cluster-using-ocm">mode</a></li><li class="level-6"><a href="#rosa-sts-byo-oidc-managed_rosa-classic-create-a-rosa-classic-cluster-using-ocm">managed</a></li><li class="level-5"><a href="#rosa-creating-operator-roles-and-oidc-manually-ocm_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Creating the Operator roles and OIDC provider using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#aws-container-persistent-volumes-encrypt_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Encrypting container persistent volumes on AWS with a KMS key</a></li><li class="level-5"><a href="#aws-encryption-key_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Create an AWS KMS encryption key</a></li><li class="level-5"><a href="#rosa-sts-creating-a-cluster-using-defaults-ocm_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Create a cluster with the default options using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#rosa-sts-creating-cluster-customizations-ocm_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Creating a cluster with customizations by using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#osd-aws-privatelink-config-dns-forwarding_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configuring AWS PrivateLink DNS forwarding</a></li><li class="level-5"><a href="#understanding-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Supported identity providers</a></li><li class="level-5"><a href="#identity-provider-parameters_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Identity provider parameters</a></li><li class="level-5"><a href="#config-github-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configure a GitHub identity provider</a></li><li class="level-5"><a href="#config-gitlab-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configure a GitLab identity provider</a></li><li class="level-5"><a href="#config-google-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configure a Google identity provider</a></li><li class="level-5"><a href="#config-ldap-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configure an LDAP identity provider</a></li><li class="level-5"><a href="#config-openid-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configure an OpenID identity provider</a></li><li class="level-5"><a href="#config-htpasswd-idp_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Configuring an htpasswd identity provider</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster-quick_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Accessing your cluster quickly</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Accessing your cluster with an IDP account</a></li><li class="level-5"><a href="#rosa-create-cluster-admins_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Granting cluster-admin access</a></li><li class="level-5"><a href="#rosa-create-dedicated-cluster-admins_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Granting dedicated-admin access</a></li><li class="level-5"><a href="#rosa-deleting-cluster-non-sts_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Deleting a Red Hat OpenShift Services on AWS (classic architecture) cluster</a></li><li class="level-5"><a href="#rosa-deleting-cluster-troubleshooting_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Troubleshooting cluster deletion</a></li><li class="level-5"><a href="#rosa-deleting-sts-resources-account-wide_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Deleting the account-wide IAM resources</a></li><li class="level-4"><a href="#rosa-classic-create-a-rosa-classic-cluster-using-terraform-intro_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Create a ROSA classic cluster using Terraform</a></li><li class="level-5"><a href="#mos-checklist-cli-requirements_rosa-classic-create-a-rosa-classic-cluster-using-terraform">CLI requirements</a></li><li class="level-5"><a href="#mos-checklist-aws-cli_rosa-classic-create-a-rosa-classic-cluster-using-terraform">AWS CLI (aws)</a></li><li class="level-5"><a href="#mos-checklist-_rosa-classic-create-a-rosa-classic-cluster-using-terraform">ROSA command-line interface (CLI) (rosa)</a></li><li class="level-5"><a href="#mos-checklist-oc-cli_rosa-classic-create-a-rosa-classic-cluster-using-terraform">OpenShift CLI (oc)</a></li><li class="level-5"><a href="#rosa-getting-started-install-configure-cli-tools_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Install and configure the required CLI tools</a></li><li class="level-5"><a href="#mos-checklist-aws-infra-prereqs_rosa-classic-create-a-rosa-classic-cluster-using-terraform">AWS infrastructure prerequisites</a></li><li class="level-5"><a href="#mos-checklist-scp-prereqs_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Service Control Policy (SCP) prerequisites</a></li><li class="level-5"><a href="#rosa-sts-setting-up-environment_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Setting up the environment for STS</a></li><li class="level-5"><a href="#rosa-requirements-deploying-in-opt-in-regions_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Requirements for deploying a cluster in an opt-in region</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Creating an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-terraform-considerations_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Considerations when using Terraform</a></li><li class="level-5"><a href="#rosa-sts-cluster-terraform-setup_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Preparing your environment for Terraform</a></li><li class="level-5"><a href="#rosa-classic-cluster-terraform-file-creation_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Creating your Terraform files locally</a></li><li class="level-5"><a href="#rosa-sts-cluster-terraform-execute_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Using Terraform to create your Red Hat OpenShift Services on AWS (classic architecture) cluster</a></li><li class="level-5"><a href="#config-htpasswd-idp_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Configuring an htpasswd identity provider</a></li><li class="level-5"><a href="#rosa-create-cluster-admins_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Granting cluster-admin access</a></li><li class="level-5"><a href="#rosa-create-dedicated-cluster-admins_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Granting dedicated-admin access</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster-quick_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Accessing your cluster quickly</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Accessing your cluster with an IDP account</a></li><li class="level-5"><a href="#sd-terraform-cluster-destroy_rosa-classic-create-a-rosa-classic-cluster-using-terraform">Deleting your Red Hat OpenShift Services on AWS (classic architecture) cluster with Terraform</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-classic-create-a-rosa-classic-cluster-intro_rosa-classic-create-a-rosa-classic-cluster">Create a ROSA classic cluster</h3>
@@ -1628,7 +1586,7 @@ For more information about how remote health monitoring data is used by Red&#160
 <div class="sect4">
 <h5 id="rosa-hcp-vpc-subnet-tagging_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Tagging your subnets</h5>
 <div class="paragraph _abstract">
-<p>If you created your own VPC to create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, you must tag your VPC subnets. Automated service preflight checks verify that these resources are tagged correctly before you can use these resources for a cluster.</p>
+<p>If you created your own virtual private cloud (VPC) to create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, you must tag your VPC subnets. Automated service preflight checks verify that these resources are tagged correctly before you can use these resources for a cluster.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 19. Required subnet tags</caption>
@@ -1732,7 +1690,7 @@ For more information about how remote health monitoring data is used by Red&#160
 <p>You have created a VPC.</p>
 </li>
 <li>
-<p>You have installed the <code>aws</code> CLI.</p>
+<p>You have installed the <code>aws</code> command-line interface (CLI).</p>
 </li>
 </ul>
 </div>
@@ -2776,9 +2734,12 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-byo-oidc_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Creating an OpenID Connect configuration</h5>
+<h5 id="rosa-sts-byo-oidc_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Create an OpenID Connect configuration</h5>
 <div class="paragraph _abstract">
-<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters use OIDC and the AWS Security Token Service (STS) to authenticate Operator access to AWS resources they require to perform their functions. Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, you can create the OpenID Connect (OIDC) configuration before creating your cluster.</p>
+<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters use OpenID Connect (OIDC) and the AWS Security Token Service (STS) to authenticate Operator access to required AWS resources.</p>
+</div>
+<div class="paragraph">
+<p>Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, you can create the OIDC configuration before creating your cluster.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -2801,15 +2762,10 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create oidc-config --mode=auto --yes</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>This command returns the following information.</p>
-</div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red Hat hosted) OIDC Configuration Yes
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red{nbsp}Hat hosted) OIDC Configuration Yes
 I: Setting up managed OIDC configuration
 I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace &lt;user-defined&gt; with a prefix of your choice:
 	rosa create operator-roles --prefix &lt;user-defined&gt; --oidc-config-id 13cdr6b
@@ -2851,10 +2807,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo $OIDC_ID</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">13cdr6b</code></pre>
 </div>
@@ -2875,10 +2829,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list oidc-config</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">ID                                MANAGED  ISSUER URL                                                             SECRET ARN
 2330dbs0n8m3chkkr25gkkcd8pnj3lk2  true     https://dvbwgdztaeq9o.cloudfront.net/2330dbs0n8m3chkkr25gkkcd8pnj3lk2
@@ -2890,9 +2842,9 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-oidc-provider-for-operators-aws-cli_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Creating an OIDC provider using the CLI</h5>
-<div class="paragraph">
-<p>You can create an OIDC provider that is hosted in your AWS account with the Red&#160;Hat OpenShift Services on AWS (classic architecture) (ROSA) CLI, <code>rosa</code>.</p>
+<h5 id="rosa-sts-oidc-provider-for-operators-aws-cli_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Create an OIDC provider using the ROSA CLI</h5>
+<div class="paragraph _abstract">
+<p>Create an OpenID Connect (OIDC) provider that is hosted in your AWS account with the ROSA command-line interface (CLI) (<code>rosa</code>) to enable in-cluster Operators to authenticate with AWS resources.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -2906,7 +2858,7 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <div class="title">Procedure</div>
 <ul>
 <li>
-<p>To create an OIDC provider, by using an unregistered or a registered OIDC configuration.</p>
+<p>To create an OIDC provider, use an unregistered or a registered OIDC configuration.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2931,25 +2883,32 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Command output</div>
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">aws iam create-open-id-connect-provider \
-	--url https://oidc.op1.openshiftapps.com/&lt;oidc_config_id&gt; \<img src="data:image/png;base64," alt="1">
+	--url https://oidc.op1.openshiftapps.com/&lt;oidc_config_id&gt; \
 	--client-id-list openshift sts.&lt;aws_region&gt;.amazonaws.com \
-	--thumbprint-list &lt;thumbprint&gt; <img src="data:image/png;base64," alt="2"></code></pre>
+	--thumbprint-list &lt;thumbprint&gt;</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><img src="data:image/png;base64," alt="1"></td>
-<td>The URL used to reach the OpenID Connect (OIDC) identity provider after the cluster is created.</td>
-</tr>
-<tr>
-<td><img src="data:image/png;base64," alt="2"></td>
-<td>The thumbprint is generated automatically when you run the <code>rosa create oidc-provider</code> command. For more information about using thumbprints with AWS Identity and Access Management (IAM) OIDC identity providers, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html">the AWS documentation</a>.</td>
-</tr>
-</table>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>&lt;oidc_config_id&gt;</code></dt>
+<dd>
+<p>Specifies the URL used to reach the OIDC identity provider after the cluster is created.</p>
+</dd>
+<dt class="hdlist1"><code>&lt;thumbprint&gt;</code></dt>
+<dd>
+<p>Specifies the thumbprint, which is generated automatically when you run the <code>rosa create oidc-provider</code> command. For more information about using thumbprints with AWS Identity and Access Management (IAM) OIDC identity providers, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html">Obtain the thumbprint for OIDC</a> (AWS documentation).</p>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </li>
 <li>
@@ -2960,7 +2919,7 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Command output</div>
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Creating OIDC provider using 'arn:aws:iam::4540112244:user/userName'
 I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdztaeq9o.cloudfront.net/241rh9ql5gpu99d7leokhvkp8icnalpf'</code></pre>
@@ -2975,8 +2934,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 </div>
 <div class="sect4">
 <h5 id="rosa-sts-byo-oidc-options_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Parameter options for creating your own OpenID Connect configuration</h5>
-<div class="paragraph">
-<p>The following options may be added to the <code>rosa create oidc-config</code> command. All of these parameters are optional. Running the <code>rosa create oidc-config</code> command without parameters creates an unmanaged OIDC configuration.</p>
+<div class="paragraph _abstract">
+<p>The <code>rosa create oidc-config</code> command accepts several optional parameters. Running the <code>rosa create oidc-config</code> command without parameters creates an unmanaged OpenID Connect (OIDC) configuration.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2998,7 +2957,7 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <p>Allows you to provide raw files for the private RSA key. This key is named <code>rosa-private-key-oidc-&lt;random_label_of_length_4&gt;.key</code>. You also receive a discovery document, named <code>discovery-document-oidc-&lt;random_label_of_length_4&gt;.json</code>, and a JSON Web Key Set, named <code>jwks-oidc-&lt;random_label_of_length_4&gt;.json</code>.</p>
 </div>
 <div class="paragraph">
-<p>You use these files to set up the endpoint. This endpoint responds to <code>/.well-known/openid-configuration</code> with the discovery document and on <code>keys.json</code> with the JSON Web Key Set. The private key is stored in Amazon Web Services (AWS) Secrets Manager Service (SMS) as plaintext.</p>
+<p>You use these files to set up the endpoint. This endpoint responds to <code>/.well-known/openid-configuration</code> with the discovery document and on <code>keys.json</code> with the JSON Web Key Set. The private key is stored in Amazon Web Services (AWS) Secrets Manager Service (SMS) as plain text.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example</div>
@@ -3010,10 +2969,10 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <div class="sect5">
 <h6 id="rosa-sts-byo-oidc-mode_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">mode</h6>
 <div class="paragraph">
-<p>Allows you to specify the mode to create your OIDC configuration. With the <code>manual</code> option, you receive AWS commands that set up the OIDC configuration in an S3 bucket. This option stores the private key in the Secrets Manager. With the <code>manual</code> option, the OIDC Endpoint URL is the URL for the S3 bucket. You must retrieve the Secrets Manager ARN to register the OIDC configuration with OpenShift Cluster Manager.</p>
+<p>Allows you to specify the mode to create your OIDC configuration. With the <code>manual</code> option, you receive AWS commands that set up the OIDC configuration in an S3 bucket. This option stores the private key in the Secrets Manager. With the <code>manual</code> option, the OIDC Endpoint URL is the URL for the S3 bucket. You must retrieve the Secrets Manager Amazon Resource Name (ARN) to register the OIDC configuration with OpenShift Cluster Manager.</p>
 </div>
 <div class="paragraph">
-<p>You receive the same OIDC configuration and AWS resources as the <code>manual</code> mode when using the <code>auto</code> option. A significant difference between the two options is that when using the <code>auto</code> option, ROSA calls AWS, so you do not need to take any further actions. The OIDC Endpoint URL is the URL for the S3 bucket. The CLI retrieves the Secrets Manager ARN, registers the OIDC configuration with OpenShift Cluster Manager, and reports the second <code>rosa</code> command that the user can run to continue with the creation of the STS cluster.</p>
+<p>You receive the same OIDC configuration and AWS resources as the <code>manual</code> mode when using the <code>auto</code> option. A significant difference between the two options is that when using the <code>auto</code> option, Red&#160;Hat OpenShift Services on AWS (classic architecture) calls AWS, so you do not need to take any further actions. The OIDC Endpoint URL is the URL for the S3 bucket. The ROSA CLI retrieves the Secrets Manager ARN, registers the OIDC configuration with OpenShift Cluster Manager, and reports the second <code>rosa</code> command that the user can run to continue with the creation of the STS cluster.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example</div>
@@ -3051,13 +3010,13 @@ I: Created OIDC provider with ARN 'arn:aws:iam::242819244:oidc-provider/dvbwgdzt
 <div class="sect4">
 <h5 id="aws-encryption-key_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Create an AWS KMS encryption key</h5>
 <div class="paragraph _abstract">
-<p>Using your AWS account and the <code>aws</code> CLI tool, you can create an AWS KMS encryption key to encrypt your resources.</p>
+<p>Using your AWS account and the <code>aws</code> command-line interface (CLI) tool, you can create an AWS Key Management Service (KMS) encryption key to encrypt your resources.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Set the AWS region where you installed your VPC by running the following command:</p>
+<p>Set the AWS region where you installed your virtual private cloud (VPC) by running the following command:</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -6407,8 +6366,57 @@ dedicated-admins   rh-rosa-test-user</code></pre>
 </li>
 </ol>
 </div>
+</div>
+<div class="sect4">
+<h5 id="rosa-deleting-cluster-non-sts_rosa-classic-create-a-rosa-classic-cluster-using-the-cli">Deleting a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster</h5>
+<div class="paragraph _abstract">
+<p>You can delete a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Unresolved directive in hcm-jobs/rosa-classic-create-a-rosa-classic-cluster-using-the-cli.adoc - include::modules/rosa-deleting-cluster.adoc[leveloffset=+1,toc="no"]</p>
+<p>If the cluster that created the VPC during the installation is deleted, the associated installation program-created VPC will also be deleted, resulting in the failure of all the clusters that are using the same VPC. Additionally, any resources created with the same <code>tagSet</code> key-value pair of the resources created by the installation program and labeled with a value of <code>owned</code> will also be deleted.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have installed a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster.</p>
+</li>
+<li>
+<p>You have installed and configured the latest ROSA CLI on your installation host.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Enter the following command to delete a cluster and watch the logs, replacing <code>&lt;cluster_name&gt;</code> with the name or ID of your cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa delete cluster --cluster=&lt;cluster_name&gt; --watch</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To clean up your CloudFormation stack, enter the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init --delete</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect4">
@@ -7734,7 +7742,7 @@ For more information about how remote health monitoring data is used by Red&#160
 <div class="sect4">
 <h5 id="rosa-hcp-vpc-subnet-tagging_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Tagging your subnets</h5>
 <div class="paragraph _abstract">
-<p>If you created your own VPC to create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, you must tag your VPC subnets. Automated service preflight checks verify that these resources are tagged correctly before you can use these resources for a cluster.</p>
+<p>If you created your own virtual private cloud (VPC) to create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, you must tag your VPC subnets. Automated service preflight checks verify that these resources are tagged correctly before you can use these resources for a cluster.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 22. Required subnet tags</caption>
@@ -7838,7 +7846,7 @@ For more information about how remote health monitoring data is used by Red&#160
 <p>You have created a VPC.</p>
 </li>
 <li>
-<p>You have installed the <code>aws</code> CLI.</p>
+<p>You have installed the <code>aws</code> command-line interface (CLI).</p>
 </li>
 </ul>
 </div>
@@ -8882,9 +8890,12 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-byo-oidc_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Creating an OpenID Connect configuration</h5>
+<h5 id="rosa-sts-byo-oidc_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Create an OpenID Connect configuration</h5>
 <div class="paragraph _abstract">
-<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters use OIDC and the AWS Security Token Service (STS) to authenticate Operator access to AWS resources they require to perform their functions. Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, you can create the OpenID Connect (OIDC) configuration before creating your cluster.</p>
+<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters use OpenID Connect (OIDC) and the AWS Security Token Service (STS) to authenticate Operator access to required AWS resources.</p>
+</div>
+<div class="paragraph">
+<p>Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, you can create the OIDC configuration before creating your cluster.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -8907,15 +8918,10 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create oidc-config --mode=auto --yes</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>This command returns the following information.</p>
-</div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red Hat hosted) OIDC Configuration Yes
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red{nbsp}Hat hosted) OIDC Configuration Yes
 I: Setting up managed OIDC configuration
 I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace &lt;user-defined&gt; with a prefix of your choice:
 	rosa create operator-roles --prefix &lt;user-defined&gt; --oidc-config-id 13cdr6b
@@ -8957,10 +8963,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo $OIDC_ID</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">13cdr6b</code></pre>
 </div>
@@ -8981,10 +8985,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list oidc-config</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">ID                                MANAGED  ISSUER URL                                                             SECRET ARN
 2330dbs0n8m3chkkr25gkkcd8pnj3lk2  true     https://dvbwgdztaeq9o.cloudfront.net/2330dbs0n8m3chkkr25gkkcd8pnj3lk2
@@ -8997,8 +8999,8 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 </div>
 <div class="sect4">
 <h5 id="rosa-sts-byo-oidc-options_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Parameter options for creating your own OpenID Connect configuration</h5>
-<div class="paragraph">
-<p>The following options may be added to the <code>rosa create oidc-config</code> command. All of these parameters are optional. Running the <code>rosa create oidc-config</code> command without parameters creates an unmanaged OIDC configuration.</p>
+<div class="paragraph _abstract">
+<p>The <code>rosa create oidc-config</code> command accepts several optional parameters. Running the <code>rosa create oidc-config</code> command without parameters creates an unmanaged OpenID Connect (OIDC) configuration.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -9020,7 +9022,7 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <p>Allows you to provide raw files for the private RSA key. This key is named <code>rosa-private-key-oidc-&lt;random_label_of_length_4&gt;.key</code>. You also receive a discovery document, named <code>discovery-document-oidc-&lt;random_label_of_length_4&gt;.json</code>, and a JSON Web Key Set, named <code>jwks-oidc-&lt;random_label_of_length_4&gt;.json</code>.</p>
 </div>
 <div class="paragraph">
-<p>You use these files to set up the endpoint. This endpoint responds to <code>/.well-known/openid-configuration</code> with the discovery document and on <code>keys.json</code> with the JSON Web Key Set. The private key is stored in Amazon Web Services (AWS) Secrets Manager Service (SMS) as plaintext.</p>
+<p>You use these files to set up the endpoint. This endpoint responds to <code>/.well-known/openid-configuration</code> with the discovery document and on <code>keys.json</code> with the JSON Web Key Set. The private key is stored in Amazon Web Services (AWS) Secrets Manager Service (SMS) as plain text.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example</div>
@@ -9032,10 +9034,10 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <div class="sect5">
 <h6 id="rosa-sts-byo-oidc-mode_rosa-classic-create-a-rosa-classic-cluster-using-ocm">mode</h6>
 <div class="paragraph">
-<p>Allows you to specify the mode to create your OIDC configuration. With the <code>manual</code> option, you receive AWS commands that set up the OIDC configuration in an S3 bucket. This option stores the private key in the Secrets Manager. With the <code>manual</code> option, the OIDC Endpoint URL is the URL for the S3 bucket. You must retrieve the Secrets Manager ARN to register the OIDC configuration with OpenShift Cluster Manager.</p>
+<p>Allows you to specify the mode to create your OIDC configuration. With the <code>manual</code> option, you receive AWS commands that set up the OIDC configuration in an S3 bucket. This option stores the private key in the Secrets Manager. With the <code>manual</code> option, the OIDC Endpoint URL is the URL for the S3 bucket. You must retrieve the Secrets Manager Amazon Resource Name (ARN) to register the OIDC configuration with OpenShift Cluster Manager.</p>
 </div>
 <div class="paragraph">
-<p>You receive the same OIDC configuration and AWS resources as the <code>manual</code> mode when using the <code>auto</code> option. A significant difference between the two options is that when using the <code>auto</code> option, ROSA calls AWS, so you do not need to take any further actions. The OIDC Endpoint URL is the URL for the S3 bucket. The CLI retrieves the Secrets Manager ARN, registers the OIDC configuration with OpenShift Cluster Manager, and reports the second <code>rosa</code> command that the user can run to continue with the creation of the STS cluster.</p>
+<p>You receive the same OIDC configuration and AWS resources as the <code>manual</code> mode when using the <code>auto</code> option. A significant difference between the two options is that when using the <code>auto</code> option, Red&#160;Hat OpenShift Services on AWS (classic architecture) calls AWS, so you do not need to take any further actions. The OIDC Endpoint URL is the URL for the S3 bucket. The ROSA CLI retrieves the Secrets Manager ARN, registers the OIDC configuration with OpenShift Cluster Manager, and reports the second <code>rosa</code> command that the user can run to continue with the creation of the STS cluster.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example</div>
@@ -9201,13 +9203,13 @@ EOF</code></pre>
 <div class="sect4">
 <h5 id="aws-encryption-key_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Create an AWS KMS encryption key</h5>
 <div class="paragraph _abstract">
-<p>Using your AWS account and the <code>aws</code> CLI tool, you can create an AWS KMS encryption key to encrypt your resources.</p>
+<p>Using your AWS account and the <code>aws</code> command-line interface (CLI) tool, you can create an AWS Key Management Service (KMS) encryption key to encrypt your resources.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Set the AWS region where you installed your VPC by running the following command:</p>
+<p>Set the AWS region where you installed your virtual private cloud (VPC) by running the following command:</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -11983,8 +11985,57 @@ dedicated-admins   rh-rosa-test-user</code></pre>
 </li>
 </ol>
 </div>
+</div>
+<div class="sect4">
+<h5 id="rosa-deleting-cluster-non-sts_rosa-classic-create-a-rosa-classic-cluster-using-ocm">Deleting a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster</h5>
+<div class="paragraph _abstract">
+<p>You can delete a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Unresolved directive in hcm-jobs/rosa-classic-create-a-rosa-classic-cluster-using-ocm.adoc - include::modules/rosa-deleting-cluster.adoc[leveloffset=+1,toc="no"]</p>
+<p>If the cluster that created the VPC during the installation is deleted, the associated installation program-created VPC will also be deleted, resulting in the failure of all the clusters that are using the same VPC. Additionally, any resources created with the same <code>tagSet</code> key-value pair of the resources created by the installation program and labeled with a value of <code>owned</code> will also be deleted.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have installed a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster.</p>
+</li>
+<li>
+<p>You have installed and configured the latest ROSA CLI on your installation host.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Enter the following command to delete a cluster and watch the logs, replacing <code>&lt;cluster_name&gt;</code> with the name or ID of your cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa delete cluster --cluster=&lt;cluster_name&gt; --watch</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To clean up your CloudFormation stack, enter the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init --delete</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect4">
@@ -14123,7 +14174,7 @@ I: No operator roles available</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-18 11:19:39 -0500
+Last updated 2026-09-29 15:22:06 -0500
 </div>
 </div>
 </body>

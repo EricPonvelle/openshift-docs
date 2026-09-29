@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red&#160;Hat OpenShift Services on AWS (classic architecture)</title>
+<title>Red&#160;Hat OpenShift Services on AWS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -530,71 +530,495 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 })();
 </script>
 <!-- navmap-left-nav-toggle-end -->
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="_whats_new" class="book toc2 toc-left">
+<body id="rosa-cluster-manager-overview_rosa-hcp-red-hat-openshift-cluster-manager-overview" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
-<h1>Red&#160;Hat OpenShift Services on AWS (classic architecture)</h1>
+<h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
-<li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html"><span class="toc-current">What&#8217;s new</span></a>
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
+<li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
+
 <ul class="sectlevel2">
-<li><a href="rosa-classic-whats-new_whats-new-with-rosa-classic.html">What&#8217;s new for Red Hat OpenShift Service on AWS classic architecture</a>
+<li><a href="rosa-hcp-whats-new_rosa-hcp-whats-new.html">What&#8217;s new for Red Hat OpenShift Service on AWS</a>
 </li>
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
-
 <ul class="sectlevel2">
-<li><a href="rosa-classic-understand-architecture_understand-rosa-classic-architecture.html">Understand Red Hat OpenShift Service on AWS classic architecture</a>
+<li><a href="rosa-hcp-learn-about-benefits-and-use-cases_rosa-hcp-learn-about-benefits-and-use-cases.html">Learn about benefits and use cases</a>
+</li>
+<li><a href="rosa-hcp-evaluate-shared-responsibilities_rosa-hcp-evaluate-shared-responsibilities.html">Evaluate shared responsibilities</a>
+</li>
+<li><a href="rosa-hcp-get-sre-and-service-account-access_rosa-hcp-get-sre-and-service-account-access.html">Get SRE and service account access</a>
+</li>
+<li><a href="rosa-hcp-understand-security-control_rosa-hcp-understand-security-control.html">Understand security control</a>
+</li>
+<li><a href="rosa-hcp-acquire-aws-sts-authentication_rosa-hcp-acquire-aws-sts-authentication.html">Acquire AWS STS authentication</a>
+</li>
+<li><a href="rosa-hcp-investigate-architecture-models_rosa-hcp-investigate-architecture-models.html">Investigate architecture models</a>
+</li>
+<li><a href="rosa-hcp-explore-sts-resources-for-iam-clusters_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Explore STS resources for IAM clusters</a>
+</li>
+<li><a href="rosa-hcp-general-availability_rosa-hcp-general-availability.html">General availability</a>
+</li>
+<li><a href="rosa-hcp-review-the-service-definition_rosa-hcp-review-the-service-definition.html">Review the service definition</a>
+</li>
+<li><a href="rosa-hcp-review-supported-instance-types_rosa-hcp-review-supported-instance-types.html">Review supported instance types</a>
+</li>
+<li><a href="rosa-hcp-update-life-cycle_rosa-hcp-update-life-cycle.html">Update life cycle</a>
+</li>
+<li><a href="rosa-cluster-manager-overview_rosa-hcp-red-hat-openshift-cluster-manager-overview.html"><span class="toc-current">Red Hat OpenShift Cluster Manager</span></a>
 </li>
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
 
 <ul class="sectlevel2">
-<li><a href="rosa-classic-create-a-rosa-classic-cluster-intro_rosa-classic-create-a-rosa-classic-cluster.html">Create a ROSA classic cluster</a>
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-intro_rosa-hcp-create-a-rosa-hcp-cluster.html">Create a ROSA HCP Cluster</a>
 </li>
-<li><a href="rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc-intro_rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc.html">Create a ROSA classic cluster in a shared VPC</a>
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-intro_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc.html">Create a ROSA HCP Cluster in a Shared VPC</a>
 </li>
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_upgrade.html">▶</button><a href="_upgrade.html">Upgrade</a>
 
 <ul class="sectlevel2">
-<li><a href="rosa-plan-cluster-upgrades_rosa-classic-plan-cluster-upgrades.html">Plan cluster upgrades</a>
+<li><a href="rosa-plan-cluster-upgrades_rosa-hcp-plan-cluster-upgrades.html">Plan cluster upgrades</a>
 </li>
-<li><a href="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster.html">Upgrade a cluster</a>
+<li><a href="rosa-hcp-upgrade-a-cluster_rosa-hcp-upgrade-a-cluster.html">Upgrade a cluster</a>
+</li>
+<li><a href="rosa-hcp-upgrade-karpenter-managed-nodes_rosa-hcp-upgrade-karpenter-managed-nodes.html">Upgrade Karpenter-managed nodes</a>
 </li>
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_observe.html">▶</button><a href="_observe.html">Observe</a>
 
 <ul class="sectlevel2">
-<li><a href="rosa-classic-collect-and-analyze-logs_rosa-classic-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+<li><a href="rosa-hcp-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
 </li>
-<li><a href="rosa-classic-monitor-cluster-health_rosa-classic-monitor-cluster-health.html">Monitor cluster health</a>
+<li><a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a>
+</li>
+<li><a href="rosa-hcp-monitor-cluster-health_rosa-hcp-monitor-cluster-health.html">Monitor cluster health</a>
 </li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#accessing-ocm_rosa-hcp-red-hat-openshift-cluster-manager-overview">Accessing Red Hat OpenShift Cluster Manager</a></li><li class="level-4"><a href="#ocm-general-actions_rosa-hcp-red-hat-openshift-cluster-manager-overview">General actions</a></li><li class="level-4"><a href="#ocm-cluster-tabs_rosa-hcp-red-hat-openshift-cluster-manager-overview">Cluster tabs</a></li><li class="level-4"><a href="#ocm-overview-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Overview tab</a></li><li class="level-4"><a href="#ocm-accesscontrol-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Access control tab</a></li><li class="level-4"><a href="#ocm-accesscontrol-tab-identity-providers_rosa-hcp-red-hat-openshift-cluster-manager-overview">Identity providers</a></li><li class="level-4"><a href="#ocm-accesscontrol-tab-cluster-roles-access_rosa-hcp-red-hat-openshift-cluster-manager-overview">Cluster roles and access</a></li><li class="level-4"><a href="#ocm-accesscontrol-tab-ocm-roles-access_rosa-hcp-red-hat-openshift-cluster-manager-overview">OCM roles and access</a></li><li class="level-4"><a href="#ocm-accesscontrol-tab-transfer-ownership_rosa-hcp-red-hat-openshift-cluster-manager-overview">Transfer ownership</a></li><li class="level-4"><a href="#ocm-addons-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Add-ons tab</a></li><li class="level-4"><a href="#ocm-cluster-history-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Cluster history tab</a></li><li class="level-4"><a href="#ocm-networking-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Networking tab</a></li><li class="level-4"><a href="#ocm-networking-tab-adding-ingress_rosa-hcp-red-hat-openshift-cluster-manager-overview">Adding a network Ingress to your Red Hat OpenShift Services on AWS cluster</a></li><li class="level-4"><a href="#ocm-machinepools-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Machine pools tab</a></li><li class="level-4"><a href="#ocm-support-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Support tab</a></li><li class="level-4"><a href="#ocm-settings-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Settings tab</a></li></ul></aside>
 <div id="content">
-<div class="sect1">
-<h2 id="_whats_new">What&#8217;s new</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="rosa-cluster-manager-overview_rosa-hcp-red-hat-openshift-cluster-manager-overview">Red Hat OpenShift Cluster Manager</h3>
+<div class="paragraph _abstract">
+<p>Red Hat OpenShift Cluster Manager is the managed service where you create, configure, and observe your Red&#160;Hat OpenShift Services on AWS clusters.
+This overview walks through the actions it offers and the information on each cluster tab.</p>
+</div>
+<div class="sect3">
+<h4 id="accessing-ocm_rosa-hcp-red-hat-openshift-cluster-manager-overview">Accessing Red Hat OpenShift Cluster Manager</h4>
+<div class="paragraph _abstract">
+<p>You can access OpenShift Cluster Manager with your configured OpenShift account.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have an account that is part of an OpenShift organization.</p>
+</li>
+<li>
+<p>If you are creating a cluster, your organization has a specified quota.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Log in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> using your login credentials.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-general-actions_rosa-hcp-red-hat-openshift-cluster-manager-overview">General actions</h4>
+<div class="paragraph _abstract">
+<p>On the top right of the cluster page, there are some actions that a user can perform on the entire cluster:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="rosa-classic-whats-new_whats-new-with-rosa-classic.html">What&#8217;s new for Red Hat OpenShift Service on AWS classic architecture</a></p>
+<p><strong>Open console</strong> launches a web console so that the cluster owner can issue commands to the cluster.</p>
+</li>
+<li>
+<p><strong>Actions</strong> drop-down menu allows the cluster owner to rename the display name of the cluster, edit the machine pools, and delete the cluster.</p>
+</li>
+<li>
+<p><strong>Refresh</strong> icon forces a refresh of the cluster.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-cluster-tabs_rosa-hcp-red-hat-openshift-cluster-manager-overview">Cluster tabs</h4>
+<div class="paragraph _abstract">
+<p>Selecting an active, installed cluster shows tabs associated with that cluster. The following tabs display after the cluster&#8217;s installation completes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Overview</p>
+</li>
+<li>
+<p>Access control</p>
+</li>
+<li>
+<p>Add-ons</p>
+</li>
+<li>
+<p>Cluster history</p>
+</li>
+<li>
+<p>Networking</p>
+</li>
+<li>
+<p>Machine pools</p>
+</li>
+<li>
+<p>Support</p>
+</li>
+<li>
+<p>Settings</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-overview-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Overview tab</h4>
+<div class="paragraph _abstract">
+<p>The <strong>Overview</strong> tab provides information about how the cluster was configured:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Cluster ID</strong> is the unique identification for the created cluster. This ID can be used when issuing commands to the cluster from the command line.</p>
+</li>
+<li>
+<p><strong>Domain prefix</strong> is the prefix that is used throughout the cluster. The default value is the cluster&#8217;s name.</p>
+</li>
+<li>
+<p><strong>Type</strong> shows the type of cluster, for example Red Hat OpenShift Service on AWS (classic architecture), Red Hat OpenShift Service on AWS, or OpenShift Dedicated.</p>
+</li>
+<li>
+<p><strong>Control plane type</strong> is the architecture type of the cluster. The field only displays if the cluster uses a hosted control plane architecture.</p>
+</li>
+<li>
+<p><strong>Region</strong> is the server region.</p>
+</li>
+<li>
+<p><strong>Availability</strong> shows multizone for Red Hat OpenShift Service on AWS clusters.</p>
+</li>
+<li>
+<p><strong>Channel group</strong> shows the update channel for the cluster, such as stable or eus. Support for channel groups varies by cluster version. If support channel editing is available, this field can be changed by clicking the pencil icon.</p>
+</li>
+<li>
+<p><strong>Version</strong> is the OpenShift version that is installed on the cluster. If there is an update available, you can update from this field.</p>
+</li>
+<li>
+<p><strong>Created at</strong> shows the date and time that the cluster was created.</p>
+</li>
+<li>
+<p><strong>Owner</strong> identifies who created the cluster and has owner rights.</p>
+</li>
+<li>
+<p><strong>Delete Protection: &lt;status&gt;</strong> shows whether or not the cluster&#8217;s delete protection is enabled.</p>
+</li>
+<li>
+<p><strong>Status</strong> displays the current status of the control plane and machine pools of the cluster.</p>
+</li>
+<li>
+<p><strong>Total vCPU</strong> shows the total available virtual CPU for this cluster.</p>
+</li>
+<li>
+<p><strong>Total memory</strong> shows the total available memory for this cluster.</p>
+</li>
+<li>
+<p><strong>Infrastructure AWS account</strong> displays the AWS account that is responsible for cluster creation and maintenance.</p>
+</li>
+<li>
+<p><strong>Billing marketplace account</strong> displays the AWS account that is used for billing purposes. Click on the pencil icon to edit this field.</p>
+</li>
+<li>
+<p><strong>Nodes</strong> shows the actual and desired nodes on the cluster. These numbers might not match due to cluster scaling.</p>
+</li>
+<li>
+<p><strong>Network</strong> field shows the address and prefixes for network connectivity.</p>
+</li>
+<li>
+<p><strong>OIDC configuration</strong> field shows the Open ID Connect configuration for the cluster.</p>
+</li>
+<li>
+<p><strong>Resource usage</strong> section of the tab displays the resources in use with a graph.</p>
+</li>
+<li>
+<p><strong>Advisor recommendations</strong> section gives insight in relation to security, performance, availability, and stability. This section requires the use of remote health functionality. See <em>Using Red&#160;Hat Lightspeed to identify issues with the cluster</em> in the <em>Additional resources</em> section.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-accesscontrol-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Access control tab</h4>
+<div class="paragraph _abstract">
+<p>The <strong>Access control</strong> tab allows the cluster owner to set up an identity provider, grant elevated permissions, and grant roles to other users.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-accesscontrol-tab-identity-providers_rosa-hcp-red-hat-openshift-cluster-manager-overview">Identity providers</h4>
+<div class="paragraph _abstract">
+<p>You can create your cluster&#8217;s identity provider in this section. See the <em>Additional resources</em> for more information.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-accesscontrol-tab-cluster-roles-access_rosa-hcp-red-hat-openshift-cluster-manager-overview">Cluster roles and access</h4>
+<div class="paragraph _abstract">
+<p>You can create a <code>dedicated-admins</code> role for OpenShift Dedicated clusters or <code>cluster-admins</code> role for Red Hat OpenShift Service on AWS or Red Hat OpenShift Service on AWS (classic architecture) clusters.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Click the <strong>Add user</strong> button.</p>
+</li>
+<li>
+<p>Enter the ID of the user you want to grant cluster admin access.</p>
+</li>
+<li>
+<p>Select the appropriate group for your user. Either <code>dedicated-admins</code> for OpenShift Dedicated clusters, or <code>cluster-admins</code> for
+Red&#160;Hat OpenShift Services on AWS
+clusters.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-accesscontrol-tab-ocm-roles-access_rosa-hcp-red-hat-openshift-cluster-manager-overview">OCM roles and access</h4>
+<div class="paragraph _abstract">
+<p>Use the following procedure to grant roles on the cluster.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You must be the cluster owner or have the correct permissions to grant roles.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Click the <strong>Grant role</strong> button.</p>
+</li>
+<li>
+<p>Enter the Red Hat account login for the user that you want to grant a role on the cluster.</p>
+</li>
+<li>
+<p>Select the role from following options:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Cluster editor</strong> allows users or groups to manage or configure the cluster.</p>
+</li>
+<li>
+<p><strong>Cluster viewer</strong> allows users or groups to view cluster details only.</p>
+</li>
+<li>
+<p><strong>Identity provider editor</strong> allows users or groups to manage and configure the identity providers.</p>
+</li>
+<li>
+<p><strong>Machine pool editor</strong> allows users or groups to manage and configure the machine pools.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click the <strong>Grant role</strong> button on the dialog box.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-accesscontrol-tab-transfer-ownership_rosa-hcp-red-hat-openshift-cluster-manager-overview">Transfer ownership</h4>
+<div class="paragraph _abstract">
+<p>You can transfer your cluster to another user.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Once you transfer cluster ownership, you lose access to the cluster.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Select <strong>Initiate transfer</strong>.</p>
+</li>
+<li>
+<p>Enter the user name, account ID, and organization ID of the user that you are transferring the cluster to.</p>
+</li>
+<li>
+<p>Select <strong>Initiate transfer</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-addons-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Add-ons tab</h4>
+<div class="paragraph _abstract">
+<p>The Add-ons tab is not currently supported on hosted control plane clusters.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-cluster-history-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Cluster history tab</h4>
+<div class="paragraph _abstract">
+<p>The <strong>Cluster history</strong> tab shows every change to the cluster from creation onward for each version. You can specify date ranges for your cluster history and use filters to search based on the description of the notification, the severity of the notification, the type of notification, and which role logged it. You may download your cluster history as a JSON or CSV file.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-networking-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Networking tab</h4>
+<div class="paragraph _abstract">
+<p>The <strong>Networking</strong> tab provides a control plane API endpoint as well as the default application router. Both the control plane API endpoint and the default application router can be made private by selecting the respective box below label. If applicable, you can also find your virtual private cloud (VPC) details on this tab.</p>
+</div>
+<div class="paragraph">
+<p>You can change your application ingress to private or public by selecting the <strong>Edit application ingress</strong> button then checking or unchecking the "Make router private" checkbox.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-networking-tab-adding-ingress_rosa-hcp-red-hat-openshift-cluster-manager-overview">Adding a network Ingress to your Red&#160;Hat OpenShift Services on AWS cluster</h4>
+<div class="paragraph _abstract">
+<p>You can add a network Ingress to your cluster from the <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> web UI.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have a Red Hat account.</p>
+</li>
+<li>
+<p>You have the required permissions to make changes to your cluster in OpenShift Cluster Manager.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>From the <strong>Networking</strong> tab in OpenShift Cluster Manager, click the <strong>Additional application router</strong> toggle to enable the Ingress. There are two options you can add to the additional router:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><strong>Make router private</strong>: This checkbox allows you to control cluster privacy. By default, your Ingress router is publicly exposed and allows anyone access. You can limit access to applications or websites you run on your cluster by selecting this checkbox. For example, if you only want internal employees to access this cluster, then using this option requires a private connection, such as a virtual private network (VPN) or virtual private cloud (VPC) peering connection.</p>
+</li>
+<li>
+<p><strong>Label match for additional router</strong>: This field provides a way to target the specific route you want exposed in this additional Ingress router. By default, the router exposes all routes. If you leave this field blank, these routes stay exposed.</p>
+<div class="paragraph">
+<p>A commonly used setup has a private default router, which means any applications deployed require a VPN or VPC peering to access. You can create an additional public router with a label match of  <code>route=external</code>. Then, if you add the <code>route=external</code> label to additional routes, the additional router matches this label and exposes it for public use.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <strong>Change settings</strong> to confirm that you want to add the network Ingress.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-machinepools-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Machine pools tab</h4>
+<div class="paragraph _abstract">
+<p>The <strong>Machine pools</strong> tab allows the cluster owner to create new machine pools if there is enough available quota, or edit an existing machine pool.</p>
+</div>
+<div class="paragraph">
+<p>Selecting the <span class="image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAjCAIAAADqn+bCAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA+0lEQVRIie2WMQqEMBBFJ47gUXRBLyBYqbUXULCx9CR2XsAb6AlUEM9kpckW7obdZhwWYWHXX/3i8TPJZEKEUgpOlXFu3JX4V4kmB2qaZhgGKSUiZlkWxzEBC84N9zxv27bdO47Tti0Bs3at4wBgXVca/lJnfN/XPggCGmadIwAsywIAiGhZFk1ydy2EYJKgGCqK4vZUVVU0zKpxnmftp2mi4S/1GhG1N82DMWNNYVmW4zgqpRAxTVMa5t4evlg11nXd9/1eY57nSZIQMKtG13WllLu3bbvrOgJmdUbHwfur8Xniqw6Hh5UYRdGDNowwDA+WvP4UV+JPJ94B1gKUWcTOCT0AAAAASUVORK5CYII=" alt="kebab" title="Other options"></span> &gt; <strong>Edit</strong> option opens the "Edit machine pool" dialog. In this dialog, you can change the node count per availability zone, edit node labels and taints, and view any associated AWS security groups.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-support-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Support tab</h4>
+<div class="paragraph _abstract">
+<p>In the <strong>Support</strong> tab, you can add notification contacts for individuals that should receive cluster notifications. The username or email address that you provide must relate to a user account in the Red Hat organization where the cluster is deployed.</p>
+</div>
+<div class="paragraph">
+<p>Also from this tab, you can open a support case to request technical support for your cluster.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ocm-settings-tab_rosa-hcp-red-hat-openshift-cluster-manager-overview">Settings tab</h4>
+<div class="paragraph _abstract">
+<p>The <strong>Settings</strong> tab provides a few options for the cluster owner:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Update strategy</strong> allows you to determine if the cluster automatically updates on a certain day of the week at a specified time or if all updates are scheduled manually.</p>
+</li>
+<li>
+<p><strong>Update status</strong> shows the current version and if there are any updates available.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-classic-whats-new_whats-new-with-rosa-classic.html">What&#8217;s new for Red Hat OpenShift Service on AWS classic architecture</a> →</p>
+<p>← Previous: <a href="rosa-hcp-update-life-cycle_rosa-hcp-update-life-cycle.html">Update life cycle</a> | ↑ Up: <a href="_discover.html">Discover</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="_install.html">Install</a> →</p>
 </div>
 </div>
 <div id="footer">
