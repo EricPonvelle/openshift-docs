@@ -570,8 +570,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 <!-- navmap-right-toc-end -->
+<!-- navmap-preview-warning-start -->
+<style>
+  .navmap-preview-warning {
+    background: #fff1f1;
+    border: 2px solid #c9190b;
+    border-radius: 4px;
+    color: #3b0a0a;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    margin: 1em auto;
+    max-width: 70em;
+    padding: 1em 1.25em;
+  }
+  .navmap-preview-warning strong { color: #a30000; }
+  .navmap-preview-warning details { margin-top: .75em; }
+  .navmap-preview-warning pre {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    max-height: 20em;
+    overflow: auto;
+    padding: .75em;
+    white-space: pre-wrap;
+  }
+</style>
+<!-- navmap-preview-warning-end -->
 </head>
 <body id="rosa-hcp-review-the-service-definition_rosa-hcp-review-the-service-definition" class="book toc2 toc-left navmap-has-right-toc">
+<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-hcp/navigation.adoc
+
+Missing include targets:
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-learn-about-benefits-and-use-cases.adoc:26
+    include::modules/rosa-next-steps-cluster.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-next-steps-cluster.adoc
+
+How to fix these errors:
+  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
+  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
+  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
+</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
@@ -692,13 +728,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect3">
 <h4 id="rosa-sdpolicy-billing_rosa-hcp-review-the-service-definition">Billing and pricing</h4>
+<div class="paragraph _abstract">
+<p>Red&#160;Hat OpenShift Services on AWS is billed directly to your Amazon Web Services (AWS) account. Red&#160;Hat OpenShift Services on AWS pricing is consumption based, with annual commitments or three-year commitments for greater discounting.</p>
+</div>
 <div class="paragraph">
-<p>Red&#160;Hat OpenShift Services on AWS is billed directly to your Amazon Web Services (AWS) account. ROSA pricing is consumption based, with annual commitments or three-year commitments for greater discounting. The total cost of ROSA consists of two components:</p>
+<p>The total cost of Red&#160;Hat OpenShift Services on AWS consists of two components:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>ROSA service fees</p>
+<p>Red&#160;Hat OpenShift Services on AWS service fees</p>
 </li>
 <li>
 <p>AWS infrastructure fees</p>
@@ -706,7 +745,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 <div class="paragraph">
-<p>Visit the <a href="https://aws.amazon.com/rosa/pricing/">Red&#160;Hat OpenShift Services on AWS Pricing</a> page on the AWS website for more details.</p>
+<p>For more details, visit the "Red&#160;Hat OpenShift Services on AWS Pricing" page on the AWS website, linked in the <em>Additional resources</em>.</p>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://aws.amazon.com/rosa/pricing/">Red&#160;Hat OpenShift Services on AWS Pricing</a></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -1591,7 +1638,7 @@ runs on OpenShift 4 and uses Red&#160;Hat CoreOS (RHCOS) as the operating system
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-29 15:14:54 -0500
+Last updated 2026-09-29 16:05:39 -0500
 </div>
 </div>
 </body>

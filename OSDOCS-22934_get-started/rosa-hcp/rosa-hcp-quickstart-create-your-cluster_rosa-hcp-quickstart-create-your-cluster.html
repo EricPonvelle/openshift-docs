@@ -570,8 +570,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 <!-- navmap-right-toc-end -->
+<!-- navmap-preview-warning-start -->
+<style>
+  .navmap-preview-warning {
+    background: #fff1f1;
+    border: 2px solid #c9190b;
+    border-radius: 4px;
+    color: #3b0a0a;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    margin: 1em auto;
+    max-width: 70em;
+    padding: 1em 1.25em;
+  }
+  .navmap-preview-warning strong { color: #a30000; }
+  .navmap-preview-warning details { margin-top: .75em; }
+  .navmap-preview-warning pre {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    max-height: 20em;
+    overflow: auto;
+    padding: .75em;
+    white-space: pre-wrap;
+  }
+</style>
+<!-- navmap-preview-warning-end -->
 </head>
 <body id="rosa-hcp-quickstart-create-your-cluster_rosa-hcp-quickstart-create-your-cluster" class="book toc2 toc-left navmap-has-right-toc">
+<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-hcp/navigation.adoc
+
+Missing include targets:
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-learn-about-benefits-and-use-cases.adoc:26
+    include::modules/rosa-next-steps-cluster.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-next-steps-cluster.adoc
+
+How to fix these errors:
+  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
+  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
+  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
+</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
@@ -677,7 +713,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-quickstart-create-your-cluster">Creating an ocm-role IAM role</a></li><li class="level-4"><a href="#rosa-sts-byo-oidc_rosa-hcp-quickstart-create-your-cluster">Create an OpenID Connect configuration</a></li><li class="level-4"><a href="#rosa-operator-config_rosa-hcp-quickstart-create-your-cluster">Creating Operator roles and policies</a></li><li class="level-4"><a href="#rosa-hcp-sts-creating-a-cluster-cli_rosa-hcp-quickstart-create-your-cluster">Creating a Red Hat OpenShift Services on AWS cluster using the CLI</a></li><li class="level-4"><a href="#rosa-hcp-sts-external-id_rosa-hcp-quickstart-create-your-cluster">About external ID</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-quickstart-create-your-cluster">Create an ocm-role IAM role</a></li><li class="level-4"><a href="#rosa-sts-byo-oidc_rosa-hcp-quickstart-create-your-cluster">Create an OpenID Connect configuration</a></li><li class="level-4"><a href="#rosa-operator-config_rosa-hcp-quickstart-create-your-cluster">Creating Operator roles and policies</a></li><li class="level-4"><a href="#rosa-hcp-sts-creating-a-cluster-cli_rosa-hcp-quickstart-create-your-cluster">Creating a Red Hat OpenShift Services on AWS cluster using the CLI</a></li><li class="level-4"><a href="#rosa-hcp-sts-external-id_rosa-hcp-quickstart-create-your-cluster">About external ID</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-hcp-quickstart-create-your-cluster_rosa-hcp-quickstart-create-your-cluster">Quickstart: Create your cluster</h3>
@@ -685,7 +721,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Use this guide to create a Red&#160;Hat OpenShift Services on AWS cluster with the ROSA command-line interface (CLI) (<code>rosa</code>), grant user access, deploy an application, and manage your cluster.</p>
 </div>
 <div class="sect3">
-<h4 id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-quickstart-create-your-cluster">Creating an ocm-role IAM role</h4>
+<h4 id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-quickstart-create-your-cluster">Create an ocm-role IAM role</h4>
 <div class="paragraph _abstract">
 <p>You create your <code>ocm-role</code> IAM roles by using the ROSA command-line interface (CLI) (<code>rosa</code>). If you want to create and manage clusters by using only the ROSA command-line interface (CLI) (<code>rosa</code>) and the OpenShift CLI (<code>oc</code>), you can use the <code>--no-console</code> profile for the <code>ocm-role</code> IAM resource. For more information about the <code>ocm-role</code> IAM resource permissions profile, see the <em>Additional resources</em>.</p>
 </div>
@@ -1423,7 +1459,7 @@ ROLE NAME                                                         ROLE ARN      
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-29 15:14:54 -0500
+Last updated 2026-09-29 16:05:39 -0500
 </div>
 </div>
 </body>
