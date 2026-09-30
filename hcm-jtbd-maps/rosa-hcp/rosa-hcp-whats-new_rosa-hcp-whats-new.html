@@ -689,6 +689,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="dlist">
 <dl>
+<dt class="hdlist1">Default worker node instance type is now <code>m7i.xlarge</code></dt>
+<dd>
+<div class="paragraph">
+<p>New Red&#160;Hat OpenShift Services on AWS clusters that do not specify a worker node instance type use <code>m7i.xlarge</code> by default. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-sts-overview-of-the-default-cluster-specifications_rosa-sts-creating-a-cluster-quickly">Overview of the default cluster specifications</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>m7i</code> instance type is not available in every AWS region. In regions where <code>m7i</code> is not offered, you must specify a supported instance type or cluster creation fails. Currently, the <code>m7i</code> instance type is <em>not</em> supported in Calgary <code>ca-west-1</code> and Bahrain <code>me-south-1</code>. For a complete list of supported regions, see <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-regions.html"><em>Amazon EC2 instance types by Region</em></a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</dd>
 <dt class="hdlist1">Cluster deletion protection</dt>
 <dd>
 <div class="paragraph">

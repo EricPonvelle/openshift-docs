@@ -3048,21 +3048,35 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Compute node machine pool</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="ulist">
-<ul>
-<li>
-<p>Compute node instance type: m5.xlarge (4 vCPU 16, GiB RAM)</p>
-</li>
-<li>
-<p>Compute node count: 2</p>
-</li>
-<li>
-<p>Autoscaling: Not enabled</p>
-</li>
-<li>
-<p>No additional node labels</p>
-</li>
-</ul>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>ifdef::openshift-rosa
+* Compute node instance type: m5.xlarge (4 vCPU, 16 GiB RAM)
+endif::openshift-rosa
+ifndef::openshift-rosa
+* Compute node instance type: m7i.xlarge (4 vCPU, 16 GiB RAM)</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>m7i</code> instance type is not available in every AWS region. In regions where <code>m7i</code> is not offered, you must specify a supported instance type when you create a cluster or cluster creation fails. For a complete list of supported regions, see <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-regions.html"><em>Amazon EC2 instance types by Region</em></a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>endif::openshift-rosa
+* Compute node count: 2
+* Autoscaling: Not enabled
+* No additional node labels</p>
 </div>
 <div class="ulist">
 <ul>
