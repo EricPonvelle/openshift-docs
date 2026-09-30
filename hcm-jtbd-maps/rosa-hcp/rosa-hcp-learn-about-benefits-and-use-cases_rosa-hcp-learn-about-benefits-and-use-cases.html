@@ -570,8 +570,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 <!-- navmap-right-toc-end -->
+<!-- navmap-preview-warning-start -->
+<style>
+  .navmap-preview-warning {
+    background: #fff1f1;
+    border: 2px solid #c9190b;
+    border-radius: 4px;
+    color: #3b0a0a;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    margin: 1em auto;
+    max-width: 70em;
+    padding: 1em 1.25em;
+  }
+  .navmap-preview-warning strong { color: #a30000; }
+  .navmap-preview-warning details { margin-top: .75em; }
+  .navmap-preview-warning pre {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    max-height: 20em;
+    overflow: auto;
+    padding: .75em;
+    white-space: pre-wrap;
+  }
+</style>
+<!-- navmap-preview-warning-end -->
 </head>
 <body id="rosa-hcp-learn-about-benefits-and-use-cases_rosa-hcp-learn-about-benefits-and-use-cases" class="book toc2 toc-left navmap-has-right-toc">
+<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-hcp/navigation.adoc
+
+Missing include targets:
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-learn-about-benefits-and-use-cases.adoc:26
+    include::modules/rosa-next-steps-cluster.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-next-steps-cluster.adoc
+
+How to fix these errors:
+  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
+  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
+  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
+</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
@@ -612,6 +648,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-sts-overview-of-the-default-cluster-specifications_rosa-hcp-quickstart-set-up-your-environment.html">Overview of the default cluster specifications</a>
+</li>
+<li><a href="rosa-hcp-quickstart-create-your-cluster_rosa-hcp-quickstart-create-your-cluster.html">Quick start: Create your cluster</a>
+</li>
+<li><a href="rosa-hcp-quickstart-manage-your-cluster_rosa-hcp-quickstart-manage-your-cluster.html">Quick start: Manage your cluster</a>
+</li>
+<li><a href="considerations-regarding-auto-creation-mode_rosa-hcp-create-a-cluster-with-default-options.html">About automatic IAM resource creation</a>
+</li>
+<li><a href="rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster.html">Configure Microsoft Entra ID as an identity provider for your cluster</a>
+</li>
+<li><a href="rosa-hcp-activate-red-hat-openshift-services-on-aws-cluster-and-link-your-aws-account_rosa-hcp-activate-red-hat-openshift-services-on-aws-cluster-and-link-your-aws-account.html">Activate Red Hat OpenShift Services on AWS cluster and link your AWS account</a>
+</li>
+<li><a href="rosa-hcp-sign-up-for-fedramp-access-to-create-a-red-hat-openshift-service-on-aws-cluster-in-govcloud_rosa-hcp-sign-up-for-fedramp-access-to-create-a-red-hat-openshift-service-on-aws-cluster-in-govcloud.html">Sign up for FedRAMP access to create a Red Hat OpenShift Service on AWS cluster in GovCloud</a>
+</li>
+<li><a href="rosa-hcp-manage-your-red-hat-openshift-services-on-aws-govcloud-account_rosa-hcp-manage-your-red-hat-openshift-services-on-aws-govcloud-account.html">Manage your Red Hat OpenShift Services on AWS GovCloud account</a>
+</li>
+<li><a href="rosa-fedramp-overview_rosa-hcp-apply-fedramp-rev5-secure-configuration-guidance.html">Learn about FedRAMP Rev5 Secure Configuration Guidance (SCG) requirements</a>
+</li>
+<li><a href="rosa-hcp-create-your-first-red-hat-openshift-services-on-aws-cluster-in-aws-govcloud_rosa-hcp-create-your-first-red-hat-openshift-services-on-aws-cluster-in-aws-govcloud.html">Create your first Red Hat OpenShift Services on AWS cluster in AWS GovCloud</a>
+</li>
+<li><a href="rosa-cluster-manager-overview_rosa-hcp-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager</a>
+</li>
+<li><a href="rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront_rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront.html">Protect application workloads by using AWS WAF and Amazon CloudFront</a>
+</li>
+<li><a href="rosa-hcp-protect-application-workloads-by-using-aws-waf-and-aws-albs_rosa-hcp-protect-application-workloads-by-using-aws-waf-and-aws-albs.html">Protect application workloads by using AWS WAF and AWS ALBs</a>
+</li>
+</ul>
+</li>
 <li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
 
 <ul class="sectlevel2">
@@ -646,7 +713,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-key-features_rosa-hcp-learn-about-benefits-and-use-cases">Key features of Red Hat OpenShift Services on AWS</a></li><li class="level-4"><a href="#rosa-sdpolicy-billing_rosa-hcp-learn-about-benefits-and-use-cases">Billing and pricing</a></li><li class="level-4"><a href="#rosa-getting-started-learn_rosa-hcp-learn-about-benefits-and-use-cases">Getting started with Red Hat OpenShift Services on AWS</a></li><li class="level-4"><a href="#architect_rosa-hcp-learn-about-benefits-and-use-cases">Architect</a></li><li class="level-4"><a href="#cluster-administrator_rosa-hcp-learn-about-benefits-and-use-cases">Cluster Administrator</a></li><li class="level-4"><a href="#rosa-developer-topics_rosa-hcp-learn-about-benefits-and-use-cases">Developer</a></li><li class="level-4"><a href="#rosa-next-steps-cluster_rosa-hcp-learn-about-benefits-and-use-cases">Before creating your first Red Hat OpenShift Services on AWS cluster</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-key-features_rosa-hcp-learn-about-benefits-and-use-cases">Key features of Red Hat OpenShift Services on AWS</a></li><li class="level-4"><a href="#rosa-sdpolicy-billing_rosa-hcp-learn-about-benefits-and-use-cases">Billing and pricing</a></li><li class="level-4"><a href="#rosa-getting-started-learn_rosa-hcp-learn-about-benefits-and-use-cases">Getting started with Red Hat OpenShift Services on AWS</a></li><li class="level-4"><a href="#architect_rosa-hcp-learn-about-benefits-and-use-cases">Architect</a></li><li class="level-4"><a href="#cluster-administrator_rosa-hcp-learn-about-benefits-and-use-cases">Cluster administrator</a></li><li class="level-4"><a href="#rosa-developer-topics_rosa-hcp-learn-about-benefits-and-use-cases">Developer</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-hcp-learn-about-benefits-and-use-cases_rosa-hcp-learn-about-benefits-and-use-cases">Learn about benefits and use cases</h3>
@@ -655,10 +722,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect3">
 <h4 id="rosa-key-features_rosa-hcp-learn-about-benefits-and-use-cases">Key features of Red&#160;Hat OpenShift Services on AWS</h4>
+<div class="paragraph _abstract">
+<p>Red&#160;Hat OpenShift Services on AWS provides a managed OpenShift experience on Amazon Web Services (AWS) with rapid provisioning, flexible billing, native AWS service integration, and high availability across multiple regions.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Cluster node scaling:</strong> Red&#160;Hat OpenShift Services on AWS requires a minimum of only two nodes, making it ideal for smaller projects while still being able to scale to support larger projects and enterprises. Easily add or remove compute nodes to match resource demand. Autoscaling allows you to automatically adjust the size of the cluster based on the current workload. See <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/cluster_administration/rosa-cluster-autoscaling-hcp">About autoscaling nodes on a cluster</a> for more details.</p>
+<p><strong>Cluster node scaling:</strong> Red&#160;Hat OpenShift Services on AWS requires a minimum of only two nodes, making it ideal for smaller projects while still being able to scale to support larger projects and enterprises. Easily add or remove compute nodes to match resource demand. Autoscaling allows you to automatically adjust the size of the cluster based on the current workload. For more details, see "About autoscaling nodes on a cluster" in the <em>Additional resources</em>.</p>
 </li>
 <li>
 <p><strong>Fully managed underlying control plane infrastructure:</strong> Control plane components, such as the API server and etcd database, are hosted in a Red&#160;Hat-owned AWS account.</p>
@@ -679,7 +749,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Single bill for Red&#160;Hat OpenShift and AWS usage:</strong> Customers will receive a single bill from AWS for both Red&#160;Hat OpenShift and AWS consumption.</p>
 </li>
 <li>
-<p><strong>Fully integrated support experience:</strong> Management, maintenance, and upgrades are performed by Red&#160;Hat site reliability engineers (SREs) with joint Red&#160;Hat and Amazon support and a 99.95% service-level agreement (SLA). See the <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/support/getting-support#getting-support">Red&#160;Hat OpenShift Services on AWS support documentation</a> for more details.</p>
+<p><strong>Fully integrated support experience:</strong> Management, maintenance, and upgrades are performed by Red&#160;Hat site reliability engineers (SREs) with joint Red&#160;Hat and Amazon support and a 99.95% service-level agreement (SLA). For more details, see "Red&#160;Hat OpenShift Services on AWS support documentation" in the <em>Additional resources</em>.</p>
 </li>
 <li>
 <p><strong>AWS service integration:</strong> AWS has a robust portfolio of cloud services, such as compute, storage, networking, database, analytics, Virtualization and AI. All of these services are directly accessible through Red&#160;Hat OpenShift Services on AWS. This makes it easier to build, operate, and scale globally and on-demand through a familiar management interface.</p>
@@ -691,20 +761,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Optimized clusters:</strong> Choose from memory-optimized, compute-optimized, general purpose, or accelerated EC2 instance types with clusters to meet your needs.</p>
 </li>
 <li>
-<p><strong>Global availability:</strong> Refer to the <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/introduction_to_rosa/policies-and-service-definition#rosa-sdpolicy-regions-az_rosa-hcp-service-definition">product regional availability page</a> to see where Red&#160;Hat OpenShift Services on AWS is available globally.</p>
+<p><strong>Global availability:</strong> Refer to the "Product regional availability page" in the <em>Additional resources</em> to see where Red&#160;Hat OpenShift Services on AWS is available globally.</p>
+</li>
+</ul>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/cluster_administration/rosa-cluster-autoscaling-hcp">About autoscaling nodes on a cluster</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/support/getting-support#getting-support">Red&#160;Hat OpenShift Services on AWS support documentation</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/introduction_to_rosa/policies-and-service-definition#rosa-sdpolicy-regions-az_rosa-hcp-service-definition">Product regional availability page</a></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="rosa-sdpolicy-billing_rosa-hcp-learn-about-benefits-and-use-cases">Billing and pricing</h4>
+<div class="paragraph _abstract">
+<p>Red&#160;Hat OpenShift Services on AWS is billed directly to your Amazon Web Services (AWS) account. Red&#160;Hat OpenShift Services on AWS pricing is consumption based, with annual commitments or three-year commitments for greater discounting.</p>
+</div>
 <div class="paragraph">
-<p>Red&#160;Hat OpenShift Services on AWS is billed directly to your Amazon Web Services (AWS) account. ROSA pricing is consumption based, with annual commitments or three-year commitments for greater discounting. The total cost of ROSA consists of two components:</p>
+<p>The total cost of Red&#160;Hat OpenShift Services on AWS consists of two components:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>ROSA service fees</p>
+<p>Red&#160;Hat OpenShift Services on AWS service fees</p>
 </li>
 <li>
 <p>AWS infrastructure fees</p>
@@ -712,17 +799,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 <div class="paragraph">
-<p>Visit the <a href="https://aws.amazon.com/rosa/pricing/">Red&#160;Hat OpenShift Services on AWS Pricing</a> page on the AWS website for more details.</p>
+<p>For more details, visit the "Red&#160;Hat OpenShift Services on AWS Pricing" page on the AWS website, linked in the <em>Additional resources</em>.</p>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://aws.amazon.com/rosa/pricing/">Red&#160;Hat OpenShift Services on AWS Pricing</a></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="rosa-getting-started-learn_rosa-hcp-learn-about-benefits-and-use-cases">Getting started with Red&#160;Hat OpenShift Services on AWS</h4>
 <div class="paragraph _abstract">
-<p>Use the following sections to find content to help you learn about and use Red&#160;Hat OpenShift Services on AWS.</p>
+<p>Use the following sections to find content to help you learn about and use Red&#160;Hat OpenShift Services on AWS. The resources are organized by role, so you can find the most relevant documentation for your responsibilities.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="architect_rosa-hcp-learn-about-benefits-and-use-cases">Architect</h4>
+<div class="paragraph _abstract">
+<p>Use the following resources to learn about Red&#160;Hat OpenShift Services on AWS architecture, plan your deployment, and review related policies.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -748,13 +846,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p class="tableblock"><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/introduction_to_rosa/policies-and-service-definition">Red&#160;Hat OpenShift Services on AWS service definition</a></p>
 <p class="tableblock"><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/introduction_to_rosa/policies-and-service-definition#rosa-hcp-life-cycle">Lifecycle updates</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/support/support-overview#support-overview">Getting support</a></p>
-<p class="tableblock"><a href="https://red.ht/rosa-roadmap">ROSA roadmap</a></p></td>
+<p class="tableblock"><a href="https://red.ht/rosa-roadmap">Red&#160;Hat OpenShift Services on AWS roadmap</a></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="cluster-administrator_rosa-hcp-learn-about-benefits-and-use-cases">Cluster Administrator</h4>
+<h4 id="cluster-administrator_rosa-hcp-learn-about-benefits-and-use-cases">Cluster administrator</h4>
+<div class="paragraph _abstract">
+<p>Use the following resources to learn about, deploy, and manage Red&#160;Hat OpenShift Services on AWS clusters.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -773,12 +874,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html/architecture/rosa-architecture-models#rosa-architecture-models">Red&#160;Hat OpenShift Services on AWS architecture</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/install_clusters/rosa-hcp-sts-creating-a-cluster-quickly">Installing Red&#160;Hat OpenShift Services on AWS</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/install_clusters/rosa-hcp-sts-creating-a-cluster-quickly">Installing Red&#160;Hat OpenShift Services on AWS</a></p>
+<p class="tableblock"><a href="https://www.redhat.com/en/products/interactive-demo/install-rosa">Installing Red&#160;Hat OpenShift Services on AWS interactive demo</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/logging/about-logging">Logging</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/support/index#rosa-troubleshooting-installing_rosa-troubleshooting-installations">Getting support</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://learn.openshift.com/?extIdCarryOver=true&amp;sc_cid=701f2000001Css5AAC">OpenShift Interactive Learning Portal</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://developers.redhat.com/learn/openshift">Red&#160;Hat Developer learning portal - OpenShift and Kubernetes learning</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/storage/index#storage-overview">Storage</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/monitoring/index#about-monitoring">About Red&#160;Hat OpenShift Services on AWS monitoring</a></p>
 <p class="tableblock"><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-hcp-life-cycle">Red&#160;Hat OpenShift Services on AWS life cycle</a></p>
@@ -796,6 +898,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect3">
 <h4 id="rosa-developer-topics_rosa-hcp-learn-about-benefits-and-use-cases">Developer</h4>
+<div class="paragraph _abstract">
+<p>Use the following resources to learn about application development, deployment, and tooling in Red&#160;Hat OpenShift Services on AWS.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -832,11 +937,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-</div>
-<div class="sect3">
-<h4 id="rosa-next-steps-cluster_rosa-hcp-learn-about-benefits-and-use-cases">Before creating your first Red&#160;Hat OpenShift Services on AWS cluster</h4>
 <div class="paragraph">
-<p>For additional information about ROSA installation, see a quick introduction to the process in <a href="https://www.redhat.com/en/products/interactive-walkthrough/install-rosa">Installing Red&#160;Hat OpenShift Services on AWS interactive walkthrough</a>.</p>
+<p>Unresolved directive in hcm-jobs/rosa-hcp-learn-about-benefits-and-use-cases.adoc - include::modules/rosa-next-steps-cluster.adoc[leveloffset=+1,toc="no"]</p>
 </div>
 </div>
 </div>
@@ -846,7 +948,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-29 15:22:06 -0500
+Last updated 2026-09-29 19:04:35 -0500
 </div>
 </div>
 </body>

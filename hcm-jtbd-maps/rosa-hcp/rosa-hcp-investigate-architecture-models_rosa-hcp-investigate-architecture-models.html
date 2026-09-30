@@ -570,8 +570,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 <!-- navmap-right-toc-end -->
+<!-- navmap-preview-warning-start -->
+<style>
+  .navmap-preview-warning {
+    background: #fff1f1;
+    border: 2px solid #c9190b;
+    border-radius: 4px;
+    color: #3b0a0a;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    margin: 1em auto;
+    max-width: 70em;
+    padding: 1em 1.25em;
+  }
+  .navmap-preview-warning strong { color: #a30000; }
+  .navmap-preview-warning details { margin-top: .75em; }
+  .navmap-preview-warning pre {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    max-height: 20em;
+    overflow: auto;
+    padding: .75em;
+    white-space: pre-wrap;
+  }
+</style>
+<!-- navmap-preview-warning-end -->
 </head>
 <body id="rosa-hcp-investigate-architecture-models_rosa-hcp-investigate-architecture-models" class="book toc2 toc-left navmap-has-right-toc">
+<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-hcp/navigation.adoc
+
+Missing include targets:
+  maps/rosa-hcp/hcm-jobs/rosa-hcp-learn-about-benefits-and-use-cases.adoc:26
+    include::modules/rosa-next-steps-cluster.adoc[leveloffset=+1,toc=&quot;no&quot;]
+    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-next-steps-cluster.adoc
+
+How to fix these errors:
+  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
+  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
+  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
+</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
@@ -609,6 +645,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="rosa-hcp-update-life-cycle_rosa-hcp-update-life-cycle.html">Update life cycle</a>
 </li>
 <li><a href="rosa-cluster-manager-overview_rosa-hcp-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-sts-overview-of-the-default-cluster-specifications_rosa-hcp-quickstart-set-up-your-environment.html">Overview of the default cluster specifications</a>
+</li>
+<li><a href="rosa-hcp-quickstart-create-your-cluster_rosa-hcp-quickstart-create-your-cluster.html">Quick start: Create your cluster</a>
+</li>
+<li><a href="rosa-hcp-quickstart-manage-your-cluster_rosa-hcp-quickstart-manage-your-cluster.html">Quick start: Manage your cluster</a>
+</li>
+<li><a href="considerations-regarding-auto-creation-mode_rosa-hcp-create-a-cluster-with-default-options.html">About automatic IAM resource creation</a>
+</li>
+<li><a href="rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster.html">Configure Microsoft Entra ID as an identity provider for your cluster</a>
+</li>
+<li><a href="rosa-hcp-activate-red-hat-openshift-services-on-aws-cluster-and-link-your-aws-account_rosa-hcp-activate-red-hat-openshift-services-on-aws-cluster-and-link-your-aws-account.html">Activate Red Hat OpenShift Services on AWS cluster and link your AWS account</a>
+</li>
+<li><a href="rosa-hcp-sign-up-for-fedramp-access-to-create-a-red-hat-openshift-service-on-aws-cluster-in-govcloud_rosa-hcp-sign-up-for-fedramp-access-to-create-a-red-hat-openshift-service-on-aws-cluster-in-govcloud.html">Sign up for FedRAMP access to create a Red Hat OpenShift Service on AWS cluster in GovCloud</a>
+</li>
+<li><a href="rosa-hcp-manage-your-red-hat-openshift-services-on-aws-govcloud-account_rosa-hcp-manage-your-red-hat-openshift-services-on-aws-govcloud-account.html">Manage your Red Hat OpenShift Services on AWS GovCloud account</a>
+</li>
+<li><a href="rosa-fedramp-overview_rosa-hcp-apply-fedramp-rev5-secure-configuration-guidance.html">Learn about FedRAMP Rev5 Secure Configuration Guidance (SCG) requirements</a>
+</li>
+<li><a href="rosa-hcp-create-your-first-red-hat-openshift-services-on-aws-cluster-in-aws-govcloud_rosa-hcp-create-your-first-red-hat-openshift-services-on-aws-cluster-in-aws-govcloud.html">Create your first Red Hat OpenShift Services on AWS cluster in AWS GovCloud</a>
+</li>
+<li><a href="rosa-cluster-manager-overview_rosa-hcp-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager</a>
+</li>
+<li><a href="rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront_rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront.html">Protect application workloads by using AWS WAF and Amazon CloudFront</a>
+</li>
+<li><a href="rosa-hcp-protect-application-workloads-by-using-aws-waf-and-aws-albs_rosa-hcp-protect-application-workloads-by-using-aws-waf-and-aws-albs.html">Protect application workloads by using AWS WAF and AWS ALBs</a>
 </li>
 </ul>
 </li>
@@ -655,6 +722,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect3">
 <h4 id="rosa-hcp-classic-comparison_rosa-hcp-investigate-architecture-models">Comparing Red Hat OpenShift Service on AWS and Red Hat OpenShift Service on AWS (classic architecture)</h4>
+<div class="paragraph _abstract">
+<p>Red Hat OpenShift Service on AWS and Red Hat OpenShift Service on AWS (classic architecture) differ in how they host the control plane, deploy infrastructure, and handle upgrades.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 3. Red Hat OpenShift Service on AWS and Red Hat OpenShift Service on AWS (classic architecture) architectures comparison table</caption>
 <colgroup>
@@ -714,7 +784,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Worker nodes communicate with the control plane over <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html">AWS PrivateLink</a>.</p>
+<p>Worker nodes communicate with the control plane over AWS PrivateLink. For more details, see the <em>Additional resources</em>.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -932,10 +1002,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="rosa-hcp-architecture_rosa-hcp-investigate-architecture-models">Red&#160;Hat OpenShift Services on AWS architecture</h4>
 <div class="paragraph _abstract">
-<p>Red&#160;Hat OpenShift Services on AWS hosts a highly-available, single-tenant OpenShift control plane. The hosted control plane is deployed across 3 availability zones with 2 API server instances and 3 etcd instances.</p>
+<p>Red&#160;Hat OpenShift Services on AWS hosts a highly-available, single-tenant OpenShift control plane. The hosted control plane is deployed across three availability zones with two API server instances and three etcd instances.</p>
 </div>
 <div class="paragraph">
-<p>You can create a Red&#160;Hat OpenShift Services on AWS cluster with or without an internet-facing API server, with the latter considered a “private” cluster and the former considered a “public” cluster. Private API servers are only accessible from your VPC subnets. You access the hosted control plane through an AWS PrivateLink endpoint regardless of API privacy.</p>
+<p>You can create a Red&#160;Hat OpenShift Services on AWS cluster with or without an internet-facing API server, with the latter considered a “private” cluster and the former considered a “public” cluster. Private API servers are only accessible from your Virtual Private Cloud (VPC) subnets. You access the hosted control plane through an AWS PrivateLink endpoint regardless of API privacy.</p>
 </div>
 <div class="paragraph">
 <p>The worker nodes are deployed in your AWS account and run on your VPC private subnets. You can add additional private subnets from one or more availability zones to ensure high availability. Worker nodes are shared by OpenShift components and applications. OpenShift components such as the ingress controller, image registry, and monitoring are deployed on the worker nodes hosted on your VPC.</p>
@@ -967,8 +1037,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect3">
 <h4 id="rosa-classic-architecture_rosa-hcp-investigate-architecture-models">Red&#160;Hat OpenShift Services on AWS</h4>
-<div class="paragraph">
-<p>In Red&#160;Hat OpenShift Services on AWS, both the control plane and the worker nodes are deployed in your VPC subnets.</p>
+<div class="paragraph _abstract">
+<p>In Red&#160;Hat OpenShift Services on AWS, both the control plane and the worker nodes are deployed in your Virtual Private Cloud (VPC) subnets. This gives you full control over network access and traffic flow.</p>
 </div>
 <div class="sect4">
 <h5 id="rosa-classic-architecture-networks_rosa-hcp-investigate-architecture-models">Red&#160;Hat OpenShift Services on AWS on public and private networks</h5>
@@ -976,7 +1046,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>With Red&#160;Hat OpenShift Services on AWS, you can create clusters that are accessible over public or private networks.</p>
 </div>
 <div class="paragraph">
-<p>You can customize access patterns for your API server endpoint and Red&#160;Hat SRE management in the following ways:</p>
+<p>You can customize access patterns for your API server endpoint and Red&#160;Hat Site Reliability Engineering (SRE) management in the following ways:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -987,7 +1057,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Private - API server endpoint and application routes are private. Private Red&#160;Hat OpenShift Services on AWS clusters use some public subnets, but no control plane or worker nodes are deployed in public subnets.</p>
 </li>
 <li>
-<p>Private with AWS PrivateLink - API server endpoint and application routes are private. Public subnets or NAT gateways are not required in your VPC for egress. Red&#160;Hat OpenShift Services on AWS SRE management uses AWS PrivateLink.</p>
+<p>Private with AWS PrivateLink - API server endpoint and application routes are private. Public subnets or network address translation (NAT) gateways are not required in your VPC for egress. Red&#160;Hat OpenShift Services on AWS SRE management uses AWS PrivateLink.</p>
 </li>
 </ul>
 </div>
@@ -1020,8 +1090,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect3">
 <h4 id="osd-aws-privatelink-architecture_rosa-hcp-investigate-architecture-models">AWS PrivateLink architecture</h4>
-<div class="paragraph">
-<p>The Red&#160;Hat managed infrastructure that creates AWS PrivateLink clusters is hosted on private subnets. The connection between Red&#160;Hat and the customer-provided infrastructure is created through AWS PrivateLink VPC endpoints.</p>
+<div class="paragraph _abstract">
+<p>The Red&#160;Hat managed infrastructure that creates AWS PrivateLink clusters is hosted on private subnets, and the connection to your infrastructure uses AWS PrivateLink Virtual Private Cloud (VPC) endpoints. Keeping cluster management traffic off the public internet provides an additional layer of security.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1049,7 +1119,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="osd-aws-reference-architecture_rosa-hcp-investigate-architecture-models">AWS reference architectures</h5>
 <div class="paragraph">
-<p>AWS provides multiple reference architectures that can be useful to customers when planning how to set up a configuration that uses AWS PrivateLink. Here are three examples:</p>
+<p>AWS provides multiple reference architectures that can be useful to customers when planning how to set up a configuration that uses AWS PrivateLink. Review the examples and see the <em>Additional resources</em> for more details:</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1075,9 +1145,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>To enable communication with your network over an Internet Protocol Security (IPsec) VPN tunnel, this configuration contains a virtual private cloud (VPC) with a single private subnet and a virtual private gateway. Communication over the internet does not use an internet gateway.</p>
 </div>
-<div class="paragraph">
-<p>For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario4.html">VPC with a private subnet only and AWS Site-to-Site VPN access</a> in the AWS documentation.</p>
-</div>
 </li>
 <li>
 <p>VPC with public and private subnets (NAT)</p>
@@ -1085,10 +1152,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>This configuration enables you to isolate your network so that the public subnet is reachable from the internet but the private subnet is not.</p>
 </div>
 <div class="paragraph">
-<p>Only the public subnet can send outbound traffic directly to the internet. The private subnet can access the internet by using a network address translation (NAT) gateway that resides in the public subnet. This allows database servers to connect to the internet for software updates using the NAT gateway, but does not allow connections to be made directly from the internet to the database servers.</p>
-</div>
-<div class="paragraph">
-<p>For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html">VPC with public and private subnets (NAT)</a> in the AWS documentation.</p>
+<p>Only the public subnet can send outbound traffic directly to the internet. The private subnet can access the internet by using a network address translation (NAT) gateway that resides in the public subnet. This allows database servers to connect to the internet for software updates by using the NAT gateway, but does not allow connections to be made directly from the internet to the database servers.</p>
 </div>
 </li>
 <li>
@@ -1099,9 +1163,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>You can run a multi-tiered application with a scalable web front end in a public subnet, and house your data in a private subnet that is connected to your network by an IPsec AWS Site-to-Site VPN connection.</p>
 </div>
-<div class="paragraph">
-<p>For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario3.html">VPC with public and private subnets and AWS Site-to-Site VPN access</a> in the AWS documentation.</p>
+</li>
+</ul>
 </div>
+<div class="paragraph">
+<p>For more information about the examples, see the <em>Additional resources</em>.</p>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.aws.amazon.com/vpn/latest/s2svpn/Examples.html">AWS Site-to-Site VPN single and multiple VPN connection examples - AWS documentation</a></p>
+</li>
+<li>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-example-private-subnets-nat.html">Example: VPC with servers in private subnets and NAT - AWS documentation</a></p>
 </li>
 </ul>
 </div>
@@ -1109,8 +1184,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect3">
 <h4 id="rosa-architecture-local-zones_rosa-hcp-investigate-architecture-models">Red&#160;Hat OpenShift Services on AWS with Local Zones</h4>
+<div class="paragraph _abstract">
+<p>Red&#160;Hat OpenShift Services on AWS supports the use of AWS Local Zones, which are metropolis-centralized availability zones where customers can place latency-sensitive application workloads within a Virtual Private Cloud (VPC). Local Zones are extensions of AWS Regions and are not enabled by default.</p>
+</div>
 <div class="paragraph">
-<p>Red&#160;Hat OpenShift Services on AWS supports the use of AWS Local Zones, which are metropolis-centralized availability zones where customers can place latency-sensitive application workloads within a VPC. Local Zones are extensions of AWS Regions and are not enabled by default. When Local Zones are enabled and configured, the traffic is extended into the Local Zones for greater flexibility and lower latency. For more information, see "Configuring machine pools in Local Zones".</p>
+<p>When Local Zones are enabled and configured, the traffic is extended into the Local Zones for greater flexibility and lower latency. For more information, see "Configuring machine pools in Local Zones".</p>
 </div>
 <div class="paragraph">
 <p>The following diagram displays a Red&#160;Hat OpenShift Services on AWS cluster without traffic routed into a Local Zone.</p>
@@ -1138,7 +1216,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-29 15:22:06 -0500
+Last updated 2026-09-29 19:04:35 -0500
 </div>
 </div>
 </body>
