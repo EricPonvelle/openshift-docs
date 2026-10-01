@@ -530,8 +530,48 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 })();
 </script>
 <!-- navmap-left-nav-toggle-end -->
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
 </head>
-<body id="osd-collect-and-analyze-logs_collect-and-analyze-logs" class="book toc2 toc-left">
+<body id="osd-monitor-cluster-health_osd-monitor-cluster-health" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Openshift Dedicated</h1>
 <div id="toc" class="toc2">
@@ -600,24 +640,324 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_observe.html">▶</button><a href="_observe.html">Observe</a>
 <ul class="sectlevel2">
-<li><a href="osd-collect-and-analyze-logs_collect-and-analyze-logs.html"><span class="toc-current">Collect and analyze application and infrastructure logs</span></a>
+<li><a href="osd-collect-and-analyze-logs_osd-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
 </li>
-<li><a href="osd-monitor-cluster-health_monitor-cluster-health.html">Monitor cluster health</a>
+<li><a href="osd-monitor-cluster-health_osd-monitor-cluster-health.html"><span class="toc-current">Monitor cluster health</span></a>
 </li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#managed-cluster-notification-policy_osd-monitor-cluster-health">Cluster notification policy</a></li><li class="level-4"><a href="#managed-cluster-notification-severity_osd-monitor-cluster-health">Cluster notification severity levels</a></li><li class="level-4"><a href="#managed-cluster-notification-types_osd-monitor-cluster-health">Cluster notification types</a></li><li class="level-4"><a href="#managed-cluster-notification-view-hcc_osd-monitor-cluster-health">View cluster notifications using the Hybrid Cloud Console</a></li><li class="level-4"><a href="#add-notification-contact_osd-monitor-cluster-health">Add notification contacts to your cluster</a></li><li class="level-4"><a href="#remove-notification-contact_osd-monitor-cluster-health">Remove notification contacts from your cluster</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="osd-collect-and-analyze-logs_collect-and-analyze-logs">Collect and analyze application and infrastructure logs</h3>
+<h3 id="osd-monitor-cluster-health_osd-monitor-cluster-health">Monitor cluster health</h3>
 <div class="paragraph _abstract">
-<p>You can deploy logging on your Openshift Dedicated cluster to collect and aggregate node system audit logs, application container logs, and infrastructure logs. For detailed information, see the <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_logging/">Red&#160;Hat OpenShift Logging</a> documentation.</p>
+<p>Cluster notifications are messages about the status, health, or performance of your cluster. Red Hat Site Reliability Engineering (SRE) uses cluster notifications to communicate with you about your managed cluster and to prompt you to perform actions to resolve or prevent issues.</p>
+</div>
+<div class="paragraph">
+<p>Cluster notifications are the primary way that Red Hat Site Reliability Engineering (SRE) communicates with you about the health of your managed cluster. Red Hat SRE may also use cluster notifications to prompt you to perform an action in order to resolve or prevent an issue with your cluster.</p>
+</div>
+<div class="paragraph">
+<p>Cluster owners and administrators must regularly review and action cluster notifications to ensure clusters remain healthy and supported.</p>
+</div>
+<div class="paragraph">
+<p>You can view cluster notifications in the Red Hat Hybrid Cloud Console, in the <strong>Cluster history</strong> tab for your cluster. By default, only the cluster owner receives cluster notifications as emails. If other users need to receive cluster notification emails, add each user as a notification contact for your cluster.</p>
+</div>
+<div class="sect3">
+<h4 id="managed-cluster-notification-policy_osd-monitor-cluster-health">Cluster notification policy</h4>
+<div class="paragraph _abstract">
+<p>Cluster notifications are designed to keep you informed about the health of your cluster and high impact events that affect it.</p>
+</div>
+<div class="paragraph">
+<p>Most cluster notifications are generated and sent automatically to ensure that you are immediately informed of problems or important changes to the state of your cluster.</p>
+</div>
+<div class="paragraph">
+<p>In certain situations, Red&#160;Hat Site Reliability Engineering (SRE) creates and sends cluster notifications to provide additional context and guidance for a complex issue.</p>
+</div>
+<div class="paragraph">
+<p>Cluster notifications are not sent for low-impact events, low-risk security updates, routine operations and maintenance, or minor, transient issues that are quickly resolved by Red&#160;Hat SRE.</p>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat services automatically send notifications when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Remote health monitoring or environment verification checks detect an issue in your cluster, for example, when a worker node has low disk space.</p>
+</li>
+<li>
+<p>Significant cluster life cycle events occur, for example, when scheduled maintenance or upgrades begin, or cluster operations are impacted by an event, but do not require customer intervention.</p>
+</li>
+<li>
+<p>Significant cluster management changes occur, for example, when cluster ownership or administrative control is transferred from one user to another.</p>
+</li>
+<li>
+<p>Your cluster subscription is changed or updated, for example, when Red&#160;Hat makes updates to subscription terms or features available to your cluster.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>SRE creates and sends notifications when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>An incident results in a degradation or outage that impacts your cluster&#8217;s availability or performance, for example, your cloud provider has a regional outage. SRE sends subsequent notifications to inform you of incident resolution progress, and when the incident is resolved.</p>
+</li>
+<li>
+<p>A security vulnerability, security breach, or unusual activity is detected on your cluster.</p>
+</li>
+<li>
+<p>Red&#160;Hat detects that changes you have made are creating or may result in cluster instability.</p>
+</li>
+<li>
+<p>Red&#160;Hat detects that your workloads are causing performance degradation or instability in your cluster.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="managed-cluster-notification-severity_osd-monitor-cluster-health">Cluster notification severity levels</h4>
+<div class="paragraph _abstract">
+<p>Each cluster notification has an associated severity level to help you identify notifications with the greatest impact to your business.</p>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat uses the following severity levels for cluster notifications, from most to least severe:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Critical</dt>
+<dd>
+<p>Immediate action is required. One or more key functions of a service or cluster is not working, or will stop working soon. A critical alert is important enough to page on-call staff and interrupt regular workflows.</p>
+</dd>
+<dt class="hdlist1">Major</dt>
+<dd>
+<p>Immediate action is strongly recommended. One or more key functions of the cluster will soon stop working. A major issue may lead to a critical issue if it is not addressed in a timely manner.</p>
+</dd>
+<dt class="hdlist1">Warning</dt>
+<dd>
+<p>Action is required as soon as possible. One or more key functions of the cluster are not working optimally and may degrade further, but do not pose an immediate danger to the functioning of the cluster.</p>
+</dd>
+<dt class="hdlist1">Info</dt>
+<dd>
+<p>No action necessary. This severity does not describe problems that need to be addressed, only important information about meaningful or important life cycle, service, or cluster events.</p>
+</dd>
+<dt class="hdlist1">Debug</dt>
+<dd>
+<p>No action necessary. Debug notifications provide low-level information about less important lifecycle, service, or cluster events to aid in debugging unexpected behavior.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="managed-cluster-notification-types_osd-monitor-cluster-health">Cluster notification types</h4>
+<div class="paragraph _abstract">
+<p>Each cluster notification has an associated notification type to help you identify notifications that are relevant to your role and responsibilities.</p>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat uses the following notification types to indicate notification relevance:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Capacity management</dt>
+<dd>
+<p>Notifications for events related to updating, creating, or deleting node pools, machine pools, compute replicas or quotas (load balancer, storage, etc.).</p>
+</dd>
+<dt class="hdlist1">Cluster access</dt>
+<dd>
+<p>Notifications for events related to adding or deleting groups, roles or identity providers, for example, when SRE cannot access your cluster because STS credentials have expired, when there is a configuration problem with your AWS roles, or when you add or remove identity providers.</p>
+</dd>
+<dt class="hdlist1">Cluster add-ons</dt>
+<dd>
+<p>Notifications for events related to add-on management or upgrade maintenance for add-ons, for example, when an add-on is installed, upgraded, or removed, or cannot be installed due to unmet requirements.</p>
+</dd>
+<dt class="hdlist1">Cluster configuration</dt>
+<dd>
+<p>Notifications for cluster tuning events, workload monitoring, and inflight checks.</p>
+</dd>
+<dt class="hdlist1">Cluster lifecycle</dt>
+<dd>
+<p>Notifications for cluster or cluster resource creation, deletion, and registration, or change in cluster or resource status (for example, ready or hibernating).</p>
+</dd>
+<dt class="hdlist1">Cluster networking</dt>
+<dd>
+<p>Notifications related to cluster networking, including HTTP/S proxy, router, and ingress state.</p>
+</dd>
+<dt class="hdlist1">Cluster ownership</dt>
+<dd>
+<p>Notifications related to cluster ownership transfer from one user to another.</p>
+</dd>
+<dt class="hdlist1">Cluster scaling</dt>
+<dd>
+<p>Notifications related to updating, creating, or deleting node pools, machine pools, compute replicas or quota.</p>
+</dd>
+<dt class="hdlist1">Cluster security</dt>
+<dd>
+<p>Events related to cluster security, for example, an increased number of failed access attempts, updates to trust bundles, or software updates with security impact.</p>
+</dd>
+<dt class="hdlist1">Cluster subscription</dt>
+<dd>
+<p>Cluster expiration, trial cluster notifications, or switching from free to paid.</p>
+</dd>
+<dt class="hdlist1">Cluster updates</dt>
+<dd>
+<p>Anything relating to upgrades, such as upgrade maintenance or enablement.</p>
+</dd>
+<dt class="hdlist1">Customer support</dt>
+<dd>
+<p>Updates on support case status.</p>
+</dd>
+<dt class="hdlist1">General notification</dt>
+<dd>
+<p>The default notification type. This is only used for notifications that do not have a more specific category.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="managed-cluster-notification-view-hcc_osd-monitor-cluster-health">View cluster notifications using the Hybrid Cloud Console</h4>
+<div class="paragraph _abstract">
+<p>Cluster notifications give important information about the health of your cluster. You can view notifications sent to your cluster in the <strong>Cluster history</strong> tab on the Red Hat Hybrid Cloud Console.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have logged in to the Hybrid Cloud Console.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the <a href="https://console.redhat.com/openshift">Clusters</a> page of the Hybrid Cloud Console.</p>
+</li>
+<li>
+<p>Click the name of your cluster to go to the cluster details page.</p>
+</li>
+<li>
+<p>Click the <strong>Cluster history</strong> tab.</p>
+<div class="paragraph">
+<p>Cluster notifications appear under the Cluster history heading.</p>
+</div>
+</li>
+<li>
+<p>Optional: Filter for relevant cluster notifications.</p>
+<div class="paragraph">
+<p>Use the filter controls to hide cluster notifications that are not relevant to you, so that you can focus on your area of expertise or on resolving a critical issue. You can filter notifications based on text in the notification description, severity level, notification type, when you received the notification, and the system or person that triggered the notification.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-notification-contact_osd-monitor-cluster-health">Add notification contacts to your cluster</h4>
+<div class="paragraph _abstract">
+<p>Configure additional users as notification contacts to ensure that all appropriate users receive cluster notification emails.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Your cluster is deployed and registered to the Red Hat Hybrid Cloud Console.</p>
+</li>
+<li>
+<p>You are logged in to the Hybrid Cloud Console as the cluster owner or as a user with the cluster editor role.</p>
+</li>
+<li>
+<p>The intended notification recipient has a Red&#160;Hat Customer Portal account associated with the same organization as the cluster owner.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the Clusters page of the Hybrid Cloud Console.</p>
+</li>
+<li>
+<p>Click the name of your cluster to go to the cluster details page.</p>
+</li>
+<li>
+<p>Click the <strong>Support</strong> tab.</p>
+</li>
+<li>
+<p>On the <strong>Support</strong> tab, find the <strong>Notification contacts</strong> section.</p>
+</li>
+<li>
+<p>Click <strong>Add notification contact</strong>.</p>
+</li>
+<li>
+<p>In the <strong>Red&#160;Hat username or email</strong> field, enter the email address or the user name of the new recipient.</p>
+</li>
+<li>
+<p>Click <strong>Add contact</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>The "Notification contact added successfully" message is displayed.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-notification-contact_osd-monitor-cluster-health">Remove notification contacts from your cluster</h4>
+<div class="paragraph _abstract">
+<p>Remove notification contacts from your cluster support settings to prevent them from receiving notification emails.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Your cluster is deployed and registered to the Red Hat Hybrid Cloud Console.</p>
+</li>
+<li>
+<p>You are logged in to the Hybrid Cloud Console as the cluster owner or as a user with the cluster editor role.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the Clusters page of the Hybrid Cloud Console.</p>
+</li>
+<li>
+<p>Click the name of your cluster to go to the cluster details page.</p>
+</li>
+<li>
+<p>Click the <strong>Support</strong> tab.</p>
+</li>
+<li>
+<p>On the <strong>Support</strong> tab, find the <strong>Notification contacts</strong> section.</p>
+</li>
+<li>
+<p>Click the options menu (<strong>&#9881;</strong>) beside the recipient you want to remove.</p>
+</li>
+<li>
+<p>Click <strong>Delete</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>The "Notification contact deleted successfully" message is displayed.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="_observe.html">Observe</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-monitor-cluster-health_monitor-cluster-health.html">Monitor cluster health</a> →</p>
+<p>← Previous: <a href="osd-collect-and-analyze-logs_osd-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a> | ↑ Up: <a href="_observe.html">Observe</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a></p>
 </div>
 </div>
 <div id="footer">

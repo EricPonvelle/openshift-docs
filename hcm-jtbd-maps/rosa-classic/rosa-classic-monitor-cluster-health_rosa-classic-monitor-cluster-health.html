@@ -693,36 +693,106 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-expectations_rosa-classic-monitor-cluster-health">What to expect from cluster notifications</a></li><li class="level-4"><a href="#rosa-cluster-notification-emails_rosa-classic-monitor-cluster-health">Cluster notification emails</a></li><li class="level-4"><a href="#rosa-troubleshooting-cluster-notifications_rosa-classic-monitor-cluster-health">Troubleshooting cluster notifications</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#managed-cluster-notification-view-hcc_rosa-classic-monitor-cluster-health">View cluster notifications using the Hybrid Cloud Console</a></li><li class="level-4"><a href="#add-notification-contact_rosa-classic-monitor-cluster-health">Add notification contacts to your cluster</a></li><li class="level-4"><a href="#rosa-troubleshooting-cluster-notifications_rosa-classic-monitor-cluster-health">Troubleshoot cluster notifications</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-classic-monitor-cluster-health_rosa-classic-monitor-cluster-health">Monitor cluster health</h3>
 <div class="paragraph _abstract">
 <p>Use the following resources and information to understand the cluster notifications that you receive for your Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, and to manage the recipients of cluster notification emails.</p>
 </div>
-<div class="paragraph">
-<p>Cluster notifications are the primary way that Red Hat Site Reliability Engineering (SRE) communicates with you about the health of your managed cluster. Red Hat SRE may also use cluster notifications to prompt you to perform an action in order to resolve or prevent an issue with your cluster.</p>
-</div>
-<div class="paragraph">
-<p>Cluster owners and administrators must regularly review and action cluster notifications to ensure clusters remain healthy and supported.</p>
-</div>
-<div class="paragraph">
-<p>You can view cluster notifications in the Red Hat Hybrid Cloud Console, in the <strong>Cluster history</strong> tab for your cluster. By default, only the cluster owner receives cluster notifications as emails. If other users need to receive cluster notification emails, add each user as a notification contact for your cluster.</p>
-</div>
 <div class="sect3">
-<h4 id="rosa-expectations_rosa-classic-monitor-cluster-health">What to expect from cluster notifications</h4>
+<h4 id="managed-cluster-notification-view-hcc_rosa-classic-monitor-cluster-health">View cluster notifications using the Hybrid Cloud Console</h4>
 <div class="paragraph _abstract">
-<p>As a cluster administrator, you need to be aware of when and why cluster notifications are sent, as well as their types and severity levels, in order to effectively understand the health and administration needs of your cluster.</p>
+<p>Cluster notifications give important information about the health of your cluster. You can view notifications sent to your cluster in the <strong>Cluster history</strong> tab on the Red Hat Hybrid Cloud Console.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have logged in to the Hybrid Cloud Console.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the <a href="https://console.redhat.com/openshift">Clusters</a> page of the Hybrid Cloud Console.</p>
+</li>
+<li>
+<p>Click the name of your cluster to go to the cluster details page.</p>
+</li>
+<li>
+<p>Click the <strong>Cluster history</strong> tab.</p>
+<div class="paragraph">
+<p>Cluster notifications appear under the Cluster history heading.</p>
+</div>
+</li>
+<li>
+<p>Optional: Filter for relevant cluster notifications.</p>
+<div class="paragraph">
+<p>Use the filter controls to hide cluster notifications that are not relevant to you, so that you can focus on your area of expertise or on resolving a critical issue. You can filter notifications based on text in the notification description, severity level, notification type, when you received the notification, and the system or person that triggered the notification.</p>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-cluster-notification-emails_rosa-classic-monitor-cluster-health">Cluster notification emails</h4>
+<h4 id="add-notification-contact_rosa-classic-monitor-cluster-health">Add notification contacts to your cluster</h4>
 <div class="paragraph _abstract">
-<p>By default, when a cluster notification is sent to the cluster, it is also sent as an email to the cluster owner. You can configure additional recipients for notification emails to ensure that all appropriate users remain informed about the state of the cluster.</p>
+<p>Configure additional users as notification contacts to ensure that all appropriate users receive cluster notification emails.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Your cluster is deployed and registered to the Red Hat Hybrid Cloud Console.</p>
+</li>
+<li>
+<p>You are logged in to the Hybrid Cloud Console as the cluster owner or as a user with the cluster editor role.</p>
+</li>
+<li>
+<p>The intended notification recipient has a Red&#160;Hat Customer Portal account associated with the same organization as the cluster owner.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the Clusters page of the Hybrid Cloud Console.</p>
+</li>
+<li>
+<p>Click the name of your cluster to go to the cluster details page.</p>
+</li>
+<li>
+<p>Click the <strong>Support</strong> tab.</p>
+</li>
+<li>
+<p>On the <strong>Support</strong> tab, find the <strong>Notification contacts</strong> section.</p>
+</li>
+<li>
+<p>Click <strong>Add notification contact</strong>.</p>
+</li>
+<li>
+<p>In the <strong>Red&#160;Hat username or email</strong> field, enter the email address or the user name of the new recipient.</p>
+</li>
+<li>
+<p>Click <strong>Add contact</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>The "Notification contact added successfully" message is displayed.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-troubleshooting-cluster-notifications_rosa-classic-monitor-cluster-health">Troubleshooting cluster notifications</h4>
+<h4 id="rosa-troubleshooting-cluster-notifications_rosa-classic-monitor-cluster-health">Troubleshoot cluster notifications</h4>
 <div class="paragraph _abstract">
 <p>If you are not receiving cluster notification emails, troubleshoot the issue by checking email filters, verifying notification contacts, and confirming network access.</p>
 </div>
