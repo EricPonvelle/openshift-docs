@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.26">
+<title>Red&#160;Hat OpenShift Services on AWS</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-left-nav-toggle-start -->
+<style>
+  #toc .toc-toggle {
+    display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .75em;
+    padding: 0 .3em 0 0;
+    margin: 0;
+    color: #555;
+    transition: transform .15s ease;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  #toc .toc-toggle:hover { color: #0066cc; }
+  #toc .toc-toggle.open { transform: rotate(90deg); }
+  #toc li > ul.sectlevel2,
+  #toc li > ul.sectlevel3,
+  #toc li > ul.sectlevel4 { display: none; }
+  #toc li.toc-expanded > ul.sectlevel2,
+  #toc li.toc-expanded > ul.sectlevel3,
+  #toc li.toc-expanded > ul.sectlevel4 { display: block; }
+</style>
+<script>
+(function() {
+  var previewPath = window.location.pathname.slice(
+    0,
+    window.location.pathname.lastIndexOf('/')
+  ) || '/';
+  var STORAGE_KEY = 'navmap-toc-state:' + previewPath;
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch(e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var state = loadState();
+    var currentPage = location.pathname.split('/').pop();
+    var buttons = document.querySelectorAll('#toc .toc-toggle');
+
+    buttons.forEach(function(btn) {
+      var key = btn.getAttribute('data-toc-key');
+      var li = btn.parentElement;
+      var isCurrentSection = false;
+
+      /* Auto-expand the section containing the current page */
+      var links = li.querySelectorAll('a[href]');
+      links.forEach(function(a) {
+        var href = a.getAttribute('href').split('#')[0];
+        if (href === currentPage) { isCurrentSection = true; }
+      });
+
+      if (state[key] === true || isCurrentSection) {
+        li.classList.add('toc-expanded');
+        btn.classList.add('open');
+        if (isCurrentSection) { state[key] = true; }
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var expanded = li.classList.toggle('toc-expanded');
+        btn.classList.toggle('open', expanded);
+        state[key] = expanded;
+        saveState(state);
+      });
+    });
+
+    saveState(state);
+
+    /* --- Scroll current page into view in the TOC --- */
+    var toc = document.getElementById('toc');
+    if (toc) {
+      var cur = toc.querySelector('a[href="' + currentPage + '"]');
+      if (!cur) { cur = toc.querySelector('a[href$="/' + currentPage + '"]'); }
+      if (cur) {
+        cur.style.fontWeight = 'bold';
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            cur.scrollIntoView({ block: 'center', behavior: 'instant' });
+          }, 0);
+        });
+      }
+    }
+  });
+})();
+</script>
+<!-- navmap-left-nav-toggle-end -->
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
+</head>
+<body id="rosa-hcp-troubleshoot-cluster-infrastructure-issues_rosa-hcp-troubleshoot-cluster-infrastructure-issues" class="book toc2 toc-left navmap-has-right-toc">
+<div id="header">
+<h1>Red&#160;Hat OpenShift Services on AWS</h1>
+<div id="toc" class="toc2">
+<div id="toctitle"></div>
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
+<li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-whats-new_rosa-hcp-whats-new.html">What&#8217;s new for Red Hat OpenShift Service on AWS</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-learn-about-benefits-and-use-cases_rosa-hcp-learn-about-benefits-and-use-cases.html">Learn about benefits and use cases</a>
+</li>
+<li><a href="rosa-hcp-evaluate-shared-responsibilities_rosa-hcp-evaluate-shared-responsibilities.html">Evaluate shared responsibilities</a>
+</li>
+<li><a href="rosa-hcp-get-sre-and-service-account-access_rosa-hcp-get-sre-and-service-account-access.html">Get SRE and service account access</a>
+</li>
+<li><a href="rosa-hcp-understand-security-control_rosa-hcp-understand-security-control.html">Understand security control</a>
+</li>
+<li><a href="rosa-hcp-acquire-aws-sts-authentication_rosa-hcp-acquire-aws-sts-authentication.html">Acquire AWS STS authentication</a>
+</li>
+<li><a href="rosa-hcp-investigate-architecture-models_rosa-hcp-investigate-architecture-models.html">Investigate architecture models</a>
+</li>
+<li><a href="rosa-hcp-explore-sts-resources-for-iam-clusters_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Explore STS resources for IAM clusters</a>
+</li>
+<li><a href="rosa-hcp-general-availability_rosa-hcp-general-availability.html">General availability</a>
+</li>
+<li><a href="rosa-hcp-review-the-service-definition_rosa-hcp-review-the-service-definition.html">Review the service definition</a>
+</li>
+<li><a href="rosa-hcp-review-supported-instance-types_rosa-hcp-review-supported-instance-types.html">Review supported instance types</a>
+</li>
+<li><a href="rosa-hcp-update-life-cycle_rosa-hcp-update-life-cycle.html">Update life cycle</a>
+</li>
+<li><a href="rosa-cluster-manager-overview_rosa-hcp-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-sts-overview-of-the-default-cluster-specifications_rosa-hcp-quickstart-set-up-your-environment.html">Overview of the default cluster specifications</a>
+</li>
+<li><a href="rosa-hcp-quickstart-create-your-cluster_rosa-hcp-quickstart-create-your-cluster.html">Quick start: Create your cluster</a>
+</li>
+<li><a href="rosa-hcp-quickstart-manage-your-cluster_rosa-hcp-quickstart-manage-your-cluster.html">Quick start: Manage your cluster</a>
+</li>
+<li><a href="considerations-regarding-auto-creation-mode_rosa-hcp-create-a-cluster-with-default-options.html">About automatic IAM resource creation</a>
+</li>
+<li><a href="rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster.html">Configure Microsoft Entra ID as an identity provider for your cluster</a>
+</li>
+<li><a href="rosa-hcp-activate-red-hat-openshift-services-on-aws-cluster-and-link-your-aws-account_rosa-hcp-activate-red-hat-openshift-services-on-aws-cluster-and-link-your-aws-account.html">Activate Red Hat OpenShift Services on AWS cluster and link your AWS account</a>
+</li>
+<li><a href="rosa-hcp-sign-up-for-fedramp-access-to-create-a-red-hat-openshift-service-on-aws-cluster-in-govcloud_rosa-hcp-sign-up-for-fedramp-access-to-create-a-red-hat-openshift-service-on-aws-cluster-in-govcloud.html">Sign up for FedRAMP access to create a Red Hat OpenShift Service on AWS cluster in GovCloud</a>
+</li>
+<li><a href="rosa-hcp-manage-your-red-hat-openshift-services-on-aws-govcloud-account_rosa-hcp-manage-your-red-hat-openshift-services-on-aws-govcloud-account.html">Manage your Red Hat OpenShift Services on AWS GovCloud account</a>
+</li>
+<li><a href="rosa-fedramp-overview_rosa-hcp-apply-fedramp-rev5-secure-configuration-guidance.html">Learn about FedRAMP Rev5 Secure Configuration Guidance (SCG) requirements</a>
+</li>
+<li><a href="rosa-hcp-create-your-first-red-hat-openshift-services-on-aws-cluster-in-aws-govcloud_rosa-hcp-create-your-first-red-hat-openshift-services-on-aws-cluster-in-aws-govcloud.html">Create your first Red Hat OpenShift Services on AWS cluster in AWS GovCloud</a>
+</li>
+<li><a href="rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront_rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront.html">Protect application workloads by using AWS WAF and Amazon CloudFront</a>
+</li>
+<li><a href="rosa-hcp-protect-application-workloads-by-using-aws-waf-and-aws-albs_rosa-hcp-protect-application-workloads-by-using-aws-waf-and-aws-albs.html">Protect application workloads by using AWS WAF and AWS ALBs</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-intro_rosa-hcp-create-a-rosa-hcp-cluster.html">Create a ROSA HCP Cluster</a>
+</li>
+<li><a href="rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc-intro_rosa-hcp-create-a-rosa-hcp-cluster-in-a-shared-vpc.html">Create a ROSA HCP Cluster in a Shared VPC</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_upgrade.html">▶</button><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-plan-cluster-upgrades_rosa-hcp-plan-cluster-upgrades.html">Plan cluster upgrades</a>
+</li>
+<li><a href="rosa-hcp-upgrade-a-cluster_rosa-hcp-upgrade-a-cluster.html">Upgrade a cluster</a>
+</li>
+<li><a href="rosa-hcp-upgrade-karpenter-managed-nodes_rosa-hcp-upgrade-karpenter-managed-nodes.html">Upgrade Karpenter-managed nodes</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_observe.html">▶</button><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="sd-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+</li>
+<li><a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a>
+</li>
+<li><a href="rosa-hcp-monitor-cluster-health_rosa-hcp-monitor-cluster-health.html">Monitor cluster health</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_troubleshoot.html">▶</button><a href="_troubleshoot.html">Troubleshoot</a>
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-troubleshoot-cluster-infrastructure-issues_rosa-hcp-troubleshoot-cluster-infrastructure-issues.html"><span class="toc-current">Troubleshoot cluster infrastructure issues</span></a>
+</li>
+<li><a href="rosa-hcp-troubleshoot-component-and-workload-issues_rosa-hcp-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a>
+</li>
+<li><a href="rosa-hcp-troubleshoot-rosa-access-and-deployment-issues_rosa-hcp-troubleshoot-rosa-access-and-deployment-issues.html">Troubleshoot ROSA access and deployment issues</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-hcp-troubleshoot-rosa-installations_rosa-hcp-troubleshoot-rosa-installations">Troubleshoot ROSA installations</a></li><li class="level-5"><a href="#rosa-troubleshooting-installing_rosa-hcp-troubleshoot-rosa-installations">Installation troubleshooting</a></li><li class="level-5"><a href="#rosa-verify-hcp-install_rosa-hcp-troubleshoot-rosa-installations">Verifying installation of Red Hat OpenShift Services on AWS clusters</a></li><li class="level-5"><a href="#rosa-troubleshoot-hcp-install_rosa-hcp-troubleshoot-rosa-installations">Troubleshooting Red Hat OpenShift Services on AWS installation error codes</a></li><li class="level-5"><a href="#rosa-hcp-no-console-access_rosa-hcp-troubleshoot-rosa-installations">Troubleshooting access to Red Hat Hybrid Cloud Console</a></li><li class="level-5"><a href="#rosa-hcp-ready-no-console-access_rosa-hcp-troubleshoot-rosa-installations">Verifying access to Red Hat OpenShift Services on AWS web console for Red Hat OpenShift Services on AWS cluster in ready state</a></li><li class="level-5"><a href="#rosa-hcp-private-ready-no-console-access_rosa-hcp-troubleshoot-rosa-installations">Verifying access to Red Hat Hybrid Cloud Console for private Red Hat OpenShift Services on AWS clusters</a></li><li class="level-4"><a href="#rosa-hcp-troubleshoot-networking_rosa-hcp-troubleshoot-networking">Troubleshoot networking</a></li><li class="level-5"><a href="#rosa-troubleshooting-general-deployment-failure_rosa-hcp-troubleshoot-networking">Connectivity issues on clusters with private network load balancers</a></li><li class="level-4"><a href="#rosa-hcp-verify-node-health_rosa-hcp-verify-node-health">Verify node health</a></li><li class="level-5"><a href="#reviewing-node-status-use-and-configuration_rosa-hcp-verify-node-health">Reviewing node status, resource usage, and configuration</a></li><li class="level-5"><a href="#querying-kubelet-status-on-a-node_rosa-hcp-verify-node-health">Querying the kubelet’s status on a node</a></li><li class="level-5"><a href="#querying-cluster-node-journal-logs_rosa-hcp-verify-node-health">Querying cluster node journal logs</a></li><li class="level-4"><a href="#rosa-hcp-troubleshoot-red-hat-build-of-karpenter_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Troubleshoot Red Hat build of Karpenter</a></li><li class="level-5"><a href="#autonode-troubleshooting-overview_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">About Red Hat build of Karpenter troubleshooting</a></li><li class="level-6"><a href="#autonode-troubleshooting-diagnostic-workflow_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">General diagnostic workflow</a></li><li class="level-6"><a href="#autonode-troubleshooting-escalating_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">When to escalate to Red Hat Support</a></li><li class="level-5"><a href="#karpenter-resource-readiness-conditions_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Karpenter resource readiness conditions</a></li><li class="level-6"><a href="#karpenter-resource-readiness-conditions-common-failures_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Common failure messages</a></li><li class="level-6"><a href="#query-ec2nodeclass-condition-status_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Query EC2NodeClass condition status</a></li><li class="level-5"><a href="#verify-karpenter-crds-installed_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Verify Karpenter CRDs are installed</a></li><li class="level-5"><a href="#resolve-ec2nodeclass-not-ready-status_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Resolve EC2NodeClass not ready status</a></li><li class="level-5"><a href="#resolve-iam-permissions-for-tagging_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Resolve IAM permissions for AWS resource tagging</a></li></ul></aside>
+<div id="content">
+<div class="sect2">
+<h3 id="rosa-hcp-troubleshoot-cluster-infrastructure-issues_rosa-hcp-troubleshoot-cluster-infrastructure-issues">Troubleshoot cluster infrastructure issues</h3>
+<div class="paragraph _abstract">
+<p>Diagnose and resolve problems with the underlying infrastructure of your Red&#160;Hat OpenShift Services on AWS cluster, including installation failures, networking errors, node health, and automatic node scaling.</p>
+</div>
+<div class="sect3">
+<h4 id="rosa-hcp-troubleshoot-rosa-installations_rosa-hcp-troubleshoot-rosa-installations">Troubleshoot ROSA installations</h4>
+<div class="paragraph _abstract">
+<p>Troubleshoot the installation of Red&#160;Hat OpenShift Services on AWS clusters, including clusters that report a ready state but provide no console access.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-troubleshooting-installing_rosa-hcp-troubleshoot-rosa-installations">Installation troubleshooting</h5>
+<div class="paragraph _abstract">
+<p>This procedure describes how to troubleshoot installation issues for Red&#160;Hat OpenShift Services on AWS clusters.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Inspect install or uninstall logs:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To display install logs, run the following command, replacing <code>&lt;cluster_name&gt;</code> with the name of your cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa logs install --cluster=&lt;cluster_name&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To watch the logs, include the <code>--watch</code> flag:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa logs install --cluster=&lt;cluster_name&gt; --watch</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To display uninstall logs, run the following command, replacing <code>&lt;cluster_name&gt;</code> with the name of your cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa logs uninstall --cluster=&lt;cluster_name&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To watch the logs, include the <code>--watch</code> flag:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa logs uninstall --cluster=&lt;cluster_name&gt; --watch</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Verify your AWS account and quota:</p>
+<div class="paragraph">
+<p>Run the following command to verify you have the available quota on your AWS account:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify quota</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>AWS quotas change based on region. Be sure you are verifying your quota for the correct AWS region. If you need to increase your quota, go to your <a href="https://aws.amazon.com/console/">AWS console</a>, and request a quota increase for the service that failed.</p>
+</div>
+</li>
+<li>
+<p>AWS notification emails:</p>
+<div class="paragraph">
+<p>When creating a cluster, the Red&#160;Hat OpenShift Services on AWS service creates small instances in all supported regions. This check ensures the AWS account being used can deploy to each supported region.</p>
+</div>
+<div class="paragraph">
+<p>For AWS accounts that are not using all supported regions, AWS might send one or more emails confirming that "Your Request For Accessing AWS Resources Has Been Validated." Typically the sender of this email is <a href="mailto:aws-verification@amazon.com">aws-verification@amazon.com</a>.</p>
+</div>
+<div class="paragraph">
+<p>This is expected behavior as the Red&#160;Hat OpenShift Services on AWS service is validating your AWS account configuration.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-verify-hcp-install_rosa-hcp-troubleshoot-rosa-installations">Verifying installation of Red&#160;Hat OpenShift Services on AWS clusters</h5>
+<div class="paragraph _abstract">
+<p>If the Red&#160;Hat OpenShift Services on AWS cluster is in the installing state for over 30 minutes and has not become ready, ensure the AWS account environment is prepared for the required cluster configurations. If the AWS account environment is prepared for the required cluster configurations correctly, try to delete and re-create the cluster. If the problem persists, contact support.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Verify the AWS account environment is prepared for the required cluster configurations.</p>
+</li>
+<li>
+<p>If the AWS account environment is prepared correctly, try to delete and re-create the cluster.</p>
+</li>
+<li>
+<p>If the problem persists, contact support.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-troubleshoot-hcp-install_rosa-hcp-troubleshoot-rosa-installations">Troubleshooting Red&#160;Hat OpenShift Services on AWS installation error codes</h5>
+<div class="paragraph _abstract">
+<p>The following table lists Red&#160;Hat OpenShift Services on AWS installation error codes and what you can do to troubleshoot these errors.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 59. Red&#160;Hat OpenShift Services on AWS installation error codes</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Error code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM3999</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unknown error.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check the cluster installation logs for more details, or delete this cluster and retry cluster installation. If this issue persists, contact Red&#160;Hat support. See <em>Additional resources</em> for more information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red&#160;Hat OpenShift Services on AWS cluster provision has failed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check the cluster installation logs for more details, or delete this cluster and retry cluster installation. If this issue persists, contact Red&#160;Hat support. See <em>Additional resources</em> for more information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum resource tag size of 25 has been exceeded.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check the cluster information to determine if you can remove any unnecessary tags you have specified and retry cluster installation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unable to establish an AWS client to provision the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">You must create several role resources on your AWS account to create and manage a Red&#160;Hat OpenShift Services on AWS cluster. Ensure that your provided AWS credentials are correct and retry cluster installation.</p>
+<p class="tableblock">For more information about Red&#160;Hat OpenShift Services on AWS IAM role resources, see <em>ROSA IAM role resources</em> in the <em>Additional resources</em> section.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unable to establish a cross-account AWS client to provision the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">You must create several role resources on your AWS account to create and manage a Red&#160;Hat OpenShift Services on AWS cluster. Ensure that your provided AWS credentials are correct and retry cluster installation.</p>
+<p class="tableblock">For more information about Red&#160;Hat OpenShift Services on AWS IAM role resources, see <em>ROSA IAM role resources</em> in the <em>Additional resources</em> section.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5005</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Failed to retrieve AWS subnets defined for the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Review the provided subnet IDs and retry cluster installation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5006</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">You must configure at least one private AWS subnet for the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Review the provided subnet IDs and retry cluster installation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5007</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unable to create AWS STS prerequisites for the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that account and operator roles have been created and are correct. For more information, see <em>AWS STS and ROSA with HCP explained</em> in the <em>Additional resources</em> section.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5008</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The provided cluster flavour is incorrect.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the provided name or ID is correct when you are using the flavour parameter and retry cluster creation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5009</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The cluster version could not be found.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure that the configured version ID matches a valid Red&#160;Hat OpenShift Services on AWS version.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5010</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Failed to tag subnets for the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confirm that the AWS permissions and the subnet configurations are correct. You must tag at least one private subnet and, if applicable, one public subnet.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5011</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cluster installation has failed due to unavailable capacity in the selected region.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Try your cluster installation in another region or retry cluster installation.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://access.redhat.com/support/cases/#/case/list">Red Hat Customer Support</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-hcp-no-console-access_rosa-hcp-troubleshoot-rosa-installations">Troubleshooting access to Red Hat Hybrid Cloud Console</h5>
+<div class="paragraph _abstract">
+<p>In Red&#160;Hat OpenShift Services on AWS clusters, the Red&#160;Hat OpenShift Services on AWS OAuth server is hosted in the Red Hat service&#8217;s AWS account while the web console service is published by using the cluster&#8217;s default ingress controller in the cluster&#8217;s AWS account. If you can log in to your cluster by using the OpenShift CLI (oc) but cannot access the Red&#160;Hat OpenShift Services on AWS web console, verify the following criteria are met:</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Verify the console workloads are running.</p>
+</li>
+<li>
+<p>Verify the default ingress controller&#8217;s load balancer is active.</p>
+</li>
+<li>
+<p>Verify you are accessing the console from a machine that has network connectivity to the cluster&#8217;s VPC network.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-hcp-ready-no-console-access_rosa-hcp-troubleshoot-rosa-installations">Verifying access to Red&#160;Hat OpenShift Services on AWS web console for Red&#160;Hat OpenShift Services on AWS cluster in ready state</h5>
+<div class="paragraph _abstract">
+<p>Red&#160;Hat OpenShift Services on AWS clusters return a <code>ready</code> status when the control plane hosted in the Red&#160;Hat OpenShift Services on AWS service account becomes ready. Cluster console workloads are deployed on the cluster&#8217;s worker nodes. The Red&#160;Hat OpenShift Services on AWS web console will not be available and accessible until the worker nodes have joined the cluster and console workloads are running.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>If your Red&#160;Hat OpenShift Services on AWS cluster is ready but you are unable to access the Red&#160;Hat OpenShift Services on AWS web console for the cluster, wait for the worker nodes to join the cluster and retry accessing the console.</p>
+<div class="paragraph">
+<p>You can either log in to the Red&#160;Hat OpenShift Services on AWS cluster or use the <code>rosa describe machinepool</code> command in the <code>rosa</code> CLI watch the nodes.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-hcp-private-ready-no-console-access_rosa-hcp-troubleshoot-rosa-installations">Verifying access to Red Hat Hybrid Cloud Console for private Red&#160;Hat OpenShift Services on AWS clusters</h5>
+<div class="paragraph _abstract">
+<p>The console of the private cluster is private by default. During cluster installation, the default Ingress Controller managed by OpenShift&#8217;s Ingress Operator is configured with an internal AWS Network Load Balancer (NLB).</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>If your private Red&#160;Hat OpenShift Services on AWS cluster shows a <code>ready</code> status but you cannot access the Red&#160;Hat OpenShift Services on AWS web console for the cluster, try accessing the cluster console from either within the cluster VPC or from a network that is connected to the VPC.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-hcp-troubleshoot-networking_rosa-hcp-troubleshoot-networking">Troubleshoot networking</h4>
+<div class="paragraph _abstract">
+<p>Troubleshoot networking errors on your Red&#160;Hat OpenShift Services on AWS cluster.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-troubleshooting-general-deployment-failure_rosa-hcp-troubleshoot-networking">Connectivity issues on clusters with private network load balancers</h5>
+<div class="paragraph _abstract">
+<p>Red&#160;Hat OpenShift Services on AWS clusters created with version {product-version} deploy AWS Network Load Balancers (NLB) by default for the <code>default</code> ingress controller. In the case of a private NLB, the NLB client IP address preservation might drop connections where the source and destination are the same host. See the AWS documentation about how to <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-troubleshooting.html#loopback-timeout">Troubleshoot your Network Load Balancer</a>. This IP address preservation means that customer workloads co-located on the same node with the router pods might not be able to send traffic to the private NLB fronting the ingress controller router.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To mitigate this impact, reschedule your workloads onto nodes separate from those where the router pods run. Or, rely on the internal pod and service networks for accessing other workloads co-located within the same cluster.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-hcp-verify-node-health_rosa-hcp-verify-node-health">Verify node health</h4>
+<div class="paragraph _abstract">
+<p>Verify and troubleshoot node-related issues by reviewing the status, resource usage, and configuration of a node.</p>
+</div>
+<div class="sect4">
+<h5 id="reviewing-node-status-use-and-configuration_rosa-hcp-verify-node-health">Reviewing node status, resource usage, and configuration</h5>
+<div class="paragraph _abstract">
+<p>Review cluster node health status, resource consumption statistics, and node logs. Additionally, query <code>kubelet</code> status on individual nodes.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have access to the cluster as a user with the <code>dedicated-admin</code> role.</p>
+</li>
+<li>
+<p>You have installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>List the name, status, and role for all nodes in the cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get nodes</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Summarize CPU and memory usage for each node within the cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm top nodes</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Summarize CPU and memory usage for a specific node:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm top node my-node</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="querying-kubelet-status-on-a-node_rosa-hcp-verify-node-health">Querying the kubelet&#8217;s status on a node</h5>
+<div class="paragraph _abstract">
+<p>You can review cluster node health status, resource consumption statistics, and node logs. Additionally, you can query <code>kubelet</code> status on individual nodes.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have access to the cluster as a user with the <code>cluster-admin</code> role.</p>
+</li>
+<li>
+<p>Your API service is still functional.</p>
+</li>
+<li>
+<p>You have installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>The kubelet is managed using a systemd service on each node. Review the kubelet&#8217;s status by querying the <code>kubelet</code> systemd service within a debug pod.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Start a debug pod for a node:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc debug node/my-node</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you are running <code>oc debug</code> on a control plane node, you can find administrative <code>kubeconfig</code> files in the <code>/etc/kubernetes/static-pod-resources/kube-apiserver-certs/secrets/node-kubeconfigs</code> directory.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Set <code>/host</code> as the root directory within the debug shell. The debug pod mounts the host&#8217;s root file system in <code>/host</code> within the pod. By changing the root directory to <code>/host</code>, you can run binaries contained in the host&#8217;s executable paths:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"># chroot /host</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS {product-version} cluster nodes running Red Hat Enterprise Linux CoreOS (RHCOS) are immutable and rely on Operators to apply cluster changes. Accessing cluster nodes by using SSH is not recommended. However, if the Red&#160;Hat OpenShift Services on AWS API is not available, or <code>kubelet</code> is not properly functioning on the target node, <code>oc</code> operations will be impacted. In such situations, it is possible to access nodes using <code>ssh core@&lt;node&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> instead.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Check whether the <code>kubelet</code> systemd service is active on the node:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"># systemctl is-active kubelet</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Output a more detailed <code>kubelet.service</code> status summary:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"># systemctl status kubelet</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="querying-cluster-node-journal-logs_rosa-hcp-verify-node-health">Querying cluster node journal logs</h5>
+<div class="paragraph _abstract">
+<p>You can gather <code>journald</code> unit logs and other logs within <code>/var/log</code> on individual cluster nodes.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have access to the cluster as a user with the <code>cluster-admin</code> role.</p>
+</li>
+<li>
+<p>You have installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Query <code>kubelet</code> <code>journald</code> unit logs from Red&#160;Hat OpenShift Services on AWS cluster nodes. The following example queries worker nodes only:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm node-logs --role=worker -u kubelet</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>kubelet</code></dt>
+<dd>
+<p>Replace as appropriate to query other unit logs.</p>
+</dd>
+</dl>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-hcp-troubleshoot-red-hat-build-of-karpenter_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Troubleshoot Red Hat build of Karpenter</h4>
+<div class="paragraph _abstract">
+<p>Identify the root cause of Red&#160;Hat build of Karpenter failures and restore automatic scaling capabilities on your Red&#160;Hat OpenShift Services on AWS cluster.</p>
+</div>
+<div class="sect4">
+<h5 id="autonode-troubleshooting-overview_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">About Red&#160;Hat build of Karpenter troubleshooting</h5>
+<div class="paragraph _abstract">
+<p>The Red&#160;Hat build of Karpenter uses the Karpenter controller to provide automated node provisioning in OpenShift clusters. When the Red&#160;Hat build of Karpenter fails to provision nodes or reports configuration errors, you can diagnose and resolve issues by examining Karpenter resource status, AWS infrastructure tags, and AWS Identity and Access Management (IAM) permissions.</p>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat build of Karpenter troubleshooting addresses the main failure categories:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Controller deployment issues</dt>
+<dd>
+<p>Karpenter Custom Resource Definitions (CRDs) do not appear after enabling the Red&#160;Hat build of Karpenter, preventing you from creating or managing Karpenter resources.</p>
+</dd>
+<dt class="hdlist1">AWS resource discovery failures</dt>
+<dd>
+<p>The EC2NodeClass resource cannot discover AWS subnets or security groups because required discovery tags are missing or incorrect.</p>
+</dd>
+<dt class="hdlist1">IAM permission issues</dt>
+<dd>
+<p>The control plane Operator does not have the authorization to create tags on AWS resources, preventing Karpenter from properly configuring security groups.</p>
+</dd>
+</dl>
+</div>
+<div class="sect5">
+<h6 id="autonode-troubleshooting-diagnostic-workflow_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">General diagnostic workflow</h6>
+<div class="paragraph">
+<p>Follow this workflow to diagnose and resolve Red&#160;Hat build of Karpenter issues:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Identify the symptom by checking which Karpenter resources are missing or not ready.</p>
+</li>
+<li>
+<p>Gather diagnostic data using <code>oc</code> commands to inspect custom resource status and AWS CLI commands to verify infrastructure configuration.</p>
+</li>
+<li>
+<p>Analyze the root cause by comparing observed resource state with expected configuration.</p>
+</li>
+<li>
+<p>Apply the resolution by adding missing tags, updating IAM policies, or verifying capabilities.</p>
+</li>
+<li>
+<p>Verify the fix by confirming that Karpenter resources reach ready status and automatic scaling functions correctly.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect5">
+<h6 id="autonode-troubleshooting-escalating_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">When to escalate to Red&#160;Hat Support</h6>
+<div class="paragraph">
+<p>Escalate to Red&#160;Hat Support in these situations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Karpenter CRDs do not appear after 5 minutes and the Karpenter controller pod is not running.</p>
+</li>
+<li>
+<p>EC2NodeClass remains not ready after adding all required discovery tags and waiting 60 seconds.</p>
+</li>
+<li>
+<p>IAM policies are correctly attached but CloudTrail continues showing authorization errors.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When escalating, provide:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cluster ID</p>
+</li>
+<li>
+<p>Output of <code>rosa describe cluster -c $CLUSTER_ID -o json</code></p>
+</li>
+<li>
+<p>Output of <code>oc get ec2nodeclass/default -o json</code></p>
+</li>
+<li>
+<p>Output of <code>oc get pods -n kube-system</code></p>
+</li>
+<li>
+<p>CloudTrail event details for authorization errors</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="karpenter-resource-readiness-conditions_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Karpenter resource readiness conditions</h5>
+<div class="paragraph _abstract">
+<p>The <code>EC2NodeClass</code> resource reports readiness through status conditions that indicate whether Karpenter successfully discovered and validated AWS resources. Each condition reports a boolean status and explains why the condition is true or false. Understanding these conditions helps you identify which AWS resources require configuration changes.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 60. EC2NodeClass status conditions</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Condition</th>
+<th class="tableblock halign-left valign-top">Status values</th>
+<th class="tableblock halign-left valign-top">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>AMIsReady</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code> or <code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Amazon Machine Images (AMI) selector matched available AMIs in the AWS region.
+If <code>False</code>, the specified AMI selector did not match any AMIs accessible to your AWS account.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SubnetsReady</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code> or <code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The subnet selector matched private subnets with the required Karpenter discovery tag.
+If <code>False</code>, no subnets in your Virtual Private Cloud (VPC) have the <code>karpenter.sh/discovery</code> tag with the value expected by the <code>EC2NodeClass</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SecurityGroupsReady</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code> or <code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The security group selector matched security groups with the required Karpenter discovery tag.
+If <code>False</code>, no security groups have the <code>karpenter.sh/discovery</code> tag with the value expected by the <code>EC2NodeClass</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>InstanceProfileReady</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code> or <code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The IAM instance profile exists and is accessible to Karpenter.
+If <code>False</code>, the specified instance profile name is incorrect or the profile does not exist in your AWS account.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ValidationSucceeded</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code> or <code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The EC2NodeClass specification passed validation.
+If <code>False</code>, the EC2NodeClass contains invalid configuration values or references non-existent resources.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ready</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code> or <code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Overall readiness status.
+This condition is <code>True</code> only when all dependent conditions (<code>AMIsReady</code>, <code>SubnetsReady</code>, <code>SecurityGroupsReady</code>, <code>InstanceProfileReady</code>, <code>ValidationSucceeded</code>) are <code>True</code>.
+If <code>False</code>, the message field lists which conditions are not ready.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect5">
+<h6 id="karpenter-resource-readiness-conditions-common-failures_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Common failure messages</h6>
+<div class="paragraph">
+<p>When EC2NodeClass conditions report <code>False</code> status, the message field provides details about the failure:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>SubnetSelector</code> did not match any Subnets</dt>
+<dd>
+<p>No subnets in your VPC have the required <code>karpenter.sh/discovery</code> tag.
+Add the tag to all private subnets where Karpenter should provision nodes.</p>
+</dd>
+<dt class="hdlist1"><code>SecurityGroupSelector</code> did not match any <code>SecurityGroups</code></dt>
+<dd>
+<p>No security groups have the required <code>karpenter.sh/discovery</code> tag.
+Add the tag to the default security group and any additional security groups Karpenter should use.</p>
+</dd>
+<dt class="hdlist1"><code>UnhealthyDependents</code></dt>
+<dd>
+<p>The <code>Ready</code> condition shows this message when one or more dependent conditions are <code>False</code>.
+The message lists which specific conditions are not ready, for example: <code>SecurityGroupsReady=False, SubnetsReady=False</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect5">
+<h6 id="query-ec2nodeclass-condition-status_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Query EC2NodeClass condition status</h6>
+<div class="paragraph _abstract">
+<p>Use the <code>oc</code> command-line interface to inspect EC2NodeClass status conditions and identify which AWS resources require configuration changes.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>To view the full condition status for an EC2NodeClass, run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq .status.conditions</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output displays all condition types with their status, reason, and explanatory message.</p>
+</div>
+</li>
+<li>
+<p>Optional: To view only the overall <code>Ready</code> condition, run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq '.status.conditions[] | select(.type=="Ready")'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output shows the <code>Ready</code> condition type, status, reason, and message explaining why the condition is in that state.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Review the output to identify which conditions show <code>"status": "False"</code>.</p>
+</li>
+<li>
+<p>Check the <code>message</code> field for each failed condition to determine what AWS resources need configuration changes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="verify-karpenter-crds-installed_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Verify Karpenter CRDs are installed</h5>
+<div class="paragraph _abstract">
+<p>After enabling the Red&#160;Hat build of Karpenter on a Red&#160;Hat OpenShift Services on AWS cluster, the Karpenter controller automatically creates Custom Resource Definitions (CRDs) in your cluster. If Karpenter CRDs do not appear within several minutes, you can check the controller deployment status.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Check for Karpenter CRDs:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get crd | grep karpenter</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">ec2nodeclasses.karpenter.k8s.aws
+nodeclaims.karpenter.sh
+nodepools.karpenter.sh
+openshiftec2nodeclasses.karpenter.hypershift.openshift.io</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If CRDs are not present, wait 5 minutes for the Karpenter controller to create them. The controller deployment can take several minutes to complete after enabling the Red&#160;Hat build of Karpenter.</p>
+</li>
+<li>
+<p>After 5 minutes, if CRDs are still not present, check whether the Karpenter controller pod is running:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n kube-system | grep karpenter</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output should show a Karpenter controller pod in <code>Running</code> status.</p>
+</div>
+</li>
+<li>
+<p>If the controller pod is not running or CRDs are still missing after 5 minutes, escalate to Red&#160;Hat Support. Provide the following diagnostic information:</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Your cluster ID</p>
+</li>
+<li>
+<p>Output of <code>rosa describe cluster -c $CLUSTER_ID -o json</code></p>
+</li>
+<li>
+<p>Output of <code>oc get pods -n kube-system</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="resolve-ec2nodeclass-not-ready-status_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Resolve EC2NodeClass not ready status</h5>
+<div class="paragraph _abstract">
+<p>Karpenter discovers AWS subnets and security groups by searching for resources tagged with a cluster-specific discovery tag. When the EC2NodeClass resource reports <code>SubnetsReady</code> or <code>SecurityGroupsReady</code> conditions as <code>False</code>, you need to add the required discovery tag to your AWS Virtual Private Cloud (VPC) resources.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Check the EC2NodeClass status:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq .status.conditions</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command displays all status conditions for the default EC2NodeClass.</p>
+</div>
+</li>
+<li>
+<p>Identify which conditions are not ready by looking for entries with <code>"status": "False"</code>.</p>
+<div class="paragraph">
+<p>Common failures are <code>SubnetsReady</code> and <code>SecurityGroupsReady</code>.</p>
+</div>
+</li>
+<li>
+<p>If <code>SubnetsReady</code> shows <code>False</code> with the message "SubnetSelector did not match any Subnets", private subnets in your VPC are missing the required discovery tag.
+Continue to the next step.</p>
+</li>
+<li>
+<p>If <code>SecurityGroupsReady</code> shows <code>False</code> with message "SecurityGroupSelector did not match any SecurityGroups", security groups are missing the required discovery tag.
+The same resolution process applies for both subnets and security groups.</p>
+</li>
+<li>
+<p>Get the Karpenter discovery tag value from the EC2NodeClass specification:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq -r '.spec.subnetSelectorTerms[0].tags["karpenter.sh/discovery"]'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">&lt;discovery_tag_value&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This cluster-specific value must be added as a tag to AWS resources.</p>
+</div>
+</li>
+<li>
+<p>List private subnets in your cluster VPC:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws ec2 describe-subnets --filters "Name=vpc-id,Values=&lt;vpc_id&gt;" \
+  --query 'Subnets[?MapPublicIpOnLaunch==`false`].[SubnetId,Tags]' --output table</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;vpc_id&gt;</code> with your cluster&#8217;s VPC ID.</p>
+</div>
+</li>
+<li>
+<p>For each private subnet, verify whether the Karpenter discovery tag is present:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws ec2 describe-subnets --subnet-ids &lt;subnet_id&gt; \
+  --query 'Subnets[0].Tags[?Key==`karpenter.sh/discovery`].Value' --output text</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;subnet_id&gt;</code> with the subnet ID to check.</p>
+</div>
+</li>
+<li>
+<p>If the discovery tag is missing, add it to the subnet:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws ec2 create-tags --resources &lt;subnet_id&gt; \
+  --tags Key=karpenter.sh/discovery,Value=&lt;discovery_tag_value&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;subnet_id&gt;</code> with the subnet ID and <code>&lt;discovery_tag_value&gt;</code> with the value from step 5.</p>
+</div>
+</li>
+<li>
+<p>Repeat steps 7 and 8 for all private subnets in your VPC.</p>
+</li>
+<li>
+<p>Verify that the default security group has the discovery tag:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws ec2 describe-security-groups --group-ids &lt;default_sg_id&gt; \
+  --query 'SecurityGroups[0].Tags[?Key==`karpenter.sh/discovery`].Value' --output text</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;default_sg_id&gt;</code> with your cluster&#8217;s default security group ID.</p>
+</div>
+</li>
+<li>
+<p>If the discovery tag is missing from the security group, add it:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws ec2 create-tags --resources &lt;default_sg_id&gt; \
+  --tags Key=karpenter.sh/discovery,Value=&lt;discovery_tag_value&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;default_sg_id&gt;</code> with the security group ID and <code>&lt;discovery_tag_value&gt;</code> with the value from step 5.</p>
+</div>
+</li>
+<li>
+<p>Wait 30 to 60 seconds for Karpenter to re-scan AWS resources.</p>
+</li>
+<li>
+<p>Verify that the EC2NodeClass Ready condition is now <code>True</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq '.status.conditions[] | select(.type=="Ready")'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output should show <code>"status": "True"</code>.</p>
+</div>
+</li>
+<li>
+<p>If the Ready condition is still <code>False</code>, check for other condition failures in the output and repeat the appropriate steps.</p>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>The EC2NodeClass Ready condition reports <code>True</code> status:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq '.status.conditions[] | select(.type=="Ready")'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The SubnetsReady and SecurityGroupsReady conditions report <code>True</code> status:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq '.status.conditions[] | select(.type=="SubnetsReady" or .type=="SecurityGroupsReady")'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>All required AWS resources have the correct <code>karpenter.sh/discovery</code> tag:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws ec2 describe-subnets --subnet-ids &lt;subnet_id&gt; \
+  --query 'Subnets[0].Tags[?Key==`karpenter.sh/discovery`].Value' --output text</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="dlist">
+<div class="title">Troubleshooting</div>
+<dl>
+<dt class="hdlist1">If adding tags fails with authorization errors</dt>
+<dd>
+<p>You need to update IAM permissions for the control plane operator.
+See "Resolve IAM permissions for AWS resource tagging".</p>
+</dd>
+<dt class="hdlist1">If the EC2NodeClass remains not ready after adding tags</dt>
+<dd>
+<p>Verify that the tag value exactly matches the value in the EC2NodeClass specification.
+Tag values are case-sensitive and must match character-for-character.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="resolve-iam-permissions-for-tagging_rosa-hcp-troubleshoot-red-hat-build-of-karpenter">Resolve IAM permissions for AWS resource tagging</h5>
+<div class="paragraph _abstract">
+<p>The Karpenter controller requires permission to create tags on AWS security groups. When the control plane operator IAM role lacks the <code>ec2:CreateTags</code> permission, Karpenter cannot automatically tag security groups with the discovery tag.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Identify the IAM role used by the control plane operator:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam list-roles | grep kube-system-control-plane-operator</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The role name follows the pattern <code>&lt;cluster_prefix&gt;-kube-system-control-plane-operator</code>.</p>
+</div>
+</li>
+<li>
+<p>Optional: Verify the authorization error in AWS CloudTrail:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Navigate to the AWS CloudTrail console.</p>
+</li>
+<li>
+<p>Search for events matching these criteria:</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Event name: <code>CreateTags</code></p>
+</li>
+<li>
+<p>Error code: <code>Client.UnauthorizedOperation</code></p>
+</li>
+<li>
+<p>User identity: Contains <code>control-plane-operator</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you find matching events, the error message confirms that the IAM role lacks <code>ec2:CreateTags</code> permission.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Create an IAM policy document that allows creating tags:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat &gt; /tmp/create-tags-policy.json &lt;&lt; 'POLICY_EOF'
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowCreateTags",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateTags"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+POLICY_EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Attach the policy to the control plane operator IAM role:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam put-role-policy \
+  --role-name &lt;cluster_prefix&gt;-kube-system-control-plane-operator \
+  --policy-name KarpenterCreateTags \
+  --policy-document file:///tmp/create-tags-policy.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;cluster_prefix&gt;</code> with your cluster&#8217;s prefix from step 1.</p>
+</div>
+</li>
+<li>
+<p>Verify that the policy is attached to the role:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam get-role-policy \
+  --role-name &lt;cluster_prefix&gt;-kube-system-control-plane-operator \
+  --policy-name KarpenterCreateTags</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output shows the policy document you attached.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>The IAM policy is successfully attached to the control plane operator role:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam get-role-policy \
+  --role-name &lt;cluster_prefix&gt;-kube-system-control-plane-operator \
+  --policy-name KarpenterCreateTags</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command returns the policy document without errors.</p>
+</div>
+</li>
+<li>
+<p>AWS CloudTrail no longer shows <code>Client.UnauthorizedOperation</code> errors for CreateTags operations performed by the control plane operator.</p>
+</li>
+<li>
+<p>If your EC2NodeClass previously showed <code>SecurityGroupsReady = False</code>, you can now manually add the Karpenter discovery tag to the default security group.
+After you add the tag, the authorization error will not recur because the IAM role now has the required permissions.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>↑ Up: <a href="_troubleshoot.html">Troubleshoot</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-troubleshoot-component-and-workload-issues_rosa-hcp-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a> →</p>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2026-10-02 17:32:56 -0500
+</div>
+</div>
+</body>
+</html>
