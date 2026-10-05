@@ -5512,7 +5512,7 @@ exit 0</code></pre>
 <div class="sect4">
 <h5 id="nw-ipfailover-configuring-more-than-254_configure-ip-failover">Configure IP failover for more than 254 addresses</h5>
 <div class="paragraph _abstract">
-<p>To configure IP failover for more than 254 Virtual IP addresses in Red&#160;Hat OpenShift Container Platform, you can use the <code>OPENSHIFT_HA_VIP_GROUPS</code> variable to group multiple addresses together. By using the <code>OPENSHIFT_HA_VIP_GROUPS</code> variable, you can change the number of VIPs per VRRP instance and define the number of VIP groups available for each VRRP instance when configuring IP failover.</p>
+<p>You can use the <code>OPENSHIFT_HA_VIP_GROUPS</code> variable to configure IP failover for more than 254 addresses by grouping multiple VIPs per VRRP instance.</p>
 </div>
 <div class="paragraph">
 <p>Grouping VIPs creates a wider range of allocation of VIPs per VRRP in the case of VRRP failover events, and is useful when all hosts in the cluster have access to a service locally. For example, when a service is being exposed with an <code>ExternalIP</code>.</p>
@@ -6302,7 +6302,7 @@ spec:
 <div class="sect4">
 <h5 id="nw-metallb-example-addresspool_configure-metallb-for-bare-metal">Example address pool configurations</h5>
 <div class="paragraph _abstract">
-<p>To precisely allocate IP address ranges for cluster services, configure MetalLB address pools by using Classless Inter-Domain Routing (CIDR) notation or hyphenated bounds. Defining these specific ranges ensures that application workloads receive valid IP assignments that align with your existing network infrastructure requirements.</p>
+<p>Configure MetalLB address pools by using Classless Inter-Domain Routing (CIDR) notation or hyphenated bounds to allocate IP address ranges for cluster services.</p>
 </div>
 <div class="dlist">
 <dl>
@@ -6733,8 +6733,7 @@ l2advertisement   ["doc-example-l2"]</code></pre>
 <div class="sect4">
 <h5 id="nw-metallb-configure-with-L2-advertisement-label_configure-metallb-for-bare-metal">Configure MetalLB with an L2 advertisement and labels</h5>
 <div class="paragraph _abstract">
-<p>You can use the <code>ipAddressPoolSelectors</code> field in the <code>L2Advertisement</code> custom resource definition to associate the <code>IPAddressPool</code> with the advertisement based on the label assigned to the pool instead of the pool name.
-The example configures MetalLB to advertise the pool over Layer 2 by using <code>ipAddressPoolSelectors</code>.</p>
+<p>You can use the <code>ipAddressPoolSelectors</code> field in the <code>L2Advertisement</code> CR to associate the <code>IPAddressPool</code> with the advertisement based on the label assigned to the pool instead of the pool name.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -6929,8 +6928,7 @@ spec:
 <div class="sect4">
 <h5 id="nw-metallb-service-selectors-shared-pool-l2_configure-metallb-for-bare-metal">Apply different Layer 2 advertisement policies on a shared IP address pool</h5>
 <div class="paragraph _abstract">
-<p>Use this procedure when many <code>L2Advertisement</code> resources reference the same <code>IPAddressPool</code> and each advertisement must apply different Layer 2 settings to a different group of <code>LoadBalancer</code> services.
-You match services with <code>spec.serviceSelectors</code> so each advertisement applies only where its selectors match.</p>
+<p>You can configure multiple <code>L2Advertisement</code> resources that reference the same <code>IPAddressPool</code> and use <code>spec.serviceSelectors</code> to apply different Layer 2 settings to different groups of <code>LoadBalancer</code> services.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -8229,7 +8227,7 @@ Each advertisement applies only to services that satisfy its <code>serviceSelect
 <div class="sect4">
 <h5 id="nw-metallb-advertise-ip-pools-to-node-subset_configure-metallb-bgp-mode-and-advertisements">Advertise an IP address pool from a subset of nodes</h5>
 <div class="paragraph _abstract">
-<p>To advertise an IP address from an IP addresses pool, from a specific set of nodes only, use the <code>.spec.nodeSelector</code> specification in the <code>BGPAdvertisement</code> custom resource (CR). This specification associates a pool of IP addresses with a set of nodes in the cluster. This is useful when you have nodes on different subnets in a cluster and you want to advertise an IP addresses from an address pool from a specific subnet, for example a public-facing subnet only.</p>
+<p>You can use the <code>.spec.nodeSelector</code> field in the <code>BGPAdvertisement</code> CR to advertise IP addresses from a pool on a specific set of nodes, such as nodes on a public-facing subnet.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -8288,7 +8286,7 @@ spec:
 <div class="sect4">
 <h5 id="nw-metallb-bgppeer-cr_configure-metallb-bgp-mode-and-advertisements">About the BGP peer custom resource</h5>
 <div class="paragraph _abstract">
-<p>To establish network connectivity and advertise routes for load-balancer services, configure the properties of the MetalLB Border Gateway Protocol (BGP) peer custom resource (CR). Establishing these parameters ensures that your cluster authorizes specific routing peers to direct external traffic correctly to your application workloads.</p>
+<p>Configure the MetalLB Border Gateway Protocol (BGP) peer custom resource (CR) to establish network connectivity and advertise routes for load-balancer services.</p>
 </div>
 <div class="paragraph">
 <p>The following table describes the parameters for the BGP peer CR:</p>
@@ -9029,7 +9027,7 @@ frr-k8s-abcde   7/7     Running   0          69m</code></pre>
 <div class="sect4">
 <h5 id="nw-metallb-example-bgppeer_configure-metallb-bgp-mode-and-advertisements">Example BGP peer configurations</h5>
 <div class="paragraph _abstract">
-<p>To precisely manage network topology and improve routing resilience, configure MetalLB BGP peer settings that limit node connectivity and incorporate BFD profiles. Defining these parameters ensures that your cluster maintains secure peer relationships and rapidly detects path failures for high service availability.</p>
+<p>Configure MetalLB BGP peer settings that limit node connectivity and incorporate BFD profiles to maintain secure peer relationships and detect path failures.</p>
 </div>
 <div class="dlist">
 <dl>
@@ -11241,7 +11239,7 @@ spec:
 <div class="sect4">
 <h5 id="nw-metallb-verifying-bgp-session_configure-metallb-bgp-mode-and-advertisements">Verify BGP session state</h5>
 <div class="paragraph _abstract">
-<p>Once you configure MetalLB for border gateway protocol (BGP) mode, you can verify that the system has established BGP sessions and is advertising routes. You can examine the <code>BGPSessionState</code> custom resource (CR) and the <code>FRRNodeState</code> CR to troubleshoot BGP connectivity and confirm proper route advertisement.</p>
+<p>After you configure MetalLB for BGP mode, you can examine the <code>BGPSessionState</code> and <code>FRRNodeState</code> custom resources (CRs) to verify that BGP sessions are established and routes are advertised.</p>
 </div>
 <div class="admonitionblock note">
 <table>

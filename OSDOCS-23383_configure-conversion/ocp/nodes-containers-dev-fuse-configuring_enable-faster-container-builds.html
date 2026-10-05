@@ -1695,7 +1695,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="nodes-containers-dev-fuse-configuring_enable-faster-container-builds">Configure /dev/fuse for unprivileged builds in pods</h3>
 <div class="paragraph _abstract">
-<p>You can grant an unprivileged pod the capability to perform Filesystem in Userspace (FUSE) mounts by exposing the <code>/dev/fuse</code> device. With this setup, an unprivileged user within the pod can use tools such as <code>podman</code> with storage drivers such as <code>fuse-overlayfs</code> by mimicking privileged build capabilities in a secure and efficient manner without granting full privileged access to the pod.</p>
+<p>You can grant an unprivileged pod the capability to perform Filesystem in Userspace (FUSE) mounts by exposing the <code>/dev/fuse</code> device, enabling tools such as <code>podman</code> with <code>fuse-overlayfs</code> without full privileged access.</p>
 </div>
 <div class="paragraph">
 <p>You expose the <code>/dev/fuse</code> device by adding the <code>io.kubernetes.cri-o.Devices: "/dev/fuse"</code> annotation to your pod definition.</p>

@@ -2095,7 +2095,7 @@ Status:
 <div class="sect4">
 <h5 id="nw-cluster-mtu-preparing_tune-network-performance">Prepare your hardware MTU configuration</h5>
 <div class="paragraph _abstract">
-<p>To maintain network stability during an MTU change, you must prepare the configuration for your underlying hardware using a method such as DHCP, PXE, or NetworkManager. This preparation ensures that all cluster nodes are ready to accept the new MTU value before you apply the changes to the cluster network.</p>
+<p>You must prepare the MTU configuration for your underlying hardware by using a method such as DHCP, PXE, or NetworkManager before you apply the changes to the cluster network.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -2525,7 +2525,7 @@ machineconfiguration.openshift.io/state: Done</code></pre>
 <div class="sect4">
 <h5 id="nw-cluster-mtu-applying-mtu-value_tune-network-performance">Apply the new hardware MTU value</h5>
 <div class="paragraph _abstract">
-<p>To ensure consistent network communication across your cluster, you must apply the new hardware maximum transmission unit (MTU) value to your nodes. This process involves updating the underlying network interfaces and verifying that the Machine Config Operator successfully reboots and updates each node.</p>
+<p>You must apply the new hardware maximum transmission unit (MTU) value to your nodes by updating the underlying network interfaces and verifying that the Machine Config Operator successfully reboots each node.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -2895,7 +2895,10 @@ machineconfiguration.openshift.io/state: Done</code></pre>
 <div class="sect3">
 <h4 id="nw-no-overlay-enable-default-network_tune-network-performance">Enable underlay routing for the default cluster network</h4>
 <div class="paragraph _abstract">
-<p>To steer default network&#8217;s east-west traffic over the underlay network instead of Geneve, configure the Cluster Network Operator (CNO) for <code>NoOverlay</code> transport and set the source network address translation (SNAT) and routing. If you use unmanaged routing, apply <code>FRRConfiguration</code> and <code>RouteAdvertisements</code> custom resources (CRs) so your routers exchange pod routes.</p>
+<p>To steer east-west traffic over the underlay network instead of Geneve, configure the Cluster Network Operator (CNO) for <code>NoOverlay</code> transport and set SNAT and routing.</p>
+</div>
+<div class="paragraph">
+<p>If you use unmanaged routing, apply <code>FRRConfiguration</code> and <code>RouteAdvertisements</code> CRs so your routers exchange pod routes.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -8220,7 +8223,7 @@ tunepod   1/1     Running   0          47s</code></pre>
 <div class="sect4">
 <h5 id="nw-about-all-multi-cast-mode_configure-interface-attributes-using-the-tuned-plugin">About all-multicast mode</h5>
 <div class="paragraph _abstract">
-<p>Enabling all-multicast mode, particularly in the context of rootless applications, is critical. If you do not enable this mode, you would be required to grant the <code>NET_ADMIN</code> capability to the pod&#8217;s Security Context Constraints (SCC). If you were to allow the <code>NET_ADMIN</code> capability to grant the pod privileges to make changes that extend beyond its specific requirements, you could potentially expose security vulnerabilities.</p>
+<p>Enabling all-multicast mode is critical for rootless applications. Without this mode, you must grant the <code>NET_ADMIN</code> capability to the pod&#8217;s Security Context Constraints (SCC), which could expose security vulnerabilities.</p>
 </div>
 <div class="paragraph">
 <p>The tuning CNI plugin supports changing several interface attributes, including all-multicast mode. By enabling this mode, you can allow applications running on Virtual Functions (VFs) that are configured on a SR-IOV network device to receive multicast traffic from applications on other VFs, whether attached to the same or different physical functions.</p>

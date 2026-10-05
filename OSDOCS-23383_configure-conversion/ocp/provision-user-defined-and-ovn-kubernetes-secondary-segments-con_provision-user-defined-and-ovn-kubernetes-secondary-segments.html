@@ -1741,7 +1741,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="nw-udn-overview_provision-user-defined-and-ovn-kubernetes-secondary-segments">Overview of user-defined networks</h4>
 <div class="paragraph _abstract">
-<p>To secure and improve network segmentation and isolation, cluster administrators can create primary or secondary networks that span namespaces at the cluster level using the <code>ClusterUserDefinedNetwork</code> custom resource (CR) while a developer can define secondary networks at the namespace level using the <code>UserDefinedNetwork</code> CR.</p>
+<p>Cluster administrators can create primary or secondary networks that span namespaces by using the <code>ClusterUserDefinedNetwork</code> CR, while developers can define secondary networks at the namespace level by using the <code>UserDefinedNetwork</code> CR.</p>
 </div>
 <div class="paragraph">
 <p>Before the implementation of user-defined networks (UDN), the OVN-Kubernetes CNI plugin for Red&#160;Hat OpenShift Container Platform only supported a layer 3 topology on the primary or <em>main</em> network. Due to Kubernetes design principles: all pods are attached to the main network, all pods communicate with each other by their IP addresses, and inter-pod traffic is restricted according to network policy.</p>
@@ -1844,7 +1844,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="limitations-for-udn_provision-user-defined-and-ovn-kubernetes-secondary-segments">Limitations of a user-defined network</h4>
 <div class="paragraph _abstract">
-<p>To deploy a successful user-defined networks (UDN), you must consider their limitations including DNS resolution behavior, restricted access to default network services such as the image registry, network policy constraints between isolated networks, and the requirement to create namespaces and networks before pods.</p>
+<p>User-defined networks (UDNs) have limitations including DNS resolution behavior, restricted access to default network services, network policy constraints between isolated networks, and the requirement to create namespaces and networks before pods.</p>
 </div>
 <div class="paragraph">
 <p>Consider the following limitations before implementing a UDN.</p>
@@ -1911,7 +1911,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="nw-udn-l2-l3_provision-user-defined-and-ovn-kubernetes-secondary-segments">Layer 2 and layer 3 topologies</h4>
 <div class="paragraph _abstract">
-<p>A layer 2 topology creates a distributed virtual switch across cluster nodes, this network topology provides a smooth live migration of virtual machine (VM) within the same subnet. A layer 3 topology creates unique segments per node with routing between them, this network topology effectively manages large broadcast domains.</p>
+<p>A layer 2 topology creates a distributed virtual switch across cluster nodes for live migration of virtual machines (VMs) within the same subnet. A layer 3 topology creates unique segments per node with routing between them.</p>
 </div>
 <div class="paragraph">
 <p>In a flat layer 2 topology, virtual machines and pods connect to the virtual switch so that all these components can communicate with each other within the same subnet. This topology is useful for the live migration of VMs across nodes in the cluster. The following diagram shows a flat layer 2 topology with two nodes that use the virtual switch for live migration purposes:</p>
@@ -1954,7 +1954,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="nw-udn-overview_design-and-deploy-user-defined-network-segments">Overview of user-defined networks</h4>
 <div class="paragraph _abstract">
-<p>To secure and improve network segmentation and isolation, cluster administrators can create primary or secondary networks that span namespaces at the cluster level using the <code>ClusterUserDefinedNetwork</code> custom resource (CR) while a developer can define secondary networks at the namespace level using the <code>UserDefinedNetwork</code> CR.</p>
+<p>Cluster administrators can create primary or secondary networks that span namespaces by using the <code>ClusterUserDefinedNetwork</code> CR, while developers can define secondary networks at the namespace level by using the <code>UserDefinedNetwork</code> CR.</p>
 </div>
 <div class="paragraph">
 <p>Before the implementation of user-defined networks (UDN), the OVN-Kubernetes CNI plugin for Red&#160;Hat OpenShift Container Platform only supported a layer 3 topology on the primary or <em>main</em> network. Due to Kubernetes design principles: all pods are attached to the main network, all pods communicate with each other by their IP addresses, and inter-pod traffic is restricted according to network policy.</p>
@@ -2056,7 +2056,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="limitations-for-udn_design-and-deploy-user-defined-network-segments">Limitations of a user-defined network</h5>
 <div class="paragraph _abstract">
-<p>To deploy a successful user-defined networks (UDN), you must consider their limitations including DNS resolution behavior, restricted access to default network services such as the image registry, network policy constraints between isolated networks, and the requirement to create namespaces and networks before pods.</p>
+<p>User-defined networks (UDNs) have limitations including DNS resolution behavior, restricted access to default network services, network policy constraints between isolated networks, and the requirement to create namespaces and networks before pods.</p>
 </div>
 <div class="paragraph">
 <p>Consider the following limitations before implementing a UDN.</p>
@@ -2123,7 +2123,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="nw-udn-l2-l3_design-and-deploy-user-defined-network-segments">Layer 2 and layer 3 topologies</h5>
 <div class="paragraph _abstract">
-<p>A layer 2 topology creates a distributed virtual switch across cluster nodes, this network topology provides a smooth live migration of virtual machine (VM) within the same subnet. A layer 3 topology creates unique segments per node with routing between them, this network topology effectively manages large broadcast domains.</p>
+<p>A layer 2 topology creates a distributed virtual switch across cluster nodes for live migration of virtual machines (VMs) within the same subnet. A layer 3 topology creates unique segments per node with routing between them.</p>
 </div>
 <div class="paragraph">
 <p>In a flat layer 2 topology, virtual machines and pods connect to the virtual switch so that all these components can communicate with each other within the same subnet. This topology is useful for the live migration of VMs across nodes in the cluster. The following diagram shows a flat layer 2 topology with two nodes that use the virtual switch for live migration purposes:</p>
@@ -2562,7 +2562,7 @@ status:
 <div class="sect5">
 <h6 id="nw-cudn-localnet_design-and-deploy-user-defined-network-segments">Create a ClusterUserDefinedNetwork CR for a Localnet topology</h6>
 <div class="paragraph _abstract">
-<p>You deploy a <code>Localnet</code> topology to connect the secondary network to the physical underlay. This enables both east-west cluster traffic and access to services running outside the cluster. This topology type requires the additional configuration of the underlying Open vSwitch (OVS) system on cluster nodes.</p>
+<p>You deploy a <code>Localnet</code> topology to connect the secondary network to the physical underlay, enabling both east-west cluster traffic and access to services running outside the cluster.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>

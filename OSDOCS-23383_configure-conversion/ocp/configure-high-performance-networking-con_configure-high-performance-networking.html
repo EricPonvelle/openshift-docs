@@ -5184,7 +5184,10 @@ status:
 <div class="sect5">
 <h6 id="nw-sriov-nic-mlx-secure-boot_configure-sr-iov-network-devices">Configure the SR-IOV Network Operator on Mellanox cards when Secure Boot is enabled</h6>
 <div class="paragraph _abstract">
-<p>The SR-IOV Network Operator supports an option to skip the firmware configuration for Mellanox devices. This option allows you to create virtual functions by using the SR-IOV Network Operator when the system has secure boot enabled. You must manually configure and allocate the number of virtual functions in the firmware before switching the system to secure boot.</p>
+<p>The SR-IOV Network Operator supports skipping firmware configuration for Mellanox devices, allowing you to create virtual functions when secure boot is enabled.</p>
+</div>
+<div class="paragraph">
+<p>You must manually configure and allocate the number of virtual functions in the firmware before switching the system to secure boot.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -7623,7 +7626,7 @@ tunepod   1/1     Running   0          47s</code></pre>
 <div class="sect4">
 <h5 id="nw-about-all-multi-cast-mode_configure-sr-iov-network-devices">About all-multicast mode</h5>
 <div class="paragraph _abstract">
-<p>Enabling all-multicast mode, particularly in the context of rootless applications, is critical. If you do not enable this mode, you would be required to grant the <code>NET_ADMIN</code> capability to the pod&#8217;s Security Context Constraints (SCC). If you were to allow the <code>NET_ADMIN</code> capability to grant the pod privileges to make changes that extend beyond its specific requirements, you could potentially expose security vulnerabilities.</p>
+<p>Enabling all-multicast mode is critical for rootless applications. Without this mode, you must grant the <code>NET_ADMIN</code> capability to the pod&#8217;s Security Context Constraints (SCC), which could expose security vulnerabilities.</p>
 </div>
 <div class="paragraph">
 <p>The tuning CNI plugin supports changing several interface attributes, including all-multicast mode. By enabling this mode, you can allow applications running on Virtual Functions (VFs) that are configured on a SR-IOV network device to receive multicast traffic from applications on other VFs, whether attached to the same or different physical functions.</p>
