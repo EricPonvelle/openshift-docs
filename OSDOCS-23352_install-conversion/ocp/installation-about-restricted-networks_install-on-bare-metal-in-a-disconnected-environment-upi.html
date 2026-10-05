@@ -4414,7 +4414,7 @@ imageContentSources:
   source: quay.io/openshift-release-dev/ocp-release
 - mirrors:
   - &lt;local_registry&gt;/&lt;local_repository_name&gt;/release
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev</code></pre>
+  source: quay.io/openshift-release-dev/ocp-v5.0-art-dev</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4635,7 +4635,10 @@ your platform.</p>
 <p>When using the <code>oc adm release mirror</code> command, use the output from the <code>imageContentSources</code> section.</p>
 </li>
 <li>
-<p>When using <code>oc mirror</code> command, use the <code>repositoryDigestMirrors</code> section of the <code>ImageContentSourcePolicy</code> file that results from running the command.</p>
+<p>When using the <code>oc-mirror</code> plugin v1, use the <code>repositoryDigestMirrors</code> section of the <code>ImageContentSourcePolicy</code> file that results from running the command.</p>
+</li>
+<li>
+<p>When using the <code>oc-mirror</code> plugin v2, copy every <code>imageDigestMirrors</code> entry from the generated <code>working-dir/cluster-resources/idms-oc-mirror.yaml</code> file into the <code>imageContentSources</code> section. Do not omit any generated mapping.</p>
 </li>
 <li>
 <p><code>ImageContentSourcePolicy</code> is deprecated. For more information see <em>Configuring image registry repository mirroring</em>.</p>
@@ -10168,7 +10171,7 @@ openshift-authentication-operator authentication-operator-69d5d8bf84-vh2n8      
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-02 13:39:01 -0500
+Last updated 2026-10-05 08:57:54 -0500
 </div>
 </div>
 <style>

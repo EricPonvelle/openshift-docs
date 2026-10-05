@@ -7807,8 +7807,25 @@ mirrored, extract it and pin it to the release:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo "  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev" &gt;&gt; install-config.yaml</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo "  source: quay.io/openshift-release-dev/ocp-v5.0-art-dev" &gt;&gt; install-config.yaml</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Red&#160;Hat OpenShift Container Platform release payload references images in the <code>quay.io/openshift-release-dev/ocp-v5.0-art-dev</code> repository. You must include a mirror mapping for this repository. If you omit the <code>ocp-v5.0-art-dev</code> mapping, bootstrap nodes attempt to pull images from <code>quay.io</code> instead of from your mirror registry, and in a disconnected environment the installation fails.</p>
+</div>
+<div class="paragraph">
+<p>If you used the <code>oc-mirror</code> plugin v2, copy every <code>imageDigestMirrors</code> entry from the generated <code>working-dir/cluster-resources/idms-oc-mirror.yaml</code> file into the <code>imageContentSources</code> section of the <code>install-config.yaml</code> file. Do not omit any generated mapping.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </li>
 </ol>
@@ -7989,7 +8006,7 @@ done</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-02 13:39:01 -0500
+Last updated 2026-10-05 08:57:54 -0500
 </div>
 </div>
 <style>

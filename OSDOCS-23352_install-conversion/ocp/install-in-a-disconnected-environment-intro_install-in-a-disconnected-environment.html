@@ -4103,7 +4103,7 @@ mirrored, extract it and pin it to the release:</p>
 <div class="sect4">
 <h5 id="olm-mirror-catalog-extracting_install-in-a-disconnected-environment">Extracting and mirroring catalog contents</h5>
 <div class="paragraph _abstract">
-<p>The <code>oc adm catalog mirror</code> command extracts the contents of an index image to generate the manifests required for mirroring. The default behavior of the command generates manifests, then automatically mirrors all of the image content from the index image, as well as the index image itself, to your mirror registry.</p>
+<p>The <code>oc adm catalog mirror</code> command extracts the contents of an index image to generate mirroring manifests, then automatically mirrors all image content and the index image itself to your mirror registry.</p>
 </div>
 <div class="paragraph">
 <p>Alternatively, if your mirror registry is on a completely disconnected, or <em>airgapped</em>, host, you can first mirror the content to removable media, move the media to the disconnected environment, then mirror the content from the media to the registry.</p>
@@ -4508,7 +4508,7 @@ To upload local images to a registry, run:
 <div class="sect4">
 <h5 id="olm-mirror-catalog-post_install-in-a-disconnected-environment">Postinstallation requirements</h5>
 <div class="paragraph _abstract">
-<p>After you mirror the catalog, you can continue with the remainder of your cluster installation. After your cluster installation has finished successfully, you must specify the manifests directory from this procedure to create the <code>ImageContentSourcePolicy</code> and <code>CatalogSource</code> objects. These objects are required to populate and enable installation of Operators from the software catalog.</p>
+<p>After mirroring the catalog and completing the cluster installation, you must create <code>ImageContentSourcePolicy</code> and <code>CatalogSource</code> objects from the manifests directory to enable installation of Operators from the software catalog.</p>
 </div>
 </div>
 </div>
@@ -4995,7 +4995,10 @@ mirror:
 <div class="sect5">
 <h6 id="mirror-to-disk-v2_install-in-a-disconnected-environment">Mirroring from mirror to disk</h6>
 <div class="paragraph _abstract">
-<p>You can use the oc-mirror plugin v2 to generate an image set and save the content to disk. Afterwards, you can transfer the generated image set to the disconnected environment and mirror it to the target registry. The plugin retrieves the container images from the source specified in the image set configuration file and packs them into a tar archive in a local directory.</p>
+<p>You can use the oc-mirror plugin v2 to generate an image set and save the content to disk. The plugin retrieves images from the source specified in the image set configuration and packs them into a tar archive.</p>
+</div>
+<div class="paragraph">
+<p>Transfer the generated image set to the disconnected environment and mirror it to the target registry.</p>
 </div>
 <div class="paragraph">
 <p>Additionally, the plugin automatically generates the <code>ImageSetConfiguration</code> and <code>DeleteImageSetConfiguration</code> files that are pinned by digest in your working directory and tar archive. Pinning by digest maintains consistency across your disconnected environments ensuring that you always deploy the same image, regardless of any later changes to the upstream tags.</p>
@@ -6280,7 +6283,7 @@ file:///disk-enc1/</code></pre>
 <div class="sect4">
 <h5 id="oc-mirror-signature-mirroring-procedure_install-in-a-disconnected-environment">Disabling signature mirroring for oc-mirror plugin v2</h5>
 <div class="paragraph _abstract">
-<p>You can disable signature mirroring for all images by providing the <code>--remove-signatures</code> flag for the <code>oc mirror</code> command. You can disable signature mirroring when your destination registry does not support signature storage or when you need to bypass failures caused by invalid or expired signatures at the source.</p>
+<p>You can disable signature mirroring for all images by providing the <code>--remove-signatures</code> flag for the <code>oc mirror</code> command when the destination registry does not support signature storage or when you need to bypass invalid or expired source signatures.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -9209,7 +9212,7 @@ The default value is <code>false</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-02 13:39:01 -0500
+Last updated 2026-10-05 08:57:54 -0500
 </div>
 </div>
 <style>

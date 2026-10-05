@@ -2571,7 +2571,10 @@ Rule:		Deny to 0.0.0.0/0</code></pre>
 <div class="sect4">
 <h5 id="pod-to-pod-ipsec_encrypt-traffic-in-transit-with-ipsec">IPsec encryption for pod-to-pod traffic</h5>
 <div class="paragraph _abstract">
-<p>For IPsec encryption of pod-to-pod traffic, the following sections describe which specific pod-to-pod traffic is encrypted, what kind of encryption protocol is used, and how X.509 certificates are handled. These sections do not apply to IPsec encryption between the cluster and external hosts, which you must configure manually for your specific external network infrastructure.</p>
+<p>IPsec encryption of pod-to-pod traffic covers which traffic is encrypted, which protocol is used, and how X.509 certificates are handled.</p>
+</div>
+<div class="paragraph">
+<p>IPsec encryption between the cluster and external hosts requires manual configuration for your specific external network infrastructure.</p>
 </div>
 <div class="sect5">
 <h6 id="nw-ovn-ipsec-traffic_encrypt-traffic-in-transit-with-ipsec">Types of network traffic flows encrypted by pod-to-pod IPsec</h6>
@@ -2609,7 +2612,10 @@ Rule:		Deny to 0.0.0.0/0</code></pre>
 <div class="sect5">
 <h6 id="nw-ovn-ipsec-encryption_encrypt-traffic-in-transit-with-ipsec">Encryption protocol and IPsec mode</h6>
 <div class="paragraph _abstract">
-<p>Pod-to-pod IPsec in Red&#160;Hat OpenShift Container Platform uses <code>AES-GCM-16-256</code> in transport mode with a 256-bit key and a 16-byte integrity check value. <em>Transport mode</em> encrypts end-to-end communication by adding an Encapsulated Security Payload (ESP) header to the IP header of the original packet and encrypts the packet data.</p>
+<p>Pod-to-pod IPsec in Red&#160;Hat OpenShift Container Platform uses <code>AES-GCM-16-256</code> in transport mode with a 256-bit key and a 16-byte integrity check value (ICV).</p>
+</div>
+<div class="paragraph">
+<p><em>Transport mode</em> encrypts end-to-end communication by adding an Encapsulated Security Payload (ESP) header to the IP header of the original packet and encrypts the packet data.</p>
 </div>
 <div class="paragraph">
 <p>Red&#160;Hat OpenShift Container Platform does not currently use or support IPsec <em>Tunnel mode</em> for pod-to-pod communication.</p>
@@ -3369,7 +3375,7 @@ spec:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-02 13:39:01 -0500
+Last updated 2026-10-05 08:57:54 -0500
 </div>
 </div>
 <style>

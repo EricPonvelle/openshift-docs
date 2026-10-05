@@ -2811,23 +2811,6 @@ Red&#160;Hat OpenShift Container Platform.</p>
 <div class="paragraph">
 <p>If you enable user-managed DNS during installation, the installation program provisions DNS records for the API and Ingress services only within the cluster. To ensure access from outside the cluster, you must provision the DNS records in an external DNS service of your choice for the API and Ingress services after installation.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>User-provisioned DNS is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
-</div>
-<div class="paragraph">
-<p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="ulist">
 <div class="title">Procedure</div>
 <ul>
@@ -2839,12 +2822,7 @@ Red&#160;Hat OpenShift Container Platform.</p>
 <p>To enable user-managed DNS:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">featureSet: CustomNoUpgrade
-featureGates: ["AWSClusterHostedDNSInstall=true"]
-
-# ...
-
-platform:
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">platform:
   aws:
     userProvisionedDNS: Enabled</code></pre>
 </div>
@@ -3175,10 +3153,7 @@ platform:
 <div class="sect5">
 <h6 id="nw-allocating-load-balancers-to-subnets_install-on-aws-in-an-existing-vpc-ipi">Allocating API and Ingress load balancers to specific subnets on AWS</h6>
 <div class="paragraph _abstract">
-<p>You can control the network placement of Red&#160;Hat OpenShift Container Platform load balancers on AWS, including load balancers for the Ingress Controller, by explicitly defining your subnets from the virtual private cloud (VPC). You can then assign the subnets specific roles directly within the <code>platform.aws.vpc.subnets</code> section of the <code>install-config.yaml</code> file.</p>
-</div>
-<div class="paragraph">
-<p>By using this method, you have granular control of subnets that are used for resources, such as the Ingress Controller and other cluster components.</p>
+<p>You can control the network placement of Red&#160;Hat OpenShift Container Platform load balancers on AWS by defining subnets from the virtual private cloud (VPC) and assigning them roles in the <code>platform.aws.vpc.subnets</code> section of <code>install-config.yaml</code>.</p>
 </div>
 </div>
 <div class="sect5">
@@ -4531,23 +4506,6 @@ INFO Time elapsed: 36m22s</code></pre>
 <div class="paragraph _abstract">
 <p>Use your cluster name and base cluster domain to configure a CNAME record for the API service <code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code> with the API load balancer DNS name. Similarly, use the load balancer DNS name of the Ingress service to provision a CNAME record for the <code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code> hostname by using your cluster name and base cluster domain.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>User-provisioned DNS is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
-</div>
-<div class="paragraph">
-<p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
@@ -4765,7 +4723,7 @@ INFO Time elapsed: 36m22s</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-02 13:39:01 -0500
+Last updated 2026-10-05 08:57:54 -0500
 </div>
 </div>
 <style>
