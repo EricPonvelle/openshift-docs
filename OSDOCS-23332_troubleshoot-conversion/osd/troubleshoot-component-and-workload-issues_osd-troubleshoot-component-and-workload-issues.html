@@ -571,7 +571,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <!-- navmap-right-toc-end -->
 </head>
-<body id="osd-configure-an-identity-provider_osd-configure-an-identity-provider" class="book toc2 toc-left navmap-has-right-toc">
+<body id="troubleshoot-component-and-workload-issues_osd-troubleshoot-component-and-workload-issues" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Openshift Dedicated</h1>
 <div id="toc" class="toc2">
@@ -598,22 +598,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
+
 <ul class="sectlevel2">
 <li><a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an Openshift Dedicated cluster on Google Cloud using the default options</a>
 </li>
-<li><a href="osd-configure-an-identity-provider_osd-configure-an-identity-provider.html"><span class="toc-current">Configure an identity provider</span></a>
-</li>
-<li><a href="osd-grant-administrator-privileges-to-a-user_osd-grant-administrator-privileges-to-a-user.html">Grant administrator privileges to a user</a>
-</li>
-<li><a href="osd-access-your-cluster_osd-access-your-cluster.html">Access your cluster</a>
-</li>
-<li><a href="osd-deploy-an-application-from-the-developer-catalog_osd-deploy-an-application-from-the-developer-catalog.html">Deploy an application from the Developer Catalog</a>
-</li>
-<li><a href="scaling-cluster_osd-scale-your-cluster.html">Scale your cluster</a>
-</li>
-<li><a href="osd-revoke-user-access-and-admin-privileges_osd-revoke-user-access-and-admin-privileges.html">Revoke user access and admin privileges</a>
-</li>
-<li><a href="osd-clean-up-your-resources_osd-clean-up-your-resources.html">Clean up your resources</a>
+<li><a href="osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster.html">Manage an Openshift Dedicated on Google Cloud cluster</a>
 </li>
 <li><a href="osd-red-hat-openshift-cluster-manager-overview_osd-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager overview</a>
 </li>
@@ -646,72 +635,97 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><button class="toc-toggle" type="button" data-toc-key="_troubleshoot.html">▶</button><a href="_troubleshoot.html">Troubleshoot</a>
+<ul class="sectlevel2">
+<li><a href="troubleshoot-component-and-workload-issues_osd-troubleshoot-component-and-workload-issues.html"><span class="toc-current">Troubleshoot component and workload issues</span></a>
+</li>
+<li><a href="osd-troubleshoot-a-google-cloud-cluster-deployment_osd-troubleshoot-a-google-cloud-cluster-deployment.html">Troubleshooting an OpenShift Dedicated on Google Cloud cluster deployment</a>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#config-idp_osd-configure-an-identity-provider">Configuring an identity provider</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#troubleshoot-operator-issues_osd-troubleshoot-operator-issues">Troubleshoot Operator issues</a></li><li class="level-5"><a href="#olm-status-conditions_osd-troubleshoot-operator-issues">Operator subscription condition types</a></li><li class="level-5"><a href="#olm-status-viewing-cli_osd-troubleshoot-operator-issues">Viewing Operator subscription status by using the CLI</a></li><li class="level-5"><a href="#olm-cs-status-cli_osd-troubleshoot-operator-issues">Viewing Operator catalog source status by using the CLI</a></li><li class="level-5"><a href="#querying-operator-pod-status_osd-troubleshoot-operator-issues">Querying Operator pod status</a></li><li class="level-5"><a href="#gathering-operator-logs_osd-troubleshoot-operator-issues">Gathering Operator logs</a></li><li class="level-4"><a href="#troubleshoot-monitoring-issues_osd-troubleshoot-monitoring-issues">Troubleshoot monitoring issues</a></li><li class="level-5"><a href="#troubleshooting-monitoring-issues_osd-troubleshoot-monitoring-issues">Determining why user-defined project metrics are unavailable</a></li><li class="level-5"><a href="#determining-why-prometheus-is-consuming-disk-space_osd-troubleshoot-monitoring-issues">Determining why Prometheus is consuming a lot of disk space</a></li><li class="level-5"><a href="#resolving-the-kubepersistentvolumefillingup-alert-firing-for-prometheus_osd-troubleshoot-monitoring-issues">Resolving the KubePersistentVolumeFillingUp alert firing for Prometheus</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="osd-configure-an-identity-provider_osd-configure-an-identity-provider">Configure an identity provider</h3>
+<h3 id="troubleshoot-component-and-workload-issues_osd-troubleshoot-component-and-workload-issues">Troubleshoot component and workload issues</h3>
 <div class="paragraph _abstract">
-<p>Learn how to configure an identity provider in Openshift Dedicated.</p>
+<p>Diagnose and resolve problems with the components and workloads running on your Openshift Dedicated cluster, including Operators, pods, builds, storage, monitoring, and the OpenShift CLI.</p>
 </div>
 <div class="sect3">
-<h4 id="config-idp_osd-configure-an-identity-provider">Configuring an identity provider</h4>
+<h4 id="troubleshoot-operator-issues_osd-troubleshoot-operator-issues">Troubleshoot Operator issues</h4>
 <div class="paragraph _abstract">
-<p>After you have installed Openshift Dedicated, you must configure your cluster to use an identity provider. You can then add members to your identity provider to grant them access to your cluster.</p>
+<p>Verify Operator subscription status, check Operator pod health across the cluster, and gather Operator logs for diagnosis.</p>
 </div>
-<div class="paragraph">
-<p>You can configure different identity provider types for your Openshift Dedicated cluster. Supported types include GitHub, GitHub Enterprise, GitLab, Google, LDAP, OpenID Connect, and htpasswd identity providers.</p>
+<div class="sect4">
+<h5 id="olm-status-conditions_osd-troubleshoot-operator-issues">Operator subscription condition types</h5>
+<div class="paragraph _abstract">
+<p>Subscriptions can report the following condition types:</p>
 </div>
-<div class="admonitionblock important">
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 16. Subscription condition types</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Condition</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CatalogSourcesUnhealthy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Some or all of the catalog sources to be used in resolution are unhealthy.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>InstallPlanMissing</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An install plan for a subscription is missing.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>InstallPlanPending</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An install plan for a subscription is pending installation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>InstallPlanFailed</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An install plan for a subscription has failed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ResolutionFailed</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The dependency resolution for a subscription has failed.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<img src="data:image/png;base64," alt="Important">
+<img src="data:image/png;base64," alt="Note">
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The htpasswd identity provider option is included only to enable the creation of a single, static administration user. htpasswd is not supported as a general-use identity provider for Openshift Dedicated.</p>
+<p>Default Openshift Dedicated cluster Operators are managed by the Cluster Version Operator (CVO) and they do not have a <code>Subscription</code> object. Application Operators are managed by Operator Lifecycle Manager (OLM) and they have a <code>Subscription</code> object.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>The following procedure configures a GitHub identity provider as an example.</p>
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Warning">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Configuring GitHub authentication allows users to log in to Openshift Dedicated with their GitHub credentials. To prevent anyone with any GitHub user ID from logging in to your Openshift Dedicated cluster, you must restrict access to only those in specific GitHub organizations or teams.</p>
-</div>
-</td>
-</tr>
-</table>
+<div class="sect4">
+<h5 id="olm-status-viewing-cli_osd-troubleshoot-operator-issues">Viewing Operator subscription status by using the CLI</h5>
+<div class="paragraph _abstract">
+<p>You can view Operator subscription status by using the CLI.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
+<p>You have access to the cluster as a user with the <code>dedicated-admin</code> role.</p>
 </li>
 <li>
-<p>You created an Openshift Dedicated cluster.</p>
-</li>
-<li>
-<p>You have a GitHub user account.</p>
-</li>
-<li>
-<p>You created a GitHub organization in your GitHub account. For more information, see <a href="https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch">Creating a new organization from scratch</a> in the GitHub documentation.</p>
-</li>
-<li>
-<p>If you are restricting user access to a GitHub team, you have created a team within your GitHub organization. For more information, see <a href="https://docs.github.com/en/organizations/organizing-members-into-teams/creating-a-team">Creating a team</a> in the GitHub documentation.</p>
+<p>You have installed the OpenShift CLI (<code>oc</code>).</p>
 </li>
 </ul>
 </div>
@@ -719,65 +733,42 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Navigate to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and select your cluster.</p>
-</li>
-<li>
-<p>Select <strong>Access control</strong> &#8594; <strong>Identity providers</strong>.</p>
-</li>
-<li>
-<p>Select the <strong>GitHub</strong> identity provider type from the <strong>Add identity provider</strong> drop-down menu.</p>
-</li>
-<li>
-<p>Enter a unique name for the identity provider. The name cannot be changed later.</p>
-</li>
-<li>
-<p>Register an OAuth application in your GitHub organization by following the steps in the <a href="https://docs.github.com/en/developers/apps/creating-an-oauth-app">GitHub documentation</a>.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>You must register the OAuth app under your GitHub organization. If you register an OAuth application that is not owned by the organization that contains your cluster users or teams, then user authentication to the cluster will not succeed.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>For the homepage URL in your GitHub OAuth app configuration, specify the <code>https://oauth-openshift.apps.&lt;cluster_name&gt;.&lt;cluster_domain&gt;</code> portion of the <strong>OAuth callback URL</strong> that is automatically generated in the <strong>Add a GitHub identity provider</strong> page on OpenShift Cluster Manager.</p>
-<div class="paragraph">
-<p>The following is an example of a homepage URL for a GitHub identity provider:</p>
-</div>
+<p>List Operator subscriptions:</p>
 <div class="listingblock">
 <div class="content">
-<pre>https://oauth-openshift.apps.openshift-cluster.example.com</pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get subs -n &lt;operator_namespace&gt;</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>For the authorization callback URL in your GitHub OAuth app configuration, specify the full <strong>OAuth callback URL</strong> that is automatically generated in the <strong>Add a GitHub identity provider</strong> page on OpenShift Cluster Manager. The full URL has the following syntax:</p>
+<p>Use the <code>oc describe</code> command to inspect a <code>Subscription</code> resource:</p>
 <div class="listingblock">
 <div class="content">
-<pre>https://oauth-openshift.apps.&lt;cluster_name&gt;.&lt;cluster_domain&gt;/oauth2callback/&lt;idp_provider_name&gt;</pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc describe sub &lt;subscription_name&gt; -n &lt;operator_namespace&gt;</code></pre>
 </div>
 </div>
 </li>
-</ul>
+<li>
+<p>In the command output, find the <code>Conditions</code> section for the status of Operator subscription condition types. In the following example, the <code>CatalogSourcesUnhealthy</code> condition type has a status of <code>false</code> because all available catalog sources are healthy:</p>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Name:         cluster-logging
+Namespace:    openshift-logging
+Labels:       operators.coreos.com/cluster-logging.openshift-logging=
+Annotations:  &lt;none&gt;
+API Version:  operators.coreos.com/v1alpha1
+Kind:         Subscription
+# ...
+Conditions:
+   Last Transition Time:  2019-07-29T13:42:57Z
+   Message:               all available catalogsources are healthy
+   Reason:                AllCatalogSourcesHealthy
+   Status:                False
+   Type:                  CatalogSourcesUnhealthy
+# ...</code></pre>
 </div>
-</li>
-<li>
-<p>Return to the <strong>Edit identity provider: GitHub</strong> dialog in <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and select <strong>Claim</strong> from the <strong>Mapping method</strong> drop-down menu.</p>
-</li>
-<li>
-<p>Enter the <strong>Client ID</strong> and <strong>Client secret</strong> for your GitHub OAuth application. The GitHub page for your OAuth app provides the ID and secret.</p>
-</li>
-<li>
-<p>Optional: Enter a <strong>hostname</strong>.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -786,47 +777,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>A hostname must be entered when using a hosted instance of GitHub Enterprise.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Optional: You can specify a certificate authority (CA) file to validate server certificates for a configured GitHub Enterprise URL. Click <strong>Browse</strong> to locate and attach a <strong>CA file</strong> to the identity provider.</p>
-</li>
-<li>
-<p>Select <strong>Use organizations</strong> or <strong>Use teams</strong> to restrict access to a GitHub organization or a GitHub team within an organization.</p>
-</li>
-<li>
-<p>Enter the name of the organization or team you want to restrict access to. Click <strong>Add more</strong> to specify multiple organizations or teams.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Specified organizations must own an OAuth app that was registered by using the preceding steps. If you specify a team, it must exist within an organization that owns an OAuth app that was registered by using the preceding steps.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Click <strong>Add</strong> to apply the identity provider configuration.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>It might take approximately two minutes for the identity provider configuration to become active.</p>
+<p>Default Openshift Dedicated cluster Operators are managed by the Cluster Version Operator (CVO) and they do not have a <code>Subscription</code> object. Application Operators are managed by Operator Lifecycle Manager (OLM) and they have a <code>Subscription</code> object.</p>
 </div>
 </td>
 </tr>
@@ -835,23 +786,752 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ol>
 </div>
+</div>
+<div class="sect4">
+<h5 id="olm-cs-status-cli_osd-troubleshoot-operator-issues">Viewing Operator catalog source status by using the CLI</h5>
+<div class="paragraph _abstract">
+<p>You can view the status of an Operator catalog source by using the CLI.</p>
+</div>
 <div class="ulist">
-<div class="title">Verification</div>
+<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>After the configuration becomes active, the identity provider is listed under <strong>Access control</strong> &#8594; <strong>Identity providers</strong> on the <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> page for your cluster.</p>
+<p>You have access to the cluster as a user with the <code>dedicated-admin</code> role.</p>
+</li>
+<li>
+<p>You have installed the OpenShift CLI (<code>oc</code>).</p>
 </li>
 </ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>List the catalog sources in a namespace. For example, you can check the <code>openshift-marketplace</code> namespace, which is used for cluster-wide catalog sources:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get catalogsources -n openshift-marketplace</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                  DISPLAY               TYPE   PUBLISHER   AGE
+certified-operators   Certified Operators   grpc   Red Hat     55m
+community-operators   Community Operators   grpc   Red Hat     55m
+example-catalog       Example Catalog       grpc   Example Org 2m25s
+redhat-operators      Red Hat Operators     grpc   Red Hat     55m</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use the <code>oc describe</code> command to get more details and status about a catalog source:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc describe catalogsource example-catalog -n openshift-marketplace</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Name:         example-catalog
+Namespace:    openshift-marketplace
+Labels:       &lt;none&gt;
+Annotations:  operatorframework.io/managed-by: marketplace-operator
+              target.workload.openshift.io/management: {"effect": "PreferredDuringScheduling"}
+API Version:  operators.coreos.com/v1alpha1
+Kind:         CatalogSource
+# ...
+Status:
+  Connection State:
+    Address:              example-catalog.openshift-marketplace.svc:50051
+    Last Connect:         2021-09-09T17:07:35Z
+    Last Observed State:  TRANSIENT_FAILURE
+  Registry Service:
+    Created At:         2021-09-09T17:05:45Z
+    Port:               50051
+    Protocol:           grpc
+    Service Name:       example-catalog
+    Service Namespace:  openshift-marketplace
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the preceding example output, the last observed state is <code>TRANSIENT_FAILURE</code>. This state indicates that there is a problem establishing a connection for the catalog source.</p>
+</div>
+</li>
+<li>
+<p>List the pods in the namespace where your catalog source was created:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n openshift-marketplace</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                                    READY   STATUS             RESTARTS   AGE
+certified-operators-cv9nn               1/1     Running            0          36m
+community-operators-6v8lp               1/1     Running            0          36m
+marketplace-operator-86bfc75f9b-jkgbc   1/1     Running            0          42m
+example-catalog-bwt8z                   0/1     ImagePullBackOff   0          3m55s
+redhat-operators-smxx8                  1/1     Running            0          36m</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When a catalog source is created in a namespace, a pod for the catalog source is created in that namespace. In the preceding example output, the status for the <code>example-catalog-bwt8z</code> pod is <code>ImagePullBackOff</code>. This status indicates that there is an issue pulling the catalog source&#8217;s index image.</p>
+</div>
+</li>
+<li>
+<p>Use the <code>oc describe</code> command to inspect a pod for more detailed information:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc describe pod example-catalog-bwt8z -n openshift-marketplace</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Name:         example-catalog-bwt8z
+Namespace:    openshift-marketplace
+Priority:     0
+Node:         ci-ln-jyryyg2-f76d1-ggdbq-worker-b-vsxjd/10.0.128.2
+...
+Events:
+  Type     Reason          Age                From               Message
+  ----     ------          ----               ----               -------
+  Normal   Scheduled       48s                default-scheduler  Successfully assigned openshift-marketplace/example-catalog-bwt8z to ci-ln-jyryyf2-f76d1-fgdbq-worker-b-vsxjd
+  Normal   AddedInterface  47s                multus             Add eth0 [10.131.0.40/23] from openshift-sdn
+  Normal   BackOff         20s (x2 over 46s)  kubelet            Back-off pulling image "quay.io/example-org/example-catalog:v1"
+  Warning  Failed          20s (x2 over 46s)  kubelet            Error: ImagePullBackOff
+  Normal   Pulling         8s (x3 over 47s)   kubelet            Pulling image "quay.io/example-org/example-catalog:v1"
+  Warning  Failed          8s (x3 over 47s)   kubelet            Failed to pull image "quay.io/example-org/example-catalog:v1": rpc error: code = Unknown desc = reading manifest v1 in quay.io/example-org/example-catalog: unauthorized: access to the requested resource is not authorized
+  Warning  Failed          8s (x3 over 47s)   kubelet            Error: ErrImagePull</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the preceding example output, the error messages indicate that the catalog source&#8217;s index image is failing to pull successfully because of an authorization issue. For example, the index image might be stored in a registry that requires login credentials.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="querying-operator-pod-status_osd-troubleshoot-operator-issues">Querying Operator pod status</h5>
+<div class="paragraph _abstract">
+<p>You can list Operator pods within a cluster and their status. You can also collect a detailed Operator pod summary.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have access to the cluster as a user with the <code>dedicated-admin</code> role.</p>
+</li>
+<li>
+<p>Your API service is still functional.</p>
+</li>
+<li>
+<p>You have installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>List Operators running in the cluster. The output includes Operator version, availability, and up-time information:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get clusteroperators</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>List Operator pods running in the Operator&#8217;s namespace, plus pod status, restarts, and age:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pod -n &lt;operator_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Output a detailed Operator pod summary:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc describe pod &lt;operator_pod_name&gt; -n &lt;operator_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="gathering-operator-logs_osd-troubleshoot-operator-issues">Gathering Operator logs</h5>
+<div class="paragraph _abstract">
+<p>If you experience Operator issues, you can gather detailed diagnostic information from Operator pod logs.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have access to the cluster as a user with the <code>dedicated-admin</code> role.</p>
+</li>
+<li>
+<p>Your API service is still functional.</p>
+</li>
+<li>
+<p>You have installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>You have the fully qualified domain names of the control plane or control plane machines.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>List the Operator pods that are running in the Operator&#8217;s namespace, plus the pod status, restarts, and age:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n &lt;operator_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Review logs for an Operator pod:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc logs pod/&lt;pod_name&gt; -n &lt;operator_namespace&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If an Operator pod has multiple containers, the preceding command will produce an error that includes the name of each container. Query logs from an individual container:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc logs pod/&lt;operator_pod_name&gt; -c &lt;container_name&gt; -n &lt;operator_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the API is not functional, review Operator pod and container logs on each control plane node by using SSH instead. Replace <code>&lt;master-node&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> with appropriate values.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>List pods on each control plane node:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ssh core@&lt;master-node&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt; sudo crictl pods</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>For any Operator pods not showing a <code>Ready</code> status, inspect the pod&#8217;s status in detail. Replace <code>&lt;operator_pod_id&gt;</code> with the Operator pod&#8217;s ID listed in the output of the preceding command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ssh core@&lt;master-node&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt; sudo crictl inspectp &lt;operator_pod_id&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>List containers related to an Operator pod:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ssh core@&lt;master-node&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt; sudo crictl ps --pod=&lt;operator_pod_id&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>For any Operator container not showing a <code>Ready</code> status, inspect the container&#8217;s status in detail. Replace <code>&lt;container_id&gt;</code> with a container ID listed in the output of the preceding command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ssh core@&lt;master-node&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt; sudo crictl inspect &lt;container_id&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Review the logs for any Operator containers not showing a <code>Ready</code> status. Replace <code>&lt;container_id&gt;</code> with a container ID listed in the output of the preceding command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ ssh core@&lt;master-node&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt; sudo crictl logs -f &lt;container_id&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Openshift Dedicated {product-version} cluster nodes running Red Hat Enterprise Linux CoreOS (RHCOS) are immutable and rely on Operators to apply cluster changes. Accessing cluster nodes by using SSH is not recommended. Before attempting to collect diagnostic data over SSH, review whether the data collected by running <code>oc adm must gather</code> and other <code>oc</code> commands is sufficient instead. However, if the Openshift Dedicated API is not available, or the kubelet is not properly functioning on the target node, <code>oc</code> operations will be impacted. In such situations, it is possible to access nodes using <code>ssh core@&lt;node&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="troubleshoot-monitoring-issues_osd-troubleshoot-monitoring-issues">Troubleshoot monitoring issues</h4>
+<div class="paragraph _abstract">
+<p>Troubleshoot problems with the monitoring stack on your Openshift Dedicated cluster, including excessive Prometheus disk usage and a firing KubePersistentVolumeFillingUp alert.</p>
+</div>
+<div class="sect4">
+<h5 id="troubleshooting-monitoring-issues_osd-troubleshoot-monitoring-issues">Determining why user-defined project metrics are unavailable</h5>
+<div class="paragraph _abstract">
+<p>You can determine why user-defined project metrics are unavailable by checking metric endpoints, verifying monitor configurations, and validating service-to-pod label matching.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Query the metric name and verify that the project is correct:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In the <strong>Developer</strong> perspective of the web console, click <strong>Observe</strong>.</p>
+</li>
+<li>
+<p>Select the project that you want to view metrics for in the <strong>Project</strong> list. After you select a project, the monitoring tabs are displayed.</p>
+</li>
+<li>
+<p>Click the <strong>Metrics</strong> tab.</p>
+</li>
+<li>
+<p>Select an existing query from the <strong>Select query</strong> list, or run a custom query by adding a PromQL query to the <strong>Expression</strong> field.</p>
+<div class="paragraph">
+<p>The metrics are displayed in a chart.</p>
+</div>
+<div class="paragraph">
+<p>Queries must be done on a per-project basis. The metrics that are shown relate to the project that you have selected.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Verify that the pod that you want metrics from is actively serving metrics. Run the following <code>oc exec</code> command into a pod to target the <code>podIP</code>, <code>port</code>, and <code>/metrics</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc exec &lt;sample_pod&gt; -n &lt;sample_namespace&gt; -- curl &lt;target_pod_IP&gt;:&lt;port&gt;/metrics</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must run the command on a pod that has <code>curl</code> installed.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following example output shows a result with a valid version metric.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+# HELP version Version information about this binary-- --:--:-- --:--:--     0
+# TYPE version gauge
+version{version="v0.1.0"} 1
+100   102  100   102    0     0  51000      0 --:--:-- --:--:-- --:--:-- 51000</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An invalid output indicates that there is a problem with the corresponding application.</p>
+</div>
+</li>
+<li>
+<p>If you are using a <code>PodMonitor</code> CRD, verify that the <code>PodMonitor</code> CRD is configured to point to the correct pods using label matching.</p>
+</li>
+<li>
+<p>If you are using a <code>ServiceMonitor</code> CRD, and if the <code>/metrics</code> endpoint of the pod is showing metric data, follow these steps to verify the configuration:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Verify that the service is pointed to the correct <code>/metrics</code> endpoint. The service <code>labels</code> in this output must match the services monitor <code>labels</code> and the <code>/metrics</code> endpoint defined by the service in the subsequent steps.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get service</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: prometheus-example-app
+  name: prometheus-example-app
+  namespace: ns1
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+    name: web
+  selector:
+    app: prometheus-example-app
+  type: ClusterIP</code></pre>
+</div>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>kind</code></dt>
+<dd>
+<p>Specifies an API type. This example shows a service API.</p>
+</dd>
+<dt class="hdlist1"><code>metadata.labels</code></dt>
+<dd>
+<p>Specifies the labels that are used for this service.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Query the <code>serviceIP</code>, <code>port</code>, and <code>/metrics</code> endpoints to see if the same metrics from the <code>curl</code> command you ran on the pod previously:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Run the following command to find the service IP:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get service -n &lt;target_namespace&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Query the <code>/metrics</code> endpoint:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc exec &lt;sample_pod&gt; -n &lt;sample_namespace&gt; -- curl &lt;service_IP&gt;:&lt;port&gt;/metrics</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Valid metrics are returned in the following example.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                               Dload  Upload   Total   Spent    Left  Speed
+100   102  100   102    0     0  51000      0 --:--:-- --:--:-- --:--:--   99k
+# HELP version Version information about this binary
+# TYPE version gauge
+version{version="v0.1.0"} 1</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Use label matching to verify that the <code>ServiceMonitor</code> object is configured to point to the required service. To do this, compare the <code>Service</code> object from the <code>oc get service</code> output to the <code>ServiceMonitor</code> object from the <code>oc get servicemonitor</code> output. The labels must match for the metrics to be displayed.</p>
+<div class="paragraph">
+<p>For example, from the previous steps, notice how the <code>Service</code> object has the <code>app: prometheus-example-app</code> label and the <code>ServiceMonitor</code> object has the same <code>app: prometheus-example-app</code> match label.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>If the configuration is valid and metrics remain unavailable, contact the support team.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="determining-why-prometheus-is-consuming-disk-space_osd-troubleshoot-monitoring-issues">Determining why Prometheus is consuming a lot of disk space</h5>
+<div class="paragraph _abstract">
+<p>Developers can create labels to define attributes for metrics in the form of key-value pairs. The number of potential key-value pairs corresponds to the number of possible values for an attribute. An attribute that has an unlimited number of potential values is called an unbound attribute. For example, a <code>customer_id</code> attribute is unbound because it has an infinite number of possible values.</p>
+</div>
+<div class="paragraph">
+<p>Every assigned key-value pair has a unique time series. The use of many unbound attributes in labels can result in an exponential increase in the number of time series created. This can impact Prometheus performance and can consume a lot of disk space.</p>
+</div>
+<div class="paragraph">
+<p>You can use the following measures when Prometheus consumes a lot of disk:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Check the time series database (TSDB) status using the Prometheus HTTP API</strong> for more information about which labels are creating the most time series data. Doing so requires cluster administrator privileges.</p>
+</li>
+<li>
+<p><strong>Check the number of scrape samples</strong> that are being collected.</p>
+</li>
+<li>
+<p><strong>Reduce the number of unique time series that are created</strong> by reducing the number of unbound attributes that are assigned to user-defined metrics.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Using attributes that are bound to a limited set of possible values reduces the number of potential key-value pair combinations.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><strong>Enforce limits on the number of samples that can be scraped</strong> across user-defined projects. This requires cluster administrator privileges.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have access to the cluster as a user with the <code>dedicated-admin</code> role.</p>
+</li>
+<li>
+<p>You have installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In the Openshift Dedicated web console, go to <strong>Observe</strong> &#8594; <strong>Metrics</strong>.</p>
+</li>
+<li>
+<p>Enter a Prometheus Query Language (PromQL) query in the <strong>Expression</strong> field.
+The following example queries help to identify high cardinality metrics that might result in high disk space consumption:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>By running the following query, you can identify the ten jobs that have the highest number of scrape samples:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">topk(10, max by(namespace, job) (topk by(namespace, job) (1, scrape_samples_post_metric_relabeling)))</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>By running the following query, you can pinpoint time series churn by identifying the ten jobs that have created the most time series data in the last hour:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">topk(10, sum by(namespace, job) (sum_over_time(scrape_series_added[1h])))</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Investigate the number of unbound label values assigned to metrics with higher than expected scrape sample counts:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>If the metrics relate to a user-defined project</strong>, review the metrics key-value pairs assigned to your workload. These are implemented through Prometheus client libraries at the application level. Try to limit the number of unbound attributes referenced in your labels.</p>
+</li>
+<li>
+<p><strong>If the metrics relate to a core Openshift Dedicated project</strong>, create a Red Hat support case on the <a href="https://access.redhat.com/">Red Hat Customer Portal</a>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Review the TSDB status using the Prometheus HTTP API by following these steps when logged in as a
+<code>dedicated-admin</code>:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Get the Prometheus API route URL by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ HOST=$(oc -n openshift-monitoring get route prometheus-k8s -ojsonpath='{.status.ingress[].host}')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Extract an authentication token by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ TOKEN=$(oc whoami -t)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Query the TSDB status for Prometheus by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ curl -H "Authorization: Bearer $TOKEN" -k "https://$HOST/api/v1/status/tsdb"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">"status": "success","data":{"headStats":{"numSeries":507473,
+"numLabelPairs":19832,"chunkCount":946298,"minTime":1712253600010,
+"maxTime":1712257935346},"seriesCountByMetricName":
+[{"name":"etcd_request_duration_seconds_bucket","value":51840},
+{"name":"apiserver_request_sli_duration_seconds_bucket","value":47718},
+...</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="resolving-the-kubepersistentvolumefillingup-alert-firing-for-prometheus_osd-troubleshoot-monitoring-issues">Resolving the KubePersistentVolumeFillingUp alert firing for Prometheus</h5>
+<div class="paragraph _abstract">
+<p>As a cluster administrator, you can resolve the <code>KubePersistentVolumeFillingUp</code> alert being triggered for Prometheus.</p>
+</div>
+<div class="paragraph">
+<p>The critical alert fires when a persistent volume (PV) claimed by a <code>prometheus-k8s-*</code> pod in the <code>openshift-monitoring</code> project has less than 3% total space remaining. This can cause Prometheus to function abnormally.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>There are two <code>KubePersistentVolumeFillingUp</code> alerts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Critical alert</strong>:  The alert with the <code>severity="critical"</code> label is triggered when the mounted PV has less than 3% total space remaining.</p>
+</li>
+<li>
+<p><strong>Warning alert</strong>: The alert with the <code>severity="warning"</code> label is triggered when the mounted PV has less than 15% total space remaining and is expected to fill up within four days.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To address this issue, you can remove Prometheus time-series database (TSDB) blocks to create more space for the PV.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have access to the cluster as a user with the <code>dedicated-admin</code> role.</p>
+</li>
+<li>
+<p>You have installed the OpenShift CLI (<code>oc</code>).</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>List the size of all TSDB blocks, sorted from oldest to newest, by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc debug &lt;prometheus_k8s_pod_name&gt; -n openshift-monitoring \
+-c prometheus --image=$(oc get po -n openshift-monitoring &lt;prometheus_k8s_pod_name&gt; \
+-o jsonpath='{.spec.containers[?(@.name=="prometheus")].image}') \
+-- sh -c 'cd /prometheus/;du -hs $(ls -dtr */ | grep -Eo "[0-9|A-Z]{26}")'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;prometheus_k8s_pod_name&gt;</code> with the pod mentioned in the <code>KubePersistentVolumeFillingUp</code> alert description.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">308M    01HVKMPKQWZYWS8WVDAYQHNMW6
+52M     01HVK64DTDA81799TBR9QDECEZ
+102M    01HVK64DS7TRZRWF2756KHST5X
+140M    01HVJS59K11FBVAPVY57K88Z11
+90M     01HVH2A5Z58SKT810EM6B9AT50
+152M    01HV8ZDVQMX41MKCN84S32RRZ1
+354M    01HV6Q2N26BK63G4RYTST71FBF
+156M    01HV664H9J9Z1FTZD73RD1563E
+216M    01HTHXB60A7F239HN7S2TENPNS
+104M    01HTHMGRXGS0WXA3WATRXHR36B</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Identify which and how many blocks could be removed, then remove the blocks. The following example command removes the three oldest Prometheus TSDB blocks from the <code>prometheus-k8s-0</code> pod:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc debug prometheus-k8s-0 -n openshift-monitoring \
+-c prometheus --image=$(oc get po -n openshift-monitoring prometheus-k8s-0 \
+-o jsonpath='{.spec.containers[?(@.name=="prometheus")].image}') \
+-- sh -c 'ls -latr /prometheus/ | egrep -o "[0-9|A-Z]{26}" | head -3 | \
+while read BLOCK; do rm -r /prometheus/$BLOCK; done'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify the usage of the mounted PV and ensure there is enough space available by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc debug &lt;prometheus_k8s_pod_name&gt; -n openshift-monitoring \
+--image=$(oc get po -n openshift-monitoring &lt;prometheus_k8s_pod_name&gt; \
+-o jsonpath='{.spec.containers[?(@.name=="prometheus")].image}') -- df -h /prometheus/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;prometheus_k8s_pod_name&gt;</code> with the pod mentioned in the <code>KubePersistentVolumeFillingUp</code> alert description.</p>
+</div>
+<div class="paragraph">
+<p>The following example output shows the mounted PV claimed by the <code>prometheus-k8s-0</code> pod that has 63% of space remaining:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Starting pod/prometheus-k8s-0-debug-j82w4 ...
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p4  40G   15G  40G  37% /prometheus
+
+Removing debug pod ...</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an Openshift Dedicated cluster on Google Cloud using the default options</a> | ↑ Up: <a href="_get_started.html">Get Started</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-grant-administrator-privileges-to-a-user_osd-grant-administrator-privileges-to-a-user.html">Grant administrator privileges to a user</a> →</p>
+<p>↑ Up: <a href="_troubleshoot.html">Troubleshoot</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-troubleshoot-a-google-cloud-cluster-deployment_osd-troubleshoot-a-google-cloud-cluster-deployment.html">Troubleshooting an OpenShift Dedicated on Google Cloud cluster deployment</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-29 19:04:35 -0500
+Last updated 2026-10-06 10:38:21 -0500
 </div>
 </div>
 </body>

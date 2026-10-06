@@ -571,7 +571,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <!-- navmap-right-toc-end -->
 </head>
-<body id="osd-revoke-user-access-and-admin-privileges_osd-revoke-user-access-and-admin-privileges" class="book toc2 toc-left navmap-has-right-toc">
+<body id="osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Openshift Dedicated</h1>
 <div id="toc" class="toc2">
@@ -601,19 +601,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an Openshift Dedicated cluster on Google Cloud using the default options</a>
 </li>
-<li><a href="osd-configure-an-identity-provider_osd-configure-an-identity-provider.html">Configure an identity provider</a>
-</li>
-<li><a href="osd-grant-administrator-privileges-to-a-user_osd-grant-administrator-privileges-to-a-user.html">Grant administrator privileges to a user</a>
-</li>
-<li><a href="osd-access-your-cluster_osd-access-your-cluster.html">Access your cluster</a>
-</li>
-<li><a href="osd-deploy-an-application-from-the-developer-catalog_osd-deploy-an-application-from-the-developer-catalog.html">Deploy an application from the Developer Catalog</a>
-</li>
-<li><a href="scaling-cluster_osd-scale-your-cluster.html">Scale your cluster</a>
-</li>
-<li><a href="osd-revoke-user-access-and-admin-privileges_osd-revoke-user-access-and-admin-privileges.html"><span class="toc-current">Revoke user access and admin privileges</span></a>
-</li>
-<li><a href="osd-clean-up-your-resources_osd-clean-up-your-resources.html">Clean up your resources</a>
+<li><a href="osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster.html"><span class="toc-current">Manage an Openshift Dedicated on Google Cloud cluster</span></a>
 </li>
 <li><a href="osd-red-hat-openshift-cluster-manager-overview_osd-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager overview</a>
 </li>
@@ -646,18 +634,498 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><button class="toc-toggle" type="button" data-toc-key="_troubleshoot.html">▶</button><a href="_troubleshoot.html">Troubleshoot</a>
+
+<ul class="sectlevel2">
+<li><a href="troubleshoot-component-and-workload-issues_osd-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a>
+</li>
+<li><a href="osd-troubleshoot-a-google-cloud-cluster-deployment_osd-troubleshoot-a-google-cloud-cluster-deployment.html">Troubleshooting an OpenShift Dedicated on Google Cloud cluster deployment</a>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#osd-revoke-admin-privileges_osd-revoke-user-access-and-admin-privileges">Revoke administrator privileges from a user</a></li><li class="level-4"><a href="#osd-revoke-user-access-intro_osd-revoke-user-access">Revoke user access</a></li><li class="level-5"><a href="#osd-revoke-user-access_osd-revoke-user-access">Revoke user access to a cluster</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#config-idp_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Configure an identity provider</a></li><li class="level-4"><a href="#osd-grant-admin-privileges_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Grant administrator privileges to a user</a></li><li class="level-4"><a href="#access-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Access your cluster</a></li><li class="level-4"><a href="#deploy-app_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Deploy an application from the Developer Catalog</a></li><li class="level-4"><a href="#scaling-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Scale your cluster</a></li><li class="level-4"><a href="#osd-revoke-admin-privileges_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Revoke administrator privileges from a user</a></li><li class="level-4"><a href="#osd-revoke-user-access_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Revoke user access to a cluster</a></li><li class="level-4"><a href="#deleting-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Delete your cluster</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="osd-revoke-user-access-and-admin-privileges_osd-revoke-user-access-and-admin-privileges">Revoke user access and admin privileges</h3>
+<h3 id="osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Manage an Openshift Dedicated on Google Cloud cluster</h3>
 <div class="paragraph _abstract">
-<p>Learn how to revoke user access and admin privileges in Openshift Dedicated.</p>
+<p>After you create an Openshift Dedicated cluster on Google Cloud, configure an identity provider, grant administrator privileges, and give your users access to the cluster. You can then deploy an application, scale the cluster to meet demand, revoke access when it is no longer required, and clean up your resources when you no longer need the cluster.</p>
 </div>
 <div class="sect3">
-<h4 id="osd-revoke-admin-privileges_osd-revoke-user-access-and-admin-privileges">Revoke administrator privileges from a user</h4>
+<h4 id="config-idp_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Configure an identity provider</h4>
+<div class="paragraph _abstract">
+<p>After you have installed Openshift Dedicated, you must configure your cluster to use an identity provider. You can then add members to your identity provider to grant them access to your cluster.</p>
+</div>
+<div class="paragraph">
+<p>You can configure different identity provider types for your Openshift Dedicated cluster. Supported types include GitHub, GitHub Enterprise, GitLab, Google, LDAP, OpenID Connect, and htpasswd identity providers.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The htpasswd identity provider option is included only to enable the creation of a single, static administration user. htpasswd is not supported as a general-use identity provider for Openshift Dedicated.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following procedure configures a GitHub identity provider as an example.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Warning">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Configuring GitHub authentication allows users to log in to Openshift Dedicated with their GitHub credentials. To prevent anyone with any GitHub user ID from logging in to your Openshift Dedicated cluster, you must restrict access to only those in specific GitHub organizations or teams.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
+</li>
+<li>
+<p>You created an Openshift Dedicated cluster.</p>
+</li>
+<li>
+<p>You have a GitHub user account.</p>
+</li>
+<li>
+<p>You created a GitHub organization in your GitHub account. For more information, see <a href="https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch">Creating a new organization from scratch</a> in the GitHub documentation.</p>
+</li>
+<li>
+<p>If you are restricting user access to a GitHub team, you have created a team within your GitHub organization. For more information, see <a href="https://docs.github.com/en/organizations/organizing-members-into-teams/creating-a-team">Creating a team</a> in the GitHub documentation.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and select your cluster.</p>
+</li>
+<li>
+<p>Select <strong>Access control</strong> &#8594; <strong>Identity providers</strong>.</p>
+</li>
+<li>
+<p>Select the <strong>GitHub</strong> identity provider type from the <strong>Add identity provider</strong> drop-down menu.</p>
+</li>
+<li>
+<p>Enter a unique name for the identity provider. The name cannot be changed later.</p>
+</li>
+<li>
+<p>Register an OAuth application in your GitHub organization by following the steps in the <a href="https://docs.github.com/en/developers/apps/creating-an-oauth-app">GitHub documentation</a>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must register the OAuth app under your GitHub organization. If you register an OAuth application that is not owned by the organization that contains your cluster users or teams, then user authentication to the cluster will not succeed.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For the homepage URL in your GitHub OAuth app configuration, specify the <code>https://oauth-openshift.apps.&lt;cluster_name&gt;.&lt;cluster_domain&gt;</code> portion of the <strong>OAuth callback URL</strong> that is automatically generated in the <strong>Add a GitHub identity provider</strong> page on OpenShift Cluster Manager.</p>
+<div class="paragraph">
+<p>The following is an example of a homepage URL for a GitHub identity provider:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>https://oauth-openshift.apps.openshift-cluster.example.com</pre>
+</div>
+</div>
+</li>
+<li>
+<p>For the authorization callback URL in your GitHub OAuth app configuration, specify the full <strong>OAuth callback URL</strong> that is automatically generated in the <strong>Add a GitHub identity provider</strong> page on OpenShift Cluster Manager. The full URL has the following syntax:</p>
+<div class="listingblock">
+<div class="content">
+<pre>https://oauth-openshift.apps.&lt;cluster_name&gt;.&lt;cluster_domain&gt;/oauth2callback/&lt;idp_provider_name&gt;</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Return to the <strong>Edit identity provider: GitHub</strong> dialog in <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and select <strong>Claim</strong> from the <strong>Mapping method</strong> drop-down menu.</p>
+</li>
+<li>
+<p>Enter the <strong>Client ID</strong> and <strong>Client secret</strong> for your GitHub OAuth application. The GitHub page for your OAuth app provides the ID and secret.</p>
+</li>
+<li>
+<p>Optional: Enter a <strong>hostname</strong>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A hostname must be entered when using a hosted instance of GitHub Enterprise.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Optional: You can specify a certificate authority (CA) file to validate server certificates for a configured GitHub Enterprise URL. Click <strong>Browse</strong> to locate and attach a <strong>CA file</strong> to the identity provider.</p>
+</li>
+<li>
+<p>Select <strong>Use organizations</strong> or <strong>Use teams</strong> to restrict access to a GitHub organization or a GitHub team within an organization.</p>
+</li>
+<li>
+<p>Enter the name of the organization or team you want to restrict access to. Click <strong>Add more</strong> to specify multiple organizations or teams.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Specified organizations must own an OAuth app that was registered by using the preceding steps. If you specify a team, it must exist within an organization that owns an OAuth app that was registered by using the preceding steps.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Click <strong>Add</strong> to apply the identity provider configuration.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It might take approximately two minutes for the identity provider configuration to become active.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>After the configuration becomes active, the identity provider is listed under <strong>Access control</strong> &#8594; <strong>Identity providers</strong> on the <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> page for your cluster.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="osd-grant-admin-privileges_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Grant administrator privileges to a user</h4>
+<div class="paragraph _abstract">
+<p>After you have configured an identity provider for your cluster and added a user to the identity provider, you can grant <code>dedicated-admin</code> cluster privileges to the user.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
+</li>
+<li>
+<p>You created an Openshift Dedicated cluster.</p>
+</li>
+<li>
+<p>You configured an identity provider for your cluster.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and select your cluster.</p>
+</li>
+<li>
+<p>Click the <strong>Access control</strong> tab.</p>
+</li>
+<li>
+<p>In the <strong>Cluster Roles and Access</strong> tab, click <strong>Add user</strong>.</p>
+</li>
+<li>
+<p>Enter the user ID of an identity provider user.</p>
+</li>
+<li>
+<p>Click <strong>Add user</strong> to grant <code>dedicated-admin</code> cluster privileges to the user.</p>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>After granting the privileges, the user is listed as part of the <code>dedicated-admins</code> group under <strong>Access control</strong> &#8594; <strong>Cluster Roles and Access</strong> on the OpenShift Cluster Manager page for your cluster.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="access-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Access your cluster</h4>
+<div class="paragraph _abstract">
+<p>After you have configured your identity providers, users can access the cluster from Red Hat OpenShift Cluster Manager.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
+</li>
+<li>
+<p>You created an Openshift Dedicated cluster.</p>
+</li>
+<li>
+<p>You configured an identity provider for your cluster.</p>
+</li>
+<li>
+<p>You added your user account to the configured identity provider.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>From <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>, select the cluster you want to access.</p>
+</li>
+<li>
+<p>Click <strong>Open console</strong> to open the web console for your cluster.</p>
+</li>
+<li>
+<p>Select your identity provider and enter your credentials to log in to the cluster. Complete any authorization requests from your provider.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deploy-app_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Deploy an application from the Developer Catalog</h4>
+<div class="paragraph _abstract">
+<p>From the Openshift Dedicated web console, you can deploy a test application from the Developer Catalog and expose it with a route.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You logged in to the <a href="https://console.redhat.com">Red Hat Hybrid Cloud Console</a>.</p>
+</li>
+<li>
+<p>You created a Openshift Dedicated cluster.</p>
+</li>
+<li>
+<p>You configured an identity provider for your cluster.</p>
+</li>
+<li>
+<p>You added your user account to the configured identity provider.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Go to the <strong>Cluster List</strong> page in <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>, click the options icon (&#8942;) next to your cluster, and select <strong>Open console</strong>. Log in to your Red&#160;Hat account with your configured identity provider credentials.</p>
+</li>
+<li>
+<p>In the <strong>Administrator</strong> perspective, select <strong>Home</strong> &#8594; <strong>Projects</strong> &#8594; <strong>Create Project</strong>, enter a name for your project, and click <strong>Create</strong>. Optional: Add a <strong>Display Name</strong> and <strong>Description</strong>.</p>
+</li>
+<li>
+<p>Switch to the <strong>Developer</strong> perspective and select <strong>+Add</strong>. Verify that the selected <strong>Project</strong> is the one you created.</p>
+</li>
+<li>
+<p>In the <strong>Developer Catalog</strong> dialog, select <strong>All services</strong>, then select <strong>Languages</strong> &#8594; <strong>JavaScript</strong> from the menu and click <strong>Node.js</strong>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You might need to click <strong>Clear All Filters</strong> to display the <strong>Node.js</strong> option.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>To open the <strong>Create Source-to-Image application</strong> page, click <strong>Create</strong>. In the <strong>Git</strong> section, click <strong>Try sample</strong>, add a unique name in the <strong>Name</strong> field, and confirm that <strong>Deployment</strong> and <strong>Create a route</strong> are selected.</p>
+</li>
+<li>
+<p>Click <strong>Create</strong> to deploy the application. It takes a few minutes for the pods to deploy.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Optional: Monitor the deployment status in the <strong>Topology</strong> pane by selecting your <strong>Node.js</strong> app and reviewing its sidebar. Wait for the <code>nodejs</code> build to complete and for the <code>nodejs</code> pod to be in a <strong>Running</strong> state.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Access the deployed application by clicking the route URL, which has a format similar to:</p>
+<div class="listingblock">
+<div class="content">
+<pre>https://nodejs-&lt;project&gt;.&lt;cluster_name&gt;.&lt;hash&gt;.&lt;region&gt;.openshiftapps.com/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A new browser tab opens displaying a message similar to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Welcome to your Node.js application on OpenShift</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Verify that the application is running:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n &lt;project_name&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                       READY   STATUS      RESTARTS   AGE
+nodejs-1-build             0/1     Completed   0          5m
+nodejs-5d9c6c7d9c-kghq2   1/1     Running     0          2m</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Access the application route to verify it responds correctly.</p>
+</li>
+<li>
+<p>Optional: In the <strong>Administrator</strong> perspective, navigate to <strong>Home</strong> &#8594; <strong>Projects</strong>, click the action menu for your project, and select <strong>Delete Project</strong> to clean up resources.</p>
+</li>
+</ol>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.openshift.com/container-platform/latest/applications/creating_applications/creating-applications-using-cli.html">Creating applications by using the CLI</a></p>
+</li>
+<li>
+<p><a href="https://docs.openshift.com/container-platform/latest/applications/creating_applications/creating-applications-using-web-console.html">Creating applications by using the web console</a></p>
+</li>
+<li>
+<p><a href="https://docs.openshift.com/container-platform/latest/applications/deployments/what-deployments-are.html">Understanding deployments</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="scaling-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Scale your cluster</h4>
+<div class="paragraph _abstract">
+<p>You can scale the number of load balancers, the persistent storage capacity, and the node count for your Openshift Dedicated cluster from OpenShift Cluster Manager.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
+</li>
+<li>
+<p>You created an Openshift Dedicated cluster.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To scale the number of load balancers or the persistent storage capacity:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and select your cluster.</p>
+</li>
+<li>
+<p>Select <strong>Edit load balancers and persistent storage</strong> from the <strong>Actions</strong> drop-down menu.</p>
+</li>
+<li>
+<p>Select how many <strong>Load balancers</strong> that you want to scale to.</p>
+</li>
+<li>
+<p>Select the <strong>Persistent storage</strong> capacity that you want to scale to.</p>
+</li>
+<li>
+<p>Click <strong>Apply</strong>. Scaling occurs automatically.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To scale the node count:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and select your cluster.</p>
+</li>
+<li>
+<p>Select <strong>Edit node count</strong> from the <strong>Actions</strong> drop-down menu.</p>
+</li>
+<li>
+<p>Select a <strong>Machine pool</strong>.</p>
+</li>
+<li>
+<p>Select a <strong>Node count</strong> per zone.</p>
+</li>
+<li>
+<p>Click <strong>Apply</strong>. Scaling occurs automatically.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>In the <strong>Overview</strong> tab under the <strong>Details</strong> heading, you can review the load balancer configuration, persistent storage details, and actual and required node counts.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="osd-revoke-admin-privileges_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Revoke administrator privileges from a user</h4>
 <div class="paragraph _abstract">
 <p>After you have granted <code>dedicated-admin</code> privileges to a user, you can revoke those privileges when they are no longer needed.</p>
 </div>
@@ -702,12 +1170,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="osd-revoke-user-access-intro_osd-revoke-user-access">Revoke user access</h4>
-<div class="paragraph _abstract">
-<p>Learn how to revoke user access in Openshift Dedicated.</p>
-</div>
-<div class="sect4">
-<h5 id="osd-revoke-user-access_osd-revoke-user-access">Revoke user access to a cluster</h5>
+<h4 id="osd-revoke-user-access_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Revoke user access to a cluster</h4>
 <div class="paragraph _abstract">
 <p>You can revoke cluster access from an identity provider user by removing them from your configured identity provider.</p>
 </div>
@@ -758,15 +1221,69 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="deleting-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Delete your cluster</h4>
+<div class="paragraph _abstract">
+<p>You can delete your Openshift Dedicated cluster in Red Hat OpenShift Cluster Manager.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
+</li>
+<li>
+<p>You created an Openshift Dedicated cluster.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>From <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>, select the cluster you want to delete.</p>
+</li>
+<li>
+<p>Select <strong>Delete cluster</strong> from the <strong>Actions</strong> drop-down menu.</p>
+</li>
+<li>
+<p>Type the name of the cluster highlighted in bold, then click <strong>Delete</strong>. Cluster deletion occurs automatically.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you delete a cluster that was installed into a Google Cloud Shared VPC, inform the VPC owner of the host project to complete the following cleanup steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Remove the IAM policy roles or custom roles granted to the service accounts that were referenced during cluster creation.</p>
+</li>
+<li>
+<p>If firewall rules were pre-created on the host project for reduced permissions, delete the firewall rules associated with the cluster.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="scaling-cluster_osd-scale-your-cluster.html">Scale your cluster</a> | ↑ Up: <a href="_get_started.html">Get Started</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-clean-up-your-resources_osd-clean-up-your-resources.html">Clean up your resources</a> →</p>
+<p>← Previous: <a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an Openshift Dedicated cluster on Google Cloud using the default options</a> | ↑ Up: <a href="_get_started.html">Get Started</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-red-hat-openshift-cluster-manager-overview_osd-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager overview</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-29 19:04:35 -0500
+Last updated 2026-10-06 10:38:21 -0500
 </div>
 </div>
 </body>

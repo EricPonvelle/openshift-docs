@@ -1814,7 +1814,7 @@ you cannot access the required image stream tags.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For a cluster that contains user-provisioned infrastructure, you must deploy all of the required machines.</p>
+<p>For a cluster that has user-provisioned infrastructure, you must deploy all of the required machines.</p>
 </div>
 </td>
 </tr>
@@ -1876,17 +1876,17 @@ you cannot access the required image stream tags.</p>
 </table>
 </div>
 <div class="paragraph">
-<p>The bootstrap and control plane machines must use Red Hat Enterprise Linux CoreOS (RHCOS) as the operating system. However, the compute machines can choose between Red Hat Enterprise Linux CoreOS (RHCOS), Red&#160;Hat Enterprise Linux (RHEL) 8.6 and later.</p>
+<p>The bootstrap and control plane machines must use Red Hat Enterprise Linux CoreOS (RHCOS) as the operating system. However, the compute machines can use Red Hat Enterprise Linux CoreOS (RHCOS), Red&#160;Hat Enterprise Linux (RHEL) 8.6 and later.</p>
 </div>
 <div class="paragraph">
-<p>Note that RHCOS is based on Red&#160;Hat Enterprise Linux (RHEL) 9.8 and inherits all of its hardware certifications and requirements.
+<p>RHCOS is based on Red&#160;Hat Enterprise Linux (RHEL) 9.8 and inherits all of its hardware certifications and requirements.
 See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise Linux technology capabilities and limits</a>.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="installation-minimum-resource-requirements_installing-restricted-networks-bare-metal">Minimum resource requirements for cluster installation</h5>
 <div class="paragraph _abstract">
-<p>Each created cluster must meet minimum requirements so that the cluster runs as expected.</p>
+<p>To ensure that your Red&#160;Hat OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 69. Minimum resource requirements</caption>
@@ -1940,13 +1940,13 @@ See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise 
 <div class="ulist">
 <ul>
 <li>
-<p>One CPU is equivalent to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = CPUs.</p>
+<p>One CPU is equal to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = CPUs.</p>
 </li>
 <li>
-<p>Red&#160;Hat OpenShift Container Platform and Kubernetes are sensitive to disk performance, and faster storage is recommended, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. Note that on many cloud platforms, storage size and IOPS scale together, so you might need to over-allocate storage volume to obtain sufficient performance.</p>
+<p>Red&#160;Hat OpenShift Container Platform and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.</p>
 </li>
 <li>
-<p>As with all user-provisioned installations, if you choose to use RHEL compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. Use of RHEL 7 compute machines is deprecated and has been removed in Red&#160;Hat OpenShift Container Platform 4.10 and later.</p>
+<p>As with all user-provisioned installations, if you choose to use RHEL compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. Red&#160;Hat OpenShift Container Platform 4.10 and later do not support RHEL 7 compute machines.</p>
 </li>
 </ul>
 </div>
@@ -1960,7 +1960,7 @@ See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise 
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For Red&#160;Hat OpenShift Container Platform version 4.22, RHCOS is based on RHEL version 9.8, which has the micro-architecture requirements. The following list contains the minimum instruction set architectures (ISA) that each architecture requires:</p>
+<p>In Red&#160;Hat OpenShift Container Platform version 4.22, RHCOS uses RHEL version 9.8, which updates the micro-architecture requirements. Each architecture requires the following minimum instruction set architectures (ISA):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1992,10 +1992,10 @@ See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise 
 <div class="sect4">
 <h5 id="csr-management_install-on-bare-metal-in-a-disconnected-environment-upi">Certificate signing requests management</h5>
 <div class="paragraph _abstract">
-<p>On user-provisioned infrastructure, you must provide a mechanism for approving cluster certificate signing requests (CSRs) after installation when your cluster has limited access to automatic machine management.</p>
+<p>On user-provisioned infrastructure, you must implement a mechanism for approving cluster certificate signing requests (CSRs) after installation when your cluster has limited access to automatic machine management.</p>
 </div>
 <div class="paragraph">
-<p>The <code>kube-controller-manager</code> only approves the kubelet client CSRs. The <code>machine-approver</code> cannot guarantee the validity of a serving certificate that is requested by using kubelet credentials because it cannot confirm that the correct machine issued the request. You must determine and implement a method of verifying the validity of the kubelet serving certificate requests and approving them.</p>
+<p>The <code>kube-controller-manager</code> only approves the kubelet client CSRs. The <code>machine-approver</code> cannot guarantee the validity of a serving certificate that kubelet credentials request because it cannot confirm that the correct machine issued the request. You must find and implement a method of verifying the validity of the kubelet serving certificate requests and approving them.</p>
 </div>
 </div>
 <div class="sect4">
@@ -2167,7 +2167,7 @@ the Cluster Version Operator on port <code>9099</code>.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="6"><div class="content"><div class="paragraph">
+<td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
 <p>UDP</p>
 </div>
 <div class="ulist">
@@ -2307,8 +2307,6 @@ the Cluster Version Operator on port <code>9099</code>.</p>
 <div class="paragraph nav-footer">
 <p></p>
 </div></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Kubernetes node port</p>
 </div>
@@ -2319,6 +2317,8 @@ the Cluster Version Operator on port <code>9099</code>.</p>
 <div class="paragraph nav-footer">
 <p></p>
 </div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>ESP</p>
 </div>
@@ -2331,6 +2331,16 @@ the Cluster Version Operator on port <code>9099</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>N/A</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>IPsec Encapsulating Security Payload (ESP)</p>
 </div>
 <div class="ulist">
 <ul>
@@ -4414,7 +4424,7 @@ imageContentSources:
   source: quay.io/openshift-release-dev/ocp-release
 - mirrors:
   - &lt;local_registry&gt;/&lt;local_repository_name&gt;/release
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev</code></pre>
+  source: quay.io/openshift-release-dev/ocp-v5.0-art-dev</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4635,7 +4645,10 @@ your platform.</p>
 <p>When using the <code>oc adm release mirror</code> command, use the output from the <code>imageContentSources</code> section.</p>
 </li>
 <li>
-<p>When using <code>oc mirror</code> command, use the <code>repositoryDigestMirrors</code> section of the <code>ImageContentSourcePolicy</code> file that results from running the command.</p>
+<p>When using the <code>oc-mirror</code> plugin v1, use the <code>repositoryDigestMirrors</code> section of the <code>ImageContentSourcePolicy</code> file that results from running the command.</p>
+</li>
+<li>
+<p>When using the <code>oc-mirror</code> plugin v2, copy every <code>imageDigestMirrors</code> entry from the generated <code>working-dir/cluster-resources/idms-oc-mirror.yaml</code> file into the <code>imageContentSources</code> section. Do not omit any generated mapping.</p>
 </li>
 <li>
 <p><code>ImageContentSourcePolicy</code> is deprecated. For more information see <em>Configuring image registry repository mirroring</em>.</p>
@@ -4806,7 +4819,7 @@ with the RHCOS trust bundle. The <code>additionalTrustBundle</code> field is req
 <p>To create smaller, resource-efficient clusters for testing and production, deploy a bare-metal cluster with zero compute machines. This optional configuration uses only three control plane machines, optimizing infrastructure resources for administrators and developers.</p>
 </div>
 <div class="paragraph">
-<p>In three-node Red&#160;Hat OpenShift Container Platform environments, the three control plane machines are schedulable, which means that your application workloads are scheduled to run on them.</p>
+<p>In three-node Red&#160;Hat OpenShift Container Platform environments, the three control plane machines are schedulable, which means that your application workloads run on them.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -4838,7 +4851,7 @@ with the RHCOS trust bundle. The <code>additionalTrustBundle</code> field is req
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You must set the value of the <code>replicas</code> parameter for the compute machines to <code>0</code> when you install Red&#160;Hat OpenShift Container Platform on user-provisioned infrastructure, regardless of the number of compute machines you are deploying. In installer-provisioned installations, the parameter controls the number of compute machines that the cluster creates and manages for you. This does not apply to user-provisioned installations, where the compute machines are deployed manually.</p>
+<p>You must set the value of the <code>replicas</code> parameter for the compute machines to <code>0</code> when you install Red&#160;Hat OpenShift Container Platform on user-provisioned infrastructure, regardless of the number of compute machines you deploy. In installer-provisioned installations, the parameter controls the number of compute machines that the cluster creates and manages for you. This does not apply to user-provisioned installations, where you deploy the compute machines manually.</p>
 </div>
 </td>
 </tr>
@@ -9595,11 +9608,8 @@ storage                                    {product-version}.0    True        Fa
 <div class="sect4">
 <h5 id="olm-restricted-networks-operatorhub_install-on-bare-metal-in-a-disconnected-environment-upi">Disabling the default software catalog sources</h5>
 <div class="paragraph _abstract">
-<p>Operator catalogs that source content provided by Red Hat and community projects are configured for the software catalog by default during an Red&#160;Hat OpenShift Container Platform installation.
+<p>To use only trusted or locally available Operator catalogs, disable the default software catalog sources that Red&#160;Hat OpenShift Container Platform configures during installation.
 In a restricted network environment, you must disable the default catalogs as a cluster administrator.</p>
-</div>
-<div class="paragraph">
-<p>Operator catalogs that source content provided by Red Hat and community projects are configured for the software catalog by default during an Red&#160;Hat OpenShift Container Platform installation.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -9620,7 +9630,7 @@ In a restricted network environment, you must disable the default catalogs as a 
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Alternatively, you can use the web console to manage catalog sources. From the <strong>Administration</strong> &#8594; <strong>Cluster Settings</strong> &#8594; <strong>Configuration</strong> &#8594; <strong>OperatorHub</strong> page, click the <strong>Sources</strong> tab, where you can create, update, delete, disable, and enable individual sources.</p>
+<p>Or, you can use the web console to manage catalog sources. From the <strong>Administration</strong> &#8594; <strong>Cluster Settings</strong> &#8594; <strong>Configuration</strong> &#8594; <strong>OperatorHub</strong> page, click the <strong>Sources</strong> tab, where you can create, update, delete, disable, and enable individual sources.</p>
 </div>
 </td>
 </tr>
@@ -9818,7 +9828,7 @@ image-registry   {product-version}                 True        False         Fal
 <div class="sect5">
 <h6 id="installation-registry-storage-non-production_install-on-bare-metal-in-a-disconnected-environment-upi">Configure storage for the image registry in non-production clusters</h6>
 <div class="paragraph _abstract">
-<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory. If you do so, all images are lost if you restart the registry.</p>
+<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -9845,10 +9855,10 @@ image-registry   {product-version}                 True        False         Fal
 </table>
 </div>
 <div class="paragraph">
-<p>If you run this command before the Image Registry Operator initializes its
-components, the <code>oc patch</code> command fails with the following error:</p>
+<p>If you run this command before the Image Registry Operator initializes its components, the <code>oc patch</code> command fails with the following error:</p>
 </div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">Error from server (NotFound): configs.imageregistry.operator.openshift.io "cluster" not found</code></pre>
 </div>
@@ -10168,7 +10178,7 @@ openshift-authentication-operator authentication-operator-69d5d8bf84-vh2n8      
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-02 13:39:01 -0500
+Last updated 2026-10-05 08:57:54 -0500
 </div>
 </div>
 <style>

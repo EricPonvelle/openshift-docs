@@ -1834,7 +1834,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For a cluster that contains user-provisioned infrastructure, you must deploy all of the required machines.</p>
+<p>For a cluster that has user-provisioned infrastructure, you must deploy all of the required machines.</p>
 </div>
 </td>
 </tr>
@@ -1885,14 +1885,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>The bootstrap, control plane, and compute machines must use Red Hat Enterprise Linux CoreOS (RHCOS) as the operating system.</p>
 </div>
 <div class="paragraph">
-<p>Note that RHCOS is based on Red&#160;Hat Enterprise Linux (RHEL) 9.8 and inherits all of its hardware certifications and requirements.
+<p>RHCOS is based on Red&#160;Hat Enterprise Linux (RHEL) 9.8 and inherits all of its hardware certifications and requirements.
 See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise Linux technology capabilities and limits</a>.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="installation-minimum-resource-requirements_installing-ibm-power">Minimum resource requirements for cluster installation</h5>
 <div class="paragraph _abstract">
-<p>Each created cluster must meet minimum requirements so that the cluster runs as expected.</p>
+<p>To ensure that your Red&#160;Hat OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 426. Minimum resource requirements</caption>
@@ -1946,10 +1946,10 @@ See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise 
 <div class="ulist">
 <ul>
 <li>
-<p>One vCPU is equivalent to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = vCPUs.</p>
+<p>One vCPU is equal to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = vCPUs.</p>
 </li>
 <li>
-<p>Red&#160;Hat OpenShift Container Platform and Kubernetes are sensitive to disk performance, and faster storage is recommended, particularly for etcd on the control plane nodes. Note that on many cloud platforms, storage size and IOPS scale together, so you might need to over-allocate storage volume to obtain sufficient performance.</p>
+<p>Red&#160;Hat OpenShift Container Platform and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.</p>
 </li>
 </ul>
 </div>
@@ -1963,7 +1963,7 @@ See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise 
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For Red&#160;Hat OpenShift Container Platform version 4.22, RHCOS is based on RHEL version 9.8, which has the micro-architecture requirements. The following list contains the minimum instruction set architectures (ISA) that each architecture requires:</p>
+<p>In Red&#160;Hat OpenShift Container Platform version 4.22, RHCOS uses RHEL version 9.8, which updates the micro-architecture requirements. Each architecture requires the following minimum instruction set architectures (ISA):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2170,10 +2170,10 @@ See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise 
 <div class="sect4">
 <h5 id="csr-management_install-on-ibm-power">Certificate signing requests management</h5>
 <div class="paragraph _abstract">
-<p>On user-provisioned infrastructure, you must provide a mechanism for approving cluster certificate signing requests (CSRs) after installation when your cluster has limited access to automatic machine management.</p>
+<p>On user-provisioned infrastructure, you must implement a mechanism for approving cluster certificate signing requests (CSRs) after installation when your cluster has limited access to automatic machine management.</p>
 </div>
 <div class="paragraph">
-<p>The <code>kube-controller-manager</code> only approves the kubelet client CSRs. The <code>machine-approver</code> cannot guarantee the validity of a serving certificate that is requested by using kubelet credentials because it cannot confirm that the correct machine issued the request. You must determine and implement a method of verifying the validity of the kubelet serving certificate requests and approving them.</p>
+<p>The <code>kube-controller-manager</code> only approves the kubelet client CSRs. The <code>machine-approver</code> cannot guarantee the validity of a serving certificate that kubelet credentials request because it cannot confirm that the correct machine issued the request. You must find and implement a method of verifying the validity of the kubelet serving certificate requests and approving them.</p>
 </div>
 </div>
 <div class="sect4">
@@ -2387,7 +2387,7 @@ the Cluster Version Operator on port <code>9099</code>.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="6"><div class="content"><div class="paragraph">
+<td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
 <p>UDP</p>
 </div>
 <div class="ulist">
@@ -2527,8 +2527,6 @@ the Cluster Version Operator on port <code>9099</code>.</p>
 <div class="paragraph nav-footer">
 <p></p>
 </div></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Kubernetes node port</p>
 </div>
@@ -2539,6 +2537,8 @@ the Cluster Version Operator on port <code>9099</code>.</p>
 <div class="paragraph nav-footer">
 <p></p>
 </div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>ESP</p>
 </div>
@@ -2551,6 +2551,16 @@ the Cluster Version Operator on port <code>9099</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>N/A</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>IPsec Encapsulating Security Payload (ESP)</p>
 </div>
 <div class="ulist">
 <ul>
@@ -4709,7 +4719,7 @@ with the RHCOS trust bundle. The <code>additionalTrustBundle</code> field is req
 <p>To create smaller, resource-efficient clusters for testing and production, deploy a bare-metal cluster with zero compute machines. This optional configuration uses only three control plane machines, optimizing infrastructure resources for administrators and developers.</p>
 </div>
 <div class="paragraph">
-<p>In three-node Red&#160;Hat OpenShift Container Platform environments, the three control plane machines are schedulable, which means that your application workloads are scheduled to run on them.</p>
+<p>In three-node Red&#160;Hat OpenShift Container Platform environments, the three control plane machines are schedulable, which means that your application workloads run on them.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -4741,7 +4751,7 @@ with the RHCOS trust bundle. The <code>additionalTrustBundle</code> field is req
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You must set the value of the <code>replicas</code> parameter for the compute machines to <code>0</code> when you install Red&#160;Hat OpenShift Container Platform on user-provisioned infrastructure, regardless of the number of compute machines you are deploying. In installer-provisioned installations, the parameter controls the number of compute machines that the cluster creates and manages for you. This does not apply to user-provisioned installations, where the compute machines are deployed manually.</p>
+<p>You must set the value of the <code>replicas</code> parameter for the compute machines to <code>0</code> when you install Red&#160;Hat OpenShift Container Platform on user-provisioned infrastructure, regardless of the number of compute machines you deploy. In installer-provisioned installations, the parameter controls the number of compute machines that the cluster creates and manages for you. This does not apply to user-provisioned installations, where you deploy the compute machines manually.</p>
 </div>
 </td>
 </tr>
@@ -7458,7 +7468,7 @@ image-registry   {product-version}                 True        False         Fal
 <div class="sect5">
 <h6 id="installation-registry-storage-non-production_install-on-ibm-power">Configure storage for the image registry in non-production clusters</h6>
 <div class="paragraph _abstract">
-<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory. If you do so, all images are lost if you restart the registry.</p>
+<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -7485,10 +7495,10 @@ image-registry   {product-version}                 True        False         Fal
 </table>
 </div>
 <div class="paragraph">
-<p>If you run this command before the Image Registry Operator initializes its
-components, the <code>oc patch</code> command fails with the following error:</p>
+<p>If you run this command before the Image Registry Operator initializes its components, the <code>oc patch</code> command fails with the following error:</p>
 </div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">Error from server (NotFound): configs.imageregistry.operator.openshift.io "cluster" not found</code></pre>
 </div>
@@ -7690,7 +7700,7 @@ openshift-authentication-operator authentication-operator-69d5d8bf84-vh2n8      
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-02 13:39:01 -0500
+Last updated 2026-10-05 08:57:54 -0500
 </div>
 </div>
 <style>

@@ -530,48 +530,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 })();
 </script>
 <!-- navmap-left-nav-toggle-end -->
-<!-- navmap-right-toc-start -->
-<style>
-  body.navmap-has-right-toc { padding-right: 18em; }
-  #navmap-right-toc {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 16em;
-    height: 100%;
-    overflow: auto;
-    padding: 1.25em 1em;
-    background: #f8f8f7;
-    border-left: 1px solid #e7e7e9;
-    z-index: 1000;
-    font-family: "Open Sans", "DejaVu Sans", sans-serif;
-    font-size: .9em;
-  }
-  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
-  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
-  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
-  #navmap-right-toc li.level-3 { padding-left: 1em; }
-  #navmap-right-toc li.level-4 { padding-left: 2em; }
-  #navmap-right-toc li.level-5,
-  #navmap-right-toc li.level-6 { padding-left: 3em; }
-  #navmap-right-toc a { text-decoration: none; }
-  @media screen and (max-width: 1023px) {
-    body.navmap-has-right-toc { padding-right: 0; }
-    #navmap-right-toc {
-      position: static;
-      width: auto;
-      height: auto;
-      margin: 1em;
-      border: 1px solid #e7e7e9;
-      border-radius: 4px;
-    }
-  }
-
-
-</style>
-<!-- navmap-right-toc-end -->
 </head>
-<body id="osd-clean-up-your-resources_osd-clean-up-your-resources" class="book toc2 toc-left navmap-has-right-toc">
+<body id="_troubleshoot" class="book toc2 toc-left">
 <div id="header">
 <h1>Openshift Dedicated</h1>
 <div id="toc" class="toc2">
@@ -598,22 +558,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
+
 <ul class="sectlevel2">
 <li><a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an Openshift Dedicated cluster on Google Cloud using the default options</a>
 </li>
-<li><a href="osd-configure-an-identity-provider_osd-configure-an-identity-provider.html">Configure an identity provider</a>
-</li>
-<li><a href="osd-grant-administrator-privileges-to-a-user_osd-grant-administrator-privileges-to-a-user.html">Grant administrator privileges to a user</a>
-</li>
-<li><a href="osd-access-your-cluster_osd-access-your-cluster.html">Access your cluster</a>
-</li>
-<li><a href="osd-deploy-an-application-from-the-developer-catalog_osd-deploy-an-application-from-the-developer-catalog.html">Deploy an application from the Developer Catalog</a>
-</li>
-<li><a href="scaling-cluster_osd-scale-your-cluster.html">Scale your cluster</a>
-</li>
-<li><a href="osd-revoke-user-access-and-admin-privileges_osd-revoke-user-access-and-admin-privileges.html">Revoke user access and admin privileges</a>
-</li>
-<li><a href="osd-clean-up-your-resources_osd-clean-up-your-resources.html"><span class="toc-current">Clean up your resources</span></a>
+<li><a href="osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster.html">Manage an Openshift Dedicated on Google Cloud cluster</a>
 </li>
 <li><a href="osd-red-hat-openshift-cluster-manager-overview_osd-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager overview</a>
 </li>
@@ -646,85 +595,40 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><button class="toc-toggle" type="button" data-toc-key="_troubleshoot.html">▶</button><a href="_troubleshoot.html"><span class="toc-current">Troubleshoot</span></a>
+<ul class="sectlevel2">
+<li><a href="troubleshoot-component-and-workload-issues_osd-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a>
+</li>
+<li><a href="osd-troubleshoot-a-google-cloud-cluster-deployment_osd-troubleshoot-a-google-cloud-cluster-deployment.html">Troubleshooting an OpenShift Dedicated on Google Cloud cluster deployment</a>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#osd-delete-your-cluster_osd-delete-your-cluster">Delete your cluster</a></li><li class="level-5"><a href="#deleting-cluster_osd-delete-your-cluster">Delete your cluster</a></li></ul></aside>
 <div id="content">
-<div class="sect2">
-<h3 id="osd-clean-up-your-resources_osd-clean-up-your-resources">Clean up your resources</h3>
-<div class="paragraph _abstract">
-<p>Learn how to clean up your resources in Openshift Dedicated.</p>
-</div>
-<div class="sect3">
-<h4 id="osd-delete-your-cluster_osd-delete-your-cluster">Delete your cluster</h4>
-<div class="paragraph _abstract">
-<p>Learn how to delete your cluster in Openshift Dedicated.</p>
-</div>
-<div class="sect4">
-<h5 id="deleting-cluster_osd-delete-your-cluster">Delete your cluster</h5>
-<div class="paragraph _abstract">
-<p>You can delete your Openshift Dedicated cluster in Red Hat OpenShift Cluster Manager.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
-</li>
-<li>
-<p>You created an Openshift Dedicated cluster.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>From <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>, select the cluster you want to delete.</p>
-</li>
-<li>
-<p>Select <strong>Delete cluster</strong> from the <strong>Actions</strong> drop-down menu.</p>
-</li>
-<li>
-<p>Type the name of the cluster highlighted in bold, then click <strong>Delete</strong>. Cluster deletion occurs automatically.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If you delete a cluster that was installed into a Google Cloud Shared VPC, inform the VPC owner of the host project to complete the following cleanup steps:</p>
-</div>
+<div class="sect1">
+<h2 id="_troubleshoot">Troubleshoot</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>Remove the IAM policy roles or custom roles granted to the service accounts that were referenced during cluster creation.</p>
+<p><a href="troubleshoot-component-and-workload-issues_osd-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a></p>
 </li>
 <li>
-<p>If firewall rules were pre-created on the host project for reduced permissions, delete the firewall rules associated with the cluster.</p>
+<p><a href="osd-troubleshoot-a-google-cloud-cluster-deployment_osd-troubleshoot-a-google-cloud-cluster-deployment.html">Troubleshooting an OpenShift Dedicated on Google Cloud cluster deployment</a></p>
 </li>
 </ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ol>
-</div>
 </div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="osd-revoke-user-access-and-admin-privileges_osd-revoke-user-access-and-admin-privileges.html">Revoke user access and admin privileges</a> | ↑ Up: <a href="_get_started.html">Get Started</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-red-hat-openshift-cluster-manager-overview_osd-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager overview</a> →</p>
+<p>← Previous: <a href="osd-monitor-cluster-health_osd-monitor-cluster-health.html">Monitor cluster health</a> | ↑ Up: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="troubleshoot-component-and-workload-issues_osd-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-29 19:04:35 -0500
+Last updated 2026-10-06 10:38:21 -0500
 </div>
 </div>
 </body>

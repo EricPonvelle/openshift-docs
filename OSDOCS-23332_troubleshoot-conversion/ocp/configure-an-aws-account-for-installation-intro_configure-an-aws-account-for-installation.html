@@ -2370,7 +2370,7 @@ in your region. For example, the <code>us-east-1</code> region contains six avai
 <div class="sect3">
 <h4 id="installation-aws-permissions_configure-an-aws-account-for-installation">Required AWS permissions for the IAM user</h4>
 <div class="paragraph _abstract">
-<p>To deploy all components of an Red&#160;Hat OpenShift Container Platform cluster, you must grant the all the required permissions to the IAM user that you create in Amazon Web Services (AWS).</p>
+<p>To deploy all components of an Red&#160;Hat OpenShift Container Platform cluster, you must grant all the required permissions to the IAM user that you create in Amazon Web Services (AWS).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2387,12 +2387,11 @@ in your region. For example, the <code>us-east-1</code> region contains six avai
 </table>
 </div>
 <div class="paragraph">
-<p>When you attach the <code>AdministratorAccess</code> policy to the IAM user that you create in Amazon Web Services (AWS), you grant that user all of the required permissions. To deploy all components of an Red&#160;Hat OpenShift Container Platform
-cluster, the IAM user requires the following permissions:</p>
+<p>When you attach the <code>AdministratorAccess</code> policy to the IAM user that you create in AWS, you grant that user all of the required permissions. To deploy all components of an Red&#160;Hat OpenShift Container Platform cluster, the IAM user requires the following permissions:</p>
 </div>
-<details>
-<summary class="title">Required EC2 permissions for installation</summary>
-<div class="content">
+<div class="paragraph">
+<p><strong>Required EC2 permissions for installation</strong></p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -2480,7 +2479,7 @@ cluster, the IAM user requires the following permissions:</p>
 <p><code>ec2:DescribePrefixLists</code></p>
 </li>
 <li>
-<p><code>ec2:DescribePublicIpv4Pools</code> (only required if <code>publicIpv4Pool</code> is specified in <code>install-config.yaml</code>)</p>
+<p><code>ec2:DescribePublicIpv4Pools</code> (only required if you specify <code>publicIpv4Pool</code> in <code>install-config.yaml</code>)</p>
 </li>
 <li>
 <p><code>ec2:DescribeRegions</code></p>
@@ -2519,7 +2518,7 @@ cluster, the IAM user requires the following permissions:</p>
 <p><code>ec2:DescribeVpcs</code></p>
 </li>
 <li>
-<p><code>ec2:DisassociateAddress</code> (only required if <code>publicIpv4Pool</code> is specified in <code>install-config.yaml</code>)</p>
+<p><code>ec2:DisassociateAddress</code> (only required if you specify <code>publicIpv4Pool</code> in <code>install-config.yaml</code>)</p>
 </li>
 <li>
 <p><code>ec2:GetEbsDefaultKmsKeyId</code></p>
@@ -2544,11 +2543,9 @@ cluster, the IAM user requires the following permissions:</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><strong>Required permissions for creating network resources during installation</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Required permissions for creating network resources during installation</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -2612,11 +2609,9 @@ cluster, the IAM user requires the following permissions:</p>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p><strong>Required Elastic Load Balancing permissions (ELB) for installation</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Required Elastic Load Balancing permissions (ELB) for installation</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -2710,11 +2705,9 @@ cluster, the IAM user requires the following permissions:</p>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p><strong>Required IAM permissions for installation</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Required IAM permissions for installation</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -2797,11 +2790,9 @@ cluster, the IAM user requires the following permissions:</p>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p><strong>Required Route 53 permissions for installation</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Required Route 53 permissions for installation</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -2839,11 +2830,9 @@ cluster, the IAM user requires the following permissions:</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><strong>Required Amazon Simple Storage Service (S3) permissions for installation</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Required Amazon Simple Storage Service (S3) permissions for installation</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -2911,11 +2900,9 @@ cluster, the IAM user requires the following permissions:</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><strong>S3 permissions that cluster Operators require</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">S3 permissions that cluster Operators require</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -2944,11 +2931,9 @@ cluster, the IAM user requires the following permissions:</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><strong>Required permissions to delete base cluster resources</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Required permissions to delete base cluster resources</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -3001,11 +2986,9 @@ cluster, the IAM user requires the following permissions:</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><strong>Required permissions to delete network resources</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Required permissions to delete network resources</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -3060,11 +3043,9 @@ cluster, the IAM user requires the following permissions:</p>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p><strong>Optional permissions for installing a cluster with a custom Key Management Service (KMS) key</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Optional permissions for installing a cluster with a custom Key Management Service (KMS) key</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -3101,17 +3082,15 @@ cluster, the IAM user requires the following permissions:</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If you provide an Amazon Machine Image (AMI) that is encrypted with a customer-managed key, you must provide the <code>kms:ReEncrypt*</code> permissions in addition to these permissions.</p>
+<p>If you use an Amazon Machine Image (AMI) encrypted with a customer-managed key, you must grant the <code>kms:ReEncrypt*</code> permissions in addition to these permissions.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p><strong>Required permissions to delete a cluster with shared instance roles</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Required permissions to delete a cluster with shared instance roles</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -3119,11 +3098,9 @@ cluster, the IAM user requires the following permissions:</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><strong>Required permissions to delete a cluster with shared instance profiles</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Required permissions to delete a cluster with shared instance profiles</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -3131,11 +3108,9 @@ cluster, the IAM user requires the following permissions:</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><strong>Additional IAM and S3 permissions required to create manifests</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Additional IAM and S3 permissions that are required to create manifests</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -3184,11 +3159,9 @@ cluster, the IAM user requires the following permissions:</p>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p><strong>Optional permissions for instance and quota checks for installation</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Optional permissions for instance and quota checks for installation</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -3196,11 +3169,9 @@ cluster, the IAM user requires the following permissions:</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><strong>Optional permissions for the cluster owner account when installing a cluster on a shared VPC</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Optional permissions for the cluster owner account when installing a cluster on a shared VPC</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -3208,11 +3179,9 @@ cluster, the IAM user requires the following permissions:</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><strong>Required permissions for enabling Bring your own public IPv4 addresses (BYOIP) feature for installation</strong></p>
 </div>
-</details>
-<details>
-<summary class="title">Required permissions for enabling Bring your own public IPv4 addresses (BYOIP) feature for installation</summary>
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -3223,8 +3192,6 @@ cluster, the IAM user requires the following permissions:</p>
 </li>
 </ul>
 </div>
-</div>
-</details>
 <details>
 <summary class="title">Required permissions to install a cluster with dual-stack networking</summary>
 <div class="content">
@@ -3931,7 +3898,7 @@ use key-based, long-term credentials.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-02 13:39:01 -0500
+Last updated 2026-10-05 08:57:54 -0500
 </div>
 </div>
 <style>

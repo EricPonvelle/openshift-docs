@@ -1738,25 +1738,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph _abstract">
 <p>Volume group snapshots capture point-in-time copies of multiple persistent volume claims using label selectors. Three API objects manage snapshots: VolumeGroupSnapshot, VolumeGroupSnapshotContent, and VolumeGroupSnapshotClass.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
 <div class="paragraph">
-<p>CSI volume group snapshots is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
-</div>
-<div class="paragraph">
-<p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>To use this Technology Preview feature, you must enable it by using feature gates. For information about using feature gates, see "Enabling features using feature gates".</p>
+<p>Volume group snapshots need to be supported by the Container Storage Interface (CSI) driver. OpenShift Data Foundation supports volume group snapshots.</p>
 </div>
 <div class="dlist">
 <dl>
@@ -1793,7 +1776,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </dl>
 </div>
 <div class="paragraph">
-<p>These three API kinds are defined as <code>CustomResourceDefinitions</code> (CRDs). These CRDs must be installed in a Red&#160;Hat OpenShift Container Platform cluster for a CSI driver to support volume group snapshots.</p>
+<p>These three API kinds are defined as <code>CustomResourceDefinitions</code> (CRDs). These CRDs are installed by default in the Red&#160;Hat OpenShift Container Platform cluster so that CSI drivers can support volume group snapshots.</p>
 </div>
 <div class="sect3">
 <h4 id="persistent-storage-csi-group-snapshots-limitations_capture-consistent-group-snapshots">CSI volume group snapshots limitations</h4>
@@ -1828,9 +1811,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li>
 <p>Logged in to a running Red&#160;Hat OpenShift Container Platform cluster with administrator privileges.</p>
 </li>
-<li>
-<p>Enabled this feature using feature gates. For information about how to use feature gates, see "Enabling features sets by using feature gates".</p>
-</li>
 </ul>
 </div>
 <div class="olist arabic">
@@ -1841,7 +1821,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">Example volume group snapshot class YAML file</div>
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: groupsnapshot.storage.k8s.io/v1beta2
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: groupsnapshot.storage.k8s.io/v1
 kind: VolumeGroupSnapshotClass
 metadata:
   name: csi-hostpath-groupsnapclass
@@ -1885,9 +1865,6 @@ driver: hostpath.csi.k8s.io
 <ul>
 <li>
 <p>Logged in to a running Red&#160;Hat OpenShift Container Platform cluster.</p>
-</li>
-<li>
-<p>Enabled this feature using feature gates. For information about how to use feature gates, see "Enabling features sets by using feature gates".</p>
 </li>
 <li>
 <p>The persistent volume claims (PVCs) that you want to group for the snapshot have been created using a CSI driver that supports <code>VolumeGroupSnapshot</code> objects.</p>
@@ -1970,7 +1947,7 @@ pvc-1       Bound     pvc-a42d81b8-e3df-11ed-b5ea-0242ac120002   1Gi        RWO 
 <div class="listingblock">
 <div class="title">Example VolumeGroupSnapshot YAML file</div>
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: groupsnapshot.storage.k8s.io/v1beta2
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: groupsnapshot.storage.k8s.io/v1
 kind: VolumeGroupSnapshot
 metadata:
   name: &lt;volume-group-snapshot-name&gt;
@@ -2031,7 +2008,7 @@ metadata:
   name: snapshot-4dc1c53a29538b36e85003503a4bcac5dbde4cff59e81f1e3bb80b6c18c3fd03
   namespace: default
   ownerReferences:
-  - apiVersion: groupsnapshot.storage.k8s.io/v1beta2
+  - apiVersion: groupsnapshot.storage.k8s.io/v1
     kind: VolumeGroupSnapshot
     name: my-groupsnapshot
     uid: ba2d60c5-5082-4279-80c2-daa85f0af354
@@ -2157,7 +2134,7 @@ spec:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-02 13:39:01 -0500
+Last updated 2026-10-05 08:57:54 -0500
 </div>
 </div>
 <style>

@@ -2662,7 +2662,7 @@ it to install multiple clusters.</p>
 <div class="sect4">
 <h5 id="installation-minimum-resource-requirements_install-on-aws-in-a-disconnected-environment-ipi">Minimum resource requirements for cluster installation</h5>
 <div class="paragraph _abstract">
-<p>Each created cluster must meet minimum requirements so that the cluster runs as expected.</p>
+<p>To ensure that your Red&#160;Hat OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 158. Minimum resource requirements</caption>
@@ -2716,13 +2716,13 @@ it to install multiple clusters.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>One vCPU is equivalent to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = vCPUs.</p>
+<p>One vCPU is equal to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = vCPUs.</p>
 </li>
 <li>
-<p>Red&#160;Hat OpenShift Container Platform and Kubernetes are sensitive to disk performance, and faster storage is recommended, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. Note that on many cloud platforms, storage size and IOPS scale together, so you might need to over-allocate storage volume to obtain sufficient performance.</p>
+<p>Red&#160;Hat OpenShift Container Platform and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.</p>
 </li>
 <li>
-<p>As with all user-provisioned installations, if you choose to use RHEL compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. Use of RHEL 7 compute machines is deprecated and has been removed in Red&#160;Hat OpenShift Container Platform 4.10 and later.</p>
+<p>As with all user-provisioned installations, if you choose to use RHEL compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. Red&#160;Hat OpenShift Container Platform 4.10 and later do not support RHEL 7 compute machines.</p>
 </li>
 </ul>
 </div>
@@ -2736,7 +2736,7 @@ it to install multiple clusters.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For Red&#160;Hat OpenShift Container Platform version 4.22, RHCOS is based on RHEL version 9.8, which has the micro-architecture requirements. The following list contains the minimum instruction set architectures (ISA) that each architecture requires:</p>
+<p>In Red&#160;Hat OpenShift Container Platform version 4.22, RHCOS uses RHEL version 9.8, which updates the micro-architecture requirements. Each architecture requires the following minimum instruction set architectures (ISA):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2776,23 +2776,6 @@ it to install multiple clusters.</p>
 <div class="paragraph">
 <p>If you enable user-managed DNS during installation, the installation program provisions DNS records for the API and Ingress services only within the cluster. To ensure access from outside the cluster, you must provision the DNS records in an external DNS service of your choice for the API and Ingress services after installation.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>User-provisioned DNS is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
-</div>
-<div class="paragraph">
-<p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="ulist">
 <div class="title">Procedure</div>
 <ul>
@@ -2804,12 +2787,7 @@ it to install multiple clusters.</p>
 <p>To enable user-managed DNS:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">featureSet: CustomNoUpgrade
-featureGates: ["AWSClusterHostedDNSInstall=true"]
-
-# ...
-
-platform:
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">platform:
   aws:
     userProvisionedDNS: Enabled</code></pre>
 </div>
@@ -4216,23 +4194,6 @@ INFO Time elapsed: 36m22s</code></pre>
 <div class="paragraph _abstract">
 <p>Use your cluster name and base cluster domain to configure a CNAME record for the API service <code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code> with the API load balancer DNS name. Similarly, use the load balancer DNS name of the Ingress service to provision a CNAME record for the <code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code> hostname by using your cluster name and base cluster domain.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>User-provisioned DNS is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
-</div>
-<div class="paragraph">
-<p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
@@ -4371,11 +4332,8 @@ INFO Time elapsed: 36m22s</code></pre>
 <div class="sect3">
 <h4 id="olm-restricted-networks-operatorhub_install-on-aws-in-a-disconnected-environment-ipi">Disabling the default software catalog sources</h4>
 <div class="paragraph _abstract">
-<p>Operator catalogs that source content provided by Red Hat and community projects are configured for the software catalog by default during an Red&#160;Hat OpenShift Container Platform installation.
+<p>To use only trusted or locally available Operator catalogs, disable the default software catalog sources that Red&#160;Hat OpenShift Container Platform configures during installation.
 In a restricted network environment, you must disable the default catalogs as a cluster administrator.</p>
-</div>
-<div class="paragraph">
-<p>Operator catalogs that source content provided by Red Hat and community projects are configured for the software catalog by default during an Red&#160;Hat OpenShift Container Platform installation.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -4396,7 +4354,7 @@ In a restricted network environment, you must disable the default catalogs as a 
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Alternatively, you can use the web console to manage catalog sources. From the <strong>Administration</strong> &#8594; <strong>Cluster Settings</strong> &#8594; <strong>Configuration</strong> &#8594; <strong>OperatorHub</strong> page, click the <strong>Sources</strong> tab, where you can create, update, delete, disable, and enable individual sources.</p>
+<p>Or, you can use the web console to manage catalog sources. From the <strong>Administration</strong> &#8594; <strong>Cluster Settings</strong> &#8594; <strong>Configuration</strong> &#8594; <strong>OperatorHub</strong> page, click the <strong>Sources</strong> tab, where you can create, update, delete, disable, and enable individual sources.</p>
 </div>
 </td>
 </tr>
@@ -4413,7 +4371,7 @@ In a restricted network environment, you must disable the default catalogs as a 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-02 13:39:01 -0500
+Last updated 2026-10-05 08:57:54 -0500
 </div>
 </div>
 <style>
