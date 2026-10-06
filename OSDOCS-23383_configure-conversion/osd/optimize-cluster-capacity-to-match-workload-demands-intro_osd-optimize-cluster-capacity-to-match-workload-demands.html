@@ -571,7 +571,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <!-- navmap-right-toc-end -->
 </head>
-<body id="osd-configure-an-identity-provider_osd-configure-an-identity-provider" class="book toc2 toc-left navmap-has-right-toc">
+<body id="optimize-cluster-capacity-to-match-workload-demands-intro_osd-optimize-cluster-capacity-to-match-workload-demands" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Openshift Dedicated</h1>
 <div id="toc" class="toc2">
@@ -598,22 +598,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
+
 <ul class="sectlevel2">
 <li><a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an Openshift Dedicated cluster on Google Cloud using the default options</a>
 </li>
-<li><a href="osd-configure-an-identity-provider_osd-configure-an-identity-provider.html"><span class="toc-current">Configure an identity provider</span></a>
-</li>
-<li><a href="osd-grant-administrator-privileges-to-a-user_osd-grant-administrator-privileges-to-a-user.html">Grant administrator privileges to a user</a>
-</li>
-<li><a href="osd-access-your-cluster_osd-access-your-cluster.html">Access your cluster</a>
-</li>
-<li><a href="osd-deploy-an-application-from-the-developer-catalog_osd-deploy-an-application-from-the-developer-catalog.html">Deploy an application from the Developer Catalog</a>
-</li>
-<li><a href="scaling-cluster_osd-scale-your-cluster.html">Scale your cluster</a>
-</li>
-<li><a href="osd-revoke-user-access-and-admin-privileges_osd-revoke-user-access-and-admin-privileges.html">Revoke user access and admin privileges</a>
-</li>
-<li><a href="osd-clean-up-your-resources_osd-clean-up-your-resources.html">Clean up your resources</a>
+<li><a href="osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster.html">Manage an Openshift Dedicated on Google Cloud cluster</a>
 </li>
 <li><a href="osd-red-hat-openshift-cluster-manager-overview_osd-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager overview</a>
 </li>
@@ -646,6 +635,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><button class="toc-toggle" type="button" data-toc-key="_administer.html">▶</button><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="manage-compute-capacity-intro_osd-manage-compute-capacity-for-your-cluster.html">Manage compute capacity for your cluster</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_optimize.html">▶</button><a href="_optimize.html">Optimize</a>
+<ul class="sectlevel2">
+<li><a href="optimize-cluster-capacity-to-match-workload-demands-intro_osd-optimize-cluster-capacity-to-match-workload-demands.html"><span class="toc-current">Optimize cluster capacity to match workload demands</span></a>
+</li>
+</ul>
+</li>
 <li><button class="toc-toggle" type="button" data-toc-key="_configure.html">▶</button><a href="_configure.html">Configure</a>
 
 <ul class="sectlevel2">
@@ -664,20 +666,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#config-idp_osd-configure-an-identity-provider">Configuring an identity provider</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#cluster-autoscaler-about_osd-optimize-cluster-capacity-to-match-workload-demands">The cluster autoscaler</a></li><li class="level-5"><a href="#cluster-autoscaler-scale-down_osd-optimize-cluster-capacity-to-match-workload-demands">Automatic node removal</a></li><li class="level-5"><a href="#cluster-autoscaler-limitations_osd-optimize-cluster-capacity-to-match-workload-demands">Limitations</a></li><li class="level-5"><a href="#cluster-autoscaler-interaction_osd-optimize-cluster-capacity-to-match-workload-demands">Interaction with other scheduling features</a></li><li class="level-4"><a href="#enable-cluster-autoscaling-intro_osd-optimize-cluster-capacity-to-match-workload-demands">Enable cluster autoscaling</a></li><li class="level-5"><a href="#rosa-enable-cluster-autoscale-ui-after_osd-optimize-cluster-capacity-to-match-workload-demands">Enable autoscaling after cluster creation with OpenShift Cluster Manager</a></li><li class="level-5"><a href="#rosa-cluster-autoscale-settings_osd-optimize-cluster-capacity-to-match-workload-demands">Cluster autoscaling settings using OpenShift Cluster Manager</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="osd-configure-an-identity-provider_osd-configure-an-identity-provider">Configure an identity provider</h3>
+<h3 id="optimize-cluster-capacity-to-match-workload-demands-intro_osd-optimize-cluster-capacity-to-match-workload-demands">Optimize cluster capacity to match workload demands</h3>
 <div class="paragraph _abstract">
-<p>Learn how to configure an identity provider in Openshift Dedicated.</p>
+<p>Configure cluster autoscaling so that your cluster&#8217;s compute capacity adjusts automatically as workload demand changes.</p>
 </div>
 <div class="sect3">
-<h4 id="config-idp_osd-configure-an-identity-provider">Configuring an identity provider</h4>
+<h4 id="cluster-autoscaler-about_osd-optimize-cluster-capacity-to-match-workload-demands">The cluster autoscaler</h4>
 <div class="paragraph _abstract">
-<p>After you have installed Openshift Dedicated, you must configure your cluster to use an identity provider. You can then add members to your identity provider to grant them access to your cluster.</p>
+<p>The cluster autoscaler adjusts the size of an Openshift Dedicated cluster to meet its current deployment needs. It uses declarative, Kubernetes-style arguments to provide infrastructure management that does not rely on objects of a specific cloud provider.</p>
 </div>
 <div class="paragraph">
-<p>You can configure different identity provider types for your Openshift Dedicated cluster. Supported types include GitHub, GitHub Enterprise, GitLab, Google, LDAP, OpenID Connect, and htpasswd identity providers.</p>
+<p>The cluster autoscaler increases the size of the cluster when there are pods that fail to schedule on any of the current worker nodes due to insufficient resources or when another node is necessary to meet deployment needs. The cluster autoscaler does not increase the cluster resources beyond the limits that you specify.</p>
+</div>
+<div class="paragraph">
+<p>The cluster autoscaler computes the total
+memory and CPU
+on all nodes the cluster, even though it does not manage the control plane nodes. These values are not single-machine oriented. They are an aggregation of all the resources in the entire cluster. For example, if you set the maximum memory resource limit, the cluster autoscaler includes all the nodes in the cluster when calculating the current memory usage. That calculation is then used to determine if the cluster autoscaler has the capacity to add more worker resources.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -687,186 +694,358 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The htpasswd identity provider option is included only to enable the creation of a single, static administration user. htpasswd is not supported as a general-use identity provider for Openshift Dedicated.</p>
+<p>Ensure that the <code>maxNodesTotal</code> value in the <code>ClusterAutoscaler</code> custom resource (CR) that you create is large enough to account for the total possible number of machines in your cluster. This value must encompass the number of control plane machines and the possible number of compute machines that you might scale to.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+<div class="sect4">
+<h5 id="cluster-autoscaler-scale-down_osd-optimize-cluster-capacity-to-match-workload-demands">Automatic node removal</h5>
 <div class="paragraph">
-<p>The following procedure configures a GitHub identity provider as an example.</p>
+<p>Every 10 seconds, the cluster autoscaler checks which nodes are unnecessary in the cluster and removes them. The cluster autoscaler considers a node for removal if the following conditions apply:</p>
 </div>
-<div class="admonitionblock warning">
+<div class="ulist">
+<ul>
+<li>
+<p>The node utilization is less than the <em>node utilization level</em> threshold for the cluster. The node utilization level is the sum of the requested resources divided by the allocated resources for the node. If you do not specify a value in the <code>ClusterAutoscaler</code> custom resource, the cluster autoscaler uses a default value of <code>0.5</code>, which corresponds to 50% utilization.</p>
+</li>
+<li>
+<p>The cluster autoscaler can move all pods running on the node to the other nodes. The Kubernetes scheduler is responsible for scheduling pods on the nodes.</p>
+</li>
+<li>
+<p>The cluster autoscaler does not have scale down disabled annotation.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If the following types of pods are present on a node, the cluster autoscaler will not remove the node:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pods with restrictive pod disruption budgets (PDBs).</p>
+</li>
+<li>
+<p>Kube-system pods that do not run on the node by default.</p>
+</li>
+<li>
+<p>Kube-system pods that do not have a PDB or have a PDB that is too restrictive.</p>
+</li>
+<li>
+<p>Pods that are not backed by a controller object such as a deployment, replica set, or stateful set.</p>
+</li>
+<li>
+<p>Pods with local storage.</p>
+</li>
+<li>
+<p>Pods that cannot be moved elsewhere because of a lack of resources, incompatible node selectors or affinity, matching anti-affinity, and so on.</p>
+</li>
+<li>
+<p>Unless they also have a <code>"cluster-autoscaler.kubernetes.io/safe-to-evict": "true"</code> annotation, pods that have a <code>"cluster-autoscaler.kubernetes.io/safe-to-evict": "false"</code> annotation.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, you set the maximum CPU limit to 64 cores and configure the cluster autoscaler to only create machines that have 8 cores each. If your cluster starts with 30 cores, the cluster autoscaler can add up to 4 more nodes with 32 cores, for a total of 62.</p>
+</div>
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<img src="data:image/png;base64," alt="Warning">
+<img src="data:image/png;base64," alt="Note">
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Configuring GitHub authentication allows users to log in to Openshift Dedicated with their GitHub credentials. To prevent anyone with any GitHub user ID from logging in to your Openshift Dedicated cluster, you must restrict access to only those in specific GitHub organizations or teams.</p>
+<p>By default, when the cluster autoscaler removes a node, it does not cordon the node when draining the pods from the node. You can configure the cluster autoscaler to cordon the node before draining and moving the pods by setting the <code>spec.scaleDown.cordonNodeBeforeTerminating</code> parameter to <code>enabled</code> in the <code>ClusterAutoscaler</code> CR. This parameter is disabled by default. It is recommended to enable this parameter in production clusters because of the risk of data loss, application errors, pods getting stuck in the terminating state, or other issues if the cluster autoscaler removes a node when the parameter is disabled. Leaving this parameter disabled, which can result in faster node removal, might be appropriate in clusters that run only stateless workloads.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+</div>
+<div class="sect4">
+<h5 id="cluster-autoscaler-limitations_osd-optimize-cluster-capacity-to-match-workload-demands">Limitations</h5>
+<div class="paragraph">
+<p>If you configure the cluster autoscaler, additional usage restrictions apply:</p>
+</div>
 <div class="ulist">
-<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
+<p>Do not change the nodes that are in autoscaled node groups directly. All nodes within the same node group have the same capacity and labels and run the same system pods.</p>
 </li>
 <li>
-<p>You created an Openshift Dedicated cluster.</p>
+<p>Specify requests for your pods.</p>
 </li>
 <li>
-<p>You have a GitHub user account.</p>
+<p>If you have to prevent pods from being deleted too quickly, configure appropriate PDBs.</p>
 </li>
 <li>
-<p>You created a GitHub organization in your GitHub account. For more information, see <a href="https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch">Creating a new organization from scratch</a> in the GitHub documentation.</p>
+<p>Confirm that your cloud provider quota is large enough to support the maximum node pools that you configure.</p>
 </li>
 <li>
-<p>If you are restricting user access to a GitHub team, you have created a team within your GitHub organization. For more information, see <a href="https://docs.github.com/en/organizations/organizing-members-into-teams/creating-a-team">Creating a team</a> in the GitHub documentation.</p>
+<p>Do not run additional node group autoscalers, especially the ones offered by your cloud provider.</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The cluster autoscaler only adds nodes in autoscaled node groups if doing so would result in a schedulable pod.
+If the available node types cannot meet the requirements for a pod request, or if the node groups that could meet these requirements are at their maximum size, the cluster autoscaler cannot scale up.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="cluster-autoscaler-interaction_osd-optimize-cluster-capacity-to-match-workload-demands">Interaction with other scheduling features</h5>
+<div class="paragraph">
+<p>The horizontal pod autoscaler (HPA) and the cluster autoscaler change cluster resources in different ways. The HPA changes the deployment&#8217;s or replica set&#8217;s number of replicas based on the current CPU load. If the load increases, the HPA creates new replicas, regardless of the amount of resources available to the cluster. If there are not enough resources, the cluster autoscaler adds resources so that the HPA-created pods can run. If the load decreases, the HPA stops some replicas. If this action causes some nodes to be underutilized or completely empty, the cluster autoscaler deletes the unnecessary nodes.</p>
+</div>
+<div class="paragraph">
+<p>The cluster autoscaler takes pod priorities into account. The Pod Priority and Preemption feature enables scheduling pods based on priorities if the cluster does not have enough resources, but the cluster autoscaler ensures that the cluster has resources to run all pods. To honor the intention of both features, the cluster autoscaler includes a priority cutoff function. You can use this cutoff to schedule "best-effort" pods, which do not cause the cluster autoscaler to increase resources but instead run only when spare resources are available.</p>
+</div>
+<div class="paragraph">
+<p>Pods with priority lower than the cutoff value do not cause the cluster to scale up or prevent the cluster from scaling down. No new nodes are added to run the pods, and nodes running these pods might be deleted to free resources.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enable-cluster-autoscaling-intro_osd-optimize-cluster-capacity-to-match-workload-demands">Enable cluster autoscaling</h4>
+<div class="paragraph _abstract">
+<p>Enable the cluster autoscaler and review its settings.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-enable-cluster-autoscale-ui-after_osd-optimize-cluster-capacity-to-match-workload-demands">Enable autoscaling after cluster creation with OpenShift Cluster Manager</h5>
+<div class="paragraph _abstract">
+<p>Enable cluster autoscaling on an existing cluster by using OpenShift Cluster Manager to automatically adjust the number of nodes based on workload demands.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Navigate to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and select your cluster.</p>
+<p>In OpenShift Cluster Manager, click the name of the cluster you want to autoscale. The <strong>Overview</strong> page for the cluster has a <strong>Autoscaling</strong> item that indicates if it is enabled or disabled.</p>
 </li>
 <li>
-<p>Select <strong>Access control</strong> &#8594; <strong>Identity providers</strong>.</p>
+<p>Click the <strong>Machine Pools</strong> tab.</p>
 </li>
 <li>
-<p>Select the <strong>GitHub</strong> identity provider type from the <strong>Add identity provider</strong> drop-down menu.</p>
+<p>Click the <strong>Edit cluster autoscaling</strong> button. The <strong>Edit cluster autoscaling</strong> settings window is shown.</p>
 </li>
 <li>
-<p>Enter a unique name for the identity provider. The name cannot be changed later.</p>
+<p>Click the <strong>Autoscale cluster</strong> toggle at the top of the window. All the settings are now editable.</p>
 </li>
 <li>
-<p>Register an OAuth application in your GitHub organization by following the steps in the <a href="https://docs.github.com/en/developers/apps/creating-an-oauth-app">GitHub documentation</a>.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
+<p>Edit any settings you want and then click <strong>Save</strong>.</p>
+</li>
+<li>
+<p>Click the <strong>x</strong> at the top right of the screen to close the settings window.</p>
 <div class="paragraph">
-<p>You must register the OAuth app under your GitHub organization. If you register an OAuth application that is not owned by the organization that contains your cluster users or teams, then user authentication to the cluster will not succeed.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>For the homepage URL in your GitHub OAuth app configuration, specify the <code>https://oauth-openshift.apps.&lt;cluster_name&gt;.&lt;cluster_domain&gt;</code> portion of the <strong>OAuth callback URL</strong> that is automatically generated in the <strong>Add a GitHub identity provider</strong> page on OpenShift Cluster Manager.</p>
-<div class="paragraph">
-<p>The following is an example of a homepage URL for a GitHub identity provider:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>https://oauth-openshift.apps.openshift-cluster.example.com</pre>
-</div>
-</div>
-</li>
-<li>
-<p>For the authorization callback URL in your GitHub OAuth app configuration, specify the full <strong>OAuth callback URL</strong> that is automatically generated in the <strong>Add a GitHub identity provider</strong> page on OpenShift Cluster Manager. The full URL has the following syntax:</p>
-<div class="listingblock">
-<div class="content">
-<pre>https://oauth-openshift.apps.&lt;cluster_name&gt;.&lt;cluster_domain&gt;/oauth2callback/&lt;idp_provider_name&gt;</pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Return to the <strong>Edit identity provider: GitHub</strong> dialog in <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and select <strong>Claim</strong> from the <strong>Mapping method</strong> drop-down menu.</p>
-</li>
-<li>
-<p>Enter the <strong>Client ID</strong> and <strong>Client secret</strong> for your GitHub OAuth application. The GitHub page for your OAuth app provides the ID and secret.</p>
-</li>
-<li>
-<p>Optional: Enter a <strong>hostname</strong>.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>A hostname must be entered when using a hosted instance of GitHub Enterprise.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Optional: You can specify a certificate authority (CA) file to validate server certificates for a configured GitHub Enterprise URL. Click <strong>Browse</strong> to locate and attach a <strong>CA file</strong> to the identity provider.</p>
-</li>
-<li>
-<p>Select <strong>Use organizations</strong> or <strong>Use teams</strong> to restrict access to a GitHub organization or a GitHub team within an organization.</p>
-</li>
-<li>
-<p>Enter the name of the organization or team you want to restrict access to. Click <strong>Add more</strong> to specify multiple organizations or teams.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Specified organizations must own an OAuth app that was registered by using the preceding steps. If you specify a team, it must exist within an organization that owns an OAuth app that was registered by using the preceding steps.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Click <strong>Add</strong> to apply the identity provider configuration.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>It might take approximately two minutes for the identity provider configuration to become active.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>To revert all autoscaling settings to the defaults if they have been changed, click the <strong>Revert all to defaults</strong> button.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>After the configuration becomes active, the identity provider is listed under <strong>Access control</strong> &#8594; <strong>Identity providers</strong> on the <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> page for your cluster.</p>
-</li>
-</ul>
+</div>
+<div class="sect4">
+<h5 id="rosa-cluster-autoscale-settings_osd-optimize-cluster-capacity-to-match-workload-demands">Cluster autoscaling settings using OpenShift Cluster Manager</h5>
+<div class="paragraph _abstract">
+<p>The tables explain all the configurable UI settings when using cluster autoscaling with OpenShift Cluster Manager.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 16. Configurable general settings for cluster autoscaling when using OpenShift Cluster Manager</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Setting</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Type or Range</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>log-verbosity</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the autoscaler log level. The default value is 1. Level 4 is recommended for debugging. Level 6 enables almost everything.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skip-nodes-with-local-storage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, the cluster autoscaler never deletes nodes with pods with local storage, e.g. EmptyDir or HostPath.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>max-pod-grace-period</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gives pods graceful termination time in seconds before scaling down.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">600</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>max-node-provision-time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum time the cluster autoscaler waits for nodes to be provisioned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15m</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pod-priority-threshold</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows users to schedule "best-effort" pods, which are not expected to trigger cluster autoscaler actions. These pods only run when spare resources are available.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ignore-daemonsets-utilization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether the cluster autoscaler ignores daemon set pods when calculating resource utilization for scaling down.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>balance-similar-node-groups</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, this setting automatically identifies node groups with the same instance type and the same set of labels and tries to keep the respective sizes of those node groups balanced.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>balancing-ignored-labels</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This option specifies labels that the cluster autoscaler should ignore when considering node group similarity. This option cannot contain spaces.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>array (string)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Format should be a comma-separated list of labels.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 17. Configurable resource limit settings for cluster autoscaling when using OpenShift Cluster Manager</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Setting</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Type or Range</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cores-total-min</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum number of cores in cluster. The cluster autoscaler does not scale the cluster less than this number.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cores-total-max</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of cores in cluster. The cluster autoscaler does not scale the cluster greater than this number.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">180 * 64 (11520)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>memory-total-min</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum number of gigabytes of memory in cluster. The cluster autoscaler does not scale the cluster less than this number.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>memory-total-max</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of gigabytes of memory in cluster. The cluster autoscaler does not scale the cluster greater than this number.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">180 * 64 * 20 (230400)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>max-nodes-total</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of nodes in all node groups. Includes all nodes, not just automatically scaled nodes. The cluster autoscaler does not grow the cluster greater than this number.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GPUs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum and maximum number of different GPUs in cluster. The cluster autoscaler does not scale the cluster less than or greater than these numbers.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Format should be a comma-separated list of "&lt;gpu_type&gt;:&lt;min&gt;:&lt;max&gt;".</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 18. Configurable scale down settings for cluster autoscaling when using OpenShift Cluster Manager</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Setting</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Type or Range</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>scale-down-enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should the cluster autoscaler scale down the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>scale-down-utilization-threshold</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node utilization level, defined as the sum of the requested resources divided by capacity, below which a node can be considered for scale down.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>float</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>scale-down-unneeded-time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long a node should be unneeded before it is eligible for scale down.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10m</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>scale-down-delay-after-add</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long after scale up that scale-down evaluation resumes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10m</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>scale-down-delay-after-delete</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long after node deletion that scale-down evaluation resumes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0s</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>scale-down-delay-after-failure</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long after scale down failure that scale-down evaluation resumes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3m</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an Openshift Dedicated cluster on Google Cloud using the default options</a> | ↑ Up: <a href="_get_started.html">Get Started</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-grant-administrator-privileges-to-a-user_osd-grant-administrator-privileges-to-a-user.html">Grant administrator privileges to a user</a> →</p>
+<p>↑ Up: <a href="_optimize.html">Optimize</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="_configure.html">Configure</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-05 15:39:51 -0500
+Last updated 2026-10-06 12:44:15 -0500
 </div>
 </div>
 </body>

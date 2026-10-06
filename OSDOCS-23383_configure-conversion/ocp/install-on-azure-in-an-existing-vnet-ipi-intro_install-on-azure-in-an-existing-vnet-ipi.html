@@ -2602,7 +2602,7 @@ it to install multiple clusters.</p>
 <div class="sect4">
 <h5 id="installation-minimum-resource-requirements_installing-azure-vnet">Minimum resource requirements for cluster installation</h5>
 <div class="paragraph _abstract">
-<p>Each created cluster must meet minimum requirements so that the cluster runs as expected.</p>
+<p>To ensure that your Red&#160;Hat OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 255. Minimum resource requirements</caption>
@@ -2656,13 +2656,13 @@ it to install multiple clusters.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>One vCPU is equivalent to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = vCPUs.</p>
+<p>One vCPU is equal to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = vCPUs.</p>
 </li>
 <li>
-<p>Red&#160;Hat OpenShift Container Platform and Kubernetes are sensitive to disk performance, and faster storage is recommended, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. Note that on many cloud platforms, storage size and IOPS scale together, so you might need to over-allocate storage volume to obtain sufficient performance.</p>
+<p>Red&#160;Hat OpenShift Container Platform and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.</p>
 </li>
 <li>
-<p>As with all user-provisioned installations, if you choose to use RHEL compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. Use of RHEL 7 compute machines is deprecated and has been removed in Red&#160;Hat OpenShift Container Platform 4.10 and later.</p>
+<p>As with all user-provisioned installations, if you choose to use RHEL compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. Red&#160;Hat OpenShift Container Platform 4.10 and later do not support RHEL 7 compute machines.</p>
 </li>
 </ul>
 </div>
@@ -2676,7 +2676,7 @@ it to install multiple clusters.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For Red&#160;Hat OpenShift Container Platform version 4.22, RHCOS is based on RHEL version 9.8, which has the micro-architecture requirements. The following list contains the minimum instruction set architectures (ISA) that each architecture requires:</p>
+<p>In Red&#160;Hat OpenShift Container Platform version 4.22, RHCOS uses RHEL version 9.8, which updates the micro-architecture requirements. Each architecture requires the following minimum instruction set architectures (ISA):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2709,7 +2709,7 @@ it to install multiple clusters.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You are required to use Azure virtual machines that have the <code>premiumIO</code> parameter set to <code>true</code>.</p>
+<p>You must use Azure virtual machines that have the <code>premiumIO</code> parameter set to <code>true</code>.</p>
 </div>
 </td>
 </tr>
@@ -4331,7 +4331,7 @@ INFO Time elapsed: 36m22s</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-05 08:57:54 -0500
+Last updated 2026-10-06 11:15:41 -0500
 </div>
 </div>
 <style>

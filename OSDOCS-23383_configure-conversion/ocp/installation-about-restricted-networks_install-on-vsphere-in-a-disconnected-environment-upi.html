@@ -4025,11 +4025,8 @@ storage                                    {product-version}.0    True        Fa
 <div class="sect4">
 <h5 id="olm-restricted-networks-operatorhub_install-on-vsphere-in-a-disconnected-environment-upi">Disabling the default software catalog sources</h5>
 <div class="paragraph _abstract">
-<p>Operator catalogs that source content provided by Red Hat and community projects are configured for the software catalog by default during an Red&#160;Hat OpenShift Container Platform installation.
+<p>To use only trusted or locally available Operator catalogs, disable the default software catalog sources that Red&#160;Hat OpenShift Container Platform configures during installation.
 In a restricted network environment, you must disable the default catalogs as a cluster administrator.</p>
-</div>
-<div class="paragraph">
-<p>Operator catalogs that source content provided by Red Hat and community projects are configured for the software catalog by default during an Red&#160;Hat OpenShift Container Platform installation.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -4050,7 +4047,7 @@ In a restricted network environment, you must disable the default catalogs as a 
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Alternatively, you can use the web console to manage catalog sources. From the <strong>Administration</strong> &#8594; <strong>Cluster Settings</strong> &#8594; <strong>Configuration</strong> &#8594; <strong>OperatorHub</strong> page, click the <strong>Sources</strong> tab, where you can create, update, delete, disable, and enable individual sources.</p>
+<p>Or, you can use the web console to manage catalog sources. From the <strong>Administration</strong> &#8594; <strong>Cluster Settings</strong> &#8594; <strong>Configuration</strong> &#8594; <strong>OperatorHub</strong> page, click the <strong>Sources</strong> tab, where you can create, update, delete, disable, and enable individual sources.</p>
 </div>
 </td>
 </tr>
@@ -4218,7 +4215,7 @@ image-registry   4.7       True        False         False      6h50m</code></pr
 <div class="sect5">
 <h6 id="installation-registry-storage-non-production_install-on-vsphere-in-a-disconnected-environment-upi">Configure storage for the image registry in non-production clusters</h6>
 <div class="paragraph _abstract">
-<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory. If you do so, all images are lost if you restart the registry.</p>
+<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -4245,10 +4242,10 @@ image-registry   4.7       True        False         False      6h50m</code></pr
 </table>
 </div>
 <div class="paragraph">
-<p>If you run this command before the Image Registry Operator initializes its
-components, the <code>oc patch</code> command fails with the following error:</p>
+<p>If you run this command before the Image Registry Operator initializes its components, the <code>oc patch</code> command fails with the following error:</p>
 </div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">Error from server (NotFound): configs.imageregistry.operator.openshift.io "cluster" not found</code></pre>
 </div>
@@ -4668,7 +4665,7 @@ openshift-authentication-operator authentication-operator-69d5d8bf84-vh2n8      
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-05 08:57:54 -0500
+Last updated 2026-10-06 11:15:41 -0500
 </div>
 </div>
 <style>

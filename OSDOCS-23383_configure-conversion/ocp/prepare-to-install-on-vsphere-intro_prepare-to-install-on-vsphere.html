@@ -5746,7 +5746,7 @@ platform:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For a cluster that contains user-provisioned infrastructure, you must deploy all of the required machines.</p>
+<p>For a cluster that has user-provisioned infrastructure, you must deploy all of the required machines.</p>
 </div>
 </td>
 </tr>
@@ -5794,17 +5794,17 @@ platform:
 </table>
 </div>
 <div class="paragraph">
-<p>The bootstrap and control plane machines must use Red Hat Enterprise Linux CoreOS (RHCOS) as the operating system. However, the compute machines can choose between Red Hat Enterprise Linux CoreOS (RHCOS), Red&#160;Hat Enterprise Linux (RHEL) 8.6 and later.</p>
+<p>The bootstrap and control plane machines must use Red Hat Enterprise Linux CoreOS (RHCOS) as the operating system. However, the compute machines can use Red Hat Enterprise Linux CoreOS (RHCOS), Red&#160;Hat Enterprise Linux (RHEL) 8.6 and later.</p>
 </div>
 <div class="paragraph">
-<p>Note that RHCOS is based on Red&#160;Hat Enterprise Linux (RHEL) 9.8 and inherits all of its hardware certifications and requirements.
+<p>RHCOS is based on Red&#160;Hat Enterprise Linux (RHEL) 9.8 and inherits all of its hardware certifications and requirements.
 See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise Linux technology capabilities and limits</a>.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="installation-minimum-resource-requirements_upi-vsphere-installation-reqs">Minimum resource requirements for cluster installation</h5>
 <div class="paragraph _abstract">
-<p>Each created cluster must meet minimum requirements so that the cluster runs as expected.</p>
+<p>To ensure that your Red&#160;Hat OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 128. Minimum resource requirements</caption>
@@ -5858,10 +5858,10 @@ See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise 
 <div class="ulist">
 <ul>
 <li>
-<p>Red&#160;Hat OpenShift Container Platform and Kubernetes are sensitive to disk performance, and faster storage is recommended, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. Note that on many cloud platforms, storage size and IOPS scale together, so you might need to over-allocate storage volume to obtain sufficient performance.</p>
+<p>Red&#160;Hat OpenShift Container Platform and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.</p>
 </li>
 <li>
-<p>As with all user-provisioned installations, if you choose to use RHEL compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. Use of RHEL 7 compute machines is deprecated and has been removed in Red&#160;Hat OpenShift Container Platform 4.10 and later.</p>
+<p>As with all user-provisioned installations, if you choose to use RHEL compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. Red&#160;Hat OpenShift Container Platform 4.10 and later do not support RHEL 7 compute machines.</p>
 </li>
 </ul>
 </div>
@@ -5875,7 +5875,7 @@ See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise 
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For Red&#160;Hat OpenShift Container Platform version 4.22, RHCOS is based on RHEL version 9.8, which has the micro-architecture requirements. The following list contains the minimum instruction set architectures (ISA) that each architecture requires:</p>
+<p>In Red&#160;Hat OpenShift Container Platform version 4.22, RHCOS uses RHEL version 9.8, which updates the micro-architecture requirements. Each architecture requires the following minimum instruction set architectures (ISA):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -5916,10 +5916,10 @@ See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise 
 <div class="ulist">
 <ul>
 <li>
-<p>Control plane machines should have committed memory equal to or greater than the published minimum resource requirements for a cluster installation.</p>
+<p>Control plane machines must have committed memory equal to or greater than the published minimum resource requirements for a cluster installation.</p>
 </li>
 <li>
-<p>Compute machines should have a minimum reservation equal to or greater than the published minimum resource requirements for a cluster installation.</p>
+<p>Compute machines must have a minimum reservation equal to or greater than the published minimum resource requirements for a cluster installation.</p>
 </li>
 </ul>
 </div>
@@ -5973,10 +5973,10 @@ See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise 
 <div class="sect4">
 <h5 id="csr-management_prepare-to-install-on-vsphere">Certificate signing requests management</h5>
 <div class="paragraph _abstract">
-<p>On user-provisioned infrastructure, you must provide a mechanism for approving cluster certificate signing requests (CSRs) after installation when your cluster has limited access to automatic machine management.</p>
+<p>On user-provisioned infrastructure, you must implement a mechanism for approving cluster certificate signing requests (CSRs) after installation when your cluster has limited access to automatic machine management.</p>
 </div>
 <div class="paragraph">
-<p>The <code>kube-controller-manager</code> only approves the kubelet client CSRs. The <code>machine-approver</code> cannot guarantee the validity of a serving certificate that is requested by using kubelet credentials because it cannot confirm that the correct machine issued the request. You must determine and implement a method of verifying the validity of the kubelet serving certificate requests and approving them.</p>
+<p>The <code>kube-controller-manager</code> only approves the kubelet client CSRs. The <code>machine-approver</code> cannot guarantee the validity of a serving certificate that kubelet credentials request because it cannot confirm that the correct machine issued the request. You must find and implement a method of verifying the validity of the kubelet serving certificate requests and approving them.</p>
 </div>
 </div>
 <div class="sect4">
@@ -6177,7 +6177,7 @@ the Cluster Version Operator on port <code>9099</code>.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="6"><div class="content"><div class="paragraph">
+<td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
 <p>UDP</p>
 </div>
 <div class="ulist">
@@ -6317,8 +6317,6 @@ the Cluster Version Operator on port <code>9099</code>.</p>
 <div class="paragraph nav-footer">
 <p></p>
 </div></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Kubernetes node port</p>
 </div>
@@ -6329,6 +6327,8 @@ the Cluster Version Operator on port <code>9099</code>.</p>
 <div class="paragraph nav-footer">
 <p></p>
 </div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>ESP</p>
 </div>
@@ -6341,6 +6341,16 @@ the Cluster Version Operator on port <code>9099</code>.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>N/A</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>IPsec Encapsulating Security Payload (ESP)</p>
 </div>
 <div class="ulist">
 <ul>
@@ -11621,7 +11631,7 @@ If you do not specify a value, the installation program installs the resources i
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-05 08:57:54 -0500
+Last updated 2026-10-06 11:15:41 -0500
 </div>
 </div>
 <style>

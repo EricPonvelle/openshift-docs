@@ -4015,7 +4015,7 @@ image-registry   4.7       True        False         False      6h50m</code></pr
 <div class="sect5">
 <h6 id="installation-registry-storage-non-production_install-on-vsphere-upi">Configure storage for the image registry in non-production clusters</h6>
 <div class="paragraph _abstract">
-<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory. If you do so, all images are lost if you restart the registry.</p>
+<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -4042,10 +4042,10 @@ image-registry   4.7       True        False         False      6h50m</code></pr
 </table>
 </div>
 <div class="paragraph">
-<p>If you run this command before the Image Registry Operator initializes its
-components, the <code>oc patch</code> command fails with the following error:</p>
+<p>If you run this command before the Image Registry Operator initializes its components, the <code>oc patch</code> command fails with the following error:</p>
 </div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">Error from server (NotFound): configs.imageregistry.operator.openshift.io "cluster" not found</code></pre>
 </div>
@@ -5413,7 +5413,7 @@ listen ingress-router-80
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-05 08:57:54 -0500
+Last updated 2026-10-06 11:15:41 -0500
 </div>
 </div>
 <style>

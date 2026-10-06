@@ -2008,7 +2008,7 @@ For example, specify <code>us-east-1-nyc-1</code> to use the zone <code>us-east-
 <div class="sect3">
 <h4 id="installation-aws-marketplace-subscribe_installing-aws-localzone">Obtaining an AWS Marketplace image</h4>
 <div class="paragraph _abstract">
-<p>If you are deploying an Red&#160;Hat OpenShift Container Platform cluster using an AWS Marketplace image, you must first subscribe through AWS. Subscribing to the offer provides you with the AMI ID that the installation program uses to deploy compute nodes.</p>
+<p>If you are deploying an Red&#160;Hat OpenShift Container Platform cluster by using an Amazon Web Services (AWS) Marketplace image, you must first subscribe through AWS. Subscribing to the offer provides you with the Amazon Machine Image (AMI) ID that the installation program uses to deploy compute nodes.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2028,7 +2028,7 @@ For example, specify <code>us-east-1-nyc-1</code> to use the zone <code>us-east-
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have an AWS account to purchase the offer. This account does not have to be the same account that is used to install the cluster.</p>
+<p>You have an AWS account to buy the offer. This account does not have to be the same account that you use to install the cluster.</p>
 </li>
 </ul>
 </div>
@@ -2039,7 +2039,7 @@ For example, specify <code>us-east-1-nyc-1</code> to use the zone <code>us-east-
 <p>Complete the Red&#160;Hat OpenShift Container Platform subscription from the <a href="https://aws.amazon.com/marketplace/fulfillment?productId=59ead7de-2540-4653-a8b0-fa7926d5c845">AWS Marketplace</a>.</p>
 </li>
 <li>
-<p>Record the AMI ID for your specific AWS Region. As part of the installation process, you must update the <code>install-config.yaml</code> file with this value before deploying the cluster.</p>
+<p>Record the AMI ID for your specific AWS region. As part of the installation process, you must update the <code>install-config.yaml</code> file with this value before deploying the cluster.</p>
 <div class="listingblock">
 <div class="title">Sample <code>install-config.yaml</code> file with AWS Marketplace compute nodes</div>
 <div class="content">
@@ -2073,7 +2073,7 @@ pullSecret: '{"auths": ...}'</code></pre>
 </dd>
 <dt class="hdlist1"><code>platform.aws.region</code></dt>
 <dd>
-<p>Specifies the <code>platform.aws.region</code> parameter. Your AMI ID is associated with a specific AWS Region. When creating the installation configuration file, ensure that you select the same AWS Region that you specified when configuring your subscription.</p>
+<p>Specifies the <code>platform.aws.region</code> parameter. Your AMI ID is associated with a specific AWS region. When creating the installation configuration file, ensure that you select the same AWS region that you specified when configuring your subscription.</p>
 </dd>
 </dl>
 </div>
@@ -2084,7 +2084,7 @@ pullSecret: '{"auths": ...}'</code></pre>
 <div class="sect3">
 <h4 id="installation-minimum-resource-requirements_install-on-aws-local-zones">Minimum resource requirements for cluster installation</h4>
 <div class="paragraph _abstract">
-<p>Each created cluster must meet minimum requirements so that the cluster runs as expected.</p>
+<p>To ensure that your Red&#160;Hat OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 328. Minimum resource requirements</caption>
@@ -2138,13 +2138,13 @@ pullSecret: '{"auths": ...}'</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>One vCPU is equivalent to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = vCPUs.</p>
+<p>One vCPU is equal to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = vCPUs.</p>
 </li>
 <li>
-<p>Red&#160;Hat OpenShift Container Platform and Kubernetes are sensitive to disk performance, and faster storage is recommended, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. Note that on many cloud platforms, storage size and IOPS scale together, so you might need to over-allocate storage volume to obtain sufficient performance.</p>
+<p>Red&#160;Hat OpenShift Container Platform and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.</p>
 </li>
 <li>
-<p>As with all user-provisioned installations, if you choose to use RHEL compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. Use of RHEL 7 compute machines is deprecated and has been removed in Red&#160;Hat OpenShift Container Platform 4.10 and later.</p>
+<p>As with all user-provisioned installations, if you choose to use RHEL compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. Red&#160;Hat OpenShift Container Platform 4.10 and later do not support RHEL 7 compute machines.</p>
 </li>
 </ul>
 </div>
@@ -2158,7 +2158,7 @@ pullSecret: '{"auths": ...}'</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For Red&#160;Hat OpenShift Container Platform version 4.22, RHCOS is based on RHEL version 9.8, which has the micro-architecture requirements. The following list contains the minimum instruction set architectures (ISA) that each architecture requires:</p>
+<p>In Red&#160;Hat OpenShift Container Platform version 4.22, RHCOS uses RHEL version 9.8, which updates the micro-architecture requirements. Each architecture requires the following minimum instruction set architectures (ISA):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2190,7 +2190,7 @@ pullSecret: '{"auths": ...}'</code></pre>
 <div class="sect3">
 <h4 id="installation-aws-tested-machine-types_installing-aws-localzone">Tested instance types for AWS</h4>
 <div class="paragraph _abstract">
-<p>There are several Amazon Web Services (AWS) instance types tested with Red&#160;Hat OpenShift Container Platform.</p>
+<p>To ensure cluster stability and performance, use one of the tested Amazon Web Services (AWS) instance types for your Red&#160;Hat OpenShift Container Platform machines.</p>
 </div>
 <div class="paragraph">
 <p>The following AWS instance types have been tested with
@@ -2204,14 +2204,14 @@ Red&#160;Hat OpenShift Container Platform for use with AWS Local Zones.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Use the machine types included in the following charts for your AWS instances. If you use an instance type that is not listed in the chart, ensure that the instance size you use matches the minimum resource requirements that are listed in the section named "Minimum resource requirements for cluster installation".</p>
+<p>Use the machine types included in the following charts for your AWS instances. If you use an instance type that is not listed in the chart, ensure that the instance size you use matches the minimum resource requirements in "Minimum resource requirements for cluster installation".</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>See the following machine types based on 64-bit x86 architecture for AWS Local Zones:</p>
+<p><strong>Machine types based on 64-bit x86 architecture for AWS Local Zones</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -3838,7 +3838,7 @@ INFO Time elapsed: 36m22s</code></pre>
 <div class="sect3">
 <h4 id="logging-in-by-using-the-web-console_install-on-aws-local-zones">Logging in to the cluster by using the web console</h4>
 <div class="paragraph _abstract">
-<p>The <code>kubeadmin</code> user exists by default after an Red&#160;Hat OpenShift Container Platform installation. You can log in to your cluster as the <code>kubeadmin</code> user by using the Red&#160;Hat OpenShift Container Platform web console.</p>
+<p>To verify that your cluster deployed successfully and access its features, log in to the Red&#160;Hat OpenShift Container Platform web console as the <code>kubeadmin</code> user.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -3869,7 +3869,7 @@ INFO Time elapsed: 36m22s</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Alternatively, you can obtain the <code>kubeadmin</code> password from the <code>&lt;installation_directory&gt;/.openshift_install.log</code> log file on the installation host.</p>
+<p>Or, you can obtain the <code>kubeadmin</code> password from the <code>&lt;installation_directory&gt;/.openshift_install.log</code> log file on the installation host.</p>
 </div>
 </td>
 </tr>
@@ -3891,7 +3891,7 @@ INFO Time elapsed: 36m22s</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Alternatively, you can obtain the Red&#160;Hat OpenShift Container Platform route from the <code>&lt;installation_directory&gt;/.openshift_install.log</code> log file on the installation host.</p>
+<p>Or, you can obtain the Red&#160;Hat OpenShift Container Platform route from the <code>&lt;installation_directory&gt;/.openshift_install.log</code> log file on the installation host.</p>
 </div>
 </td>
 </tr>
@@ -3982,7 +3982,7 @@ ip-10-0-207-188.ec2.internal   Ready    edge,worker   172m   v1.25.2+d2e245f</co
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-05 08:57:54 -0500
+Last updated 2026-10-06 11:15:41 -0500
 </div>
 </div>
 <style>

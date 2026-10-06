@@ -8738,7 +8738,7 @@ namespace selector that have the label <code>type: sharded</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Version incompatibilities: The Gateway API ecosystem changes rapidly, and some implementations do not work with others because their featureset is based on differing versions of Gateway API.</p>
+<p>Version incompatibilities: Gateway API ecosystem changes rapidly, and some implementations do not work with others because their featureset is based on differing versions of Gateway API.</p>
 </li>
 <li>
 <p>Resource overhead: While more flexible, Gateway API uses multiple resource types to achieve an outcome. For smaller applications, the simplicity of traditional Ingress might be a better fit.</p>
@@ -8777,7 +8777,7 @@ namespace selector that have the label <code>type: sharded</code>.</p>
 <div class="sect5">
 <h6 id="gateway-api-x-k8s-io-crds_understand-gateway-api">Gateway API CRDs for <code>gateway.networking.x-k8s.io</code></h6>
 <div class="paragraph">
-<p>In previous versions of Red&#160;Hat OpenShift Container Platform, cluster security policies blocked the deployment of the Gateway API CRD for <code>gateway.networking.x-k8s.io</code>. Starting in Red&#160;Hat OpenShift Container Platform 4.22, this restriction is removed, and you can deploy that CRD.</p>
+<p>In previous versions of Red&#160;Hat OpenShift Container Platform, cluster security policies blocked the deployment of the <code>gateway.networking.x-k8s.io</code> Gateway API CRD. Starting in Red&#160;Hat OpenShift Container Platform 4.22, this restriction is removed, and you can deploy that CRD.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -8951,7 +8951,7 @@ spec:
 <div class="sect4">
 <h5 id="comparing-openshift-routes-and-httproutes_understand-gateway-api">Red&#160;Hat OpenShift Container Platform routes and HTTPRoutes comparison</h5>
 <div class="paragraph _abstract">
-<p>When you migrate from standard networking to the Gateway API, you can compare Red&#160;Hat OpenShift Container Platform routes with <code>HTTPRoute</code> custom resources (CRs) to understand which features are supported and how your configuration must change.</p>
+<p>When you migrate from standard networking to Gateway API, you can compare Red&#160;Hat OpenShift Container Platform routes with <code>HTTPRoute</code> custom resources (CRs) to understand which features are supported and how your configuration must change.</p>
 </div>
 <div class="paragraph">
 <p>While both resources handle ingress traffic, they have distinct feature sets and implementation differences.</p>
@@ -9300,7 +9300,7 @@ Do not set <code>namespaces.from: All</code>; that setting allows routes from ev
 <div class="sect4">
 <h5 id="resolving-listener-routing-conflicts_configure-gateway-resources">Understanding listener routing conflicts</h5>
 <div class="paragraph _abstract">
-<p>When you configure a <code>Gateway</code> custom resource (CR) with multiple listeners, you must establish clear rules for overlapping hostnames and ports to ensure your traffic does not get misrouted. To avoid ambiguity, the Gateway API uses specific conflict management rules.</p>
+<p>When you configure a <code>Gateway</code> custom resource (CR) with multiple listeners, you must establish clear rules for overlapping hostnames and ports to ensure your traffic does not get misrouted. To avoid ambiguity, Gateway API uses specific conflict management rules.</p>
 </div>
 <div class="paragraph">
 <p>If your listener configurations violate these rules, the affected listener receives a <code>Conflicted</code> status condition and cannot route traffic correctly.</p>
@@ -9329,7 +9329,7 @@ Do not set <code>namespaces.from: All</code>; that setting allows routes from ev
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In the Gateway API, wildcards match one or more complete DNS labels. For example, <code>*.&lt;example.com&gt;</code> matches <code>&lt;www.example.com&gt;</code> and <code>&lt;sub.domain.example.com&gt;</code>, but does not match the root domain <code>&lt;example.com&gt;</code>.</p>
+<p>In Gateway API, wildcards match one or more complete DNS labels. For example, <code>*.&lt;example.com&gt;</code> matches <code>&lt;www.example.com&gt;</code> and <code>&lt;sub.domain.example.com&gt;</code>, but does not match the root domain <code>&lt;example.com&gt;</code>.</p>
 </div>
 </td>
 </tr>
@@ -9837,7 +9837,7 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ControllerInstalled</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Cluster Ingress Operator successfully installed the Gateway API controller.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Cluster Ingress Operator successfully installed the controller for Gateway API.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ControllerInstalled</code></p></td>
@@ -11536,7 +11536,7 @@ spec:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-05 08:57:54 -0500
+Last updated 2026-10-06 11:15:41 -0500
 </div>
 </div>
 <style>
