@@ -570,50 +570,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 <!-- navmap-right-toc-end -->
-<!-- navmap-preview-warning-start -->
-<style>
-  .navmap-preview-warning {
-    background: #fff1f1;
-    border: 2px solid #c9190b;
-    border-radius: 4px;
-    color: #3b0a0a;
-    font-family: "Open Sans", "DejaVu Sans", sans-serif;
-    margin: 1em auto;
-    max-width: 70em;
-    padding: 1em 1.25em;
-  }
-  .navmap-preview-warning strong { color: #a30000; }
-  .navmap-preview-warning details { margin-top: .75em; }
-  .navmap-preview-warning pre {
-    background: #fff;
-    border: 1px solid #d7d7d7;
-    max-height: 20em;
-    overflow: auto;
-    padding: .75em;
-    white-space: pre-wrap;
-  }
-</style>
-<!-- navmap-preview-warning-end -->
 </head>
 <body id="rosa-hcp-manage-compute-capacity-manually_rosa-hcp-manage-compute-capacity-manually" class="book toc2 toc-left navmap-has-right-toc">
-<div class="navmap-preview-warning" role="alert"><strong>Preview warning: this preview is incomplete.</strong><p>One or more AsciiDoc includes are missing. Content may be absent from this page or from related pages.</p><details><summary>Show missing-include report</summary><pre>Include preflight failed for maps/rosa-hcp/navigation.adoc
-
-Missing include targets:
-  maps/rosa-hcp/hcm-jobs/rosa-hcp-understand-compute-capacity.adoc:13
-    include::modules/rosa-hcp-config-spot-instance-overview.adoc[leveloffset=+1]
-    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-config-spot-instance-overview.adoc
-  maps/rosa-hcp/hcm-jobs/rosa-hcp-add-compute-capacity.adoc:20
-    include::modules/rosa-hcp-config-spot-instance-cli-create-spot-machine-pool.adoc[leveloffset=+1]
-    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-config-spot-instance-cli-create-spot-machine-pool.adoc
-  maps/rosa-hcp/hcm-jobs/rosa-hcp-keep-workloads-running-smoothly-during-spot-interruptions.adoc:10
-    include::modules/rosa-hcp-config-spot-instance-cli-upgrade.adoc[leveloffset=+1]
-    expected: maps/rosa-hcp/hcm-jobs/modules/rosa-hcp-config-spot-instance-cli-upgrade.adoc
-
-How to fix these errors:
-  1. Restore or create the expected .adoc file, preserving the path relative to the referring map; or
-  2. Change the include directive to the path of the existing source file if the topic was renamed or moved.
-  Then rerun this audit and the preview. Do not ignore the error: Asciidoctor can otherwise generate incomplete HTML.
-</pre></details><details><summary>How to remediate missing content</summary><ol><li>Restore or create the expected <code>.adoc</code> file at the reported path, including its required content and attributes.</li><li>If the topic was renamed or moved, update the reported <code>include::</code> directive to point to the existing file. The path is relative to the file containing the directive.</li><li>If the topic is intentionally not ready, remove the include from the map and track the content gap separately.</li></ol><p>After fixing the includes, rebuild the preview with <code>./preview-map &lt;distro&gt;</code>.</p></details></div>
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
@@ -752,7 +710,7 @@ How to fix these errors:
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#add-compute-capacity-intro_rosa-hcp-add-compute-capacity">Add compute capacity</a></li><li class="level-5"><a href="#creating_machine_pools_ocm_rosa-hcp-add-compute-capacity">Create a machine pool using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#creating_machine_pools_cli_rosa-hcp-add-compute-capacity">Create a machine pool using the ROSA CLI</a></li><li class="level-5"><a href="#creating_machine_pools_cli_autoscaling_rosa-hcp-add-compute-capacity">Create an autoscaling machine pool using the ROSA CLI</a></li><li class="level-5"><a href="#creating_a_machine_pools_cli_win_li_rosa-hcp-add-compute-capacity">Creating a machine pool with AWS Windows License Included enabled using the ROSA CLI</a></li><li class="level-5"><a href="#creating_machine_pools_cli_capres_rosa-hcp-add-compute-capacity">Creating a machine pool with Capacity Reservations using the ROSA CLI</a></li><li class="level-4"><a href="#scale-compute-capacity-intro_rosa-hcp-scale-compute-capacity">Scale compute capacity</a></li><li class="level-5"><a href="#rosa-scaling-worker-nodes_rosa-hcp-scale-compute-capacity">Scale compute nodes manually</a></li><li class="level-5"><a href="#ocm-enabling-autoscaling_rosa-hcp-scale-compute-capacity">Enable autoscaling nodes in an existing cluster using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#rosa-enabling-autoscaling-nodes_rosa-hcp-scale-compute-capacity">Enable autoscaling nodes in an existing cluster using the ROSA CLI</a></li><li class="level-6"><a href="#ocm-disabling-autoscaling_rosa-hcp-scale-compute-capacity">Disable autoscaling nodes in an existing cluster using OpenShift Cluster Manager</a></li><li class="level-4"><a href="#control-workload-placement-on-nodes-intro_rosa-hcp-control-workload-placement-on-nodes">Control workload placement on nodes</a></li><li class="level-5"><a href="#rosa-adding-node-labels_rosa-hcp-control-workload-placement-on-nodes">Add node labels to control scheduling</a></li><li class="level-5"><a href="#add-node-taints-to-restrict-workloads-intro_rosa-hcp-control-workload-placement-on-nodes">Add node taints to restrict workloads</a></li><li class="level-6"><a href="#rosa-adding-taints-ocm_rosa-hcp-control-workload-placement-on-nodes">Add taints to a machine pool using OpenShift Cluster Manager</a></li><li class="level-6"><a href="#rosa-adding-taints-cli_rosa-hcp-control-workload-placement-on-nodes">Add taints to a machine pool using the ROSA CLI</a></li><li class="level-4"><a href="#rosa-adding-tags-cli_rosa-hcp-control-workload-placement-on-nodes">Add tags to a machine pool by using the ROSA CLI</a></li><li class="level-4"><a href="#configure-node-maintenance-and-reliability-intro_rosa-hcp-configure-node-maintenance-and-reliability">Configure node maintenance and reliability</a></li><li class="level-5"><a href="#rosa-configuring-autorepair_rosa-hcp-configure-node-maintenance-and-reliability">Configure machine pool AutoRepair</a></li><li class="level-5"><a href="#rosa-autorepair-ocm_rosa-hcp-configure-node-maintenance-and-reliability">Configure AutoRepair on a machine pool using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#rosa-autorepair-cli_rosa-hcp-configure-node-maintenance-and-reliability">Configure machine pool AutoRepair using the ROSA CLI</a></li><li class="level-5"><a href="#rosa-node-drain-grace-period_rosa-hcp-configure-node-maintenance-and-reliability">Set node drain grace periods for workload migration</a></li><li class="level-4"><a href="#configuring-machine-pool-disk-volume_rosa-hcp-adjust-node-storage-capacity">Adjust node storage capacity</a></li><li class="level-5"><a href="#configuring-machine-pool-disk-volume-ocm_rosa-hcp-adjust-node-storage-capacity">Configure machine pool disk volume using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#configuring-machine-pool-disk-volume-cli_rosa-hcp-adjust-node-storage-capacity">Configure machine pool disk volume using the ROSA CLI</a></li><li class="level-4"><a href="#remove-compute-capacity-intro_rosa-hcp-remove-compute-capacity">Remove compute capacity</a></li><li class="level-5"><a href="#deleting-machine-pools-ocm_rosa-hcp-remove-compute-capacity">Delete a machine pool using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#deleting-machine-pools-cli_rosa-hcp-remove-compute-capacity">Delete a machine pool using the ROSA CLI</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#add-compute-capacity-intro_rosa-hcp-add-compute-capacity">Add compute capacity</a></li><li class="level-5"><a href="#creating_machine_pools_ocm_rosa-hcp-add-compute-capacity">Create a machine pool using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#creating_machine_pools_cli_rosa-hcp-add-compute-capacity">Create a machine pool using the ROSA CLI</a></li><li class="level-5"><a href="#creating_machine_pools_cli_autoscaling_rosa-hcp-add-compute-capacity">Create an autoscaling machine pool using the ROSA CLI</a></li><li class="level-5"><a href="#creating_a_machine_pools_cli_win_li_rosa-hcp-add-compute-capacity">Creating a machine pool with AWS Windows License Included enabled using the ROSA CLI</a></li><li class="level-5"><a href="#creating_machine_pools_cli_capres_rosa-hcp-add-compute-capacity">Creating a machine pool with Capacity Reservations using the ROSA CLI</a></li><li class="level-5"><a href="#rosa-hcp-config-spot-instance-cli-create-spot-machine-pool_rosa-hcp-add-compute-capacity">Create a Spot machine pool</a></li><li class="level-4"><a href="#scale-compute-capacity-intro_rosa-hcp-scale-compute-capacity">Scale compute capacity</a></li><li class="level-5"><a href="#rosa-scaling-worker-nodes_rosa-hcp-scale-compute-capacity">Scale compute nodes manually</a></li><li class="level-5"><a href="#ocm-enabling-autoscaling_rosa-hcp-scale-compute-capacity">Enable autoscaling nodes in an existing cluster using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#rosa-enabling-autoscaling-nodes_rosa-hcp-scale-compute-capacity">Enable autoscaling nodes in an existing cluster using the ROSA CLI</a></li><li class="level-6"><a href="#ocm-disabling-autoscaling_rosa-hcp-scale-compute-capacity">Disable autoscaling nodes in an existing cluster using OpenShift Cluster Manager</a></li><li class="level-4"><a href="#control-workload-placement-on-nodes-intro_rosa-hcp-control-workload-placement-on-nodes">Control workload placement on nodes</a></li><li class="level-5"><a href="#rosa-adding-node-labels_rosa-hcp-control-workload-placement-on-nodes">Add node labels to control scheduling</a></li><li class="level-5"><a href="#add-node-taints-to-restrict-workloads-intro_rosa-hcp-control-workload-placement-on-nodes">Add node taints to restrict workloads</a></li><li class="level-6"><a href="#rosa-adding-taints-ocm_rosa-hcp-control-workload-placement-on-nodes">Add taints to a machine pool using OpenShift Cluster Manager</a></li><li class="level-6"><a href="#rosa-adding-taints-cli_rosa-hcp-control-workload-placement-on-nodes">Add taints to a machine pool using the ROSA CLI</a></li><li class="level-4"><a href="#rosa-adding-tags-cli_rosa-hcp-control-workload-placement-on-nodes">Add tags to a machine pool by using the ROSA CLI</a></li><li class="level-4"><a href="#configure-node-maintenance-and-reliability-intro_rosa-hcp-configure-node-maintenance-and-reliability">Configure node maintenance and reliability</a></li><li class="level-5"><a href="#rosa-configuring-autorepair_rosa-hcp-configure-node-maintenance-and-reliability">Configure machine pool AutoRepair</a></li><li class="level-5"><a href="#rosa-autorepair-ocm_rosa-hcp-configure-node-maintenance-and-reliability">Configure AutoRepair on a machine pool using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#rosa-autorepair-cli_rosa-hcp-configure-node-maintenance-and-reliability">Configure machine pool AutoRepair using the ROSA CLI</a></li><li class="level-5"><a href="#rosa-node-drain-grace-period_rosa-hcp-configure-node-maintenance-and-reliability">Set node drain grace periods for workload migration</a></li><li class="level-4"><a href="#configuring-machine-pool-disk-volume_rosa-hcp-adjust-node-storage-capacity">Adjust node storage capacity</a></li><li class="level-5"><a href="#configuring-machine-pool-disk-volume-ocm_rosa-hcp-adjust-node-storage-capacity">Configure machine pool disk volume using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#configuring-machine-pool-disk-volume-cli_rosa-hcp-adjust-node-storage-capacity">Configure machine pool disk volume using the ROSA CLI</a></li><li class="level-4"><a href="#remove-compute-capacity-intro_rosa-hcp-remove-compute-capacity">Remove compute capacity</a></li><li class="level-5"><a href="#deleting-machine-pools-ocm_rosa-hcp-remove-compute-capacity">Delete a machine pool using OpenShift Cluster Manager</a></li><li class="level-5"><a href="#deleting-machine-pools-cli_rosa-hcp-remove-compute-capacity">Delete a machine pool using the ROSA CLI</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-hcp-manage-compute-capacity-manually_rosa-hcp-manage-compute-capacity-manually">Manage compute capacity manually</h3>
@@ -1630,8 +1588,58 @@ Message:                    Minimum availability requires 1 replicas, current 1 
 </li>
 </ul>
 </div>
+</div>
+<div class="sect4">
+<h5 id="rosa-hcp-config-spot-instance-cli-create-spot-machine-pool_rosa-hcp-add-compute-capacity">Create a Spot machine pool</h5>
+<div class="paragraph _abstract">
+<p>You can create Spot machine pools for new clusters, or existing ones. This process is identical for both simple and enhanced modes.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Create a Spot machine pool with fixed replicas:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create machinepool --cluster=&lt;cluster-name&gt; \
+  --name spot-workers \
+  --instance-type m5.xlarge \
+  --replicas 3 \
+  --use-spot-instances \
+  --spot-max-price 0.50</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Alternatively, create a Spot machine pool with autoscaling:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create machinepool --cluster=&lt;cluster-name&gt; \
+  --name spot-workers \
+  --instance-type m5.xlarge \
+  --enable-autoscaling \
+  --min-replicas 2 \
+  --max-replicas 10 \
+  --use-spot-instances \
+  --spot-max-price 0.75</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Unresolved directive in hcm-jobs/rosa-hcp-add-compute-capacity.adoc - include::modules/rosa-hcp-config-spot-instance-cli-create-spot-machine-pool.adoc[leveloffset=+1]</p>
+<p>Omitting the <code>--spot-max-price</code> flag defaults to the on-demand price.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
