@@ -572,6 +572,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="size-guidance-for-hosted-control-planes-con_size-guidance-for-hosted-control-planes.html">Size guidance for hosted control planes</a>
 </li>
+<li><a href="override-resource-util-hosted-cluster-con_override-resource-util-hosted-cluster.html">Overriding resource utilization measurements</a>
+</li>
 <li><a href="distribute-hosted-cluster-workloads-con_distribute-hosted-cluster-workloads.html">Distribute hosted cluster workloads</a>
 </li>
 <li><a href="networking-guidance-for-hosted-control-planes-con_networking-guidance-for-hosted-control-planes.html">Networking guidance for hosted control planes</a>
@@ -852,8 +854,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="hosted-clusters-openstack-prerequisites_deploying-hosted-control-planes-on-openstack.html">Prerequisites for OpenStack</a>
 </li>
-<li><a href="deploying-hosted-control-planes-in-a-disconnected-environment-intro_deploying-hosted-control-planes-in-a-disconnected-environment.html">Deploying hosted control planes in a disconnected environment</a>
-</li>
 <li><a href="installing-the-hosted-control-planes-command-line-interface-intro_installing-the-hosted-control-planes-command-line-interface.html">Installing the hosted control planes command-line interface</a>
 </li>
 <li><a href="deploying-hosted-control-planes-on-aws-intro_deploying-hosted-control-planes-on-aws.html">Deploying hosted control planes on AWS</a>
@@ -869,29 +869,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="_disconnected_environments.html">Disconnected environments</a>
 
 <ul class="sectlevel2">
-<li><a href="understand-disconnected-environments-intro_understand-disconnected-environments.html">Understand disconnected environments</a>
+<li><a href="understand-disconnected-environments-intro_understand-disconnected-environments.html">Disconnected environment concepts</a>
 </li>
-<li><a href="installing-agent_install-a-cluster-in-a-disconnected-environment.html">Installing a cluster with the Agent-based Installer</a>
+<li><a href="plan-a-disconnected-installation-intro_plan-a-disconnected-installation.html">Plan a disconnected installation</a>
 </li>
-<li><a href="prerequisites_create-a-mirror-registy-with-mirror-registy-for-red-hat-openshift.html">Prerequisites</a>
+<li><a href="installing-agent_install-a-cluster-in-a-disconnected-environment.html">Install a cluster with the Agent-based Installer</a>
 </li>
-<li><a href="installation-oc-mirror-v2-about_mirror-images-to-a-mirror-registry-using-oc-mirror-v2.html">About oc-mirror plugin v2</a>
+<li><a href="create-mirror-registry-intro_create-a-mirror-registy-with-mirror-registy-for-red-hat-openshift.html">Create a mirror registry with mirror registry for Red Hat OpenShift</a>
 </li>
-<li><a href="prerequisites_mirror-images-to-a-mirror-registry-using-the-oc-adm-release-mirror-command.html">Prerequisites</a>
+<li><a href="installation-oc-mirror-v2-about_mirror-images-to-a-mirror-registry-using-oc-mirror-v2.html">oc-mirror plugin v2</a>
 </li>
-<li><a href="oc-mirror-migration-differences_migrate-from-oc-mirror-v1-to-v2.html">Changes from oc-mirror plugin v1 to v2</a>
-</li>
-<li><a href="olm-restricted-network-prereqs_manage-olm-operators-in-a-disconnected-environment.html">Prerequisites</a>
+<li><a href="manage-olm-operators-disconnected-intro_manage-olm-operators-in-a-disconnected-environment.html">Manage OLM Operators in a disconnected environment</a>
 </li>
 <li><a href="mirror-images-for-a-cluster-update-in-a-disconnected-environment-intro_mirror-images-for-a-cluster-update-in-a-disconnected-environment.html">Mirror images for a cluster update in a disconnected environment</a>
 </li>
-<li><a href="update-service-overview_update-a-cluster-in-a-disconnected-environment-using-osus.html">Using the OpenShift Update Service in a disconnected environment</a>
+<li><a href="update-service-overview_update-a-cluster-in-a-disconnected-environment-using-osus.html">Use the OpenShift Update Service in a disconnected environment</a>
 </li>
-<li><a href="updating-cli-prereqs_update-a-cluster-in-a-disconnected-environment-without-using-osus.html">Prerequisites for a cluster update</a>
+<li><a href="update-disconnected_update-a-cluster-in-a-disconnected-environment-without-using-osus.html">Updating the disconnected cluster</a>
 </li>
-<li><a href="about-disconnected-updates-uninstalling-osus_uninstall-osus-from-a-cluster.html">Uninstalling the OpenShift Update Service from a cluster</a>
+<li><a href="about-disconnected-updates-uninstalling-osus_uninstall-osus-from-a-cluster.html">Uninstall the OpenShift Update Service from a cluster</a>
 </li>
-<li><a href="installation-about-mirror-registry_convert-a-connected-cluster-to-disconnected.html">About the mirror registry</a>
+<li><a href="configure-trust-and-mirroring-con_configure-trust-and-mirroring.html">Configure trust and mirroring</a>
+</li>
+<li><a href="convert-connected-to-disconnected-intro_convert-a-connected-cluster-to-disconnected.html">Convert a connected cluster to disconnected</a>
+</li>
+<li><a href="deploying-hosted-control-planes-in-a-disconnected-environment-intro_deploying-hosted-control-planes-in-a-disconnected-environment.html">Deploying hosted control planes in a disconnected environment</a>
 </li>
 </ul>
 </li>
@@ -989,7 +991,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="multi-architecture-scheduling_manage-workloads-on-multi-architecture-clusters.html">Scheduled workloads on clusters with multi-architecture compute machines</a>
 </li>
-<li><a href="hcp-import-manual_manually-import-a-hosted-cluster.html">Manually importing hosted clusters</a>
+<li><a href="hcp-import-intro_manually-import-a-hosted-cluster.html">Manually importing a hosted cluster</a>
 </li>
 <li><a href="nodes-pods-image-volume-about_mount-an-oci-image-onto-a-pod.html">Understanding image volumes</a>
 </li>
@@ -1138,7 +1140,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="about-kmm_manage-kernel-modules-across-cluster-nodes.html">About the Kernel Module Management Operator</a>
 </li>
-<li><a href="installation-oc-mirror-v2-about_mirror-container-images-to-a-local-registry.html">About oc-mirror plugin v2</a>
+<li><a href="installation-oc-mirror-v2-about_mirror-container-images-to-a-local-registry.html">oc-mirror plugin v2</a>
 </li>
 <li><a href="organize-image-versions-with-tags-con_organize-image-versions-with-tags.html">Organize image versions with tags</a>
 </li>
@@ -1613,8 +1615,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="about-oadp-update-channels_troubleshoot-common-update-failures.html">About OADP update channels</a>
 </li>
-<li><a href="about-node-health-check-operator_use-the-vsphere-problem-detector-operator.html">About the Node Health Check Operator</a>
-</li>
 <li><a href="understand-etcd-performance_move-etcd-to-a-different-disk.html">Factors that affect etcd performance</a>
 </li>
 <li><a href="gathering-bootstrap-diagnostic-data_gather-data-about-a-cluster-update.html">Gathering bootstrap node diagnostic data</a>
@@ -1645,7 +1645,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="investigating-master-node-installation-issues_troubleshoot-network-issues-131-access-cluster-nodes-for-diagnostics.html">Investigating control plane node installation issues</a>
 </li>
-<li><a href="nw-sriov-network-operator_troubleshoot-network-issues-134-troubleshoot-operators.html">Example SR-IOV Network Operator for virtual functions</a>
+<li><a href="troubleshoot-ovn-kubernetes-networking-issues-con_troubleshoot-ovn-kubernetes-networking-issues.html">Troubleshoot OVN-Kubernetes networking issues</a>
 </li>
 <li><a href="adding-network-attachment-definition-to-pods_troubleshoot-network-issues-135-trace-openflow-with-ovnkube-trace.html">Add the network attachment definition to your pods</a>
 </li>
@@ -4483,7 +4483,7 @@ following command:</p>
 <p>You can use the following commands for local RBAC management.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 537. Local role binding operations</caption>
+<caption class="title">Table 538. Local role binding operations</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4535,7 +4535,7 @@ following command:</p>
 <p>You can also manage cluster role bindings using the following operations. The <code>-n</code> flag is not used for these operations because cluster role bindings use non-namespaced resources.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 538. Cluster role binding operations</caption>
+<caption class="title">Table 539. Cluster role binding operations</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4863,7 +4863,7 @@ spec:
 <p>Taints and tolerations consist of a key, value, and effect.</p>
 </div>
 <table id="taint-components-table_manage-workloads-using-taints-and-tolerations" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 539. Taint and toleration components</caption>
+<caption class="title">Table 540. Taint and toleration components</caption>
 <colgroup>
 <col style="width: 27.2727%;">
 <col style="width: 72.7273%;">
@@ -6764,7 +6764,7 @@ router-default-955d875f4-255g8    0/1      Terminating   0          19h       10
 <div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                          STATUS  ROLES         AGE   VERSION
-ip-10-0-217-226.ec2.internal  Ready   infra,worker  17h   v1.35.4</code></pre>
+ip-10-0-217-226.ec2.internal  Ready   infra,worker  17h   v1.36.3</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6870,7 +6870,10 @@ spec:
 <div class="sect7">
 <h8 id="infrastructure-moving-monitoring_move-workloads-to-infrastructure-nodes">Move the monitoring solution</h8>
 <div class="paragraph _abstract">
-<p>Redeploy the monitoring stack to infrastructure nodes to reduce your subscription requirements. Create and apply a custom config map to move the monitoring stack to infrastructure nodes. The monitoring stack includes Prometheus, Thanos Querier, and Alertmanager, and is managed by the Cluster Monitoring Operator (CMO).</p>
+<p>Redeploy the monitoring stack to infrastructure nodes to reduce your subscription requirements. Create and apply a custom config map to move the monitoring stack to infrastructure nodes.</p>
+</div>
+<div class="paragraph">
+<p>The monitoring stack includes Prometheus, Thanos Querier, and Alertmanager, and is managed by the Cluster Monitoring Operator (CMO).</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -7457,7 +7460,7 @@ Storing signatures
 <p>To create a cluster with multi-architecture compute machines with different installation options and platforms, see the documentation references.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 540. Cluster with multi-architecture compute machine installation options</caption>
+<caption class="title">Table 541. Cluster with multi-architecture compute machine installation options</caption>
 <colgroup>
 <col style="width: 37.5%;">
 <col style="width: 12.5%;">
@@ -8896,9 +8899,9 @@ boot</pre>
 <div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME      STATUS    ROLES   AGE  VERSION
-master-0  Ready     master  63m  v1.35.4
-master-1  Ready     master  63m  v1.35.4
-master-2  Ready     master  64m  v1.35.4</code></pre>
+master-0  Ready     master  63m  v1.36.3
+master-1  Ready     master  63m  v1.36.3
+master-2  Ready     master  64m  v1.36.3</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -9077,11 +9080,11 @@ csr-c57lv   5m26s   system:node:ip-10-0-95-157.us-east-2.compute.internal       
 <div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME      STATUS    ROLES   AGE  VERSION
-master-0  Ready     master  73m  v1.35.4
-master-1  Ready     master  73m  v1.35.4
-master-2  Ready     master  74m  v1.35.4
-worker-0  Ready     worker  11m  v1.35.4
-worker-1  Ready     worker  11m  v1.35.4</code></pre>
+master-0  Ready     master  73m  v1.36.3
+master-1  Ready     master  73m  v1.36.3
+master-2  Ready     master  74m  v1.36.3
+worker-0  Ready     worker  11m  v1.36.3
+worker-1  Ready     worker  11m  v1.36.3</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -9269,7 +9272,7 @@ worker-64k-pages  rendered-worker-64k-pages-e7b61751c4a5b7ff995d64b967c421ff   T
 <p>The following table describes the labels that the Multiarch Tuning Operator adds when you create a pod:</p>
 </div>
 <table class="tableblock frame-all grid-all fit-content">
-<caption class="title">Table 541. Pod labels that the Multiarch Tuning Operator adds when you create a pod</caption>
+<caption class="title">Table 542. Pod labels that the Multiarch Tuning Operator adds when you create a pod</caption>
 <colgroup>
 <col>
 <col>
@@ -12059,7 +12062,7 @@ metadata:
 <p>A pod is designated as one of three QoS classes with decreasing order of priority:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 542. Quality of Service classes</caption>
+<caption class="title">Table 543. Quality of Service classes</caption>
 <colgroup>
 <col style="width: 14.2857%;">
 <col style="width: 14.2857%;">
@@ -14038,7 +14041,7 @@ image-registry   {product-version}                 True        False         Fal
 <div class="sect7">
 <h8 id="installation-registry-storage-non-production_configure-the-image-registry-after-installation">Configure storage for the image registry in non-production clusters</h8>
 <div class="paragraph _abstract">
-<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory. If you do so, all images are lost if you restart the registry.</p>
+<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -14065,10 +14068,10 @@ image-registry   {product-version}                 True        False         Fal
 </table>
 </div>
 <div class="paragraph">
-<p>If you run this command before the Image Registry Operator initializes its
-components, the <code>oc patch</code> command fails with the following error:</p>
+<p>If you run this command before the Image Registry Operator initializes its components, the <code>oc patch</code> command fails with the following error:</p>
 </div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">Error from server (NotFound): configs.imageregistry.operator.openshift.io "cluster" not found</code></pre>
 </div>
@@ -14406,10 +14409,7 @@ image-registry   {product-version}                 True        False         Fal
 <div class="sect6">
 <h7 id="registry-configuring-storage-aws-user-infra_configure-registry-storage-by-platform">Configuring registry storage for AWS with user-provisioned infrastructure</h7>
 <div class="paragraph _abstract">
-<p>During installation, your cloud credentials are sufficient to create an Amazon S3 bucket and the Registry Operator will automatically configure storage.</p>
-</div>
-<div class="paragraph">
-<p>If the Registry Operator cannot create an S3 bucket and automatically configure storage, you can create an S3 bucket and configure storage with the following procedure.</p>
+<p>If the Registry Operator cannot automatically create and configure an Amazon S3 bucket during installation, you must manually configure registry storage for your cluster.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -14419,8 +14419,7 @@ image-registry   {product-version}                 True        False         Fal
 </td>
 <td class="content">
 <div class="paragraph">
-<p>To secure your registry images in AWS, <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html">block public access</a>
-to the S3 bucket.</p>
+<p>To secure your registry images in Amazon Web Services (AWS), <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html">block public access</a> to the S3 bucket.</p>
 </div>
 </td>
 </tr>
@@ -14433,7 +14432,7 @@ to the S3 bucket.</p>
 <p>You have a cluster on AWS with user-provisioned infrastructure.</p>
 </li>
 <li>
-<p>For Amazon S3 storage, the secret is expected to contain two keys:</p>
+<p>For Amazon S3 storage, the secret must contain two keys:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -14451,12 +14450,10 @@ to the S3 bucket.</p>
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Set up a <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config">Bucket Lifecycle Policy</a>
-to abort incomplete multipart uploads that are one day old.</p>
+<p>Set up a <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config">Bucket Lifecycle Policy</a> to cancel incomplete multipart uploads that are one day old.</p>
 </li>
 <li>
-<p>Fill in the storage configuration in
-<code>configs.imageregistry.operator.openshift.io/cluster</code>:</p>
+<p>Enter the storage configuration in <code>configs.imageregistry.operator.openshift.io/cluster</code>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc edit configs.imageregistry.operator.openshift.io/cluster</code></pre>
@@ -15633,10 +15630,7 @@ credentials used by the Operator, if default credentials were found.</p>
 <div class="sect7">
 <h8 id="registry-configuring-storage-aws-user-infra_aws-user-infrastructure-infrastructure">Configuring registry storage for AWS with user-provisioned infrastructure</h8>
 <div class="paragraph _abstract">
-<p>During installation, your cloud credentials are sufficient to create an Amazon S3 bucket and the Registry Operator will automatically configure storage.</p>
-</div>
-<div class="paragraph">
-<p>If the Registry Operator cannot create an S3 bucket and automatically configure storage, you can create an S3 bucket and configure storage with the following procedure.</p>
+<p>If the Registry Operator cannot automatically create and configure an Amazon S3 bucket during installation, you must manually configure registry storage for your cluster.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -15646,8 +15640,7 @@ credentials used by the Operator, if default credentials were found.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>To secure your registry images in AWS, <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html">block public access</a>
-to the S3 bucket.</p>
+<p>To secure your registry images in Amazon Web Services (AWS), <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html">block public access</a> to the S3 bucket.</p>
 </div>
 </td>
 </tr>
@@ -15660,7 +15653,7 @@ to the S3 bucket.</p>
 <p>You have a cluster on AWS with user-provisioned infrastructure.</p>
 </li>
 <li>
-<p>For Amazon S3 storage, the secret is expected to contain two keys:</p>
+<p>For Amazon S3 storage, the secret must contain two keys:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -15678,12 +15671,10 @@ to the S3 bucket.</p>
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Set up a <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config">Bucket Lifecycle Policy</a>
-to abort incomplete multipart uploads that are one day old.</p>
+<p>Set up a <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config">Bucket Lifecycle Policy</a> to cancel incomplete multipart uploads that are one day old.</p>
 </li>
 <li>
-<p>Fill in the storage configuration in
-<code>configs.imageregistry.operator.openshift.io/cluster</code>:</p>
+<p>Enter the storage configuration in <code>configs.imageregistry.operator.openshift.io/cluster</code>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc edit configs.imageregistry.operator.openshift.io/cluster</code></pre>
@@ -17034,7 +17025,7 @@ image-registry   {product-version}                 True        False         Fal
 <div class="sect8">
 <h9 id="installation-registry-storage-non-production_bare-metal">Configure storage for the image registry in non-production clusters</h9>
 <div class="paragraph _abstract">
-<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory. If you do so, all images are lost if you restart the registry.</p>
+<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -17061,10 +17052,10 @@ image-registry   {product-version}                 True        False         Fal
 </table>
 </div>
 <div class="paragraph">
-<p>If you run this command before the Image Registry Operator initializes its
-components, the <code>oc patch</code> command fails with the following error:</p>
+<p>If you run this command before the Image Registry Operator initializes its components, the <code>oc patch</code> command fails with the following error:</p>
 </div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">Error from server (NotFound): configs.imageregistry.operator.openshift.io "cluster" not found</code></pre>
 </div>
@@ -17350,7 +17341,7 @@ image-registry   4.7       True        False         False      6h50m</code></pr
 <div class="sect8">
 <h9 id="installation-registry-storage-non-production_vmware-vsphere">Configure storage for the image registry in non-production clusters</h9>
 <div class="paragraph _abstract">
-<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory. If you do so, all images are lost if you restart the registry.</p>
+<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -17377,10 +17368,10 @@ image-registry   4.7       True        False         False      6h50m</code></pr
 </table>
 </div>
 <div class="paragraph">
-<p>If you run this command before the Image Registry Operator initializes its
-components, the <code>oc patch</code> command fails with the following error:</p>
+<p>If you run this command before the Image Registry Operator initializes its components, the <code>oc patch</code> command fails with the following error:</p>
 </div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">Error from server (NotFound): configs.imageregistry.operator.openshift.io "cluster" not found</code></pre>
 </div>
@@ -17979,7 +17970,7 @@ image-registry   4.13                                  True        False        
 <div class="sect8">
 <h9 id="installation-registry-storage-non-production_nutanix">Configure storage for the image registry in non-production clusters</h9>
 <div class="paragraph _abstract">
-<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory. If you do so, all images are lost if you restart the registry.</p>
+<p>You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -18006,10 +17997,10 @@ image-registry   4.13                                  True        False        
 </table>
 </div>
 <div class="paragraph">
-<p>If you run this command before the Image Registry Operator initializes its
-components, the <code>oc patch</code> command fails with the following error:</p>
+<p>If you run this command before the Image Registry Operator initializes its components, the <code>oc patch</code> command fails with the following error:</p>
 </div>
 <div class="listingblock">
+<div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">Error from server (NotFound): configs.imageregistry.operator.openshift.io "cluster" not found</code></pre>
 </div>
@@ -18824,7 +18815,7 @@ spec:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-05 08:57:54 -0500
+Last updated 2026-10-07 14:52:40 -0500
 </div>
 </div>
 <style>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Openshift Dedicated</title>
+<title>Red&#160;Hat OpenShift Services on AWS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -571,136 +571,205 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <!-- navmap-right-toc-end -->
 </head>
-<body id="osd-access-your-cluster_osd-access-your-cluster" class="book toc2 toc-left navmap-has-right-toc">
+<body id="keep-workloads-running-smoothly-during-spot-interruptions-intro_rosa-hcp-keep-workloads-running-smoothly-during-spot-interruptions" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
-<h1>Openshift Dedicated</h1>
+<h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Openshift Dedicated</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
 <li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
 
 <ul class="sectlevel2">
-<li><a href="osd-whats-new_whats-new-with-openshift-dedicated.html">What&#8217;s new with OpenShift Dedicated</a>
+<li><a href="rosa-hcp-whats-new_rosa-hcp-whats-new.html">What&#8217;s new for Red Hat OpenShift Service on AWS</a>
 </li>
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
 
 <ul class="sectlevel2">
-<li><a href="osd-evaluate-managed-platform-features_evaluate-managed-platform-features-and-infrastructure.html">Evaluate managed platform features and infrastructure</a>
+<li><a href="rosa-hcp-learn-about-benefits-and-use-cases_rosa-hcp-learn-about-benefits-and-use-cases.html">Learn about benefits and use cases</a>
 </li>
-<li><a href="osd-evaluate-platform-architecture_evaluate-platform-architecture-and-components.html">Evaluate platform architecture and components</a>
+<li><a href="rosa-hcp-evaluate-shared-responsibilities_rosa-hcp-evaluate-shared-responsibilities.html">Evaluate shared responsibilities</a>
 </li>
-<li><a href="osd-understand-service-definitions_understand-service-definitions.html">Understand service definitions</a>
+<li><a href="rosa-hcp-get-sre-and-service-account-access_rosa-hcp-get-sre-and-service-account-access.html">Get SRE and service account access</a>
 </li>
-<li><a href="osd-understand-shared-responsibility-model_understand-the-shared-responsibility-model.html">Understand the shared responsibility model</a>
+<li><a href="rosa-hcp-understand-security-control_rosa-hcp-understand-security-control.html">Understand security control</a>
+</li>
+<li><a href="rosa-hcp-acquire-aws-sts-authentication_rosa-hcp-acquire-aws-sts-authentication.html">Acquire AWS STS authentication</a>
+</li>
+<li><a href="rosa-hcp-investigate-architecture-models_rosa-hcp-investigate-architecture-models.html">Investigate architecture models</a>
+</li>
+<li><a href="rosa-hcp-explore-sts-resources-for-iam-clusters_rosa-hcp-explore-sts-resources-for-iam-clusters.html">Explore STS resources for IAM clusters</a>
+</li>
+<li><a href="rosa-hcp-general-availability_rosa-hcp-general-availability.html">General availability</a>
+</li>
+<li><a href="rosa-hcp-review-the-service-definition_rosa-hcp-review-the-service-definition.html">Review the service definition</a>
+</li>
+<li><a href="rosa-hcp-review-supported-instance-types_rosa-hcp-review-supported-instance-types.html">Review supported instance types</a>
+</li>
+<li><a href="rosa-hcp-update-life-cycle_rosa-hcp-update-life-cycle.html">Update life cycle</a>
+</li>
+<li><a href="rosa-cluster-manager-overview_rosa-hcp-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager</a>
 </li>
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
+
 <ul class="sectlevel2">
-<li><a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an Openshift Dedicated cluster on Google Cloud using the default options</a>
+<li><a href="rosa-sts-overview-of-the-default-cluster-specifications_rosa-hcp-quickstart-set-up-your-environment.html">Overview of the default cluster specifications</a>
 </li>
-<li><a href="osd-configure-an-identity-provider_osd-configure-an-identity-provider.html">Configure an identity provider</a>
+<li><a href="rosa-hcp-quickstart-create-your-cluster_rosa-hcp-quickstart-create-your-cluster.html">Quick start: Create your cluster</a>
 </li>
-<li><a href="osd-grant-administrator-privileges-to-a-user_osd-grant-administrator-privileges-to-a-user.html">Grant administrator privileges to a user</a>
+<li><a href="rosa-hcp-quickstart-manage-your-cluster_rosa-hcp-quickstart-manage-your-cluster.html">Quick start: Manage your cluster</a>
 </li>
-<li><a href="osd-access-your-cluster_osd-access-your-cluster.html"><span class="toc-current">Access your cluster</span></a>
+<li><a href="considerations-regarding-auto-creation-mode_rosa-hcp-create-a-cluster-with-default-options.html">About automatic IAM resource creation</a>
 </li>
-<li><a href="osd-deploy-an-application-from-the-developer-catalog_osd-deploy-an-application-from-the-developer-catalog.html">Deploy an application from the Developer Catalog</a>
+<li><a href="rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster.html">Configure Microsoft Entra ID as an identity provider for your cluster</a>
 </li>
-<li><a href="scaling-cluster_osd-scale-your-cluster.html">Scale your cluster</a>
+<li><a href="rosa-hcp-activate-red-hat-openshift-services-on-aws-cluster-and-link-your-aws-account_rosa-hcp-activate-red-hat-openshift-services-on-aws-cluster-and-link-your-aws-account.html">Activate Red Hat OpenShift Services on AWS cluster and link your AWS account</a>
 </li>
-<li><a href="osd-revoke-user-access-and-admin-privileges_osd-revoke-user-access-and-admin-privileges.html">Revoke user access and admin privileges</a>
+<li><a href="rosa-hcp-sign-up-for-fedramp-access-to-create-a-red-hat-openshift-service-on-aws-cluster-in-govcloud_rosa-hcp-sign-up-for-fedramp-access-to-create-a-red-hat-openshift-service-on-aws-cluster-in-govcloud.html">Sign up for FedRAMP access to create a Red Hat OpenShift Service on AWS cluster in GovCloud</a>
 </li>
-<li><a href="osd-clean-up-your-resources_osd-clean-up-your-resources.html">Clean up your resources</a>
+<li><a href="rosa-hcp-manage-your-red-hat-openshift-services-on-aws-govcloud-account_rosa-hcp-manage-your-red-hat-openshift-services-on-aws-govcloud-account.html">Manage your Red Hat OpenShift Services on AWS GovCloud account</a>
 </li>
-<li><a href="osd-red-hat-openshift-cluster-manager-overview_osd-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager overview</a>
+<li><a href="rosa-fedramp-overview_rosa-hcp-apply-fedramp-rev5-secure-configuration-guidance.html">Learn about FedRAMP Rev5 Secure Configuration Guidance (SCG) requirements</a>
+</li>
+<li><a href="rosa-hcp-create-your-first-red-hat-openshift-services-on-aws-cluster-in-aws-govcloud_rosa-hcp-create-your-first-red-hat-openshift-services-on-aws-cluster-in-aws-govcloud.html">Create your first Red Hat OpenShift Services on AWS cluster in AWS GovCloud</a>
+</li>
+<li><a href="rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront_rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront.html">Protect application workloads by using AWS WAF and Amazon CloudFront</a>
+</li>
+<li><a href="rosa-hcp-protect-application-workloads-by-using-aws-waf-and-aws-albs_rosa-hcp-protect-application-workloads-by-using-aws-waf-and-aws-albs.html">Protect application workloads by using AWS WAF and AWS ALBs</a>
 </li>
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
 
 <ul class="sectlevel2">
-<li><a href="osd-create-an-osd-cluster-on-google-cloud-intro_osd-create-an-osd-cluster-on-google-cloud.html">Create an OSD cluster on Google Cloud</a>
+<li><a href="rosa-hcp-prepare-to-create-a-cluster_rosa-hcp-prepare-to-create-a-cluster.html">Prepare to create a cluster</a>
 </li>
-<li><a href="osd-create-an-osd-cluster-on-aws-intro_osd-create-an-osd-cluster-on-aws.html">Create an OSD cluster on AWS</a>
+<li><a href="rosa-hcp-create-a-cluster-using-the-cli_rosa-hcp-create-a-cluster-using-the-cli.html">Create a cluster using the CLI</a>
+</li>
+<li><a href="rosa-hcp-create-a-cluster-in-the-hybrid-cloud-console_rosa-hcp-create-a-cluster-in-the-hybrid-cloud-console.html">Create a cluster in the Hybrid Cloud Console</a>
+</li>
+<li><a href="rosa-hcp-create-a-cluster-using-terraform_rosa-hcp-create-a-cluster-using-terraform.html">Create a cluster using Terraform</a>
+</li>
+<li><a href="rosa-hcp-access-your-cluster_rosa-hcp-access-your-cluster.html">Access your cluster</a>
+</li>
+<li><a href="rosa-hcp-delete-your-cluster_rosa-hcp-delete-your-cluster.html">Delete your cluster</a>
 </li>
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_upgrade.html">▶</button><a href="_upgrade.html">Upgrade</a>
 
 <ul class="sectlevel2">
-<li><a href="osd-plan-cluster-upgrades_plan-cluster-upgrades.html">Plan cluster upgrades</a>
+<li><a href="rosa-plan-cluster-upgrades_rosa-hcp-plan-cluster-upgrades.html">Plan cluster upgrades</a>
 </li>
-<li><a href="osd-upgrade-a-cluster_upgrade-a-cluster.html">Upgrade a cluster</a>
+<li><a href="rosa-hcp-upgrade-a-cluster_rosa-hcp-upgrade-a-cluster.html">Upgrade a cluster</a>
+</li>
+<li><a href="rosa-hcp-upgrade-karpenter-managed-nodes_rosa-hcp-upgrade-karpenter-managed-nodes.html">Upgrade Karpenter-managed nodes</a>
 </li>
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_observe.html">▶</button><a href="_observe.html">Observe</a>
 
 <ul class="sectlevel2">
-<li><a href="sd-collect-and-analyze-logs_osd-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
+<li><a href="sd-collect-and-analyze-logs_rosa-hcp-collect-and-analyze-logs.html">Collect and analyze application and infrastructure logs</a>
 </li>
-<li><a href="osd-monitor-cluster-health_osd-monitor-cluster-health.html">Monitor cluster health</a>
+<li><a href="rosa-hcp-set-up-log-forwarding_rosa-hcp-set-up-control-plane-log-forwarding.html">Set up control plane log forwarding for cluster auditing and monitoring</a>
+</li>
+<li><a href="rosa-hcp-monitor-cluster-health_rosa-hcp-monitor-cluster-health.html">Monitor cluster health</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_administer.html">▶</button><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="adjust-how-many-processes-your-workloads-can-run-intro_rosa-hcp-adjust-how-many-processes-your-workloads-can-run.html">Adjust how many processes your workloads can run</a>
+</li>
+<li><a href="understand-compute-capacity-intro_rosa-hcp-understand-compute-capacity.html">Understand compute capacity</a>
+</li>
+<li><a href="rosa-hcp-manage-compute-capacity-manually_rosa-hcp-manage-compute-capacity-manually.html">Manage compute capacity manually</a>
+</li>
+<li><a href="provision-compute-capacity-automatically-based-on-workload-demand-intro_rosa-hcp-provision-compute-capacity-automatically-based-on-workload-demand.html">Provision compute capacity automatically based on workload demand</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_optimize.html">▶</button><a href="_optimize.html">Optimize</a>
+<ul class="sectlevel2">
+<li><a href="optimize-cluster-capacity-to-match-workload-demands-intro_rosa-hcp-optimize-cluster-capacity-to-match-workload-demands.html">Optimize cluster capacity to match workload demands</a>
+</li>
+<li><a href="optimize-node-performance-intro_rosa-hcp-optimize-node-performance.html">Optimize node performance</a>
+</li>
+<li><a href="keep-workloads-running-smoothly-during-spot-interruptions-intro_rosa-hcp-keep-workloads-running-smoothly-during-spot-interruptions.html"><span class="toc-current">Keep workloads running smoothly during spot interruptions</span></a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_troubleshoot.html">▶</button><a href="_troubleshoot.html">Troubleshoot</a>
+
+<ul class="sectlevel2">
+<li><a href="rosa-hcp-troubleshoot-cluster-infrastructure-issues_rosa-hcp-troubleshoot-cluster-infrastructure-issues.html">Troubleshoot cluster infrastructure issues</a>
+</li>
+<li><a href="rosa-hcp-troubleshoot-component-and-workload-issues_rosa-hcp-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a>
+</li>
+<li><a href="rosa-hcp-troubleshoot-rosa-access-and-deployment-issues_rosa-hcp-troubleshoot-rosa-access-and-deployment-issues.html">Troubleshoot ROSA access and deployment issues</a>
 </li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#access-cluster_osd-access-your-cluster">Accessing your cluster</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-hcp-config-spot-instance-cli-upgrade_rosa-hcp-keep-workloads-running-smoothly-during-spot-interruptions">Upgrade your Red Hat OpenShift Services on AWS cluster with Spot instances from simple to enhance mode</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="osd-access-your-cluster_osd-access-your-cluster">Access your cluster</h3>
+<h3 id="keep-workloads-running-smoothly-during-spot-interruptions-intro_rosa-hcp-keep-workloads-running-smoothly-during-spot-interruptions">Keep workloads running smoothly during spot interruptions</h3>
 <div class="paragraph _abstract">
-<p>Learn how to access your cluster in Openshift Dedicated.</p>
+<p>Configure your cluster to minimize workload disruption when AWS Spot instances are interrupted.</p>
 </div>
 <div class="sect3">
-<h4 id="access-cluster_osd-access-your-cluster">Accessing your cluster</h4>
+<h4 id="rosa-hcp-config-spot-instance-cli-upgrade_rosa-hcp-keep-workloads-running-smoothly-during-spot-interruptions">Upgrade your Red&#160;Hat OpenShift Services on AWS cluster with Spot instances from simple to enhance mode</h4>
 <div class="paragraph _abstract">
-<p>After you have configured your identity providers, users can access the cluster from Red Hat OpenShift Cluster Manager.</p>
+<p>You can upgrade an existing simple-mode cluster to enhanced mode by adding the AWS resources and associate the SQS queue URL with the cluster.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
+<p>You have SQS queue configured.</p>
 </li>
 <li>
-<p>You created an Openshift Dedicated cluster.</p>
+<p>You have your EventBridge rules configured.</p>
 </li>
 <li>
-<p>You configured an identity provider for your cluster.</p>
-</li>
-<li>
-<p>You added your user account to the configured identity provider.</p>
+<p>You have the associated resource policy configured</p>
 </li>
 </ul>
 </div>
-<div class="olist arabic">
+<div class="ulist">
 <div class="title">Procedure</div>
-<ol class="arabic">
+<ul>
 <li>
-<p>From <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>, select the cluster you want to access.</p>
+<p>Associate the queue URL with your existing cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa edit cluster --cluster=&lt;cluster-name&gt; \
+  --spot-termination-queue-url "${QUEUE_URL}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Existing Spot machine pools immediately benefit from graceful termination handling. The AWS Node Termination Handler deployment is created in the control plane namespace and begins polling the queue. No machine pool changes are required.</p>
+</div>
 </li>
-<li>
-<p>Click <strong>Open console</strong> to open the web console for your cluster.</p>
-</li>
-<li>
-<p>Select your identity provider and enter your credentials to log in to the cluster. Complete any authorization requests from your provider.</p>
-</li>
-</ol>
+</ul>
 </div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="osd-grant-administrator-privileges-to-a-user_osd-grant-administrator-privileges-to-a-user.html">Grant administrator privileges to a user</a> | ↑ Up: <a href="_get_started.html">Get Started</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-deploy-an-application-from-the-developer-catalog_osd-deploy-an-application-from-the-developer-catalog.html">Deploy an application from the Developer Catalog</a> →</p>
+<p>← Previous: <a href="optimize-node-performance-intro_rosa-hcp-optimize-node-performance.html">Optimize node performance</a> | ↑ Up: <a href="_optimize.html">Optimize</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="_troubleshoot.html">Troubleshoot</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-05 15:42:06 -0500
+Last updated 2026-10-07 14:52:47 -0500
 </div>
 </div>
 </body>
