@@ -489,6 +489,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="about-kmm_review-kmm-releases-and-updates.html">About the Kernel Module Management Operator</a>
 </li>
+<li><a href="hosted-control-planes-release-notes_hosted-control-planes-release-notes.html">Hosted control planes release notes</a>
+</li>
 </ul>
 </li>
 <li><a href="_discover.html">Discover</a>
@@ -876,7 +878,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="create-mirror-registry-intro_create-a-mirror-registy-with-mirror-registy-for-red-hat-openshift.html">Create a mirror registry with mirror registry for Red Hat OpenShift</a>
 </li>
-<li><a href="installation-oc-mirror-v2-about_mirror-images-to-a-mirror-registry-using-oc-mirror-v2.html">oc-mirror plugin v2</a>
+<li><a href="installation-oc-mirror-v2-about_mirror-images-to-a-mirror-registry-using-oc-mirror-v2.html">Mirror images to a mirror registry using oc-mirror v2</a>
 </li>
 <li><a href="manage-olm-operators-disconnected-intro_manage-olm-operators-in-a-disconnected-environment.html">Manage OLM Operators in a disconnected environment</a>
 </li>
@@ -1140,7 +1142,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="about-kmm_manage-kernel-modules-across-cluster-nodes.html">About the Kernel Module Management Operator</a>
 </li>
-<li><a href="installation-oc-mirror-v2-about_mirror-container-images-to-a-local-registry.html">oc-mirror plugin v2</a>
+<li><a href="installation-oc-mirror-v2-about_mirror-container-images-to-a-local-registry.html">Mirror images to a mirror registry using oc-mirror v2</a>
 </li>
 <li><a href="organize-image-versions-with-tags-con_organize-image-versions-with-tags.html">Organize image versions with tags</a>
 </li>
@@ -1578,6 +1580,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="restart-hosted-control-plane-components-and-pause-reconciliation-con_restart-hosted-control-plane-components-and-pause-reconciliation.html">Restart hosted control plane components and pause reconciliation</a>
 </li>
 <li><a href="troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-bare-metal-con_troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-bare-metal.html">Troubleshoot hosted clusters on bare metal</a>
+</li>
+<li><a href="troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-ibmz-con_troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-ibmz.html">Troubleshoot hosted clusters on IBM Z</a>
 </li>
 <li><a href="troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-openshift-virtualization-con_troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-openshift-virtualization.html">Troubleshoot hosted clusters on OpenShift Virtualization</a>
 </li>
@@ -2314,7 +2318,7 @@ However, you must have an active subscription to access this page.</p>
 </table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 142. Minimum required hosts</caption>
+<caption class="title">Table 143. Minimum required hosts</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2367,7 +2371,7 @@ See <a href="https://access.redhat.com/articles/rhel-limits">Red Hat Enterprise 
 <p>To ensure that your Red&#160;Hat OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 143. Minimum resource requirements</caption>
+<caption class="title">Table 144. Minimum resource requirements</caption>
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 16.6666%;">
@@ -2658,7 +2662,7 @@ Red&#160;Hat OpenShift Container Platform.</p>
 <p>You must provide a suitable VPC and subnets that allow communication to your machines.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 144. Required VPC components</caption>
+<caption class="title">Table 145. Required VPC components</caption>
 <colgroup>
 <col style="width: 13.3333%;">
 <col style="width: 46.6666%;">
@@ -3009,7 +3013,7 @@ Red&#160;Hat OpenShift Container Platform.</p>
 <p>The cluster also requires load balancers and listeners for port 6443, which the Kubernetes API and its extensions require, and port 22623, which the Ignition config files for new machines require. The targets are the control plane nodes. Port 6443 must be accessible to both clients external to the cluster and nodes within the cluster. Port 22623 must be accessible to nodes within the cluster.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 145. Required DNS and load balancing components</caption>
+<caption class="title">Table 146. Required DNS and load balancing components</caption>
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 16.6666%;">
@@ -3381,7 +3385,7 @@ Red&#160;Hat OpenShift Container Platform.</p>
 <p>The control plane and worker machines require access to the following ports:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 146. Security groups</caption>
+<caption class="title">Table 147. Security groups</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -3639,7 +3643,7 @@ Red&#160;Hat OpenShift Container Platform.</p>
 <p>The control plane machines require the following Ingress groups. Each Ingress group is an <code>AWS::EC2::SecurityGroupIngress</code> resource.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 147. Control plane Ingress</caption>
+<caption class="title">Table 148. Control plane Ingress</caption>
 <colgroup>
 <col style="width: 18.1818%;">
 <col style="width: 45.4545%;">
@@ -4543,7 +4547,7 @@ Red&#160;Hat OpenShift Container Platform.</p>
 <p>The worker machines require the following Ingress groups. Each Ingress group is an <code>AWS::EC2::SecurityGroupIngress</code> resource.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 148. Worker Ingress</caption>
+<caption class="title">Table 149. Worker Ingress</caption>
 <colgroup>
 <col style="width: 18.1818%;">
 <col style="width: 45.4545%;">
@@ -5405,7 +5409,7 @@ Red&#160;Hat OpenShift Container Platform.</p>
 <p>You must grant the machines permissions in AWS. The provided CloudFormation templates grant the machines <code>Allow</code> permissions for the following <code>AWS::IAM::Role</code> objects and provide an <code>AWS::IAM::InstanceProfile</code> for each set of roles. If you do not use the templates, you can grant the machines the following broad permissions or the following individual permissions.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 149. Roles and instance profiles</caption>
+<caption class="title">Table 150. Roles and instance profiles</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -6651,7 +6655,7 @@ Red&#160;Hat OpenShift Container Platform.</p>
 <p>Required installation configuration parameters are described in the following table:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 150. Required parameters</caption>
+<caption class="title">Table 151. Required parameters</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6840,7 +6844,7 @@ Red&#160;Hat OpenShift Container Platform.</p>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 151. Network parameters</caption>
+<caption class="title">Table 152. Network parameters</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7116,7 +7120,7 @@ The prefix length for an IPv6 block is between <code>0</code> and <code>128</cod
 <p>Optional installation configuration parameters are described in the following table:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 152. Optional parameters</caption>
+<caption class="title">Table 153. Optional parameters</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7777,7 +7781,7 @@ If you are installing on Google Cloud into a shared virtual private cloud (VPC),
 <p>Optional AWS configuration parameters are described in the following table:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 153. Optional AWS parameters</caption>
+<caption class="title">Table 154. Optional AWS parameters</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -8660,7 +8664,7 @@ For more information about the support scope of Red Hat Technology Preview featu
 <p>Additional Google Cloud configuration parameters are described in the following table:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 154. Additional Google Cloud parameters</caption>
+<caption class="title">Table 155. Additional Google Cloud parameters</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
