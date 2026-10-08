@@ -725,9 +725,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><button class="toc-toggle" type="button" data-toc-key="_reference.html">▶</button><a href="_reference.html">Reference</a>
 
 <ul class="sectlevel2">
-<li><a href="rosa-classic-configure-the-rosa-cli_rosa-classic-configure-the-rosa-cli.html">Configure the Red Hat OpenShift on AWS CLI</a>
+<li><a href="rosa-classic-configure-the-rosa-cli_rosa-classic-configure-the-rosa-cli.html">Configure ROSA CLI]</a>
 </li>
-<li><a href="rosa-classic-rosa-cli-reference_rosa-classic-rosa-cli-reference.html">Red Hat OpenShift on AWS (Classic architecture) CLI reference</a>
+<li><a href="rosa-classic-rosa-cli-reference_rosa-classic-rosa-cli-reference.html">ROSA CLI] reference</a>
 </li>
 </ul>
 </li>
@@ -1219,13 +1219,13 @@ I: To view all DNS domains, run 'rosa list dns-domains'</code></pre>
 <div class="sect4">
 <h5 id="mos-checklist-_rosa-classic-prepare-to-create-the-cluster">ROSA command-line interface (CLI) (<code>rosa</code>)</h5>
 <div class="paragraph _abstract">
-<p>Install the ROSA CLI on in your local environment.</p>
+<p>Install the <code>rosa</code> CLI on in your local environment.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Install the ROSA CLI from the <a href="https://console.redhat.com/openshift/downloads#tool-rosa">web console</a>.</p>
+<p>Install the <code>rosa</code> CLI from the <a href="https://console.redhat.com/openshift/downloads#tool-rosa">web console</a>.</p>
 </li>
 <li>
 <p>Log in to your Red&#160;Hat account by running <code>rosa login</code> and following the instructions in the command output:</p>
@@ -1354,7 +1354,7 @@ To login to your Red{nbsp}Hat account, get an offline access token at https://co
 </div>
 </li>
 <li>
-<p>Install and configure the latest ROSA CLI.</p>
+<p>Install and configure the latest <code>rosa</code> CLI.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -1383,7 +1383,7 @@ To login to your Red{nbsp}Hat account, get an offline access token at https://co
 </div>
 </li>
 <li>
-<p>Verify that the ROSA CLI is installed correctly by querying the <code>rosa</code> version:</p>
+<p>Verify that the <code>rosa</code> CLI is installed correctly by querying the <code>rosa</code> version:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa version</code></pre>
@@ -1395,7 +1395,7 @@ To login to your Red{nbsp}Hat account, get an offline access token at https://co
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">1.2.47
-Your ROSA CLI is up to date.</code></pre>
+Your &lt;code&gt;rosa&lt;/code&gt; CLI is up to date.</code></pre>
 </div>
 </div>
 </li>
@@ -1403,7 +1403,7 @@ Your ROSA CLI is up to date.</code></pre>
 </div>
 </li>
 <li>
-<p>Log in to the ROSA CLI using an offline access token.</p>
+<p>Log in to the <code>rosa</code> CLI using an offline access token.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -1483,7 +1483,7 @@ OCM Organization External ID: &lt;external_org_id&gt;</code></pre>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Use the ROSA CLI to download the <code>oc</code> CLI.</p>
+<p>Use the <code>rosa</code> CLI to download the <code>oc</code> CLI.</p>
 <div class="paragraph">
 <p>The following command downloads the latest version of the CLI to the current working directory:</p>
 </div>
@@ -2168,10 +2168,10 @@ OCM Organization External ID: 0000000</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Available in ROSA CLI version 1.2.64 and higher</p>
+<p>Available in <code>rosa</code> CLI version 1.2.64 and higher</p>
 </li>
 <li>
-<p>Allows cluster creation only through the ROSA CLI, Terraform, or CAPA</p>
+<p>Allows cluster creation only through the <code>rosa</code> CLI, Terraform, or CAPA</p>
 </li>
 <li>
 <p>If you do not intend to use OpenShift Cluster Manager console for cluster creation, you can use the no-console profile and still comply with the requirement to create and link an <code>ocm-role</code> IAM resource</p>
@@ -2250,7 +2250,7 @@ OCM Organization External ID: 0000000</code></pre>
 <p>You have the permissions required to install AWS account-wide roles.</p>
 </li>
 <li>
-<p>You have installed and configured the latest ROSA CLI, <code>rosa</code>, on your installation host.</p>
+<p>You have installed and configured the latest <code>rosa</code> CLI, <code>rosa</code>, on your installation host.</p>
 </li>
 </ul>
 </div>
@@ -2305,7 +2305,7 @@ OCM Organization External ID: 0000000</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the ROSA CLI (<code>rosa</code>) create your Operator roles and policies.
+<p>This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the <code>rosa</code> CLI (<code>rosa</code>) create your Operator roles and policies.
 See "Methods of account-wide role creation" for more information. The following example shows what your creation flow might look like.</p>
 </div>
 <div class="listingblock">
@@ -2364,7 +2364,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 </dd>
 <dt class="hdlist1"><code>Role creation mode</code></dt>
 <dd>
-<p>Choose the method to create your AWS roles. By using <code>auto</code>, the ROSA CLI generates and links the roles and policies. In the <code>auto</code> mode, you receive some different prompts to create the AWS roles.</p>
+<p>Choose the method to create your AWS roles. By using <code>auto</code>, the <code>rosa</code> CLI generates and links the roles and policies. In the <code>auto</code> mode, you receive some different prompts to create the AWS roles.</p>
 </dd>
 <dt class="hdlist1"><code>Create the 'ManagedOpenShift-OCM-Role-182' role?</code></dt>
 <dd>
@@ -2465,7 +2465,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 <p>You have an AWS account.</p>
 </li>
 <li>
-<p>You have installed and configured the latest ROSA CLI, <code>rosa</code>, on your installation host.</p>
+<p>You have installed and configured the latest <code>rosa</code> CLI, <code>rosa</code>, on your installation host.</p>
 </li>
 </ul>
 </div>
@@ -2480,7 +2480,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 </div>
 </div>
 <div class="paragraph">
-<p>This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the ROSA CLI (<code>rosa</code>) to create your Operator roles and policies. See "Understanding the auto and manual deployment modes" for more information. The following example shows what your creation flow might look like.</p>
+<p>This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the <code>rosa</code> CLI (<code>rosa</code>) to create your Operator roles and policies. See "Understanding the auto and manual deployment modes" for more information. The following example shows what your creation flow might look like.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2519,7 +2519,7 @@ I: Successfully linked role ARN 'arn:aws:iam::2066:role/ManagedOpenShift-User.os
 </dd>
 <dt class="hdlist1"><code>Role creation mode</code></dt>
 <dd>
-<p>Choose the method to create your AWS roles. By using <code>auto</code>, the ROSA CLI generates and links the roles and policies. In the <code>auto</code> mode, you receive some different prompts to create the AWS roles.</p>
+<p>Choose the method to create your AWS roles. By using <code>auto</code>, the <code>rosa</code> CLI generates and links the roles and policies. In the <code>auto</code> mode, you receive some different prompts to create the AWS roles.</p>
 </dd>
 <dt class="hdlist1"><code>Create the 'ManagedOpenShift-User.osdocs-Role' role?</code></dt>
 <dd>
@@ -2581,7 +2581,7 @@ I: Successfully linked role ARN 'arn:aws:iam::2066:role/ManagedOpenShift-User.os
 <p>You have the permissions required to install AWS account-wide roles. See the "Additional resources" of this section for more information.</p>
 </li>
 <li>
-<p>You have installed and configured the latest AWS CLI (<code>aws</code>) and ROSA CLI on your installation host.</p>
+<p>You have installed and configured the latest AWS CLI (<code>aws</code>) and <code>rosa</code> CLI on your installation host.</p>
 </li>
 <li>
 <p>You have created the <code>ocm-role</code> and <code>user-role</code> IAM roles, but have not yet linked them to your AWS account. You can check whether your IAM roles are already linked by running the following commands:</p>
@@ -2852,7 +2852,7 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 <p>You have the permissions required to administer AWS roles and policies.</p>
 </li>
 <li>
-<p>You have installed and configured the latest AWS (<code>aws</code>) CLI and ROSA CLI on your workstation.</p>
+<p>You have installed and configured the latest AWS (<code>aws</code>) CLI and <code>rosa</code> CLI on your workstation.</p>
 </li>
 <li>
 <p>You have already prepared your Red&#160;Hat OpenShift Services on AWS (classic architecture) account-wide roles, includes the installer role, and the corresponding policies. If these do not exist in your AWS account, see "Creating the account-wide STS roles and policies" in <em>Additional resources</em>.</p>
@@ -2863,7 +2863,7 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Prepare the policy file by entering the following command in the ROSA CLI:</p>
+<p>Prepare the policy file by entering the following command in the <code>rosa</code> CLI:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ curl -o ./rosa-installer-core.json https://raw.githubusercontent.com/openshift/managed-cluster-config/master/resources/sts/4.21/sts_installer_core_permission_boundary_policy.json</code></pre>
@@ -2913,7 +2913,7 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 </div>
 </li>
 <li>
-<p>Display the installer role to validate attached policies (including permissions boundary) by entering the following command in the ROSA CLI:</p>
+<p>Display the installer role to validate attached policies (including permissions boundary) by entering the following command in the <code>rosa</code> CLI:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam get-role --role-name ManagedOpenShift-Installer-Role \
@@ -3309,7 +3309,7 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 <p>You have enabled the Red&#160;Hat OpenShift Services on AWS (classic architecture) service in the AWS Console.</p>
 </li>
 <li>
-<p>You have installed and configured the latest ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host. Run <code>rosa version</code> to see your currently installed version of the ROSA CLI. If a newer version is available, the CLI provides a link to download this upgrade.</p>
+<p>You have installed and configured the latest ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host. Run <code>rosa version</code> to see your currently installed version of the <code>rosa</code> CLI. If a newer version is available, the CLI provides a link to download this upgrade.</p>
 </li>
 <li>
 <p>If you want to use a customer-managed AWS Key Management Service (KMS) key for encryption, you must create a symmetric KMS key. You must provide the Amazon Resource Name (ARN) when creating your cluster. To create a customer-managed KMS key, follow the procedure for <a href="https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk">Creating symmetric encryption KMS keys</a>.</p>
@@ -3433,7 +3433,7 @@ rosa create cluster --sts</code></pre>
 </dd>
 <dt class="hdlist1"><code>Role creation mode</code></dt>
 <dd>
-<p>Select the role creation mode. You can use <code>auto</code> mode to automatically create the account-wide roles and policies. In <code>manual</code> mode, the ROSA CLI generates the <code>aws</code> commands needed to create the roles and policies. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</p>
+<p>Select the role creation mode. You can use <code>auto</code> mode to automatically create the account-wide roles and policies. In <code>manual</code> mode, the <code>rosa</code> CLI generates the <code>aws</code> commands needed to create the roles and policies. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</p>
 </dd>
 </dl>
 </div>
@@ -3448,7 +3448,7 @@ rosa create cluster --sts</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In this step, the ROSA CLI also automatically creates the account-wide Operator IAM policies that are used by the cluster-specific Operator policies to permit the Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster Operators to run core OpenShift functionality. For more information, see <em>Account-wide IAM role and policy reference</em>.</p>
+<p>In this step, the <code>rosa</code> CLI also automatically creates the account-wide Operator IAM policies that are used by the cluster-specific Operator policies to permit the Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster Operators to run core OpenShift functionality. For more information, see <em>Account-wide IAM role and policy reference</em>.</p>
 </div>
 </td>
 </tr>
@@ -4478,7 +4478,7 @@ Tags that are added by Red&#160;Hat are required for clusters to stay in complia
 <p>When deletion protection is enabled, attempts to delete the cluster using <code>rosa delete cluster</code> fail immediately before prompting for deletion confirmation. To delete a cluster, disable the protection first by running <code>rosa edit cluster -c &lt;cluster_name&gt; --enable-delete-protection=false</code>.</p>
 </div>
 <div class="paragraph">
-<p>Deletion protection only blocks deletion requests made through the ROSA CLI. It does not set any AWS-level resource protections, and you can still delete cluster resources directly in AWS, risking data loss or cluster outage.</p>
+<p>Deletion protection only blocks deletion requests made through the <code>rosa</code> CLI. It does not set any AWS-level resource protections, and you can still delete cluster resources directly in AWS, risking data loss or cluster outage.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -6065,7 +6065,7 @@ Kubernetes Version: v1.16.2</code></pre>
 <p>You have installed a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster.</p>
 </li>
 <li>
-<p>You have installed and configured the latest ROSA CLI on your installation host.</p>
+<p>You have installed and configured the latest <code>rosa</code> CLI on your installation host.</p>
 </li>
 </ul>
 </div>
@@ -6152,7 +6152,7 @@ Kubernetes Version: v1.16.2</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-08 15:21:05 -0500
+Last updated 2026-10-08 16:34:22 -0500
 </div>
 </div>
 </body>

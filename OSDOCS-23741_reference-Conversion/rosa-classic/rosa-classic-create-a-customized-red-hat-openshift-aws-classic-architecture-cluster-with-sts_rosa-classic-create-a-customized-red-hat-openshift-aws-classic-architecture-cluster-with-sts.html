@@ -725,9 +725,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><button class="toc-toggle" type="button" data-toc-key="_reference.html">▶</button><a href="_reference.html">Reference</a>
 
 <ul class="sectlevel2">
-<li><a href="rosa-classic-configure-the-rosa-cli_rosa-classic-configure-the-rosa-cli.html">Configure the Red Hat OpenShift on AWS CLI</a>
+<li><a href="rosa-classic-configure-the-rosa-cli_rosa-classic-configure-the-rosa-cli.html">Configure ROSA CLI]</a>
 </li>
-<li><a href="rosa-classic-rosa-cli-reference_rosa-classic-rosa-cli-reference.html">Red Hat OpenShift on AWS (Classic architecture) CLI reference</a>
+<li><a href="rosa-classic-rosa-cli-reference_rosa-classic-rosa-cli-reference.html">ROSA CLI] reference</a>
 </li>
 </ul>
 </li>
@@ -811,7 +811,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </dd>
 <dt class="hdlist1">The ROSA command-line interface (CLI) (<code>rosa</code>)</dt>
 <dd>
-<p>You can run the commands provided by this method to create the Operator roles and the OIDC provider for your cluster using the ROSA CLI.</p>
+<p>You can run the commands provided by this method to create the Operator roles and the OIDC provider for your cluster using the <code>rosa</code> CLI.</p>
 </dd>
 </dl>
 </div>
@@ -851,7 +851,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You have the permissions required to install AWS account-wide roles.</p>
 </li>
 <li>
-<p>You have installed and configured the latest ROSA CLI, <code>rosa</code>, on your installation host.</p>
+<p>You have installed and configured the latest <code>rosa</code> CLI, <code>rosa</code>, on your installation host.</p>
 </li>
 </ul>
 </div>
@@ -906,7 +906,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the ROSA CLI (<code>rosa</code>) create your Operator roles and policies.
+<p>This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the <code>rosa</code> CLI (<code>rosa</code>) create your Operator roles and policies.
 See "Methods of account-wide role creation" for more information. The following example shows what your creation flow might look like.</p>
 </div>
 <div class="listingblock">
@@ -965,7 +965,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 </dd>
 <dt class="hdlist1"><code>Role creation mode</code></dt>
 <dd>
-<p>Choose the method to create your AWS roles. By using <code>auto</code>, the ROSA CLI generates and links the roles and policies. In the <code>auto</code> mode, you receive some different prompts to create the AWS roles.</p>
+<p>Choose the method to create your AWS roles. By using <code>auto</code>, the <code>rosa</code> CLI generates and links the roles and policies. In the <code>auto</code> mode, you receive some different prompts to create the AWS roles.</p>
 </dd>
 <dt class="hdlist1"><code>Create the 'ManagedOpenShift-OCM-Role-182' role?</code></dt>
 <dd>
@@ -1301,7 +1301,7 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <p>You have enabled the Red&#160;Hat OpenShift Services on AWS (classic architecture) service in the AWS Console.</p>
 </li>
 <li>
-<p>You have installed and configured the latest ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host. Run <code>rosa version</code> to see your currently installed version of the ROSA CLI. If a newer version is available, the CLI provides a link to download this upgrade.</p>
+<p>You have installed and configured the latest ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host. Run <code>rosa version</code> to see your currently installed version of the <code>rosa</code> CLI. If a newer version is available, the CLI provides a link to download this upgrade.</p>
 </li>
 <li>
 <p>You have verified that the AWS Elastic Load Balancing (ELB) service role exists in your AWS account.</p>
@@ -2328,7 +2328,7 @@ The key is used for encrypting all control plane, infrastructure, worker node ro
 <p>You have enabled the Red&#160;Hat OpenShift Services on AWS (classic architecture) service in the AWS Console.</p>
 </li>
 <li>
-<p>You have installed and configured the latest ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host. Run <code>rosa version</code> to see your currently installed version of the ROSA CLI. If a newer version is available, the CLI provides a link to download this upgrade.</p>
+<p>You have installed and configured the latest ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host. Run <code>rosa version</code> to see your currently installed version of the <code>rosa</code> CLI. If a newer version is available, the CLI provides a link to download this upgrade.</p>
 </li>
 <li>
 <p>If you want to use a customer-managed AWS Key Management Service (KMS) key for encryption, you must create a symmetric KMS key. You must provide the Amazon Resource Name (ARN) when creating your cluster. To create a customer-managed KMS key, follow the procedure for <a href="https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk">Creating symmetric encryption KMS keys</a>.</p>
@@ -2452,7 +2452,7 @@ rosa create cluster --sts</code></pre>
 </dd>
 <dt class="hdlist1"><code>Role creation mode</code></dt>
 <dd>
-<p>Select the role creation mode. You can use <code>auto</code> mode to automatically create the account-wide roles and policies. In <code>manual</code> mode, the ROSA CLI generates the <code>aws</code> commands needed to create the roles and policies. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</p>
+<p>Select the role creation mode. You can use <code>auto</code> mode to automatically create the account-wide roles and policies. In <code>manual</code> mode, the <code>rosa</code> CLI generates the <code>aws</code> commands needed to create the roles and policies. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</p>
 </dd>
 </dl>
 </div>
@@ -2467,7 +2467,7 @@ rosa create cluster --sts</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In this step, the ROSA CLI also automatically creates the account-wide Operator IAM policies that are used by the cluster-specific Operator policies to permit the Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster Operators to run core OpenShift functionality. For more information, see <em>Account-wide IAM role and policy reference</em>.</p>
+<p>In this step, the <code>rosa</code> CLI also automatically creates the account-wide Operator IAM policies that are used by the cluster-specific Operator policies to permit the Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster Operators to run core OpenShift functionality. For more information, see <em>Account-wide IAM role and policy reference</em>.</p>
 </div>
 </td>
 </tr>
@@ -2897,7 +2897,7 @@ OIDC Endpoint URL:          https://oidc.op1.openshiftapps.com/&lt;cluster_id&gt
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-08 15:21:05 -0500
+Last updated 2026-10-08 16:34:22 -0500
 </div>
 </div>
 </body>
