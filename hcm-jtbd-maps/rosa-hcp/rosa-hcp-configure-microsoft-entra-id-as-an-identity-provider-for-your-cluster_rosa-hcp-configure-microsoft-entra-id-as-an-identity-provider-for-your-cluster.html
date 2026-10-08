@@ -614,6 +614,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
+
 <ul class="sectlevel2">
 <li><a href="rosa-sts-overview-of-the-default-cluster-specifications_rosa-hcp-quickstart-set-up-your-environment.html">Overview of the default cluster specifications</a>
 </li>
@@ -622,8 +623,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="rosa-hcp-quickstart-manage-your-cluster_rosa-hcp-quickstart-manage-your-cluster.html">Quick start: Manage your cluster</a>
 </li>
 <li><a href="considerations-regarding-auto-creation-mode_rosa-hcp-create-a-cluster-with-default-options.html">About automatic IAM resource creation</a>
-</li>
-<li><a href="rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster.html"><span class="toc-current">Configure Microsoft Entra ID as an identity provider for your cluster</span></a>
 </li>
 <li><a href="rosa-hcp-activate-red-hat-openshift-services-on-aws-cluster-and-link-your-aws-account_rosa-hcp-activate-red-hat-openshift-services-on-aws-cluster-and-link-your-aws-account.html">Activate Red Hat OpenShift Services on AWS cluster and link your AWS account</a>
 </li>
@@ -634,10 +633,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="rosa-fedramp-overview_rosa-hcp-apply-fedramp-rev5-secure-configuration-guidance.html">Learn about FedRAMP Rev5 Secure Configuration Guidance (SCG) requirements</a>
 </li>
 <li><a href="rosa-hcp-create-your-first-red-hat-openshift-services-on-aws-cluster-in-aws-govcloud_rosa-hcp-create-your-first-red-hat-openshift-services-on-aws-cluster-in-aws-govcloud.html">Create your first Red Hat OpenShift Services on AWS cluster in AWS GovCloud</a>
-</li>
-<li><a href="rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront_rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront.html">Protect application workloads by using AWS WAF and Amazon CloudFront</a>
-</li>
-<li><a href="rosa-hcp-protect-application-workloads-by-using-aws-waf-and-aws-albs_rosa-hcp-protect-application-workloads-by-using-aws-waf-and-aws-albs.html">Protect application workloads by using AWS WAF and AWS ALBs</a>
 </li>
 </ul>
 </li>
@@ -707,13 +702,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><button class="toc-toggle" type="button" data-toc-key="_configure.html">▶</button><a href="_configure.html">Configure</a>
+<ul class="sectlevel2">
+<li><a href="configure-private-connections-for-a-private-cluster_rosa-hcp-configure-private-connections-for-a-private-cluster.html">Configure private connections for a private cluster</a>
+</li>
+<li><a href="rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster.html"><span class="toc-current">Tutorial: Configure Microsoft Entra ID as an identity provider for your cluster</span></a>
+</li>
+<li><a href="rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront_rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront.html">Tutorial: Protect application workloads by using AWS WAF and Amazon CloudFront</a>
+</li>
+<li><a href="rosa-hcp-protect-application-workloads-by-using-aws-waf-and-aws-albs_rosa-hcp-protect-application-workloads-by-using-aws-waf-and-aws-albs.html">Tutorial: Protect application workloads by using AWS WAF and AWS ALBs</a>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#cloud-experts-entra-id-idp-register-app_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster">Register a new application in Entra ID for authentication</a></li><li class="level-4"><a href="#cloud-experts-entra-id-idp-configure-app_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster">Optional and group claims for Entra ID application registration</a></li><li class="level-4"><a href="#cloud-experts-entra-id-idp-configure-optional-claims_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster">Configure optional claims in Entra ID</a></li><li class="level-4"><a href="#cloud-experts-entra-id-idp-configure-group-claims_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster">Configure group claims</a></li><li class="level-4"><a href="#cloud-experts-entra-id-idp-configure-entra-idp_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster">Configure Entra ID as the cluster identity provider</a></li><li class="level-4"><a href="#cloud-experts-entra-id-idp-additional-user-groups_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster">Additional permissions for individual users and groups</a></li><li class="level-4"><a href="#cloud-experts-entra-id-idp-additional-individual-user_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster">Grant additional permissions to individual users</a></li><li class="level-4"><a href="#cloud-experts-entra-id-idp--additional-individual-groups_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster">Grant additional permissions to individual groups</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster">Configure Microsoft Entra ID as an identity provider for your cluster</h3>
+<h3 id="rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster">Tutorial: Configure Microsoft Entra ID as an identity provider for your cluster</h3>
 <div class="paragraph _abstract">
 <p>Configure Microsoft Entra ID (formerly Azure Active Directory) as the cluster identity provider to enable user authentication and group-based access control for your Red&#160;Hat OpenShift Services on AWS cluster by using OpenID Connect (OIDC).</p>
 </div>
@@ -1107,12 +1114,12 @@ $ TENANT_ID=zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz</code></pre>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="considerations-regarding-auto-creation-mode_rosa-hcp-create-a-cluster-with-default-options.html">About automatic IAM resource creation</a> | ↑ Up: <a href="_get_started.html">Get Started</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-activate-red-hat-openshift-services-on-aws-cluster-and-link-your-aws-account_rosa-hcp-activate-red-hat-openshift-services-on-aws-cluster-and-link-your-aws-account.html">Activate Red Hat OpenShift Services on AWS cluster and link your AWS account</a> →</p>
+<p>← Previous: <a href="configure-private-connections-for-a-private-cluster_rosa-hcp-configure-private-connections-for-a-private-cluster.html">Configure private connections for a private cluster</a> | ↑ Up: <a href="_configure.html">Configure</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront_rosa-hcp-protect-application-workloads-by-using-aws-waf-and-amazon-cloudfront.html">Tutorial: Protect application workloads by using AWS WAF and Amazon CloudFront</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-07 10:22:31 -0500
+Last updated 2026-10-08 10:09:26 -0500
 </div>
 </div>
 </body>
