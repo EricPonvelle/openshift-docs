@@ -478,7 +478,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <!-- navmap-right-toc-end -->
 </head>
-<body id="olm-restricted-network-prereqs_manage-olm-operators-in-a-disconnected-environment" class="book toc2 toc-left navmap-has-right-toc">
+<body id="hcp-import-intro_manually-import-a-hosted-cluster" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat OpenShift Container Platform</h1>
 <div id="toc" class="toc2">
@@ -488,6 +488,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 <ul class="sectlevel2">
 <li><a href="about-kmm_review-kmm-releases-and-updates.html">About the Kernel Module Management Operator</a>
+</li>
+<li><a href="hosted-control-planes-release-notes_hosted-control-planes-release-notes.html">Hosted control planes release notes</a>
 </li>
 </ul>
 </li>
@@ -571,6 +573,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="requirements-for-hosted-control-planes-con_requirements-for-hosted-control-planes.html">Requirements for hosted control planes</a>
 </li>
 <li><a href="size-guidance-for-hosted-control-planes-con_size-guidance-for-hosted-control-planes.html">Size guidance for hosted control planes</a>
+</li>
+<li><a href="override-resource-util-hosted-cluster-con_override-resource-util-hosted-cluster.html">Overriding resource utilization measurements</a>
 </li>
 <li><a href="distribute-hosted-cluster-workloads-con_distribute-hosted-cluster-workloads.html">Distribute hosted cluster workloads</a>
 </li>
@@ -852,8 +856,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="hosted-clusters-openstack-prerequisites_deploying-hosted-control-planes-on-openstack.html">Prerequisites for OpenStack</a>
 </li>
-<li><a href="deploying-hosted-control-planes-in-a-disconnected-environment-intro_deploying-hosted-control-planes-in-a-disconnected-environment.html">Deploying hosted control planes in a disconnected environment</a>
-</li>
 <li><a href="installing-the-hosted-control-planes-command-line-interface-intro_installing-the-hosted-control-planes-command-line-interface.html">Installing the hosted control planes command-line interface</a>
 </li>
 <li><a href="deploying-hosted-control-planes-on-aws-intro_deploying-hosted-control-planes-on-aws.html">Deploying hosted control planes on AWS</a>
@@ -867,30 +869,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_disconnected_environments.html">Disconnected environments</a>
+
 <ul class="sectlevel2">
-<li><a href="understand-disconnected-environments-intro_understand-disconnected-environments.html">Understand disconnected environments</a>
+<li><a href="understand-disconnected-environments-intro_understand-disconnected-environments.html">Disconnected environment concepts</a>
 </li>
-<li><a href="installing-agent_install-a-cluster-in-a-disconnected-environment.html">Installing a cluster with the Agent-based Installer</a>
+<li><a href="plan-a-disconnected-installation-intro_plan-a-disconnected-installation.html">Plan a disconnected installation</a>
 </li>
-<li><a href="prerequisites_create-a-mirror-registy-with-mirror-registy-for-red-hat-openshift.html">Prerequisites</a>
+<li><a href="installing-agent_install-a-cluster-in-a-disconnected-environment.html">Install a cluster with the Agent-based Installer</a>
 </li>
-<li><a href="installation-oc-mirror-v2-about_mirror-images-to-a-mirror-registry-using-oc-mirror-v2.html">About oc-mirror plugin v2</a>
+<li><a href="create-mirror-registry-intro_create-a-mirror-registy-with-mirror-registy-for-red-hat-openshift.html">Create a mirror registry with mirror registry for Red Hat OpenShift</a>
 </li>
-<li><a href="prerequisites_mirror-images-to-a-mirror-registry-using-the-oc-adm-release-mirror-command.html">Prerequisites</a>
+<li><a href="installation-oc-mirror-v2-about_mirror-images-to-a-mirror-registry-using-oc-mirror-v2.html">Mirror images to a mirror registry using oc-mirror v2</a>
 </li>
-<li><a href="oc-mirror-migration-differences_migrate-from-oc-mirror-v1-to-v2.html">Changes from oc-mirror plugin v1 to v2</a>
-</li>
-<li><a href="olm-restricted-network-prereqs_manage-olm-operators-in-a-disconnected-environment.html"><span class="toc-current">Prerequisites</span></a>
+<li><a href="manage-olm-operators-disconnected-intro_manage-olm-operators-in-a-disconnected-environment.html">Manage OLM Operators in a disconnected environment</a>
 </li>
 <li><a href="mirror-images-for-a-cluster-update-in-a-disconnected-environment-intro_mirror-images-for-a-cluster-update-in-a-disconnected-environment.html">Mirror images for a cluster update in a disconnected environment</a>
 </li>
-<li><a href="update-service-overview_update-a-cluster-in-a-disconnected-environment-using-osus.html">Using the OpenShift Update Service in a disconnected environment</a>
+<li><a href="update-service-overview_update-a-cluster-in-a-disconnected-environment-using-osus.html">Use the OpenShift Update Service in a disconnected environment</a>
 </li>
-<li><a href="updating-cli-prereqs_update-a-cluster-in-a-disconnected-environment-without-using-osus.html">Prerequisites for a cluster update</a>
+<li><a href="update-disconnected_update-a-cluster-in-a-disconnected-environment-without-using-osus.html">Updating the disconnected cluster</a>
 </li>
-<li><a href="about-disconnected-updates-uninstalling-osus_uninstall-osus-from-a-cluster.html">Uninstalling the OpenShift Update Service from a cluster</a>
+<li><a href="about-disconnected-updates-uninstalling-osus_uninstall-osus-from-a-cluster.html">Uninstall the OpenShift Update Service from a cluster</a>
 </li>
-<li><a href="installation-about-mirror-registry_convert-a-connected-cluster-to-disconnected.html">About the mirror registry</a>
+<li><a href="configure-trust-and-mirroring-con_configure-trust-and-mirroring.html">Configure trust and mirroring</a>
+</li>
+<li><a href="convert-connected-to-disconnected-intro_convert-a-connected-cluster-to-disconnected.html">Convert a connected cluster to disconnected</a>
+</li>
+<li><a href="deploying-hosted-control-planes-in-a-disconnected-environment-intro_deploying-hosted-control-planes-in-a-disconnected-environment.html">Deploying hosted control planes in a disconnected environment</a>
 </li>
 </ul>
 </li>
@@ -936,7 +941,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="_migrate.html">Migrate</a>
 </li>
 <li><a href="_administer.html">Administer</a>
-
 <ul class="sectlevel2">
 <li><a href="allocate-gpu-resources-to-pods-con_allocate-gpu-resources-to-pods.html">Allocate GPU resources to pods</a>
 </li>
@@ -988,7 +992,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="multi-architecture-scheduling_manage-workloads-on-multi-architecture-clusters.html">Scheduled workloads on clusters with multi-architecture compute machines</a>
 </li>
-<li><a href="hcp-import-manual_manually-import-a-hosted-cluster.html">Manually importing hosted clusters</a>
+<li><a href="hcp-import-intro_manually-import-a-hosted-cluster.html"><span class="toc-current">Manually importing a hosted cluster</span></a>
 </li>
 <li><a href="nodes-pods-image-volume-about_mount-an-oci-image-onto-a-pod.html">Understanding image volumes</a>
 </li>
@@ -1138,7 +1142,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="about-kmm_manage-kernel-modules-across-cluster-nodes.html">About the Kernel Module Management Operator</a>
 </li>
-<li><a href="installation-oc-mirror-v2-about_mirror-container-images-to-a-local-registry.html">About oc-mirror plugin v2</a>
+<li><a href="installation-oc-mirror-v2-about_mirror-container-images-to-a-local-registry.html">Mirror images to a mirror registry using oc-mirror v2</a>
 </li>
 <li><a href="organize-image-versions-with-tags-con_organize-image-versions-with-tags.html">Organize image versions with tags</a>
 </li>
@@ -1577,6 +1581,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-bare-metal-con_troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-bare-metal.html">Troubleshoot hosted clusters on bare metal</a>
 </li>
+<li><a href="troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-ibmz-con_troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-ibmz.html">Troubleshoot hosted clusters on IBM Z</a>
+</li>
 <li><a href="troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-openshift-virtualization-con_troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-openshift-virtualization.html">Troubleshoot hosted clusters on OpenShift Virtualization</a>
 </li>
 <li><a href="troubleshoot-hosted-clusters-by-platform-con_troubleshoot-hosted-clusters-by-platform.html">Troubleshoot hosted clusters by platform</a>
@@ -1613,8 +1619,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="about-oadp-update-channels_troubleshoot-common-update-failures.html">About OADP update channels</a>
 </li>
-<li><a href="about-node-health-check-operator_use-the-vsphere-problem-detector-operator.html">About the Node Health Check Operator</a>
-</li>
 <li><a href="understand-etcd-performance_move-etcd-to-a-different-disk.html">Factors that affect etcd performance</a>
 </li>
 <li><a href="gathering-bootstrap-diagnostic-data_gather-data-about-a-cluster-update.html">Gathering bootstrap node diagnostic data</a>
@@ -1645,7 +1649,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="investigating-master-node-installation-issues_troubleshoot-network-issues-131-access-cluster-nodes-for-diagnostics.html">Investigating control plane node installation issues</a>
 </li>
-<li><a href="nw-sriov-network-operator_troubleshoot-network-issues-134-troubleshoot-operators.html">Example SR-IOV Network Operator for virtual functions</a>
+<li><a href="troubleshoot-ovn-kubernetes-networking-issues-con_troubleshoot-ovn-kubernetes-networking-issues.html">Troubleshoot OVN-Kubernetes networking issues</a>
 </li>
 <li><a href="adding-network-attachment-definition-to-pods_troubleshoot-network-issues-135-trace-openflow-with-ovnkube-trace.html">Add the network attachment definition to your pods</a>
 </li>
@@ -1731,170 +1735,41 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#olm-restricted-networks-operatorhub_manage-olm-operators-in-a-disconnected-environment">Disabling the default software catalog sources</a></li><li class="level-4"><a href="#olm-mirror-catalog_manage-olm-operators-in-a-disconnected-environment">Mirroring an Operator catalog</a></li><li class="level-4"><a href="#olm-creating-catalog-from-index_manage-olm-operators-in-a-disconnected-environment">Adding a catalog source to a cluster</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#hcp-import-limitations_manually-import-a-hosted-cluster">Limitations of managing imported hosted clusters</a></li><li class="level-4"><a href="#hcp-import-manual_manually-import-a-hosted-cluster">Manually importing hosted clusters</a></li><li class="level-4"><a href="#hcp-import-manual-aws_manually-import-a-hosted-cluster">Manually importing a hosted cluster on AWS</a></li><li class="level-4"><a href="#hcp-import-disable_manually-import-a-hosted-cluster">Disabling the automatic import of hosted clusters into multicluster engine Operator</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="olm-restricted-network-prereqs_manage-olm-operators-in-a-disconnected-environment">Prerequisites</h3>
+<h3 id="hcp-import-intro_manually-import-a-hosted-cluster">Manually importing a hosted cluster</h3>
 <div class="paragraph _abstract">
-<p>You must meet several prerequisites before using OLM in a disconnected environment.</p>
-</div>
-<div class="paragraph">
-<p>The following prerequisites must be met:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>You are logged in to your Red&#160;Hat OpenShift Container Platform cluster as a user with <code>cluster-admin</code> privileges.</p>
-</li>
-<li>
-<p>If you are using OLM in a disconnected environment on IBM Z&#174;, you must have at least 12 GB allocated to the directory where you place your registry.</p>
-</li>
-</ul>
+<p>Hosted clusters are automatically imported into multicluster engine Operator after the hosted control plane becomes available.</p>
 </div>
 <div class="sect3">
-<h4 id="olm-restricted-networks-operatorhub_manage-olm-operators-in-a-disconnected-environment">Disabling the default software catalog sources</h4>
+<h4 id="hcp-import-limitations_manually-import-a-hosted-cluster">Limitations of managing imported hosted clusters</h4>
 <div class="paragraph _abstract">
-<p>To use only trusted or locally available Operator catalogs, disable the default software catalog sources that Red&#160;Hat OpenShift Container Platform configures during installation.
-In a restricted network environment, you must disable the default catalogs as a cluster administrator.</p>
+<p>Hosted clusters are automatically imported into the local multicluster engine for Kubernetes Operator, unlike a standalone Red&#160;Hat OpenShift Container Platform or third-party clusters. Hosted clusters run some of their agents in the <em>hosted mode</em> so that the agents do not use the resources of your cluster.</p>
 </div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>Disable the sources for the default catalogs by adding <code>disableAllDefaultSources: true</code> to the <code>OperatorHub</code> object:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc patch OperatorHub cluster --type json \
-    -p '[{"op": "add", "path": "/spec/disableAllDefaultSources", "value": true}]'</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Tip">
-</td>
-<td class="content">
 <div class="paragraph">
-<p>Or, you can use the web console to manage catalog sources. From the <strong>Administration</strong> &#8594; <strong>Cluster Settings</strong> &#8594; <strong>Configuration</strong> &#8594; <strong>OperatorHub</strong> page, click the <strong>Sources</strong> tab, where you can create, update, delete, disable, and enable individual sources.</p>
+<p>If you choose to automatically import hosted clusters, you can update node pools and the control plane in hosted clusters by using the <code>HostedCluster</code> resource on the management cluster. To update node pools and a control plane, see "Updating node pools in a hosted cluster" and "Updating a control plane in a hosted cluster".</p>
 </div>
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>You can import hosted clusters into a location other than the local multicluster engine Operator by using the Red&#160;Hat Advanced Cluster Management (RHACM). For more information, see "Discovering multicluster engine for Kubernetes Operator hosted clusters in Red&#160;Hat Advanced Cluster Management".</p>
 </div>
-</li>
-</ul>
+<div class="paragraph">
+<p>In this topology, you must update your hosted clusters by using the command-line interface or the console of the local multicluster engine for Kubernetes Operator where the cluster is hosted. You cannot update the hosted clusters through the RHACM hub cluster.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="olm-mirror-catalog_manage-olm-operators-in-a-disconnected-environment">Mirroring an Operator catalog</h4>
+<h4 id="hcp-import-manual_manually-import-a-hosted-cluster">Manually importing hosted clusters</h4>
 <div class="paragraph _abstract">
-<p>For instructions about mirroring Operator catalogs for use with disconnected clusters, see "Mirroring Operator catalogs for use with disconnected clusters".</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>As of Red&#160;Hat OpenShift Container Platform 4.11, the default Red&#160;Hat-provided Operator catalog releases in the file-based catalog format. The default Red&#160;Hat-provided Operator catalogs for Red&#160;Hat OpenShift Container Platform 4.6 through 4.10 released in the deprecated SQLite database format.</p>
-</div>
-<div class="paragraph">
-<p>The <code>opm</code> subcommands, flags, and functionality related to the SQLite database format are also deprecated and will be removed in a future release. The features are still supported and must be used for catalogs that use the deprecated SQLite database format.</p>
-</div>
-<div class="paragraph">
-<p>Many of the <code>opm</code> subcommands and flags for working with the SQLite database format, such as <code>opm index prune</code>, do not work with the file-based catalog format. For more information about working with file-based catalogs, see "Operator Framework packaging format", "Managing custom catalogs", and "Mirroring images for a disconnected installation by using the oc-mirror plugin v2".</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="olm-creating-catalog-from-index_manage-olm-operators-in-a-disconnected-environment">Adding a catalog source to a cluster</h4>
-<div class="paragraph _abstract">
-<p>To make Operators from a custom index image available for installation, create a catalog source that adds the catalog content to your cluster.</p>
-</div>
-<div class="paragraph">
-<p>Cluster administrators
-can create a <code>CatalogSource</code> object that references an index image. The software catalog uses catalog sources to populate the user interface.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Tip">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Alternatively, you can use the web console to manage catalog sources. From the <strong>Administration</strong> &#8594; <strong>Cluster Settings</strong> &#8594; <strong>Configuration</strong> &#8594; <strong>OperatorHub</strong> page, click the <strong>Sources</strong> tab, where you can create, update, delete, disable, and enable individual sources.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You built and pushed an index image to a registry.</p>
-</li>
-<li>
-<p>You have access to the cluster as a user with the <code>cluster-admin</code> role.</p>
-</li>
-</ul>
+<p>Typically, hosted clusters are automatically imported to multicluster engine Operator after the hosted control plane becomes available. However, you can import hosted clusters manually as required.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Create a <code>CatalogSource</code> object that references your index image.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
+<p>In the console, click <strong>Infrastructure</strong> &#8594; <strong>Clusters</strong> and select the hosted cluster that you want to import.</p>
+</li>
 <li>
-<p>Modify the following to your specifications and save it as a <code>catalogSource.yaml</code> file:</p>
-<div class="openblock">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: operators.coreos.com/v1alpha1
-kind: CatalogSource
-metadata:
-  name: my-operator-catalog
-  namespace: openshift-marketplace
-  annotations:
-    olm.catalogImageTemplate:
-      "&lt;registry&gt;/&lt;namespace&gt;/&lt;index_image_name&gt;:v{kube_major_version}.{kube_minor_version}.{kube_patch_version}"
-spec:
-  sourceType: grpc
-  grpcPodConfig:
-    securityContextConfig: &lt;security_mode&gt;
-  image: &lt;registry&gt;/&lt;namespace&gt;/&lt;index_image_name&gt;:&lt;tag&gt;
-  displayName: My Operator Catalog
-  publisher: &lt;publisher_name&gt;
-  updateStrategy:
-    registryPoll:
-      interval: 30m</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>metadata.namespace</code></dt>
-<dd>
-<p>Specifies the value for the <code>metadata.namespace</code> parameter. If you want the catalog source to be available globally to users in all namespaces, specify the <code>openshift-marketplace</code> namespace. Otherwise, you can specify a different namespace for the catalog to be scoped and available only for that namespace.</p>
-</dd>
-<dt class="hdlist1"><code>metadata.annotations</code></dt>
-<dd>
-<p>Specifies the value for the <code>metadata.annotations</code> parameter. This is optional to set the <code>olm.catalogImageTemplate</code> annotation to your index image name and use one or more of the Kubernetes cluster version variables as shown when constructing the template for the image tag.</p>
-</dd>
-<dt class="hdlist1"><code>spec.grpcPodConfig.securityContextConfig</code></dt>
-<dd>
-<p>Specifies the value of <code>legacy</code> or <code>restricted</code>. If the field is not set, the default value is <code>legacy</code>. In a future Red&#160;Hat OpenShift Container Platform release, it is planned that the default value will be <code>restricted</code>.</p>
+<p>Click <strong>Import hosted cluster</strong>.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1903,114 +1778,192 @@ spec:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If your catalog cannot run with <code>restricted</code> permissions, it is recommended that you manually set this field to <code>legacy</code>.</p>
+<p>For your <em>discovered</em> hosted cluster, you can also import from the console, but the cluster must be in an upgradeable state. Import on your cluster is disabled if the hosted cluster is not in an upgradeable state because the hosted control plane is not available. Click <strong>Import</strong> to begin the process. The status is <code>Importing</code> while the cluster receives updates and then changes to <code>Ready</code>.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
-</dd>
-<dt class="hdlist1"><code>spec.image</code></dt>
-<dd>
-<p>Specifies your index image. If you specify a tag after the image name, for example <code>:v{product-version}</code>, the catalog source pod uses an image pull policy of <code>Always</code>, meaning the pod always pulls the image before starting the container. If you specify a digest, for example <code>@sha256:&lt;id&gt;</code>, the image pull policy is <code>IfNotPresent</code>, meaning the pod pulls the image only if it does not already exist on the node.</p>
-</dd>
-<dt class="hdlist1"><code>spec.publisher</code></dt>
-<dd>
-<p>Specifies your name or an organization name publishing the catalog.</p>
-</dd>
-<dt class="hdlist1"><code>spec.updateStrategy.registryPoll</code></dt>
-<dd>
-<p>Specifies the value for the <code>spec.updateStrategy.registryPoll</code> parameter. The catalog sources can automatically check for new versions to keep up to date.</p>
-</dd>
-</dl>
+</li>
+</ol>
 </div>
 </div>
+<div class="sect3">
+<h4 id="hcp-import-manual-aws_manually-import-a-hosted-cluster">Manually importing a hosted cluster on AWS</h4>
+<div class="paragraph _abstract">
+<p>You can import a hosted cluster on Amazon Web Services (AWS) with the command-line interface.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create your <code>ManagedCluster</code> resource by using the following sample YAML file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: cluster.open-cluster-management.io/v1
+kind: ManagedCluster
+metadata:
+  annotations:
+    import.open-cluster-management.io/hosting-cluster-name: local-cluster
+    import.open-cluster-management.io/klusterlet-deploy-mode: Hosted
+    open-cluster-management/created-via: hypershift
+  labels:
+    cloud: auto-detect
+    cluster.open-cluster-management.io/clusterset: default
+    name: &lt;hosted_cluster_name&gt;
+    vendor: OpenShift
+  name: &lt;hosted_cluster_name&gt;
+spec:
+  hubAcceptsClient: true
+  leaseDurationSeconds: 60</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;hosted_cluster_name&gt;</code> with the name of your hosted cluster.</p>
 </div>
 </li>
 <li>
-<p>Use the file to create the <code>CatalogSource</code> object:</p>
+<p>Run the following command to apply the resource:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f catalogSource.yaml</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f &lt;file_name&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;file_name&gt;</code> with the YAML file name you created in the previous step.</p>
+</div>
+</li>
+<li>
+<p>If you have Red&#160;Hat Advanced Cluster Management installed, create your <code>KlusterletAddonConfig</code> resource by using the following sample YAML file. If you have installed multicluster engine Operator only, skip this step:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: agent.open-cluster-management.io/v1
+kind: KlusterletAddonConfig
+metadata:
+  name: &lt;hosted_cluster_name&gt;
+  namespace: &lt;hosted_cluster_namespace&gt;
+spec:
+  clusterName: &lt;hosted_cluster_name&gt;
+  clusterNamespace: &lt;hosted_cluster_namespace&gt;
+  clusterLabels:
+    cloud: auto-detect
+    vendor: auto-detect
+  applicationManager:
+    enabled: true
+  certPolicyController:
+    enabled: true
+  iamPolicyController:
+    enabled: true
+  policyController:
+    enabled: true
+  searchCollector:
+    enabled: false</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code>&lt;hosted_cluster_name&gt;</code> with the name of your hosted cluster.</p>
+</li>
+<li>
+<p>Replace <code>&lt;hosted_cluster_namespace&gt;</code> with the name of your hosted cluster namespace.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Run the following command to apply the resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f &lt;file_name&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;file_name&gt;</code> with the name of the YAML that you created in the previous step.</p>
+</div>
+</li>
+<li>
+<p>After the import process is complete, your hosted cluster becomes visible in the console. You can also check the status of your hosted cluster by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get managedcluster &lt;hosted_cluster_name&gt;</code></pre>
 </div>
 </div>
 </li>
 </ol>
 </div>
-</li>
-<li>
-<p>Verify the following resources are created successfully.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Check the pods:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n openshift-marketplace</code></pre>
 </div>
+<div class="sect3">
+<h4 id="hcp-import-disable_manually-import-a-hosted-cluster">Disabling the automatic import of hosted clusters into multicluster engine Operator</h4>
+<div class="paragraph _abstract">
+<p>Hosted clusters are automatically imported into multicluster engine Operator after the control plane becomes available. If needed, you can disable the automatic import of hosted clusters.</p>
 </div>
 <div class="paragraph">
-<p>The following is example output:</p>
+<p>Any hosted clusters that were previously imported are not affected, even if you disable automatic import. When you upgrade to multicluster engine Operator 2.5 and automatic import is enabled, all hosted clusters that are not imported are automatically imported if their control planes are available.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If Red&#160;Hat Advanced Cluster Management is installed, all Red&#160;Hat Advanced Cluster Management add-ons are also enabled.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When automatic import is disabled, only newly created hosted clusters are not automatically imported. Hosted clusters that were already imported are not affected. You can still manually import clusters by using the console or by creating the <code>ManagedCluster</code> and <code>KlusterletAddonConfig</code> custom resources.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>On the hub cluster, open the <code>hypershift-addon-deploy-config</code> specification that is in the <code>AddonDeploymentConfig</code> resource in the namespace where multicluster engine Operator is installed by entering the following command:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                                    READY   STATUS    RESTARTS  AGE
-my-operator-catalog-6njx6               1/1     Running   0         28s
-marketplace-operator-d9f549946-96sgr    1/1     Running   0         26h</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc edit addondeploymentconfig hypershift-addon-deploy-config \
+  -n multicluster-engine</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Check the catalog source:</p>
+<p>In the <code>spec.customizedVariables</code> section, add the <code>autoImportDisabled</code> variable with value of <code>"true"</code>, as shown in the following example:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get catalogsource -n openshift-marketplace</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The following is example output:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                  DISPLAY               TYPE PUBLISHER  AGE
-my-operator-catalog   My Operator Catalog   grpc            5s</code></pre>
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: addon.open-cluster-management.io/v1alpha1
+kind: AddOnDeploymentConfig
+metadata:
+  name: hypershift-addon-deploy-config
+  namespace: multicluster-engine
+spec:
+  customizedVariables:
+   - name: hcMaxNumber
+     value: "80"
+  - name: hcThresholdNumber
+    value: "60"
+  - name: autoImportDisabled
+    value: "true"</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Check the package manifest:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get packagemanifest -n openshift-marketplace</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The following is example output:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME                          CATALOG               AGE
-jaeger-product                My Operator Catalog   93s</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can now install the Operators from the <strong>Software Catalog</strong> page on your Red&#160;Hat OpenShift Container Platform web console.</p>
-</div>
-</li>
-</ol>
-</div>
+<p>To re-enable automatic import, set the value of the <code>autoImportDisabled</code> variable to <code>"false"</code> or remove the variable from the <code>AddonDeploymentConfig</code> resource.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="oc-mirror-migration-differences_migrate-from-oc-mirror-v1-to-v2.html">Changes from oc-mirror plugin v1 to v2</a> | ↑ Up: <a href="_disconnected_environments.html">Disconnected environments</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Container Platform</a> | Next: <a href="mirror-images-for-a-cluster-update-in-a-disconnected-environment-intro_mirror-images-for-a-cluster-update-in-a-disconnected-environment.html">Mirror images for a cluster update in a disconnected environment</a> →</p>
+<p>← Previous: <a href="multi-architecture-scheduling_manage-workloads-on-multi-architecture-clusters.html">Scheduled workloads on clusters with multi-architecture compute machines</a> | ↑ Up: <a href="_administer.html">Administer</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Container Platform</a> | Next: <a href="nodes-pods-image-volume-about_mount-an-oci-image-onto-a-pod.html">Understanding image volumes</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 11:15:41 -0500
+Last updated 2026-10-07 14:52:40 -0500
 </div>
 </div>
 <style>
