@@ -722,10 +722,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><button class="toc-toggle" type="button" data-toc-key="_reference.html">▶</button><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="configure-the-rosa-cli-intro_rosa-classic-configure-the-rosa-cli.html">Configure ROSA CLI</a>
+</li>
+<li><a href="rosa-cli-reference_rosa-classic-rosa-cli-reference.html">ROSA CLI reference</a>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-how-upgrades-work_rosa-classic-upgrade-a-cluster">How cluster upgrades work</a></li><li class="level-5"><a href="#rosa-upgrade-scheduled-time_rosa-classic-upgrade-a-cluster">Cluster upgrade scheduled time</a></li><li class="level-5"><a href="#rosa-cluster-upgrade-overview_rosa-classic-upgrade-a-cluster">Cluster upgrade overview</a></li><li class="level-4"><a href="#rosa-upgrading-cli_rosa-classic-upgrade-a-cluster">Upgrade a cluster with the ROSA CLI</a></li><li class="level-4"><a href="#rosa-upgrade-ocm_rosa-classic-upgrade-a-cluster">Upgrade a cluster with OpenShift Cluster Manager</a></li><li class="level-4"><a href="#rosa-deleting-cluster-upgrade-cli_rosa-classic-upgrade-a-cluster">Delete a cluster upgrade with the ROSA CLI</a></li><li class="level-4"><a href="#rosa-deleting-cluster-upgrade-ocm_rosa-classic-upgrade-a-cluster">Delete a cluster upgrade with OpenShift Cluster Manager</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-how-upgrades-work_rosa-classic-upgrade-a-cluster">How cluster upgrades work</a></li><li class="level-5"><a href="#rosa-upgrade-scheduled-time_rosa-classic-upgrade-a-cluster">Cluster upgrade scheduled time</a></li><li class="level-5"><a href="#rosa-cluster-upgrade-overview_rosa-classic-upgrade-a-cluster">Cluster upgrade overview</a></li><li class="level-4"><a href="#rosa-upgrading-cli_rosa-classic-upgrade-a-cluster">Upgrade a cluster with the rosa CLI</a></li><li class="level-4"><a href="#rosa-upgrade-ocm_rosa-classic-upgrade-a-cluster">Upgrade a cluster with OpenShift Cluster Manager</a></li><li class="level-4"><a href="#rosa-deleting-cluster-upgrade-cli_rosa-classic-upgrade-a-cluster">Delete a cluster upgrade with the rosa CLI</a></li><li class="level-4"><a href="#rosa-deleting-cluster-upgrade-ocm_rosa-classic-upgrade-a-cluster">Delete a cluster upgrade with OpenShift Cluster Manager</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-sts-upgrading-a-cluster-with-sts_rosa-classic-upgrade-a-cluster">Upgrade a cluster</h3>
@@ -733,7 +742,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Upgrade your Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters using either the ROSA command-line interface (CLI) (<code>rosa</code>) or the OpenShift Cluster Manager console. Both support immediate and scheduled one-time upgrades. OpenShift Cluster Manager also schedules recurring upgrade windows that apply new z-versions automatically.</p>
 </div>
 <div class="paragraph">
-<p>While both methods verify compatibility, the ROSA CLI can automatically align Amazon Web Services (AWS) Security Token Service (STS) policies to the target version, ensuring your IAM roles meet all security requirements for the new release.</p>
+<p>While both methods verify compatibility, the <code>rosa</code> CLI can automatically align Amazon Web Services (AWS) Security Token Service (STS) policies to the target version, ensuring your IAM roles meet all security requirements for the new release.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -750,7 +759,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="paragraph">
-<p>When a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster that uses AWS STS is upgraded, the ROSA CLI verifies the account and Operator role policies for the chosen cluster are compatible with the target version of the upgrade. If the policies are compatible, the CLI automatically upgrades the cluster. If the policies are not compatible with the chosen upgrade version, the CLI automatically upgrades IAM policies before upgrading the cluster. When scheduling the upgrade, you give administrative acknowledgment to confirm you have reviewed the changes involved with the upgrade, if required.</p>
+<p>When a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster that uses AWS STS is upgraded, the <code>rosa</code> CLI verifies the account and Operator role policies for the chosen cluster are compatible with the target version of the upgrade. If the policies are compatible, the CLI automatically upgrades the cluster. If the policies are not compatible with the chosen upgrade version, the CLI automatically upgrades IAM policies before upgrading the cluster. When scheduling the upgrade, you give administrative acknowledgment to confirm you have reviewed the changes involved with the upgrade, if required.</p>
 </div>
 <div class="sect3">
 <h4 id="rosa-how-upgrades-work_rosa-classic-upgrade-a-cluster">How cluster upgrades work</h4>
@@ -876,15 +885,15 @@ This means that PHC is always run at least one time during the upgrading phase b
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-upgrading-cli_rosa-classic-upgrade-a-cluster">Upgrade a cluster with the ROSA CLI</h4>
+<h4 id="rosa-upgrading-cli_rosa-classic-upgrade-a-cluster">Upgrade a cluster with the <code>rosa</code> CLI</h4>
 <div class="paragraph _abstract">
-<p>You can use the ROSA command-line interface (CLI) (<code>rosa</code>) to upgrade a cluster either immediately within 10 minutes or at a future time. For Security Token Service (STS) clusters, the ROSA CLI automatically upgrades Identity and Access Management (IAM) policies to match the target version of the upgrade.</p>
+<p>You can use the ROSA command-line interface (CLI) (<code>rosa</code>) to upgrade a cluster either immediately within 10 minutes or at a future time. For Security Token Service (STS) clusters, the <code>rosa</code> CLI automatically upgrades Identity and Access Management (IAM) policies to match the target version of the upgrade.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have installed and configured the latest ROSA CLI on your installation host.</p>
+<p>You have installed and configured the latest <code>rosa</code> CLI on your installation host.</p>
 </li>
 <li>
 <p>Your Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster is in a <code>Ready</code> state.</p>
@@ -1100,10 +1109,10 @@ This means that PHC is always run at least one time during the upgrading phase b
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>In the ROSA CLI, run the <code>rosa list account-roles</code> command to list and verify that the account roles are compatible with the target minor version chosen for the upgrade. If the roles are not compatible, run the <code>rosa upgrade account-roles</code> command to upgrade the account roles to the latest OpenShift version.</p>
+<p>In the <code>rosa</code> CLI, run the <code>rosa list account-roles</code> command to list and verify that the account roles are compatible with the target minor version chosen for the upgrade. If the roles are not compatible, run the <code>rosa upgrade account-roles</code> command to upgrade the account roles to the latest OpenShift version.</p>
 </li>
 <li>
-<p>In the ROSA CLI, run the <code>rosa list operator-roles</code> command to list and verify that Operator roles associated with the cluster are compatible with the target minor version chosen for the upgrade. If not, run the <code>rosa upgrade operators-roles</code> command to upgrade the cluster&#8217;s Operator roles to the latest OpenShift version.</p>
+<p>In the <code>rosa</code> CLI, run the <code>rosa list operator-roles</code> command to list and verify that Operator roles associated with the cluster are compatible with the target minor version chosen for the upgrade. If not, run the <code>rosa upgrade operators-roles</code> command to upgrade the cluster&#8217;s Operator roles to the latest OpenShift version.</p>
 </li>
 <li>
 <p>If you select an update version that requires approval, provide an administrator&#8217;s acknowledgment by typing <strong>Acknowledge</strong> into the field provided, and click <strong>Next</strong>.</p>
@@ -1168,7 +1177,7 @@ This means that PHC is always run at least one time during the upgrading phase b
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-deleting-cluster-upgrade-cli_rosa-classic-upgrade-a-cluster">Delete a cluster upgrade with the ROSA CLI</h4>
+<h4 id="rosa-deleting-cluster-upgrade-cli_rosa-classic-upgrade-a-cluster">Delete a cluster upgrade with the <code>rosa</code> CLI</h4>
 <div class="paragraph _abstract">
 <p>Cancel a scheduled cluster upgrade by using the ROSA command-line interface (CLI) (<code>rosa</code>). You might need to cancel an upgrade if conditions change, for example, if you discover a new issue or a maintenance window conflict.</p>
 </div>
@@ -1250,7 +1259,7 @@ This means that PHC is always run at least one time during the upgrading phase b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-08 10:09:26 -0500
+Last updated 2026-10-09 11:03:30 -0500
 </div>
 </div>
 </body>

@@ -722,10 +722,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><button class="toc-toggle" type="button" data-toc-key="_reference.html">▶</button><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="configure-the-rosa-cli-intro_rosa-classic-configure-the-rosa-cli.html">Configure ROSA CLI</a>
+</li>
+<li><a href="rosa-cli-reference_rosa-classic-rosa-cli-reference.html">ROSA CLI reference</a>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-classic-troubleshoot-rosa-installations_rosa-classic-troubleshoot-rosa-installations">Troubleshoot ROSA installations</a></li><li class="level-5"><a href="#rosa-troubleshooting-installing_rosa-classic-troubleshoot-rosa-installations">Installation troubleshooting</a></li><li class="level-4"><a href="#rosa-classic-troubleshoot-networking_rosa-classic-troubleshoot-networking">Troubleshoot networking</a></li><li class="level-5"><a href="#rosa-troubleshooting-general-deployment-failure_rosa-classic-troubleshoot-networking">Connectivity issues on clusters with private network load balancers</a></li><li class="level-4"><a href="#rosa-classic-verify-node-health_rosa-classic-verify-node-health">Verify node health</a></li><li class="level-5"><a href="#reviewing-node-status-use-and-configuration_rosa-classic-verify-node-health">Reviewing node status, resource usage, and configuration</a></li><li class="level-5"><a href="#querying-kubelet-status-on-a-node_rosa-classic-verify-node-health">Querying the kubelet’s status on a node</a></li><li class="level-5"><a href="#querying-cluster-node-journal-logs_rosa-classic-verify-node-health">Querying cluster node journal logs</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-classic-troubleshoot-rosa-installations_rosa-classic-troubleshoot-rosa-installations">Troubleshoot ROSA installations</a></li><li class="level-5"><a href="#rosa-troubleshooting-installing_rosa-classic-troubleshoot-rosa-installations">Installation troubleshooting</a></li><li class="level-4"><a href="#rosa-classic-troubleshoot-networking_rosa-classic-troubleshoot-networking">Troubleshoot networking</a></li><li class="level-5"><a href="#rosa-troubleshooting-general-deployment-failure_rosa-classic-troubleshoot-networking">Connectivity issues on clusters with private network load balancers</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-classic-troubleshoot-cluster-infrastructure-issues_rosa-classic-troubleshoot-cluster-infrastructure-issues">Troubleshoot cluster infrastructure issues</h3>
@@ -848,211 +857,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="rosa-classic-verify-node-health_rosa-classic-verify-node-health">Verify node health</h4>
-<div class="paragraph _abstract">
-<p>Verify and troubleshoot node-related issues by reviewing the status, resource usage, and configuration of a node.</p>
-</div>
-<div class="sect4">
-<h5 id="reviewing-node-status-use-and-configuration_rosa-classic-verify-node-health">Reviewing node status, resource usage, and configuration</h5>
-<div class="paragraph _abstract">
-<p>Review cluster node health status, resource consumption statistics, and node logs. Additionally, query <code>kubelet</code> status on individual nodes.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have access to the cluster as a user with the <code>dedicated-admin</code> role.</p>
-</li>
-<li>
-<p>You have installed the OpenShift CLI (<code>oc</code>).</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>List the name, status, and role for all nodes in the cluster:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get nodes</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Summarize CPU and memory usage for each node within the cluster:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm top nodes</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Summarize CPU and memory usage for a specific node:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm top node my-node</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="querying-kubelet-status-on-a-node_rosa-classic-verify-node-health">Querying the kubelet&#8217;s status on a node</h5>
-<div class="paragraph _abstract">
-<p>You can review cluster node health status, resource consumption statistics, and node logs. Additionally, you can query <code>kubelet</code> status on individual nodes.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have access to the cluster as a user with the <code>dedicated-admin</code> role.</p>
-</li>
-<li>
-<p>Your API service is still functional.</p>
-</li>
-<li>
-<p>You have installed the OpenShift CLI (<code>oc</code>).</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>The kubelet is managed using a systemd service on each node. Review the kubelet&#8217;s status by querying the <code>kubelet</code> systemd service within a debug pod.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Start a debug pod for a node:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc debug node/my-node</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If you are running <code>oc debug</code> on a control plane node, you can find administrative <code>kubeconfig</code> files in the <code>/etc/kubernetes/static-pod-resources/kube-apiserver-certs/secrets/node-kubeconfigs</code> directory.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Set <code>/host</code> as the root directory within the debug shell. The debug pod mounts the host&#8217;s root file system in <code>/host</code> within the pod. By changing the root directory to <code>/host</code>, you can run binaries contained in the host&#8217;s executable paths:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal"># chroot /host</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) {product-version} cluster nodes running Red Hat Enterprise Linux CoreOS (RHCOS) are immutable and rely on Operators to apply cluster changes. Accessing cluster nodes by using SSH is not recommended. However, if the Red&#160;Hat OpenShift Services on AWS (classic architecture) API is not available, or <code>kubelet</code> is not properly functioning on the target node, <code>oc</code> operations will be impacted. In such situations, it is possible to access nodes using <code>ssh core@&lt;node&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> instead.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Check whether the <code>kubelet</code> systemd service is active on the node:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal"># systemctl is-active kubelet</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Output a more detailed <code>kubelet.service</code> status summary:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal"># systemctl status kubelet</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="querying-cluster-node-journal-logs_rosa-classic-verify-node-health">Querying cluster node journal logs</h5>
-<div class="paragraph _abstract">
-<p>You can gather <code>journald</code> unit logs and other logs within <code>/var/log</code> on individual cluster nodes.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have access to the cluster as a user with the <code>cluster-admin</code> role.</p>
-</li>
-<li>
-<p>You have installed the OpenShift CLI (<code>oc</code>).</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Query <code>kubelet</code> <code>journald</code> unit logs from Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster nodes. The following example queries control plane nodes only:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm node-logs --role=master -u kubelet  <img src="data:image/png;base64," alt="1"></code></pre>
-</div>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>kubelet</code></dt>
-<dd>
-<p>Replace as appropriate to query other unit logs.</p>
-</dd>
-</dl>
-</div>
-</li>
-<li>
-<p>Collect logs from specific subdirectories under <code>/var/log/</code> on cluster nodes.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Retrieve a list of logs contained within a <code>/var/log/</code> subdirectory. The following example lists files in <code>/var/log/openshift-apiserver/</code> on all control plane nodes:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm node-logs --role=master --path=openshift-apiserver</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Inspect a specific log within a <code>/var/log/</code> subdirectory. The following example outputs <code>/var/log/openshift-apiserver/audit.log</code> contents from all control plane nodes:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm node-logs --role=master --path=openshift-apiserver/audit.log</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
 </div>
 <div class="paragraph nav-footer">
 <p>↑ Up: <a href="_troubleshoot.html">Troubleshoot</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="troubleshoot-component-and-workload-issues_rosa-classic-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a> →</p>
@@ -1060,7 +864,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-08 10:09:26 -0500
+Last updated 2026-10-09 11:03:30 -0500
 </div>
 </div>
 </body>

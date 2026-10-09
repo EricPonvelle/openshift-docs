@@ -571,7 +571,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <!-- navmap-right-toc-end -->
 </head>
-<body id="configure-private-connections-for-a-private-cluster_rosa-hcp-configure-private-connections-for-a-private-cluster" class="book toc2 toc-left navmap-has-right-toc">
+<body id="configure-the-rosa-cli-intro_configure-the-rosa-cli" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
@@ -703,8 +703,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_configure.html">▶</button><a href="_configure.html">Configure</a>
+
 <ul class="sectlevel2">
-<li><a href="configure-private-connections-for-a-private-cluster_rosa-hcp-configure-private-connections-for-a-private-cluster.html"><span class="toc-current">Configure private connections for a private cluster</span></a>
+<li><a href="configure-private-connections-for-a-private-cluster_rosa-hcp-configure-private-connections-for-a-private-cluster.html">Configure private connections for a private cluster</a>
 </li>
 <li><a href="rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster.html">Tutorial: Configure Microsoft Entra ID as an identity provider for your cluster</a>
 </li>
@@ -715,9 +716,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_reference.html">▶</button><a href="_reference.html">Reference</a>
-
 <ul class="sectlevel2">
-<li><a href="configure-the-rosa-cli-intro_configure-the-rosa-cli.html">Configure ROSA CLI</a>
+<li><a href="configure-the-rosa-cli-intro_configure-the-rosa-cli.html"><span class="toc-current">Configure ROSA CLI</span></a>
 </li>
 <li><a href="rosa-cli-reference_rosa-cli-reference.html">ROSA CLI reference</a>
 </li>
@@ -726,66 +726,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#configure-aws-vpc-peering_rosa-hcp-configure-aws-vpc-peering">Configure AWS VPC peering</a></li><li class="level-5"><a href="#dedicated-aws-vpc-peering-terms">VPC peering terms</a></li><li class="level-5"><a href="#dedicated-aws-vpc-initiating-peering">Initiate the VPC peer request</a></li><li class="level-5"><a href="#dedicated-aws-vpc-accepting-peering">Accept the VPC peer request</a></li><li class="level-5"><a href="#dedicated-aws-vpc-configuring-routing-tables">Configure the routing tables</a></li><li class="level-5"><a href="#dedicated-aws-vpc-verifying-troubleshooting">Verify and troubleshoot VPC peering</a></li><li class="level-4"><a href="#configure-aws-vpn_rosa-hcp-configure-aws-vpn">Configure AWS VPN</a></li><li class="level-5"><a href="#dedicated-aws-vpn-creating-customer-gw_rosa-hcp-configure-aws-vpn">Create a customer gateway and virtual private gateway</a></li><li class="level-5"><a href="#dedicated-aws-vpn-establishing-connection_rosa-hcp-configure-aws-vpn">Establish the VPN connection and enable route propagation</a></li><li class="level-5"><a href="#dedicated-aws-vpn-verifying">Verify the VPN connection</a></li><li class="level-5"><a href="#dedicated-aws-vpn-troubleshooting">Troubleshoot the VPN connection</a></li><li class="level-6"><a href="#_tunnel_does_not_connect">Tunnel does not connect</a></li><li class="level-6"><a href="#_tunnel_does_not_stay_connected">Tunnel does not stay connected</a></li><li class="level-6"><a href="#_secondary_tunnel_in_down_state">Secondary tunnel in Down state</a></li><li class="level-4"><a href="#configure-aws-direct-connect_rosa-hcp-configure-aws-direct-connect">Configure AWS Direct Connect</a></li><li class="level-5"><a href="#dedicated-aws-dc-methods">AWS Direct Connect methods</a></li><li class="level-5"><a href="#dedicated-aws-dc-hvif-determine-type_rosa-hcp-configure-aws-direct-connect">Determine the Direct Connect Virtual Interface type</a></li><li class="level-5"><a href="#dedicated-aws-dc-hvif-private_rosa-hcp-configure-aws-direct-connect">Create a Virtual Private Gateway for a private Direct Connect</a></li><li class="level-5"><a href="#dedicated-aws-dc-hvif-public_rosa-hcp-configure-aws-direct-connect">Create a Direct Connect Gateway for a public Direct Connect</a></li><li class="level-5"><a href="#dedicated-aws-dc-existing-create-vgw_rosa-hcp-configure-aws-direct-connect">Create a virtual private gateway for a Direct Connect connection</a></li><li class="level-5"><a href="#dedicated-aws-dc-existing-associate-dxgw_rosa-hcp-configure-aws-direct-connect">Associate the Direct Connect gateway with the virtual private gateway</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-set-up-and-authenticate-the-rosa-cli_rosa-set-up-and-authenticate-the-rosa-cli">Set up and authenticate the ROSA CLI</a></li><li class="level-5"><a href="#rosa-setting-up-cli_rosa-set-up-and-authenticate-the-rosa-cli">Setting up the rosa CLI</a></li><li class="level-5"><a href="#rosa-login_rosa-set-up-and-authenticate-the-rosa-cli">About logging in to the rosa CLI</a></li><li class="level-6"><a href="#_authentication_methods">Authentication methods</a></li><li class="level-5"><a href="#rosa-login-sso-auth-code_rosa-set-up-and-authenticate-the-rosa-cli">Authenticate the rosa CLI with a single sign-on authorization code</a></li><li class="level-5"><a href="#rosa-login-sso-device-code_rosa-set-up-and-authenticate-the-rosa-cli">Authenticate the rosa CLI with a single sign-on device code</a></li><li class="level-5"><a href="#rosa-login-offline-token_rosa-set-up-and-authenticate-the-rosa-cli">Authenticate the rosa CLI with an offline token</a></li><li class="level-5"><a href="#rosa-logout_rosa-set-up-and-authenticate-the-rosa-cli">Log out of the rosa CLI</a></li><li class="level-5"><a href="#rosa-verify_rosa-set-up-and-authenticate-the-rosa-cli">Verify AWS settings with the rosa CLI</a></li><li class="level-6"><a href="#rosa-verify-permissions_rosa-set-up-and-authenticate-the-rosa-cli">verify permissions</a></li><li class="level-6"><a href="#rosa-verify-quota_rosa-set-up-and-authenticate-the-rosa-cli">verify quota</a></li><li class="level-5"><a href="#rosa-download_rosa-set-up-and-authenticate-the-rosa-cli">Download CLI tools with the rosa CLI</a></li><li class="level-6"><a href="#rosa-download-rosa-client_rosa-set-up-and-authenticate-the-rosa-cli">download rosa</a></li><li class="level-6"><a href="#rosa-download-ocp-client_rosa-set-up-and-authenticate-the-rosa-cli">download oc</a></li><li class="level-6"><a href="#rosa-verify-ocp-client_rosa-set-up-and-authenticate-the-rosa-cli">verify oc</a></li><li class="level-5"><a href="#rosa-initialize_rosa-set-up-and-authenticate-the-rosa-cli">Initializing Red Hat OpenShift Services on AWS</a></li><li class="level-6"><a href="#rosa-init_rosa-set-up-and-authenticate-the-rosa-cli">init</a></li><li class="level-5"><a href="#rosa-using-bash-script_rosa-set-up-and-authenticate-the-rosa-cli">Use a Bash script</a></li><li class="level-5"><a href="#rosa-updating-the-rosa-cli_rosa-set-up-and-authenticate-the-rosa-cli">Updating the rosa CLI</a></li><li class="level-4"><a href="#rosa-change-the-aws-billing-account_rosa-change-the-aws-billing-account">Change the AWS billing account for your cluster</a></li><li class="level-5"><a href="#rosa-update-billing_rosa-change-the-aws-billing-account">Update billing accounts for Red Hat OpenShift Services on AWS clusters</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="configure-private-connections-for-a-private-cluster_rosa-hcp-configure-private-connections-for-a-private-cluster">Configure private connections for a private cluster</h3>
+<h3 id="configure-the-rosa-cli-intro_configure-the-rosa-cli">Configure ROSA CLI</h3>
 <div class="paragraph _abstract">
-<p>Configure private connections to your Red&#160;Hat OpenShift Services on AWS cluster by using AWS Virtual Private Cloud (VPC) peering, an AWS Virtual Private Network (VPN), or AWS Direct Connect, so that your cluster communicates securely with your on-premise infrastructure.</p>
+<p>Find the exact parameters, command-line interface (CLI) options, application programming interface (API) fields, and schemas required to configure and automate your Red&#160;Hat OpenShift Services on AWS clusters.</p>
 </div>
 <div class="sect3">
-<h4 id="configure-aws-vpc-peering_rosa-hcp-configure-aws-vpc-peering">Configure AWS VPC peering</h4>
+<h4 id="rosa-set-up-and-authenticate-the-rosa-cli_rosa-set-up-and-authenticate-the-rosa-cli">Set up and authenticate the ROSA CLI</h4>
 <div class="paragraph _abstract">
-<p>Configure an AWS Virtual Private Cloud (VPC) containing your Red&#160;Hat OpenShift Services on AWS cluster to peer with another AWS VPC network.</p>
+<p>Learn how to install, configure, and update the ROSA command-line interface (CLI) (<code>rosa</code>). You can use the <code>rosa</code> CLI to create, update, manage, and delete Red&#160;Hat OpenShift Services on AWS clusters and resources.</p>
 </div>
 <div class="sect4">
-<h5 id="dedicated-aws-vpc-peering-terms">VPC peering terms</h5>
-<div class="paragraph">
-<p>When setting up a Virtual Private Cloud (VPC) peering connection between two VPCs on two separate AWS accounts, the following terms are used:</p>
+<h5 id="rosa-setting-up-cli_rosa-set-up-and-authenticate-the-rosa-cli">Setting up the <code>rosa</code> CLI</h5>
+<div class="paragraph _abstract">
+<p>Put the ROSA command-line interface (CLI) (<code>rosa</code>) on the computer you use to run cluster commands.</p>
 </div>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-Red&#160;Hat OpenShift Services on AWS AWS Account
-</td>
-<td class="hdlist2">
-<p>The AWS account that contains the Red&#160;Hat OpenShift Services on AWS cluster.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Red&#160;Hat OpenShift Services on AWS Cluster VPC
-</td>
-<td class="hdlist2">
-<p>The VPC that contains the Red&#160;Hat OpenShift Services on AWS cluster.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Customer AWS Account
-</td>
-<td class="hdlist2">
-<p>Your non-Red&#160;Hat OpenShift Services on AWS AWS Account that you want to peer with.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Customer VPC
-</td>
-<td class="hdlist2">
-<p>The VPC in your AWS Account that you want to peer with.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Customer VPC Region
-</td>
-<td class="hdlist2">
-<p>The region where the customer&#8217;s VPC resides.</p>
-</td>
-</tr>
-</table>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Install and configure the latest AWS CLI (<code>aws</code>).</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Follow the <a href="https://aws.amazon.com/cli/">AWS Command Line Interface</a> documentation to install and configure the AWS CLI for your operating system.</p>
+<div class="paragraph">
+<p>Put <code>aws_access_key_id</code>, <code>aws_secret_access_key</code>, and <code>region</code> in the <code>.aws/credentials</code> file. See <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html">AWS Configuration basics</a> in the AWS documentation.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -795,155 +763,7 @@ Customer VPC Region
 </td>
 <td class="content">
 <div class="paragraph">
-<p>As of July 2018, AWS supports inter-region VPC peering between all commercial regions <a href="https://aws.amazon.com/vpc/faqs/#Peering_Connections">excluding China</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="dedicated-aws-vpc-initiating-peering">Initiate the VPC peer request</h5>
-<div class="paragraph">
-<p>You can send a Virtual Private Cloud (VPC) peering connection request from the Red&#160;Hat OpenShift Services on AWS AWS Account to the Customer AWS Account.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Gather the following information about the Customer VPC required to initiate the peering request:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Customer AWS account number</p>
-</li>
-<li>
-<p>Customer VPC ID</p>
-</li>
-<li>
-<p>Customer VPC Region</p>
-</li>
-<li>
-<p>Customer VPC CIDR</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Check the CIDR block used by the Red&#160;Hat OpenShift Services on AWS Cluster VPC. If it overlaps or matches the CIDR block for the Customer VPC, then peering between these two VPCs is not possible; see the Amazon VPC <a href="https://docs.aws.amazon.com/vpc/latest/peering/invalid-peering-configurations.html">Unsupported VPC Peering Configurations</a> documentation for details. If the CIDR blocks do not overlap, you can continue with the procedure.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Log in to the Web Console for the Red&#160;Hat OpenShift Services on AWS AWS Account and navigate to the <strong>VPC Dashboard</strong> in the region where the cluster is being hosted.</p>
-</li>
-<li>
-<p>Go to the <strong>Peering Connections</strong> page and click the <strong>Create Peering Connection</strong> button.</p>
-</li>
-<li>
-<p>Verify the details of the account you are logged in to and the details of the account and VPC you are connecting to:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><strong>Peering connection name tag</strong>: Set a descriptive name for the VPC Peering Connection.</p>
-</li>
-<li>
-<p><strong>VPC (Requester)</strong>: Select the Red&#160;Hat OpenShift Services on AWS Cluster VPC ID from the list.</p>
-</li>
-<li>
-<p><strong>Account</strong>: Select <strong>Another account</strong> and provide the Customer AWS Account number (without dashes).</p>
-</li>
-<li>
-<p><strong>Region</strong>: If the Customer VPC Region differs from the current region, select <strong>Another Region</strong> and select the customer VPC Region from the list.</p>
-</li>
-<li>
-<p><strong>VPC (Accepter)</strong>: Set the Customer VPC ID.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Click <strong>Create Peering Connection</strong>.</p>
-</li>
-<li>
-<p>Confirm that the request enters a <strong>Pending</strong> state. If it enters a <strong>Failed</strong> state, confirm the details and repeat the process.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="dedicated-aws-vpc-accepting-peering">Accept the VPC peer request</h5>
-<div class="paragraph">
-<p>After you create the Virtual Private Cloud (VPC) peering connection, you must accept the request in the Customer AWS Account.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Initiate the VPC peer request.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Log in to the AWS Web Console.</p>
-</li>
-<li>
-<p>Navigate to <strong>VPC Service</strong>.</p>
-</li>
-<li>
-<p>Go to <strong>Peering Connections</strong>.</p>
-</li>
-<li>
-<p>Click <strong>Pending peering connection</strong>.</p>
-</li>
-<li>
-<p>Confirm the AWS Account and VPC ID that the request originated from. This should be from the Red&#160;Hat OpenShift Services on AWS AWS Account and Red&#160;Hat OpenShift Services on AWS Cluster VPC.</p>
-</li>
-<li>
-<p>Click <strong>Accept Request</strong>.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="dedicated-aws-vpc-configuring-routing-tables">Configure the routing tables</h5>
-<div class="paragraph">
-<p>After you accept the Virtual Private Cloud (VPC) peering request, both VPCs must configure their routes to communicate across the peering connection.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Initiate and accept the VPC peer request.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Log in to the AWS Web Console for the Red&#160;Hat OpenShift Services on AWS AWS Account.</p>
-</li>
-<li>
-<p>Navigate to the <strong>VPC Service</strong>, then <strong>Route tables</strong>.</p>
-</li>
-<li>
-<p>Select the Route Table for the Red&#160;Hat OpenShift Services on AWS Cluster VPC.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>On some clusters, there may be more than one route table for a particular VPC. Select the private one that has several explicitly associated subnets.</p>
+<p>You can optionally use the <code>AWS_DEFAULT_REGION</code> environment variable to set the default AWS region.</p>
 </div>
 </td>
 </tr>
@@ -951,269 +771,164 @@ Customer VPC Region
 </div>
 </li>
 <li>
-<p>Select the <strong>Routes</strong> tab, then <strong>Edit</strong>.</p>
-</li>
-<li>
-<p>Enter the Customer VPC CIDR block in the <strong>Destination</strong> text box.</p>
-</li>
-<li>
-<p>Enter the Peering Connection ID in the <strong>Target</strong> text box.</p>
-</li>
-<li>
-<p>Click <strong>Save</strong>.</p>
-</li>
-<li>
-<p>You must complete the same process with the other VPC&#8217;s CIDR block:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Log into the Customer AWS Web Console → <strong>VPC Service</strong> → <strong>Route Tables</strong>.</p>
-</li>
-<li>
-<p>Select the Route Table for your VPC.</p>
-</li>
-<li>
-<p>Select the <strong>Routes</strong> tab, then <strong>Edit</strong>.</p>
-</li>
-<li>
-<p>Enter the Red&#160;Hat OpenShift Services on AWS Cluster VPC CIDR block in the <strong>Destination</strong> text box.</p>
-</li>
-<li>
-<p>Enter the Peering Connection ID in the <strong>Target</strong> text box.</p>
-</li>
-<li>
-<p>Click <strong>Save changes</strong>.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="dedicated-aws-vpc-verifying-troubleshooting">Verify and troubleshoot VPC peering</h5>
-<div class="paragraph">
-<p>After you set up a Virtual Private Cloud (VPC) peering connection, it is best to confirm it has been configured and is working correctly.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Initiate and accept the VPC peer request.</p>
-</li>
-<li>
-<p>Configure the routing tables.</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>In the AWS console, look at the route table for the cluster VPC that is peered. Ensure that the steps for configuring the routing tables were followed and that there is a route table entry pointing the VPC Classless Inter-Domain Routing (CIDR) range destination to the peering connection target.</p>
-<div class="paragraph">
-<p>If the routes look correct on both the Red&#160;Hat OpenShift Services on AWS Cluster VPC route table and Customer VPC route table, then the connection should be tested using the <code>netcat</code> method below. If the test calls are successful, then VPC peering is working correctly.</p>
-</div>
-</li>
-<li>
-<p>To test network connectivity to an endpoint device, <code>nc</code> (or <code>netcat</code>) is a helpful troubleshooting tool. It is included in the default image and provides quick and clear output if a connection can be established:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Create a temporary pod using the <code>busybox</code> image, which cleans up after itself:</p>
+<p>Query the AWS API to verify if the AWS CLI is installed and configured correctly:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc run netcat-test \
-    --image=busybox -i -t \
-    --restart=Never --rm \
-    -- /bin/sh</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws sts get-caller-identity  --output text</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">&lt;aws_account_id&gt;    arn:aws:iam::&lt;aws_account_id&gt;:user/&lt;username&gt;  &lt;aws_user_id&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Download the latest version of the ROSA command-line interface (CLI) (<code>rosa</code>) for your operating system from the <a href="https://console.redhat.com/openshift/downloads"><strong>Downloads</strong></a> page on OpenShift Cluster Manager.</p>
+</li>
+<li>
+<p>Extract the <code>rosa</code> binary file from the downloaded archive. The following example extracts the binary from a Linux tar archive:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ tar xvf rosa-linux.tar.gz</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Check the connection using <code>nc</code>.</p>
+<p>Add <code>rosa</code> to your path. In the following example, the <code>/usr/local/bin</code> directory is included in the path of the user:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo mv rosa /usr/local/bin/rosa</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify if the <code>rosa</code> CLI is installed correctly by querying the <code>rosa</code> version:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa version</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">1.2.15
+Your <code>rosa</code> CLI is up to date.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Optional: Turn on tab completion for the <code>rosa</code> CLI. Press <code>Tab</code> twice to finish subcommands or see hints:</p>
 <div class="openblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Example successful connection results:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">/ nc -zvv 192.168.1.1 8080
-10.181.3.180 (10.181.3.180:8080) open
-sent 0, rcvd 0</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Example failed connection results:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">/ nc -zvv 192.168.1.2 8080
-nc: 10.181.3.180 (10.181.3.180:8081): Connection refused
-sent 0, rcvd 0</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Exit the container, which automatically deletes the Pod:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">/ exit</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="configure-aws-vpn_rosa-hcp-configure-aws-vpn">Configure AWS VPN</h4>
-<div class="paragraph _abstract">
-<p>Configure your Amazon Web Services (AWS) Red&#160;Hat OpenShift Services on AWS cluster to connect to an on-site hardware virtual private network (VPN) device.</p>
-</div>
-<div class="sect4">
-<h5 id="dedicated-aws-vpn-creating-customer-gw_rosa-hcp-configure-aws-vpn">Create a customer gateway and virtual private gateway</h5>
-<div class="paragraph _abstract">
-<p>Create a customer gateway and, if needed, a virtual private gateway to prepare for a VPN connection to your Red&#160;Hat OpenShift Services on AWS cluster.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Hardware VPN gateway device model and software version, for example Cisco ASA running version 8.3. See the Amazon VPC <a href="https://docs.aws.amazon.com/vpc/latest/adminguide/Introduction.html#DevicesTested">Network Administrator Guide</a> to confirm whether your gateway device is supported by AWS.</p>
-</li>
-<li>
-<p>Public, static IP address for the VPN gateway device.</p>
-</li>
-<li>
-<p>Border Gateway Protocol (BGP) or static routing: if using BGP, the Autonomous System Number (ASN) is required. If using static routing, you must configure at least one static route.</p>
-</li>
-<li>
-<p><strong>Optional</strong>: IP and Port/Protocol of a reachable service to test the VPN connection.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Log in to the Red&#160;Hat OpenShift Services on AWS AWS Account Dashboard, and navigate to the VPC Dashboard.</p>
-</li>
-<li>
-<p>Under <strong>Virtual private cloud</strong> click <strong>Your VPCs</strong> and identify the name and VPC ID for the VPC containing the Red&#160;Hat OpenShift Services on AWS cluster.</p>
-</li>
-<li>
-<p>Under <strong>Virtual private network (VPN)</strong> click <strong>Customer gateways</strong>.</p>
-</li>
-<li>
-<p>Click <strong>Create customer gateway</strong> and give it a meaningful name.</p>
-</li>
-<li>
-<p>Enter the ASN of your customer gateway device in the <strong>BGP ASN</strong> field.</p>
-</li>
-<li>
-<p>In the <strong>IP address</strong> field, enter the IP address of an external interface for your customer gateway devices.</p>
-</li>
-<li>
-<p>Click <strong>Create customer gateway</strong>.</p>
-</li>
-<li>
-<p>If you do not already have a Virtual Private Gateway attached to the intended VPC:</p>
+<p>To enable persistent tab completion for Bash on a Linux host:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>From the VPC Dashboard, click <strong>Virtual Private Gateways</strong>.</p>
+<p>Generate a <code>rosa</code> tab completion configuration file for Bash and save it to your <code>/etc/bash_completion.d/</code> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"># rosa completion bash &gt; /etc/bash_completion.d/rosa</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Click <strong>Create virtual private gateway</strong>, give it a meaningful name.</p>
-</li>
-<li>
-<p>Click <strong>Create virtual private gateway</strong>, leaving the <strong>Amazon default ASN</strong>.</p>
-</li>
-<li>
-<p>Select the newly created gateway.</p>
-</li>
-<li>
-<p>Select <strong>Actions</strong> from the list and click <strong>Attach to VPC</strong>.</p>
-</li>
-<li>
-<p>Select the newly created gateway under Available VPC&#8217;s and click <strong>Attach to VPC</strong> to attach it to the cluster VPC you identified earlier.</p>
+<p>Open a new terminal to activate the configuration.</p>
 </li>
 </ol>
 </div>
 </li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="dedicated-aws-vpn-establishing-connection_rosa-hcp-configure-aws-vpn">Establish the VPN connection and enable route propagation</h5>
-<div class="paragraph _abstract">
-<p>After you create the customer gateway and virtual private gateway, establish the Site-to-Site VPN connection and enable route propagation.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
 <li>
-<p>You created a customer gateway in your Red&#160;Hat OpenShift Services on AWS AWS account.</p>
+<p>To enable persistent tab completion for Bash on a macOS host:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Generate a <code>rosa</code> tab completion configuration file for Bash and save it to your <code>/usr/local/etc/bash_completion.d/</code> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa completion bash &gt; /usr/local/etc/bash_completion.d/rosa</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>You have a virtual private gateway attached to the cluster Virtual Private Cloud (VPC).</p>
+<p>Open a new terminal to activate the configuration.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To enable persistent tab completion for Zsh:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If tab completion is not enabled for your Zsh environment, enable it by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo "autoload -U compinit; compinit" &gt;&gt; ~/.zshrc</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Generate a <code>rosa</code> tab completion configuration file for Zsh and save it to the first directory in your functions path:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa completion zsh &gt; "${fpath[1]}/_rosa"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open a new terminal to activate the configuration.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To enable persistent tab completion for fish:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Generate a <code>rosa</code> tab completion configuration file for fish and save it to your <code>~/.config/fish/completions/</code> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa completion fish &gt; ~/.config/fish/completions/rosa.fish</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open a new terminal to activate the configuration.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To enable persistent tab completion for PowerShell:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Generate a <code>rosa</code> tab completion configuration file for PowerShell and save it to a file named <code>rosa.ps1</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">PS&gt; rosa completion powershell | Out-String | Invoke-Expression</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Source the <code>rosa.ps1</code> file from your PowerShell profile.</p>
+</li>
+</ol>
+</div>
 </li>
 </ul>
 </div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>From the VPC dashboard, under Virtual private network (VPN) click <strong>Site-to-Site VPN connections</strong>.</p>
-</li>
-<li>
-<p>Click <strong>Create VPN connection</strong>.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Give it a meaningful name tag.</p>
-</li>
-<li>
-<p>Select the Virtual private gateway created previously.</p>
-</li>
-<li>
-<p>For Customer gateway, select <strong>Existing</strong>.</p>
-</li>
-<li>
-<p>Select the Customer gateway ID by name.</p>
-</li>
-<li>
-<p>If the VPN uses the Border Gateway Protocol (BGP), select <strong>Dynamic</strong>, otherwise select <strong>Static</strong> and enter the Static IP Classless Inter-Domain Routings (CIDRs). If there are multiple CIDRs, add each CIDR as <strong>Another Rule</strong>.</p>
-</li>
-<li>
-<p>Click <strong>Create VPN connection</strong>.</p>
-</li>
-<li>
-<p>Under <strong>State</strong> wait for the VPN status to change from <strong>Pending</strong> to <strong>Available</strong>, approximately 5 to 10 minutes.</p>
-</li>
-</ol>
 </div>
-</li>
-<li>
-<p>Select the VPN you just created and click <strong>Download configuration</strong>.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>From the list, select the vendor, platform, and version of the customer gateway device, then click <strong>Download</strong>.</p>
-</li>
-<li>
-<p>The <strong>Generic</strong> vendor configuration is also available for retrieving information in a plain text format.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1222,7 +937,7 @@ sent 0, rcvd 0</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>After the VPN connection has been established, set up Route Propagation or the VPN might not function as expected. Note the VPC subnet information, which you must add to your configuration as the remote network.</p>
+<p>For more information about configuring <code>rosa</code> tab completion, see the help menu by running the <code>rosa completion --help</code> command.</p>
 </div>
 </td>
 </tr>
@@ -1231,219 +946,17 @@ sent 0, rcvd 0</code></pre>
 </li>
 </ol>
 </div>
-</li>
-<li>
-<p>From the VPC Dashboard, under Virtual private cloud, click on <strong>Route tables</strong>.</p>
-</li>
-<li>
-<p>Select the private Route table associated with the VPC that contains your Red&#160;Hat OpenShift Services on AWS cluster.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>On some clusters, there may be more than one route table for a particular VPC. Select the private one that has several explicitly associated subnets.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Click on the <strong>Route Propagation</strong> tab.</p>
-</li>
-<li>
-<p>In the table that shows, you see the Virtual Private Gateway you created. Check the value in the <strong>Propagate</strong> column.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>If <strong>Propagation</strong> is set to <strong>No</strong>, click <strong>Edit route propagation</strong>, and check the <strong>Enable</strong> checkbox in Propagation.</p>
-</li>
-<li>
-<p>Click <strong>Save</strong>.</p>
-<div class="paragraph">
-<p>After you configure your VPN tunnel and AWS detects it as <strong>Up</strong>, your static or BGP routes are automatically added to the route table.</p>
-</div>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
 </div>
 <div class="sect4">
-<h5 id="dedicated-aws-vpn-verifying">Verify the VPN connection</h5>
+<h5 id="rosa-login_rosa-set-up-and-authenticate-the-rosa-cli">About logging in to the <code>rosa</code> CLI</h5>
 <div class="paragraph _abstract">
-<p>After you have set up your side of the Virtual Private Network (VPN) tunnel, you can verify that the tunnel is up in the AWS console and that connectivity across the tunnel is working.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Created a VPN connection.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Verify the tunnel is up in AWS.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>From the VPC Dashboard, under <strong>Virtual private network (VPN)</strong>, click on <strong>Site-to-Site VPN connections</strong>.</p>
-</li>
-<li>
-<p>Select the VPN connection you created previously and click the <strong>Tunnel details</strong> tab.</p>
-</li>
-<li>
-<p>You should see that at least one of the VPN tunnels is in an <strong>Up</strong> status.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Verify the connection.</p>
-<div class="paragraph">
-<p>To test network connectivity to an endpoint device, <code>nc</code> (or <code>netcat</code>) is a helpful troubleshooting tool. It is included in the default image and provides quick and clear output if a connection can be established:</p>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Create a temporary pod using the <code>busybox</code> image, which cleans up after itself:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc run netcat-test \
-    --image=busybox -i -t \
-    --restart=Never --rm \
-    -- /bin/sh</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Check the connection using <code>nc</code>.</p>
-<div class="openblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Example successful connection results:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">/ nc -zvv 192.168.1.1 8080
-10.181.3.180 (10.181.3.180:8080) open
-sent 0, rcvd 0</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Example failed connection results:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">/ nc -zvv 192.168.1.2 8080
-nc: 10.181.3.180 (10.181.3.180:8081): Connection refused
-sent 0, rcvd 0</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Exit the container, which automatically deletes the Pod:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">/ exit</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="dedicated-aws-vpn-troubleshooting">Troubleshoot the VPN connection</h5>
-<div class="paragraph _abstract">
-<p>Review the following troubleshooting scenarios for common VPN connection issues.</p>
-</div>
-<div class="sect5">
-<h6 id="_tunnel_does_not_connect">Tunnel does not connect</h6>
-<div class="paragraph">
-<p>If the tunnel connection is still <strong>Down</strong>, there are several things you can verify:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The AWS tunnel will not initiate a VPN connection. The connection attempt must be initiated from the Customer Gateway.</p>
-</li>
-<li>
-<p>Ensure that your source traffic is coming from the same IP as the configured customer gateway. AWS will silently drop all traffic to the gateway whose source IP address does not match.</p>
-</li>
-<li>
-<p>Ensure that your configuration matches values <a href="https://docs.aws.amazon.com/vpc/latest/adminguide/Introduction.html#CGRequirements">supported by AWS</a>. This includes IKE versions, DH groups, IKE lifetime, and more.</p>
-</li>
-<li>
-<p>Recheck the route table for the VPC. Ensure that propagation is enabled and that there are entries in the route table that have the virtual private gateway you created earlier as a target.</p>
-</li>
-<li>
-<p>Confirm that you do not have any firewall rules that could be causing an interruption.</p>
-</li>
-<li>
-<p>Check if you are using a policy-based VPN as this can cause complications depending on how it is configured.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_tunnel_does_not_stay_connected">Tunnel does not stay connected</h6>
-<div class="paragraph">
-<p>If the tunnel connection doesn&#8217;t remain <strong>Up</strong>, check that all AWS tunnel connections must be initiated from your gateway. AWS tunnels <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#CustomerGateway">do not initiate tunneling</a>.</p>
+<p>You can log in to the ROSA command-line interface (CLI) (<code>rosa</code>) with Red&#160;Hat single sign-on or with an offline authentication token. Red&#160;Hat recommends using the <code>rosa</code> CLI with Red&#160;Hat single sign-on, instead of using an offline authentication token.</p>
 </div>
 <div class="paragraph">
-<p>Red Hat recommends setting up an SLA Monitor (Cisco ASA) or some device on your side of the tunnel that constantly sends "interesting" traffic, for example <code>ping</code>, <code>nc</code>, or <code>telnet</code>, at any IP address configured within the VPC CIDR range. It does not matter whether the connection is successful, just that the traffic is being directed at the tunnel.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_secondary_tunnel_in_down_state">Secondary tunnel in Down state</h6>
-<div class="paragraph">
-<p>When a VPN tunnel is created, AWS creates an additional failover tunnel. Depending upon the gateway device, sometimes the secondary tunnel will be seen as in the <strong>Down</strong> state.</p>
+<p>An offline authentication token is long-lived, stored on your operating system, and cannot be revoked. These factors increase overall security risks and the likelihood of unauthorized access to your account.</p>
 </div>
 <div class="paragraph">
-<p>The AWS Notification is as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>You have new non-redundant VPN connections
-
-One or more of your vpn connections are not using both tunnels. This mode of operation is not highly available and we strongly recommend you configure your second tunnel. View your non-redundant VPN connections.</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="configure-aws-direct-connect_rosa-hcp-configure-aws-direct-connect">Configure AWS Direct Connect</h4>
-<div class="paragraph _abstract">
-<p>Accept an AWS Direct Connect virtual interface for use with your Red&#160;Hat OpenShift Services on AWS cluster.</p>
-</div>
-<div class="sect4">
-<h5 id="dedicated-aws-dc-methods">AWS Direct Connect methods</h5>
-<div class="paragraph _abstract">
-<p>To access a remote VPC in the same or another account, a Direct Connect connection requires a hosted Virtual Interface (VIF) connected to a Direct Connect Gateway (DXGateway), which is in turn associated to a Virtual Gateway (VGW) or a Transit Gateway.</p>
-</div>
-<div class="paragraph">
-<p>If you do not have an existing DXGateway, the typical process involves creating the hosted VIF, with the DXGateway and VGW being created in the Red&#160;Hat OpenShift Services on AWS AWS Account.</p>
-</div>
-<div class="paragraph">
-<p>If you have an existing DXGateway connected to one or more existing VGWs, the process involves the Red&#160;Hat OpenShift Services on AWS AWS Account sending an Association Proposal to the DXGateway owner. The DXGateway owner must ensure that the proposed CIDR will not conflict with any other VGWs they have associated.</p>
+<p>Alternatively, authenticating with the Red&#160;Hat single sign-on method automatically sends your <code>rosa</code> instance a refresh token that is valid for 10 hours. This unique, temporary authorization code enhances security and reduces the risk of unauthorized access.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1453,46 +966,745 @@ One or more of your vpn connections are not using both tunnels. This mode of ope
 </td>
 <td class="content">
 <div class="paragraph">
-<p>When connecting to an existing DXGateway, you are responsible for the costs. For more information, see <em>Additional resources</em>.</p>
+<p>The method of authenticating using Red&#160;Hat single sign-on does not break any existing automations that rely on offline tokens. Red&#160;Hat recommends using services accounts for automation purposes. If you still need to use offline tokens for automation or other purposes, you can download the <a href="https://console.redhat.com/openshift/install/pull-secret">pull secret from Red Hat OpenShift Cluster Manager</a>.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+<div class="sect5">
+<h6 id="_authentication_methods">Authentication methods</h6>
 <div class="paragraph">
-<p>There are two configuration options available:</p>
+<p>You can use one of the following methods to authenticate:</p>
 </div>
-<div class="hdlist">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Single sign-on authorization code</strong>: Use this method if your system has a web browser. Single sign-on authorization is supported with <code>rosa</code> CLI version 1.2.36 or later.</p>
+</li>
+<li>
+<p><strong>Single sign-on device code</strong>: Use this method if you are working with containers, remote hosts, or other environments without a web browser. Single sign-on authorization is supported with <code>rosa</code> CLI version 1.2.36 or later.</p>
+</li>
+<li>
+<p><strong>Offline token</strong>: Use this method if you need to use an offline token for automation or other purposes. Red&#160;Hat recommends using service accounts for automation purposes instead.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-login-sso-auth-code_rosa-set-up-and-authenticate-the-rosa-cli">Authenticate the <code>rosa</code> CLI with a single sign-on authorization code</h5>
+<div class="paragraph _abstract">
+<p>You can log in to your account with the <code>rosa</code> CLI by using a Red&#160;Hat single sign-on authorization code.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have a web browser available on your system.</p>
+</li>
+<li>
+<p>You have <code>rosa</code> CLI version 1.2.36 or later installed.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To log in to the ROSA command-line interface (CLI) (<code>rosa</code>) with a Red&#160;Hat single sign-on authorization code, run the following command:</p>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa login --use-auth-code</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Running this command redirects you to the Red&#160;Hat single sign-on login. Log in with your Red&#160;Hat login or email.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 62. Optional arguments inherited from parent commands+</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Verification</div>
+<p>To switch accounts, log out from <a href="https://sso.redhat.com">https://sso.redhat.com</a> and run the <code>rosa logout</code> command in your terminal before attempting to log in again.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-login-sso-device-code_rosa-set-up-and-authenticate-the-rosa-cli">Authenticate the <code>rosa</code> CLI with a single sign-on device code</h5>
+<div class="paragraph _abstract">
+<p>If you are working with containers, remote hosts, and other environments without a web browser, you can use a Red&#160;Hat single sign-on device code for secure authentication. To do this, you must use a second device that has a web browser to approve the login.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have ROSA command-line interface (CLI) (<code>rosa</code>) version 1.2.36 or later installed.</p>
+</li>
+<li>
+<p>You have access to a second device with a web browser.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To log in to the <code>rosa</code> CLI with a Red&#160;Hat single sign-on device code, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa login --use-device-code</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Running this command redirects you to the Red&#160;Hat SSO login and provides a login code.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 63. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Verification</div>
+<p>To switch accounts, log out from <a href="https://sso.redhat.com">https://sso.redhat.com</a> and run the <code>rosa logout</code> command in your terminal before attempting to log in again.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-login-offline-token_rosa-set-up-and-authenticate-the-rosa-cli">Authenticate the <code>rosa</code> CLI with an offline token</h5>
+<div class="paragraph _abstract">
+<p>Log in to your Red&#160;Hat account, saving the credentials to the <code>rosa</code> configuration file.</p>
+</div>
+<div class="admonitionblock note">
 <table>
 <tr>
-<td class="hdlist1">
-Method 1
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
 </td>
-<td class="hdlist2">
-<p>Create the hosted VIF and then the DXGateway and VGW.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Method 2
-</td>
-<td class="hdlist2">
-<p>Request a connection by using an existing Direct Connect Gateway that you own.</p>
+<td class="content">
+<div class="paragraph">
+<p>To use offline tokens for automation purposes, you can download the <a href="https://console.redhat.com/openshift/install/pull-secret">pull secret from Red Hat OpenShift Cluster Manager</a>.
+To use service accounts for automation purposes, see the <a href="https://console.redhat.com/iam/service-accounts">Service Accounts</a> page.</p>
+</div>
 </td>
 </tr>
 </table>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Red&#160;Hat recommends using service accounts for automation purposes.</p>
 </div>
-<div class="sect4">
-<h5 id="dedicated-aws-dc-hvif-determine-type_rosa-hcp-configure-aws-direct-connect">Determine the Direct Connect Virtual Interface type</h5>
-<div class="paragraph _abstract">
-<p>Determine whether your Direct Connect Virtual Interface (VIF) is private or public. This determines whether you create a Virtual Private Gateway or a Direct Connect Gateway.</p>
+</td>
+</tr>
+</table>
 </div>
 <div class="ulist">
-<div class="title">Prerequisites</div>
+<div class="title">Procedure</div>
 <ul>
 <li>
-<p>Gather Red&#160;Hat OpenShift Services on AWS AWS Account ID.</p>
+<p>To log in to ROSA command-line interface (CLI) (<code>rosa</code>) with a Red&#160;Hat offline token, run the following command:</p>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa login [arguments]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 64. Arguments</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--client-id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID client identifier (string). Default: <code>cloud-services</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--client-secret</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID client secret (string).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--insecure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables insecure communication with the server. This disables verification of TLS certificates and host names.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--scope</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID scope (string). If this option is used, it replaces the default scopes. This can be repeated multiple times to specify multiple scopes. Default: <code>openid</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--token</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accesses or refreshes the token (string).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--token-url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID token URL (string). Default: <code>https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 65. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--profile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies an AWS profile (string) from your credentials file.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-logout_rosa-set-up-and-authenticate-the-rosa-cli">Log out of the <code>rosa</code> CLI</h5>
+<div class="paragraph _abstract">
+<p>Log out of <code>rosa</code>. Logging out also removes the <code>rosa</code> configuration file.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Log out of your <code>rosa</code> session by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa logout [arguments]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 66. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--profile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies an AWS profile (string) from your credentials file.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-verify_rosa-set-up-and-authenticate-the-rosa-cli">Verify AWS settings with the <code>rosa</code> CLI</h5>
+<div class="paragraph _abstract">
+<p>Verify AWS permissions and quotas by using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+</div>
+<div class="sect5">
+<h6 id="rosa-verify-permissions_rosa-set-up-and-authenticate-the-rosa-cli">verify permissions</h6>
+<div class="paragraph">
+<p>Verify that the AWS permissions required to create a Red&#160;Hat OpenShift Services on AWS cluster are configured correctly:</p>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify permissions [arguments]</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This command verifies permissions only for clusters that do not use the AWS Security Token Service (STS).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 67. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--region</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The AWS region (string) in which to run the command. This value overrides the <code>AWS_REGION</code> environment variable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--profile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies an AWS profile (string) from your credentials file.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Verify that the AWS permissions are configured correctly:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify permissions</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the AWS permissions are configured correctly in a specific region:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify permissions --region=us-west-2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-verify-quota_rosa-set-up-and-authenticate-the-rosa-cli">verify quota</h6>
+<div class="paragraph">
+<p>Verifies that AWS quotas are configured correctly for your default region.</p>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify quota [arguments]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 68. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--region</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The AWS region (string) in which to run the command. This value overrides the <code>AWS_REGION</code> environment variable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--profile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies an AWS profile (string) from your credentials file.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Verify that the AWS quotas are configured correctly for the default region:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify quota</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the AWS quotas are configured correctly in a specific region:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify quota --region=us-west-2</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-download_rosa-set-up-and-authenticate-the-rosa-cli">Download CLI tools with the <code>rosa</code> CLI</h5>
+<div class="paragraph _abstract">
+<p>Download and verify the <code>rosa</code> and <code>oc</code> CLI tools by using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+</div>
+<div class="sect5">
+<h6 id="rosa-download-rosa-client_rosa-set-up-and-authenticate-the-rosa-cli">download rosa</h6>
+<div class="paragraph">
+<p>Download the latest compatible version of the <code>rosa</code> CLI.</p>
+</div>
+<div class="paragraph">
+<p>After you download <code>rosa</code> CLI, extract the contents of the archive and add it to your path.</p>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa download rosa [arguments]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 69. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="rosa-download-ocp-client_rosa-set-up-and-authenticate-the-rosa-cli">download oc</h6>
+<div class="paragraph">
+<p>Download the latest compatible version of the OpenShift CLI (<code>oc</code>).</p>
+</div>
+<div class="paragraph">
+<p>After you download <code>oc</code>, you must extract the contents of the archive and add it to your path.</p>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa download oc [arguments]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 70. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Download <code>oc</code> client tools:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa download oc</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-verify-ocp-client_rosa-set-up-and-authenticate-the-rosa-cli">verify oc</h6>
+<div class="paragraph">
+<p>Verifies that the OpenShift CLI (<code>oc</code>) installed correctly.</p>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify oc [arguments]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 71. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Verify <code>oc</code> client tools:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify oc</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-initialize_rosa-set-up-and-authenticate-the-rosa-cli">Initializing Red&#160;Hat OpenShift Services on AWS</h5>
+<div class="paragraph _abstract">
+<p>Use the <code>init</code> command to initialize Red&#160;Hat OpenShift Services on AWS only if you are using non-STS.</p>
+</div>
+<div class="sect5">
+<h6 id="rosa-init_rosa-set-up-and-authenticate-the-rosa-cli">init</h6>
+<div class="paragraph">
+<p>Perform a series of checks to verify that you are ready to deploy a Red&#160;Hat OpenShift Services on AWS cluster.</p>
+</div>
+<div class="paragraph">
+<p>The list of checks includes the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Checks to see that you have logged in (see <code>login</code>)</p>
+</li>
+<li>
+<p>Checks that your AWS credentials are valid</p>
+</li>
+<li>
+<p>Checks that your AWS permissions are valid (see <code>verify permissions</code>)</p>
+</li>
+<li>
+<p>Checks that your AWS quota levels are high enough (see <code>verify quota</code>)</p>
+</li>
+<li>
+<p>Runs a cluster simulation to ensure cluster creation will perform as expected</p>
+</li>
+<li>
+<p>Checks that the <code>osdCcsAdmin</code> user has been created in your AWS account</p>
+</li>
+<li>
+<p>Checks that the OpenShift Container Platform command-line tool is available on your system</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init [arguments]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 72. Arguments</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--region</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The AWS region (string) in which to verify quota and permissions. This value overrides the <code>AWS_REGION</code> environment variable only when running the <code>init</code> command, but it does not change your AWS CLI configuration.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--delete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes the stack template that is applied to your AWS account during the <code>init</code> command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--client-id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID client identifier (string). Default: <code>cloud-services</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--client-secret</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID client secret (string).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--insecure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables insecure communication with the server. This disables verification of TLS certificates and host names.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--scope</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID scope (string). If this option is used, it completely replaces the default scopes. This can be repeated multiple times to specify multiple scopes. Default: <code>openid</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--token</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accesses or refreshes the token (string).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--token-url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID token URL (string). Default: <code>https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 73. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--profile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies an AWS profile (string) from your credentials file.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Configure your AWS account to allow Red&#160;Hat OpenShift Services on AWS clusters:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Configure a new AWS account using pre-existing OpenShift Cluster Manager credentials:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init --token=$OFFLINE_ACCESS_TOKEN</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-using-bash-script_rosa-set-up-and-authenticate-the-rosa-cli">Use a Bash script</h5>
+<div class="paragraph _abstract">
+<p>This example workflow shows how to use a Bash script with the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+</div>
+<div class="paragraph">
+<div class="title">Prerequisites</div>
+<p>Make sure that AWS credentials are available as one of the following options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>AWS profile</p>
+</li>
+<li>
+<p>Environment variables (<code>AWS_ACCESS_KEY_ID</code>, <code>AWS_SECRET_ACCESS_KEY</code>)</p>
 </li>
 </ul>
 </div>
@@ -1500,121 +1712,132 @@ Method 2
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Log in to the Red&#160;Hat OpenShift Services on AWS AWS Account Dashboard and select the correct region.</p>
+<p>Initialize <code>rosa</code> using a Red Hat OpenShift Cluster Manager offline token <a href="https://console.redhat.com/openshift/token/rosa">from Red&#160;Hat</a>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init --token=&lt;token&gt;</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Select <strong>Direct Connect</strong> from the <strong>Services</strong> menu.</p>
+<p>Create the Red&#160;Hat OpenShift Services on AWS cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create cluster --cluster-name=&lt;cluster_name&gt;</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>There will be one or more Virtual Interfaces waiting to be accepted, select one of them to view the <strong>Summary</strong>.</p>
+<p>Add an identity provider (IDP):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create idp --cluster=&lt;cluster_name&gt; --type=&lt;identity_provider&gt; [arguments]</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>View the Virtual Interface type: private or public.</p>
-</li>
-<li>
-<p>Record the <strong>Amazon side ASN</strong> value.</p>
+<p>Add a <code>dedicated-admin</code> user:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa grant user dedicated-admin --user=&lt;idp_user_name&gt; --cluster=&lt;cluster_name&gt;</code></pre>
+</div>
+</div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<div class="title">Next steps</div>
-<p>If the Virtual Interface type is private, create a Virtual Private Gateway. If the Virtual Interface type is public, create a Direct Connect Gateway.</p>
-</div>
 </div>
 <div class="sect4">
-<h5 id="dedicated-aws-dc-hvif-private_rosa-hcp-configure-aws-direct-connect">Create a Virtual Private Gateway for a private Direct Connect</h5>
+<h5 id="rosa-updating-the-rosa-cli_rosa-set-up-and-authenticate-the-rosa-cli">Updating the <code>rosa</code> CLI</h5>
 <div class="paragraph _abstract">
-<p>If your Direct Connect Virtual Interface type is private, create and attach a Virtual Private Gateway to your Red&#160;Hat OpenShift Services on AWS cluster VPC.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You determined the Virtual Interface type is private.</p>
-</li>
-<li>
-<p>You recorded the <strong>Amazon side ASN</strong> value.</p>
-</li>
-</ul>
+<p>Update the ROSA command-line interface (CLI) (<code>rosa</code>) to the latest version that works with your cluster.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Log in to the Red&#160;Hat OpenShift Services on AWS AWS Account Dashboard and select the correct region.</p>
+<p>Confirm that a new version of the <code>rosa</code> CLI (<code>rosa</code>) is available:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa version</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">1.2.12
+There is a newer release version '1.2.15', please consider updating: https://mirror.openshift.com/pub/openshift-v4/clients/rosa/latest/</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>From the AWS region, select <strong>VPC</strong> from the <strong>Services</strong> menu.</p>
+<p>Download the latest compatible version of the <code>rosa</code> CLI:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa download rosa</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command downloads an archive called <code>rosa-*.tar.gz</code> into the current directory. The exact name of the file depends on your operating system and system architecture.</p>
+</div>
 </li>
 <li>
-<p>From <strong>Virtual private network (VPN)</strong>, select <strong>Virtual private gateways</strong>.</p>
+<p>Extract the contents of the archive:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ tar -xzf rosa-linux.tar.gz</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Click <strong>Create virtual private gateway</strong>.</p>
-</li>
-<li>
-<p>Give the Virtual Private Gateway a suitable name.</p>
-</li>
-<li>
-<p>Select <strong>Custom ASN</strong> in the <strong>Enter custom ASN</strong> field.</p>
-</li>
-<li>
-<p>Enter the <strong>Amazon side ASN</strong> value gathered previously.</p>
-</li>
-<li>
-<p>Click <strong>Create virtual private gateway</strong>.</p>
-</li>
-<li>
-<p>Click the newly created Virtual Private Gateway and choose <strong>Attach to VPC</strong> from the <strong>Actions</strong> tab.</p>
-</li>
-<li>
-<p>Select the <strong>Red&#160;Hat OpenShift Services on AWS Cluster VPC</strong> from the list, and click <strong>Attach VPC</strong>.</p>
+<p>Install the new version of the <code>rosa</code> CLI by moving the extracted file into your path. In the following example, your path includes the <code>/usr/local/bin</code> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo mv rosa /usr/local/bin/rosa</code></pre>
+</div>
+</div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
+<div class="ulist">
 <div class="title">Verification</div>
-<p>After the Direct Connect Virtual Interfaces have been accepted, wait a short period and view the status of the Interfaces.</p>
+<ul>
+<li>
+<p>Verify the new version of the <code>rosa</code> CLI installed successfully.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa version</code></pre>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log in to the Red&#160;Hat OpenShift Services on AWS AWS Account Dashboard and select the correct region.</p>
-</li>
-<li>
-<p>From the Red&#160;Hat OpenShift Services on AWS AWS Account region, select <strong>Direct Connect</strong> from the <strong>Services</strong> menu.</p>
-</li>
-<li>
-<p>Select one of the Direct Connect Virtual Interfaces from the list.</p>
-</li>
-<li>
-<p>Check the Interface State has become <strong>Available</strong>.</p>
-</li>
-<li>
-<p>Check the Interface BGP Status has become <strong>Up</strong>.</p>
-</li>
-<li>
-<p>Repeat this verification for any remaining Direct Connect Interfaces.</p>
-<div class="paragraph">
-<p>After the Direct Connect Virtual Interfaces are available, you can log in to the Red&#160;Hat OpenShift Services on AWS AWS Account Dashboard and download the Direct Connect configuration file for configuration on your side.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">1.2.15
+Your <code>rosa</code> CLI is up to date.</code></pre>
+</div>
 </div>
 </li>
-</ol>
+</ul>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-change-the-aws-billing-account_rosa-change-the-aws-billing-account">Change the AWS billing account for your cluster</h4>
+<div class="paragraph _abstract">
+<p>You can use the ROSA command-line interface (CLI) (<code>rosa</code>) to point an existing cluster at a different AWS billing account after deployment. You can correct a billing account linked at install time or change the account at a later date.</p>
 </div>
 <div class="sect4">
-<h5 id="dedicated-aws-dc-hvif-public_rosa-hcp-configure-aws-direct-connect">Create a Direct Connect Gateway for a public Direct Connect</h5>
+<h5 id="rosa-update-billing_rosa-change-the-aws-billing-account">Update billing accounts for Red&#160;Hat OpenShift Services on AWS clusters</h5>
 <div class="paragraph _abstract">
-<p>If your Direct Connect Virtual Interface type is public, create a Direct Connect Gateway.</p>
+<p>Change the AWS billing account a deployed cluster uses by running <code>rosa edit cluster</code> in interactive mode.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You determined the Virtual Interface type is public.</p>
+<p>You must have more than one AWS billing account.</p>
 </li>
 <li>
-<p>You recorded the <strong>Amazon side ASN</strong> value.</p>
+<p>You must link the AWS billing account to the same Red&#160;Hat organization where you deployed the cluster.</p>
 </li>
 </ul>
 </div>
@@ -1622,168 +1845,43 @@ Method 2
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Log in to the Red&#160;Hat OpenShift Services on AWS AWS Account Dashboard and select the correct region.</p>
-</li>
-<li>
-<p>From the Red&#160;Hat OpenShift Services on AWS AWS Account region, select <strong>Direct Connect</strong> from the <strong>Services</strong> menu.</p>
-</li>
-<li>
-<p>Select <strong>Direct Connect gateways</strong> and <strong>Create Direct Connect gateway</strong>.</p>
-</li>
-<li>
-<p>Give the Direct Connect gateway a suitable name.</p>
-</li>
-<li>
-<p>In the <strong>Amazon side ASN</strong>, enter the Amazon side ASN value gathered previously.</p>
-</li>
-<li>
-<p>Click <strong>Create the Direct Connect gateway</strong>.</p>
-</li>
-</ol>
+<p>Run the following command in your terminal window. Replace <code>&lt;cluster_ID&gt;</code> with the ID of the cluster whose billing account you want to update.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa edit cluster -c &lt;cluster_ID&gt;</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Verification</div>
-<p>After the Direct Connect Virtual Interfaces have been accepted, wait a short period and view the status of the Interfaces.</p>
+<p>To locate the IDs of your active clusters, run the <code>$ rosa list clusters</code> command in your terminal window.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log in to the Red&#160;Hat OpenShift Services on AWS AWS Account Dashboard and select the correct region.</p>
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
-<p>From the Red&#160;Hat OpenShift Services on AWS AWS Account region, select <strong>Direct Connect</strong> from the <strong>Services</strong> menu.</p>
+<p>Skip to the <code>Billing Account</code> parameter within the interactive mode.</p>
 </li>
 <li>
-<p>Select one of the Direct Connect Virtual Interfaces from the list.</p>
-</li>
-<li>
-<p>Check the Interface State has become <strong>Available</strong>.</p>
-</li>
-<li>
-<p>Check the Interface BGP Status has become <strong>Up</strong>.</p>
-</li>
-<li>
-<p>Repeat this verification for any remaining Direct Connect Interfaces.</p>
+<p>Select the required AWS billing account from the list of available options and press <strong>Enter</strong>.</p>
 <div class="paragraph">
-<p>After the Direct Connect Virtual Interfaces are available, you can log in to the Red&#160;Hat OpenShift Services on AWS AWS Account Dashboard and download the Direct Connect configuration file for configuration on your side.</p>
+<p>The AWS billing account for your cluster is now updated.</p>
 </div>
 </li>
 </ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="dedicated-aws-dc-existing-create-vgw_rosa-hcp-configure-aws-direct-connect">Create a virtual private gateway for a Direct Connect connection</h5>
-<div class="paragraph _abstract">
-<p>Create a virtual private gateway in your Red&#160;Hat OpenShift Services on AWS AWS account to connect to an existing Direct Connect Gateway.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Confirm the Classless Inter-Domain Routing (CIDR) range of the Red&#160;Hat OpenShift Services on AWS Virtual Private Cloud (VPC) doesn&#8217;t conflict with any other VGWs you have associated.</p>
-</li>
-<li>
-<p>Gather the following information:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The Direct Connect Gateway ID.</p>
-</li>
-<li>
-<p>The AWS Account ID associated with the virtual interface.</p>
-</li>
-<li>
-<p>The BGP ASN assigned for the DXGateway. Optional: the Amazon default ASN may also be used.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Log in to the Red&#160;Hat OpenShift Services on AWS AWS Account Dashboard and select the correct region.</p>
-</li>
-<li>
-<p>From the Red&#160;Hat OpenShift Services on AWS AWS Account region, select <strong>VPC</strong> from the <strong>Services</strong> menu.</p>
-</li>
-<li>
-<p>From <strong>Virtual private network (VPN)</strong>, select <strong>Virtual private gateways</strong>.</p>
-</li>
-<li>
-<p>Select <strong>Create virtual private gateway</strong>.</p>
-</li>
-<li>
-<p>Give the virtual private gateway a suitable name in the <strong>Details</strong> field.</p>
-</li>
-<li>
-<p>Click <strong>Custom ASN</strong> and enter the <strong>Amazon side ASN</strong> value gathered previously or use the Amazon Provided ASN.</p>
-</li>
-<li>
-<p>Click <strong>Create virtual private gateway</strong>.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="dedicated-aws-dc-existing-associate-dxgw_rosa-hcp-configure-aws-direct-connect">Associate the Direct Connect gateway with the virtual private gateway</h5>
-<div class="paragraph _abstract">
-<p>After you create a virtual private gateway, associate it with your existing Direct Connect gateway.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You created a virtual private gateway in your Red&#160;Hat OpenShift Services on AWS AWS account.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>From the Red&#160;Hat OpenShift Services on AWS AWS Account region, select <strong>Direct Connect</strong> from the <strong>Services</strong> menu.</p>
-</li>
-<li>
-<p>Click <strong>virtual private gateways</strong> and select the virtual private gateway.</p>
-</li>
-<li>
-<p>Click <strong>View details</strong>.</p>
-</li>
-<li>
-<p>Click the <strong>Direct Connect gateway associations</strong> tab.</p>
-</li>
-<li>
-<p>Click <strong>Associate Direct Connect gateway</strong></p>
-</li>
-<li>
-<p>Under <strong>Association account type</strong>, for Account owner, click <strong>Another account</strong>.</p>
-</li>
-<li>
-<p>Under <strong>Association settings</strong>, for Direct Connect gateway ID, enter the ID of the Direct Connect gateway.</p>
-</li>
-<li>
-<p>For <strong>Direct Connect gateway owner</strong>, enter the ID of the AWS account that owns the Direct Connect gateway.</p>
-</li>
-<li>
-<p>Optional: Add prefixes to <strong>Allowed prefixes</strong>, separating them using commas or put them on separate lines.</p>
-</li>
-<li>
-<p>Click <strong>Associate Direct Connect gateway</strong>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<div class="title">Next steps</div>
-<p>After the Association Proposal has been sent, you must accept it. Follow the final steps you must perform are available in the <a href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/multi-account-associate-vgw.html">Associate a Direct Connect virtual private gateway across accounts</a> (AWS documentation).</p>
 </div>
 </div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="_configure.html">Configure</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster_rosa-hcp-configure-microsoft-entra-id-as-an-identity-provider-for-your-cluster.html">Tutorial: Configure Microsoft Entra ID as an identity provider for your cluster</a> →</p>
+<p>↑ Up: <a href="_reference.html">Reference</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-cli-reference_rosa-cli-reference.html">ROSA CLI reference</a> →</p>
 </div>
 </div>
 <div id="footer">

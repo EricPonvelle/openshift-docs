@@ -722,10 +722,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><button class="toc-toggle" type="button" data-toc-key="_reference.html">▶</button><a href="_reference.html">Reference</a>
+
+<ul class="sectlevel2">
+<li><a href="configure-the-rosa-cli-intro_rosa-classic-configure-the-rosa-cli.html">Configure ROSA CLI</a>
+</li>
+<li><a href="rosa-cli-reference_rosa-classic-rosa-cli-reference.html">ROSA CLI reference</a>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#understand-cluster-autoscaling-intro_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Understand cluster autoscaling</a></li><li class="level-5"><a href="#rosa-cluster-autoscaler-about_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">About the cluster autoscaler</a></li><li class="level-5"><a href="#rosa-cluster-autoscaler-scale-down_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Automatic node removal</a></li><li class="level-5"><a href="#rosa-cluster-autoscaler-limitations_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Limitations</a></li><li class="level-5"><a href="#rosa-cluster-autoscaler-interaction_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Interaction with other scheduling features</a></li><li class="level-4"><a href="#enable-cluster-autoscaling-intro_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Enable cluster autoscaling</a></li><li class="level-5"><a href="#rosa-enable-cluster-autoscale-cli-after_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Enable autoscaling after cluster creation with the ROSA CLI</a></li><li class="level-5"><a href="#rosa-enable-cluster-autoscale-ui-after_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Enable autoscaling after cluster creation with OpenShift Cluster Manager</a></li><li class="level-5"><a href="#rosa-cluster-cli-autoscale-parameters_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Cluster autoscaling parameters using the ROSA CLI</a></li><li class="level-4"><a href="#tune-cluster-autoscaling-intro_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Tune cluster autoscaling</a></li><li class="level-5"><a href="#rosa-cluster-autoscaler-cli-describe_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">View autoscaler configurations with the ROSA CLI</a></li><li class="level-5"><a href="#rosa-edit-cluster-autoscale-cli_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Edit autoscaling after cluster creation with the ROSA CLI</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#understand-cluster-autoscaling-intro_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Understand cluster autoscaling</a></li><li class="level-5"><a href="#rosa-cluster-autoscaler-about_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">About the cluster autoscaler</a></li><li class="level-5"><a href="#rosa-cluster-autoscaler-scale-down_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Automatic node removal</a></li><li class="level-5"><a href="#rosa-cluster-autoscaler-limitations_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Limitations</a></li><li class="level-5"><a href="#rosa-cluster-autoscaler-interaction_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Interaction with other scheduling features</a></li><li class="level-4"><a href="#enable-cluster-autoscaling-intro_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Enable cluster autoscaling</a></li><li class="level-5"><a href="#rosa-enable-cluster-autoscale-cli-after_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Enable autoscaling after cluster creation with the rosa CLI</a></li><li class="level-5"><a href="#rosa-enable-cluster-autoscale-ui-after_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Enable autoscaling after cluster creation with OpenShift Cluster Manager</a></li><li class="level-5"><a href="#rosa-cluster-cli-autoscale-parameters_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Cluster autoscaling parameters using the ROSA CLI</a></li><li class="level-4"><a href="#tune-cluster-autoscaling-intro_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Tune cluster autoscaling</a></li><li class="level-5"><a href="#rosa-cluster-autoscaler-cli-describe_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">View autoscaler configurations with the rosa CLI</a></li><li class="level-5"><a href="#rosa-edit-cluster-autoscale-cli_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Edit autoscaling after cluster creation with the ROSA CLI</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="optimize-cluster-capacity-to-match-workload-demands-intro_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Optimize cluster capacity to match workload demands</h3>
@@ -870,7 +879,7 @@ If the available node types cannot meet the requirements for a pod request, or i
 <p>Enable the cluster autoscaler and review its settings.</p>
 </div>
 <div class="sect4">
-<h5 id="rosa-enable-cluster-autoscale-cli-after_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Enable autoscaling after cluster creation with the ROSA CLI</h5>
+<h5 id="rosa-enable-cluster-autoscale-cli-after_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">Enable autoscaling after cluster creation with the <code>rosa</code> CLI</h5>
 <div class="paragraph _abstract">
 <p>You can use the ROSA command-line interface (CLI) (<code>rosa</code>) to set cluster-wide autoscaling after cluster creation.</p>
 </div>
@@ -940,7 +949,7 @@ If the available node types cannot meet the requirements for a pod request, or i
 <p>You can add the following parameters to the cluster creation command to configure autoscaler parameters when using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 45. Configurable autoscaler parameters available with the ROSA CLI</caption>
+<caption class="title">Table 45. Configurable autoscaler parameters available with the <code>rosa</code> CLI</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -1086,7 +1095,7 @@ If the available node types cannot meet the requirements for a pod request, or i
 <p>View and change your cluster&#8217;s autoscaling configuration.</p>
 </div>
 <div class="sect4">
-<h5 id="rosa-cluster-autoscaler-cli-describe_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">View autoscaler configurations with the ROSA CLI</h5>
+<h5 id="rosa-cluster-autoscaler-cli-describe_rosa-classic-optimize-cluster-capacity-to-match-workload-demands">View autoscaler configurations with the <code>rosa</code> CLI</h5>
 <div class="paragraph _abstract">
 <p>You can view your cluster autoscaler configurations by using the <code>rosa describe autoscaler</code> command.</p>
 </div>
@@ -1145,7 +1154,7 @@ If the available node types cannot meet the requirements for a pod request, or i
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-08 10:09:26 -0500
+Last updated 2026-10-09 11:03:30 -0500
 </div>
 </div>
 </body>
