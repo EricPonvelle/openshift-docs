@@ -571,7 +571,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <!-- navmap-right-toc-end -->
 </head>
-<body id="rosa-hcp-quickstart-create-your-cluster_rosa-hcp-quickstart-create-your-cluster" class="book toc2 toc-left navmap-has-right-toc">
+<body id="configure-the-rosa-cli-intro_configure-the-rosa-cli" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red&#160;Hat OpenShift Services on AWS</h1>
 <div id="toc" class="toc2">
@@ -614,10 +614,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
+
 <ul class="sectlevel2">
 <li><a href="rosa-sts-overview-of-the-default-cluster-specifications_rosa-hcp-quickstart-set-up-your-environment.html">Overview of the default cluster specifications</a>
 </li>
-<li><a href="rosa-hcp-quickstart-create-your-cluster_rosa-hcp-quickstart-create-your-cluster.html"><span class="toc-current">Quick start: Create your cluster</span></a>
+<li><a href="rosa-hcp-quickstart-create-your-cluster_rosa-hcp-quickstart-create-your-cluster.html">Quick start: Create your cluster</a>
 </li>
 <li><a href="rosa-hcp-quickstart-manage-your-cluster_rosa-hcp-quickstart-manage-your-cluster.html">Quick start: Manage your cluster</a>
 </li>
@@ -715,9 +716,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_reference.html">▶</button><a href="_reference.html">Reference</a>
-
 <ul class="sectlevel2">
-<li><a href="configure-the-rosa-cli-intro_configure-the-rosa-cli.html">Configure ROSA CLI</a>
+<li><a href="configure-the-rosa-cli-intro_configure-the-rosa-cli.html"><span class="toc-current">Configure ROSA CLI</span></a>
 </li>
 <li><a href="rosa-cli-reference_rosa-cli-reference.html">ROSA CLI reference</a>
 </li>
@@ -726,17 +726,237 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-quickstart-create-your-cluster">Create an ocm-role IAM role</a></li><li class="level-4"><a href="#rosa-sts-byo-oidc_rosa-hcp-quickstart-create-your-cluster">Create an OpenID Connect configuration</a></li><li class="level-4"><a href="#rosa-operator-config_rosa-hcp-quickstart-create-your-cluster">Creating Operator roles and policies</a></li><li class="level-4"><a href="#rosa-hcp-sts-creating-a-cluster-cli_rosa-hcp-quickstart-create-your-cluster">Creating a Red Hat OpenShift Services on AWS cluster using the CLI</a></li><li class="level-4"><a href="#rosa-hcp-sts-external-id_rosa-hcp-quickstart-create-your-cluster">About external ID</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-set-up-and-authenticate-the-rosa-cli_rosa-set-up-and-authenticate-the-rosa-cli">Set up and authenticate the ROSA CLI</a></li><li class="level-5"><a href="#rosa-setting-up-cli_rosa-set-up-and-authenticate-the-rosa-cli">Setting up the rosa CLI</a></li><li class="level-5"><a href="#rosa-login_rosa-set-up-and-authenticate-the-rosa-cli">About logging in to the rosa CLI</a></li><li class="level-6"><a href="#_authentication_methods">Authentication methods</a></li><li class="level-5"><a href="#rosa-login-sso-auth-code_rosa-set-up-and-authenticate-the-rosa-cli">Authenticate the rosa CLI with a single sign-on authorization code</a></li><li class="level-5"><a href="#rosa-login-sso-device-code_rosa-set-up-and-authenticate-the-rosa-cli">Authenticate the rosa CLI with a single sign-on device code</a></li><li class="level-5"><a href="#rosa-login-offline-token_rosa-set-up-and-authenticate-the-rosa-cli">Authenticate the rosa CLI with an offline token</a></li><li class="level-5"><a href="#rosa-logout_rosa-set-up-and-authenticate-the-rosa-cli">Log out of the rosa CLI</a></li><li class="level-5"><a href="#rosa-verify_rosa-set-up-and-authenticate-the-rosa-cli">Verify AWS settings with the rosa CLI</a></li><li class="level-6"><a href="#rosa-verify-permissions_rosa-set-up-and-authenticate-the-rosa-cli">verify permissions</a></li><li class="level-6"><a href="#rosa-verify-quota_rosa-set-up-and-authenticate-the-rosa-cli">verify quota</a></li><li class="level-5"><a href="#rosa-download_rosa-set-up-and-authenticate-the-rosa-cli">Download CLI tools with the rosa CLI</a></li><li class="level-6"><a href="#rosa-download-rosa-client_rosa-set-up-and-authenticate-the-rosa-cli">download rosa</a></li><li class="level-6"><a href="#rosa-download-ocp-client_rosa-set-up-and-authenticate-the-rosa-cli">download oc</a></li><li class="level-6"><a href="#rosa-verify-ocp-client_rosa-set-up-and-authenticate-the-rosa-cli">verify oc</a></li><li class="level-5"><a href="#rosa-initialize_rosa-set-up-and-authenticate-the-rosa-cli">Initializing Red Hat OpenShift Services on AWS</a></li><li class="level-6"><a href="#rosa-init_rosa-set-up-and-authenticate-the-rosa-cli">init</a></li><li class="level-5"><a href="#rosa-using-bash-script_rosa-set-up-and-authenticate-the-rosa-cli">Use a Bash script</a></li><li class="level-5"><a href="#rosa-updating-the-rosa-cli_rosa-set-up-and-authenticate-the-rosa-cli">Updating the rosa CLI</a></li><li class="level-4"><a href="#rosa-change-the-aws-billing-account_rosa-change-the-aws-billing-account">Change the AWS billing account for your cluster</a></li><li class="level-5"><a href="#rosa-update-billing_rosa-change-the-aws-billing-account">Update billing accounts for Red Hat OpenShift Services on AWS clusters</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="rosa-hcp-quickstart-create-your-cluster_rosa-hcp-quickstart-create-your-cluster">Quick start: Create your cluster</h3>
+<h3 id="configure-the-rosa-cli-intro_configure-the-rosa-cli">Configure ROSA CLI</h3>
 <div class="paragraph _abstract">
-<p>Use this guide to create a Red&#160;Hat OpenShift Services on AWS cluster with the ROSA command-line interface (CLI) (<code>rosa</code>), grant user access, deploy an application, and manage your cluster.</p>
+<p>Find the exact parameters, command-line interface (CLI) options, application programming interface (API) fields, and schemas required to configure and automate your Red&#160;Hat OpenShift Services on AWS clusters.</p>
 </div>
 <div class="sect3">
-<h4 id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-quickstart-create-your-cluster">Create an ocm-role IAM role</h4>
+<h4 id="rosa-set-up-and-authenticate-the-rosa-cli_rosa-set-up-and-authenticate-the-rosa-cli">Set up and authenticate the ROSA CLI</h4>
 <div class="paragraph _abstract">
-<p>You create your <code>ocm-role</code> IAM roles by using the ROSA command-line interface (CLI) (<code>rosa</code>). If you want to create and manage clusters by using only the ROSA command-line interface (CLI) (<code>rosa</code>) and the OpenShift CLI (<code>oc</code>), you can use the <code>--no-console</code> profile for the <code>ocm-role</code> IAM resource. For more information about the <code>ocm-role</code> IAM resource permissions profile, see the <em>Additional resources</em>.</p>
+<p>Learn how to install, configure, and update the ROSA command-line interface (CLI) (<code>rosa</code>). You can use the <code>rosa</code> CLI to create, update, manage, and delete Red&#160;Hat OpenShift Services on AWS clusters and resources.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-setting-up-cli_rosa-set-up-and-authenticate-the-rosa-cli">Setting up the <code>rosa</code> CLI</h5>
+<div class="paragraph _abstract">
+<p>Put the ROSA command-line interface (CLI) (<code>rosa</code>) on the computer you use to run cluster commands.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Install and configure the latest AWS CLI (<code>aws</code>).</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Follow the <a href="https://aws.amazon.com/cli/">AWS Command Line Interface</a> documentation to install and configure the AWS CLI for your operating system.</p>
+<div class="paragraph">
+<p>Put <code>aws_access_key_id</code>, <code>aws_secret_access_key</code>, and <code>region</code> in the <code>.aws/credentials</code> file. See <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html">AWS Configuration basics</a> in the AWS documentation.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can optionally use the <code>AWS_DEFAULT_REGION</code> environment variable to set the default AWS region.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Query the AWS API to verify if the AWS CLI is installed and configured correctly:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws sts get-caller-identity  --output text</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">&lt;aws_account_id&gt;    arn:aws:iam::&lt;aws_account_id&gt;:user/&lt;username&gt;  &lt;aws_user_id&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Download the latest version of the ROSA command-line interface (CLI) (<code>rosa</code>) for your operating system from the <a href="https://console.redhat.com/openshift/downloads"><strong>Downloads</strong></a> page on OpenShift Cluster Manager.</p>
+</li>
+<li>
+<p>Extract the <code>rosa</code> binary file from the downloaded archive. The following example extracts the binary from a Linux tar archive:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ tar xvf rosa-linux.tar.gz</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add <code>rosa</code> to your path. In the following example, the <code>/usr/local/bin</code> directory is included in the path of the user:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo mv rosa /usr/local/bin/rosa</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify if the <code>rosa</code> CLI is installed correctly by querying the <code>rosa</code> version:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa version</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">1.2.15
+Your <code>rosa</code> CLI is up to date.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Optional: Turn on tab completion for the <code>rosa</code> CLI. Press <code>Tab</code> twice to finish subcommands or see hints:</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>To enable persistent tab completion for Bash on a Linux host:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Generate a <code>rosa</code> tab completion configuration file for Bash and save it to your <code>/etc/bash_completion.d/</code> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal"># rosa completion bash &gt; /etc/bash_completion.d/rosa</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open a new terminal to activate the configuration.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To enable persistent tab completion for Bash on a macOS host:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Generate a <code>rosa</code> tab completion configuration file for Bash and save it to your <code>/usr/local/etc/bash_completion.d/</code> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa completion bash &gt; /usr/local/etc/bash_completion.d/rosa</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open a new terminal to activate the configuration.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To enable persistent tab completion for Zsh:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If tab completion is not enabled for your Zsh environment, enable it by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo "autoload -U compinit; compinit" &gt;&gt; ~/.zshrc</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Generate a <code>rosa</code> tab completion configuration file for Zsh and save it to the first directory in your functions path:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa completion zsh &gt; "${fpath[1]}/_rosa"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open a new terminal to activate the configuration.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To enable persistent tab completion for fish:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Generate a <code>rosa</code> tab completion configuration file for fish and save it to your <code>~/.config/fish/completions/</code> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa completion fish &gt; ~/.config/fish/completions/rosa.fish</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open a new terminal to activate the configuration.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To enable persistent tab completion for PowerShell:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Generate a <code>rosa</code> tab completion configuration file for PowerShell and save it to a file named <code>rosa.ps1</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">PS&gt; rosa completion powershell | Out-String | Invoke-Expression</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Source the <code>rosa.ps1</code> file from your PowerShell profile.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For more information about configuring <code>rosa</code> tab completion, see the help menu by running the <code>rosa completion --help</code> command.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-login_rosa-set-up-and-authenticate-the-rosa-cli">About logging in to the <code>rosa</code> CLI</h5>
+<div class="paragraph _abstract">
+<p>You can log in to the ROSA command-line interface (CLI) (<code>rosa</code>) with Red&#160;Hat single sign-on or with an offline authentication token. Red&#160;Hat recommends using the <code>rosa</code> CLI with Red&#160;Hat single sign-on, instead of using an offline authentication token.</p>
+</div>
+<div class="paragraph">
+<p>An offline authentication token is long-lived, stored on your operating system, and cannot be revoked. These factors increase overall security risks and the likelihood of unauthorized access to your account.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, authenticating with the Red&#160;Hat single sign-on method automatically sends your <code>rosa</code> instance a refresh token that is valid for 10 hours. This unique, temporary authorization code enhances security and reduces the risk of unauthorized access.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -746,26 +966,45 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You must create the <code>ocm-role</code> IAM role before you can create your Red&#160;Hat OpenShift Services on AWS cluster.</p>
+<p>The method of authenticating using Red&#160;Hat single sign-on does not break any existing automations that rely on offline tokens. Red&#160;Hat recommends using services accounts for automation purposes. If you still need to use offline tokens for automation or other purposes, you can download the <a href="https://console.redhat.com/openshift/install/pull-secret">pull secret from Red Hat OpenShift Cluster Manager</a>.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+<div class="sect5">
+<h6 id="_authentication_methods">Authentication methods</h6>
+<div class="paragraph">
+<p>You can use one of the following methods to authenticate:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Single sign-on authorization code</strong>: Use this method if your system has a web browser. Single sign-on authorization is supported with <code>rosa</code> CLI version 1.2.36 or later.</p>
+</li>
+<li>
+<p><strong>Single sign-on device code</strong>: Use this method if you are working with containers, remote hosts, or other environments without a web browser. Single sign-on authorization is supported with <code>rosa</code> CLI version 1.2.36 or later.</p>
+</li>
+<li>
+<p><strong>Offline token</strong>: Use this method if you need to use an offline token for automation or other purposes. Red&#160;Hat recommends using service accounts for automation purposes instead.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-login-sso-auth-code_rosa-set-up-and-authenticate-the-rosa-cli">Authenticate the <code>rosa</code> CLI with a single sign-on authorization code</h5>
+<div class="paragraph _abstract">
+<p>You can log in to your account with the <code>rosa</code> CLI by using a Red&#160;Hat single sign-on authorization code.</p>
+</div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have an AWS account.</p>
+<p>You have a web browser available on your system.</p>
 </li>
 <li>
-<p>You have Red&#160;Hat Organization Administrator privileges in the OpenShift Cluster Manager organization.</p>
-</li>
-<li>
-<p>You have the permissions required to install AWS account-wide roles.</p>
-</li>
-<li>
-<p>You have installed and configured the latest <code>rosa</code> CLI, <code>rosa</code>, on your installation host.</p>
+<p>You have <code>rosa</code> CLI version 1.2.36 or later installed.</p>
 </li>
 </ul>
 </div>
@@ -773,7 +1012,127 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Procedure</div>
 <ul>
 <li>
-<p>Run one of the following commands to create the required <code>ocm-role</code> IAM resource:</p>
+<p>To log in to the ROSA command-line interface (CLI) (<code>rosa</code>) with a Red&#160;Hat single sign-on authorization code, run the following command:</p>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa login --use-auth-code</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Running this command redirects you to the Red&#160;Hat single sign-on login. Log in with your Red&#160;Hat login or email.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 62. Optional arguments inherited from parent commands+</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Verification</div>
+<p>To switch accounts, log out from <a href="https://sso.redhat.com">https://sso.redhat.com</a> and run the <code>rosa logout</code> command in your terminal before attempting to log in again.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-login-sso-device-code_rosa-set-up-and-authenticate-the-rosa-cli">Authenticate the <code>rosa</code> CLI with a single sign-on device code</h5>
+<div class="paragraph _abstract">
+<p>If you are working with containers, remote hosts, and other environments without a web browser, you can use a Red&#160;Hat single sign-on device code for secure authentication. To do this, you must use a second device that has a web browser to approve the login.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have ROSA command-line interface (CLI) (<code>rosa</code>) version 1.2.36 or later installed.</p>
+</li>
+<li>
+<p>You have access to a second device with a web browser.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>To log in to the <code>rosa</code> CLI with a Red&#160;Hat single sign-on device code, run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa login --use-device-code</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Running this command redirects you to the Red&#160;Hat SSO login and provides a login code.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 63. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Verification</div>
+<p>To switch accounts, log out from <a href="https://sso.redhat.com">https://sso.redhat.com</a> and run the <code>rosa logout</code> command in your terminal before attempting to log in again.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-login-offline-token_rosa-set-up-and-authenticate-the-rosa-cli">Authenticate the <code>rosa</code> CLI with an offline token</h5>
+<div class="paragraph _abstract">
+<p>Log in to your Red&#160;Hat account, saving the credentials to the <code>rosa</code> configuration file.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To use offline tokens for automation purposes, you can download the <a href="https://console.redhat.com/openshift/install/pull-secret">pull secret from Red Hat OpenShift Cluster Manager</a>.
+To use service accounts for automation purposes, see the <a href="https://console.redhat.com/iam/service-accounts">Service Accounts</a> page.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -782,166 +1141,570 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The process to change your <code>ocm-role</code> IAM resource profile requires you to unlink and delete the current <code>ocm-role</code> IAM resource and create a new one with the required profile.</p>
+<p>Red&#160;Hat recommends using service accounts for automation purposes.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="ulist">
+<div class="title">Procedure</div>
 <ul>
 <li>
-<p>To create an <code>ocm-role</code> IAM role with standard privileges, run the following command:</p>
+<p>To log in to ROSA command-line interface (CLI) (<code>rosa</code>) with a Red&#160;Hat offline token, run the following command:</p>
 <div class="listingblock">
+<div class="title">Syntax</div>
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create ocm-role</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa login [arguments]</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>To create an <code>ocm-role</code> IAM role with admin privileges, run the following command:</p>
-<div class="admonitionblock important">
-<table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 64. Arguments</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The admin profile supports "auto" mode configuration for Red&#160;Hat OpenShift Services on AWS clusters which provisions OIDC Configuration and Operator roles automatically. To achieve this automatic flow, the profile has a wider set of permissions than the standard profile.</p>
-</div>
-</td>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
 </tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create ocm-role --admin</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the <code>rosa</code> CLI (<code>rosa</code>) create your Operator roles and policies.
-See "Methods of account-wide role creation" for more information. The following example shows what your creation flow might look like.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Creating ocm role
-? Role prefix: ManagedOpenShift
-? Enable admin capabilities for the OCM role (optional): No
-? Permissions boundary ARN (optional):
-? Role Path (optional):
-? Role creation mode: auto
-I: Creating role using 'arn:aws:iam::&lt;ARN&gt;:user/&lt;UserName&gt;'
-? Create the 'ManagedOpenShift-OCM-Role-182' role? Yes
-I: Created role 'ManagedOpenShift-OCM-Role-182' with ARN  'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-OCM-Role-182'
-I: Linking OCM role
-? OCM Role ARN: arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-OCM-Role-182
-? Link the 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-OCM-Role-182' role with organization '&lt;AWS ARN&gt;'? Yes
-I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-OCM-Role-182' with organization account '&lt;AWS ARN&gt;'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where:</p>
-</div>
-<div class="openblock">
-<div class="content">
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>Role prefix</code></dt>
-<dd>
-<p>A prefix value for all of the created AWS resources. In this example, <code>ManagedOpenShift</code> prepends all of the AWS resources.</p>
-</dd>
-<dt class="hdlist1"><code>Enable admin capabilities for the OCM role (optional)</code></dt>
-<dd>
-<p>Choose if you want this role to have the additional admin permissions.</p>
-<div class="admonitionblock note">
-<table>
+</thead>
+<tbody>
 <tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>You do not see this prompt if you used the <code>--admin</code> option.</p>
-</div>
-</td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--client-id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID client identifier (string). Default: <code>cloud-services</code></p></td>
 </tr>
-</table>
-</div>
-</dd>
-<dt class="hdlist1"><code>Permissions boundary ARN (optional)</code></dt>
-<dd>
-<p>The Amazon Resource Name (ARN) of the policy to set permission boundaries.</p>
-</dd>
-<dt class="hdlist1"><code>Role Path (optional)</code></dt>
-<dd>
-<p>Specify an IAM path for the user name.</p>
-</dd>
-<dt class="hdlist1"><code>Role creation mode</code></dt>
-<dd>
-<p>Choose the method to create your AWS roles. By using <code>auto</code>, the <code>rosa</code> CLI generates and links the roles and policies. In the <code>auto</code> mode, you receive some different prompts to create the AWS roles.</p>
-</dd>
-<dt class="hdlist1"><code>Create the 'ManagedOpenShift-OCM-Role-182' role?</code></dt>
-<dd>
-<p>The <code>auto</code> method asks if you want to create a specific <code>ocm-role</code> by using your prefix.</p>
-</dd>
-<dt class="hdlist1"><code>OCM Role ARN</code></dt>
-<dd>
-<p>Confirm that you want to associate your IAM role with your OpenShift Cluster Manager.</p>
-</dd>
-<dt class="hdlist1"><code>Link the 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-OCM-Role-182' role with organization '&lt;AWS ARN&gt;'?</code></dt>
-<dd>
-<p>Links the created role with your AWS organization.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>To create an <code>ocm-role</code> IAM role with the minimum required privileges, run the following command:</p>
-<div class="admonitionblock note">
-<table>
 <tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>While the <code>no-console</code> profile offers the minimum permissions policy that can still create Red&#160;Hat OpenShift Services on AWS clusters, the permissions are insufficient if you want to use <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> for cluster creation.</p>
-</div>
-</td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--client-secret</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID client secret (string).</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--insecure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables insecure communication with the server. This disables verification of TLS certificates and host names.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--scope</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID scope (string). If this option is used, it replaces the default scopes. This can be repeated multiple times to specify multiple scopes. Default: <code>openid</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--token</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accesses or refreshes the token (string).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--token-url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID token URL (string). Default: <code>https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token</code></p></td>
+</tr>
+</tbody>
 </table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create ocm-role --no-console</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 65. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--profile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies an AWS profile (string) from your credentials file.</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="rosa-sts-byo-oidc_rosa-hcp-quickstart-create-your-cluster">Create an OpenID Connect configuration</h4>
+<div class="sect4">
+<h5 id="rosa-logout_rosa-set-up-and-authenticate-the-rosa-cli">Log out of the <code>rosa</code> CLI</h5>
 <div class="paragraph _abstract">
-<p>Red&#160;Hat OpenShift Services on AWS clusters use OpenID Connect (OIDC) and the AWS Security Token Service (STS) to authenticate Operator access to required AWS resources.</p>
-</div>
-<div class="paragraph">
-<p>Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS cluster, you can create the OIDC configuration before creating your cluster.</p>
+<p>Log out of <code>rosa</code>. Logging out also removes the <code>rosa</code> configuration file.</p>
 </div>
 <div class="ulist">
-<div class="title">Prerequisites</div>
+<div class="title">Procedure</div>
 <ul>
 <li>
-<p>You have completed the AWS prerequisites for Red&#160;Hat OpenShift Services on AWS.</p>
+<p>Log out of your <code>rosa</code> session by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa logout [arguments]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 66. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--profile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies an AWS profile (string) from your credentials file.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-verify_rosa-set-up-and-authenticate-the-rosa-cli">Verify AWS settings with the <code>rosa</code> CLI</h5>
+<div class="paragraph _abstract">
+<p>Verify AWS permissions and quotas by using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+</div>
+<div class="sect5">
+<h6 id="rosa-verify-permissions_rosa-set-up-and-authenticate-the-rosa-cli">verify permissions</h6>
+<div class="paragraph">
+<p>Verify that the AWS permissions required to create a Red&#160;Hat OpenShift Services on AWS cluster are configured correctly:</p>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify permissions [arguments]</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This command verifies permissions only for clusters that do not use the AWS Security Token Service (STS).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 67. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--region</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The AWS region (string) in which to run the command. This value overrides the <code>AWS_REGION</code> environment variable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--profile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies an AWS profile (string) from your credentials file.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Verify that the AWS permissions are configured correctly:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify permissions</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the AWS permissions are configured correctly in a specific region:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify permissions --region=us-west-2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-verify-quota_rosa-set-up-and-authenticate-the-rosa-cli">verify quota</h6>
+<div class="paragraph">
+<p>Verifies that AWS quotas are configured correctly for your default region.</p>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify quota [arguments]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 68. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--region</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The AWS region (string) in which to run the command. This value overrides the <code>AWS_REGION</code> environment variable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--profile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies an AWS profile (string) from your credentials file.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Verify that the AWS quotas are configured correctly for the default region:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify quota</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the AWS quotas are configured correctly in a specific region:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify quota --region=us-west-2</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-download_rosa-set-up-and-authenticate-the-rosa-cli">Download CLI tools with the <code>rosa</code> CLI</h5>
+<div class="paragraph _abstract">
+<p>Download and verify the <code>rosa</code> and <code>oc</code> CLI tools by using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+</div>
+<div class="sect5">
+<h6 id="rosa-download-rosa-client_rosa-set-up-and-authenticate-the-rosa-cli">download rosa</h6>
+<div class="paragraph">
+<p>Download the latest compatible version of the <code>rosa</code> CLI.</p>
+</div>
+<div class="paragraph">
+<p>After you download <code>rosa</code> CLI, extract the contents of the archive and add it to your path.</p>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa download rosa [arguments]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 69. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="rosa-download-ocp-client_rosa-set-up-and-authenticate-the-rosa-cli">download oc</h6>
+<div class="paragraph">
+<p>Download the latest compatible version of the OpenShift CLI (<code>oc</code>).</p>
+</div>
+<div class="paragraph">
+<p>After you download <code>oc</code>, you must extract the contents of the archive and add it to your path.</p>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa download oc [arguments]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 70. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Download <code>oc</code> client tools:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa download oc</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="rosa-verify-ocp-client_rosa-set-up-and-authenticate-the-rosa-cli">verify oc</h6>
+<div class="paragraph">
+<p>Verifies that the OpenShift CLI (<code>oc</code>) installed correctly.</p>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify oc [arguments]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 71. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Verify <code>oc</code> client tools:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify oc</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-initialize_rosa-set-up-and-authenticate-the-rosa-cli">Initializing Red&#160;Hat OpenShift Services on AWS</h5>
+<div class="paragraph _abstract">
+<p>Use the <code>init</code> command to initialize Red&#160;Hat OpenShift Services on AWS only if you are using non-STS.</p>
+</div>
+<div class="sect5">
+<h6 id="rosa-init_rosa-set-up-and-authenticate-the-rosa-cli">init</h6>
+<div class="paragraph">
+<p>Perform a series of checks to verify that you are ready to deploy a Red&#160;Hat OpenShift Services on AWS cluster.</p>
+</div>
+<div class="paragraph">
+<p>The list of checks includes the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Checks to see that you have logged in (see <code>login</code>)</p>
 </li>
 <li>
-<p>You have installed and configured the latest ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host.</p>
+<p>Checks that your AWS credentials are valid</p>
+</li>
+<li>
+<p>Checks that your AWS permissions are valid (see <code>verify permissions</code>)</p>
+</li>
+<li>
+<p>Checks that your AWS quota levels are high enough (see <code>verify quota</code>)</p>
+</li>
+<li>
+<p>Runs a cluster simulation to ensure cluster creation will perform as expected</p>
+</li>
+<li>
+<p>Checks that the <code>osdCcsAdmin</code> user has been created in your AWS account</p>
+</li>
+<li>
+<p>Checks that the OpenShift Container Platform command-line tool is available on your system</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init [arguments]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 72. Arguments</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--region</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The AWS region (string) in which to verify quota and permissions. This value overrides the <code>AWS_REGION</code> environment variable only when running the <code>init</code> command, but it does not change your AWS CLI configuration.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--delete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes the stack template that is applied to your AWS account during the <code>init</code> command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--client-id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID client identifier (string). Default: <code>cloud-services</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--client-secret</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID client secret (string).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--insecure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables insecure communication with the server. This disables verification of TLS certificates and host names.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--scope</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID scope (string). If this option is used, it completely replaces the default scopes. This can be repeated multiple times to specify multiple scopes. Default: <code>openid</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--token</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accesses or refreshes the token (string).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--token-url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenID token URL (string). Default: <code>https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 73. Optional arguments inherited from parent commands</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows help for this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--debug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables debug mode.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--profile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies an AWS profile (string) from your credentials file.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Configure your AWS account to allow Red&#160;Hat OpenShift Services on AWS clusters:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Configure a new AWS account using pre-existing OpenShift Cluster Manager credentials:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init --token=$OFFLINE_ACCESS_TOKEN</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-using-bash-script_rosa-set-up-and-authenticate-the-rosa-cli">Use a Bash script</h5>
+<div class="paragraph _abstract">
+<p>This example workflow shows how to use a Bash script with the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+</div>
+<div class="paragraph">
+<div class="title">Prerequisites</div>
+<p>Make sure that AWS credentials are available as one of the following options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>AWS profile</p>
+</li>
+<li>
+<p>Environment variables (<code>AWS_ACCESS_KEY_ID</code>, <code>AWS_SECRET_ACCESS_KEY</code>)</p>
 </li>
 </ul>
 </div>
@@ -949,65 +1712,88 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>To create your OIDC configuration alongside the AWS resources, run the following command:</p>
+<p>Initialize <code>rosa</code> using a Red Hat OpenShift Cluster Manager offline token <a href="https://console.redhat.com/openshift/token/rosa">from Red&#160;Hat</a>:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create oidc-config --mode=auto --yes</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init --token=&lt;token&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the Red&#160;Hat OpenShift Services on AWS cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create cluster --cluster-name=&lt;cluster_name&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an identity provider (IDP):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create idp --cluster=&lt;cluster_name&gt; --type=&lt;identity_provider&gt; [arguments]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add a <code>dedicated-admin</code> user:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa grant user dedicated-admin --user=&lt;idp_user_name&gt; --cluster=&lt;cluster_name&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-updating-the-rosa-cli_rosa-set-up-and-authenticate-the-rosa-cli">Updating the <code>rosa</code> CLI</h5>
+<div class="paragraph _abstract">
+<p>Update the ROSA command-line interface (CLI) (<code>rosa</code>) to the latest version that works with your cluster.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Confirm that a new version of the <code>rosa</code> CLI (<code>rosa</code>) is available:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa version</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example output</div>
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red{nbsp}Hat hosted) OIDC Configuration Yes
-I: Setting up managed OIDC configuration
-I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace &lt;user-defined&gt; with a prefix of your choice:
-	rosa create operator-roles --prefix &lt;user-defined&gt; --oidc-config-id 13cdr6b
-If you are going to create a Hosted Control Plane cluster please include '--hosted-cp'
-I: Creating OIDC provider using 'arn:aws:iam::4540112244:user/userName'
-? Create the OIDC provider? Yes
-I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdztaeq9o.cloudfront.net/13cdr6b'</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">1.2.12
+There is a newer release version '1.2.15', please consider updating: https://mirror.openshift.com/pub/openshift-v4/clients/rosa/latest/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Download the latest compatible version of the <code>rosa</code> CLI:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa download rosa</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When creating your cluster, you must supply the OIDC config ID. The CLI output provides this value for <code>--mode auto</code>, otherwise you must determine these values based on <code>aws</code> CLI output for <code>--mode manual</code>.</p>
+<p>This command downloads an archive called <code>rosa-*.tar.gz</code> into the current directory. The exact name of the file depends on your operating system and system architecture.</p>
 </div>
 </li>
 <li>
-<p>Optional: you can save the OIDC configuration ID as a variable to use later. Run the following command to save the variable:</p>
-<div class="openblock">
-<div class="content">
+<p>Extract the contents of the archive:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export OIDC_ID=&lt;oidc_config_id&gt;</code></pre>
-</div>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>&lt;oidc_config_id&gt;</code></dt>
-<dd>
-<p>In this example output, the OIDC configuration ID is <code>13cdr6b</code>.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>View the value of the variable by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ echo $OIDC_ID</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">13cdr6b</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ tar -xzf rosa-linux.tar.gz</code></pre>
 </div>
 </div>
 </li>
-</ul>
+<li>
+<p>Install the new version of the <code>rosa</code> CLI by moving the extracted file into your path. In the following example, your path includes the <code>/usr/local/bin</code> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo mv rosa /usr/local/bin/rosa</code></pre>
+</div>
 </div>
 </li>
 </ol>
@@ -1016,40 +1802,42 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <div class="title">Verification</div>
 <ul>
 <li>
-<p>You can list the possible OIDC configurations available for your clusters that are associated with your user organization. Run the following command:</p>
+<p>Verify the new version of the <code>rosa</code> CLI installed successfully.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list oidc-config</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa version</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example output</div>
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">ID                                MANAGED  ISSUER URL                                                             SECRET ARN
-2330dbs0n8m3chkkr25gkkcd8pnj3lk2  true     https://dvbwgdztaeq9o.cloudfront.net/2330dbs0n8m3chkkr25gkkcd8pnj3lk2
-233hvnrjoqu14jltk6lhbhf2tj11f8un  false    https://oidc-r7u1.s3.us-east-1.amazonaws.com                           aws:secretsmanager:us-east-1:242819244:secret:rosa-private-key-oidc-r7u1-tM3MDN</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">1.2.15
+Your <code>rosa</code> CLI is up to date.</code></pre>
 </div>
 </div>
 </li>
 </ul>
 </div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="rosa-operator-config_rosa-hcp-quickstart-create-your-cluster">Creating Operator roles and policies</h4>
+<h4 id="rosa-change-the-aws-billing-account_rosa-change-the-aws-billing-account">Change the AWS billing account for your cluster</h4>
 <div class="paragraph _abstract">
-<p>When you deploy a Red&#160;Hat OpenShift Services on AWS cluster, you must create the Operator Identity and Access Management (IAM) roles. The cluster Operators use the Operator roles and policies to obtain temporary permissions to perform cluster operations, such as managing storage and external access.</p>
+<p>You can use the ROSA command-line interface (CLI) (<code>rosa</code>) to point an existing cluster at a different AWS billing account after deployment. You can correct a billing account linked at install time or change the account at a later date.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-update-billing_rosa-change-the-aws-billing-account">Update billing accounts for Red&#160;Hat OpenShift Services on AWS clusters</h5>
+<div class="paragraph _abstract">
+<p>Change the AWS billing account a deployed cluster uses by running <code>rosa edit cluster</code> in interactive mode.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have completed the AWS prerequisites for Red&#160;Hat OpenShift Services on AWS.</p>
+<p>You must have more than one AWS billing account.</p>
 </li>
 <li>
-<p>You have installed and configured the latest ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host.</p>
-</li>
-<li>
-<p>You created the account-wide AWS roles.</p>
+<p>You must link the AWS billing account to the same Red&#160;Hat organization where you deployed the cluster.</p>
 </li>
 </ul>
 </div>
@@ -1057,417 +1845,43 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>To create your Operator roles, run the following command:</p>
+<p>Run the following command in your terminal window. Replace <code>&lt;cluster_ID&gt;</code> with the ID of the cluster whose billing account you want to update.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create operator-roles --hosted-cp --prefix=$OPERATOR_ROLES_PREFIX --oidc-config-id=$OIDC_ID --installer-role-arn arn:aws:iam::$AWS_ACCOUNT_ID:role/${ACCOUNT_ROLES_PREFIX}-HCP-ROSA-Installer-Role</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa edit cluster -c &lt;cluster_ID&gt;</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
 <div class="paragraph">
-<p>The following breakdown provides options for the Operator role creation.</p>
+<p>To locate the IDs of your active clusters, run the <code>$ rosa list clusters</code> command in your terminal window.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create operator-roles --hosted-cp
-	--prefix=$OPERATOR_ROLES_PREFIX
-	--oidc-config-id=$OIDC_ID
-	--installer-role-arn arn:aws:iam::$AWS_ACCOUNT_ID:role/$ACCOUNT_ROLES_PREFIX-HCP-ROSA-Installer-Role</code></pre>
+</td>
+</tr>
+</table>
 </div>
-</div>
+</li>
+<li>
+<p>Skip to the <code>Billing Account</code> parameter within the interactive mode.</p>
+</li>
+<li>
+<p>Select the required AWS billing account from the list of available options and press <strong>Enter</strong>.</p>
 <div class="paragraph">
-<p>where:</p>
-</div>
-<div class="openblock">
-<div class="content">
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>--prefix=</code></dt>
-<dd>
-<p>You must supply a prefix when creating these Operator roles. Failing to do so produces an error. See the Additional resources of this section for information on the Operator prefix.</p>
-</dd>
-<dt class="hdlist1"><code>--oidc-config-id=</code></dt>
-<dd>
-<p>This value is the OpenID Connect (OIDC) configuration ID that you created for your Red&#160;Hat OpenShift Services on AWS cluster.</p>
-</dd>
-<dt class="hdlist1"><code>--installer-role-arn</code></dt>
-<dd>
-<p>This value is the installer role Amazon Resource Name (ARN) that you created when you created the Red&#160;Hat OpenShift Services on AWS account roles.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>You must include the <code>--hosted-cp</code> parameter to create the correct roles for Red&#160;Hat OpenShift Services on AWS clusters. This command returns the following information.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">? Role creation mode: auto
-? Operator roles prefix: &lt;pre-filled_prefix&gt;
-? OIDC Configuration ID: 23soa2bgvpek9kmes9s7os0a39i13qm4 | https://dvbwgdztaeq9o.cloudfront.net/23soa2bgvpek9kmes9s7os0a39i13qm4
-? Create hosted control plane operator roles: Yes
-W: More than one Installer role found
-? Installer role ARN: arn:aws:iam::4540112244:role/&lt;prefix&gt;-HCP-ROSA-Installer-Role
-? Permissions boundary ARN (optional):
-I: Reusable OIDC Configuration detected. Validating trusted relationships to operator roles:
-I: Creating roles using 'arn:aws:iam::4540112244:user/&lt;userName&gt;'
-I: Created role '&lt;prefix&gt;-openshift-cluster-csi-drivers-ebs-cloud-credentials' with ARN 'arn:aws:iam::4540112244:role/&lt;prefix&gt;-openshift-cluster-csi-drivers-ebs-cloud-credentials'
-I: Created role '&lt;prefix&gt;-openshift-cloud-network-config-controller-cloud-credenti' with ARN 'arn:aws:iam::4540112244:role/&lt;prefix&gt;-openshift-cloud-network-config-controller-cloud-credenti'
-I: Created role '&lt;prefix&gt;-kube-system-kube-controller-manager' with ARN 'arn:aws:iam::4540112244:role/&lt;prefix&gt;-kube-system-kube-controller-manager'
-I: Created role '&lt;prefix&gt;-kube-system-capa-controller-manager' with ARN 'arn:aws:iam::4540112244:role/&lt;prefix&gt;-kube-system-capa-controller-manager'
-I: Created role '&lt;prefix&gt;-kube-system-control-plane-operator' with ARN 'arn:aws:iam::4540112244:role/&lt;prefix&gt;-kube-system-control-plane-operator'
-I: Created role '&lt;prefix&gt;-kube-system-kms-provider' with ARN 'arn:aws:iam::4540112244:role/&lt;prefix&gt;-kube-system-kms-provider'
-I: Created role '&lt;prefix&gt;-openshift-image-registry-installer-cloud-credentials' with ARN 'arn:aws:iam::4540112244:role/&lt;prefix&gt;-openshift-image-registry-installer-cloud-credentials'
-I: Created role '&lt;prefix&gt;-openshift-ingress-operator-cloud-credentials' with ARN 'arn:aws:iam::4540112244:role/&lt;prefix&gt;-openshift-ingress-operator-cloud-credentials'
-I: To create a cluster with these roles, run the following command:
-	rosa create cluster --sts --oidc-config-id 23soa2bgvpek9kmes9s7os0a39i13qm4 --operator-roles-prefix &lt;prefix&gt; --hosted-cp</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where:</p>
-</div>
-<div class="openblock">
-<div class="content">
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>Operator roles prefix</code></dt>
-<dd>
-<p>This field is prepopulated with the prefix that you set in the initial creation command.</p>
-</dd>
-<dt class="hdlist1"><code>OIDC Configuration ID</code></dt>
-<dd>
-<p>This field requires you to select an OIDC configuration that you created for your Red&#160;Hat OpenShift Services on AWS cluster.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>The Operator roles are now created and ready to use for creating your Red&#160;Hat OpenShift Services on AWS cluster.</p>
+<p>The AWS billing account for your cluster is now updated.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>You can list the Operator roles associated with your Red&#160;Hat OpenShift Services on AWS account. Run the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list operator-roles</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Fetching operator roles
-ROLE PREFIX  AMOUNT IN BUNDLE
-&lt;prefix&gt;      8
-? Would you like to detail a specific prefix Yes
-? Operator Role Prefix: &lt;prefix&gt;
-ROLE NAME                                                         ROLE ARN                                                                                         VERSION  MANAGED
-&lt;prefix&gt;-kube-system-capa-controller-manager                       arn:aws:iam::4540112244:role/&lt;prefix&gt;-kube-system-capa-controller-manager                       4.13     No
-&lt;prefix&gt;-kube-system-control-plane-operator                        arn:aws:iam::4540112244:role/&lt;prefix&gt;-kube-system-control-plane-operator                        4.13     No
-&lt;prefix&gt;-kube-system-kms-provider                                  arn:aws:iam::4540112244:role/&lt;prefix&gt;-kube-system-kms-provider                                  4.13     No
-&lt;prefix&gt;-kube-system-kube-controller-manager                       arn:aws:iam::4540112244:role/&lt;prefix&gt;-kube-system-kube-controller-manager                       4.13     No
-&lt;prefix&gt;-openshift-cloud-network-config-controller-cloud-credenti  arn:aws:iam::4540112244:role/&lt;prefix&gt;-openshift-cloud-network-config-controller-cloud-credenti  4.13     No
-&lt;prefix&gt;-openshift-cluster-csi-drivers-ebs-cloud-credentials       arn:aws:iam::4540112244:role/&lt;prefix&gt;-openshift-cluster-csi-drivers-ebs-cloud-credentials       4.13     No
-&lt;prefix&gt;-openshift-image-registry-installer-cloud-credentials      arn:aws:iam::4540112244:role/&lt;prefix&gt;-openshift-image-registry-installer-cloud-credentials      4.13     No
-&lt;prefix&gt;-openshift-ingress-operator-cloud-credentials              arn:aws:iam::4540112244:role/&lt;prefix&gt;-openshift-ingress-operator-cloud-credentials              4.13     No</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After the command runs, it displays all the prefixes associated with your AWS account and notes how many roles are associated with this prefix. If you need to see all of these roles and their details, enter "Yes" on the detail prompt to have these roles listed out with specifics.</p>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="rosa-hcp-sts-creating-a-cluster-cli_rosa-hcp-quickstart-create-your-cluster">Creating a Red&#160;Hat OpenShift Services on AWS cluster using the CLI</h4>
-<div class="paragraph _abstract">
-<p>You can create a Red&#160;Hat OpenShift Services on AWS cluster quickly by using the ROSA command-line interface (CLI) (<code>rosa</code>) with default options.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have completed the AWS prerequisites for Red&#160;Hat OpenShift Services on AWS.</p>
-</li>
-<li>
-<p>You have available AWS service quotas.</p>
-</li>
-<li>
-<p>You have enabled the Red&#160;Hat OpenShift Services on AWS in the AWS Console.</p>
-</li>
-<li>
-<p>You have installed and configured the latest ROSA CLI (<code>rosa</code>) on your installation host. Run <code>rosa version</code> to see your currently installed version of the ROSA CLI. If a newer version is available, the CLI provides a link to download this upgrade.</p>
-</li>
-<li>
-<p>You have logged in to your Red&#160;Hat account by using the ROSA CLI.</p>
-</li>
-<li>
-<p>You have created an OpenID Connect (OIDC) configuration.</p>
-</li>
-<li>
-<p>You have verified that the AWS Elastic Load Balancing (ELB) service role exists in your AWS account.</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>Use one of the following commands to create your Red&#160;Hat OpenShift Services on AWS cluster:</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>When creating a Red&#160;Hat OpenShift Services on AWS cluster, the default machine Classless Inter-Domain Routing (CIDR) is <code>10.0.0.0/16</code>. If this does not correspond to the CIDR range for your virtual private cloud (VPC) subnets, add <code>--machine-cidr &lt;address_block&gt;</code> to the following commands. To learn more about the default CIDR ranges for Red&#160;Hat OpenShift Services on AWS, see CIDR range definitions.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>If you did not set environmental variables, run the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create cluster --cluster-name=&lt;cluster_name&gt; \
-    --mode=auto --hosted-cp [--private] \
-    --operator-roles-prefix &lt;operator-role-prefix&gt; \
-    --external-id &lt;external-id&gt; \
-    --oidc-config-id &lt;id-of-oidc-configuration&gt; \
-    --subnet-ids=&lt;public-subnet-id&gt;,&lt;private-subnet-id&gt; \
-    --enable-delete-protection</code></pre>
-</div>
-</div>
-<div class="openblock">
-<div class="content">
-<div class="paragraph">
-<p>where:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>&lt;cluster_name&gt;</code></dt>
-<dd>
-<p>Specify the name of your cluster. If your cluster name is longer than 15 characters, it contains an autogenerated domain prefix as a subdomain for your provisioned cluster on openshiftapps.com. To customize the subdomain, use the <code>--domain-prefix</code> flag. The domain prefix cannot be longer than 15 characters, must be unique, and cannot be changed after cluster creation.</p>
-</dd>
-<dt class="hdlist1"><code>--private</code></dt>
-<dd>
-<p>Optional. Use the <code>--private</code> argument to create private Red&#160;Hat OpenShift Services on AWS clusters. If you use this argument, ensure that you only use your private subnet ID for <code>--subnet-ids</code>.</p>
-</dd>
-<dt class="hdlist1"><code>&lt;operator-role-prefix&gt;</code></dt>
-<dd>
-<p>By default, the cluster-specific Operator role names are prefixed with the cluster name and a random 4-digit hash. You can optionally specify a custom prefix to replace <code>&lt;cluster_name&gt;-&lt;hash&gt;</code> in the role names. The prefix is applied when you create the cluster-specific Operator Identity and Access Management (IAM) roles. For information about the prefix, see <em>About custom Operator IAM role prefixes</em>.</p>
-</dd>
-<dt class="hdlist1"><code>&lt;external-id&gt;</code></dt>
-<dd>
-<p>Optional. A unique identifier that might be required when you assume a role in another account. For more information about external ID, see <em>About external ID</em>.</p>
-</dd>
-<dt class="hdlist1"><code>--enable-delete-protection</code></dt>
-<dd>
-<p>Optional. Enables cluster deletion protection to prevent accidental deletion. By default, clusters are created with deletion protection disabled.</p>
-<div class="paragraph">
-<p>When deletion protection is enabled, attempts to delete the cluster using <code>rosa delete cluster</code> fail immediately before prompting for deletion confirmation. To delete a cluster, disable the protection first by running <code>rosa edit cluster -c &lt;cluster_name&gt; --enable-delete-protection=false</code>.</p>
-</div>
-<div class="paragraph">
-<p>Deletion protection only blocks deletion requests made through the <code>rosa</code> CLI. It does not set any AWS-level resource protections, and you can still delete cluster resources directly in AWS, risking data loss or cluster outage. Additionally, deletion protection does not override the Red&#160;Hat <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-delete-policy_rosa-hcp-life-cycle">Deletion policy</a>. Red&#160;Hat reserves the right to delete clusters that violate service requirements.</p>
-</div>
-</dd>
-</dl>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If you specified custom Amazon Resource Name (ARN) paths when you created the associated account-wide roles, the custom path is automatically detected. The custom path is applied to the cluster-specific Operator roles when you create them in a later step.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>If you set the environment variables, create a cluster with a private API and private Ingress by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create cluster --private --cluster-name=&lt;cluster_name&gt; \
-    --mode=auto --hosted-cp --operator-roles-prefix=$OPERATOR_ROLES_PREFIX \
-    --oidc-config-id=$OIDC_ID --subnet-ids=$SUBNET_IDS</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>If you set the environmental variables, create a cluster with a single, initial machine pool, a publicly available API, and a publicly available Ingress by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create cluster --cluster-name=&lt;cluster_name&gt; --mode=auto \
-    --hosted-cp --operator-roles-prefix=$OPERATOR_ROLES_PREFIX \
-    --oidc-config-id=$OIDC_ID --subnet-ids=$SUBNET_IDS</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Verification</div>
-<ol class="arabic">
-<li>
-<p>Check the status of your cluster by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa describe cluster --cluster=&lt;cluster_name&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The following <code>State</code> field changes are listed in the output as the cluster installation progresses:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>pending (Preparing account)</code></p>
-</li>
-<li>
-<p><code>installing (DNS setup in progress)</code></p>
-</li>
-<li>
-<p><code>installing</code></p>
-</li>
-<li>
-<p><code>ready</code></p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If the installation fails or the <code>State</code> field does not change to <code>ready</code> after more than 10 minutes, check the installation troubleshooting documentation for details. For more information, see <em>Troubleshooting installations</em>. For steps to contact Red&#160;Hat Support for assistance, see <em>Getting support for Red&#160;Hat OpenShift Service on AWS</em>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Track the progress of the cluster creation by watching the Red&#160;Hat OpenShift Services on AWS installation program logs. To check the logs, run the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa logs install --cluster=&lt;cluster_name&gt; --watch</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Optional: To watch for new log messages as the installation progresses, use the <code>--watch</code> argument.</p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="rosa-hcp-sts-external-id_rosa-hcp-quickstart-create-your-cluster">About external ID</h4>
-<div class="paragraph _abstract">
-<p>An external ID functions as a unique, separate, identifier embedded within your Red&#160;Hat OpenShift Services on AWS account-wide roles, blocking unauthorized third-party access.</p>
-</div>
-<div class="paragraph">
-<p>During cluster creation, you might be asked to supply an external ID. This serves as an additional safeguard that prevents cross-account identity spoofing, ensuring that no one else can trigger automation against your AWS infrastructure.</p>
-</div>
-<div class="paragraph">
-<p>When Red&#160;Hat&#8217;s automation plane issues an <code>sts:AssumeRole</code> API call to your account to manage cluster resources, it must present this exact identifier. If the string does not match the condition block defined in your AWS IAM trust relationship, AWS automatically blocks the request. This ensures Red&#160;Hat&#8217;s automation can only access your environment when explicitly acting on behalf of your organization.</p>
-</div>
-<div class="paragraph">
-<p>When you assign an external ID, it is applied to both the Support IAM role and the Installer IAM role, through their associated trust policies:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Support role: when Red&#160;Hat Site Reliability Engineers (SREs) need to perform diagnostic, maintenance or any other support function, they assume this role.</p>
-<div class="listingblock">
-<div class="title">Example support trust policy with an external ID <code>sts_hcp_support_trust_policy.json</code></div>
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "arn:aws:iam::710019948333:role/RH-Technical-Support-15234082"
-            },
-            "Action": "sts:AssumeRole",
-            "Condition": {
-              "StringEquals": {
-                "sts:ExternalID": "&lt;external_id&gt;"
-              }
-           }
-        }
-    ]
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Installer role: when Red Hat OpenShift Cluster Manager (OCM) automation needs to provision, scale or delete core cluster infrastructure, it assumes this role.</p>
-<div class="listingblock">
-<div class="title">Example installer trust policy with an external ID <code>sts_hcp_installer_trust_policy.json</code></div>
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-           "Effect": "Allow",
-           "Principal": {
-               "AWS": "arn:aws:iam::710019948333:role/RH-Managed-OpenShift-Installer"
-           },
-           "Action": "sts:AssumeRole",
-           "Condition": {
-             "StringEquals": {
-               "sts:ExternalID": "&lt;external_id&gt;"
-             }
-          }
-        }
-    ]
-}</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html#id_roles_third-party_example">Example scenario using an external ID</a></p>
-</li>
-<li>
-<p><a href="https://aws.amazon.com/blogs/apn/securely-using-external-id-for-accessing-aws-accounts-owned-by-others/">Securely using external ID for accessing AWS accounts owned by others</a></p>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-sts-overview-of-the-default-cluster-specifications_rosa-hcp-quickstart-set-up-your-environment.html">Overview of the default cluster specifications</a> | ↑ Up: <a href="_get_started.html">Get Started</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-quickstart-manage-your-cluster_rosa-hcp-quickstart-manage-your-cluster.html">Quick start: Manage your cluster</a> →</p>
+<p>↑ Up: <a href="_reference.html">Reference</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-cli-reference_rosa-cli-reference.html">ROSA CLI reference</a> →</p>
 </div>
 </div>
 <div id="footer">
