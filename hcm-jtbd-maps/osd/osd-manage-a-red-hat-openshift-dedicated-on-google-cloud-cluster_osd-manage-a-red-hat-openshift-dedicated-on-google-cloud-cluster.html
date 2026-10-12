@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Openshift Dedicated</title>
+<title>OpenShift Dedicated</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -573,10 +573,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
-<h1>Openshift Dedicated</h1>
+<h1>OpenShift Dedicated</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Openshift Dedicated</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">OpenShift Dedicated</a></span></p><ul class="sectlevel1">
 <li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
 
 <ul class="sectlevel2">
@@ -597,11 +597,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><button class="toc-toggle" type="button" data-toc-key="_plan.html">▶</button><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="plan-an-osd-deployment-on-google-cloud-intro_plan-an-osd-deployment-on-google-cloud.html">Plan an OpenShift Dedicated deployment on Google Cloud</a>
+</li>
+<li><a href="plan-an-osd-deployment-on-aws-intro_plan-an-osd-deployment-on-aws.html">Plan an OpenShift Dedicated deployment on AWS</a>
+</li>
+</ul>
+</li>
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
 <ul class="sectlevel2">
-<li><a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an Openshift Dedicated cluster on Google Cloud using the default options</a>
+<li><a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an OpenShift Dedicated cluster on Google Cloud using the default options</a>
 </li>
-<li><a href="osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster.html"><span class="toc-current">Manage an Openshift Dedicated on Google Cloud cluster</span></a>
+<li><a href="osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster.html"><span class="toc-current">Manage an OpenShift Dedicated on Google Cloud cluster</span></a>
 </li>
 <li><a href="osd-red-hat-openshift-cluster-manager-overview_osd-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager overview</a>
 </li>
@@ -610,7 +619,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
 
 <ul class="sectlevel2">
-<li><a href="osd-create-an-osd-cluster-on-google-cloud-intro_osd-create-an-osd-cluster-on-google-cloud.html">Create an OSD cluster on Google Cloud</a>
+<li><a href="osd-create-a-cluster-on-google-cloud_osd-create-a-cluster-on-google-cloud.html">Create an OSD cluster on Google Cloud</a>
 </li>
 <li><a href="osd-create-an-osd-cluster-on-aws-intro_osd-create-an-osd-cluster-on-aws.html">Create an OSD cluster on AWS</a>
 </li>
@@ -678,17 +687,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#config-idp_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Configure an identity provider</a></li><li class="level-4"><a href="#osd-grant-admin-privileges_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Granting administrator privileges to a user</a></li><li class="level-4"><a href="#access-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Access your cluster</a></li><li class="level-4"><a href="#deploy-app_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Deploy an application from the Developer Catalog</a></li><li class="level-4"><a href="#scaling-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Scale your cluster</a></li><li class="level-4"><a href="#osd-revoke-admin-privileges_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Revoke administrator privileges from a user</a></li><li class="level-4"><a href="#osd-revoke-user-access_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Revoke user access to a cluster</a></li><li class="level-4"><a href="#deleting-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Delete your cluster</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Manage an Openshift Dedicated on Google Cloud cluster</h3>
+<h3 id="osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Manage an OpenShift Dedicated on Google Cloud cluster</h3>
 <div class="paragraph _abstract">
-<p>After you create an Openshift Dedicated cluster on Google Cloud, configure an identity provider, grant administrator privileges, and give your users access to the cluster. You can then deploy an application, scale the cluster to meet demand, revoke access when it is no longer required, and clean up your resources when you no longer need the cluster.</p>
+<p>After you create an OpenShift Dedicated cluster on Google Cloud, configure an identity provider, grant administrator privileges, and give your users access to the cluster. You can then deploy an application, scale the cluster to meet demand, revoke access when it is no longer required, and clean up your resources when you no longer need the cluster.</p>
 </div>
 <div class="sect3">
 <h4 id="config-idp_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Configure an identity provider</h4>
 <div class="paragraph _abstract">
-<p>After you have installed Openshift Dedicated, you must configure your cluster to use an identity provider. You can then add members to your identity provider to grant them access to your cluster.</p>
+<p>After you have installed OpenShift Dedicated, you must configure your cluster to use an identity provider. You can then add members to your identity provider to grant them access to your cluster.</p>
 </div>
 <div class="paragraph">
-<p>You can configure different identity provider types for your Openshift Dedicated cluster. Supported types include GitHub, GitHub Enterprise, GitLab, Google, LDAP, OpenID Connect, and htpasswd identity providers.</p>
+<p>You can configure different identity provider types for your OpenShift Dedicated cluster. Supported types include GitHub, GitHub Enterprise, GitLab, Google, LDAP, OpenID Connect, and htpasswd identity providers.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -698,7 +707,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The htpasswd identity provider option is included only to enable the creation of a single, static administration user. htpasswd is not supported as a general-use identity provider for Openshift Dedicated.</p>
+<p>The htpasswd identity provider option is included only to enable the creation of a single, static administration user. htpasswd is not supported as a general-use identity provider for OpenShift Dedicated.</p>
 </div>
 </td>
 </tr>
@@ -715,7 +724,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Configuring GitHub authentication allows users to log in to Openshift Dedicated with their GitHub credentials. To prevent anyone with any GitHub user ID from logging in to your Openshift Dedicated cluster, you must restrict access to only those in specific GitHub organizations or teams.</p>
+<p>Configuring GitHub authentication allows users to log in to OpenShift Dedicated with their GitHub credentials. To prevent anyone with any GitHub user ID from logging in to your OpenShift Dedicated cluster, you must restrict access to only those in specific GitHub organizations or teams.</p>
 </div>
 </td>
 </tr>
@@ -728,7 +737,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
 </li>
 <li>
-<p>You created an Openshift Dedicated cluster.</p>
+<p>You created an OpenShift Dedicated cluster.</p>
 </li>
 <li>
 <p>You have a GitHub user account.</p>
@@ -882,7 +891,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
 </li>
 <li>
-<p>You created an Openshift Dedicated cluster.</p>
+<p>You created an OpenShift Dedicated cluster.</p>
 </li>
 <li>
 <p>You configured an identity provider for your cluster.</p>
@@ -930,7 +939,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
 </li>
 <li>
-<p>You created an Openshift Dedicated cluster.</p>
+<p>You created an OpenShift Dedicated cluster.</p>
 </li>
 <li>
 <p>You configured an identity provider for your cluster.</p>
@@ -958,7 +967,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="deploy-app_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Deploy an application from the Developer Catalog</h4>
 <div class="paragraph _abstract">
-<p>From the Openshift Dedicated web console, you can deploy a test application from the Developer Catalog and expose it with a route.</p>
+<p>From the OpenShift Dedicated web console, you can deploy a test application from the Developer Catalog and expose it with a route.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -967,7 +976,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You logged in to the <a href="https://console.redhat.com">Red Hat Hybrid Cloud Console</a>.</p>
 </li>
 <li>
-<p>You created a Openshift Dedicated cluster.</p>
+<p>You created a OpenShift Dedicated cluster.</p>
 </li>
 <li>
 <p>You configured an identity provider for your cluster.</p>
@@ -1082,7 +1091,7 @@ nodejs-5d9c6c7d9c-kghq2   1/1     Running     0          2m</code></pre>
 <div class="sect3">
 <h4 id="scaling-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Scale your cluster</h4>
 <div class="paragraph _abstract">
-<p>You can scale the number of load balancers, the persistent storage capacity, and the node count for your Openshift Dedicated cluster from OpenShift Cluster Manager.</p>
+<p>You can scale the number of load balancers, the persistent storage capacity, and the node count for your OpenShift Dedicated cluster from OpenShift Cluster Manager.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -1091,7 +1100,7 @@ nodejs-5d9c6c7d9c-kghq2   1/1     Running     0          2m</code></pre>
 <p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
 </li>
 <li>
-<p>You created an Openshift Dedicated cluster.</p>
+<p>You created an OpenShift Dedicated cluster.</p>
 </li>
 </ul>
 </div>
@@ -1165,7 +1174,7 @@ nodejs-5d9c6c7d9c-kghq2   1/1     Running     0          2m</code></pre>
 <p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
 </li>
 <li>
-<p>You created an Openshift Dedicated cluster.</p>
+<p>You created an OpenShift Dedicated cluster.</p>
 </li>
 <li>
 <p>You have configured a GitHub identity provider for your cluster and added an identity provider user.</p>
@@ -1204,13 +1213,13 @@ nodejs-5d9c6c7d9c-kghq2   1/1     Running     0          2m</code></pre>
 <p>You can revoke cluster access from an identity provider user by removing them from your configured identity provider.</p>
 </div>
 <div class="paragraph">
-<p>You can configure different types of identity providers for your Openshift Dedicated cluster. The following example procedure revokes cluster access for a member of a GitHub organization or team that is configured for identity provision to the cluster.</p>
+<p>You can configure different types of identity providers for your OpenShift Dedicated cluster. The following example procedure revokes cluster access for a member of a GitHub organization or team that is configured for identity provision to the cluster.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have an Openshift Dedicated cluster.</p>
+<p>You have an OpenShift Dedicated cluster.</p>
 </li>
 <li>
 <p>You have a GitHub user account.</p>
@@ -1253,7 +1262,7 @@ nodejs-5d9c6c7d9c-kghq2   1/1     Running     0          2m</code></pre>
 <div class="sect3">
 <h4 id="deleting-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster">Delete your cluster</h4>
 <div class="paragraph _abstract">
-<p>You can delete your Openshift Dedicated cluster in Red Hat OpenShift Cluster Manager.</p>
+<p>You can delete your OpenShift Dedicated cluster in Red Hat OpenShift Cluster Manager.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -1262,7 +1271,7 @@ nodejs-5d9c6c7d9c-kghq2   1/1     Running     0          2m</code></pre>
 <p>You logged in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
 </li>
 <li>
-<p>You created an Openshift Dedicated cluster.</p>
+<p>You created an OpenShift Dedicated cluster.</p>
 </li>
 </ul>
 </div>
@@ -1307,12 +1316,12 @@ nodejs-5d9c6c7d9c-kghq2   1/1     Running     0          2m</code></pre>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an Openshift Dedicated cluster on Google Cloud using the default options</a> | ↑ Up: <a href="_get_started.html">Get Started</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-red-hat-openshift-cluster-manager-overview_osd-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager overview</a> →</p>
+<p>← Previous: <a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an OpenShift Dedicated cluster on Google Cloud using the default options</a> | ↑ Up: <a href="_get_started.html">Get Started</a> | ⌂ Home: <a href="navigation.html">OpenShift Dedicated</a> | Next: <a href="osd-red-hat-openshift-cluster-manager-overview_osd-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager overview</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-09 12:29:03 -0500
+Last updated 2026-10-12 09:33:44 -0500
 </div>
 </div>
 </body>

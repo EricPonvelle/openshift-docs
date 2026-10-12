@@ -591,6 +591,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><button class="toc-toggle" type="button" data-toc-key="_plan.html">▶</button><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="choose-the-cluster-architecture-intro_choose-the-cluster-architecture.html">Choose the cluster architecture</a>
+</li>
+<li><a href="plan-network-capacity-and-placement-intro_plan-network-capacity-and-placement.html">Plan network capacity and placement</a>
+</li>
+<li><a href="define-how-users-and-applications-access-the-cluster-intro_define-how-users-and-applications-access-the-cluster.html">Define how users and applications access the cluster</a>
+</li>
+<li><a href="plan-outbound-connectivity-intro_plan-outbound-connectivity.html">Plan outbound connectivity</a>
+</li>
+<li><a href="choose-the-cluster-encryption-strategy-intro_choose-the-cluster-encryption-strategy.html">Choose the cluster encryption strategy</a>
+</li>
+<li><a href="plan-compute-resources-intro_plan-compute-resources.html">Plan compute resources</a>
+</li>
+</ul>
+</li>
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
 <ul class="sectlevel2">
 <li><a href="rosa-classic-create-a-default-red-hat-openshift-on-aws-classic-architecture-cluster_rosa-classic-create-a-default-red-hat-openshift-on-aws-classic-architecture-cluster.html">Create a default Red Hat OpenShift on AWS (Classic architecture) cluster</a>
@@ -650,9 +667,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
 
 <ul class="sectlevel2">
-<li><a href="rosa-classic-create-a-rosa-classic-cluster-intro_rosa-classic-create-a-rosa-classic-cluster.html">Create a ROSA classic cluster</a>
+<li><a href="rosa-classic-prepare-to-create-the-cluster_rosa-classic-prepare-to-create-the-cluster.html">Prepare to create the cluster</a>
 </li>
-<li><a href="rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc-intro_rosa-classic-create-a-rosa-classic-cluster-in-a-shared-vpc.html">Create a ROSA classic cluster in a shared VPC</a>
+<li><a href="rosa-classic-create-a-cluster-using-the-cli_rosa-classic-create-a-cluster-using-the-cli.html">Create a cluster using the CLI</a>
+</li>
+<li><a href="rosa-classic-create-a-cluster-using-the-hybrid-cloud-console_rosa-classic-create-a-cluster-using-the-hybrid-cloud-console.html">Create a cluster using the Hybrid Cloud Console</a>
+</li>
+<li><a href="rosa-classic-create-a-cluster-using-terraform_rosa-classic-create-a-cluster-using-terraform.html">Create a cluster using Terraform</a>
+</li>
+<li><a href="rosa-classic-set-up-initial-access-to-the-cluster_rosa-classic-set-up-initial-access-to-the-cluster.html">Set up initial access to the cluster</a>
 </li>
 </ul>
 </li>
@@ -1934,7 +1957,7 @@ For more information, see the <a href="https://aws.amazon.com/elasticloadbalanci
 <p>Ensure that the ports required for cluster installation and operation are open on your network and configured to allow access between hosts. The requirements for the default security groups are listed in <a href="#required-secgroup-ports_rosa-classic-review-aws-prerequisites-for-non-sts-paths">Required ports for default security groups</a>.</p>
 </div>
 <table id="required-secgroup-ports_rosa-classic-review-aws-prerequisites-for-non-sts-paths" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 25. Required ports for default security groups</caption>
+<caption class="title">Table 26. Required ports for default security groups</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -2219,7 +2242,7 @@ For more information, see the <a href="https://aws.amazon.com/elasticloadbalanci
 </table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 26. Domains for installation packages and tools</caption>
+<caption class="title">Table 27. Domains for installation packages and tools</caption>
 <colgroup>
 <col style="width: 46.1538%;">
 <col style="width: 7.6923%;">
@@ -2346,7 +2369,7 @@ For more information, see the <a href="https://aws.amazon.com/elasticloadbalanci
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 27. Domains for telemetry</caption>
+<caption class="title">Table 28. Domains for telemetry</caption>
 <colgroup>
 <col style="width: 46.1538%;">
 <col style="width: 7.6923%;">
@@ -2416,7 +2439,7 @@ For more information, see the <a href="https://aws.amazon.com/elasticloadbalanci
 <p>Managed clusters require enabling telemetry to allow Red&#160;Hat to react more quickly to problems, better support the customers, and better understand how product upgrades impact clusters. For more information about how remote health monitoring data is used by Red&#160;Hat, see <em>About remote health monitoring</em> in the <em>Additional resources</em>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 28. Domains for Amazon Web Services (AWS) APIs</caption>
+<caption class="title">Table 29. Domains for Amazon Web Services (AWS) APIs</caption>
 <colgroup>
 <col style="width: 46.1538%;">
 <col style="width: 7.6923%;">
@@ -2507,7 +2530,7 @@ For more information, see the <a href="https://aws.amazon.com/elasticloadbalanci
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 29. Domains for OpenShift</caption>
+<caption class="title">Table 30. Domains for OpenShift</caption>
 <colgroup>
 <col style="width: 46.1538%;">
 <col style="width: 7.6923%;">
@@ -2534,7 +2557,7 @@ For more information, see the <a href="https://aws.amazon.com/elasticloadbalanci
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 30. Domains for your Site Reliability Engineering (SRE) and management</caption>
+<caption class="title">Table 31. Domains for your Site Reliability Engineering (SRE) and management</caption>
 <colgroup>
 <col style="width: 46.1538%;">
 <col style="width: 7.6923%;">
@@ -2588,7 +2611,7 @@ For more information, see the <a href="https://aws.amazon.com/elasticloadbalanci
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-09 12:29:03 -0500
+Last updated 2026-10-12 09:33:44 -0500
 </div>
 </div>
 </body>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Openshift Dedicated</title>
+<title>OpenShift Dedicated</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -573,10 +573,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="osd-plan-cluster-upgrades_plan-cluster-upgrades" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
-<h1>Openshift Dedicated</h1>
+<h1>OpenShift Dedicated</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Openshift Dedicated</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">OpenShift Dedicated</a></span></p><ul class="sectlevel1">
 <li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
 
 <ul class="sectlevel2">
@@ -597,12 +597,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><button class="toc-toggle" type="button" data-toc-key="_plan.html">▶</button><a href="_plan.html">Plan</a>
+
+<ul class="sectlevel2">
+<li><a href="plan-an-osd-deployment-on-google-cloud-intro_plan-an-osd-deployment-on-google-cloud.html">Plan an OpenShift Dedicated deployment on Google Cloud</a>
+</li>
+<li><a href="plan-an-osd-deployment-on-aws-intro_plan-an-osd-deployment-on-aws.html">Plan an OpenShift Dedicated deployment on AWS</a>
+</li>
+</ul>
+</li>
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
 
 <ul class="sectlevel2">
-<li><a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an Openshift Dedicated cluster on Google Cloud using the default options</a>
+<li><a href="osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options_osd-create-a-red-hat-openshift-dedicated-cluster-on-google-cloud-using-the-default-options.html">Create an OpenShift Dedicated cluster on Google Cloud using the default options</a>
 </li>
-<li><a href="osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster.html">Manage an Openshift Dedicated on Google Cloud cluster</a>
+<li><a href="osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster_osd-manage-a-red-hat-openshift-dedicated-on-google-cloud-cluster.html">Manage an OpenShift Dedicated on Google Cloud cluster</a>
 </li>
 <li><a href="osd-red-hat-openshift-cluster-manager-overview_osd-red-hat-openshift-cluster-manager-overview.html">Red Hat OpenShift Cluster Manager overview</a>
 </li>
@@ -611,7 +620,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
 
 <ul class="sectlevel2">
-<li><a href="osd-create-an-osd-cluster-on-google-cloud-intro_osd-create-an-osd-cluster-on-google-cloud.html">Create an OSD cluster on Google Cloud</a>
+<li><a href="osd-create-a-cluster-on-google-cloud_osd-create-a-cluster-on-google-cloud.html">Create an OSD cluster on Google Cloud</a>
 </li>
 <li><a href="osd-create-an-osd-cluster-on-aws-intro_osd-create-an-osd-cluster-on-aws.html">Create an OSD cluster on AWS</a>
 </li>
@@ -675,24 +684,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#upgrade_plan-cluster-upgrades">Understanding cluster upgrades</a></li><li class="level-5"><a href="#upgrade-automatic_plan-cluster-upgrades">Recurring upgrades</a></li><li class="level-5"><a href="#upgrade-manual_upgrades_plan-cluster-upgrades">Individual upgrades</a></li><li class="level-5"><a href="#upgrade-notifications_plan-cluster-upgrades">Upgrade notifications</a></li><li class="level-5"><a href="#wif-upgrades_plan-cluster-upgrades">Cluster upgrades with Workload Identity Federation (WIF)</a></li><li class="level-4"><a href="#osd-upgrading-channels_plan-cluster-upgrades">Channels in Openshift Dedicated clusters</a></li><li class="level-5"><a href="#_channel_groups_and_channels">Channel groups and channels</a></li><li class="level-5"><a href="#_cluster_update_options">Cluster update options</a></li><li class="level-4"><a href="#osd-upgrading-switch-channels_plan-cluster-upgrades">Switch channels to view available update options</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#upgrade_plan-cluster-upgrades">Understanding cluster upgrades</a></li><li class="level-5"><a href="#upgrade-automatic_plan-cluster-upgrades">Recurring upgrades</a></li><li class="level-5"><a href="#upgrade-manual_upgrades_plan-cluster-upgrades">Individual upgrades</a></li><li class="level-5"><a href="#upgrade-notifications_plan-cluster-upgrades">Upgrade notifications</a></li><li class="level-5"><a href="#wif-upgrades_plan-cluster-upgrades">Cluster upgrades with Workload Identity Federation (WIF)</a></li><li class="level-4"><a href="#osd-upgrading-channels_plan-cluster-upgrades">Channels in OpenShift Dedicated clusters</a></li><li class="level-5"><a href="#_channel_groups_and_channels">Channel groups and channels</a></li><li class="level-5"><a href="#_cluster_update_options">Cluster update options</a></li><li class="level-4"><a href="#osd-upgrading-switch-channels_plan-cluster-upgrades">Switch channels to view available update options</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="osd-plan-cluster-upgrades_plan-cluster-upgrades">Plan cluster upgrades</h3>
 <div class="paragraph _abstract">
-<p>Plan your Openshift Dedicated cluster upgrades by reviewing the update life cycle policy, available upgrade channels, and how to switch channels to view upgrade options.</p>
+<p>Plan your OpenShift Dedicated cluster upgrades by reviewing the update life cycle policy, available upgrade channels, and how to switch channels to view upgrade options.</p>
 </div>
 <div class="paragraph">
-<p>The "Openshift Dedicated update life cycle" guide, linked in the <em>Additional resources</em>, includes release definitions, support and upgrade requirements, installation policy information, and life cycle dates.</p>
+<p>The "OpenShift Dedicated update life cycle" guide, linked in the <em>Additional resources</em>, includes release definitions, support and upgrade requirements, installation policy information, and life cycle dates.</p>
 </div>
 <div class="paragraph">
-<p>You can use update channels to decide which Openshift Dedicated minor version to update your clusters to. Openshift Dedicated supports updates through the <code>stable-4.y</code>, <code>fast-4.y</code>, and <code>eus-4.y</code> channels. For more information, see the <em>Channels in Openshift Dedicated clusters</em> section.</p>
+<p>You can use update channels to decide which OpenShift Dedicated minor version to update your clusters to. OpenShift Dedicated supports updates through the <code>stable-4.y</code>, <code>fast-4.y</code>, and <code>eus-4.y</code> channels. For more information, see the <em>Channels in OpenShift Dedicated clusters</em> section.</p>
 </div>
 <div class="ulist _additional-resources">
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html-single/introduction_to_openshift_dedicated/index#osd-life-cycle">Openshift Dedicated update life cycle</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_dedicated/4/html-single/introduction_to_openshift_dedicated/index#osd-life-cycle">OpenShift Dedicated update life cycle</a></p>
 </li>
 <li>
 <p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/updating_clusters/understanding-openshift-updates-1#understanding-update-channels-releases">Understanding update channels and releases</a></p>
@@ -708,7 +717,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="upgrade_plan-cluster-upgrades">Understanding cluster upgrades</h4>
 <div class="paragraph _abstract">
-<p>You can upgrade your Openshift Dedicated cluster to the newest available version through Red Hat OpenShift Cluster Manager or the OpenShift Cluster Manager command-line interface (CLI). Keeping your cluster up to date ensures you receive the latest features, fixes, and security enhancements.</p>
+<p>You can upgrade your OpenShift Dedicated cluster to the newest available version through Red Hat OpenShift Cluster Manager or the OpenShift Cluster Manager command-line interface (CLI). Keeping your cluster up to date ensures you receive the latest features, fixes, and security enhancements.</p>
 </div>
 <div class="paragraph">
 <p>You can set your upgrade policies on existing clusters or during cluster creation, and upgrades can be scheduled to occur automatically or manually.</p>
@@ -721,14 +730,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Before upgrading a Workload Identity Federation (WIF)-enabled Openshift Dedicated on Google Cloud cluster, you must update the wif-config. For more information, see "Cluster upgrades with Workload Identity Federation (WIF)".</p>
+<p>Before upgrading a Workload Identity Federation (WIF)-enabled OpenShift Dedicated on Google Cloud cluster, you must update the wif-config. For more information, see "Cluster upgrades with Workload Identity Federation (WIF)".</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Red Hat Site Reliability Engineers (SRE) will provide a curated list of available versions for your Openshift Dedicated clusters. For each cluster you will be able to review the full list of available releases, as well as the corresponding release notes. OpenShift Cluster Manager will enable installation of clusters at the latest supported versions, and upgrades can be canceled at any time.</p>
+<p>Red Hat Site Reliability Engineers (SRE) will provide a curated list of available versions for your OpenShift Dedicated clusters. For each cluster you will be able to review the full list of available releases, as well as the corresponding release notes. OpenShift Cluster Manager will enable installation of clusters at the latest supported versions, and upgrades can be canceled at any time.</p>
 </div>
 <div class="paragraph">
 <p>You can also set a grace period for how long <code>PodDisruptionBudget</code> protected workloads are respected during upgrades. After this grace period, any workloads protected by <code>PodDisruptionBudget</code> that have not been successfully drained from a node, will be forcibly deleted.</p>
@@ -741,7 +750,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>All Kubernetes objects and Persistent Volumes (PVs) in each Openshift Dedicated cluster are backed up as part of the Openshift Dedicated service. Application and application data backups are not a part of the Openshift Dedicated service. Ensure you have a backup policy in place for your applications and application data before scheduling upgrades.</p>
+<p>All Kubernetes objects and Persistent Volumes (PVs) in each OpenShift Dedicated cluster are backed up as part of the OpenShift Dedicated service. Application and application data backups are not a part of the OpenShift Dedicated service. Ensure you have a backup policy in place for your applications and application data before scheduling upgrades.</p>
 </div>
 </td>
 </tr>
@@ -848,7 +857,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="wif-upgrades_plan-cluster-upgrades">Cluster upgrades with Workload Identity Federation (WIF)</h5>
 <div class="paragraph">
-<p>Before upgrading an Openshift Dedicated on Google Cloud cluster with WIF authentication type to a newer y-stream version, you must update the WIF configuration to that version. Failure to do so before attempting to upgrade the cluster version will result in an error.
+<p>Before upgrading an OpenShift Dedicated on Google Cloud cluster with WIF authentication type to a newer y-stream version, you must update the WIF configuration to that version. Failure to do so before attempting to upgrade the cluster version will result in an error.
 For more information on how to update a WIF configuration, see the  <em>Additional resources</em> section.</p>
 </div>
 <div class="admonitionblock note">
@@ -859,7 +868,7 @@ For more information on how to update a WIF configuration, see the  <em>Addition
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The update path to a brand new release of Openshift Dedicated is not available in the stable channel until 45 to 90 days after the initial general availability (GA) of a newer y-stream version.</p>
+<p>The update path to a brand new release of OpenShift Dedicated is not available in the stable channel until 45 to 90 days after the initial general availability (GA) of a newer y-stream version.</p>
 </div>
 </td>
 </tr>
@@ -868,14 +877,14 @@ For more information on how to update a WIF configuration, see the  <em>Addition
 </div>
 </div>
 <div class="sect3">
-<h4 id="osd-upgrading-channels_plan-cluster-upgrades">Channels in Openshift Dedicated clusters</h4>
+<h4 id="osd-upgrading-channels_plan-cluster-upgrades">Channels in OpenShift Dedicated clusters</h4>
 <div class="paragraph _abstract">
-<p>You can use Openshift Dedicated channels to view available cluster update options and apply patches or z-stream updates in your existing channel. You can also view the update path to newer y-stream versions if available.</p>
+<p>You can use OpenShift Dedicated channels to view available cluster update options and apply patches or z-stream updates in your existing channel. You can also view the update path to newer y-stream versions if available.</p>
 </div>
 <div class="sect4">
 <h5 id="_channel_groups_and_channels">Channel groups and channels</h5>
 <div class="paragraph">
-<p>Channel groups in Openshift Dedicated are similar to channels, but there is no specific version with channel groups. When you select a channel group, your Openshift Dedicated cluster receives z-stream updates for your current channel group. These channel groups typically include:</p>
+<p>Channel groups in OpenShift Dedicated are similar to channels, but there is no specific version with channel groups. When you select a channel group, your OpenShift Dedicated cluster receives z-stream updates for your current channel group. These channel groups typically include:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -901,7 +910,7 @@ For more information on how to update a WIF configuration, see the  <em>Addition
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The channel group option is being deprecated. If you set a channel group only, Openshift Dedicated will default to preserving the current channel&#8217;s target version. For example, a <code>stable-4.20</code> cluster moving to the <code>eus</code> channel group will use the <code>eus-4.20</code> channel by default, if the current cluster version is a member of the <code>eus-4.20</code> channel.</p>
+<p>The channel group option is being deprecated. If you set a channel group only, OpenShift Dedicated will default to preserving the current channel&#8217;s target version. For example, a <code>stable-4.20</code> cluster moving to the <code>eus</code> channel group will use the <code>eus-4.20</code> channel by default, if the current cluster version is a member of the <code>eus-4.20</code> channel.</p>
 </div>
 </td>
 </tr>
@@ -940,7 +949,7 @@ For more information on how to update a WIF configuration, see the  <em>Addition
 <div class="sect3">
 <h4 id="osd-upgrading-switch-channels_plan-cluster-upgrades">Switch channels to view available update options</h4>
 <div class="paragraph _abstract">
-<p>You can switch the channel on a Openshift Dedicated cluster to access update options within a current minor version (y-stream), or the subsequent minor versions (y+1, y+2). The version number in the channel represents the target minor version.</p>
+<p>You can switch the channel on a OpenShift Dedicated cluster to access update options within a current minor version (y-stream), or the subsequent minor versions (y+1, y+2). The version number in the channel represents the target minor version.</p>
 </div>
 <div class="paragraph">
 <p>For example, if your cluster is on <code>stable-4.18</code>, switching the channel to <code>stable-4.19</code> shows update paths from 4.18.z to 4.19.z, if such paths are available. This strategy ensures that administrators must explicitly initiate minor version updates, and they never occur automatically.</p>
@@ -998,12 +1007,12 @@ For more information on how to update a WIF configuration, see the  <em>Addition
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="_upgrade.html">Upgrade</a> | ⌂ Home: <a href="navigation.html">Openshift Dedicated</a> | Next: <a href="osd-upgrade-a-cluster_upgrade-a-cluster.html">Upgrade a cluster</a> →</p>
+<p>↑ Up: <a href="_upgrade.html">Upgrade</a> | ⌂ Home: <a href="navigation.html">OpenShift Dedicated</a> | Next: <a href="osd-upgrade-a-cluster_upgrade-a-cluster.html">Upgrade a cluster</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-09 12:29:03 -0500
+Last updated 2026-10-12 09:33:44 -0500
 </div>
 </div>
 </body>
