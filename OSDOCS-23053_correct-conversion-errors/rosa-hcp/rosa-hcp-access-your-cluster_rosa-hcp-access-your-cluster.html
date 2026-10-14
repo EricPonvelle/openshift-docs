@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red&#160;Hat OpenShift Services on AWS</title>
+<title>Red&#160;Hat OpenShift Service on AWS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -573,10 +573,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="rosa-hcp-access-your-cluster_rosa-hcp-access-your-cluster" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
-<h1>Red&#160;Hat OpenShift Services on AWS</h1>
+<h1>Red&#160;Hat OpenShift Service on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Service on AWS</a></span></p><ul class="sectlevel1">
 <li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
 
 <ul class="sectlevel2">
@@ -619,9 +619,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
 
 <ul class="sectlevel2">
-<li><a href="create-a-cluster-using-the-default-options_rosa-hcp-create-a-cluster-using-the-default-options.html">Create a Red&#160;Hat OpenShift Services on AWS cluster by using the default options</a>
+<li><a href="create-a-cluster-using-the-default-options_rosa-hcp-create-a-cluster-using-the-default-options.html">Create a Red&#160;Hat OpenShift Service on AWS cluster by using the default options</a>
 </li>
-<li><a href="deploy-and-access-a-simple-application_rosa-hcp-deploy-and-access-a-simple-application.html">Deploy and access a simple application on a Red&#160;Hat OpenShift Services on AWS cluster</a>
+<li><a href="deploy-and-access-a-simple-application_rosa-hcp-deploy-and-access-a-simple-application.html">Deploy and access a simple application on a Red&#160;Hat OpenShift Service on AWS cluster</a>
 </li>
 </ul>
 </li>
@@ -723,23 +723,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-getting-started-access-cluster-web-console_rosa-hcp-access-your-cluster">Access a cluster through the web console</a></li><li class="level-4"><a href="#rosa-getting-started-grant-admin-privileges_rosa-hcp-access-your-cluster">Grant administrator privileges to a user</a></li><li class="level-4"><a href="#rosa-hcp-sts-creating-a-cluster-external-auth-provider-cli_rosa-hcp-access-your-cluster">Create an external authentication provider</a></li><li class="level-4"><a href="#rosa-hcp-sts-creating-a-break-glass-cred-cli_rosa-hcp-access-your-cluster">Create a break glass credential for a Red Hat OpenShift Services on AWS cluster</a></li><li class="level-4"><a href="#rosa-hcp-sts-accessing-a-break-glass-cred-cli_rosa-hcp-access-your-cluster">Access a Red Hat OpenShift Services on AWS cluster by using a break glass credential</a></li><li class="level-4"><a href="#rosa-hcp-sts-revoking-a-break-glass-cred-cli_rosa-hcp-access-your-cluster">Revoke a break glass credential for a Red Hat OpenShift Services on AWS cluster</a></li><li class="level-4"><a href="#rosa-hcp-sts-creating-a-cluster-external-auth-provider-delete-cli_rosa-hcp-access-your-cluster">Delete an external authentication provider</a></li><li class="level-4"><a href="#deploy-app_rosa-hcp-access-your-cluster">Deploy an application from the Developer Catalog</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-getting-started-access-cluster-web-console_rosa-hcp-access-your-cluster">Access a cluster through the web console</a></li><li class="level-4"><a href="#rosa-getting-started-grant-admin-privileges_rosa-hcp-access-your-cluster">Grant administrator privileges to a user</a></li><li class="level-4"><a href="#rosa-hcp-sts-creating-a-cluster-external-auth-provider-cli_rosa-hcp-access-your-cluster">Create an external authentication provider</a></li><li class="level-4"><a href="#rosa-hcp-sts-creating-a-break-glass-cred-cli_rosa-hcp-access-your-cluster">Create a break glass credential for a Red Hat OpenShift Service on AWS cluster</a></li><li class="level-4"><a href="#rosa-hcp-sts-accessing-a-break-glass-cred-cli_rosa-hcp-access-your-cluster">Access a Red Hat OpenShift Service on AWS cluster by using a break glass credential</a></li><li class="level-4"><a href="#rosa-hcp-sts-revoking-a-break-glass-cred-cli_rosa-hcp-access-your-cluster">Revoke a break glass credential for a Red Hat OpenShift Service on AWS cluster</a></li><li class="level-4"><a href="#rosa-hcp-sts-creating-a-cluster-external-auth-provider-delete-cli_rosa-hcp-access-your-cluster">Delete an external authentication provider</a></li><li class="level-4"><a href="#deploy-app_rosa-hcp-access-your-cluster">Deploy an application from the Developer Catalog</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-hcp-access-your-cluster_rosa-hcp-access-your-cluster">Access your cluster</h3>
 <div class="paragraph _abstract">
-<p>Access your Red&#160;Hat OpenShift Services on AWS cluster, grant administration privileges, and set up external authentication and break glass credentials.</p>
+<p>Access your Red&#160;Hat OpenShift Service on AWS cluster, grant administration privileges, and set up external authentication and break glass credentials.</p>
 </div>
 <div class="paragraph">
-<p>After your Red&#160;Hat OpenShift Services on AWS cluster is running, you can access the cluster and control administrator and user access.</p>
+<p>After your Red&#160;Hat OpenShift Service on AWS cluster is running, you can access the cluster and control administrator and user access.</p>
 </div>
 <div class="paragraph">
-<p>Red&#160;Hat OpenShift Services on AWS lets you access the cluster through the web console, grant administrator privileges, configure an external authentication provider, and create break glass credentials for emergency access when the external provider is unavailable.</p>
+<p>Red&#160;Hat OpenShift Service on AWS lets you access the cluster through the web console, grant administrator privileges, configure an external authentication provider, and create break glass credentials for emergency access when the external provider is unavailable.</p>
 </div>
 <div class="sect3">
 <h4 id="rosa-getting-started-access-cluster-web-console_rosa-hcp-access-your-cluster">Access a cluster through the web console</h4>
 <div class="paragraph _abstract">
-<p>After creating a cluster administrator or adding a user to your identity provider, you can log in to your Red&#160;Hat OpenShift Services on AWS cluster through the web console.</p>
+<p>After creating a cluster administrator or adding a user to your identity provider, you can log in to your Red&#160;Hat OpenShift Service on AWS cluster through the web console.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -754,7 +754,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You logged in to your Red&#160;Hat account using the <code>rosa</code> CLI.</p>
 </li>
 <li>
-<p>You created a Red&#160;Hat OpenShift Services on AWS cluster.</p>
+<p>You created a Red&#160;Hat OpenShift Service on AWS cluster.</p>
 </li>
 <li>
 <p>You have created a cluster administrator user or added your user account to the configured identity provider.</p>
@@ -797,7 +797,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Verification</div>
 <ul>
 <li>
-<p>Verify that you can access the Red&#160;Hat OpenShift Services on AWS web console and view cluster resources.</p>
+<p>Verify that you can access the Red&#160;Hat OpenShift Service on AWS web console and view cluster resources.</p>
 </li>
 </ul>
 </div>
@@ -816,7 +816,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="rosa-getting-started-grant-admin-privileges_rosa-hcp-access-your-cluster">Grant administrator privileges to a user</h4>
 <div class="paragraph _abstract">
-<p>After you have added a user to your configured identity provider, you can grant the user <code>cluster-admin</code> or <code>dedicated-admin</code> privileges for your Red&#160;Hat OpenShift Services on AWS cluster.</p>
+<p>After you have added a user to your configured identity provider, you can grant the user <code>cluster-admin</code> or <code>dedicated-admin</code> privileges for your Red&#160;Hat OpenShift Service on AWS cluster.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -831,7 +831,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You logged in to your Red&#160;Hat account using the <code>rosa</code> CLI.</p>
 </li>
 <li>
-<p>You created a Red&#160;Hat OpenShift Services on AWS cluster.</p>
+<p>You created a Red&#160;Hat OpenShift Service on AWS cluster.</p>
 </li>
 <li>
 <p>You have configured a GitHub identity provider for your cluster and added identity provider users.</p>
@@ -915,7 +915,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="rosa-hcp-sts-creating-a-cluster-external-auth-provider-cli_rosa-hcp-access-your-cluster">Create an external authentication provider</h4>
 <div class="paragraph _abstract">
-<p>After you have created a Red&#160;Hat OpenShift Services on AWS cluster with the enabled option for external authentication providers, you must create a provider by using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+<p>After you have created a Red&#160;Hat OpenShift Service on AWS cluster with the enabled option for external authentication providers, you must create a provider by using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1035,15 +1035,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-hcp-sts-creating-a-break-glass-cred-cli_rosa-hcp-access-your-cluster">Create a break glass credential for a Red&#160;Hat OpenShift Services on AWS cluster</h4>
+<h4 id="rosa-hcp-sts-creating-a-break-glass-cred-cli_rosa-hcp-access-your-cluster">Create a break glass credential for a Red&#160;Hat OpenShift Service on AWS cluster</h4>
 <div class="paragraph _abstract">
-<p>You can create a break glass credential to generate temporary cluster-admin credentials for Red&#160;Hat OpenShift Services on AWS clusters that use custom OIDC token issuers. The break glass credential provides a <code>kubeconfig</code> file that you can use to access the cluster.</p>
+<p>You can create a break glass credential to generate temporary cluster-admin credentials for Red&#160;Hat OpenShift Service on AWS clusters that use custom OIDC token issuers. The break glass credential provides a <code>kubeconfig</code> file that you can use to access the cluster.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have created a Red&#160;Hat OpenShift Services on AWS cluster with external authentication enabled. For more information, see <em>Creating a Red&#160;Hat OpenShift Services on AWS with HCP cluster that uses external authentication providers</em>.</p>
+<p>You have created a Red&#160;Hat OpenShift Service on AWS cluster with external authentication enabled. For more information, see <em>Creating a Red&#160;Hat OpenShift Service on AWS with HCP cluster that uses external authentication providers</em>.</p>
 </li>
 <li>
 <p>You have created an external authentication provider. For more information, see <em>Creating an external authentication provider</em>.</p>
@@ -1277,21 +1277,21 @@ Status:                                issued</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-hcp-sts-accessing-a-break-glass-cred-cli_rosa-hcp-access-your-cluster">Access a Red&#160;Hat OpenShift Services on AWS cluster by using a break glass credential</h4>
+<h4 id="rosa-hcp-sts-accessing-a-break-glass-cred-cli_rosa-hcp-access-your-cluster">Access a Red&#160;Hat OpenShift Service on AWS cluster by using a break glass credential</h4>
 <div class="paragraph _abstract">
-<p>Use the new <code>kubeconfig</code> from the break glass credential to gain temporary admin access to a Red&#160;Hat OpenShift Services on AWS cluster.</p>
+<p>Use the new <code>kubeconfig</code> from the break glass credential to gain temporary admin access to a Red&#160;Hat OpenShift Service on AWS cluster.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have access to a Red&#160;Hat OpenShift Services on AWS cluster with external authentication enabled. For more information, see <em>Creating a Red&#160;Hat OpenShift Services on AWS cluster that uses direct authentication with an external OIDC identity provider</em>.</p>
+<p>You have access to a Red&#160;Hat OpenShift Service on AWS cluster with external authentication enabled. For more information, see <em>Creating a Red&#160;Hat OpenShift Service on AWS cluster that uses direct authentication with an external OIDC identity provider</em>.</p>
 </li>
 <li>
 <p>You have installed the <code>oc</code> and the <code>kubectl</code> command-line interfaces (CLIs).</p>
 </li>
 <li>
-<p>You have configured the new <code>kubeconfig</code>. For more information, see <em>Creating a break glass credential for a Red&#160;Hat OpenShift Services on AWS cluster</em>.</p>
+<p>You have configured the new <code>kubeconfig</code>. For more information, see <em>Creating a break glass credential for a Red&#160;Hat OpenShift Service on AWS cluster</em>.</p>
 </li>
 </ul>
 </div>
@@ -1339,7 +1339,7 @@ Groups       [system:masters system:authenticated]</code></pre>
 </div>
 </li>
 <li>
-<p>Apply the <code>ClusterRoleBinding</code> for the groups defined in the external OIDC provider. The <code>ClusterRoleBinding</code> maps the <code>rosa-hcp-admins</code> group that is created in Microsoft Entra ID to a group in the Red&#160;Hat OpenShift Services on AWS cluster.</p>
+<p>Apply the <code>ClusterRoleBinding</code> for the groups defined in the external OIDC provider. The <code>ClusterRoleBinding</code> maps the <code>rosa-hcp-admins</code> group that is created in Microsoft Entra ID to a group in the Red&#160;Hat OpenShift Service on AWS cluster.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f - &lt;&lt;EOF
@@ -1374,7 +1374,7 @@ EOF</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>After applying the <code>ClusterRoleBinding</code>, the Red&#160;Hat OpenShift Services on AWS cluster is configured and the <code>rosa</code> CLI and <a href="https://console.redhat.com">Red Hat Hybrid Cloud Console</a> authenticate through the external OIDC provider. You can now start assigning roles and deploying applications on the cluster.</p>
+<p>After applying the <code>ClusterRoleBinding</code>, the Red&#160;Hat OpenShift Service on AWS cluster is configured and the <code>rosa</code> CLI and <a href="https://console.redhat.com">Red Hat Hybrid Cloud Console</a> authenticate through the external OIDC provider. You can now start assigning roles and deploying applications on the cluster.</p>
 </div>
 </td>
 </tr>
@@ -1385,7 +1385,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-hcp-sts-revoking-a-break-glass-cred-cli_rosa-hcp-access-your-cluster">Revoke a break glass credential for a Red&#160;Hat OpenShift Services on AWS cluster</h4>
+<h4 id="rosa-hcp-sts-revoking-a-break-glass-cred-cli_rosa-hcp-access-your-cluster">Revoke a break glass credential for a Red&#160;Hat OpenShift Service on AWS cluster</h4>
 <div class="paragraph _abstract">
 <p>You can revoke access to any break glass credentials that you have provisioned at any time by using the <code>revoke break-glass-credentials</code> command.</p>
 </div>
@@ -1404,7 +1404,7 @@ EOF</code></pre>
 <div class="title">Procedure</div>
 <ul>
 <li>
-<p>Revoke the break glass credentials for a Red&#160;Hat OpenShift Services on AWS cluster by running the following command.</p>
+<p>Revoke the break glass credentials for a Red&#160;Hat OpenShift Service on AWS cluster by running the following command.</p>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -1543,7 +1543,7 @@ I: Successfully deleted external authentication provider 'entra-test' from clust
 <div class="sect3">
 <h4 id="deploy-app_rosa-hcp-access-your-cluster">Deploy an application from the Developer Catalog</h4>
 <div class="paragraph _abstract">
-<p>From the Red&#160;Hat OpenShift Services on AWS web console, you can deploy a test application from the Developer Catalog and expose it with a route.</p>
+<p>From the Red&#160;Hat OpenShift Service on AWS web console, you can deploy a test application from the Developer Catalog and expose it with a route.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -1552,7 +1552,7 @@ I: Successfully deleted external authentication provider 'entra-test' from clust
 <p>You logged in to the <a href="https://console.redhat.com">Red Hat Hybrid Cloud Console</a>.</p>
 </li>
 <li>
-<p>You created a Red&#160;Hat OpenShift Services on AWS cluster.</p>
+<p>You created a Red&#160;Hat OpenShift Service on AWS cluster.</p>
 </li>
 <li>
 <p>You configured an identity provider for your cluster.</p>
@@ -1666,12 +1666,12 @@ nodejs-5d9c6c7d9c-kghq2   1/1     Running     0          2m</code></pre>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-hcp-create-a-cluster-using-terraform_rosa-hcp-create-a-cluster-using-terraform.html">Create a cluster using Terraform</a> | ↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-delete-your-cluster_rosa-hcp-delete-your-cluster.html">Delete your cluster</a> →</p>
+<p>← Previous: <a href="rosa-hcp-create-a-cluster-using-terraform_rosa-hcp-create-a-cluster-using-terraform.html">Create a cluster using Terraform</a> | ↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Service on AWS</a> | Next: <a href="rosa-hcp-delete-your-cluster_rosa-hcp-delete-your-cluster.html">Delete your cluster</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-14 16:46:03 -0500
+Last updated 2026-10-14 18:03:18 -0500
 </div>
 </div>
 </body>
