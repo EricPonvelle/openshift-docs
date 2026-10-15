@@ -3460,7 +3460,7 @@ resources in the customer account.</p>
 <p>The following responsibility matrix provides details about disaster recovery practices as part of Red&#160;Hat OpenShift Services on AWS.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 17. Disaster recovery responsibilities</caption>
+<caption class="title">Table 5. Disaster recovery responsibilities</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 37.5%;">
@@ -4068,21 +4068,20 @@ installing and operating software to gather metrics, create alerts, and protect 
 </div>
 <div class="sect4">
 <h5 id="rosa-policy-identity-access-management_rosa-hcp-get-sre-and-service-account-access">Identity and access management</h5>
-<div class="paragraph">
+<div class="paragraph _abstract">
 <p>Most access by Red&#160;Hat SRE teams is done by using cluster Operators through automated configuration management.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="sre-rosa-policy-subprocessors_rosa-hcp-get-sre-and-service-account-access">Subprocessors</h5>
-<div class="paragraph">
+<div class="paragraph _abstract">
 <p>For a list of the available subprocessors, see the <a href="https://access.redhat.com/articles/5528091">Red&#160;Hat Subprocessor List</a> on the Red&#160;Hat Customer Portal.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="sre-cluster-access_rosa-hcp-get-sre-and-service-account-access">SRE cluster access</h5>
 <div class="paragraph _abstract">
-<p>Red&#160;Hat SRE access to Red&#160;Hat OpenShift Services on AWS
-clusters is controlled through several layers of required authentication, all of which are managed by strict company policy. All authentication attempts to access a cluster and changes made within a cluster are recorded within audit logs, along with the specific account identity of the SRE responsible for those actions. These audit logs help ensure that all changes made by SREs to a customer&#8217;s cluster adhere to the strict policies and procedures that make up Red&#160;Hat&#8217;s managed services guidelines.</p>
+<p>Red&#160;Hat Site Reliability Engineering (SRE) access to Red&#160;Hat OpenShift Services on AWS clusters is controlled through several layers of required authentication, all of which are managed by strict company policy. All authentication attempts to access a cluster and changes made within a cluster are recorded within audit logs, along with the specific account identity of the SRE responsible for those actions. These audit logs help ensure that all changes made by SREs to a customer&#8217;s cluster adhere to the strict policies and procedures that make up Red&#160;Hat&#8217;s managed services guidelines.</p>
 </div>
 <div class="paragraph">
 <p>The information presented below is an overview of the process an SRE must perform to access a customer&#8217;s cluster.</p>
@@ -4116,7 +4115,7 @@ clusters is controlled through several layers of required authentication, all of
 </div>
 <div class="sect4">
 <h5 id="rosa-policy-rh-access_rosa-hcp-get-sre-and-service-account-access">Red&#160;Hat support access</h5>
-<div class="paragraph">
+<div class="paragraph _abstract">
 <p>Members of the Red&#160;Hat Customer Experience and Engagement (CEE) team typically have read-only access to parts of the cluster. Specifically, CEE has limited access to the core and product namespaces and does not have access to the customer namespaces.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -4546,14 +4545,17 @@ clusters is controlled through several layers of required authentication, all of
 </div>
 <div class="sect4">
 <h5 id="rosa-policy-customer-access_rosa-hcp-get-sre-and-service-account-access">Customer access</h5>
+<div class="paragraph _abstract">
+<p>Customer access is limited to namespaces created by the customer and permissions that are granted using role-based access control (RBAC) by the Customer Administrator role. Access to the underlying infrastructure or product namespaces is generally not permitted without <code>cluster-admin</code> access.</p>
+</div>
 <div class="paragraph">
-<p>Customer access is limited to namespaces created by the customer and permissions that are granted using RBAC by the Customer Administrator role. Access to the underlying infrastructure or product namespaces is generally not permitted without <code>cluster-admin</code> access. For more information about customer access and authentication, see the "Understanding Authentication" section of the documentation.</p>
+<p>For more information about customer access and authentication, see the "Understanding Authentication" section of the documentation.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="rosa-policy-access-approval_rosa-hcp-get-sre-and-service-account-access">Access approval and review</h5>
-<div class="paragraph">
-<p>New Red&#160;Hat SRE user access requires management approval. Separated or transferred SRE accounts are removed as authorized users through an automated process. Additionally, the SRE performs periodic access review, including management sign-off of authorized user lists.</p>
+<div class="paragraph _abstract">
+<p>New Red&#160;Hat Site Reliability Engineering (SRE) user access requires management approval. Separated or transferred SRE accounts are removed as authorized users through an automated process. Additionally, the SRE performs periodic access review, including management sign-off of authorized user lists.</p>
 </div>
 <div class="paragraph">
 <p>The access and identity authorization table includes responsibilities for managing authorized access to clusters, applications, and infrastructure resources. This includes tasks such as providing access control mechanisms, authentication, authorization, and managing access to resources.</p>
@@ -4780,7 +4782,7 @@ clusters is controlled through several layers of required authentication, all of
 <ul>
 <li>
 <p>Provide customer access controls through
-Red&#160;Hat OpenShift Cluster Manager.</p>
+Red Hat OpenShift Cluster Manager.</p>
 </li>
 </ul>
 </div>
@@ -4797,7 +4799,7 @@ Red&#160;Hat OpenShift Cluster Manager.</p>
 <p>Manage optional user access to AWS components through OpenShift Cluster Manager.</p>
 </li>
 <li>
-<p>Create AWS IAM roles and attached policies necessary to enable ROSA service access.</p>
+<p>Create AWS IAM roles and attached policies necessary to enable Red&#160;Hat OpenShift Services on AWS service access.</p>
 </li>
 </ul>
 </div>
@@ -4827,7 +4829,7 @@ Red&#160;Hat OpenShift Cluster Manager.</p>
 <ul>
 <li>
 <p>Provide customer access controls through
-Red&#160;Hat OpenShift Cluster Manager.</p>
+Red Hat OpenShift Cluster Manager.</p>
 </li>
 </ul>
 </div>
@@ -4844,7 +4846,7 @@ Red&#160;Hat OpenShift Cluster Manager.</p>
 <p>Manage optional user access to AWS components through OpenShift Cluster Manager.</p>
 </li>
 <li>
-<p>Create AWS IAM roles and attached policies necessary to enable ROSA service access.</p>
+<p>Create AWS IAM roles and attached policies necessary to enable Red&#160;Hat OpenShift Services on AWS service access.</p>
 </li>
 </ul>
 </div>
@@ -4873,10 +4875,10 @@ Red&#160;Hat OpenShift Cluster Manager.</p>
 <div class="paragraph">
 <p><strong>Compute:</strong>
 Provide the Amazon EC2 service,
-used for ROSA control plane and worker nodes.</p>
+used for Red&#160;Hat OpenShift Services on AWS control plane and worker nodes.</p>
 </div>
 <div class="paragraph">
-<p><strong>Storage:</strong> Provide Amazon EBS, used to allow ROSA to provision local node storage and persistent volume storage for the cluster.</p>
+<p><strong>Storage:</strong> Provide Amazon Elastic Block Store (EBS), used to allow Red&#160;Hat OpenShift Services on AWS to provision local node storage and persistent volume storage for the cluster.</p>
 </div>
 <div class="paragraph">
 <p><strong>Storage:</strong> Provide Amazon S3, used for the service&#8217;s built-in image registry.</p>
@@ -4894,19 +4896,16 @@ used for ROSA control plane and worker nodes.</p>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
 <li>
-<p>Create AWS IAM roles and attached policies necessary to enable ROSA service access.</p>
+<p>Create AWS IAM roles and attached policies necessary to enable Red&#160;Hat OpenShift Services on AWS service access.</p>
 </li>
 <li>
-<p>Use IAM tools to apply the appropriate permissions to AWS
-resources in the customer account.</p>
+<p>Use IAM tools to apply the appropriate permissions to AWS resources in the customer account.</p>
 </li>
 <li>
-<p>To enable ROSA across your AWS organization, the customer is
-responsible for managing AWS Organizations administrators.</p>
+<p>To enable Red&#160;Hat OpenShift Services on AWS across your AWS organization, the customer is responsible for managing AWS Organizations administrators.</p>
 </li>
 <li>
-<p>To enable ROSA across your AWS organization, the customer is
-responsible for distributing the ROSA entitlement grant using AWS License Manager.</p>
+<p>To enable Red&#160;Hat OpenShift Services on AWS across your AWS organization, the customer is responsible for distributing the Red&#160;Hat OpenShift Services on AWS entitlement grant by using AWS License Manager.</p>
 </li>
 </ul>
 </div>
@@ -4969,7 +4968,7 @@ responsible for distributing the ROSA entitlement grant using AWS License Manage
 <div class="paragraph _abstract">
 <p>When you install a Red&#160;Hat OpenShift Services on AWS
 cluster,
-cluster-specific Operator AWS Identity and Access Management (IAM) roles are created. These IAM roles permit the ROSA cluster Operators, managed by Red&#160;Hat Site Reliability Engineering (SRE), to run core OpenShift functionality.</p>
+cluster-specific Operator AWS Identity and Access Management (IAM) roles are created. These IAM roles permit the Red&#160;Hat OpenShift Services on AWS cluster Operators, managed by Red&#160;Hat Site Reliability Engineering (SRE), to run core OpenShift functionality.</p>
 </div>
 <div class="paragraph">
 <p>Cluster Operators use service accounts to assume IAM roles. When a service account assumes an IAM role, temporary AWS STS credentials are provided for the service account to use in the cluster Operator&#8217;s pod. If the assumed role has the necessary AWS privileges, the service account can run AWS SDK operations in the pod.</p>
@@ -4991,7 +4990,7 @@ cluster-specific Operator AWS Identity and Access Management (IAM) roles are cre
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Within each project that a cluster Operator runs, the Operator&#8217;s deployment spec has a volume mount for the projected service account token, and a secret containing AWS credential configuration for the pod. The token is audience-bound and time-bound. Every hour, ROSA generates a new token, and the AWS SDK reads the mounted secret containing the AWS credential configuration. This configuration has a path to the mounted token and the AWS IAM Role ARN. The secret&#8217;s credential configuration includes the following:</p>
+<p>Within each project that a cluster Operator runs, the Operator&#8217;s deployment spec has a volume mount for the projected service account token, and a secret containing AWS credential configuration for the pod. The token is audience-bound and time-bound. Every hour, Red&#160;Hat OpenShift Services on AWS generates a new token, and the AWS SDK reads the mounted secret containing the AWS credential configuration. This configuration has a path to the mounted token and the AWS IAM Role Amazon Resource Name (ARN). The secret&#8217;s credential configuration includes the following:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -5023,7 +5022,7 @@ cluster-specific Operator AWS Identity and Access Management (IAM) roles are cre
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In ROSA with STS clusters, the OIDC provider is created during install and set as the service account issuer by default. The <code>sts.amazonaws.com</code> audience is set by default in the OIDC provider.</p>
+<p>In Red&#160;Hat OpenShift Services on AWS with STS clusters, the OIDC provider is created during install and set as the service account issuer by default. The <code>sts.amazonaws.com</code> audience is set by default in the OIDC provider.</p>
 </div>
 </td>
 </tr>
@@ -5059,7 +5058,7 @@ cluster-specific Operator AWS Identity and Access Management (IAM) roles are cre
 <p>This section details the Red&#160;Hat, Amazon Web Services (AWS), and customer security responsibilities for the managed Red&#160;Hat OpenShift Services on AWS, including security and regulatory compliance controls.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 18. Acronyms and terms</caption>
+<caption class="title">Table 6. Acronyms and terms</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -5190,8 +5189,8 @@ cluster-specific Operator AWS Identity and Access Management (IAM) roles are cre
 </div>
 <div class="sect4">
 <h5 id="rosa-policy-security-regulation-compliance_rosa-hcp-understand-security-control">Security and regulation compliance</h5>
-<div class="paragraph">
-<p>Security and regulation compliance includes tasks such as the implementation of security controls and compliance certification.</p>
+<div class="paragraph _abstract">
+<p>Security and regulation compliance includes tasks such as the implementation of security controls and compliance certification. Review these controls to determine how Red&#160;Hat OpenShift Services on AWS aligns with your organization&#8217;s requirements.</p>
 </div>
 <div class="sect5">
 <h6 id="rosa-policy-data-classification_rosa-hcp-understand-security-control">Data classification</h6>
@@ -5202,50 +5201,48 @@ cluster-specific Operator AWS Identity and Access Management (IAM) roles are cre
 <div class="sect5">
 <h6 id="rosa-policy-data-management_rosa-hcp-understand-security-control">Data management</h6>
 <div class="paragraph">
-<p>Red&#160;Hat OpenShift Services on AWS (ROSA) uses AWS Key Management Service (KMS) to help securely manage keys for encrypted data. These keys are used for control plane, infrastructure, and worker data volumes that are encrypted by default. Persistent volumes (PVs) for customer applications also use AWS KMS for key management.</p>
+<p>Red&#160;Hat OpenShift Services on AWS uses AWS Key Management Service (KMS) to help securely manage keys for encrypted data. These keys are used for control plane, infrastructure, and worker data volumes that are encrypted by default. Persistent volumes (PVs) for customer applications also use AWS KMS for key management.</p>
 </div>
 <div class="paragraph">
-<p>When a customer deletes their ROSA cluster, all cluster data is permanently deleted, including control plane data volumes and customer application data volumes, such as persistent volumes (PV).</p>
+<p>When a customer deletes their Red&#160;Hat OpenShift Services on AWS cluster, all cluster data is permanently deleted, including control plane data volumes and customer application data volumes, such as persistent volumes (PV).</p>
 </div>
 </div>
 <div class="sect5">
 <h6 id="rosa-policy-vulnerability-management_rosa-hcp-understand-security-control">Vulnerability management</h6>
 <div class="paragraph">
-<p>Red&#160;Hat performs periodic vulnerability scanning of ROSA using industry standard tools. Identified vulnerabilities are tracked to their remediation according to timelines based on severity. Vulnerability scanning and remediation activities are documented for verification by third-party assessors in the course of compliance certification audits.</p>
+<p>Red&#160;Hat performs periodic vulnerability scanning of Red&#160;Hat OpenShift Services on AWS by using industry standard tools. Identified vulnerabilities are tracked to their remediation according to timelines based on severity. Vulnerability scanning and remediation activities are documented for verification by third-party assessors in the course of compliance certification audits.</p>
 </div>
 </div>
 <div class="sect5">
 <h6 id="rosa-policy-network-security_rosa-hcp-understand-security-control">Network security</h6>
-<div class="sect6">
-<h7 id="rosa-policy-firewall-ddos-protection_rosa-hcp-understand-security-control">Firewall and DDoS protection</h7>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Firewall and DDoS protection</dt>
+<dd>
+<p>Each Red&#160;Hat OpenShift Services on AWS cluster is protected by a secure network configuration by using firewall rules for AWS Security Groups. Clusters are also protected against DDoS attacks with AWS Shield Standard. For more details, see the <em>Additional resources</em>.</p>
+</dd>
+<dt class="hdlist1">Private clusters and network connectivity</dt>
+<dd>
+<p>Customers can optionally configure their Red&#160;Hat OpenShift Services on AWS cluster endpoints, such as web console, API, and application router, to be made private so that the cluster control plane and applications are not accessible from the Internet. Red&#160;Hat Site Reliability Engineering (SRE) still requires Internet-accessible endpoints that are protected with IP allow-lists.</p>
 <div class="paragraph">
-<p>Each ROSA cluster is protected by a secure network configuration using firewall rules for AWS Security Groups. ROSA customers are also protected against DDoS attacks with <a href="https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html">AWS Shield Standard</a>.</p>
+<p>AWS customers can configure a private network connection to their Red&#160;Hat OpenShift Services on AWS cluster through technologies such as AWS Virtual Private Cloud (VPC) peering, AWS VPN, or AWS Direct Connect.</p>
 </div>
-</div>
-<div class="sect6">
-<h7 id="rosa-policy-private-clusters-network-connectivity_rosa-hcp-understand-security-control">Private clusters and network connectivity</h7>
-<div class="paragraph">
-<p>Customers can optionally configure their ROSA cluster endpoints, such as web console, API, and application router, to be made private so that the cluster control plane and applications are not accessible from the Internet. Red&#160;Hat SRE still requires Internet-accessible endpoints that are protected with IP allow-lists.</p>
-</div>
-<div class="paragraph">
-<p>AWS customers can configure a private network connection to their ROSA cluster through technologies such as AWS VPC peering, AWS VPN, or AWS Direct Connect.</p>
-</div>
-</div>
-<div class="sect6">
-<h7 id="rosa-policy-cluster-network-access_rosa-hcp-understand-security-control">Cluster network access controls</h7>
-<div class="paragraph">
-<p>Fine-grained network access control rules can be configured by customers, on a per-project basis, using <code>NetworkPolicy</code> objects and the
+</dd>
+<dt class="hdlist1">Cluster network access controls</dt>
+<dd>
+<p>Fine-grained network access control rules can be configured by customers, on a per-project basis, by using <code>NetworkPolicy</code> objects and the
 OVN-Kubernetes CNI.</p>
-</div>
+</dd>
+</dl>
 </div>
 </div>
 <div class="sect5">
 <h6 id="rosa-policy-penetration-testing_rosa-hcp-understand-security-control">Penetration testing</h6>
 <div class="paragraph">
-<p>Red&#160;Hat performs periodic penetration tests against ROSA. Tests are performed by an independent internal team by using industry standard tools and best practices.</p>
+<p>Red&#160;Hat performs periodic penetration tests against Red&#160;Hat OpenShift Services on AWS. Tests are performed by an independent internal team by using industry standard tools and best practices.</p>
 </div>
 <div class="paragraph">
-<p>Any issues that may be discovered are prioritized based on severity. Any issues found belonging to open source projects are shared with the community for resolution.</p>
+<p>Any issues that might be discovered are prioritized based on severity. Any issues found belonging to open source projects are shared with the community for resolution.</p>
 </div>
 </div>
 <div class="sect5">
@@ -5254,7 +5251,7 @@ OVN-Kubernetes CNI.</p>
 <p>Red&#160;Hat OpenShift Services on AWS follows common industry best practices for security and controls. The certifications are outlined in the following table.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 19. Security and control certifications for Red&#160;Hat OpenShift Services on AWS</caption>
+<caption class="title">Table 7. Security and control certifications for Red&#160;Hat OpenShift Services on AWS</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -5271,7 +5268,7 @@ OVN-Kubernetes CNI.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HIPAA Qualified<sup>[1]</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HIPAA Qualified</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
 <tr>
@@ -5303,20 +5300,13 @@ OVN-Kubernetes CNI.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">FedRAMP High<sup>[2]</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FedRAMP High</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
 </tbody>
 </table>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>For more information about Red Hat&#8217;s HIPAA Qualified ROSA offerings, see the <a href="https://access.redhat.com/articles/compliance_activities_and_gov_standards#hipaa-overview-13">HIPAA Overview</a>.</p>
-</li>
-<li>
-<p>For more information about ROSA on GovCloud, see  <a href="https://marketplace.fedramp.gov/products/FR2102031769">FedRAMP Marketplace ROSA Agency</a>.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>For more information about Red&#160;Hat HIPAA Qualified offerings and Red&#160;Hat OpenShift Services on AWS on GovCloud, see the <em>Additional resources</em>.</p>
 </div>
 </div>
 </div>
@@ -5328,7 +5318,7 @@ OVN-Kubernetes CNI.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-12 10:30:09 -0500
+Last updated 2026-10-15 11:48:48 -0500
 </div>
 </div>
 </body>

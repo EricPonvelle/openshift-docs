@@ -709,12 +709,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-sts-terraform-considerations_rosa-classic-create-a-cluster-using-terraform">Considerations when using Terraform</a></li><li class="level-4"><a href="#rosa-sts-cluster-terraform-setup_rosa-classic-create-a-cluster-using-terraform">Preparing your environment for Terraform</a></li><li class="level-4"><a href="#rosa-classic-cluster-terraform-file-creation_rosa-classic-create-a-cluster-using-terraform">Creating your Terraform files locally</a></li><li class="level-4"><a href="#rosa-classic-create-the-cluster-using-terraform_rosa-classic-create-the-cluster-using-terraform">Create the cluster using Terraform</a></li><li class="level-5"><a href="#rosa-sts-cluster-terraform-execute_rosa-classic-create-the-cluster-using-terraform">Using Terraform to create your Red Hat OpenShift Services on AWS (classic architecture) cluster</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-sts-terraform-considerations_rosa-classic-create-a-cluster-using-terraform">Considerations when using Terraform</a></li><li class="level-4"><a href="#rosa-sts-cluster-terraform-setup_rosa-classic-create-a-cluster-using-terraform">Prepare your environment for Terraform</a></li><li class="level-4"><a href="#rosa-classic-cluster-terraform-file-creation_rosa-classic-create-a-cluster-using-terraform">Create your Terraform files locally</a></li><li class="level-4"><a href="#rosa-classic-create-the-cluster-using-terraform_rosa-classic-create-the-cluster-using-terraform">Create the cluster using Terraform</a></li><li class="level-5"><a href="#rosa-sts-cluster-terraform-execute_rosa-classic-create-the-cluster-using-terraform">Use Terraform to create your Red Hat OpenShift Services on AWS (classic architecture) cluster</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-classic-create-a-cluster-using-terraform_rosa-classic-create-a-cluster-using-terraform">Create a cluster using Terraform</h3>
 <div class="paragraph _abstract">
-<p>Create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster with a Terraform cluster template.</p>
+<p>As a cluster administrator, create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster by using Terraform, an infrastructure-as-code tool. Terraform provisions the cluster and its supporting resources from configuration files that you can version, review, and reuse.</p>
+</div>
+<div class="paragraph">
+<p>Creating a cluster by using Terraform helps you to do the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Define your cluster and its supporting resources as version-controlled code.</p>
+</li>
+<li>
+<p>Reproduce consistent cluster deployments across environments.</p>
+</li>
+<li>
+<p>Automate both the creation and the removal of cluster resources.</p>
+</li>
+</ul>
 </div>
 <div class="sect3">
 <h4 id="rosa-sts-terraform-considerations_rosa-classic-create-a-cluster-using-terraform">Considerations when using Terraform</h4>
@@ -726,7 +742,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-sts-cluster-terraform-setup_rosa-classic-create-a-cluster-using-terraform">Preparing your environment for Terraform</h4>
+<h4 id="rosa-sts-cluster-terraform-setup_rosa-classic-create-a-cluster-using-terraform">Prepare your environment for Terraform</h4>
 <div class="paragraph _abstract">
 <p>Before you can create your Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster by using Terraform, you must export your offline Red Hat OpenShift Cluster Manager token to grant Terraform permission to access your account.</p>
 </div>
@@ -783,7 +799,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-classic-cluster-terraform-file-creation_rosa-classic-create-a-cluster-using-terraform">Creating your Terraform files locally</h4>
+<h4 id="rosa-classic-cluster-terraform-file-creation_rosa-classic-create-a-cluster-using-terraform">Create your Terraform files locally</h4>
 <div class="paragraph _abstract">
 <p>After you set up your <a href="https://console.redhat.com/openshift/token/rosa">offline Red Hat OpenShift Cluster Manager token</a>, you need to create the Terraform files locally to build your cluster. You can create these files by using the following code templates.</p>
 </div>
@@ -1105,7 +1121,7 @@ EOF</code></pre>
 <p>Run the Terraform configuration that creates your Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster.</p>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-cluster-terraform-execute_rosa-classic-create-the-cluster-using-terraform">Using Terraform to create your Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster</h5>
+<h5 id="rosa-sts-cluster-terraform-execute_rosa-classic-create-the-cluster-using-terraform">Use Terraform to create your Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster</h5>
 <div class="paragraph _abstract">
 <p>After you create the Terraform files, you must initiate Terraform to provide all of the required dependencies. Then apply the Terraform plan.</p>
 </div>
@@ -1262,7 +1278,7 @@ rosa-demo      6</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-12 10:30:09 -0500
+Last updated 2026-10-15 11:48:48 -0500
 </div>
 </div>
 </body>

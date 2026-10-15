@@ -736,7 +736,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You can quickly create a Red&#160;Hat OpenShift Services on AWS cluster by using the default installation options.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 23. Default Red&#160;Hat OpenShift Services on AWS cluster specifications</caption>
+<caption class="title">Table 11. Default Red&#160;Hat OpenShift Services on AWS cluster specifications</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -1425,7 +1425,7 @@ $ oc version</code></pre>
 <p>If you do not specify a template, CloudFormation uses a default template that creates resources with the following parameters:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 24. Default VPC parameters</caption>
+<caption class="title">Table 12. Default VPC parameters</caption>
 <colgroup>
 <col style="width: 40%;">
 <col style="width: 60%;">
@@ -1704,7 +1704,7 @@ INFO[0140] Stack rosa-network-stack-5555 created</code></pre>
 <p>Your VPC must meet the requirements shown in the following table.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 25. Requirements for your VPC</caption>
+<caption class="title">Table 13. Requirements for your VPC</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1761,7 +1761,7 @@ INFO[0140] Stack rosa-network-stack-5555 created</code></pre>
 <p>If you created your own virtual private cloud (VPC) to create a Red&#160;Hat OpenShift Services on AWS cluster, you must tag your VPC subnets. Automated service preflight checks verify that these resources are tagged correctly before you can use these resources for a cluster.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 26. Required subnet tags</caption>
+<caption class="title">Table 14. Required subnet tags</caption>
 <colgroup>
 <col style="width: 15.7894%;">
 <col style="width: 42.1052%;">
@@ -1958,7 +1958,10 @@ TAGS    kubernetes.io/role/elb  &lt;subnet-id&gt;        subnet  1</code></pre>
 <div class="sect4">
 <h5 id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-quickstart-create-your-cluster">Create an ocm-role IAM role</h5>
 <div class="paragraph _abstract">
-<p>You create your <code>ocm-role</code> IAM roles by using the ROSA command-line interface (CLI) (<code>rosa</code>). If you want to create and manage clusters by using only the ROSA command-line interface (CLI) (<code>rosa</code>) and the OpenShift CLI (<code>oc</code>), you can use the <code>--no-console</code> profile for the <code>ocm-role</code> IAM resource. For more information about the <code>ocm-role</code> IAM resource permissions profile, see the <em>Additional resources</em>.</p>
+<p>Create the <code>ocm-role</code> Identity and Access Management (IAM) roles by using the ROSA command-line interface (CLI) (<code>rosa</code>) to grant OpenShift Cluster Manager the permissions needed to install and manage your Red&#160;Hat OpenShift Services on AWS clusters.</p>
+</div>
+<div class="paragraph">
+<p>If you want to create and manage clusters by using only the <code>rosa</code> CLI and the OpenShift CLI (<code>oc</code>), you can use the <code>--no-console</code> profile for the <code>ocm-role</code> IAM resource. For more information about the <code>ocm-role</code> IAM resource permissions profile, see the <em>Additional resources</em>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -2151,10 +2154,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 <div class="sect4">
 <h5 id="rosa-sts-byo-oidc_rosa-hcp-quickstart-create-your-cluster">Create an OpenID Connect configuration</h5>
 <div class="paragraph _abstract">
-<p>Red&#160;Hat OpenShift Services on AWS clusters use OpenID Connect (OIDC) and the AWS Security Token Service (STS) to authenticate Operator access to required AWS resources.</p>
-</div>
-<div class="paragraph">
-<p>Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS cluster, you can create the OIDC configuration before creating your cluster.</p>
+<p>Create an OpenID Connect (OIDC) configuration before creating your Red&#160;Hat OpenShift Services on AWS cluster to authenticate Operator access to required AWS resources by using the AWS Security Token Service (STS). Each production cluster requires its own OIDC configuration.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -2182,8 +2182,8 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red{nbsp}Hat hosted) OIDC Configuration Yes
 I: Setting up managed OIDC configuration
-I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace &lt;user-defined&gt; with a prefix of your choice:
-	rosa create operator-roles --prefix &lt;user-defined&gt; --oidc-config-id 13cdr6b
+I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace &lt;user_defined&gt; with a prefix of your choice:
+	rosa create operator-roles --prefix &lt;user_defined&gt; --oidc-config-id 13cdr6b
 If you are going to create a Hosted Control Plane cluster please include '--hosted-cp'
 I: Creating OIDC provider using 'arn:aws:iam::4540112244:user/userName'
 ? Create the OIDC provider? Yes
@@ -3411,7 +3411,7 @@ I: Revoked role 'dedicated-admins' from user '&lt;idp_user_name&gt;' on cluster 
 <p>You can quickly create a Red&#160;Hat OpenShift Services on AWS cluster by using the default installation options.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 27. Default Red&#160;Hat OpenShift Services on AWS cluster specifications</caption>
+<caption class="title">Table 15. Default Red&#160;Hat OpenShift Services on AWS cluster specifications</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -3742,7 +3742,7 @@ I: Revoked role 'dedicated-admins' from user '&lt;idp_user_name&gt;' on cluster 
 <p>If you do not specify a template, CloudFormation uses a default template that creates resources with the following parameters:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 28. Default VPC parameters</caption>
+<caption class="title">Table 16. Default VPC parameters</caption>
 <colgroup>
 <col style="width: 40%;">
 <col style="width: 60%;">
@@ -4021,7 +4021,7 @@ INFO[0140] Stack rosa-network-stack-5555 created</code></pre>
 <p>Your VPC must meet the requirements shown in the following table.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 29. Requirements for your VPC</caption>
+<caption class="title">Table 17. Requirements for your VPC</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4078,7 +4078,7 @@ INFO[0140] Stack rosa-network-stack-5555 created</code></pre>
 <p>If you created your own virtual private cloud (VPC) to create a Red&#160;Hat OpenShift Services on AWS cluster, you must tag your VPC subnets. Automated service preflight checks verify that these resources are tagged correctly before you can use these resources for a cluster.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 30. Required subnet tags</caption>
+<caption class="title">Table 18. Required subnet tags</caption>
 <colgroup>
 <col style="width: 15.7894%;">
 <col style="width: 42.1052%;">
@@ -4237,7 +4237,10 @@ TAGS    kubernetes.io/role/elb  &lt;subnet-id&gt;        subnet  1</code></pre>
 <div class="sect4">
 <h5 id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-create-a-cluster-with-default-options">Create an ocm-role IAM role</h5>
 <div class="paragraph _abstract">
-<p>You create your <code>ocm-role</code> IAM roles by using the ROSA command-line interface (CLI) (<code>rosa</code>). If you want to create and manage clusters by using only the ROSA command-line interface (CLI) (<code>rosa</code>) and the OpenShift CLI (<code>oc</code>), you can use the <code>--no-console</code> profile for the <code>ocm-role</code> IAM resource. For more information about the <code>ocm-role</code> IAM resource permissions profile, see the <em>Additional resources</em>.</p>
+<p>Create the <code>ocm-role</code> Identity and Access Management (IAM) roles by using the ROSA command-line interface (CLI) (<code>rosa</code>) to grant OpenShift Cluster Manager the permissions needed to install and manage your Red&#160;Hat OpenShift Services on AWS clusters.</p>
+</div>
+<div class="paragraph">
+<p>If you want to create and manage clusters by using only the <code>rosa</code> CLI and the OpenShift CLI (<code>oc</code>), you can use the <code>--no-console</code> profile for the <code>ocm-role</code> IAM resource. For more information about the <code>ocm-role</code> IAM resource permissions profile, see the <em>Additional resources</em>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -4531,10 +4534,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 <div class="sect4">
 <h5 id="rosa-sts-byo-oidc_rosa-hcp-create-a-cluster-with-default-options">Create an OpenID Connect configuration</h5>
 <div class="paragraph _abstract">
-<p>Red&#160;Hat OpenShift Services on AWS clusters use OpenID Connect (OIDC) and the AWS Security Token Service (STS) to authenticate Operator access to required AWS resources.</p>
-</div>
-<div class="paragraph">
-<p>Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS cluster, you can create the OIDC configuration before creating your cluster.</p>
+<p>Create an OpenID Connect (OIDC) configuration before creating your Red&#160;Hat OpenShift Services on AWS cluster to authenticate Operator access to required AWS resources by using the AWS Security Token Service (STS). Each production cluster requires its own OIDC configuration.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -4562,8 +4562,8 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red{nbsp}Hat hosted) OIDC Configuration Yes
 I: Setting up managed OIDC configuration
-I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace &lt;user-defined&gt; with a prefix of your choice:
-	rosa create operator-roles --prefix &lt;user-defined&gt; --oidc-config-id 13cdr6b
+I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace &lt;user_defined&gt; with a prefix of your choice:
+	rosa create operator-roles --prefix &lt;user_defined&gt; --oidc-config-id 13cdr6b
 If you are going to create a Hosted Control Plane cluster please include '--hosted-cp'
 I: Creating OIDC provider using 'arn:aws:iam::4540112244:user/userName'
 ? Create the OIDC provider? Yes
@@ -6230,7 +6230,7 @@ $ TENANT_ID=zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz</code></pre>
 <p>To learn more about the about the cloud service offering requirements that Red&#160;Hat OpenShift Services on AWS has already completed for you, see the following table:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 31. Cloud service offering requirement</caption>
+<caption class="title">Table 19. Cloud service offering requirement</caption>
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 33.3333%;">
@@ -6270,7 +6270,7 @@ $ TENANT_ID=zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz</code></pre>
 <p>In addition to the requirements, you have the option for enhanced capabilities based on your specific needs. To learn more, see the following table:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 32. Enhanced capabilities</caption>
+<caption class="title">Table 20. Enhanced capabilities</caption>
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 33.3333%;">
@@ -6364,7 +6364,7 @@ $ TENANT_ID=zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz</code></pre>
 </table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 33. Actions and benefits for account provisioning and access setup</caption>
+<caption class="title">Table 21. Actions and benefits for account provisioning and access setup</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 40%;">
@@ -6491,7 +6491,7 @@ $ TENANT_ID=zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz</code></pre>
 <p>For guidance on operating your top level administrative accounts, see the following table:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 34. Guidance on operating administrative and privileged accounts</caption>
+<caption class="title">Table 22. Guidance on operating administrative and privileged accounts</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 40%;">
@@ -6567,7 +6567,7 @@ $ TENANT_ID=zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz</code></pre>
 <p>For guidance on decommissioning your top level administrative accounts, see the following table:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 35. Guidance on decommissioning your administrative and privileged accounts</caption>
+<caption class="title">Table 23. Guidance on decommissioning your administrative and privileged accounts</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 40%;">
@@ -6649,7 +6649,7 @@ $ TENANT_ID=zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz</code></pre>
 <p>For guidance on security related settings, see the following table:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 36. Guidance on setting security for your administrative and privileged accounts</caption>
+<caption class="title">Table 24. Guidance on setting security for your administrative and privileged accounts</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 40%;">
@@ -6964,7 +6964,7 @@ For more information, see <a href="https://aws.amazon.com/marketplace/pp/prodvie
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-12 10:30:09 -0500
+Last updated 2026-10-15 11:48:48 -0500
 </div>
 </div>
 </body>

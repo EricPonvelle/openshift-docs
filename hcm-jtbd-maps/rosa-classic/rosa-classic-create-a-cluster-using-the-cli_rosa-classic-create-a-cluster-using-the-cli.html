@@ -709,12 +709,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-classic-overview-of-default-cluster-properties_rosa-classic-overview-of-default-cluster-properties">Overview of default cluster properties</a></li><li class="level-5"><a href="#rosa-sts-overview-of-the-default-cluster-specifications_rosa-classic-overview-of-default-cluster-properties">Default cluster specifications</a></li><li class="level-4"><a href="#rosa-classic-create-the-cluster_rosa-classic-create-the-cluster">Create the cluster</a></li><li class="level-5"><a href="#rosa-sts-creating-a-cluster-quickly-cli_rosa-classic-create-the-cluster">Creating a cluster quickly using the CLI</a></li><li class="level-5"><a href="#rosa-sts-creating-cluster-customizations-cli_rosa-classic-create-the-cluster">Create a cluster with customizations using the CLI</a></li><li class="level-4"><a href="#rosa-classic-cluster-configuration-properties-reference_rosa-classic-cluster-configuration-properties-reference">Cluster configuration properties reference</a></li><li class="level-5"><a href="#rosa-sts-interactive-cluster-creation-mode-options_rosa-classic-cluster-configuration-properties-reference">Interactive cluster creation mode options</a></li><li class="level-4"><a href="#rosa-classic-configure-dns-forwarding-for-privatelink_rosa-classic-configure-dns-forwarding-for-privatelink">(PrivateLink cluster only) Configure DNS forwarding</a></li><li class="level-5"><a href="#osd-aws-privatelink-config-dns-forwarding_rosa-classic-configure-dns-forwarding-for-privatelink">Configuring AWS PrivateLink DNS forwarding</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-classic-overview-of-default-cluster-properties_rosa-classic-overview-of-default-cluster-properties">Overview of default cluster properties</a></li><li class="level-5"><a href="#rosa-sts-overview-of-the-default-cluster-specifications_rosa-classic-overview-of-default-cluster-properties">Default cluster specifications</a></li><li class="level-4"><a href="#rosa-classic-create-the-cluster_rosa-classic-create-the-cluster">Create the cluster</a></li><li class="level-5"><a href="#rosa-sts-creating-a-cluster-quickly-cli_rosa-classic-create-the-cluster">Create a cluster quickly using the CLI</a></li><li class="level-5"><a href="#rosa-sts-creating-cluster-customizations-cli_rosa-classic-create-the-cluster">Create a cluster with customizations using the CLI</a></li><li class="level-4"><a href="#rosa-classic-cluster-configuration-properties-reference_rosa-classic-cluster-configuration-properties-reference">Cluster configuration properties reference</a></li><li class="level-5"><a href="#rosa-sts-interactive-cluster-creation-mode-options_rosa-classic-cluster-configuration-properties-reference">Interactive cluster creation mode options</a></li><li class="level-4"><a href="#rosa-classic-configure-dns-forwarding-for-privatelink_rosa-classic-configure-dns-forwarding-for-privatelink">(PrivateLink cluster only) Configure DNS forwarding</a></li><li class="level-5"><a href="#osd-aws-privatelink-config-dns-forwarding_rosa-classic-configure-dns-forwarding-for-privatelink">Configure AWS PrivateLink DNS forwarding</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-classic-create-a-cluster-using-the-cli_rosa-classic-create-a-cluster-using-the-cli">Create a cluster using the CLI</h3>
 <div class="paragraph _abstract">
-<p>Create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster by using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+<p>As a cluster administrator, create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster from the command line by using the ROSA command-line interface (CLI) (<code>rosa</code>). The <code>rosa</code> CLI gives you precise control over cluster configuration for scripted and repeatable deployments.</p>
+</div>
+<div class="paragraph">
+<p>Creating a cluster by using the <code>rosa</code> CLI helps you to do the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Script and automate cluster creation for consistent, repeatable deployments.</p>
+</li>
+<li>
+<p>Customize cluster settings, networking, and encryption during creation.</p>
+</li>
+<li>
+<p>Integrate cluster provisioning into your existing command-line workflows.</p>
+</li>
+</ul>
 </div>
 <div class="sect3">
 <h4 id="rosa-classic-overview-of-default-cluster-properties_rosa-classic-overview-of-default-cluster-properties">Overview of default cluster properties</h4>
@@ -727,7 +743,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You can quickly create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster by using the default installation options.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 47. Default Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster specifications</caption>
+<caption class="title">Table 36. Default Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster specifications</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -1036,7 +1052,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, either quickly with the default options or with customizations.</p>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-creating-a-cluster-quickly-cli_rosa-classic-create-the-cluster">Creating a cluster quickly using the CLI</h5>
+<h5 id="rosa-sts-creating-a-cluster-quickly-cli_rosa-classic-create-the-cluster">Create a cluster quickly using the CLI</h5>
 <div class="paragraph _abstract">
 <p>When using the ROSA command-line interface (CLI) (<code>rosa</code>), to create a cluster that uses the AWS Security Token Service (STS), you can select the default options to create the cluster quickly.</p>
 </div>
@@ -1802,7 +1818,7 @@ OIDC Endpoint URL:          https://oidc.op1.openshiftapps.com/&lt;cluster_id&gt
 <p>The following table describes the interactive cluster creation mode options:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 48. <code>--interactive</code> cluster creation mode options</caption>
+<caption class="title">Table 37. <code>--interactive</code> cluster creation mode options</caption>
 <colgroup>
 <col style="width: 40%;">
 <col style="width: 60%;">
@@ -2447,7 +2463,7 @@ Tags that are added by Red&#160;Hat are required for clusters to stay in complia
 <p>Configure DNS forwarding for a Red&#160;Hat OpenShift Services on AWS (classic architecture) PrivateLink cluster.</p>
 </div>
 <div class="sect4">
-<h5 id="osd-aws-privatelink-config-dns-forwarding_rosa-classic-configure-dns-forwarding-for-privatelink">Configuring AWS PrivateLink DNS forwarding</h5>
+<h5 id="osd-aws-privatelink-config-dns-forwarding_rosa-classic-configure-dns-forwarding-for-privatelink">Configure AWS PrivateLink DNS forwarding</h5>
 <div class="paragraph _abstract">
 <p>Configure DNS forwarding to enable resolution of cluster DNS records from outside the VPC.</p>
 </div>
@@ -2503,7 +2519,7 @@ Tags that are added by Red&#160;Hat are required for clusters to stay in complia
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-12 10:30:09 -0500
+Last updated 2026-10-15 11:48:48 -0500
 </div>
 </div>
 </body>

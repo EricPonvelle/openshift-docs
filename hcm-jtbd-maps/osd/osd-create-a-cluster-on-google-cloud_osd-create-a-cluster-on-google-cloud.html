@@ -691,10 +691,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph _abstract">
 <p>Create an OpenShift Dedicated cluster on Google Cloud, using the authentication method that suits your account.</p>
 </div>
+<div class="paragraph">
+<p>After you prepare your Google Cloud environment, create the cluster with one of the supported authentication methods.</p>
+</div>
 <div class="sect3">
 <h4 id="osd-prepare-to-create-a-ccs-cluster-on-google-cloud_osd-prepare-to-create-a-ccs-cluster-on-google-cloud">Prepare to create a CCS cluster on Google Cloud</h4>
 <div class="paragraph _abstract">
-<p>Complete the Google Cloud prerequisites, resource limits and CLI setup needed before you create a Customer Cloud Subscription cluster.</p>
+<p>Complete the Google Cloud prerequisites, resource limits, and command-line interface (CLI) setup before you create a Customer Cloud Subscription (CCS) cluster on Google Cloud.</p>
+</div>
+<div class="paragraph">
+<p>Confirm that your Google Cloud project meets the requirements of the service. Completing this preparation prevents cluster creation failures due to insufficient quotas or missing network configuration.</p>
 </div>
 <div class="sect4">
 <h5 id="osd-understanding-private-service-connect_osd-prepare-to-create-a-ccs-cluster-on-google-cloud">Private Service Connect connectivity model</h5>
@@ -1675,7 +1681,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="osd-create-a-cluster-with-wif-authentication_osd-create-a-cluster-with-wif-authentication">Create an OSD cluster on Google Cloud with WIF authentication</h4>
 <div class="paragraph _abstract">
-<p>Create an OpenShift Dedicated cluster on Google Cloud that authenticates with Workload Identity Federation, and manage its WIF configuration.</p>
+<p>Create an OpenShift Dedicated cluster on Google Cloud that authenticates with Workload Identity Federation (WIF).</p>
+</div>
+<div class="paragraph">
+<p>WIF lets an OpenShift Dedicated cluster authenticate to Google Cloud by using short-lived credentials instead of long-lived service account keys. WIF is the recommended authentication method on Google Cloud because it reduces the risks associated with managing and storing static credentials.</p>
 </div>
 <div class="sect4">
 <h5 id="workload-identity-federation-overview_osd-create-a-cluster-with-wif-authentication">Workload Identity Federation</h5>
@@ -3698,6 +3707,9 @@ exit status 1.</code></pre>
 <div class="paragraph _abstract">
 <p>Create an OpenShift Dedicated cluster on Google Cloud that authenticates with a service account.</p>
 </div>
+<div class="paragraph">
+<p>Service Account authentication lets an OpenShift Dedicated cluster access your Google Cloud resources by using a Google Cloud service account. Use this method when the processes of your organization rely on service account keys.</p>
+</div>
 <div class="sect4">
 <h5 id="service-account-auth-overview_osd-create-a-cluster-with-service-account-authentication">Service Account authentication</h5>
 <div class="paragraph _abstract">
@@ -4393,6 +4405,9 @@ By default, clusters are created with the delete protection feature disabled.</p
 <div class="paragraph _abstract">
 <p>Create an OpenShift Dedicated cluster on Google Cloud hosted in a Red&#160;Hat cloud account.</p>
 </div>
+<div class="paragraph">
+<p>When you create an OpenShift Dedicated cluster in a Red&#160;Hat cloud account, Red&#160;Hat owns the underlying Google Cloud infrastructure and its subscription. Red&#160;Hat manages the cloud account for you.</p>
+</div>
 <div class="sect4">
 <h5 id="osd-create-gcp-cluster-ccs_osd-create-a-cluster-with-a-red-hat-cloud-account">Create a cluster on Google Cloud with a Red Hat cloud account using OpenShift Cluster Manager</h5>
 <div class="paragraph _abstract">
@@ -4915,7 +4930,7 @@ By default, clusters are created with the delete protection feature disabled.</p
 <div class="sect3">
 <h4 id="osd-delete-a-cluster-on-google-cloud_osd-delete-a-cluster-on-google-cloud">Delete an OSD cluster on Google Cloud</h4>
 <div class="paragraph _abstract">
-<p>Delete an OpenShift Dedicated cluster on Google Cloud and clean up the resources it used.</p>
+<p>When you no longer need an OpenShift Dedicated cluster on Google Cloud, delete it and release the Google Cloud resources that it used. Deleting the cluster through the supported workflow ensures that the service removes the resources that it provisioned.</p>
 </div>
 <div class="sect4">
 <h5 id="deleting-cluster_osd-delete-a-cluster-on-google-cloud">Delete your cluster</h5>
@@ -4980,7 +4995,7 @@ By default, clusters are created with the delete protection feature disabled.</p
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-12 10:30:09 -0500
+Last updated 2026-10-13 14:53:53 -0500
 </div>
 </div>
 </body>

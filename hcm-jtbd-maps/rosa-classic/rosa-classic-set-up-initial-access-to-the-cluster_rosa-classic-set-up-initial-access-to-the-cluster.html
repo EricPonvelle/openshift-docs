@@ -709,12 +709,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#understanding-idp_rosa-classic-set-up-initial-access-to-the-cluster">Supported identity providers</a></li><li class="level-4"><a href="#identity-provider-parameters_rosa-classic-set-up-initial-access-to-the-cluster">Identity provider parameters</a></li><li class="level-4"><a href="#config-github-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure a GitHub identity provider</a></li><li class="level-4"><a href="#config-gitlab-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure a GitLab identity provider</a></li><li class="level-4"><a href="#config-google-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure a Google identity provider</a></li><li class="level-4"><a href="#config-ldap-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure an LDAP identity provider</a></li><li class="level-4"><a href="#config-openid-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure an OpenID identity provider</a></li><li class="level-4"><a href="#config-htpasswd-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configuring an htpasswd identity provider</a></li><li class="level-4"><a href="#rosa-classic-access-the-cluster_rosa-classic-access-the-cluster">Access the cluster</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster-quick_rosa-classic-access-the-cluster">Accessing your cluster quickly</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster_rosa-classic-access-the-cluster">Accessing your cluster with an IDP account</a></li><li class="level-5"><a href="#rosa-create-cluster-admins_rosa-classic-access-the-cluster">Granting cluster-admin access</a></li><li class="level-5"><a href="#rosa-create-dedicated-cluster-admins_rosa-classic-access-the-cluster">Granting dedicated-admin access</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#understanding-idp_rosa-classic-set-up-initial-access-to-the-cluster">Supported identity providers</a></li><li class="level-4"><a href="#identity-provider-parameters_rosa-classic-set-up-initial-access-to-the-cluster">Identity provider parameters</a></li><li class="level-4"><a href="#config-github-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure a GitHub identity provider</a></li><li class="level-4"><a href="#config-gitlab-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure a GitLab identity provider</a></li><li class="level-4"><a href="#config-google-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure a Google identity provider</a></li><li class="level-4"><a href="#config-ldap-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure an LDAP identity provider</a></li><li class="level-4"><a href="#config-openid-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure an OpenID identity provider</a></li><li class="level-4"><a href="#config-htpasswd-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure an htpasswd identity provider</a></li><li class="level-4"><a href="#rosa-classic-access-the-cluster_rosa-classic-access-the-cluster">Access the cluster</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster-quick_rosa-classic-access-the-cluster">Access your cluster quickly</a></li><li class="level-5"><a href="#rosa-accessing-your-cluster_rosa-classic-access-the-cluster">Access your cluster with an IDP account</a></li><li class="level-5"><a href="#rosa-create-cluster-admins_rosa-classic-access-the-cluster">Granting cluster-admin access</a></li><li class="level-5"><a href="#rosa-create-dedicated-cluster-admins_rosa-classic-access-the-cluster">Granting dedicated-admin access</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-classic-set-up-initial-access-to-the-cluster_rosa-classic-set-up-initial-access-to-the-cluster">Set up initial access to the cluster</h3>
 <div class="paragraph _abstract">
-<p>Create an identity provider for your Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster and grant the access your users need.</p>
+<p>As a cluster administrator, set up initial access to your Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster after you create it. Users can sign in and start to work with the cluster after you configure an identity provider and grant administrator access.</p>
+</div>
+<div class="paragraph">
+<p>Setting up initial access helps you to do the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enable your users to authenticate to the cluster through your chosen identity provider.</p>
+</li>
+<li>
+<p>Grant the appropriate level of administrator access to the right users.</p>
+</li>
+<li>
+<p>Confirm that the cluster meets your security requirements before you use it.</p>
+</li>
+</ul>
 </div>
 <div class="sect3">
 <h4 id="understanding-idp_rosa-classic-set-up-initial-access-to-the-cluster">Supported identity providers</h4>
@@ -1710,7 +1726,7 @@ for more information.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="config-htpasswd-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configuring an htpasswd identity provider</h4>
+<h4 id="config-htpasswd-idp_rosa-classic-set-up-initial-access-to-the-cluster">Configure an htpasswd identity provider</h4>
 <div class="paragraph _abstract">
 <p>Configure an htpasswd identity provider to create static users. You can log in to your cluster as the user to troubleshoot problems. You can use the web user interface (UI) or your command-line interface (CLI) to create an htpasswd identity provider.</p>
 </div>
@@ -1721,7 +1737,7 @@ for more information.</p>
 <p>Access your Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster and grant administrator privileges.</p>
 </div>
 <div class="sect4">
-<h5 id="rosa-accessing-your-cluster-quick_rosa-classic-access-the-cluster">Accessing your cluster quickly</h5>
+<h5 id="rosa-accessing-your-cluster-quick_rosa-classic-access-the-cluster">Access your cluster quickly</h5>
 <div class="paragraph _abstract">
 <p>Access your cluster by using the required administrative credentials and the OpenShift CLI (<code>oc</code>).</p>
 </div>
@@ -1793,7 +1809,7 @@ You have access to 77 projects, the list has been suppressed. You can list all p
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-accessing-your-cluster_rosa-classic-access-the-cluster">Accessing your cluster with an IDP account</h5>
+<h5 id="rosa-accessing-your-cluster_rosa-classic-access-the-cluster">Access your cluster with an IDP account</h5>
 <div class="paragraph _abstract">
 <p>To log in to your cluster, you can configure an identity provider (IDP). This procedure uses GitHub as an example IDP. To view other supported IDPs, run the <code>rosa create idp --help</code> command.</p>
 </div>
@@ -2158,7 +2174,7 @@ dedicated-admins   rh-rosa-test-user</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-12 10:30:09 -0500
+Last updated 2026-10-15 11:48:48 -0500
 </div>
 </div>
 </body>

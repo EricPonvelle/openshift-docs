@@ -728,7 +728,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="rosa-hcp-prepare-to-create-a-cluster_rosa-hcp-prepare-to-create-a-cluster">Prepare to create a cluster</h3>
 <div class="paragraph _abstract">
-<p>Complete the AWS account, IAM, OIDC and networking preparation that every Red&#160;Hat OpenShift Services on AWS cluster needs, whichever method you then use to create the cluster.</p>
+<p>Before you create a Red&#160;Hat OpenShift Services on AWS cluster, you must prepare your AWS account so that the service has the identity, permissions, and network infrastructure it needs to deploy and operate the cluster.</p>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat OpenShift Services on AWS uses the AWS Security Token Service (STS) and OpenID Connect (OIDC) so that the service assumes short-lived, narrowly scoped roles instead of long-lived credentials. Create these IAM roles and policies, an OIDC configuration, and a virtual private cloud (VPC) that meets the networking requirements of the cluster.</p>
+</div>
+<div class="paragraph">
+<p>Completing this preparation once means that you can then create a cluster using any method, such as the CLI, the Hybrid Cloud Console, or Terraform, without repeating these steps.</p>
 </div>
 <div class="sect3">
 <h4 id="rosa-hcp-prerequisites_rosa-hcp-prepare-to-create-a-cluster">Red&#160;Hat OpenShift Services on AWS prerequisites</h4>
@@ -1145,7 +1151,10 @@ $ oc version</code></pre>
 <div class="sect3">
 <h4 id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-prepare-to-create-a-cluster">Create an ocm-role IAM role</h4>
 <div class="paragraph _abstract">
-<p>You create your <code>ocm-role</code> IAM roles by using the ROSA command-line interface (CLI) (<code>rosa</code>). If you want to create and manage clusters by using only the ROSA command-line interface (CLI) (<code>rosa</code>) and the OpenShift CLI (<code>oc</code>), you can use the <code>--no-console</code> profile for the <code>ocm-role</code> IAM resource. For more information about the <code>ocm-role</code> IAM resource permissions profile, see the <em>Additional resources</em>.</p>
+<p>Create the <code>ocm-role</code> Identity and Access Management (IAM) roles by using the ROSA command-line interface (CLI) (<code>rosa</code>) to grant OpenShift Cluster Manager the permissions needed to install and manage your Red&#160;Hat OpenShift Services on AWS clusters.</p>
+</div>
+<div class="paragraph">
+<p>If you want to create and manage clusters by using only the <code>rosa</code> CLI and the OpenShift CLI (<code>oc</code>), you can use the <code>--no-console</code> profile for the <code>ocm-role</code> IAM resource. For more information about the <code>ocm-role</code> IAM resource permissions profile, see the <em>Additional resources</em>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1537,10 +1546,7 @@ I: Successfully linked role ARN 'arn:aws:iam::2066:role/ManagedOpenShift-User.os
 <div class="sect3">
 <h4 id="rosa-sts-byo-oidc_rosa-hcp-prepare-to-create-a-cluster">Create an OpenID Connect configuration</h4>
 <div class="paragraph _abstract">
-<p>Red&#160;Hat OpenShift Services on AWS clusters use OpenID Connect (OIDC) and the AWS Security Token Service (STS) to authenticate Operator access to required AWS resources.</p>
-</div>
-<div class="paragraph">
-<p>Each production cluster requires its own OIDC configuration. When creating a Red&#160;Hat OpenShift Services on AWS cluster, you can create the OIDC configuration before creating your cluster.</p>
+<p>Create an OpenID Connect (OIDC) configuration before creating your Red&#160;Hat OpenShift Services on AWS cluster to authenticate Operator access to required AWS resources by using the AWS Security Token Service (STS). Each production cluster requires its own OIDC configuration.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -1568,8 +1574,8 @@ I: Successfully linked role ARN 'arn:aws:iam::2066:role/ManagedOpenShift-User.os
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">? Would you like to create a Managed (Red{nbsp}Hat hosted) OIDC Configuration Yes
 I: Setting up managed OIDC configuration
-I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace &lt;user-defined&gt; with a prefix of your choice:
-	rosa create operator-roles --prefix &lt;user-defined&gt; --oidc-config-id 13cdr6b
+I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace &lt;user_defined&gt; with a prefix of your choice:
+	rosa create operator-roles --prefix &lt;user_defined&gt; --oidc-config-id 13cdr6b
 If you are going to create a Hosted Control Plane cluster please include '--hosted-cp'
 I: Creating OIDC provider using 'arn:aws:iam::4540112244:user/userName'
 ? Create the OIDC provider? Yes
@@ -1938,7 +1944,7 @@ ROLE NAME                                                         ROLE ARN      
 <p>Your VPC must meet the requirements shown in the following table.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 37. Requirements for your VPC</caption>
+<caption class="title">Table 25. Requirements for your VPC</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1982,7 +1988,7 @@ ROLE NAME                                                         ROLE ARN      
 <p>If you do not specify a template, CloudFormation uses a default template that creates resources with the following parameters:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 38. Default VPC parameters</caption>
+<caption class="title">Table 26. Default VPC parameters</caption>
 <colgroup>
 <col style="width: 40%;">
 <col style="width: 60%;">
@@ -2258,7 +2264,7 @@ INFO[0140] Stack rosa-network-stack-5555 created</code></pre>
 <p>If you created your own virtual private cloud (VPC) to create a Red&#160;Hat OpenShift Services on AWS cluster, you must tag your VPC subnets. Automated service preflight checks verify that these resources are tagged correctly before you can use these resources for a cluster.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 39. Required subnet tags</caption>
+<caption class="title">Table 27. Required subnet tags</caption>
 <colgroup>
 <col style="width: 15.7894%;">
 <col style="width: 42.1052%;">
@@ -4080,7 +4086,7 @@ variable "nodepool_management_role_arn" {
 <p>The following table describes the different terms used to refer to environments without a full internet connection:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 40. Disconnected environment terms</caption>
+<caption class="title">Table 28. Disconnected environment terms</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -4128,7 +4134,7 @@ A cluster in a disconnected environment does not have access to Red&#160;Hat pub
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 41. Suggested variables for disconnected Red&#160;Hat OpenShift Services on AWS clusters</caption>
+<caption class="title">Table 29. Suggested variables for disconnected Red&#160;Hat OpenShift Services on AWS clusters</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -4598,7 +4604,7 @@ A cluster in a disconnected environment does not have access to Red&#160;Hat pub
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-12 10:30:09 -0500
+Last updated 2026-10-15 11:48:48 -0500
 </div>
 </div>
 </body>
