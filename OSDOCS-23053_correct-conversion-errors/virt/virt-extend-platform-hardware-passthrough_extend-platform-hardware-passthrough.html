@@ -2406,6 +2406,15 @@ nvidia-743  nvidia-745	nvidia-747  nvidia-749	nvidia-751  nvidia-753</code></pre
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
+<p>Set the <code>spec.virtualization.mediatedDevicesConfiguration.enabled</code> field to <code>false</code> so that OpenShift Virtualization does not try to manage mediated devices that an external provider, such as the NVIDIA GPU Operator, already manages:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc patch hco -n openshift-cnv kubevirt-hyperconverged --type='merge' \
+  -p='{"spec":{"virtualization":{"mediatedDevicesConfiguration":{"enabled": false}}}}'</code></pre>
+</div>
+</div>
+</li>
+<li>
 <p>Expose the mediated devices to the cluster by adding the <code>mdevNameSelector</code> and <code>resourceName</code> values to the <code>spec.virtualization.permittedHostDevices.mediatedDevices</code> stanza. The <code>resourceName</code> value is based on the <code>mdevNameSelector</code> value, but you use underscores instead of spaces.</p>
 <div class="paragraph">
 <p>Example <code>HyperConverged</code> CR:</p>
@@ -2917,7 +2926,7 @@ spec:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-14 18:03:22 -0500
+Last updated 2026-10-15 10:37:52 -0500
 </div>
 </div>
 </body>
