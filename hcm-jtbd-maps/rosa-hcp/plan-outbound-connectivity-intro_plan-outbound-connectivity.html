@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red&#160;Hat OpenShift Services on AWS</title>
+<title>Red&#160;Hat OpenShift Service on AWS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -573,10 +573,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="plan-outbound-connectivity-intro_plan-outbound-connectivity" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
-<h1>Red&#160;Hat OpenShift Services on AWS</h1>
+<h1>Red&#160;Hat OpenShift Service on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Service on AWS</a></span></p><ul class="sectlevel1">
 <li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
 
 <ul class="sectlevel2">
@@ -618,9 +618,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
 
 <ul class="sectlevel2">
-<li><a href="create-a-cluster-using-the-default-options_rosa-hcp-create-a-cluster-using-the-default-options.html">Create a Red&#160;Hat OpenShift Services on AWS cluster by using the default options</a>
+<li><a href="create-a-cluster-using-the-default-options_rosa-hcp-create-a-cluster-using-the-default-options.html">Create a Red&#160;Hat OpenShift Service on AWS cluster by using the default options</a>
 </li>
-<li><a href="deploy-and-access-a-simple-application_rosa-hcp-deploy-and-access-a-simple-application.html">Deploy and access a simple application on a Red&#160;Hat OpenShift Services on AWS cluster</a>
+<li><a href="deploy-and-access-a-simple-application_rosa-hcp-deploy-and-access-a-simple-application.html">Deploy and access a simple application on a Red&#160;Hat OpenShift Service on AWS cluster</a>
 </li>
 </ul>
 </li>
@@ -723,7 +723,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-hcp-firewall-prerequisites_plan-outbound-connectivity">Firewall prerequisites for Red Hat OpenShift Services on AWS</a></li><li class="level-5"><a href="#_domains_for_installation_packages_and_tools">Domains for installation packages and tools</a></li><li class="level-5"><a href="#_domains_for_telemetry">Domains for telemetry</a></li><li class="level-5"><a href="#_domains_for_amazon_web_services_aws_apis">Domains for Amazon Web Services (AWS) APIs</a></li><li class="level-5"><a href="#_domains_for_your_workload">Domains for your workload</a></li><li class="level-5"><a href="#_optional_domains_to_enable_third_party_content">Optional domains to enable third-party content</a></li><li class="level-5"><a href="#firewall-cli-bastion_plan-outbound-connectivity">Outbound firewall rules for the rosa CLI for clusters with egress zero</a></li><li class="level-5"><a href="#firewall-hcm-bastion_plan-outbound-connectivity">Outbound firewall rules from Red Hat Hybrid Cloud Console for clusters with egress zero</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-hcp-firewall-prerequisites_plan-outbound-connectivity">Firewall prerequisites for Red Hat OpenShift Service on AWS</a></li><li class="level-5"><a href="#_domains_for_installation_packages_and_tools">Domains for installation packages and tools</a></li><li class="level-5"><a href="#_domains_for_telemetry">Domains for telemetry</a></li><li class="level-5"><a href="#_domains_for_amazon_web_services_aws_apis">Domains for Amazon Web Services (AWS) APIs</a></li><li class="level-5"><a href="#_domains_for_your_workload">Domains for your workload</a></li><li class="level-5"><a href="#_optional_domains_to_enable_third_party_content">Optional domains to enable third-party content</a></li><li class="level-5"><a href="#firewall-cli-bastion_plan-outbound-connectivity">Outbound firewall rules for the rosa CLI for clusters with egress zero</a></li><li class="level-5"><a href="#firewall-hcm-bastion_plan-outbound-connectivity">Outbound firewall rules from Red Hat Hybrid Cloud Console for clusters with egress zero</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="plan-outbound-connectivity-intro_plan-outbound-connectivity">Plan outbound connectivity</h3>
@@ -731,9 +731,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Plan outbound network connectivity for your Red&#160;Hat OpenShift Service on AWS cluster to ensure proper egress access for cluster operations, workloads, and external integrations, including firewall prerequisites and egress requirements.</p>
 </div>
 <div class="sect3">
-<h4 id="rosa-hcp-firewall-prerequisites_plan-outbound-connectivity">Firewall prerequisites for Red&#160;Hat OpenShift Services on AWS</h4>
+<h4 id="rosa-hcp-firewall-prerequisites_plan-outbound-connectivity">Firewall prerequisites for Red&#160;Hat OpenShift Service on AWS</h4>
 <div class="paragraph _abstract">
-<p>If you are using a firewall to control egress traffic from Red&#160;Hat OpenShift Services on AWS, your Virtual Private Cloud (VPC) must be able to complete requests from the cluster to the Amazon S3 service, for example, via an Amazon S3 gateway. You must also configure your firewall to grant access to the following domain and port combinations.</p>
+<p>If you are using a firewall to control egress traffic from Red&#160;Hat OpenShift Service on AWS, your Virtual Private Cloud (VPC) must be able to complete requests from the cluster to the Amazon S3 service, for example, via an Amazon S3 gateway. You must also configure your firewall to grant access to the following domain and port combinations.</p>
 </div>
 <div class="sect4">
 <h5 id="_domains_for_installation_packages_and_tools">Domains for installation packages and tools</h5>
@@ -987,7 +987,7 @@ For more information about how remote health monitoring data is used by Red&#160
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>api.openshift.com</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ROSA CLI running on bastion host</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required for registering a Red&#160;Hat OpenShift Services on AWS cluster into Red Hat Hybrid Cloud Console.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required for registering a Red&#160;Hat OpenShift Service on AWS cluster into Red Hat Hybrid Cloud Console.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam.amazonaws.com</code></p></td>
@@ -1037,14 +1037,14 @@ For more information about how remote health monitoring data is used by Red&#160
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>sts.&lt;your region&gt;.amazonaws.com</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Red&#160;Hat OpenShift Services on AWS cluster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red&#160;Hat OpenShift Service on AWS cluster</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Used to access the AWS Secure Token Service (STS) regional endpoint to retrieve a short-lived token to access AWS services. Alternatively, you can create a VPC endpoint for STS service to avoid whitelisting this URL from your firewall.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>console.redhat.com</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any browser to access Red Hat Hybrid Cloud Console</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">To manage a Red&#160;Hat OpenShift Services on AWS cluster from Hybrid Cloud Console.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To manage a Red&#160;Hat OpenShift Service on AWS cluster from Hybrid Cloud Console.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>sso.redhat.com</code></p></td>
@@ -1058,12 +1058,12 @@ For more information about how remote health monitoring data is used by Red&#160
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="define-how-users-and-applications-access-the-cluster-intro_define-how-users-and-applications-access-the-cluster.html">Define how users and applications access the cluster</a> | ↑ Up: <a href="_plan.html">Plan</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="choose-the-authentication-model-intro_choose-the-authentication-model.html">Choose the authentication model</a> →</p>
+<p>← Previous: <a href="define-how-users-and-applications-access-the-cluster-intro_define-how-users-and-applications-access-the-cluster.html">Define how users and applications access the cluster</a> | ↑ Up: <a href="_plan.html">Plan</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Service on AWS</a> | Next: <a href="choose-the-authentication-model-intro_choose-the-authentication-model.html">Choose the authentication model</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-15 11:48:48 -0500
+Last updated 2026-10-15 14:32:45 -0500
 </div>
 </div>
 </body>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red&#160;Hat OpenShift Services on AWS (classic architecture)</title>
+<title>Red&#160;Hat OpenShift Service on AWS (classic architecture)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -573,10 +573,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="rosa-classic-tutorial-protect-your-workloads-with-aws-waf-and-albs_rosa-classic-tutorial-protect-your-workloads-with-aws-waf-and-albs" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
-<h1>Red&#160;Hat OpenShift Services on AWS (classic architecture)</h1>
+<h1>Red&#160;Hat OpenShift Service on AWS (classic architecture)</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Service on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
 
 <ul class="sectlevel2">
@@ -587,7 +587,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
 
 <ul class="sectlevel2">
-<li><a href="rosa-classic-understand-architecture_rosa-classic-understand-architecture.html">What is Red&#160;Hat OpenShift Services on AWS (classic architecture)</a>
+<li><a href="rosa-classic-understand-architecture_rosa-classic-understand-architecture.html">What is Red&#160;Hat OpenShift Service on AWS (classic architecture)</a>
 </li>
 </ul>
 </li>
@@ -610,9 +610,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
 <ul class="sectlevel2">
-<li><a href="create-a-cluster-using-the-default-options_rosa-classic-create-a-cluster-using-the-default-options.html">Create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster by using the default options</a>
+<li><a href="create-a-cluster-using-the-default-options_rosa-classic-create-a-cluster-using-the-default-options.html">Create a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster by using the default options</a>
 </li>
-<li><a href="deploy-and-access-a-simple-application_rosa-classic-deploy-and-access-a-simple-application.html">Deploy and access a simple application on a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster</a>
+<li><a href="deploy-and-access-a-simple-application_rosa-classic-deploy-and-access-a-simple-application.html">Deploy and access a simple application on a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster</a>
 </li>
 </ul>
 </li>
@@ -683,7 +683,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="rosa-classic-tutorial-configure-microsoft-entra-id-as-your-cluster-identity-provider_rosa-classic-tutorial-configure-microsoft-entra-id-as-your-cluster-identity-provider.html">Tutorial: Configure Microsoft Entra ID as your cluster identity provider</a>
 </li>
-<li><a href="rosa-classic-tutorial-deploy-with-a-custom-dns-resolver_rosa-classic-tutorial-deploy-with-a-custom-dns-resolver.html">Tutorial: Deploy Red&#160;Hat OpenShift Services on AWS (classic architecture) with a custom DNS resolver</a>
+<li><a href="rosa-classic-tutorial-deploy-with-a-custom-dns-resolver_rosa-classic-tutorial-deploy-with-a-custom-dns-resolver.html">Tutorial: Deploy Red&#160;Hat OpenShift Service on AWS (classic architecture) with a custom DNS resolver</a>
 </li>
 <li><a href="rosa-classic-tutorial-update-component-routes-with-custom-domains-and-tls_rosa-classic-tutorial-update-component-routes-with-custom-domains-and-tls.html">Tutorial: Update component routes with custom domains and TLS</a>
 </li>
@@ -742,7 +742,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have created a multiple availability zone (AZ) Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster.</p>
+<p>You have created a multiple availability zone (AZ) Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -751,7 +751,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>AWS ALBs require at least two <em>public</em> subnets across AZs, <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#availability-zones">per the AWS documentation</a>. For this reason, only multiple AZ Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters can be used with ALBs.</p>
+<p>AWS ALBs require at least two <em>public</em> subnets across AZs, <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#availability-zones">per the AWS documentation</a>. For this reason, only multiple AZ Red&#160;Hat OpenShift Service on AWS (classic architecture) clusters can be used with ALBs.</p>
 </div>
 </td>
 </tr>
@@ -810,7 +810,7 @@ $ echo "Cluster: $(echo ${CLUSTER} | sed 's/-[a-z0-9]\{5\}$//'), Region: ${REGIO
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Set the following variables to the proper values for your Red&#160;Hat OpenShift Services on AWS (classic architecture) deployment:</p>
+<p>Set the following variables to the proper values for your Red&#160;Hat OpenShift Service on AWS (classic architecture) deployment:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ export VPC_ID=&lt;vpc-id&gt;
@@ -881,7 +881,7 @@ $ export PRIVATE_SUBNET_IDS=(&lt;space-separated-list-of-ids&gt;)</code></pre>
 <div class="sect3">
 <h4 id="cloud-experts-using-alb-and-waf-deploy-aws-load-balancer-operator_rosa-classic-tutorial-protect-your-workloads-with-aws-waf-and-albs">Deploy the AWS Load Balancer Operator</h4>
 <div class="paragraph _abstract">
-<p>The AWS Load Balancer Operator is used to install, manage, and configure an instance of <code>aws-load-balancer-controller</code> in a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster. To deploy Application Load Balancers (ALBs) in Red&#160;Hat OpenShift Services on AWS (classic architecture), you must first deploy the AWS Load Balancer Operator.</p>
+<p>The AWS Load Balancer Operator is used to install, manage, and configure an instance of <code>aws-load-balancer-controller</code> in a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster. To deploy Application Load Balancers (ALBs) in Red&#160;Hat OpenShift Service on AWS (classic architecture), you must first deploy the AWS Load Balancer Operator.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -1161,7 +1161,7 @@ $ curl "http://${INGRESS}"</code></pre>
 <div class="sect3">
 <h4 id="cloud-experts-using-alb-and-waf-configure-aws-waf_rosa-classic-tutorial-protect-your-workloads-with-aws-waf-and-albs">Configure the AWS WAF</h4>
 <div class="paragraph _abstract">
-<p>You can use the AWS Web Application Firewall (WAF) service to monitor, protect, and control the HTTP and HTTPS requests that are forwarded to your protected web application resources, such as Red&#160;Hat OpenShift Services on AWS (classic architecture).</p>
+<p>You can use the AWS Web Application Firewall (WAF) service to monitor, protect, and control the HTTP and HTTPS requests that are forwarded to your protected web application resources, such as Red&#160;Hat OpenShift Service on AWS (classic architecture).</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -1302,12 +1302,12 @@ EOF</code></pre>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="deploy-and-access-a-simple-application_rosa-classic-deploy-and-access-a-simple-application.html#rosa-classic-tutorial-protect-your-workloads-with-aws-waf-and-cloudfront_rosa-classic-tutorial-protect-your-workloads-with-aws-waf-and-cloudfront">Tutorial: Protect your workloads with AWS WAF and CloudFront</a> | ↑ Up: <a href="_configure.html">Configure</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="deploy-and-access-a-simple-application_rosa-classic-deploy-and-access-a-simple-application.html#rosa-classic-tutorial-use-aws-secrets-manager-csi-for-your-application_rosa-classic-tutorial-use-aws-secrets-manager-csi-for-your-application">Tutorial: Use AWS Secrets Manager CSI for your application</a> →</p>
+<p>← Previous: <a href="deploy-and-access-a-simple-application_rosa-classic-deploy-and-access-a-simple-application.html#rosa-classic-tutorial-protect-your-workloads-with-aws-waf-and-cloudfront_rosa-classic-tutorial-protect-your-workloads-with-aws-waf-and-cloudfront">Tutorial: Protect your workloads with AWS WAF and CloudFront</a> | ↑ Up: <a href="_configure.html">Configure</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Service on AWS (classic architecture)</a> | Next: <a href="deploy-and-access-a-simple-application_rosa-classic-deploy-and-access-a-simple-application.html#rosa-classic-tutorial-use-aws-secrets-manager-csi-for-your-application_rosa-classic-tutorial-use-aws-secrets-manager-csi-for-your-application">Tutorial: Use AWS Secrets Manager CSI for your application</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-15 11:48:48 -0500
+Last updated 2026-10-15 14:32:45 -0500
 </div>
 </div>
 </body>

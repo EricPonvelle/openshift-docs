@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red&#160;Hat OpenShift Services on AWS (classic architecture)</title>
+<title>Red&#160;Hat OpenShift Service on AWS (classic architecture)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -573,10 +573,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="rosa-classic-prepare-to-create-the-cluster_rosa-classic-prepare-to-create-the-cluster" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
-<h1>Red&#160;Hat OpenShift Services on AWS (classic architecture)</h1>
+<h1>Red&#160;Hat OpenShift Service on AWS (classic architecture)</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Service on AWS (classic architecture)</a></span></p><ul class="sectlevel1">
 <li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
 
 <ul class="sectlevel2">
@@ -587,7 +587,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
 
 <ul class="sectlevel2">
-<li><a href="rosa-classic-understand-architecture_rosa-classic-understand-architecture.html">What is Red&#160;Hat OpenShift Services on AWS (classic architecture)</a>
+<li><a href="rosa-classic-understand-architecture_rosa-classic-understand-architecture.html">What is Red&#160;Hat OpenShift Service on AWS (classic architecture)</a>
 </li>
 </ul>
 </li>
@@ -611,9 +611,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
 
 <ul class="sectlevel2">
-<li><a href="create-a-cluster-using-the-default-options_rosa-classic-create-a-cluster-using-the-default-options.html">Create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster by using the default options</a>
+<li><a href="create-a-cluster-using-the-default-options_rosa-classic-create-a-cluster-using-the-default-options.html">Create a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster by using the default options</a>
 </li>
-<li><a href="deploy-and-access-a-simple-application_rosa-classic-deploy-and-access-a-simple-application.html">Deploy and access a simple application on a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster</a>
+<li><a href="deploy-and-access-a-simple-application_rosa-classic-deploy-and-access-a-simple-application.html">Deploy and access a simple application on a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster</a>
 </li>
 </ul>
 </li>
@@ -683,7 +683,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="rosa-classic-tutorial-configure-microsoft-entra-id-as-your-cluster-identity-provider_rosa-classic-tutorial-configure-microsoft-entra-id-as-your-cluster-identity-provider.html">Tutorial: Configure Microsoft Entra ID as your cluster identity provider</a>
 </li>
-<li><a href="rosa-classic-tutorial-deploy-with-a-custom-dns-resolver_rosa-classic-tutorial-deploy-with-a-custom-dns-resolver.html">Tutorial: Deploy Red&#160;Hat OpenShift Services on AWS (classic architecture) with a custom DNS resolver</a>
+<li><a href="rosa-classic-tutorial-deploy-with-a-custom-dns-resolver_rosa-classic-tutorial-deploy-with-a-custom-dns-resolver.html">Tutorial: Deploy Red&#160;Hat OpenShift Service on AWS (classic architecture) with a custom DNS resolver</a>
 </li>
 <li><a href="rosa-classic-tutorial-update-component-routes-with-custom-domains-and-tls_rosa-classic-tutorial-update-component-routes-with-custom-domains-and-tls.html">Tutorial: Update component routes with custom domains and TLS</a>
 </li>
@@ -709,12 +709,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#mos-checklist-cli-requirements_rosa-classic-prepare-to-create-the-cluster">CLI requirements</a></li><li class="level-4"><a href="#mos-checklist-aws-cli_rosa-classic-prepare-to-create-the-cluster">AWS CLI (aws)</a></li><li class="level-4"><a href="#mos-checklist-_rosa-classic-prepare-to-create-the-cluster">ROSA command-line interface (CLI) (rosa)</a></li><li class="level-4"><a href="#mos-checklist-oc-cli_rosa-classic-prepare-to-create-the-cluster">OpenShift CLI (oc)</a></li><li class="level-4"><a href="#mos-checklist-aws-infra-prereqs_rosa-classic-prepare-to-create-the-cluster">AWS infrastructure prerequisites</a></li><li class="level-4"><a href="#mos-checklist-scp-prereqs_rosa-classic-prepare-to-create-the-cluster">Service Control Policy (SCP) prerequisites</a></li><li class="level-4"><a href="#rosa-sts-setting-up-environment_rosa-classic-prepare-to-create-the-cluster">Set up the environment for STS</a></li><li class="level-4"><a href="#mos-checklist-vpc-privatelink_rosa-classic-prepare-to-create-the-cluster">VPC requirements for PrivateLink clusters</a></li><li class="level-4"><a href="#rosa-hcp-firewall-prerequisites_rosa-classic-prepare-to-create-the-cluster">Firewall prerequisites for Red Hat OpenShift Services on AWS (classic architecture)</a></li><li class="level-5"><a href="#_domains_for_installation_packages_and_tools_2">Domains for installation packages and tools</a></li><li class="level-5"><a href="#_domains_for_telemetry_2">Domains for telemetry</a></li><li class="level-5"><a href="#_domains_for_amazon_web_services_aws_apis_2">Domains for Amazon Web Services (AWS) APIs</a></li><li class="level-5"><a href="#_domains_for_your_workload_2">Domains for your workload</a></li><li class="level-5"><a href="#_optional_domains_to_enable_third_party_content_2">Optional domains to enable third-party content</a></li><li class="level-5"><a href="#firewall-cli-bastion_rosa-classic-prepare-to-create-the-cluster">Outbound firewall rules for the rosa CLI for clusters with egress zero</a></li><li class="level-5"><a href="#firewall-hcm-bastion_rosa-classic-prepare-to-create-the-cluster">Outbound firewall rules from Red Hat Hybrid Cloud Console for clusters with egress zero</a></li><li class="level-4"><a href="#rosa-classic-firewall-prerequisites_rosa-classic-prepare-to-create-the-cluster">Firewall allowlist requirements for Red Hat OpenShift Services on AWS (classic architecture) clusters using STS</a></li><li class="level-4"><a href="#mos-checklist-add-custom-sgs_rosa-classic-prepare-to-create-the-cluster">Additional custom security groups</a></li><li class="level-4"><a href="#mos-checklist-custom-dns-domains_rosa-classic-prepare-to-create-the-cluster">Custom DNS and domains</a></li><li class="level-4"><a href="#rosa-hcp-vpc-subnet-tagging_rosa-classic-prepare-to-create-the-cluster">Tag your subnets</a></li><li class="level-4"><a href="#rosa-sharing-vpc-creation-and-sharing_rosa-classic-prepare-to-create-the-cluster">Step One - VPC Owner: Configure a VPC to share within your AWS organization</a></li><li class="level-4"><a href="#rosa-sharing-vpc-dns-and-roles_rosa-classic-prepare-to-create-the-cluster">Step Two - Cluster Creator: Reserve your DNS and create cluster operator roles</a></li><li class="level-4"><a href="#rosa-sharing-vpc-hosted-zones_rosa-classic-prepare-to-create-the-cluster">Step Three - VPC Owner: Update the shared VPC role and create hosted zones</a></li><li class="level-4"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-classic-prepare-to-create-the-cluster">Create an ocm-role IAM role</a></li><li class="level-4"><a href="#rosa-sts-user-role-iam-basic-role_rosa-classic-prepare-to-create-the-cluster">Create a user-role IAM role</a></li><li class="level-4"><a href="#rosa-associating-account_rosa-classic-prepare-to-create-the-cluster">Associate your AWS account with IAM roles</a></li><li class="level-4"><a href="#rosa-associating-multiple-account_rosa-classic-prepare-to-create-the-cluster">Associate multiple AWS accounts with your Red Hat organization</a></li><li class="level-4"><a href="#rosa-sts-aws-requirements-attaching-boundary-policy_rosa-classic-prepare-to-create-the-cluster">Permission boundaries for the installer role</a></li><li class="level-5"><a href="#_examples_of_permission_boundary_policy_files_2">Examples of permission boundary policy files</a></li><li class="level-4"><a href="#rosa-sts-byo-oidc_rosa-classic-prepare-to-create-the-cluster">Create an OpenID Connect configuration</a></li><li class="level-4"><a href="#rosa-sts-oidc-provider-for-operators-aws-cli_rosa-classic-prepare-to-create-the-cluster">Create an OIDC provider using the rosa CLI</a></li><li class="level-4"><a href="#rosa-sts-byo-oidc-options_rosa-classic-prepare-to-create-the-cluster">Parameter options for creating your own OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-raw-files_rosa-classic-prepare-to-create-the-cluster">raw-files</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-mode_rosa-classic-prepare-to-create-the-cluster">mode</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-managed_rosa-classic-prepare-to-create-the-cluster">managed</a></li><li class="level-4"><a href="#aws-encryption-key_rosa-classic-prepare-to-create-the-cluster">Create an AWS KMS encryption key</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#mos-checklist-cli-requirements_rosa-classic-prepare-to-create-the-cluster">CLI requirements</a></li><li class="level-4"><a href="#mos-checklist-aws-cli_rosa-classic-prepare-to-create-the-cluster">AWS CLI (aws)</a></li><li class="level-4"><a href="#mos-checklist-_rosa-classic-prepare-to-create-the-cluster">ROSA command-line interface (CLI) (rosa)</a></li><li class="level-4"><a href="#mos-checklist-oc-cli_rosa-classic-prepare-to-create-the-cluster">OpenShift CLI (oc)</a></li><li class="level-4"><a href="#mos-checklist-aws-infra-prereqs_rosa-classic-prepare-to-create-the-cluster">AWS infrastructure prerequisites</a></li><li class="level-4"><a href="#mos-checklist-scp-prereqs_rosa-classic-prepare-to-create-the-cluster">Service Control Policy (SCP) prerequisites</a></li><li class="level-4"><a href="#rosa-sts-setting-up-environment_rosa-classic-prepare-to-create-the-cluster">Set up the environment for STS</a></li><li class="level-4"><a href="#mos-checklist-vpc-privatelink_rosa-classic-prepare-to-create-the-cluster">VPC requirements for PrivateLink clusters</a></li><li class="level-4"><a href="#rosa-hcp-firewall-prerequisites_rosa-classic-prepare-to-create-the-cluster">Firewall prerequisites for Red Hat OpenShift Service on AWS (classic architecture)</a></li><li class="level-5"><a href="#_domains_for_installation_packages_and_tools_2">Domains for installation packages and tools</a></li><li class="level-5"><a href="#_domains_for_telemetry_2">Domains for telemetry</a></li><li class="level-5"><a href="#_domains_for_amazon_web_services_aws_apis_2">Domains for Amazon Web Services (AWS) APIs</a></li><li class="level-5"><a href="#_domains_for_your_workload_2">Domains for your workload</a></li><li class="level-5"><a href="#_optional_domains_to_enable_third_party_content_2">Optional domains to enable third-party content</a></li><li class="level-5"><a href="#firewall-cli-bastion_rosa-classic-prepare-to-create-the-cluster">Outbound firewall rules for the rosa CLI for clusters with egress zero</a></li><li class="level-5"><a href="#firewall-hcm-bastion_rosa-classic-prepare-to-create-the-cluster">Outbound firewall rules from Red Hat Hybrid Cloud Console for clusters with egress zero</a></li><li class="level-4"><a href="#rosa-classic-firewall-prerequisites_rosa-classic-prepare-to-create-the-cluster">Firewall allowlist requirements for Red Hat OpenShift Service on AWS (classic architecture) clusters using STS</a></li><li class="level-4"><a href="#mos-checklist-add-custom-sgs_rosa-classic-prepare-to-create-the-cluster">Additional custom security groups</a></li><li class="level-4"><a href="#mos-checklist-custom-dns-domains_rosa-classic-prepare-to-create-the-cluster">Custom DNS and domains</a></li><li class="level-4"><a href="#rosa-hcp-vpc-subnet-tagging_rosa-classic-prepare-to-create-the-cluster">Tag your subnets</a></li><li class="level-4"><a href="#rosa-sharing-vpc-creation-and-sharing_rosa-classic-prepare-to-create-the-cluster">Step One - VPC Owner: Configure a VPC to share within your AWS organization</a></li><li class="level-4"><a href="#rosa-sharing-vpc-dns-and-roles_rosa-classic-prepare-to-create-the-cluster">Step Two - Cluster Creator: Reserve your DNS and create cluster operator roles</a></li><li class="level-4"><a href="#rosa-sharing-vpc-hosted-zones_rosa-classic-prepare-to-create-the-cluster">Step Three - VPC Owner: Update the shared VPC role and create hosted zones</a></li><li class="level-4"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-classic-prepare-to-create-the-cluster">Create an ocm-role IAM role</a></li><li class="level-4"><a href="#rosa-sts-user-role-iam-basic-role_rosa-classic-prepare-to-create-the-cluster">Create a user-role IAM role</a></li><li class="level-4"><a href="#rosa-associating-account_rosa-classic-prepare-to-create-the-cluster">Associate your AWS account with IAM roles</a></li><li class="level-4"><a href="#rosa-associating-multiple-account_rosa-classic-prepare-to-create-the-cluster">Associate multiple AWS accounts with your Red Hat organization</a></li><li class="level-4"><a href="#rosa-sts-aws-requirements-attaching-boundary-policy_rosa-classic-prepare-to-create-the-cluster">Permission boundaries for the installer role</a></li><li class="level-5"><a href="#_examples_of_permission_boundary_policy_files_2">Examples of permission boundary policy files</a></li><li class="level-4"><a href="#rosa-sts-byo-oidc_rosa-classic-prepare-to-create-the-cluster">Create an OpenID Connect configuration</a></li><li class="level-4"><a href="#rosa-sts-oidc-provider-for-operators-aws-cli_rosa-classic-prepare-to-create-the-cluster">Create an OIDC provider using the rosa CLI</a></li><li class="level-4"><a href="#rosa-sts-byo-oidc-options_rosa-classic-prepare-to-create-the-cluster">Parameter options for creating your own OpenID Connect configuration</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-raw-files_rosa-classic-prepare-to-create-the-cluster">raw-files</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-mode_rosa-classic-prepare-to-create-the-cluster">mode</a></li><li class="level-5"><a href="#rosa-sts-byo-oidc-managed_rosa-classic-prepare-to-create-the-cluster">managed</a></li><li class="level-4"><a href="#aws-encryption-key_rosa-classic-prepare-to-create-the-cluster">Create an AWS KMS encryption key</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-classic-prepare-to-create-the-cluster_rosa-classic-prepare-to-create-the-cluster">Prepare to create the cluster</h3>
 <div class="paragraph _abstract">
-<p>As a cluster administrator, prepare your environment before you create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster. When you complete the prerequisites in advance, your command-line tools, Amazon Web Services (AWS) account, network, and AWS Identity and Access Management (IAM) roles are ready for the cluster creation workflow.</p>
+<p>As a cluster administrator, prepare your environment before you create a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster. When you complete the prerequisites in advance, your command-line tools, Amazon Web Services (AWS) account, network, and AWS Identity and Access Management (IAM) roles are ready for the cluster creation workflow.</p>
 </div>
 <div class="paragraph">
 <p>Preparing before you create a cluster helps you to do the following:</p>
@@ -822,7 +822,7 @@ To login to your Red{nbsp}Hat account, get an offline access token at https://co
 <div class="sect3">
 <h4 id="mos-checklist-oc-cli_rosa-classic-prepare-to-create-the-cluster">OpenShift CLI (<code>oc</code>)</h4>
 <div class="paragraph _abstract">
-<p>The OpenShift CLI (<code>oc</code>) is not required to deploy a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, but is a useful tool for interacting with your cluster after it is deployed.</p>
+<p>The OpenShift CLI (<code>oc</code>) is not required to deploy a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster, but is a useful tool for interacting with your cluster after it is deployed.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -866,7 +866,7 @@ To login to your Red{nbsp}Hat account, get an offline access token at https://co
 <div class="sect3">
 <h4 id="mos-checklist-scp-prereqs_rosa-classic-prepare-to-create-the-cluster">Service Control Policy (SCP) prerequisites</h4>
 <div class="paragraph _abstract">
-<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters are hosted in an AWS account within an AWS organizational unit. A <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html">service control policy (SCP)</a> is created and applied to the AWS organizational unit that manages what services the AWS sub-accounts are permitted to access.</p>
+<p>Red&#160;Hat OpenShift Service on AWS (classic architecture) clusters are hosted in an AWS account within an AWS organizational unit. A <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html">service control policy (SCP)</a> is created and applied to the AWS organizational unit that manages what services the AWS sub-accounts are permitted to access.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -874,7 +874,7 @@ To login to your Red{nbsp}Hat account, get an offline access token at https://co
 <p>Ensure that your organization&#8217;s SCPs are not more restrictive than the roles and policies required by the cluster.</p>
 </li>
 <li>
-<p>When you create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, an associated AWS OpenID Connect (OIDC) identity provider is created.</p>
+<p>When you create a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster, an associated AWS OpenID Connect (OIDC) identity provider is created.</p>
 </li>
 </ul>
 </div>
@@ -882,7 +882,7 @@ To login to your Red{nbsp}Hat account, get an offline access token at https://co
 <div class="sect3">
 <h4 id="rosa-sts-setting-up-environment_rosa-classic-prepare-to-create-the-cluster">Set up the environment for STS</h4>
 <div class="paragraph _abstract">
-<p>Before you create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster that uses the AWS Security Token Service (STS), complete the following steps to set up your environment.</p>
+<p>Before you create a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster that uses the AWS Security Token Service (STS), complete the following steps to set up your environment.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -891,7 +891,7 @@ To login to your Red{nbsp}Hat account, get an offline access token at https://co
 <p>Review and complete the deployment prerequisites and policies.</p>
 </li>
 <li>
-<p>Create a <a href="https://cloud.redhat.com">Red&#160;Hat account</a>, if you do not already have one. Then, check your email for a verification link. You will need these credentials to install Red&#160;Hat OpenShift Services on AWS (classic architecture).</p>
+<p>Create a <a href="https://cloud.redhat.com">Red&#160;Hat account</a>, if you do not already have one. Then, check your email for a verification link. You will need these credentials to install Red&#160;Hat OpenShift Service on AWS (classic architecture).</p>
 </li>
 </ul>
 </div>
@@ -908,14 +908,14 @@ To login to your Red{nbsp}Hat account, get an offline access token at https://co
 </div>
 </li>
 <li>
-<p>Enable Red&#160;Hat OpenShift Services on AWS (classic architecture) in the AWS Management Console.</p>
+<p>Enable Red&#160;Hat OpenShift Service on AWS (classic architecture) in the AWS Management Console.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
 <p>Sign in to your <a href="https://console.aws.amazon.com/rosa/home">AWS account</a>.</p>
 </li>
 <li>
-<p>To enable Red&#160;Hat OpenShift Services on AWS (classic architecture), go to the <a href="https://console.aws.amazon.com/rosa/">ROSA service</a> and select <strong>Enable OpenShift</strong>.</p>
+<p>To enable Red&#160;Hat OpenShift Service on AWS (classic architecture), go to the <a href="https://console.aws.amazon.com/rosa/">ROSA service</a> and select <strong>Enable OpenShift</strong>.</p>
 </li>
 </ol>
 </div>
@@ -947,7 +947,7 @@ To login to your Red{nbsp}Hat account, get an offline access token at https://co
 </table>
 </div>
 <div class="paragraph">
-<p>Red&#160;Hat OpenShift Services on AWS (classic architecture) evaluates regions in the following priority order:</p>
+<p>Red&#160;Hat OpenShift Service on AWS (classic architecture) evaluates regions in the following priority order:</p>
 </div>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
@@ -1115,7 +1115,7 @@ Use "rosa [command] --help" for more information about a command.</code></pre>
 </div>
 </li>
 <li>
-<p>Verify that your AWS account has the necessary quota to deploy a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster.</p>
+<p>Verify that your AWS account has the necessary quota to deploy a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify quota [--region=&lt;aws_region&gt;]</code></pre>
@@ -1229,7 +1229,7 @@ OCM Organization External ID: 0000000</code></pre>
 </td>
 <td class="content">
 <div class="paragraph _abstract">
-<p>Installing a new Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster into a VPC that was automatically created by the installer for a different cluster is not supported.</p>
+<p>Installing a new Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster into a VPC that was automatically created by the installer for a different cluster is not supported.</p>
 </div>
 </td>
 </tr>
@@ -1298,7 +1298,7 @@ OCM Organization External ID: 0000000</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You can install a non-PrivateLink Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster in a pre-existing BYO VPC.</p>
+<p>You can install a non-PrivateLink Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster in a pre-existing BYO VPC.</p>
 </div>
 </td>
 </tr>
@@ -1309,9 +1309,9 @@ OCM Organization External ID: 0000000</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-hcp-firewall-prerequisites_rosa-classic-prepare-to-create-the-cluster">Firewall prerequisites for Red&#160;Hat OpenShift Services on AWS (classic architecture)</h4>
+<h4 id="rosa-hcp-firewall-prerequisites_rosa-classic-prepare-to-create-the-cluster">Firewall prerequisites for Red&#160;Hat OpenShift Service on AWS (classic architecture)</h4>
 <div class="paragraph _abstract">
-<p>If you are using a firewall to control egress traffic from Red&#160;Hat OpenShift Services on AWS (classic architecture), your Virtual Private Cloud (VPC) must be able to complete requests from the cluster to the Amazon S3 service, for example, via an Amazon S3 gateway. You must also configure your firewall to grant access to the following domain and port combinations.</p>
+<p>If you are using a firewall to control egress traffic from Red&#160;Hat OpenShift Service on AWS (classic architecture), your Virtual Private Cloud (VPC) must be able to complete requests from the cluster to the Amazon S3 service, for example, via an Amazon S3 gateway. You must also configure your firewall to grant access to the following domain and port combinations.</p>
 </div>
 <div class="sect4">
 <h5 id="_domains_for_installation_packages_and_tools_2">Domains for installation packages and tools</h5>
@@ -1565,7 +1565,7 @@ For more information about how remote health monitoring data is used by Red&#160
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>api.openshift.com</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ROSA CLI running on bastion host</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required for registering a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster into Red Hat Hybrid Cloud Console.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required for registering a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster into Red Hat Hybrid Cloud Console.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>iam.amazonaws.com</code></p></td>
@@ -1615,14 +1615,14 @@ For more information about how remote health monitoring data is used by Red&#160
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>sts.&lt;your region&gt;.amazonaws.com</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Used to access the AWS Secure Token Service (STS) regional endpoint to retrieve a short-lived token to access AWS services. Alternatively, you can create a VPC endpoint for STS service to avoid whitelisting this URL from your firewall.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>console.redhat.com</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any browser to access Red Hat Hybrid Cloud Console</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">To manage a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster from Hybrid Cloud Console.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To manage a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster from Hybrid Cloud Console.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>sso.redhat.com</code></p></td>
@@ -1635,7 +1635,7 @@ For more information about how remote health monitoring data is used by Red&#160
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-classic-firewall-prerequisites_rosa-classic-prepare-to-create-the-cluster">Firewall allowlist requirements for Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters using STS</h4>
+<h4 id="rosa-classic-firewall-prerequisites_rosa-classic-prepare-to-create-the-cluster">Firewall allowlist requirements for Red&#160;Hat OpenShift Service on AWS (classic architecture) clusters using STS</h4>
 <div class="paragraph _abstract">
 <p>You must add several URLs to an allowlist to download required packages and tools for your cluster.</p>
 </div>
@@ -1647,7 +1647,7 @@ For more information about how remote health monitoring data is used by Red&#160
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Only Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters deployed with PrivateLink can use a firewall to control egress traffic.</p>
+<p>Only Red&#160;Hat OpenShift Service on AWS (classic architecture) clusters deployed with PrivateLink can use a firewall to control egress traffic.</p>
 </div>
 </td>
 </tr>
@@ -1756,7 +1756,7 @@ For more information about how remote health monitoring data is used by Red&#160
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>oidc.op1.openshiftapps.com</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Used by Red&#160;Hat OpenShift Services on AWS (classic architecture) for STS implementation with managed OIDC configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used by Red&#160;Hat OpenShift Service on AWS (classic architecture) for STS implementation with managed OIDC configuration.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>api.openshiftusgov.com</code></p></td>
@@ -1996,12 +1996,12 @@ For more information about how remote health monitoring data is used by Red&#160
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>api.deadmanssnitch.com</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alerting service used by Red&#160;Hat OpenShift Services on AWS (classic architecture) to send periodic pings that indicate whether the cluster is available and running.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alerting service used by Red&#160;Hat OpenShift Service on AWS (classic architecture) to send periodic pings that indicate whether the cluster is available and running.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>nosnch.in</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alerting service used by Red&#160;Hat OpenShift Services on AWS (classic architecture) to send periodic pings that indicate whether the cluster is available and running.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alerting service used by Red&#160;Hat OpenShift Service on AWS (classic architecture) to send periodic pings that indicate whether the cluster is available and running.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http-inputs-osdsecuritylogs.splunkcloud.com</code></p></td>
@@ -2044,10 +2044,10 @@ For more information about how remote health monitoring data is used by Red&#160
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>By default, Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters require you to set the <code>domain name servers</code> option to <code>AmazonProvidedDNS</code> to ensure successful cluster creation and operation.</p>
+<p>By default, Red&#160;Hat OpenShift Service on AWS (classic architecture) clusters require you to set the <code>domain name servers</code> option to <code>AmazonProvidedDNS</code> to ensure successful cluster creation and operation.</p>
 </li>
 <li>
-<p>To use a custom DNS server and domain name for your cluster, the Red&#160;Hat OpenShift Services on AWS (classic architecture) installer must be able to use VPC DNS with default DHCP options so that it can resolve internal IPs and services. This means that you must create a custom DHCP option set to forward DNS lookups to your DNS server, and associate this option set with your VPC before you create the cluster.</p>
+<p>To use a custom DNS server and domain name for your cluster, the Red&#160;Hat OpenShift Service on AWS (classic architecture) installer must be able to use VPC DNS with default DHCP options so that it can resolve internal IPs and services. This means that you must create a custom DHCP option set to forward DNS lookups to your DNS server, and associate this option set with your VPC before you create the cluster.</p>
 </li>
 </ul>
 </div>
@@ -2068,7 +2068,7 @@ For more information about how remote health monitoring data is used by Red&#160
 <div class="sect3">
 <h4 id="rosa-hcp-vpc-subnet-tagging_rosa-classic-prepare-to-create-the-cluster">Tag your subnets</h4>
 <div class="paragraph _abstract">
-<p>If you created your own virtual private cloud (VPC) to create a Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster, you must tag your VPC subnets. Automated service preflight checks verify that these resources are tagged correctly before you can use these resources for a cluster.</p>
+<p>If you created your own virtual private cloud (VPC) to create a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster, you must tag your VPC subnets. Automated service preflight checks verify that these resources are tagged correctly before you can use these resources for a cluster.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 35. Required subnet tags</caption>
@@ -2560,7 +2560,7 @@ I: To view all DNS domains, run 'rosa list dns-domains'</code></pre>
 <div class="sect3">
 <h4 id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-classic-prepare-to-create-the-cluster">Create an ocm-role IAM role</h4>
 <div class="paragraph _abstract">
-<p>Create the <code>ocm-role</code> Identity and Access Management (IAM) roles by using the ROSA command-line interface (CLI) (<code>rosa</code>) to grant OpenShift Cluster Manager the permissions needed to install and manage your Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters.</p>
+<p>Create the <code>ocm-role</code> Identity and Access Management (IAM) roles by using the ROSA command-line interface (CLI) (<code>rosa</code>) to grant OpenShift Cluster Manager the permissions needed to install and manage your Red&#160;Hat OpenShift Service on AWS (classic architecture) clusters.</p>
 </div>
 <div class="paragraph">
 <p>If you want to create and manage clusters by using only the <code>rosa</code> CLI and the OpenShift CLI (<code>oc</code>), you can use the <code>--no-console</code> profile for the <code>ocm-role</code> IAM resource. For more information about the <code>ocm-role</code> IAM resource permissions profile, see the <em>Additional resources</em>.</p>
@@ -2573,7 +2573,7 @@ I: To view all DNS domains, run 'rosa list dns-domains'</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You must create the <code>ocm-role</code> IAM role before you can create your Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster.</p>
+<p>You must create the <code>ocm-role</code> IAM role before you can create your Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster.</p>
 </div>
 </td>
 </tr>
@@ -2635,7 +2635,7 @@ I: To view all DNS domains, run 'rosa list dns-domains'</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The admin profile supports "auto" mode configuration for Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters which provisions OIDC Configuration and Operator roles automatically. To achieve this automatic flow, the profile has a wider set of permissions than the standard profile.</p>
+<p>The admin profile supports "auto" mode configuration for Red&#160;Hat OpenShift Service on AWS (classic architecture) clusters which provisions OIDC Configuration and Operator roles automatically. To achieve this automatic flow, the profile has a wider set of permissions than the standard profile.</p>
 </div>
 </td>
 </tr>
@@ -2735,7 +2735,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 </td>
 <td class="content">
 <div class="paragraph">
-<p>While the <code>no-console</code> profile offers the minimum permissions policy that can still create Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters, the permissions are insufficient if you want to use <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> for cluster creation.</p>
+<p>While the <code>no-console</code> profile offers the minimum permissions policy that can still create Red&#160;Hat OpenShift Service on AWS (classic architecture) clusters, the permissions are insufficient if you want to use <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> for cluster creation.</p>
 </div>
 </td>
 </tr>
@@ -2945,7 +2945,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 <div class="sect3">
 <h4 id="rosa-associating-multiple-account_rosa-classic-prepare-to-create-the-cluster">Associate multiple AWS accounts with your Red&#160;Hat organization</h4>
 <div class="paragraph _abstract">
-<p>You can associate multiple AWS accounts with your Red&#160;Hat organization. Associating multiple accounts lets you create Red&#160;Hat OpenShift Services on AWS (classic architecture) clusters on any of the associated AWS accounts from your Red&#160;Hat organization.</p>
+<p>You can associate multiple AWS accounts with your Red&#160;Hat organization. Associating multiple accounts lets you create Red&#160;Hat OpenShift Service on AWS (classic architecture) clusters on any of the associated AWS accounts from your Red&#160;Hat organization.</p>
 </div>
 <div class="paragraph">
 <p>With this capability, you can create clusters on different AWS profiles according to characteristics that make sense for your business, for example, by using one AWS profile for each region to create region-bound environments.</p>
@@ -2966,7 +2966,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 <p>You have installed and configured the latest AWS CLI (<code>aws</code>) and ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host.</p>
 </li>
 <li>
-<p>You have created the <code>ocm-role</code> and <code>user-role</code> IAM roles for Red&#160;Hat OpenShift Services on AWS (classic architecture).</p>
+<p>You have created the <code>ocm-role</code> and <code>user-role</code> IAM roles for Red&#160;Hat OpenShift Service on AWS (classic architecture).</p>
 </li>
 </ul>
 </div>
@@ -3020,7 +3020,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 <p>You can apply a policy as a <em>permissions boundary</em> on an installer role. You can use an AWS-managed policy or a customer-managed policy to set the boundary for an Amazon Web Services (AWS) Identity and Access Management (IAM) entity (user or role).</p>
 </div>
 <div class="paragraph">
-<p>The combination of policy and boundary policy limits the maximum permissions for the user or role. Red&#160;Hat OpenShift Services on AWS (classic architecture) includes a set of three prepared permission boundary policy files, with which you can restrict permissions for the installer role since changing the installer policy itself is not supported.</p>
+<p>The combination of policy and boundary policy limits the maximum permissions for the user or role. Red&#160;Hat OpenShift Service on AWS (classic architecture) includes a set of three prepared permission boundary policy files, with which you can restrict permissions for the installer role since changing the installer policy itself is not supported.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3042,14 +3042,14 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 <div class="ulist">
 <ul>
 <li>
-<p>The <em>Core</em> boundary policy file contains the minimum permissions needed for Red&#160;Hat OpenShift Services on AWS (classic architecture) installer to install an Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster.
+<p>The <em>Core</em> boundary policy file contains the minimum permissions needed for Red&#160;Hat OpenShift Service on AWS (classic architecture) installer to install an Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster.
 The installer does not have permissions to create a virtual private cloud (VPC) or PrivateLink (PL). A VPC needs to be provided.</p>
 </li>
 <li>
-<p>The <em>VPC</em> boundary policy file contains the minimum permissions needed for Red&#160;Hat OpenShift Services on AWS (classic architecture) installer to create or manage the VPC. It does not include permissions for PL or core installation. If you need to install a cluster with enough permissions for the installer to install the cluster and create or manage the VPC, but you do not need to set up PL, then use the core and VPC boundary files together with the installer role.</p>
+<p>The <em>VPC</em> boundary policy file contains the minimum permissions needed for Red&#160;Hat OpenShift Service on AWS (classic architecture) installer to create or manage the VPC. It does not include permissions for PL or core installation. If you need to install a cluster with enough permissions for the installer to install the cluster and create or manage the VPC, but you do not need to set up PL, then use the core and VPC boundary files together with the installer role.</p>
 </li>
 <li>
-<p>The <em>PrivateLink (PL)</em> boundary policy file contains the minimum permissions needed for Red&#160;Hat OpenShift Services on AWS (classic architecture) installer to create the AWS PL with a cluster. It does not include permissions for VPC or core installation. Provide a pre-created VPC for all PL clusters during installation.</p>
+<p>The <em>PrivateLink (PL)</em> boundary policy file contains the minimum permissions needed for Red&#160;Hat OpenShift Service on AWS (classic architecture) installer to create the AWS PL with a cluster. It does not include permissions for VPC or core installation. Provide a pre-created VPC for all PL clusters during installation.</p>
 </li>
 </ul>
 </div>
@@ -3130,13 +3130,13 @@ The installer does not have permissions to create a virtual private cloud (VPC) 
 <div class="sect3">
 <h4 id="rosa-sts-byo-oidc_rosa-classic-prepare-to-create-the-cluster">Create an OpenID Connect configuration</h4>
 <div class="paragraph _abstract">
-<p>Create an OpenID Connect (OIDC) configuration before creating your Red&#160;Hat OpenShift Services on AWS (classic architecture) cluster to authenticate Operator access to required AWS resources by using the AWS Security Token Service (STS). Each production cluster requires its own OIDC configuration.</p>
+<p>Create an OpenID Connect (OIDC) configuration before creating your Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster to authenticate Operator access to required AWS resources by using the AWS Security Token Service (STS). Each production cluster requires its own OIDC configuration.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have completed the AWS prerequisites for Red&#160;Hat OpenShift Services on AWS (classic architecture).</p>
+<p>You have completed the AWS prerequisites for Red&#160;Hat OpenShift Service on AWS (classic architecture).</p>
 </li>
 <li>
 <p>You have installed and configured the latest ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host.</p>
@@ -3363,7 +3363,7 @@ I: Created OIDC provider with ARN 'arn:aws:iam::4540112244:oidc-provider/dvbwgdz
 <p>Allows you to specify the mode to create your OIDC configuration. With the <code>manual</code> option, you receive AWS commands that set up the OIDC configuration in an S3 bucket. This option stores the private key in the Secrets Manager. With the <code>manual</code> option, the OIDC Endpoint URL is the URL for the S3 bucket. You must retrieve the Secrets Manager Amazon Resource Name (ARN) to register the OIDC configuration with OpenShift Cluster Manager.</p>
 </div>
 <div class="paragraph">
-<p>You receive the same OIDC configuration and AWS resources as the <code>manual</code> mode when using the <code>auto</code> option. A significant difference between the two options is that when using the <code>auto</code> option, Red&#160;Hat OpenShift Services on AWS (classic architecture) calls AWS, so you do not need to take any further actions. The OIDC Endpoint URL is the URL for the S3 bucket. The <code>rosa</code> CLI retrieves the Secrets Manager ARN, registers the OIDC configuration with OpenShift Cluster Manager, and reports the second <code>rosa</code> command that the user can run to continue with the creation of the STS cluster.</p>
+<p>You receive the same OIDC configuration and AWS resources as the <code>manual</code> mode when using the <code>auto</code> option. A significant difference between the two options is that when using the <code>auto</code> option, Red&#160;Hat OpenShift Service on AWS (classic architecture) calls AWS, so you do not need to take any further actions. The OIDC Endpoint URL is the URL for the S3 bucket. The <code>rosa</code> CLI retrieves the Secrets Manager ARN, registers the OIDC configuration with OpenShift Cluster Manager, and reports the second <code>rosa</code> command that the user can run to continue with the creation of the STS cluster.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example</div>
@@ -3575,12 +3575,12 @@ EOF</code></pre>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS (classic architecture)</a> | Next: <a href="rosa-classic-create-a-cluster-using-the-cli_rosa-classic-create-a-cluster-using-the-cli.html">Create a cluster using the CLI</a> →</p>
+<p>↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Service on AWS (classic architecture)</a> | Next: <a href="rosa-classic-create-a-cluster-using-the-cli_rosa-classic-create-a-cluster-using-the-cli.html">Create a cluster using the CLI</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-15 11:48:48 -0500
+Last updated 2026-10-15 14:32:45 -0500
 </div>
 </div>
 </body>

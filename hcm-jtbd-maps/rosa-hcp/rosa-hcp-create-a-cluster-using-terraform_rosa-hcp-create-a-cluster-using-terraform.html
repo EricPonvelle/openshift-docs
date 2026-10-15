@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Red&#160;Hat OpenShift Services on AWS</title>
+<title>Red&#160;Hat OpenShift Service on AWS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -573,10 +573,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body id="rosa-hcp-create-a-cluster-using-terraform_rosa-hcp-create-a-cluster-using-terraform" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
-<h1>Red&#160;Hat OpenShift Services on AWS</h1>
+<h1>Red&#160;Hat OpenShift Service on AWS</h1>
 <div id="toc" class="toc2">
 <div id="toctitle"></div>
-<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="navigation.html">Red&#160;Hat OpenShift Service on AWS</a></span></p><ul class="sectlevel1">
 <li><button class="toc-toggle" type="button" data-toc-key="_whats_new.html">▶</button><a href="_whats_new.html">What&#8217;s new</a>
 
 <ul class="sectlevel2">
@@ -619,9 +619,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><button class="toc-toggle" type="button" data-toc-key="_get_started.html">▶</button><a href="_get_started.html">Get Started</a>
 
 <ul class="sectlevel2">
-<li><a href="create-a-cluster-using-the-default-options_rosa-hcp-create-a-cluster-using-the-default-options.html">Create a Red&#160;Hat OpenShift Services on AWS cluster by using the default options</a>
+<li><a href="create-a-cluster-using-the-default-options_rosa-hcp-create-a-cluster-using-the-default-options.html">Create a Red&#160;Hat OpenShift Service on AWS cluster by using the default options</a>
 </li>
-<li><a href="deploy-and-access-a-simple-application_rosa-hcp-deploy-and-access-a-simple-application.html">Deploy and access a simple application on a Red&#160;Hat OpenShift Services on AWS cluster</a>
+<li><a href="deploy-and-access-a-simple-application_rosa-hcp-deploy-and-access-a-simple-application.html">Deploy and access a simple application on a Red&#160;Hat OpenShift Service on AWS cluster</a>
 </li>
 </ul>
 </li>
@@ -723,15 +723,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-terraform-overview_rosa-hcp-create-a-cluster-using-terraform">Overview of Terraform</a></li><li class="level-4"><a href="#rosa-sts-terraform-prerequisites_rosa-hcp-create-a-cluster-using-terraform">Prerequisites</a></li><li class="level-4"><a href="#rosa-sts-terraform-considerations_rosa-hcp-create-a-cluster-using-terraform">Considerations when using Terraform</a></li><li class="level-4"><a href="#rosa-sts-overview-of-the-default-cluster-specifications-terraform_rosa-hcp-create-a-cluster-using-terraform">Overview of the default cluster specifications</a></li><li class="level-4"><a href="#rosa-hcp-terraform-cluster-creation-overview_rosa-hcp-create-a-cluster-using-terraform">Creating a default Red Hat OpenShift Services on AWS cluster using Terraform</a></li><li class="level-4"><a href="#rosa-sts-cluster-terraform-setup_rosa-hcp-create-a-cluster-using-terraform">Prepare your environment for Terraform</a></li><li class="level-4"><a href="#rosa-hcp-cluster-terraform-file-creation_rosa-hcp-create-a-cluster-using-terraform">Creating your Terraform files locally</a></li><li class="level-4"><a href="#rosa-sts-cluster-terraform-execute_rosa-hcp-create-a-cluster-using-terraform">Use Terraform to create your Red Hat OpenShift Services on AWS cluster</a></li><li class="level-4"><a href="#config-htpasswd-idp-terraform_rosa-hcp-create-a-cluster-using-terraform">Configure an htpasswd identity provider with Terraform</a></li><li class="level-4"><a href="#rosa-glossary-disconnected_rosa-hcp-create-a-cluster-using-terraform">Glossary of network environment terms</a></li><li class="level-4"><a href="#rosa-hcp-aws-private-security-groups_rosa-hcp-create-a-cluster-using-terraform">Add additional AWS security groups to the AWS PrivateLink endpoint</a></li><li class="level-4"><a href="#rosa-additional-principals-overview_rosa-hcp-create-a-cluster-using-terraform">Additional principals on your Red Hat OpenShift Services on AWS cluster</a></li><li class="level-4"><a href="#rosa-additional-principals-create_rosa-hcp-create-a-cluster-using-terraform">Add additional principals while creating your Red Hat OpenShift Services on AWS cluster</a></li><li class="level-4"><a href="#rosa-additional-principals-edit_rosa-hcp-create-a-cluster-using-terraform">Add additional principals to your existing Red Hat OpenShift Services on AWS cluster</a></li><li class="level-4"><a href="#rosa-hcp-sts-creating-a-cluster-cli_rosa-hcp-create-a-cluster-using-terraform-no-cni">Create the cluster without a CNI plugin</a></li><li class="level-4"><a href="#rosa-hcp-no-cni-install-cni-plugin_rosa-hcp-create-a-cluster-using-terraform">Install a CNI plugin</a></li><li class="level-4"><a href="#creating-cluster-with-fips-encryption_rosa-hcp-create-a-cluster-using-terraform">Create a Red Hat OpenShift Services on AWS cluster using FIPS encryption</a></li><li class="level-4"><a href="#rosa-operator-config-fips_rosa-hcp-create-a-cluster-using-terraform">Create Operator roles and policies</a></li><li class="level-4"><a href="#creating-cluster-with-fips-encryption-cli_rosa-hcp-create-a-cluster-using-terraform">Create a Red Hat OpenShift Services on AWS cluster using FIPS encryption in the CLI</a></li><li class="level-4"><a href="#sd-terraform-cluster-destroy_rosa-hcp-create-a-cluster-using-terraform">Deleting your Red Hat OpenShift Services on AWS cluster with Terraform</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-terraform-overview_rosa-hcp-create-a-cluster-using-terraform">Overview of Terraform</a></li><li class="level-4"><a href="#rosa-sts-terraform-prerequisites_rosa-hcp-create-a-cluster-using-terraform">Prerequisites</a></li><li class="level-4"><a href="#rosa-sts-terraform-considerations_rosa-hcp-create-a-cluster-using-terraform">Considerations when using Terraform</a></li><li class="level-4"><a href="#rosa-sts-overview-of-the-default-cluster-specifications-terraform_rosa-hcp-create-a-cluster-using-terraform">Overview of the default cluster specifications</a></li><li class="level-4"><a href="#rosa-hcp-terraform-cluster-creation-overview_rosa-hcp-create-a-cluster-using-terraform">Creating a default Red Hat OpenShift Service on AWS cluster using Terraform</a></li><li class="level-4"><a href="#rosa-sts-cluster-terraform-setup_rosa-hcp-create-a-cluster-using-terraform">Prepare your environment for Terraform</a></li><li class="level-4"><a href="#rosa-hcp-cluster-terraform-file-creation_rosa-hcp-create-a-cluster-using-terraform">Creating your Terraform files locally</a></li><li class="level-4"><a href="#rosa-sts-cluster-terraform-execute_rosa-hcp-create-a-cluster-using-terraform">Use Terraform to create your Red Hat OpenShift Service on AWS cluster</a></li><li class="level-4"><a href="#config-htpasswd-idp-terraform_rosa-hcp-create-a-cluster-using-terraform">Configure an htpasswd identity provider with Terraform</a></li><li class="level-4"><a href="#rosa-glossary-disconnected_rosa-hcp-create-a-cluster-using-terraform">Glossary of network environment terms</a></li><li class="level-4"><a href="#rosa-hcp-aws-private-security-groups_rosa-hcp-create-a-cluster-using-terraform">Add additional AWS security groups to the AWS PrivateLink endpoint</a></li><li class="level-4"><a href="#rosa-additional-principals-overview_rosa-hcp-create-a-cluster-using-terraform">Additional principals on your Red Hat OpenShift Service on AWS cluster</a></li><li class="level-4"><a href="#rosa-additional-principals-create_rosa-hcp-create-a-cluster-using-terraform">Add additional principals while creating your Red Hat OpenShift Service on AWS cluster</a></li><li class="level-4"><a href="#rosa-additional-principals-edit_rosa-hcp-create-a-cluster-using-terraform">Add additional principals to your existing Red Hat OpenShift Service on AWS cluster</a></li><li class="level-4"><a href="#rosa-hcp-sts-creating-a-cluster-cli_rosa-hcp-create-a-cluster-using-terraform-no-cni">Create the cluster without a CNI plugin</a></li><li class="level-4"><a href="#rosa-hcp-no-cni-install-cni-plugin_rosa-hcp-create-a-cluster-using-terraform">Install a CNI plugin</a></li><li class="level-4"><a href="#creating-cluster-with-fips-encryption_rosa-hcp-create-a-cluster-using-terraform">Create a Red Hat OpenShift Service on AWS cluster using FIPS encryption</a></li><li class="level-4"><a href="#rosa-operator-config-fips_rosa-hcp-create-a-cluster-using-terraform">Create Operator roles and policies</a></li><li class="level-4"><a href="#creating-cluster-with-fips-encryption-cli_rosa-hcp-create-a-cluster-using-terraform">Create a Red Hat OpenShift Service on AWS cluster using FIPS encryption in the CLI</a></li><li class="level-4"><a href="#sd-terraform-cluster-destroy_rosa-hcp-create-a-cluster-using-terraform">Deleting your Red Hat OpenShift Service on AWS cluster with Terraform</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="rosa-hcp-create-a-cluster-using-terraform_rosa-hcp-create-a-cluster-using-terraform">Create a cluster using Terraform</h3>
 <div class="paragraph _abstract">
-<p>Create a Red&#160;Hat OpenShift Services on AWS cluster with a Terraform cluster template that is configured with the default cluster options.</p>
+<p>Create a Red&#160;Hat OpenShift Service on AWS cluster with a Terraform cluster template that is configured with the default cluster options.</p>
 </div>
 <div class="paragraph">
-<p>After you prepare your AWS account, you can create a Red&#160;Hat OpenShift Services on AWS cluster by using Terraform. Terraform lets you define your cluster as code so that you can version, review, and reproduce the deployment.</p>
+<p>After you prepare your AWS account, you can create a Red&#160;Hat OpenShift Service on AWS cluster by using Terraform. Terraform lets you define your cluster as code so that you can version, review, and reproduce the deployment.</p>
 </div>
 <div class="paragraph">
 <p>Red&#160;Hat provides a Terraform cluster template that is configured with the default cluster options. Prepare your environment, create your Terraform files, and apply them to create the cluster.</p>
@@ -764,7 +764,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li>
 <p>You have created your AWS account-wide IAM roles.</p>
 <div class="paragraph">
-<p>The specific account-wide IAM roles and policies provide the STS permissions required for Red&#160;Hat OpenShift Services on AWS support, installation, control plane, and compute functionality. This includes account-wide Operator policies. See the Additional resources for more information on the AWS account roles.</p>
+<p>The specific account-wide IAM roles and policies provide the STS permissions required for Red&#160;Hat OpenShift Service on AWS support, installation, control plane, and compute functionality. This includes account-wide Operator policies. See the Additional resources for more information on the AWS account roles.</p>
 </div>
 </li>
 <li>
@@ -855,10 +855,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="rosa-sts-overview-of-the-default-cluster-specifications-terraform_rosa-hcp-create-a-cluster-using-terraform">Overview of the default cluster specifications</h4>
 <div class="paragraph _abstract">
-<p>You can quickly create a Red&#160;Hat OpenShift Services on AWS cluster by using the default installation options.</p>
+<p>You can quickly create a Red&#160;Hat OpenShift Service on AWS cluster by using the default installation options.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 34. Default Red&#160;Hat OpenShift Services on AWS cluster specifications</caption>
+<caption class="title">Table 34. Default Red&#160;Hat OpenShift Service on AWS cluster specifications</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -1019,7 +1019,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Mode used to create the Operator roles and the OpenID Connect (OIDC) provider: <code>auto</code></p>
 </li>
 <li>
-<p>A configured <code>ocm-role</code>, which is required for all Red&#160;Hat OpenShift Services on AWS clusters.</p>
+<p>A configured <code>ocm-role</code>, which is required for all Red&#160;Hat OpenShift Service on AWS clusters.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1115,15 +1115,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="rosa-hcp-terraform-cluster-creation-overview_rosa-hcp-create-a-cluster-using-terraform">Creating a default Red&#160;Hat OpenShift Services on AWS cluster using Terraform</h4>
+<h4 id="rosa-hcp-terraform-cluster-creation-overview_rosa-hcp-create-a-cluster-using-terraform">Creating a default Red&#160;Hat OpenShift Service on AWS cluster using Terraform</h4>
 <div class="paragraph _abstract">
-<p>The cluster creation process outlined below shows how to use Terraform to create your account-wide IAM roles and a Red&#160;Hat OpenShift Services on AWS cluster with a managed OIDC configuration.</p>
+<p>The cluster creation process outlined below shows how to use Terraform to create your account-wide IAM roles and a Red&#160;Hat OpenShift Service on AWS cluster with a managed OIDC configuration.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="rosa-sts-cluster-terraform-setup_rosa-hcp-create-a-cluster-using-terraform">Prepare your environment for Terraform</h4>
 <div class="paragraph _abstract">
-<p>Before you can create your Red&#160;Hat OpenShift Services on AWS cluster by using Terraform, you must export your offline Red Hat OpenShift Cluster Manager token to grant Terraform permission to access your account.</p>
+<p>Before you can create your Red&#160;Hat OpenShift Service on AWS cluster by using Terraform, you must export your offline Red Hat OpenShift Cluster Manager token to grant Terraform permission to access your account.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -1474,7 +1474,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-sts-cluster-terraform-execute_rosa-hcp-create-a-cluster-using-terraform">Use Terraform to create your Red&#160;Hat OpenShift Services on AWS cluster</h4>
+<h4 id="rosa-sts-cluster-terraform-execute_rosa-hcp-create-a-cluster-using-terraform">Use Terraform to create your Red&#160;Hat OpenShift Service on AWS cluster</h4>
 <div class="paragraph _abstract">
 <p>After you create the Terraform files, you must initiate Terraform to provide all of the required dependencies. Then apply the Terraform plan.</p>
 </div>
@@ -1553,7 +1553,7 @@ Do you want to perform these actions?
 </div>
 </div>
 <div class="paragraph">
-<p>If you enter <code>yes</code>, your Terraform plan starts, creating your AWS account roles, Operator roles, and your Red&#160;Hat OpenShift Services on AWS cluster.</p>
+<p>If you enter <code>yes</code>, your Terraform plan starts, creating your AWS account roles, Operator roles, and your Red&#160;Hat OpenShift Service on AWS cluster.</p>
 </div>
 </li>
 </ol>
@@ -1796,7 +1796,7 @@ EOF</code></pre>
 <div class="sect3">
 <h4 id="rosa-glossary-disconnected_rosa-hcp-create-a-cluster-using-terraform">Glossary of network environment terms</h4>
 <div class="paragraph _abstract">
-<p>The Red&#160;Hat OpenShift Services on AWS documentation uses several terms to describe network environments with limited or no internet connectivity. These environments differ from a standard network and might require additional configuration.</p>
+<p>The Red&#160;Hat OpenShift Service on AWS documentation uses several terms to describe network environments with limited or no internet connectivity. These environments differ from a standard network and might require additional configuration.</p>
 </div>
 <div class="paragraph">
 <p>The following table describes the different terms used to refer to environments without a full internet connection:</p>
@@ -1847,7 +1847,7 @@ A cluster in a disconnected environment does not have access to Red&#160;Hat pub
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Adding additional AWS security groups to the AWS PrivateLink endpoint is only supported on Red&#160;Hat OpenShift Services on AWS version 4.17.2 and later.</p>
+<p>Adding additional AWS security groups to the AWS PrivateLink endpoint is only supported on Red&#160;Hat OpenShift Service on AWS version 4.17.2 and later.</p>
 </div>
 </td>
 </tr>
@@ -1935,19 +1935,19 @@ A cluster in a disconnected environment does not have access to Red&#160;Hat pub
 </div>
 </div>
 <div class="paragraph">
-<p>You can now access the API of your Red&#160;Hat OpenShift Services on AWS private cluster from the specified CIDR block.</p>
+<p>You can now access the API of your Red&#160;Hat OpenShift Service on AWS private cluster from the specified CIDR block.</p>
 </div>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-additional-principals-overview_rosa-hcp-create-a-cluster-using-terraform">Additional principals on your Red&#160;Hat OpenShift Services on AWS cluster</h4>
+<h4 id="rosa-additional-principals-overview_rosa-hcp-create-a-cluster-using-terraform">Additional principals on your Red&#160;Hat OpenShift Service on AWS cluster</h4>
 <div class="paragraph _abstract">
 <p>You can allow AWS Identity and Access Management (IAM) roles as additional principals to connect to your cluster&#8217;s private API server endpoint.</p>
 </div>
 <div class="paragraph">
-<p>You can access your Red&#160;Hat OpenShift Services on AWS cluster&#8217;s API server endpoint from the public internet or the virtual private cloud (VPC) private subnet interface endpoint. By default, you can privately access your Red&#160;Hat OpenShift Services on AWS API Server by using the <code>-kube-system-kube-controller-manager</code> Operator role. To access the Red&#160;Hat OpenShift Services on AWS API server from another account without using the primary account, include cross-account IAM roles as additional principals. This feature simplifies your network architecture and reduces data transfer costs. You can avoid peering or attaching cross-account VPCs to the cluster&#8217;s VPC.</p>
+<p>You can access your Red&#160;Hat OpenShift Service on AWS cluster&#8217;s API server endpoint from the public internet or the virtual private cloud (VPC) private subnet interface endpoint. By default, you can privately access your Red&#160;Hat OpenShift Service on AWS API Server by using the <code>-kube-system-kube-controller-manager</code> Operator role. To access the Red&#160;Hat OpenShift Service on AWS API server from another account without using the primary account, include cross-account IAM roles as additional principals. This feature simplifies your network architecture and reduces data transfer costs. You can avoid peering or attaching cross-account VPCs to the cluster&#8217;s VPC.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1965,7 +1965,7 @@ A cluster in a disconnected environment does not have access to Red&#160;Hat pub
 </td>
 <td class="content">
 <div class="paragraph">
-<p>After configuring additional allowed principals, create an interface VPC endpoint in the VPC that accesses the cross-account Red&#160;Hat OpenShift Services on AWS API server. Then, create a private hosted zone in Route53. Configure the hosted zone to route calls to the cross-account Red&#160;Hat OpenShift Services on AWS API server through the VPC endpoint.</p>
+<p>After configuring additional allowed principals, create an interface VPC endpoint in the VPC that accesses the cross-account Red&#160;Hat OpenShift Service on AWS API server. Then, create a private hosted zone in Route53. Configure the hosted zone to route calls to the cross-account Red&#160;Hat OpenShift Service on AWS API server through the VPC endpoint.</p>
 </div>
 </td>
 </tr>
@@ -1973,7 +1973,7 @@ A cluster in a disconnected environment does not have access to Red&#160;Hat pub
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-additional-principals-create_rosa-hcp-create-a-cluster-using-terraform">Add additional principals while creating your Red&#160;Hat OpenShift Services on AWS cluster</h4>
+<h4 id="rosa-additional-principals-create_rosa-hcp-create-a-cluster-using-terraform">Add additional principals while creating your Red&#160;Hat OpenShift Service on AWS cluster</h4>
 <div class="paragraph _abstract">
 <p>By default, only the Identity and Access Management (IAM) role that created the cluster can access the cluster&#8217;s API. If other IAM roles in your AWS account need access to the cluster API, you can grant them access by specifying additional allowed principals during cluster creation.</p>
 </div>
@@ -2061,7 +2061,7 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-additional-principals-edit_rosa-hcp-create-a-cluster-using-terraform">Add additional principals to your existing Red&#160;Hat OpenShift Services on AWS cluster</h4>
+<h4 id="rosa-additional-principals-edit_rosa-hcp-create-a-cluster-using-terraform">Add additional principals to your existing Red&#160;Hat OpenShift Service on AWS cluster</h4>
 <div class="paragraph _abstract">
 <p>If you did not specify additional allowed principals when you created your cluster, or if your access requirements have changed, you can add additional principals to an existing cluster by using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
 </div>
@@ -2093,19 +2093,19 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 <div class="sect3">
 <h4 id="rosa-hcp-sts-creating-a-cluster-cli_rosa-hcp-create-a-cluster-using-terraform-no-cni">Create the cluster without a CNI plugin</h4>
 <div class="paragraph _abstract">
-<p>You can create a Red&#160;Hat OpenShift Services on AWS cluster without a CNI plugin by using the <code>--no-cni</code> flag with the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+<p>You can create a Red&#160;Hat OpenShift Service on AWS cluster without a CNI plugin by using the <code>--no-cni</code> flag with the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have completed the AWS prerequisites for Red&#160;Hat OpenShift Services on AWS.</p>
+<p>You have completed the AWS prerequisites for Red&#160;Hat OpenShift Service on AWS.</p>
 </li>
 <li>
 <p>You have available AWS service quotas.</p>
 </li>
 <li>
-<p>You have enabled the Red&#160;Hat OpenShift Services on AWS in the AWS Console.</p>
+<p>You have enabled the Red&#160;Hat OpenShift Service on AWS in the AWS Console.</p>
 </li>
 <li>
 <p>You have installed and configured the latest ROSA CLI (<code>rosa</code>) on your installation host. Run <code>rosa version</code> to see your currently installed version of the ROSA CLI. If a newer version is available, the CLI provides a link to download this upgrade.</p>
@@ -2125,7 +2125,7 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 <div class="title">Procedure</div>
 <ul>
 <li>
-<p>You can create your Red&#160;Hat OpenShift Services on AWS cluster with one of the following commands.</p>
+<p>You can create your Red&#160;Hat OpenShift Service on AWS cluster with one of the following commands.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2134,7 +2134,7 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 </td>
 <td class="content">
 <div class="paragraph">
-<p>When creating a Red&#160;Hat OpenShift Services on AWS cluster, the default machine Classless Inter-Domain Routing (CIDR) is <code>10.0.0.0/16</code>. If this does not correspond to the CIDR range for your VPC subnets, add <code>--machine-cidr &lt;address_block&gt;</code> to the following commands.</p>
+<p>When creating a Red&#160;Hat OpenShift Service on AWS cluster, the default machine Classless Inter-Domain Routing (CIDR) is <code>10.0.0.0/16</code>. If this does not correspond to the CIDR range for your VPC subnets, add <code>--machine-cidr &lt;address_block&gt;</code> to the following commands.</p>
 </div>
 </td>
 </tr>
@@ -2222,7 +2222,7 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If the installation fails or the <code>State</code> field does not change to <code>ready</code> after more than 10 minutes, check the installation troubleshooting documentation for details. For more information, see <em>Troubleshooting installations</em>. For steps to contact Red&#160;Hat Support for assistance, see <em>Getting support for Red&#160;Hat OpenShift Services on AWS</em>.</p>
+<p>If the installation fails or the <code>State</code> field does not change to <code>ready</code> after more than 10 minutes, check the installation troubleshooting documentation for details. For more information, see <em>Troubleshooting installations</em>. For steps to contact Red&#160;Hat Support for assistance, see <em>Getting support for Red&#160;Hat OpenShift Service on AWS</em>.</p>
 </div>
 </td>
 </tr>
@@ -2233,7 +2233,7 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 </div>
 </li>
 <li>
-<p>Track the progress of the cluster creation by watching the Red&#160;Hat OpenShift Services on AWS installation program logs. To check the logs, run the following command:</p>
+<p>Track the progress of the cluster creation by watching the Red&#160;Hat OpenShift Service on AWS installation program logs. To check the logs, run the following command:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa logs install --cluster=&lt;cluster_name&gt; --watch</code></pre>
@@ -2249,7 +2249,7 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 <div class="sect3">
 <h4 id="rosa-hcp-no-cni-install-cni-plugin_rosa-hcp-create-a-cluster-using-terraform">Install a CNI plugin</h4>
 <div class="paragraph _abstract">
-<p>After creating a Red&#160;Hat OpenShift Services on AWS cluster without a CNI plugin, you must install the CNI plugin before the cluster nodes are ready and workloads can deploy. Until you install a CNI provider, components such as the web console, Ingress Controller, image registry, and monitoring stack are not available.</p>
+<p>After creating a Red&#160;Hat OpenShift Service on AWS cluster without a CNI plugin, you must install the CNI plugin before the cluster nodes are ready and workloads can deploy. Until you install a CNI provider, components such as the web console, Ingress Controller, image registry, and monitoring stack are not available.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -2264,9 +2264,9 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 </div>
 </div>
 <div class="sect3">
-<h4 id="creating-cluster-with-fips-encryption_rosa-hcp-create-a-cluster-using-terraform">Create a Red&#160;Hat OpenShift Services on AWS cluster using FIPS encryption</h4>
+<h4 id="creating-cluster-with-fips-encryption_rosa-hcp-create-a-cluster-using-terraform">Create a Red&#160;Hat OpenShift Service on AWS cluster using FIPS encryption</h4>
 <div class="paragraph _abstract">
-<p>You can create a Red&#160;Hat OpenShift Services on AWS cluster with Federal Information Processing Standards (FIPS) encryption and a customer-provided KMS key for node root volumes, the etcd database, or both. A different KMS key Amazon Resource Name (ARN) can be provided for each option.</p>
+<p>You can create a Red&#160;Hat OpenShift Service on AWS cluster with Federal Information Processing Standards (FIPS) encryption and a customer-provided KMS key for node root volumes, the etcd database, or both. A different KMS key Amazon Resource Name (ARN) can be provided for each option.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2276,7 +2276,7 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Red&#160;Hat OpenShift Services on AWS does not automatically configure the <code>default</code> storage class to encrypt persistent volumes with the customer-provided KMS key. You can configure this in-cluster after installation.</p>
+<p>Red&#160;Hat OpenShift Service on AWS does not automatically configure the <code>default</code> storage class to encrypt persistent volumes with the customer-provided KMS key. You can configure this in-cluster after installation.</p>
 </div>
 </td>
 </tr>
@@ -2286,13 +2286,13 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 <div class="sect3">
 <h4 id="rosa-operator-config-fips_rosa-hcp-create-a-cluster-using-terraform">Create Operator roles and policies</h4>
 <div class="paragraph _abstract">
-<p>When you deploy a Red&#160;Hat OpenShift Services on AWS cluster, you must create the Operator IAM roles. The cluster Operators use the Operator roles and policies to obtain temporary permissions to perform cluster operations, such as managing storage and external access.</p>
+<p>When you deploy a Red&#160;Hat OpenShift Service on AWS cluster, you must create the Operator IAM roles. The cluster Operators use the Operator roles and policies to obtain temporary permissions to perform cluster operations, such as managing storage and external access.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have completed the AWS prerequisites for Red&#160;Hat OpenShift Services on AWS.</p>
+<p>You have completed the AWS prerequisites for Red&#160;Hat OpenShift Service on AWS.</p>
 </li>
 <li>
 <p>You have installed and configured the latest ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host.</p>
@@ -2313,7 +2313,7 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 </div>
 </div>
 <div class="paragraph">
-<p>The Operator roles are now created and ready to use for creating your Red&#160;Hat OpenShift Services on AWS cluster.</p>
+<p>The Operator roles are now created and ready to use for creating your Red&#160;Hat OpenShift Service on AWS cluster.</p>
 </div>
 </li>
 </ol>
@@ -2322,7 +2322,7 @@ Additional Principals:      arn:aws:iam::&lt;aws_id&gt;:role/additional-user-rol
 <div class="title">Verification</div>
 <ul>
 <li>
-<p>You can list the Operator roles associated with your Red&#160;Hat OpenShift Services on AWS account. Run the following command:</p>
+<p>You can list the Operator roles associated with your Red&#160;Hat OpenShift Service on AWS account. Run the following command:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list operator-roles</code></pre>
@@ -2355,9 +2355,9 @@ ROLE NAME                                                         ROLE ARN      
 </div>
 </div>
 <div class="sect3">
-<h4 id="creating-cluster-with-fips-encryption-cli_rosa-hcp-create-a-cluster-using-terraform">Create a Red&#160;Hat OpenShift Services on AWS cluster using FIPS encryption in the CLI</h4>
+<h4 id="creating-cluster-with-fips-encryption-cli_rosa-hcp-create-a-cluster-using-terraform">Create a Red&#160;Hat OpenShift Service on AWS cluster using FIPS encryption in the CLI</h4>
 <div class="paragraph _abstract">
-<p>You can create a Red&#160;Hat OpenShift Services on AWS cluster with Federal Information Processing Standards (FIPS) encryption and a customer-provided Key Management Service (KMS) key by using ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+<p>You can create a Red&#160;Hat OpenShift Service on AWS cluster with Federal Information Processing Standards (FIPS) encryption and a customer-provided Key Management Service (KMS) key by using ROSA command-line interface (CLI) (<code>rosa</code>).</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -2490,7 +2490,7 @@ Removing debug pod ...</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="sd-terraform-cluster-destroy_rosa-hcp-create-a-cluster-using-terraform">Deleting your Red&#160;Hat OpenShift Services on AWS cluster with Terraform</h4>
+<h4 id="sd-terraform-cluster-destroy_rosa-hcp-create-a-cluster-using-terraform">Deleting your Red&#160;Hat OpenShift Service on AWS cluster with Terraform</h4>
 <div class="paragraph _abstract">
 <p>Use the <code>terraform destroy</code> command to remove all resources you create with the <code>terraform apply</code> command.</p>
 </div>
@@ -2604,12 +2604,12 @@ I: No operator roles available</code></pre>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-hcp-create-a-cluster-in-the-hybrid-cloud-console_rosa-hcp-create-a-cluster-in-the-hybrid-cloud-console.html">Create a cluster in the Hybrid Cloud Console</a> | ↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Services on AWS</a> | Next: <a href="rosa-hcp-access-your-cluster_rosa-hcp-access-your-cluster.html">Access your cluster</a> →</p>
+<p>← Previous: <a href="rosa-hcp-create-a-cluster-in-the-hybrid-cloud-console_rosa-hcp-create-a-cluster-in-the-hybrid-cloud-console.html">Create a cluster in the Hybrid Cloud Console</a> | ↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Service on AWS</a> | Next: <a href="rosa-hcp-access-your-cluster_rosa-hcp-access-your-cluster.html">Access your cluster</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-15 11:48:48 -0500
+Last updated 2026-10-15 14:32:45 -0500
 </div>
 </div>
 </body>
