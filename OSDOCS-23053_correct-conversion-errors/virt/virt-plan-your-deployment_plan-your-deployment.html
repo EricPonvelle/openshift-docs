@@ -697,7 +697,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#virt-important-considerations_plan-your-deployment">Important considerations for any platform</a></li><li class="level-4"><a href="#virt-tested-maximums_plan-your-deployment">Tested maximums for OpenShift Virtualization</a></li><li class="level-5"><a href="#vm-maximums_plan-your-deployment">Virtual machine maximums</a></li><li class="level-5"><a href="#host-maximums_plan-your-deployment">Host maximums</a></li><li class="level-5"><a href="#cluster-maximums_plan-your-deployment">Cluster maximums</a></li><li class="level-4"><a href="#compatible-platforms_plan-your-deployment">Compatible platforms</a></li><li class="level-4"><a href="#virt-cloud-platforms_plan-your-deployment">Cloud platforms</a></li><li class="level-4"><a href="#virt-aws-bm_plan-your-deployment">OpenShift Virtualization on AWS bare metal</a></li><li class="level-4"><a href="#virt-arm-compatibility_plan-your-deployment">ARM64 compatibility</a></li><li class="level-4"><a href="#virt-ibm-z-compatibility_plan-your-deployment">IBM Z and IBM LinuxONE compatibility</a></li><li class="level-4"><a href="#virt-object-maximums_plan-your-deployment">Object maximums</a></li><li class="level-4"><a href="#virt-cpu-requirements_plan-your-deployment">CPU requirements</a></li><li class="level-4"><a href="#virt-os-requirements_plan-your-deployment">Operating system requirements</a></li><li class="level-4"><a href="#virt-storage-requirements_plan-your-deployment">Storage requirements</a></li><li class="level-5"><a href="#virt-about-storage-volumes-for-vm-disks_plan-your-deployment">About volume and access modes for virtual machine disks</a></li><li class="level-4"><a href="#virt-cluster-resource-requirements_plan-your-deployment">Physical resource overhead requirements</a></li><li class="level-5"><a href="#memory-overhead_plan-your-deployment">Memory overhead</a></li><li class="level-5"><a href="#CPU-overhead_plan-your-deployment">CPU overhead</a></li><li class="level-5"><a href="#storage-overhead_plan-your-deployment">Storage overhead</a></li><li class="level-4"><a href="#virt-sno-differences_plan-your-deployment">Single-node OpenShift differences</a></li><li class="level-4"><a href="#virt-live-migration-requirements_plan-your-deployment">Live migration requirements</a></li><li class="level-4"><a href="#virt-cluster-ha-options_plan-your-deployment">Cluster high availability options</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#virt-important-considerations_plan-your-deployment">Important considerations for any platform</a></li><li class="level-4"><a href="#virt-tested-maximums_plan-your-deployment">Tested maximums for OpenShift Virtualization</a></li><li class="level-5"><a href="#vm-maximums_plan-your-deployment">Virtual machine maximums</a></li><li class="level-5"><a href="#host-maximums_plan-your-deployment">Host maximums</a></li><li class="level-5"><a href="#cluster-maximums_plan-your-deployment">Cluster maximums</a></li><li class="level-4"><a href="#compatible-platforms_plan-your-deployment">Compatible platforms</a></li><li class="level-4"><a href="#virt-cloud-platforms_plan-your-deployment">Cloud platforms</a></li><li class="level-4"><a href="#virt-aws-bm_plan-your-deployment">OpenShift Virtualization on AWS bare metal</a></li><li class="level-4"><a href="#virt-arm-compatibility_plan-your-deployment">ARM64 compatibility</a></li><li class="level-4"><a href="#virt-ibm-z-compatibility_plan-your-deployment">IBM Z and IBM LinuxONE compatibility</a></li><li class="level-4"><a href="#virt-object-maximums_plan-your-deployment">Object maximums</a></li><li class="level-4"><a href="#virt-cpu-requirements_plan-your-deployment">CPU requirements</a></li><li class="level-4"><a href="#virt-os-requirements_plan-your-deployment">Operating system requirements</a></li><li class="level-4"><a href="#virt-storage-requirements_plan-your-deployment">Storage requirements</a></li><li class="level-5"><a href="#virt-storage-io-latency-requirements_plan-your-deployment">Storage I/O latency requirements for Windows virtual machines</a></li><li class="level-5"><a href="#virt-about-storage-volumes-for-vm-disks_plan-your-deployment">About volume and access modes for virtual machine disks</a></li><li class="level-4"><a href="#virt-cluster-resource-requirements_plan-your-deployment">Physical resource overhead requirements</a></li><li class="level-5"><a href="#memory-overhead_plan-your-deployment">Memory overhead</a></li><li class="level-5"><a href="#CPU-overhead_plan-your-deployment">CPU overhead</a></li><li class="level-5"><a href="#storage-overhead_plan-your-deployment">Storage overhead</a></li><li class="level-4"><a href="#virt-sno-differences_plan-your-deployment">Single-node OpenShift differences</a></li><li class="level-4"><a href="#virt-live-migration-requirements_plan-your-deployment">Live migration requirements</a></li><li class="level-4"><a href="#virt-cluster-ha-options_plan-your-deployment">Cluster high availability options</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="virt-plan-your-deployment_plan-your-deployment">Plan your deployment</h3>
@@ -1457,6 +1457,57 @@ The <code>fstype</code> in the guest operating system (OS) must support the maxi
 </dl>
 </div>
 <div class="sect4">
+<h5 id="virt-storage-io-latency-requirements_plan-your-deployment">Storage I/O latency requirements for Windows virtual machines</h5>
+<div class="paragraph _abstract">
+<p>Windows guest operating systems require consistently low storage I/O latency to remain stable. If the latency of the underlying storage exceeds the following thresholds, Windows VMs can become unstable or crash.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. Storage I/O latency thresholds for Windows VMs</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Storage I/O latency</th>
+<th class="tableblock halign-left valign-top">Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Less than 15 ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Healthy. Storage performance is within the expected range for stable VM operation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15 ms to less than 100 ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unhealthy. Exceeding this threshold can eventually lead to workload instability and crashes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100 ms to less than 1,000 ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows crashes are highly likely to occur.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,000 ms or more</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows crashes are almost certain to occur.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If storage I/O latency exceeds 100 ms multiple times a day, prioritize identifying the root cause of the latency. Troubleshooting the affected workload is a secondary concern until you resolve the underlying latency issue.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
 <h5 id="virt-about-storage-volumes-for-vm-disks_plan-your-deployment">About volume and access modes for virtual machine disks</h5>
 <div class="paragraph _abstract">
 <p>If you use the storage API with known storage providers, the volume and access modes are selected automatically. However, if you use a storage class that does not have a storage profile, you must configure the volume and access mode.</p>
@@ -1834,7 +1885,7 @@ The <code>None</code> strategy powers down VMs during node reboots.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-15 12:57:09 -0500
+Last updated 2026-10-15 16:09:23 -0500
 </div>
 </div>
 </body>

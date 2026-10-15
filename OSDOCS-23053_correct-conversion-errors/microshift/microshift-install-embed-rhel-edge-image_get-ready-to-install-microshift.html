@@ -809,7 +809,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/getting_ready_to_install_microshift/microshift-install-get-ready#get-ready-install-rhde-compatibility-table_microshift-install-get-ready">Red&#160;Hat Device Edge release compatibility matrix</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/5.0/html/getting_ready_to_install_microshift/microshift-install-get-ready#get-ready-install-rhde-compatibility-table_microshift-install-get-ready">Red&#160;Hat Device Edge release compatibility matrix</a></p>
 <div class="openblock">
 <div class="content">
 <div class="admonitionblock warning">
@@ -825,7 +825,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/4.22/html/getting_ready_to_install_microshift/microshift-install-get-ready#get-ready-install-rhde-compatibility-table_microshift-install-get-ready">Red Hat Device Edge release compatibility matrix</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/5.0/html/getting_ready_to_install_microshift/microshift-install-get-ready#get-ready-install-rhde-compatibility-table_microshift-install-get-ready">Red Hat Device Edge release compatibility matrix</a></p>
 </li>
 </ul>
 </div>
@@ -990,14 +990,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Create an image builder configuration file for adding the <code>rhocp-4.22</code> RPM repository source required to pull MicroShift RPMs by running the following command:</p>
+<p>Create an image builder configuration file for adding the <code>rhocp-5.0</code> RPM repository source required to pull MicroShift RPMs by running the following command:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">cat &gt; rhocp-4.22.toml &lt;&lt;EOF
-id = "rhocp-4.22"
-name = "Red Hat OpenShift Container Platform 4.22 for RHEL 9"
+<pre class="highlight"><code class="language-text" data-lang="text">cat &gt; rhocp-5.0.toml &lt;&lt;EOF
+id = "rhocp-5.0"
+name = "Red Hat OpenShift Container Platform 5.0 for RHEL 9"
 type = "yum-baseurl"
-url = "https://cdn.redhat.com/content/dist/layered/rhel9/$(uname -m)/rhocp/4.22/os"
+url = "https://cdn.redhat.com/content/dist/layered/rhel9/$(uname -m)/rhocp/5.0/os"
 check_gpg = true
 check_ssl = true
 system = false
@@ -1027,7 +1027,7 @@ EOF</code></pre>
 <p>Add the sources to the image builder by running the following commands:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli sources add rhocp-4.22.toml</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli sources add rhocp-5.0.toml</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1054,7 +1054,7 @@ EOF</code></pre>
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">appstream
 baseos
 fast-datapath
-rhocp-4.22</code></pre>
+rhocp-5.0</code></pre>
 </div>
 </div>
 </li>
@@ -1099,14 +1099,14 @@ rhocp-4.22</code></pre>
 <div class="title">Generated image builder blueprint example snippet</div>
 <div class="content">
 <pre class="highlight"><code class="language-text" data-lang="text">name = "microshift_blueprint"
-description = "MicroShift 4.22.1 on x86_64 platform"
+description = "MicroShift 5.0.1 on x86_64 platform"
 version = "0.0.1"
 modules = []
 groups = []
 
 [[packages]]
 name = "microshift"
-version = "4.22.1"
+version = "5.0.1"
 ...
 ...
 
@@ -1166,8 +1166,8 @@ EOF</code></pre>
 <div class="title">Example output</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">blueprint: microshift_blueprint v0.0.1
-    microshift-release-info-4.22.1-202511250827.p0.g4105d3b.assembly.4.22.1.el9.noarch
-    microshift-4.22.1-202511250827.p0.g4105d3b.assembly.4.22.1.el9.x86_64</code></pre>
+    microshift-release-info-5.0.1-202511250827.p0.g4105d3b.assembly.5.0.1.el9.noarch
+    microshift-5.0.1-202511250827.p0.g4105d3b.assembly.5.0.1.el9.x86_64</code></pre>
 </div>
 </div>
 </li>
@@ -1811,7 +1811,7 @@ firewall-offline-cmd --zone=trusted --add-source=169.254.169.1
 </div>
 </div>
 <div class="paragraph">
-<p>Replace <code><em>&lt;release_version&gt;</em></code> with the numerical value of the release you are deploying, using the entire version number, such as <code>4.22.0</code>.</p>
+<p>Replace <code><em>&lt;release_version&gt;</em></code> with the numerical value of the release you are deploying, using the entire version number, such as <code>5.0.0</code>.</p>
 </div>
 </li>
 <li>
@@ -1847,12 +1847,12 @@ release-aarch64.json</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Replace <code><em>&lt;release_version&gt;</em></code> with the numerical value of the release you are deploying, using the entire version number, such as <code>4.22.0</code>.</p>
+<p>Replace <code><em>&lt;release_version&gt;</em></code> with the numerical value of the release you are deploying, using the entire version number, such as <code>5.0.0</code>.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example RPM output</div>
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">microshift-release-info-4.22.0.-202605191402.p0.g4f61957.assembly.rc.4.el9.noarch.rpm</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">microshift-release-info-5.0.0.-202605191402.p0.g4f61957.assembly.rc.0.el9.noarch.rpm</code></pre>
 </div>
 </div>
 </li>
@@ -2104,7 +2104,7 @@ auth_file_path = "/etc/osbuild-worker/pull-secret.json"</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-15 12:56:15 -0500
+Last updated 2026-10-15 16:08:25 -0500
 </div>
 </div>
 <style>

@@ -824,14 +824,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Create an image builder configuration file for adding the <code>rhocp-4.22</code> RPM repository source required to pull MicroShift RPMs by running the following command:</p>
+<p>Create an image builder configuration file for adding the <code>rhocp-5.0</code> RPM repository source required to pull MicroShift RPMs by running the following command:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat &gt; rhocp-4.22.toml &lt;&lt;EOF
-id = "rhocp-4.22"
-name = "Red Hat OpenShift Container Platform 4.22 for RHEL 9"
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat &gt; rhocp-5.0.toml &lt;&lt;EOF
+id = "rhocp-5.0"
+name = "Red Hat OpenShift Container Platform 5.0 for RHEL 9"
 type = "yum-baseurl"
-url = "https://cdn.redhat.com/content/dist/layered/rhel9/$(uname -m)/rhocp/4.22/os"
+url = "https://cdn.redhat.com/content/dist/layered/rhel9/$(uname -m)/rhocp/5.0/os"
 check_gpg = true
 check_ssl = true
 system = false
@@ -844,7 +844,7 @@ EOF</code></pre>
 <p>Add the update RPM source to the image builder by running the following command:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli sources add rhocp-4.22.toml</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo composer-cli sources add rhocp-5.0.toml</code></pre>
 </div>
 </div>
 </li>
@@ -886,7 +886,7 @@ EOF</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-15 12:56:15 -0500
+Last updated 2026-10-15 16:08:25 -0500
 </div>
 </div>
 <style>
