@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.26">
+<title>OpenShift Virtualization documentation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<!-- navmap-left-nav-toggle-start -->
+<style>
+  #toc .toc-toggle {
+    display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .75em;
+    padding: 0 .3em 0 0;
+    margin: 0;
+    color: #555;
+    transition: transform .15s ease;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  #toc .toc-toggle:hover { color: #0066cc; }
+  #toc .toc-toggle.open { transform: rotate(90deg); }
+  #toc li > ul.sectlevel2,
+  #toc li > ul.sectlevel3,
+  #toc li > ul.sectlevel4 { display: none; }
+  #toc li.toc-expanded > ul.sectlevel2,
+  #toc li.toc-expanded > ul.sectlevel3,
+  #toc li.toc-expanded > ul.sectlevel4 { display: block; }
+</style>
+<script>
+(function() {
+  var previewPath = window.location.pathname.slice(
+    0,
+    window.location.pathname.lastIndexOf('/')
+  ) || '/';
+  var STORAGE_KEY = 'navmap-toc-state:' + previewPath;
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch(e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var state = loadState();
+    var currentPage = location.pathname.split('/').pop();
+    var buttons = document.querySelectorAll('#toc .toc-toggle');
+
+    buttons.forEach(function(btn) {
+      var key = btn.getAttribute('data-toc-key');
+      var li = btn.parentElement;
+      var isCurrentSection = false;
+
+      /* Auto-expand the section containing the current page */
+      var links = li.querySelectorAll('a[href]');
+      links.forEach(function(a) {
+        var href = a.getAttribute('href').split('#')[0];
+        if (href === currentPage) { isCurrentSection = true; }
+      });
+
+      if (state[key] === true || isCurrentSection) {
+        li.classList.add('toc-expanded');
+        btn.classList.add('open');
+        if (isCurrentSection) { state[key] = true; }
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var expanded = li.classList.toggle('toc-expanded');
+        btn.classList.toggle('open', expanded);
+        state[key] = expanded;
+        saveState(state);
+      });
+    });
+
+    saveState(state);
+
+    /* --- Scroll current page into view in the TOC --- */
+    var toc = document.getElementById('toc');
+    if (toc) {
+      var cur = toc.querySelector('a[href="' + currentPage + '"]');
+      if (!cur) { cur = toc.querySelector('a[href$="/' + currentPage + '"]'); }
+      if (cur) {
+        cur.style.fontWeight = 'bold';
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            cur.scrollIntoView({ block: 'center', behavior: 'instant' });
+          }, 0);
+        });
+      }
+    }
+  });
+})();
+</script>
+<!-- navmap-left-nav-toggle-end -->
+<!-- navmap-right-toc-start -->
+<style>
+  body.navmap-has-right-toc { padding-right: 18em; }
+  #navmap-right-toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16em;
+    height: 100%;
+    overflow: auto;
+    padding: 1.25em 1em;
+    background: #f8f8f7;
+    border-left: 1px solid #e7e7e9;
+    z-index: 1000;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-size: .9em;
+  }
+  #navmap-right-toc h2 { margin-top: 0; font-size: 1.1em; }
+  #navmap-right-toc ul { list-style: none; margin: 0; padding: 0; }
+  #navmap-right-toc li { line-height: 1.35; margin: .4em 0; }
+  #navmap-right-toc li.level-3 { padding-left: 1em; }
+  #navmap-right-toc li.level-4 { padding-left: 2em; }
+  #navmap-right-toc li.level-5,
+  #navmap-right-toc li.level-6 { padding-left: 3em; }
+  #navmap-right-toc a { text-decoration: none; }
+  @media screen and (max-width: 1023px) {
+    body.navmap-has-right-toc { padding-right: 0; }
+    #navmap-right-toc {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+      border: 1px solid #e7e7e9;
+      border-radius: 4px;
+    }
+  }
+
+
+</style>
+<!-- navmap-right-toc-end -->
+</head>
+<body id="virt-plan-your-deployment_plan-your-deployment" class="book toc2 toc-left navmap-has-right-toc">
+<div id="header">
+<h1>OpenShift Virtualization documentation</h1>
+<div id="toc" class="toc2">
+<div id="toctitle"></div>
+<p><span class="toc-root"><a href="navigation.html">OpenShift Virtualization documentation</a></span></p><ul class="sectlevel1">
+<li><a href="_whats_new.html">What&#8217;s new</a>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_discover.html">▶</button><a href="_discover.html">Discover</a>
+
+<ul class="sectlevel2">
+<li><a href="virt-discover-and-evaluate_discover-and-evaluate.html">Discover and evaluate the platform</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_plan.html">▶</button><a href="_plan.html">Plan</a>
+<ul class="sectlevel2">
+<li><a href="virt-plan-your-deployment_plan-your-deployment.html"><span class="toc-current">Plan your deployment</span></a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_install.html">▶</button><a href="_install.html">Install</a>
+
+<ul class="sectlevel2">
+<li><a href="virt-install-openshift-virtualization_install-openshift-virtualization.html">Install OpenShift Virtualization</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_upgrade.html">▶</button><a href="_upgrade.html">Upgrade</a>
+
+<ul class="sectlevel3">
+<li><a href="virt-about-upgrading-virt_upgrade-the-platform.html#virt-about-upgrading-virt_upgrade-the-platform">About updating OpenShift Virtualization</a>
+</li>
+<li><a href="virt-update-removing-unused_upgrade-the-platform.html#virt-update-removing-unused_upgrade-the-platform">Remove unused Operators and resources</a>
+</li>
+<li><a href="virt-rhel-9_upgrade-the-platform.html#virt-rhel-9_upgrade-the-platform">RHEL 9 compatibility</a>
+</li>
+<li><a href="virt-monitoring-upgrade-status_upgrade-the-platform.html#virt-monitoring-upgrade-status_upgrade-the-platform">Monitoring update status</a>
+</li>
+<li><a href="virt-about-workload-updates_upgrade-the-platform.html#virt-about-workload-updates_upgrade-the-platform">VM workload updates</a>
+</li>
+<li><a href="virt-about-control-plane-only-updates_upgrade-the-platform.html#virt-about-control-plane-only-updates_upgrade-the-platform">Control Plane Only updates</a>
+</li>
+<li><a href="virt-early-access-releases_upgrade-the-platform.html#virt-early-access-releases_upgrade-the-platform">Early access releases</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_migrate.html">▶</button><a href="_migrate.html">Migrate</a>
+
+<ul class="sectlevel2">
+<li><a href="virt-migrate-vms_migrate-virtual-machines.html">Migrate virtual machines</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_administer.html">▶</button><a href="_administer.html">Administer</a>
+
+<ul class="sectlevel2">
+<li><a href="virt-create-and-provision-vms_create-and-provision-virtual-machines.html">Create and provision virtual machines</a>
+</li>
+<li><a href="virt-access-and-operate-vms_access-and-operate-virtual-machines.html">Access and operate virtual machines</a>
+</li>
+<li><a href="virt-manage-nodes-and-platform-operations_manage-nodes-and-platform-operations.html">Manage nodes and platform operations</a>
+</li>
+<li><a href="virt-control-vm-node-placement_control-vm-node-placement.html">Control VM node placement</a>
+</li>
+<li><a href="virt-protect-and-recover-workloads_protect-and-recover-workloads.html">Protect and recover workloads</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_configure.html">▶</button><a href="_configure.html">Configure</a>
+
+<ul class="sectlevel2">
+<li><a href="virt-configure-platform-infrastructure_configure-platform-infrastructure.html">Configure platform infrastructure</a>
+</li>
+<li><a href="virt-allocate-compute-resources-for-vms_allocate-compute-resources-for-vms.html">Allocate compute resources for VMs</a>
+</li>
+<li><a href="virt-select-cpu-models-and-scheduling-policies_select-cpu-models-and-scheduling-policies.html">Select CPU models and scheduling policies</a>
+</li>
+<li><a href="virt-govern-vm-resource-consumption_govern-vm-resource-consumption.html">Govern VM resource consumption</a>
+</li>
+<li><a href="virt-configure-vm-networking_configure-vm-networking.html">Configure VM networking</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_secure.html">▶</button><a href="_secure.html">Secure</a>
+
+<ul class="sectlevel3">
+<li><a href="virt-about-workload-security_secure-the-virtualization-environment.html#virt-about-workload-security_secure-the-virtualization-environment">About workload security</a>
+</li>
+<li><a href="virt-automatic-certificates-renewal_secure-the-virtualization-environment.html#virt-automatic-certificates-renewal_secure-the-virtualization-environment">TLS certificates</a>
+</li>
+<li><a href="virt-security-policies-auth_secure-the-virtualization-environment.html#virt-security-policies-auth_secure-the-virtualization-environment">Authorization</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_observe.html">▶</button><a href="_observe.html">Observe</a>
+
+<ul class="sectlevel2">
+<li><a href="virt-observe-cluster-and-vm-health_observe-cluster-and-vm-health.html">Observe cluster and VM health</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_optimize.html">▶</button><a href="_optimize.html">Optimize</a>
+
+<ul class="sectlevel2">
+<li><a href="virt-optimize-vm-compute-resources_optimize-vm-compute-resources.html">Optimize VM compute resources</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_extend.html">▶</button><a href="_extend.html">Extend</a>
+
+<ul class="sectlevel2">
+<li><a href="virt-extend-platform-hardware-passthrough_extend-platform-hardware-passthrough.html">Extend the platform with hardware passthrough</a>
+</li>
+</ul>
+</li>
+<li><button class="toc-toggle" type="button" data-toc-key="_troubleshoot.html">▶</button><a href="_troubleshoot.html">Troubleshoot</a>
+
+<ul class="sectlevel2">
+<li><a href="virt-troubleshoot-and-support_troubleshoot-and-get-support.html">Troubleshoot and get support</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#virt-important-considerations_plan-your-deployment">Important considerations for any platform</a></li><li class="level-4"><a href="#virt-tested-maximums_plan-your-deployment">Tested maximums for OpenShift Virtualization</a></li><li class="level-5"><a href="#vm-maximums_plan-your-deployment">Virtual machine maximums</a></li><li class="level-5"><a href="#host-maximums_plan-your-deployment">Host maximums</a></li><li class="level-5"><a href="#cluster-maximums_plan-your-deployment">Cluster maximums</a></li><li class="level-4"><a href="#compatible-platforms_plan-your-deployment">Compatible platforms</a></li><li class="level-4"><a href="#virt-cloud-platforms_plan-your-deployment">Cloud platforms</a></li><li class="level-4"><a href="#virt-aws-bm_plan-your-deployment">OpenShift Virtualization on AWS bare metal</a></li><li class="level-4"><a href="#virt-arm-compatibility_plan-your-deployment">ARM64 compatibility</a></li><li class="level-4"><a href="#virt-ibm-z-compatibility_plan-your-deployment">IBM Z and IBM LinuxONE compatibility</a></li><li class="level-4"><a href="#virt-object-maximums_plan-your-deployment">Object maximums</a></li><li class="level-4"><a href="#virt-cpu-requirements_plan-your-deployment">CPU requirements</a></li><li class="level-4"><a href="#virt-os-requirements_plan-your-deployment">Operating system requirements</a></li><li class="level-4"><a href="#virt-storage-requirements_plan-your-deployment">Storage requirements</a></li><li class="level-5"><a href="#virt-about-storage-volumes-for-vm-disks_plan-your-deployment">About volume and access modes for virtual machine disks</a></li><li class="level-4"><a href="#virt-cluster-resource-requirements_plan-your-deployment">Physical resource overhead requirements</a></li><li class="level-5"><a href="#memory-overhead_plan-your-deployment">Memory overhead</a></li><li class="level-5"><a href="#CPU-overhead_plan-your-deployment">CPU overhead</a></li><li class="level-5"><a href="#storage-overhead_plan-your-deployment">Storage overhead</a></li><li class="level-4"><a href="#virt-sno-differences_plan-your-deployment">Single-node OpenShift differences</a></li><li class="level-4"><a href="#virt-live-migration-requirements_plan-your-deployment">Live migration requirements</a></li><li class="level-4"><a href="#virt-cluster-ha-options_plan-your-deployment">Cluster high availability options</a></li></ul></aside>
+<div id="content">
+<div class="sect2">
+<h3 id="virt-plan-your-deployment_plan-your-deployment">Plan your deployment</h3>
+<div class="paragraph _abstract">
+<p>Assess infrastructure requirements, understand platform limits, and plan capacity before deploying OpenShift Virtualization, so you can size your environment correctly and avoid costly misconfigurations.</p>
+</div>
+<div class="sect3">
+<h4 id="virt-important-considerations_plan-your-deployment">Important considerations for any platform</h4>
+<div class="paragraph _abstract">
+<p>Before installing OpenShift Virtualization, note key considerations about installation methods, storage, IPv6, and FIPS mode.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Installation method considerations</dt>
+<dd>
+<p>You can use any installation method, including user-provisioned, installer-provisioned, or Assisted Installer, to deploy {product-title}. However, the installation method and the cluster topology might affect OpenShift Virtualization functionality, such as snapshots or live migration. For more information about live migration, see "Hardware, software, and operational requirements" in the Additional resources section.</p>
+</dd>
+<dt class="hdlist1">Red Hat OpenShift Data Foundation</dt>
+<dd>
+<p>If you deploy OpenShift Virtualization with Red Hat OpenShift Data Foundation, you must create a dedicated storage class for Windows virtual machine disks. For more information, see "Optimizing ODF PersistentVolumes for Windows VMs" in the Additional resources section.</p>
+</dd>
+<dt class="hdlist1">IPv6</dt>
+<dd>
+<p>OpenShift Virtualization support for single-stack IPv6 clusters is limited to the OVN-Kubernetes localnet and Linux bridge Container Network Interface (CNI) plugins.</p>
+</dd>
+<dt class="hdlist1">FIPS mode</dt>
+<dd>
+<p>If you install your cluster in FIPS mode, no additional setup is required for OpenShift Virtualization. For more information, see "Installing a FIPS-compliant cluster" in the Additional resources section.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="virt-tested-maximums_plan-your-deployment">Tested maximums for OpenShift Virtualization</h4>
+<div class="paragraph _abstract">
+<p>Maximums are based on a single cluster of the largest possible size for a OpenShift Virtualization 4.x environment. Approaching the maximum values can reduce performance and increase latency. Consider using multiple smaller clusters if possible to improve performance.</p>
+</div>
+<div class="sect4">
+<h5 id="vm-maximums_plan-your-deployment">Virtual machine maximums</h5>
+<div class="paragraph">
+<p>Maximums apply to virtual machines (VMs) running on OpenShift Virtualization and are subject to the limits specified in "Virtualization limits for Red Hat&#160;Enterprise Linux with KVM".</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Objective (per VM)</th>
+<th class="tableblock halign-left valign-top">Tested limit</th>
+<th class="tableblock halign-left valign-top">Theoretical limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Virtual CPUs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">255 vCPUs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">255 vCPUs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Memory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6 TB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16 TB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single disk size</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100 TB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100 TB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hot-pluggable disks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">255 disks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Attached disks (virtio)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">160 disks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">170 disks</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Attached disks (SCSI)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200 disks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Each VM must have at least 512 MB of memory.
+The <code>fstype</code> in the guest operating system (OS) must support the maximum limits. Do not use preallocation in data volumes that are larger than 99 TB.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="host-maximums_plan-your-deployment">Host maximums</h5>
+<div class="paragraph">
+<p>The following maximums apply to the {product-title} hosts used for OpenShift Virtualization.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Objective (per host)</th>
+<th class="tableblock halign-left valign-top">Tested limit</th>
+<th class="tableblock halign-left valign-top">Theoretical limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Logical CPU cores or threads</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Same as Red&#160;Hat Enterprise Linux (RHEL)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RAM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Same as RHEL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Simultaneous live migrations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defaults to 2 outbound migrations per node, and 5 concurrent migrations per cluster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Depends on NIC bandwidth</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Live migration bandwidth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No default limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Depends on NIC bandwidth</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="cluster-maximums_plan-your-deployment">Cluster maximums</h5>
+<div class="paragraph">
+<p>The following maximums apply to objects defined in OpenShift Virtualization.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Objective (per cluster)</th>
+<th class="tableblock halign-left valign-top">Tested limit</th>
+<th class="tableblock halign-left valign-top">Theoretical limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of attached PVs per node</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CSI storage provider dependent</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum PV size</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CSI storage provider dependent</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hosts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">500 hosts (100 or fewer recommended) <sup>[1]</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Same as {product-title}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defined VMs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10,000 VMs <sup>[2]</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Same as {product-title}</p></td>
+</tr>
+</tbody>
+</table>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you use more than 100 nodes, consider using Red&#160;Hat Advanced Cluster Management (RHACM) to manage multiple clusters instead of scaling out a single control plane. Larger clusters add complexity, require longer updates, and depending on node size and total object density, they can increase control plane stress.</p>
+<div class="paragraph">
+<p>Using multiple clusters can be beneficial in areas like per-cluster isolation and high availability.</p>
+</div>
+</li>
+<li>
+<p>The maximum number of VMs per node depends on the host hardware and resource capacity. It is also limited by the following parameters:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Settings that limit the number of pods that can be scheduled to a node. For example: <code>maxPods</code>.</p>
+</li>
+<li>
+<p>The default number of KVM devices. For example: <code>devices.kubevirt.io/kvm: 1k</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="compatible-platforms_plan-your-deployment">Compatible platforms</h4>
+<div class="paragraph _abstract">
+<p>OpenShift Virtualization supports bare-metal servers, ARM64-based systems, and IBM Z&#174; or IBM&#174; LinuxONE systems in logical partitions.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Compatible platforms</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>On-premise bare-metal servers. For more information, see "Planning a bare-metal cluster for OpenShift Virtualization" in the Additional resources section.</p>
+</li>
+<li>
+<p>Bare-metal clusters installed on ARM64-based (<code>arm64</code>, also known as <code>aarch64</code>) systems.</p>
+</li>
+<li>
+<p>IBM Z&#174; or IBM&#174; LinuxONE (s390x architecture) systems where an {product-title} cluster is installed in logical partitions (LPARs). For more information, see "Preparing to install on IBM Z and IBM LinuxONE" in the Additional resources section.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="virt-cloud-platforms_plan-your-deployment">Cloud platforms</h4>
+<div class="paragraph _abstract">
+<p>OpenShift Virtualization is compatible with various public cloud platforms. Each platform has specific storage options available.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3335%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Vendor</th>
+<th class="tableblock halign-left valign-top">Status</th>
+<th class="tableblock halign-left valign-top">Storage</th>
+<th class="tableblock halign-left valign-top">Resources</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Amazon Web Services (AWS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GA</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Elastic Block Store (EBS)</p>
+</li>
+<li>
+<p>Red&#160;Hat OpenShift Data Foundation (ODF)</p>
+</li>
+<li>
+<p>Portworx</p>
+</li>
+<li>
+<p>FSx (NetApp)</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>See "Installing a cluster on AWS with customizations" in the Additional resources section.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red&#160;Hat OpenShift Service on AWS (ROSA)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GA</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>EBS</p>
+</li>
+<li>
+<p>Portworx</p>
+</li>
+<li>
+<p>FSx (Q3)</p>
+</li>
+<li>
+<p>ODF</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/virtualization/index">OpenShift Virtualization</a> in the Red&#160;Hat OpenShift Service on AWS documentation</p>
+</li>
+<li>
+<p><a href="https://docs.aws.amazon.com/rosa/latest/userguide/what-is-rosa.html">What is Red&#160;Hat OpenShift Service on AWS?</a> in the AWS documentation</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Cloud Infrastructure (OCI)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GA</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>OCI native storage</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><a href="https://access.redhat.com/articles/7118050">OpenShift Virtualization and Oracle Cloud Infrastructure (OCI) known issues and limitations</a> in the Red&#160;Hat Knowledgebase</p>
+</li>
+<li>
+<p><a href="https://github.com/oracle-quickstart/oci-openshift/blob/main/docs/openshift-virtualization.md">Installing OpenShift Virtualization on OCI</a> in the <code>oracle-quickstart/oci-openshift</code> GitHub repository</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure Red&#160;Hat OpenShift (ARO)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GA</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>ODF</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/azure/openshift/howto-create-openshift-virtualization">OpenShift Virtualization for Azure Red Hat OpenShift (preview)</a> in the Microsoft documentation</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Google Cloud</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GA, as of OpenShift Virtualization 4.21.1</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Google Cloud native storage</p>
+</li>
+<li>
+<p>Google Cloud NetApp Volumes (GCNV); requires OpenShift Virtualization 4.21.2 or later</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><a href="https://access.redhat.com/articles/7139046">Storage configuration for OpenShift Virtualization {product-version}.x on Google Cloud</a> in the Red&#160;Hat Knowledgebase</p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/articles/7139682">OpenShift Virtualization on Google Cloud: Known issues and limitations</a> in the Red&#160;Hat Knowledgebase</p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/articles/7141472">Storage configuration for OpenShift Virtualization with GCNV</a> in the Red&#160;Hat Knowledgebase</p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/articles/7141471">OpenShift Virtualization with GCNV: Known errors and limitations</a> in the Red&#160;Hat Knowledgebase</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Bare-metal instances or servers offered by other cloud providers are not supported.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Tip">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For platform-specific networking information, see "Networking overview" in the Additional resources section.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="virt-aws-bm_plan-your-deployment">OpenShift Virtualization on AWS bare metal</h4>
+<div class="paragraph _abstract">
+<p>You can run OpenShift Virtualization on an Amazon Web Services (AWS) bare metal {product-title} cluster.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>OpenShift Virtualization is also supported on Red&#160;Hat OpenShift Service on AWS (ROSA) Classic clusters, which have the same configuration requirements as AWS bare-metal clusters.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="virt-arm-compatibility_plan-your-deployment">ARM64 compatibility</h4>
+<div class="paragraph _abstract">
+<p>OpenShift Virtualization on ARM64 systems is generally available (GA) with specific limitations for operating systems and live migration.</p>
+</div>
+<div class="paragraph">
+<p>Before using OpenShift Virtualization on an ARM64-based system, consider the following limitations:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Operating system</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Only Linux-based guest operating systems are supported.</p>
+</li>
+<li>
+<p>All virtualization limitations for RHEL also apply to OpenShift Virtualization. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/configuring_and_managing_virtualization/assembly_feature-support-and-limitations-in-rhel-9-virtualization_configuring-and-managing-virtualization#how-virtualization-on-arm-64-differs-from-amd64-and-intel64_feature-support-and-limitations-in-rhel-9-virtualization">How virtualization on ARM64 differs from AMD64 and Intel 64</a> in the RHEL documentation.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Live migration</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Live migration is <strong>not supported</strong> on ARM64-based {product-title} clusters.</p>
+</li>
+<li>
+<p>Hotplug is not supported on ARM64-based clusters because it depends on live migration.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">VM creation</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>RHEL 10 supports instance types and preferences, but not templates.</p>
+</li>
+<li>
+<p>RHEL 9 supports templates, instance types, and preferences.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="virt-ibm-z-compatibility_plan-your-deployment">IBM Z and IBM LinuxONE compatibility</h4>
+<div class="paragraph _abstract">
+<p>You can use OpenShift Virtualization in an {product-title} cluster that is installed in logical partitions (LPARs) on an IBM Z&#174; or IBM&#174; LinuxONE (<code>s390x</code> architecture) system.</p>
+</div>
+<div class="paragraph">
+<p>Some features are not currently available on <code>s390x</code> architecture, while others require workarounds or procedural changes. These lists are subject to change.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Currently unavailable features</dt>
+<dd>
+<div class="paragraph">
+<p>The following features are currently not available on <code>s390x</code> architecture:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Memory hot plugging and hot unplugging</p>
+</li>
+<li>
+<p>Node Health Check Operator</p>
+</li>
+<li>
+<p>PCI passthrough</p>
+</li>
+<li>
+<p>OpenShift Virtualization cluster checkup framework</p>
+</li>
+<li>
+<p>OpenShift Virtualization on a cluster installed in FIPS mode</p>
+</li>
+<li>
+<p>IPv6</p>
+</li>
+<li>
+<p>IBM&#174; Storage scale</p>
+</li>
+<li>
+<p>Hosted control planes for OpenShift Virtualization</p>
+</li>
+<li>
+<p>VM pages using HugePages</p>
+<div class="paragraph">
+<p>The following features are not applicable on <code>s390x</code> architecture:</p>
+</div>
+</li>
+<li>
+<p>virtual Trusted Platform Module (vTPM) devices</p>
+</li>
+<li>
+<p>UEFI mode for VMs</p>
+</li>
+<li>
+<p>USB host passthrough</p>
+</li>
+<li>
+<p>Configuring virtual GPUs</p>
+</li>
+<li>
+<p>Creating and managing Windows VMs</p>
+</li>
+<li>
+<p>Hyper-V</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Functionality differences</dt>
+<dd>
+<div class="paragraph">
+<p>The following features are available for use on s390x architecture but function differently or require procedural changes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When deleting a virtual machine by using the web console, the <strong>grace period</strong> option is ignored. For more information, see "Deleting a virtual machine by using the web console" in the Additional resources section.</p>
+</li>
+<li>
+<p>When configuring the default CPU model, the <code>spec.virtualization.virtualMachineOptions.defaultCPUModel</code> value is <code>"gen15b"</code> for an IBM Z cluster. For more information, see "Configuring the default CPU model" in the Additional resources section.</p>
+</li>
+<li>
+<p>When configuring a downward metrics device, if you use a VM preference, the <code>spec.preference.name</code> value must be set to <code>rhel.9.s390x</code> or another available preference with the format <code>*.s390x</code>. For more information, see "Configuring a downward metrics device" in the Additional resources section.</p>
+</li>
+<li>
+<p>When creating virtual machines from instance types, you are not allowed to set <code>spec.domain.memory.maxGuest</code> because memory hot plugging is not supported on IBM Z&#174;. For more information, see "Creating virtual machines from instance types" in the Additional resources section.</p>
+</li>
+<li>
+<p>Prometheus queries for VM guests could have inconsistent outcome in comparison to <code>x86</code>.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="virt-object-maximums_plan-your-deployment">Object maximums</h4>
+<div class="paragraph _abstract">
+<p>Consider tested object maximums for both {product-title} and OpenShift Virtualization when planning your cluster.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">{product-title}</dt>
+<dd>
+<p>See "{product-title} object maximums" in the Additional resources section.</p>
+</dd>
+<dt class="hdlist1">OpenShift Virtualization</dt>
+<dd>
+<p>See "OpenShift Virtualization supported limits" in the Additional resources section.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="virt-cpu-requirements_plan-your-deployment">CPU requirements</h4>
+<div class="paragraph _abstract">
+<p>OpenShift Virtualization requires CPUs supported by Red&#160;Hat Enterprise Linux (RHEL) 9 with specific virtualization extensions enabled.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">CPU requirements for OpenShift Virtualization</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Must be supported by Red&#160;Hat Enterprise Linux (RHEL) 9. See <a href="https://catalog.redhat.com">Red Hat Ecosystem Catalog</a> for supported CPUs.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If your worker nodes have different CPUs, live migration failures might occur because different CPUs have different capabilities. You can mitigate this issue by ensuring that your worker nodes have CPUs with the appropriate capacity and by configuring node affinity rules for your virtual machines.</p>
+</div>
+<div class="paragraph">
+<p>For more information, see "Configuring a required node affinity rule" in the Additional resources section.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Supports AMD64, Intel 64-bit (x86-64-v2), IBM Z&#174; (<code>s390x</code>), or ARM64-based (<code>arm64</code> or <code>aarch64</code>) architectures and their respective CPU extensions.</p>
+</li>
+<li>
+<p>Intel VT-x, AMD-V, or ARM virtualization extensions are enabled, or <code>s390x</code> virtualization support is enabled.</p>
+</li>
+<li>
+<p>NX (no execute) flag is enabled.</p>
+</li>
+<li>
+<p>If you use <code>s390x</code> architecture, the default CPU model is set to <code>gen15b</code>. For more information, see "Configuring the default CPU model" in the Additional resources section.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="virt-os-requirements_plan-your-deployment">Operating system requirements</h4>
+<div class="paragraph _abstract">
+<p>OpenShift Virtualization requires Red&#160;Hat Enterprise Linux CoreOS (RHCOS) on worker nodes. RHEL worker nodes are not supported.</p>
+</div>
+<div class="paragraph">
+<p>For more information, see "About RHCOS" in the Additional resources section.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="virt-storage-requirements_plan-your-deployment">Storage requirements</h4>
+<div class="paragraph _abstract">
+<p>OpenShift Virtualization requires {product-title}-supported storage with specific configuration for VM workloads and snapshots.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Storage requirements for OpenShift Virtualization</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Storage must be supported by {product-title}. For more information, see "Optimizing storage" in the Additional resources section.</p>
+</li>
+<li>
+<p>You must create a default OpenShift Virtualization or {product-title} storage class. The purpose of this is to address the unique storage needs of VM workloads and offer optimized performance, reliability, and user experience. If both OpenShift Virtualization and {product-title} default storage classes exist, the OpenShift Virtualization class takes precedence when creating VM disks.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To mark a storage class as the default for virtualization workloads, set the annotation <code>storageclass.kubevirt.io/is-default-virt-class</code> to <code>"true"</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>If the storage provisioner supports snapshots, you must associate a <code>VolumeSnapshotClass</code> object with the default storage class.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sect4">
+<h5 id="virt-about-storage-volumes-for-vm-disks_plan-your-deployment">About volume and access modes for virtual machine disks</h5>
+<div class="paragraph _abstract">
+<p>If you use the storage API with known storage providers, the volume and access modes are selected automatically. However, if you use a storage class that does not have a storage profile, you must configure the volume and access mode.</p>
+</div>
+<div class="paragraph">
+<p>For a list of known storage providers for OpenShift Virtualization, see the <a href="https://catalog.redhat.com/search?searchType=software&amp;badges_and_features=OpenShift+Virtualization&amp;subcategories=Storage"> Red Hat Ecosystem Catalog</a>.</p>
+</div>
+<div class="paragraph">
+<p>For best results, use the <code>ReadWriteMany</code> (RWX) access mode and the <code>Block</code> volume mode. This is important for the following reasons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ReadWriteMany</code> (RWX) access mode is required for live migration.</p>
+</li>
+<li>
+<p>The <code>Block</code> volume mode performs significantly better than the <code>Filesystem</code> volume mode. This is because the <code>Filesystem</code> volume mode uses more storage layers, including a file system layer and a disk image file. These layers are not necessary for VM disk storage.</p>
+<div class="paragraph">
+<p>For example, if you use Red Hat OpenShift Data Foundation, Ceph RBD volumes are preferable to CephFS volumes.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You cannot live migrate virtual machines with the following configurations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Storage volume with <code>ReadWriteOnce</code> (RWO) access mode</p>
+</li>
+<li>
+<p>Passthrough features such as GPUs</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Set the <code>evictionStrategy</code> field to <code>None</code> for these virtual machines.
+The <code>None</code> strategy powers down VMs during node reboots.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="virt-cluster-resource-requirements_plan-your-deployment">Physical resource overhead requirements</h4>
+<div class="paragraph _abstract">
+<p>OpenShift Virtualization is an add-on to {product-title} and imposes additional overhead that you must account for when planning a cluster.</p>
+</div>
+<div class="paragraph">
+<p>Each cluster machine must accommodate the following overhead requirements in addition to the {product-title} requirements. Oversubscribing the physical resources in a cluster can affect performance.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The numbers noted in this documentation are based on Red Hat&#8217;s test methodology and setup. These numbers can vary based on your own individual setup and environments.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="memory-overhead_plan-your-deployment">Memory overhead</h5>
+<div class="paragraph">
+<p>Calculate the memory overhead values for OpenShift Virtualization by using the equations below.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Cluster memory overhead</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>Memory overhead per infrastructure node ≈ 150 MiB</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Memory overhead per worker node ≈ 360 MiB</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Additionally, OpenShift Virtualization environment resources require a total of 2179 MiB of RAM that is spread across all infrastructure nodes.</p>
+</div>
+</dd>
+<dt class="hdlist1">Virtual machine memory overhead</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>Memory overhead per virtual machine ≈ (0.002 × requested memory) \
+              + 218 MiB \
+              + 8 MiB × (number of vCPUs) \
+              + 16 MiB × (number of graphics devices) \
+              + (additional memory overhead)</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>218 MiB</code> is required for the processes that run in the <code>virt-launcher</code> pod.</p>
+</li>
+<li>
+<p><code>8 MiB × (number of vCPUs)</code> refers to the number of virtual CPUs requested by the virtual machine.</p>
+</li>
+<li>
+<p><code>16 MiB × (number of graphics devices)</code> refers to the number of virtual graphics cards requested by the virtual machine.</p>
+</li>
+<li>
+<p>Additional memory overhead:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If your environment includes a Single Root I/O Virtualization (SR-IOV) network device or a Graphics Processing Unit (GPU), allocate 1 GiB additional memory overhead for each device.</p>
+</li>
+<li>
+<p>If Secure Encrypted Virtualization (SEV) is enabled, add 256 MiB.</p>
+</li>
+<li>
+<p>If Trusted Platform Module (TPM) is enabled, add 53 MiB.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="CPU-overhead_plan-your-deployment">CPU overhead</h5>
+<div class="paragraph">
+<p>Calculate the cluster processor overhead requirements for OpenShift Virtualization by using the equation below. The CPU overhead per virtual machine depends on your individual setup.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Cluster CPU overhead</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>CPU overhead for infrastructure nodes ≈ 4 cores</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OpenShift Virtualization increases the overall utilization of cluster level services such as logging, routing, and monitoring. To account for this workload, ensure that nodes that host infrastructure components have capacity allocated for 4 additional cores (4000 millicores) distributed across those nodes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>CPU overhead for worker nodes ≈ 2 cores + CPU overhead per virtual machine</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each worker node that hosts virtual machines must have capacity for 2 additional cores (2000 millicores) for OpenShift Virtualization management workloads in addition to the CPUs required for virtual machine workloads.</p>
+</div>
+</dd>
+<dt class="hdlist1">Virtual machine CPU overhead</dt>
+<dd>
+<div class="paragraph">
+<p>If dedicated CPUs are requested, there is a 1:1 impact on the cluster CPU overhead requirement. Otherwise, there are no specific rules about how many CPUs a virtual machine requires.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="storage-overhead_plan-your-deployment">Storage overhead</h5>
+<div class="paragraph">
+<p>Use the guidelines below to estimate storage overhead requirements for your OpenShift Virtualization environment.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Cluster storage overhead</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>Aggregated storage overhead per node ≈ 10 GiB</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>10 GiB is the estimated on-disk storage impact for each node in the cluster when you install OpenShift Virtualization.</p>
+</div>
+</dd>
+<dt class="hdlist1">Virtual machine storage overhead</dt>
+<dd>
+<div class="paragraph">
+<p>Storage overhead per virtual machine depends on specific requests for resource allocation within the virtual machine. The request could be for ephemeral storage on the node or storage resources hosted elsewhere in the cluster. OpenShift Virtualization does not currently allocate any additional ephemeral storage for the running container itself.</p>
+</div>
+</dd>
+<dt class="hdlist1">Example</dt>
+<dd>
+<div class="paragraph">
+<p>As a cluster administrator, if you plan to host 10 virtual machines in the cluster, each with 1 GiB of RAM and 2 vCPUs, the memory impact across the cluster is 11.68 GiB. The estimated on-disk storage impact for each node in the cluster is 10 GiB and the CPU impact for worker nodes that host virtual machine workloads is a minimum of 2 cores.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="virt-sno-differences_plan-your-deployment">Single-node OpenShift differences</h4>
+<div class="paragraph _abstract">
+<p>You can install OpenShift Virtualization on single-node OpenShift.</p>
+</div>
+<div class="paragraph">
+<p>However, you should be aware that Single-node OpenShift does not support the following features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>High availability</p>
+</li>
+<li>
+<p>Pod disruption</p>
+</li>
+<li>
+<p>Live migration</p>
+</li>
+<li>
+<p>Virtual machines or templates that have an eviction strategy configured</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="virt-live-migration-requirements_plan-your-deployment">Live migration requirements</h4>
+<div class="paragraph _abstract">
+<p>Live migration requires shared storage, sufficient resources, and compatible CPUs across nodes.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Live migration requirements</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Shared storage with <code>ReadWriteMany</code> (RWX) access mode.</p>
+</li>
+<li>
+<p>Sufficient RAM and network bandwidth.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must ensure that there is enough memory request capacity in the cluster to support node drains that result in live migrations. You can determine the approximate required spare memory by using the following calculation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Product of (Maximum number of nodes that can drain in parallel) and (Highest total VM memory request allocations across nodes)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The default number of migrations that can run in parallel in the cluster is 5. For more information, see "Configuring live migration" in the Additional resources section.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>If the virtual machine uses a host model CPU, the nodes must support the virtual machine&#8217;s host model CPU.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A dedicated Multus network for live migration is highly recommended. For more information, see
+"Using a dedicated network for live migration" in the Additional resources section. A dedicated network minimizes the effects of network saturation on tenant workloads during migration.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="virt-cluster-ha-options_plan-your-deployment">Cluster high availability options</h4>
+<div class="paragraph _abstract">
+<p>Configure high availability (HA) for your cluster using installer-provisioned infrastructure (IPI), Node Health Check Operator, or manual monitoring.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Methods of configuring HA</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Automatic high availability for installer-provisioned infrastructure  is available by deploying machine health checks. For more information, see "Installer-provisioned infrastructure installation overview" and "About machine health checks" in the Additional resources section.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In {product-title} clusters installed using installer-provisioned infrastructure and with a properly configured <code>MachineHealthCheck</code> resource, if a node fails the machine health check and becomes unavailable to the cluster, it is recycled. What happens next with VMs that ran on the failed node depends on a series of conditions. See the "Run strategies" documentation for more detailed information about the potential outcomes and how run strategies affect those outcomes.</p>
+</div>
+<div class="paragraph">
+<p>Currently, installer-provisioned infrastructure is not supported on IBM Z&#174;.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Automatic high availability for both IPI and non-IPI is available by using the <strong>Node Health Check Operator</strong> on the {product-title} cluster to deploy the <code>NodeHealthCheck</code> controller. The controller identifies unhealthy nodes and uses a remediation provider, such as the Self Node Remediation Operator or Fence Agents Remediation Operator, to remediate the unhealthy nodes. For more information on remediation, fencing, and maintaining nodes, see the <a href="https://access.redhat.com/documentation/en-us/workload_availability_for_red_hat_openshift">Workload Availability for Red Hat OpenShift</a> documentation.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Fence Agents Remediation uses supported fencing agents to reset failed nodes faster than the Self Node Remediation Operator. This improves overall virtual machine high availability. For more information, see the <a href="https://access.redhat.com/articles/7057929">OpenShift Virtualization - Fencing and VM High Availability Guide</a> knowledgebase article.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>High availability for any platform is available by using either a monitoring system or a qualified human to monitor node availability. When a node is lost, shut it down and run <code>oc delete node &lt;lost_node&gt;</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Without an external monitoring system or a qualified human monitoring node health, virtual machines lose high availability.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>↑ Up: <a href="_plan.html">Plan</a> | ⌂ Home: <a href="navigation.html">OpenShift Virtualization documentation</a> | Next: <a href="_install.html">Install</a> →</p>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2026-10-15 13:55:35 -0500
+</div>
+</div>
+</body>
+</html>
