@@ -478,7 +478,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <!-- navmap-right-toc-end -->
 </head>
-<body id="control-user-access-to-extensions-con_control-user-access-to-extensions" class="book toc2 toc-left navmap-has-right-toc">
+<body id="extend-the-kubernetes-api-with-custom-resource-definitions-con_crd-extending-api-with-crds" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat OpenShift Container Platform</h1>
 <div id="toc" class="toc2">
@@ -519,6 +519,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="oke_similarities_and_differences_evaluate-openshift-kubernetes-engine.html">OpenShift Kubernetes Engine and Red&#160;Hat OpenShift Container Platform comparison</a>
 </li>
 <li><a href="hosted-control-planes-overview_compare-openshift-deployment-models.html">Introduction to hosted control planes</a>
+</li>
+<li><a href="review-cluster-operators-con_review-cluster-operators.html">Review cluster Operators</a>
 </li>
 </ul>
 </li>
@@ -593,8 +595,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="installation-overview_understand-openshift-installation-architecture.html">The Red&#160;Hat OpenShift Container Platform installation</a>
 </li>
 <li><a href="enable-fips-cryptography-for-installation-con_enable-fips-cryptography-for-installation.html">Enable FIPS cryptography for installation</a>
-</li>
-<li><a href="install-and-delete-cluster-extensions-con_install-and-delete-cluster-extensions.html">Install and delete cluster extensions</a>
 </li>
 <li><a href="manage-kernel-modules-across-cluster-nodes-load-kernel-modules-at-day-1-with-machine-config-con_manage-kernel-modules-across-cluster-nodes-load-kernel-modules-at-day-1-with-machine-config.html">Load kernel modules at Day 1 with Machine Config</a>
 </li>
@@ -894,8 +894,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="_upgrade.html">Upgrade</a>
 
 <ul class="sectlevel2">
-<li><a href="update-and-rollback-cluster-extensions-con_update-and-rollback-cluster-extensions.html">Update and roll back cluster extensions</a>
-</li>
 <li><a href="about-updates_update-clusters-overview.html">Cluster update overview</a>
 </li>
 <li><a href="update-cluster-version-object_understand-openshift-updates.html">The ClusterVersion object</a>
@@ -1440,9 +1438,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_secure.html">Secure</a>
+
 <ul class="sectlevel2">
-<li><a href="control-user-access-to-extensions-con_control-user-access-to-extensions.html"><span class="toc-current">Control user access to extensions</span></a>
-</li>
 <li><a href="manage-user-authentication-and-identity-providers-con_manage-user-authentication-and-identity-providers.html">Manage user authentication and identity providers</a>
 </li>
 <li><a href="secure-network-traffic-con_secure-network-traffic.html">Secure network traffic</a>
@@ -1699,10 +1696,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_extend.html">Extend</a>
-
 <ul class="sectlevel2">
-<li><a href="olmv1-about-catalogs_add-and-remove-catalogs.html">About catalogs in OLM v1</a>
-</li>
 <li><a href="add-nodes-to-the-cluster-con_add-nodes-to-the-cluster.html">Add nodes to the cluster</a>
 </li>
 <li><a href="nodes-containers-port-forwarding-about_configure-port-forwarding-to-pods.html">Understand port forwarding</a>
@@ -1725,15 +1719,55 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="cluster-autoscaler-about_enable-autoscaling-for-cluster-nodes.html">The cluster autoscaler</a>
 </li>
-<li><a href="olm-installing-operators-from-software-catalog_install-operators-from-the-software-catalog.html">About Operator installation from the software catalog</a>
-</li>
 <li><a href="extend-the-openshift-cli-with-plugins-intro_extend-the-openshift-cli-with-plugins.html">Extend the OpenShift CLI with plugins</a>
 </li>
 <li><a href="cli-manager-about_manage-cli-plugins-with-the-cli-manager.html">About the CLI Manager Operator</a>
 </li>
 <li><a href="nodes-pods-plugins-about_manage-kernel-modules-across-cluster-nodes-deploy-device-plugins-alongside-kernel-modules.html">Understand device plugins</a>
 </li>
-<li><a href="resolve-catalog-content-con_resolve-catalog-content.html">Resolve catalog content</a>
+<li><a href="explore-cluster-extension-capabilities-con_explore-cluster-extension-capabilities.html">Understand cluster extensions with OLM v1</a>
+</li>
+<li><a href="check-cluster-extension-support-con_check-cluster-extension-support.html">Review supported cluster extensions with OLM v1</a>
+</li>
+<li><a href="install-cluster-extensions-with-olmv1-con_install-cluster-extensions-with-olmv1.html">Install cluster extensions with OLM v1</a>
+</li>
+<li><a href="configure-cluster-extensions-con_configure-cluster-extensions.html">Configure cluster extensions with OLM v1</a>
+</li>
+<li><a href="update-and-rollback-cluster-extensions-with-olmv1-con_update-and-rollback-cluster-extensions-with-olmv1.html">Update and roll back cluster extensions with OLM v1</a>
+</li>
+<li><a href="remove-cluster-extensions-with-olmv1-con_remove-cluster-extensions-with-olmv1.html">Remove cluster extensions with OLM v1</a>
+</li>
+<li><a href="control-access-to-cluster-extension-resources-with-olmv1-con_control-access-to-cluster-extension-resources-with-olmv1.html">Control access to cluster extension resources with OLM v1</a>
+</li>
+<li><a href="monitor-cluster-extensions-with-olmv1-con_monitor-cluster-extensions-with-olmv1.html">Monitor cluster extensions with OLM v1</a>
+</li>
+<li><a href="troubleshoot-cluster-extensions-with-olmv1-con_troubleshoot-cluster-extensions-with-olmv1.html">Troubleshoot cluster extensions with OLM v1</a>
+</li>
+<li><a href="understand-olmv0-resources-con_understand-operator-lifecycle-manager-concepts-and-resources.html">Understand Operator lifecycle management with OLM (Classic)</a>
+</li>
+<li><a href="install-operators-with-olmv0-con_install-operators-with-olmv0.html">Install Operators with OLM (Classic)</a>
+</li>
+<li><a href="update-installed-operators-con_update-installed-operators.html">Update installed Operators with OLM (Classic)</a>
+</li>
+<li><a href="ocp-map-delete-operators-from-a-cluster-intro_delete-operators-from-a-cluster.html">Delete Operators with OLM (Classic)</a>
+</li>
+<li><a href="ocp-map-create-applications-from-installed-operators-intro_create-applications-from-installed-operators.html">Create applications from Operators installed with OLM (Classic)</a>
+</li>
+<li><a href="ocp-map-configure-operator-lifecycle-manager-features-intro_configure-operator-lifecycle-manager-features.html">Configure OLM (Classic) features</a>
+</li>
+<li><a href="ocp-map-configure-operator-lifecycle-manager-proxy-support-intro_configure-operator-lifecycle-manager-proxy-support.html">Configure Operator proxy support with OLM (Classic)</a>
+</li>
+<li><a href="ocp-map-view-operator-status-intro_view-operator-status.html">Monitor Operators with OLM (Classic)</a>
+</li>
+<li><a href="ocp-map-troubleshoot-operator-issues-intro_troubleshoot-operator-issues.html">Troubleshoot Operators with OLM (Classic)</a>
+</li>
+<li><a href="prepare-catalogs-con_prepare-catalogs.html">Prepare catalogs</a>
+</li>
+<li><a href="manage-catalogs-with-olmv1-con_manage-catalogs-with-olmv1.html">Manage catalogs with OLM v1</a>
+</li>
+<li><a href="manage-catalogs-with-olmv0-con_manage-catalogs-with-olmv0.html">Manage catalogs with OLM (Classic)</a>
+</li>
+<li><a href="extend-the-kubernetes-api-with-custom-resource-definitions-con_crd-extending-api-with-crds.html"><span class="toc-current">Extend the Kubernetes API with custom resource definitions</span></a>
 </li>
 </ul>
 </li>
@@ -1957,284 +1991,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#olmv1-default-cluster-roles-users_control-user-access-to-extensions">Common default cluster roles for users</a></li><li class="level-4"><a href="#olmv1-finding-ce-resources_control-user-access-to-extensions">Find API groups and resources exposed by a cluster extension</a></li><li class="level-4"><a href="#olmv1-granting-user-access-binding_control-user-access-to-extensions">Grant user access to extension resources by using custom role bindings</a></li><li class="level-4"><a href="#olmv1-granting-user-access-aggregated_control-user-access-to-extensions">Grant user access to extension resources by using aggregated cluster roles</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#crd-custom-resource-definitions_crd-extending-api-with-crds">Custom resource definitions</a></li><li class="level-4"><a href="#crd-creating-custom-resources-definition_extend-the-kubernetes-api-with-custom-resource-definitions">Creating a custom resource definition</a></li><li class="level-4"><a href="#crd-creating-aggregated-cluster-role_extend-the-kubernetes-api-with-custom-resource-definitions">Creating cluster roles for custom resource definitions</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="control-user-access-to-extensions-con_control-user-access-to-extensions">Control user access to extensions</h3>
+<h3 id="extend-the-kubernetes-api-with-custom-resource-definitions-con_crd-extending-api-with-crds">Extend the Kubernetes API with custom resource definitions</h3>
 <div class="paragraph _abstract">
-<p>A cluster extension managed by Operator Lifecycle Manager (OLM) v1 can provide <code>CustomResourceDefinition</code> (CRD) objects that expose new cluster APIs.</p>
-</div>
-<div class="paragraph">
-<p>Cluster administrators automatically have full access to these resources, but OLM v1 does not configure role-based access control (RBAC) for regular users, so you must define the policy that lets them create, view, or edit the extension&#8217;s custom resources.</p>
+<p>To extend the Kubernetes API with custom object types that behave like built-in Kubernetes objects, cluster administrators can create and manage custom resource definitions (CRDs) on their Red&#160;Hat OpenShift Container Platform cluster.</p>
 </div>
 <div class="sect3">
-<h4 id="olmv1-default-cluster-roles-users_control-user-access-to-extensions">Common default cluster roles for users</h4>
+<h4 id="crd-custom-resource-definitions_crd-extending-api-with-crds">Custom resource definitions</h4>
 <div class="paragraph _abstract">
-<p>An installed cluster extension can include default cluster roles that grant regular users role-based access control (RBAC) to the extension&#8217;s API resources.</p>
+<p>In the Kubernetes API, a <em>resource</em> is an endpoint that stores a collection of API objects of a certain kind. For example, the built-in <code>Pods</code> resource contains a collection of <code>Pod</code> objects.</p>
 </div>
 <div class="paragraph">
-<p>Cluster extensions commonly include the following default cluster role policies:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>view</code> cluster role</dt>
-<dd>
-<p>Grants read-only access to custom resource (CR) objects for specified API resources across the cluster. This role provides resource visibility without permission to modify resources, which is ideal for monitoring and viewing.</p>
-</dd>
-<dt class="hdlist1"><code>edit</code> cluster role</dt>
-<dd>
-<p>Grants permissions to create, update, and delete CR objects across the cluster. This role is intended for users who manage resources but do not manage RBAC or cluster permissions.</p>
-</dd>
-<dt class="hdlist1"><code>admin</code> cluster role</dt>
-<dd>
-<p>Grants full administrative permissions, including create, update, and delete actions, over all CR objects for specified API resources across the cluster.</p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="sect3">
-<h4 id="olmv1-finding-ce-resources_control-user-access-to-extensions">Find API groups and resources exposed by a cluster extension</h4>
-<div class="paragraph _abstract">
-<p>To create appropriate RBAC policies for user access to cluster extension resources, you must know which API groups and resources the extension exposes. You can inspect installed CRDs by using the OpenShift CLI (<code>oc</code>).</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>A cluster extension has been installed on your cluster.</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>To list installed CRDs while specifying a label selector targeting a specific cluster extension by name to find only CRDs owned by that extension, run the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get crds -l 'olm.operatorframework.io/owner-kind=ClusterExtension,olm.operatorframework.io/owner-name=&lt;cluster_extension_name&gt;'</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Alternatively, you can search through all installed CRDs and individually inspect them by CRD name:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>List all available custom resource definitions (CRDs) currently installed on the cluster by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get crds</code></pre>
-</div>
+<p>A <em>custom resource definition</em> (CRD) object defines a new, unique object type, called a <em>kind</em>, in the cluster and lets the Kubernetes API server handle its entire lifecycle.</p>
 </div>
 <div class="paragraph">
-<p>Find the CRD you are looking for in the output.</p>
-</div>
-</li>
-<li>
-<p>Inspect the individual CRD further to find its API groups by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get crd &lt;crd_name&gt; -o yaml</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="olmv1-granting-user-access-binding_control-user-access-to-extensions">Grant user access to extension resources by using custom role bindings</h4>
-<div class="paragraph _abstract">
-<p>As a cluster administrator, you can manually create and configure role-based access control (RBAC) policies to grant user access to extension resources by using custom role bindings.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>A cluster extension has been installed on your cluster.</p>
-</li>
-<li>
-<p>You have a list of API groups and resource names, as described in "Finding API groups and resources exposed by a cluster extension".</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>If the installed cluster extension does not provide default cluster roles, manually create one or more roles:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Consider the use cases for the set of roles described in "Common default cluster roles for users".</p>
-<div class="paragraph">
-<p>For example, create one or more of the following <code>ClusterRole</code> object definitions, replacing <code>&lt;cluster_extension_api_group&gt;</code> and <code>&lt;cluster_extension_custom_resource&gt;</code> with the actual API group and resource names provided by the installed cluster extension:</p>
-</div>
-<div class="listingblock">
-<div class="title">Example <code>view-custom-resource.yaml</code> file</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: view-custom-resource
-rules:
-- apiGroups:
-  - &lt;cluster_extension_api_group&gt;
-  resources:
-  - &lt;cluster_extension_custom_resources&gt;
-  verbs:
-  - get
-  - list
-  - watch</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example <code>edit-custom-resource.yaml</code> file</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: edit-custom-resource
-rules:
-- apiGroups:
-  - &lt;cluster_extension_api_group&gt;
-  resources:
-  - &lt;cluster_extension_custom_resources&gt;
-  verbs:
-  - get
-  - list
-  - watch
-  - create
-  - update
-  - patch
-  - delete</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example <code>admin-custom-resource.yaml</code> file</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: admin-custom-resource
-rules:
-- apiGroups:
-  - &lt;cluster_extension_api_group&gt;
-  resources:
-  - &lt;cluster_extension_custom_resources&gt;
-  verbs:
-  - '*'</code></pre>
-</div>
+<p><em>Custom resource</em> (CR) objects are created from CRDs that have been added to the cluster by a cluster administrator, allowing all cluster users to add the new resource type into projects.</p>
 </div>
 <div class="paragraph">
-<p>Setting a wildcard (<code>*</code>) in  the <code>rules.verbs</code> field allows all actions on the specified resources.</p>
+<p>When a cluster administrator adds a new CRD to the cluster, the Kubernetes API server reacts by creating a new RESTful resource path that can be accessed by the entire cluster or a single project (namespace) and begins serving the specified CR.</p>
 </div>
-</li>
-<li>
-<p>Create the cluster roles by running the following command for any YAML files you created:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc create -f &lt;filename&gt;.yaml</code></pre>
+<div class="paragraph">
+<p>Cluster administrators that want to grant access to the CRD to other users can use cluster role aggregation to grant access to users with the <code>admin</code>, <code>edit</code>, or <code>view</code> default cluster roles. Cluster role aggregation allows the insertion of custom policy rules into these cluster roles. This behavior integrates the new resource into the RBAC policy of the cluster as if it was a built-in resource.</p>
 </div>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Associate a cluster role to specific users or groups to grant them the necessary permissions for the resource by binding the cluster roles to individual user or group names:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Create an object definition for either a <em>cluster role binding</em> to grant access across all namespaces or a <em>role binding</em> to grant access within a specific namespace:</p>
-<div class="openblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The following example cluster role bindings grant read-only <code>view</code> access to the custom resource across all namespaces:</p>
-<div class="listingblock">
-<div class="title">Example <code>ClusterRoleBinding</code> object for a user</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: view-custom-resource-binding
-subjects:
-- kind: User
-  name: &lt;user_name&gt;
-roleRef:
-  kind: ClusterRole
-  name: view-custom-resource
-  apiGroup: rbac.authorization.k8s.io</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example <code>ClusterRoleBinding</code> object for a user</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: view-custom-resource-binding
-subjects:
-- kind: Group
-  name: &lt;group_name&gt;
-roleRef:
-  kind: ClusterRole
-  name: view-custom-resource
-  apiGroup: rbac.authorization.k8s.io</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>The following role binding restricts <code>edit</code> permissions to a specific namespace:</p>
-<div class="listingblock">
-<div class="title">Example <code>RoleBinding</code> object for a user</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: edit-custom-resource-edit-binding
-  namespace: &lt;namespace&gt;
-subjects:
-- kind: User
-  name: &lt;username&gt;
-roleRef:
-  kind: Role
-  name: custom-resource-edit
-  apiGroup: rbac.authorization.k8s.io</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Save your object definition to a YAML file.</p>
-</li>
-<li>
-<p>Create the object by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc create -f &lt;filename&gt;.yaml</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="olmv1-granting-user-access-aggregated_control-user-access-to-extensions">Grant user access to extension resources by using aggregated cluster roles</h4>
-<div class="paragraph _abstract">
-<p>As a cluster administrator, you can configure role-based access control (RBAC) policies to grant user access to extension resources by using aggregated cluster roles.</p>
+<div class="paragraph">
+<p>Operators in particular make use of CRDs by packaging them with any required RBAC policy and other software-specific logic.
+Cluster administrators can also add CRDs manually to the cluster outside of the lifecycle of an Operator, making them available to all users.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2244,21 +2027,168 @@ roleRef:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>To automatically extend existing default cluster roles, you can add <em>aggregation labels</em> by adding one or more of the following labels to a <code>ClusterRole</code> object:</p>
+<p>While only cluster administrators can create CRDs, developers can create the CR from an existing CRD if they have read and write permission to it.</p>
 </div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="crd-creating-custom-resources-definition_extend-the-kubernetes-api-with-custom-resource-definitions">Creating a custom resource definition</h4>
+<div class="paragraph _abstract">
+<p>To create custom resource (CR) objects, cluster administrators must first create a custom resource definition (CRD).</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Access to an Red&#160;Hat OpenShift Container Platform cluster with <code>cluster-admin</code> user privileges.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a YAML file that contains the following field types:</p>
 <div class="listingblock">
+<div class="title">Example YAML file for a CRD</div>
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ..
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
 metadata:
-  labels:
-    rbac.authorization.k8s.io/aggregate-to-admin: "true"
-    rbac.authorization.k8s.io/aggregate-to-edit: "true"
-    rbac.authorization.k8s.io/aggregate-to-view: "true"
-# ..</code></pre>
+  name: crontabs.stable.example.com
+spec:
+  group: stable.example.com
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                cronSpec:
+                  type: string
+                image:
+                  type: string
+                replicas:
+                  type: integer
+  scope: Namespaced
+  names:
+    plural: crontabs
+    singular: crontab
+    kind: CronTab
+    shortNames:
+    - ct</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This allows users who already have <code>view</code>, <code>edit</code>, or <code>admin</code> roles to interact with the  custom resource specified by the <code>ClusterRole</code> object without requiring additional role or cluster role bindings to specific users or groups.</p>
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>apiVersion</code></dt>
+<dd>
+<p>Specifies the <code>apiextensions.k8s.io/v1</code> API parameter.</p>
+</dd>
+<dt class="hdlist1"><code>metadata.name</code></dt>
+<dd>
+<p>Specifies a name for the definition. This must be in the <code>&lt;plural-name&gt;.&lt;group&gt;</code> format using the values from the <code>group</code> and <code>plural</code> fields.</p>
+</dd>
+<dt class="hdlist1"><code>spec.group</code></dt>
+<dd>
+<p>Specifies a group name for the API. An API group is a collection of objects that are logically related. For example, all batch objects like <code>Job</code> or <code>ScheduledJob</code> could be in the batch API group (such as <code>batch.api.example.com</code>). A good practice is to use a fully-qualified-domain name (FQDN) of your organization.</p>
+</dd>
+<dt class="hdlist1"><code>spec.versions.name</code></dt>
+<dd>
+<p>Specifies a version name to be used in the URL. Each API group can exist in multiple versions, for example <code>v1alpha</code>, <code>v1beta</code>, <code>v1</code>.</p>
+</dd>
+<dt class="hdlist1"><code>spec.scope</code></dt>
+<dd>
+<p>Specifies whether the custom objects are available to a project (<code>Namespaced</code>) or all projects in the cluster (<code>Cluster</code>).</p>
+</dd>
+<dt class="hdlist1"><code>spec.names.plural</code></dt>
+<dd>
+<p>Specifies the plural name to use in the URL. The <code>plural</code> field is the same as a resource in an API URL.</p>
+</dd>
+<dt class="hdlist1"><code>spec.names.singular</code></dt>
+<dd>
+<p>Specifies a singular name to use as an alias on the CLI and for display.</p>
+</dd>
+<dt class="hdlist1"><code>spec.names.kind</code></dt>
+<dd>
+<p>Specifies the kind of objects that can be created. The type can be in camel case.</p>
+</dd>
+<dt class="hdlist1"><code>spec.names.shortNames</code></dt>
+<dd>
+<p>Specifies a shorter string to match your resource on the CLI.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>By default, a CRD is cluster-scoped and available to all projects.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Create the CRD object:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc create -f &lt;file_name&gt;.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A new RESTful API endpoint is created at:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">/apis/&lt;spec:group&gt;/&lt;spec:version&gt;/&lt;scope&gt;/*/&lt;names-plural&gt;/...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example, using the example file, the following endpoint is created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">/apis/stable.example.com/v1/namespaces/*/crontabs/...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can now use this endpoint URL to create and manage CRs. The object kind is based on the <code>spec.kind</code> field of the CRD object you created.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="crd-creating-aggregated-cluster-role_extend-the-kubernetes-api-with-custom-resource-definitions">Creating cluster roles for custom resource definitions</h4>
+<div class="paragraph _abstract">
+<p>Cluster administrators can grant permissions to existing cluster-scoped custom resource definitions (CRDs). If you use the <code>admin</code>, <code>edit</code>, and <code>view</code> default cluster roles, you can take advantage of cluster role aggregation for their rules.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must explicitly assign permissions to each of these roles. The roles with more permissions do not inherit rules from roles with fewer permissions. If you assign a rule to a role, you must also assign that verb to roles that have more permissions. For example, if you grant the <code>get crontabs</code> permission to the view role, you must also grant it to the <code>edit</code> and <code>admin</code> roles. The <code>admin</code> or <code>edit</code> role is usually assigned to the user that created a project through the project template.</p>
 </div>
 </td>
 </tr>
@@ -2268,10 +2198,7 @@ metadata:
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>A cluster extension has been installed on your cluster.</p>
-</li>
-<li>
-<p>You have a list of API groups and resource names, as described in "Finding API groups and resources exposed by a cluster extension".</p>
+<p>Create a CRD.</p>
 </li>
 </ul>
 </div>
@@ -2279,39 +2206,85 @@ metadata:
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Create an object definition for a cluster role that specifies the API groups and resources provided by the cluster extension and add an aggregation label to extend one or more existing default cluster roles:</p>
+<p>Create a cluster role definition file for the CRD. The cluster role definition is a YAML file that contains the rules that apply to each cluster role. An Red&#160;Hat OpenShift Container Platform controller adds the rules that you specify to the default cluster roles.</p>
 <div class="listingblock">
-<div class="title">Example <code>ClusterRole</code> object with an aggregation label</div>
+<div class="title">Example YAML file for a cluster role definition</div>
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: view-custom-resource-aggregated
+  name: aggregate-cron-tabs-admin-edit
   labels:
-    rbac.authorization.k8s.io/aggregate-to-view: "true"
+    rbac.authorization.k8s.io/aggregate-to-admin: "true"
+    rbac.authorization.k8s.io/aggregate-to-edit: "true"
 rules:
-  - apiGroups:
-      - &lt;cluster_extension_api_group&gt;
-    resources:
-      - &lt;cluster_extension_custom_resource&gt;
-    verbs:
-      - get
-      - list
-      - watch</code></pre>
+- apiGroups: ["stable.example.com"]
+  resources: ["crontabs"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete", "deletecollection"]
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: aggregate-cron-tabs-view
+  labels:
+    # Add these permissions to the "view" default role.
+    rbac.authorization.k8s.io/aggregate-to-view: "true"
+    rbac.authorization.k8s.io/aggregate-to-cluster-reader: "true"
+rules:
+- apiGroups: ["stable.example.com"]
+  resources: ["crontabs"]
+  verbs: ["get", "list", "watch"]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can create similar <code>ClusterRole</code> objects for <code>edit</code> and <code>admin</code> with appropriate verbs, such as <code>create</code>, <code>update</code>, and <code>delete</code>. By using aggregation labels, the permissions for the custom resources are added to the default roles.</p>
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>apiVersion</code></dt>
+<dd>
+<p>Specifies the <code>rbac.authorization.k8s.io/v1</code> API.</p>
+</dd>
+<dt class="hdlist1"><code>metadata.name</code></dt>
+<dd>
+<p>Specifies a name for the definition.</p>
+</dd>
+<dt class="hdlist1"><code>metadata.labels.rbac.authorization.k8s.io/aggregate-to-admin</code></dt>
+<dd>
+<p>Specifies <code>"true"</code> to enable cluster role aggregation to the admin role.</p>
+</dd>
+<dt class="hdlist1"><code>metadata.labels.rbac.authorization.k8s.io/aggregate-to-edit</code></dt>
+<dd>
+<p>Specifies <code>"true"</code> to grant permissions to the edit default role.</p>
+</dd>
+<dt class="hdlist1"><code>rules.apiGroups</code></dt>
+<dd>
+<p>Specifies the group name of the CRD.</p>
+</dd>
+<dt class="hdlist1"><code>rules.resources</code></dt>
+<dd>
+<p>Specifies the plural name of the CRD that these rules apply to.</p>
+</dd>
+<dt class="hdlist1"><code>rules.verbs</code></dt>
+<dd>
+<p>Specifies the verbs that represent the permissions that are granted to the role. For example, apply read and write permissions to the <code>admin</code> and <code>edit</code> roles and only read permission to the <code>view</code> role.</p>
+</dd>
+<dt class="hdlist1"><code>metadata.labels.rbac.authorization.k8s.io/aggregate-to-view</code></dt>
+<dd>
+<p>Specifies <code>"true"</code> to grant permissions to the <code>view</code> default role.</p>
+</dd>
+<dt class="hdlist1"><code>metadata.labels."rbac.authorization.k8s.io/aggregate-to-cluster-reader"</code></dt>
+<dd>
+<p>Specifies <code>"true"</code> to grant permissions to the <code>cluster-reader</code> default role.</p>
+</dd>
+</dl>
 </div>
 </li>
 <li>
-<p>Save your object definition to a YAML file.</p>
-</li>
-<li>
-<p>Create the object by running the following command:</p>
+<p>Create the cluster role:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc create -f &lt;filename&gt;.yaml</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc create -f &lt;file_name&gt;.yaml</code></pre>
 </div>
 </div>
 </li>
@@ -2320,7 +2293,7 @@ rules:
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ Up: <a href="_secure.html">Secure</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Container Platform</a> | Next: <a href="manage-user-authentication-and-identity-providers-con_manage-user-authentication-and-identity-providers.html">Manage user authentication and identity providers</a> →</p>
+<p>← Previous: <a href="manage-catalogs-with-olmv0-con_manage-catalogs-with-olmv0.html">Manage catalogs with OLM (Classic)</a> | ↑ Up: <a href="_extend.html">Extend</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Container Platform</a> | Next: <a href="_validate.html">Validate</a> →</p>
 </div>
 </div>
 <div id="footnotes">
@@ -2331,7 +2304,7 @@ rules:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-15 11:42:46 -0500
+Last updated 2026-10-15 12:56:17 -0500
 </div>
 </div>
 <style>

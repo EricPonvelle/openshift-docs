@@ -478,7 +478,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <!-- navmap-right-toc-end -->
 </head>
-<body id="install-and-delete-cluster-extensions-con_install-and-delete-cluster-extensions" class="book toc2 toc-left navmap-has-right-toc">
+<body id="ocp-map-configure-operator-lifecycle-manager-proxy-support-intro_configure-operator-lifecycle-manager-proxy-support" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat OpenShift Container Platform</h1>
 <div id="toc" class="toc2">
@@ -519,6 +519,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="oke_similarities_and_differences_evaluate-openshift-kubernetes-engine.html">OpenShift Kubernetes Engine and Red&#160;Hat OpenShift Container Platform comparison</a>
 </li>
 <li><a href="hosted-control-planes-overview_compare-openshift-deployment-models.html">Introduction to hosted control planes</a>
+</li>
+<li><a href="review-cluster-operators-con_review-cluster-operators.html">Review cluster Operators</a>
 </li>
 </ul>
 </li>
@@ -588,12 +590,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_install.html">Install</a>
+
 <ul class="sectlevel2">
 <li><a href="installation-overview_understand-openshift-installation-architecture.html">The Red&#160;Hat OpenShift Container Platform installation</a>
 </li>
 <li><a href="enable-fips-cryptography-for-installation-con_enable-fips-cryptography-for-installation.html">Enable FIPS cryptography for installation</a>
-</li>
-<li><a href="install-and-delete-cluster-extensions-con_install-and-delete-cluster-extensions.html"><span class="toc-current">Install and delete cluster extensions</span></a>
 </li>
 <li><a href="manage-kernel-modules-across-cluster-nodes-load-kernel-modules-at-day-1-with-machine-config-con_manage-kernel-modules-across-cluster-nodes-load-kernel-modules-at-day-1-with-machine-config.html">Load kernel modules at Day 1 with Machine Config</a>
 </li>
@@ -893,8 +894,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="_upgrade.html">Upgrade</a>
 
 <ul class="sectlevel2">
-<li><a href="update-and-rollback-cluster-extensions-con_update-and-rollback-cluster-extensions.html">Update and roll back cluster extensions</a>
-</li>
 <li><a href="about-updates_update-clusters-overview.html">Cluster update overview</a>
 </li>
 <li><a href="update-cluster-version-object_understand-openshift-updates.html">The ClusterVersion object</a>
@@ -1441,8 +1440,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="_secure.html">Secure</a>
 
 <ul class="sectlevel2">
-<li><a href="control-user-access-to-extensions-con_control-user-access-to-extensions.html">Control user access to extensions</a>
-</li>
 <li><a href="manage-user-authentication-and-identity-providers-con_manage-user-authentication-and-identity-providers.html">Manage user authentication and identity providers</a>
 </li>
 <li><a href="secure-network-traffic-con_secure-network-traffic.html">Secure network traffic</a>
@@ -1699,10 +1696,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_extend.html">Extend</a>
-
 <ul class="sectlevel2">
-<li><a href="olmv1-about-catalogs_add-and-remove-catalogs.html">About catalogs in OLM v1</a>
-</li>
 <li><a href="add-nodes-to-the-cluster-con_add-nodes-to-the-cluster.html">Add nodes to the cluster</a>
 </li>
 <li><a href="nodes-containers-port-forwarding-about_configure-port-forwarding-to-pods.html">Understand port forwarding</a>
@@ -1725,15 +1719,55 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="cluster-autoscaler-about_enable-autoscaling-for-cluster-nodes.html">The cluster autoscaler</a>
 </li>
-<li><a href="olm-installing-operators-from-software-catalog_install-operators-from-the-software-catalog.html">About Operator installation from the software catalog</a>
-</li>
 <li><a href="extend-the-openshift-cli-with-plugins-intro_extend-the-openshift-cli-with-plugins.html">Extend the OpenShift CLI with plugins</a>
 </li>
 <li><a href="cli-manager-about_manage-cli-plugins-with-the-cli-manager.html">About the CLI Manager Operator</a>
 </li>
 <li><a href="nodes-pods-plugins-about_manage-kernel-modules-across-cluster-nodes-deploy-device-plugins-alongside-kernel-modules.html">Understand device plugins</a>
 </li>
-<li><a href="resolve-catalog-content-con_resolve-catalog-content.html">Resolve catalog content</a>
+<li><a href="explore-cluster-extension-capabilities-con_explore-cluster-extension-capabilities.html">Understand cluster extensions with OLM v1</a>
+</li>
+<li><a href="check-cluster-extension-support-con_check-cluster-extension-support.html">Review supported cluster extensions with OLM v1</a>
+</li>
+<li><a href="install-cluster-extensions-with-olmv1-con_install-cluster-extensions-with-olmv1.html">Install cluster extensions with OLM v1</a>
+</li>
+<li><a href="configure-cluster-extensions-con_configure-cluster-extensions.html">Configure cluster extensions with OLM v1</a>
+</li>
+<li><a href="update-and-rollback-cluster-extensions-with-olmv1-con_update-and-rollback-cluster-extensions-with-olmv1.html">Update and roll back cluster extensions with OLM v1</a>
+</li>
+<li><a href="remove-cluster-extensions-with-olmv1-con_remove-cluster-extensions-with-olmv1.html">Remove cluster extensions with OLM v1</a>
+</li>
+<li><a href="control-access-to-cluster-extension-resources-with-olmv1-con_control-access-to-cluster-extension-resources-with-olmv1.html">Control access to cluster extension resources with OLM v1</a>
+</li>
+<li><a href="monitor-cluster-extensions-with-olmv1-con_monitor-cluster-extensions-with-olmv1.html">Monitor cluster extensions with OLM v1</a>
+</li>
+<li><a href="troubleshoot-cluster-extensions-with-olmv1-con_troubleshoot-cluster-extensions-with-olmv1.html">Troubleshoot cluster extensions with OLM v1</a>
+</li>
+<li><a href="understand-olmv0-resources-con_understand-operator-lifecycle-manager-concepts-and-resources.html">Understand Operator lifecycle management with OLM (Classic)</a>
+</li>
+<li><a href="install-operators-with-olmv0-con_install-operators-with-olmv0.html">Install Operators with OLM (Classic)</a>
+</li>
+<li><a href="update-installed-operators-con_update-installed-operators.html">Update installed Operators with OLM (Classic)</a>
+</li>
+<li><a href="ocp-map-delete-operators-from-a-cluster-intro_delete-operators-from-a-cluster.html">Delete Operators with OLM (Classic)</a>
+</li>
+<li><a href="ocp-map-create-applications-from-installed-operators-intro_create-applications-from-installed-operators.html">Create applications from Operators installed with OLM (Classic)</a>
+</li>
+<li><a href="ocp-map-configure-operator-lifecycle-manager-features-intro_configure-operator-lifecycle-manager-features.html">Configure OLM (Classic) features</a>
+</li>
+<li><a href="ocp-map-configure-operator-lifecycle-manager-proxy-support-intro_configure-operator-lifecycle-manager-proxy-support.html"><span class="toc-current">Configure Operator proxy support with OLM (Classic)</span></a>
+</li>
+<li><a href="ocp-map-view-operator-status-intro_view-operator-status.html">Monitor Operators with OLM (Classic)</a>
+</li>
+<li><a href="ocp-map-troubleshoot-operator-issues-intro_troubleshoot-operator-issues.html">Troubleshoot Operators with OLM (Classic)</a>
+</li>
+<li><a href="prepare-catalogs-con_prepare-catalogs.html">Prepare catalogs</a>
+</li>
+<li><a href="manage-catalogs-with-olmv1-con_manage-catalogs-with-olmv1.html">Manage catalogs with OLM v1</a>
+</li>
+<li><a href="manage-catalogs-with-olmv0-con_manage-catalogs-with-olmv0.html">Manage catalogs with OLM (Classic)</a>
+</li>
+<li><a href="extend-the-kubernetes-api-with-custom-resource-definitions-con_crd-extending-api-with-crds.html">Extend the Kubernetes API with custom resource definitions</a>
 </li>
 </ul>
 </li>
@@ -1957,151 +1991,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#olmv1-finding-operators-to-install_install-and-delete-cluster-extensions">Find Operators to install from a catalog</a></li><li class="level-4"><a href="#olmv1-cluster-extension-permissions_install-and-delete-cluster-extensions">Cluster extension permissions</a></li><li class="level-5"><a href="#olmv1-creating-a-namespace_install-and-delete-cluster-extensions">Creating a namespace</a></li><li class="level-5"><a href="#olmv1-creating-a-service-account_install-and-delete-cluster-extensions">Creating a service account for an extension</a></li><li class="level-5"><a href="#olmv1-creating-a-cluster-role_install-and-delete-cluster-extensions">Creating a cluster role for an extension</a></li><li class="level-5"><a href="#olmv1-creating-a-cluster-rol-binding_install-and-delete-cluster-extensions">Creating a cluster role binding for an extension</a></li><li class="level-4"><a href="#olmv1-installing-an-operator_install-and-delete-cluster-extensions">Install a cluster extension in all namespaces</a></li><li class="level-4"><a href="#olmv1-deploying-a-ce-in-a-specific-namespace_install-and-delete-cluster-extensions">Configure a watch namespace for a cluster extension (Technology Preview)</a></li><li class="level-4"><a href="#olmv1-deleting-an-operator_install-and-delete-cluster-extensions">Deleting an Operator</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#olm-overriding-proxy-settings_configure-operator-lifecycle-manager-proxy-support">Overriding proxy settings of an Operator</a></li><li class="level-4"><a href="#olm-inject-custom-ca_configure-operator-lifecycle-manager-proxy-support">Injecting a custom CA certificate</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="install-and-delete-cluster-extensions-con_install-and-delete-cluster-extensions">Install and delete cluster extensions</h3>
+<h3 id="ocp-map-configure-operator-lifecycle-manager-proxy-support-intro_configure-operator-lifecycle-manager-proxy-support">Configure Operator proxy support with OLM (Classic)</h3>
 <div class="paragraph _abstract">
-<p>With Operator Lifecycle Manager (OLM) v1, you install a cluster extension by creating a <code>ClusterExtension</code> resource that references a package in a catalog, along with the service account and RBAC the extension needs. You delete the extension by removing that resource.</p>
+<p>If a global proxy is configured on your Red&#160;Hat OpenShift Container Platform cluster, Operator Lifecycle Manager (OLM) automatically configures Operators that it manages with the cluster-wide proxy. However, you can also configure installed Operators to override the global proxy or inject a custom CA certificate.</p>
 </div>
 <div class="sect3">
-<h4 id="olmv1-finding-operators-to-install_install-and-delete-cluster-extensions">Find Operators to install from a catalog</h4>
+<h4 id="olm-overriding-proxy-settings_configure-operator-lifecycle-manager-proxy-support">Overriding proxy settings of an Operator</h4>
 <div class="paragraph _abstract">
-<p>After you add a catalog to your cluster, you can query the catalog to find Operators and extensions to install.</p>
-</div>
-<div class="paragraph">
-<p>Currently in Operator Lifecycle Manager (OLM) v1, you cannot query on-cluster catalogs managed by catalogd. In OLM v1, you must use the <code>opm</code> and <code>jq</code> CLI tools to query the catalog registry.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have added a catalog to your cluster.</p>
-</li>
-<li>
-<p>You have installed the <code>jq</code> CLI tool.</p>
-</li>
-<li>
-<p>You have installed the <code>opm</code> CLI tool.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>To return a list of extensions that support the <code>AllNamespaces</code> install mode and do not use webhooks, enter the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \
-  | jq -cs '[.[] | select(.schema == "olm.bundle" \
-  and (.properties[] | select(.type == "olm.csv.metadata").value.installModes[] \
-  | select(.type == "AllNamespaces" and .supported == true)) \
-  and .spec.webhookdefinitions == null) | .package] | unique[]'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>catalog_registry_url</code></dt>
-<dd>
-<p>Specifies the URL of the catalog registry, such as <code>registry.redhat.io/redhat/redhat-operator-index</code>.</p>
-</dd>
-<dt class="hdlist1"><code>tag</code></dt>
-<dd>
-<p>Specifies the tag or version of the catalog, such as <code>v{product-version}</code> or <code>latest</code>.</p>
-<div class="listingblock">
-<div class="title">Example command</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ opm render \
-  registry.redhat.io/redhat/redhat-operator-index:v{product-version} \
-  | jq -cs '[.[] | select(.schema == "olm.bundle" \
-  and (.properties[] | select(.type == "olm.csv.metadata").value.installModes[] \
-  | select(.type == "AllNamespaces" and .supported == true)) \
-  and .spec.webhookdefinitions == null) | .package] | unique[]'</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">"3scale-operator"
-"amq-broker-rhel8"
-"amq-online"
-"amq-streams"
-"amq-streams-console"
-"ansible-automation-platform-operator"
-"ansible-cloud-addons-operator"
-"apicast-operator"
-"authorino-operator"
-"aws-load-balancer-operator"
-"bamoe-kogito-operator"
-"cephcsi-operator"
-"cincinnati-operator"
-"cluster-logging"
-"cluster-observability-operator"
-"compliance-operator"
-"container-security-operator"
-"cryostat-operator"
-"datagrid"
-"devspaces"
-...</code></pre>
-</div>
-</div>
-</dd>
-</dl>
-</div>
-</li>
-<li>
-<p>Inspect the contents of an extension&#8217;s metadata by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \
-  | jq -s '.[] | select( .schema == "olm.package") \
-  | select( .name == "&lt;package_name&gt;")'</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example command</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ opm render \
-  registry.redhat.io/redhat/redhat-operator-index:v{product-version} \
-  | jq -s '.[] | select( .schema == "olm.package") \
-  | select( .name == "openshift-pipelines-operator-rh")'</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">{
-  "schema": "olm.package",
-  "name": "openshift-pipelines-operator-rh",
-  "defaultChannel": "latest",
-  "icon": {
-    "base64data": "iVBORw0KGgoAAAANSUhE...",
-    "mediatype": "image/png"
-  }
-}</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="olmv1-cluster-extension-permissions_install-and-delete-cluster-extensions">Cluster extension permissions</h4>
-<div class="paragraph _abstract">
-<p>In Operator Lifecycle Manager (OLM) Classic, a single service account with cluster administrator privileges manages all cluster extensions.</p>
-</div>
-<div class="paragraph">
-<p>OLM v1 is designed to be more secure than OLM (Classic) by default. OLM v1 manages a cluster extension by using the service account specified in an extension&#8217;s custom resource (CR). Cluster administrators can create a service account for each cluster extension. As a result, administrators can follow the principle of least privilege and assign only the role-based access controls (RBAC) to install and manage that extension.</p>
-</div>
-<div class="paragraph">
-<p>You must add each permission to either a cluster role or role. Then you must bind the cluster role or role to the service account with a cluster role binding or role binding.</p>
-</div>
-<div class="paragraph">
-<p>You can scope the RBAC to either the cluster or to a namespace. Use cluster roles and cluster role bindings to scope permissions to the cluster. Use roles and role bindings to scope permissions to a namespace. Whether you scope the permissions to the cluster or to a namespace depends on the design of the extension you want to install and manage.</p>
+<p>If a cluster-wide egress proxy is configured, Operators running with Operator Lifecycle Manager (OLM) inherit the cluster-wide proxy settings on their deployments.
+Cluster administrators
+can also override these proxy settings by configuring the subscription of an Operator.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -2111,134 +2013,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>To simply the following procedure and improve readability, the following example manifest uses permissions that are scoped to the cluster. You can further restrict some of the permissions by scoping them to the namespace of the extension instead of the cluster.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>If a new version of an installed extension requires additional permissions, OLM v1 halts the update process until a cluster administrator grants those permissions.</p>
-</div>
-<div class="sect4">
-<h5 id="olmv1-creating-a-namespace_install-and-delete-cluster-extensions">Creating a namespace</h5>
-<div class="paragraph _abstract">
-<p>Before you create a service account to install and manage your cluster extension, you must create a namespace.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Access to an Red&#160;Hat OpenShift Container Platform cluster using an account with <code>cluster-admin</code> permissions.</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>Create a new namespace for the service account of the extension that you want to install by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc adm new-project &lt;new_namespace&gt;</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="olmv1-creating-a-service-account_install-and-delete-cluster-extensions">Creating a service account for an extension</h5>
-<div class="paragraph _abstract">
-<p>You must create a service account to install, manage, and update a cluster extension.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Access to an Red&#160;Hat OpenShift Container Platform cluster using an account with <code>cluster-admin</code> permissions.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Create a service account, similar to the following example:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: &lt;extension&gt;-installer
-  namespace: &lt;namespace&gt;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example <code>extension-service-account.yaml</code> file</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: pipelines-installer
-  namespace: pipelines</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Apply the service account by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f extension-service-account.yaml</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="olmv1-creating-a-cluster-role_install-and-delete-cluster-extensions">Creating a cluster role for an extension</h5>
-<div class="paragraph _abstract">
-<p>To set up access controls for an extension, review the <code>install.spec.clusterpermissions</code> section of the cluster service version (CSV) and the extension manifests. Then, create a cluster role by copying the required role-based access control (RBAC) rules from the CSV into a new manifest.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Tip">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If you want to test the process for installing and updating an extension in OLM v1, you can use the following cluster role to grant cluster administrator permissions. This manifest is for testing purposes only. It should not be used in production clusters.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: &lt;extension&gt;-installer-clusterrole
-rules:
-- apiGroups: ["*"]
-  resources: ["*"]
-  verbs: ["*"]</code></pre>
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following procedure uses the <code>openshift-pipelines-operator-rh.clusterserviceversion.yaml</code> file of the Red Hat OpenShift Pipelines Operator as an example. The examples include excerpts of the RBAC required to install and manage the OpenShift Pipelines Operator. For a complete manifest, see "Example cluster role for the Red Hat OpenShift Pipelines Operator".</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>To simply the following procedure and improve readability, the following example manifest uses permissions that are scoped to the cluster. You can further restrict some of the permissions by scoping them to the namespace of the extension instead of the cluster.</p>
+<p>Operators must handle setting environment variables for proxy settings in the pods for any managed Operands.</p>
 </div>
 </td>
 </tr>
@@ -2248,10 +2023,8 @@ rules:
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>Access to an Red&#160;Hat OpenShift Container Platform cluster using an account with <code>cluster-admin</code> permissions.</p>
-</li>
-<li>
-<p>You have downloaded the manifests in the image reference of the extension that you want to install.</p>
+<p>Access to an Red&#160;Hat OpenShift Container Platform cluster using an account with
+<code>cluster-admin</code> permissions.</p>
 </li>
 </ul>
 </div>
@@ -2259,443 +2032,57 @@ rules:
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Create a new cluster role manifest, similar to the following example:</p>
-<div class="listingblock">
-<div class="title">Example <code>&lt;extension&gt;-cluster-role.yaml</code> file</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: &lt;extension&gt;-installer-clusterrole</code></pre>
-</div>
-</div>
+<p>Navigate in the web console to the <strong>Ecosystem → Software Catalog</strong> page.</p>
 </li>
 <li>
-<p>Edit your cluster role manifest to include permission to update finalizers on the extension, similar to the following example:</p>
-<div class="listingblock">
-<div class="title">Example &lt;extension&gt;-cluster-role.yaml</div>
+<p>Select the Operator and click <strong>Install</strong>.</p>
+</li>
+<li>
+<p>On the <strong>Install Operator</strong> page, modify the <code>Subscription</code> object to include one or more of the following environment variables in the <code>spec</code> section:</p>
+<div class="openblock">
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: pipelines-installer-clusterrole
-rules:
-- apiGroups:
-  - olm.operatorframework.io
-  resources:
-  - clusterextensions/finalizers
-  verbs:
-  - update
-  # Scoped to the name of the ClusterExtension
-  resourceNames:
-  - &lt;metadata_name&gt;</code></pre>
+<div class="ulist">
+<ul>
+<li>
+<p><code>HTTP_PROXY</code></p>
+</li>
+<li>
+<p><code>HTTPS_PROXY</code></p>
+</li>
+<li>
+<p><code>NO_PROXY</code></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="paragraph">
-<p>Replace <code>&lt;metadata_name&gt;</code> with the value of the metadata.name field from the custom resource (CR) of the extension.</p>
+<p>For example:</p>
 </div>
-</li>
-<li>
-<p>Search for the <code>clusterrole</code> and <code>clusterrolebindings</code> values in the <code>rules.resources</code> field in the extension&#8217;s CSV file.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Copy the API groups, resources, verbs, and resource names to your manifest, similar to the following example:</p>
 <div class="listingblock">
-<div class="title">Example cluster role manifest</div>
+<div class="title"><code>Subscription</code> object with proxy setting overrides</div>
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
 metadata:
-  name: pipelines-installer-clusterrole
-rules:
-# ...
-# ClusterRoles and ClusterRoleBindings for the controllers of the extension
-- apiGroups:
-  - rbac.authorization.k8s.io
-  resources:
-  - clusterroles
-  verbs:
-  - create
-  - list
-  - watch
-- apiGroups:
-  - rbac.authorization.k8s.io
-  resources:
-  - clusterroles
-  verbs:
-  - get
-  - update
-  - patch
-  - delete
-  resourceNames:
-  - "*"
-- apiGroups:
-  - rbac.authorization.k8s.io
-  resources:
-  - clusterrolebindings
-  verbs:
-  - create
-  - list
-  - watch
-- apiGroups:
-  - rbac.authorization.k8s.io
-  resources:
-  - clusterrolebindings
-  verbs:
-  - get
-  - update
-  - patch
-  - delete
-  resourceNames:
-  - "*"
-# ...</code></pre>
+  name: etcd-config-test
+  namespace: openshift-operators
+spec:
+  config:
+    env:
+    - name: HTTP_PROXY
+      value: test_http
+    - name: HTTPS_PROXY
+      value: test_https
+    - name: NO_PROXY
+      value: test
+  channel: clusterwide-alpha
+  installPlanApproval: Automatic
+  name: etcd
+  source: community-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: etcdoperator.v0.9.4-clusterwide</code></pre>
 </div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>You cannot scope the <code>create</code>, <code>list</code>, and <code>watch</code> verbs to specific resource names (the <code>resourceNames</code> field). You must scope these permissions to their resources (the <code>resources</code> field).</p>
-</li>
-<li>
-<p>The resource names in the <code>resourceNames</code> field for the <code>get</code>, <code>update</code>, <code>patch</code>, and <code>delete</code> verbs are generated by using the following format: <code>&lt;package_name&gt;.&lt;hash&gt;</code>. After you install the extension, look up the resource names for the cluster roles and cluster role bindings for the controller of the extension. Replace the wildcard characters in this example with the generated names and follow the principle of least privilege.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Search for the <code>customresourcedefinitions</code> value in the <code>rules.resources</code> field in the extension&#8217;s CSV file.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Copy the API groups, resources, verbs, and resource names to your manifest, similar to the following example:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: pipelines-installer-clusterrole
-rules:
-# ...
-# Custom resource definitions of the extension
-- apiGroups:
-  - apiextensions.k8s.io
-  resources:
-  - customresourcedefinitions
-  verbs:
-  - create
-  - list
-  - watch
-- apiGroups:
-  - apiextensions.k8s.io
-  resources:
-  - customresourcedefinitions
-  verbs:
-  - get
-  - update
-  - patch
-  - delete
-  resourceNames:
-  - manualapprovalgates.operator.tekton.dev
-  - openshiftpipelinesascodes.operator.tekton.dev
-  - tektonaddons.operator.tekton.dev
-  - tektonchains.operator.tekton.dev
-  - tektonconfigs.operator.tekton.dev
-  - tektonhubs.operator.tekton.dev
-  - tektoninstallersets.operator.tekton.dev
-  - tektonpipelines.operator.tekton.dev
-  - tektonresults.operator.tekton.dev
-  - tektontriggers.operator.tekton.dev
-# ...</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Search the CSV file for stanzas with the <code>permissions</code> and <code>clusterPermissions</code> values in the <code>rules.resources</code> spec.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Copy the API groups, resources, verbs, and resource names to your manifest, similar to the following example:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: pipelines-installer-clusterrole
-rules:
-# ...
-# Excerpt from install.spec.clusterPermissions
-- apiGroups:
-  - ''
-  resources:
-  - nodes
-  - pods
-  - services
-  - endpoints
-  - persistentvolumeclaims
-  - events
-  - configmaps
-  - secrets
-  - pods/log
-  - limitranges
-  verbs:
-  - create
-  - list
-  - watch
-  - delete
-  - deletecollection
-  - patch
-  - get
-  - update
-- apiGroups:
-  - extensions
-  - apps
-  resources:
-  - ingresses
-  - ingresses/status
-  verbs:
-  - create
-  - list
-  - watch
-  - delete
-  - patch
-  - get
-  - update
- # ...</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Search the CSV file for resources under the <code>install.spec.deployments</code> stanza.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Copy the API groups, resources, verbs, and resource names to your manifest, similar to the following example:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: pipelines-installer-clusterrole
-rules:
-# ...
-# Excerpt from install.spec.deployments
-- apiGroups:
-  - apps
-  resources:
-  - deployments
-  verbs:
-  - create
-  - list
-  - watch
-- apiGroups:
-  - apps
-  resources:
-  - deployments
-  verbs:
-  - get
-  - update
-  - patch
-  - delete
-  # scoped to the extension controller deployment name
-  resourceNames:
-  - openshift-pipelines-operator
-  - tekton-operator-webhook
-# ...</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Search for the <code>services</code> and <code>configmaps</code> values in the <code>rules.resources</code> field in the extension&#8217;s CSV file.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Copy the API groups, resources, verbs, and resource names to your manifest, similar to the following example:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: pipelines-installer-clusterrole
-rules:
-# ...
-# Services
-- apiGroups:
-  - ""
-  resources:
-  - services
-  verbs:
-  - create
-- apiGroups:
-  - ""
-  resources:
-  - services
-  verbs:
-  - get
-  - list
-  - watch
-  - update
-  - patch
-  - delete
-  # scoped to the service name
-  resourceNames:
-  - openshift-pipelines-operator-monitor
-  - tekton-operator
-  - tekton-operator-webhook
-# configmaps
-- apiGroups:
-  - ""
-  resources:
-  - configmaps
-  verbs:
-  - create
-- apiGroups:
-  - ""
-  resources:
-  - configmaps
-  verbs:
-  - get
-  - list
-  - watch
-  - update
-  - patch
-  - delete
-  # scoped to the configmap name
-  resourceNames:
-  - config-logging
-  - tekton-config-defaults
-  - tekton-config-observability
-  - tekton-operator-controller-config-leader-election
-  - tekton-operator-info
-  - tekton-operator-webhook-config-leader-election
-- apiGroups:
-  - operator.tekton.dev
-  resources:
-  - tekton-config-read-role
-  - tekton-result-read-role
-  verbs:
-  - get
-  - watch
-  - list</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Add the cluster role manifest to the cluster by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f &lt;extension&gt;-installer-clusterrole.yaml</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example command</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f pipelines-installer-clusterrole.yaml</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="olmv1-creating-a-cluster-rol-binding_install-and-delete-cluster-extensions">Creating a cluster role binding for an extension</h5>
-<div class="paragraph _abstract">
-<p>After you have created a service account and cluster role, you must bind the cluster role to the service account with a cluster role binding manifest.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Access to an Red&#160;Hat OpenShift Container Platform cluster using an account with <code>cluster-admin</code> permissions.</p>
-</li>
-<li>
-<p>You have created and applied the following resources for the extension you want to install:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Namespace</p>
-</li>
-<li>
-<p>Service account</p>
-</li>
-<li>
-<p>Cluster role</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Create a cluster role binding to bind the cluster role to the service account, similar to the following example:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: &lt;extension&gt;-installer-binding
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: &lt;extension&gt;-installer-clusterrole
-subjects:
-- kind: ServiceAccount
-  name: &lt;extension&gt;-installer
-  namespace: &lt;namespace&gt;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example <code>pipelines-cluster-role-binding.yaml</code> file</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: pipelines-installer-binding
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: pipelines-installer-clusterrole
-subjects:
-- kind: ServiceAccount
-  name: pipelines-installer
-  namespace: pipelines</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Apply the cluster role binding by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f pipelines-cluster-role-binding.yaml</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="olmv1-installing-an-operator_install-and-delete-cluster-extensions">Install a cluster extension in all namespaces</h4>
-<div class="paragraph _abstract">
-<p>You can install an extension from a catalog by creating a custom resource (CR) and applying it to the cluster. Operator Lifecycle Manager (OLM) v1 supports installing cluster extensions, including OLM (Classic) Operators in the <code>registry+v1</code> bundle format, that are scoped to the cluster.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2705,17 +2092,63 @@ subjects:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For Red&#160;Hat OpenShift Container Platform {product-version}, documented procedures for OLM v1 are CLI-based only. Alternatively, administrators can create and view related objects in the web console by using normal methods, such as the <strong>Import YAML</strong> and <strong>Search</strong> pages. However, the existing <strong>Software Catalog</strong> and <strong>Installed Operators</strong> pages do not yet display OLM v1 components.</p>
+<p>These environment variables can also be unset using an empty value to remove any previously set cluster-wide or custom proxy settings.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>OLM handles these environment variables as a unit; if at least one of them is set, all three are considered overridden and the cluster-wide defaults are not used for the deployments of the subscribed Operator.</p>
+</div>
+</li>
+<li>
+<p>Click <strong>Install</strong> to make the Operator available to the selected namespaces.</p>
+</li>
+<li>
+<p>After the CSV for the Operator appears in the relevant namespace, you can verify that custom proxy environment variables are set in the deployment. For example, using the CLI:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get deployment -n openshift-operators \
+    etcd-operator -o yaml \
+    | grep -i "PROXY" -A 2</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">        - name: HTTP_PROXY
+          value: test_http
+        - name: HTTPS_PROXY
+          value: test_https
+        - name: NO_PROXY
+          value: test
+        image: quay.io/coreos/etcd-operator@sha256:66a37fd61a06a43969854ee6d3e21088a98b93838e284a6086b13917f96b0d9c
+...</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="olm-inject-custom-ca_configure-operator-lifecycle-manager-proxy-support">Injecting a custom CA certificate</h4>
+<div class="paragraph _abstract">
+<p>When a cluster administrator
+adds a custom CA certificate to a cluster using a config map, the Cluster Network Operator merges the user-provided certificates and system CA certificates into a single bundle. You can inject this merged bundle into your Operator running on Operator Lifecycle Manager (OLM), which is useful if you have a man-in-the-middle HTTPS proxy.</p>
+</div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have created a service account and assigned enough role-based access controls (RBAC) to install, update, and manage the extension that you want to install. For more information, see "Cluster extension permissions".</p>
+<p>Access to an Red&#160;Hat OpenShift Container Platform cluster using an account with
+<code>cluster-admin</code> permissions.</p>
+</li>
+<li>
+<p>Custom CA certificate added to the cluster using a config map.</p>
+</li>
+<li>
+<p>Desired Operator installed and running on OLM.</p>
 </li>
 </ul>
 </div>
@@ -2723,467 +2156,110 @@ subjects:
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Create a CR, similar to the following example:</p>
+<p>Create an empty config map in the namespace where the subscription for your Operator exists and include the following label:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: olm.operatorframework.io/v1
-  kind: ClusterExtension
-  metadata:
-    name: &lt;clusterextension_name&gt;
-  spec:
-    namespace: &lt;installed_namespace&gt;
-    serviceAccount:
-      name: &lt;service_account_installer_name&gt;
-    source:
-      sourceType: Catalog
-      catalog:
-        packageName: &lt;package_name&gt;
-        channels:
-          - &lt;channel_name&gt;
-        version: &lt;version_or_version_range&gt;
-        upgradeConstraintPolicy: CatalogProvided</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>spec.namespace</code></dt>
-<dd>
-<p>Specifies the namespace where you want the bundle installed, such as <code>pipelines</code> or <code>my-extension</code>. Extensions are still cluster-scoped and might contain resources that are installed in different namespaces.</p>
-</dd>
-<dt class="hdlist1"><code>spec.serviceAccount.name</code></dt>
-<dd>
-<p>Specifies the name of the service account you created to install, update, and manage your extension.</p>
-</dd>
-<dt class="hdlist1"><code>spec.source.catalog.channels</code></dt>
-<dd>
-<p>Specifies channel names as an array, such as <code>pipelines-1.14</code> or <code>latest</code>. This field is optional.</p>
-</dd>
-<dt class="hdlist1"><code>spec.source.catalog.version</code></dt>
-<dd>
-<p>Specifies the version or version range, such as <code>1.14.0</code>, <code>1.14.x</code>, or <code>&gt;=1.16</code>, of the package you want to install or update. This field is optional.</p>
-</dd>
-<dt class="hdlist1"><code>spec.source.catalog.upgradeConstraintPolicy</code></dt>
-<dd>
-<p>Specifies the upgrade constraint policy. If unspecified, the default setting is <code>CatalogProvided</code>. The <code>CatalogProvided</code> setting only updates if the new version satisfies the upgrade constraints set by the package author. To force an update or rollback, set the field to <code>SelfCertified</code>. This field is optional.</p>
-<div class="listingblock">
-<div class="title">Example <code>pipelines-operator.yaml</code> CR</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: olm.operatorframework.io/v1
-kind: ClusterExtension
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: pipelines-operator
+  name: trusted-ca <img src="data:image/png;base64," alt="1">
+  labels:
+    config.openshift.io/inject-trusted-cabundle: "true" <img src="data:image/png;base64," alt="2"></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><img src="data:image/png;base64," alt="1"></td>
+<td>Name of the config map.</td>
+</tr>
+<tr>
+<td><img src="data:image/png;base64," alt="2"></td>
+<td>Requests the Cluster Network Operator to inject the merged bundle.
+<div class="paragraph">
+<p>After creating this config map, it is immediately populated with the certificate contents of the merged bundle.</p>
+</div></td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Update the <code>Subscription</code> object to include a <code>spec.config</code> section that mounts the <code>trusted-ca</code> config map as a volume to each container within a pod that requires a custom CA:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: my-operator
 spec:
-  namespace: pipelines
-  serviceAccount:
-    name: pipelines-installer
-  source:
-    sourceType: Catalog
-    catalog:
-      packageName: openshift-pipelines-operator-rh
-      version: "1.14.x"</code></pre>
+  package: etcd
+  channel: alpha
+  config: <img src="data:image/png;base64," alt="1">
+    selector:
+      matchLabels:
+        &lt;labels_for_pods&gt; <img src="data:image/png;base64," alt="2">
+    volumes: <img src="data:image/png;base64," alt="3">
+    - name: trusted-ca
+      configMap:
+        name: trusted-ca
+        items:
+          - key: ca-bundle.crt <img src="data:image/png;base64," alt="4">
+            path: tls-ca-bundle.pem <img src="data:image/png;base64," alt="5">
+    volumeMounts: <img src="data:image/png;base64," alt="6">
+    - name: trusted-ca
+      mountPath: /etc/pki/ca-trust/extracted/pem
+      readOnly: true</code></pre>
 </div>
 </div>
-</dd>
-</dl>
-</div>
-</li>
-<li>
-<p>Apply the CR to the cluster by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f pipeline-operator.yaml</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">clusterextension.olm.operatorframework.io/pipelines-operator created</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="olist arabic">
-<div class="title">Verification</div>
-<ol class="arabic">
-<li>
-<p>View the Operator or extension&#8217;s CR in the YAML format by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get clusterextension pipelines-operator -o yaml</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">apiVersion: v1
-items:
-- apiVersion: olm.operatorframework.io/v1
-  kind: ClusterExtension
-  metadata:
-    annotations:
-      kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"olm.operatorframework.io/v1","kind":"ClusterExtension","metadata":{"annotations":{},"name":"pipes"},"spec":{"namespace":"pipelines","serviceAccount":{"name":"pipelines-installer"},"source":{"catalog":{"packageName":"openshift-pipelines-operator-rh","version":"1.14.x"},"sourceType":"Catalog"}}}
-    creationTimestamp: "2025-02-18T21:48:13Z"
-    finalizers:
-    - olm.operatorframework.io/cleanup-unpack-cache
-    - olm.operatorframework.io/cleanup-contentmanager-cache
-    generation: 1
-    name: pipelines-operator
-    resourceVersion: "72725"
-    uid: e18b13fb-a96d-436f-be75-a9a0f2b07993
-  spec:
-    namespace: pipelines
-    serviceAccount:
-      name: pipelines-installer
-    source:
-      catalog:
-        packageName: openshift-pipelines-operator-rh
-        upgradeConstraintPolicy: CatalogProvided
-        version: 1.14.x
-      sourceType: Catalog
-  status:
-    conditions:
-    - lastTransitionTime: "2025-02-18T21:48:13Z"
-      message: ""
-      observedGeneration: 1
-      reason: Deprecated
-      status: "False"
-      type: Deprecated
-    - lastTransitionTime: "2025-02-18T21:48:13Z"
-      message: ""
-      observedGeneration: 1
-      reason: Deprecated
-      status: "False"
-      type: PackageDeprecated
-    - lastTransitionTime: "2025-02-18T21:48:13Z"
-      message: ""
-      observedGeneration: 1
-      reason: Deprecated
-      status: "False"
-      type: ChannelDeprecated
-    - lastTransitionTime: "2025-02-18T21:48:13Z"
-      message: ""
-      observedGeneration: 1
-      reason: Deprecated
-      status: "False"
-      type: BundleDeprecated
-    - lastTransitionTime: "2025-02-18T21:48:16Z"
-      message: Installed bundle registry.redhat.io/openshift-pipelines/pipelines-operator-bundle@sha256:f7b19ce26be742c4aaa458d37bc5ad373b5b29b20aaa7d308349687d3cbd8838
-        successfully
-      observedGeneration: 1
-      reason: Succeeded
-      status: "True"
-      type: Installed
-    - lastTransitionTime: "2025-02-18T21:48:16Z"
-      message: desired state reached
-      observedGeneration: 1
-      reason: Succeeded
-      status: "True"
-      type: Progressing
-    install:
-      bundle:
-        name: openshift-pipelines-operator-rh.v1.14.5
-        version: 1.14.5
-kind: List
-metadata:
-  resourceVersion: ""</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>spec.channel</code></dt>
-<dd>
-<p>Displays the channel defined in the CR of the extension.</p>
-</dd>
-<dt class="hdlist1"><code>spec.version</code></dt>
-<dd>
-<p>Displays the version or version range defined in the CR of the extension.</p>
-</dd>
-<dt class="hdlist1"><code>status.conditions</code></dt>
-<dd>
-<p>Displays information about the status and health of the extension.</p>
-</dd>
-<dt class="hdlist1"><code>type: Deprecated</code></dt>
-<dd>
-<p>Displays whether one or more of following are deprecated:</p>
-<div class="openblock">
-<div class="content">
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>type: PackageDeprecated</code></dt>
-<dd>
-<p>Displays whether the resolved package is deprecated.</p>
-</dd>
-<dt class="hdlist1"><code>type: ChannelDeprecated</code></dt>
-<dd>
-<p>Displays whether the resolved channel is deprecated.</p>
-</dd>
-<dt class="hdlist1"><code>type: BundleDeprecated</code></dt>
-<dd>
-<p>Displays whether the resolved bundle is deprecated.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>The value of <code>False</code> in the <code>status</code> field indicates that the <code>reason: Deprecated</code> condition is not deprecated. The value of <code>True</code> in the <code>status</code> field indicates that the <code>reason: Deprecated</code> condition is deprecated.</p>
-</div>
-</dd>
-<dt class="hdlist1"><code>installedBundle.name</code></dt>
-<dd>
-<p>Displays the name of the bundle installed.</p>
-</dd>
-<dt class="hdlist1"><code>installedBundle.version</code></dt>
-<dd>
-<p>Displays the version of the bundle installed.</p>
-</dd>
-</dl>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="olmv1-deploying-a-ce-in-a-specific-namespace_install-and-delete-cluster-extensions">Configure a watch namespace for a cluster extension (Technology Preview)</h4>
-<div class="paragraph _abstract">
-<p>You can configure the watch namespace for extensions that support namespace-scoped resource watching.</p>
-</div>
-<div class="admonitionblock important">
+<div class="colist arabic">
+<table>
+<tr>
+<td><img src="data:image/png;base64," alt="1"></td>
+<td>Add a <code>config</code> section if it does not exist.</td>
+</tr>
+<tr>
+<td><img src="data:image/png;base64," alt="2"></td>
+<td>Specify labels to match pods that are owned by the Operator.</td>
+</tr>
+<tr>
+<td><img src="data:image/png;base64," alt="3"></td>
+<td>Create a <code>trusted-ca</code> volume.</td>
+</tr>
+<tr>
+<td><img src="data:image/png;base64," alt="4"></td>
+<td><code>ca-bundle.crt</code> is required as the config map key.</td>
+</tr>
+<tr>
+<td><img src="data:image/png;base64," alt="5"></td>
+<td><code>tls-ca-bundle.pem</code> is required as the config map path.</td>
+</tr>
+<tr>
+<td><img src="data:image/png;base64," alt="6"></td>
+<td>Create a <code>trusted-ca</code> volume mount.
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<img src="data:image/png;base64," alt="Important">
+<img src="data:image/png;base64," alt="Note">
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Configuring watch namespace for a cluster extension is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
-</div>
-<div class="paragraph">
-<p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+<p>Deployments of an Operator can fail to validate the authority and display a <code>x509 certificate signed by unknown authority</code> error. This error can occur even after injecting a custom CA when using the subscription of an Operator. In this case, you can set the <code>mountPath</code> as <code>/etc/ssl/certs</code> for trusted-ca by using the subscription of an Operator.</p>
 </div>
 </td>
 </tr>
 </table>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have access to an Red&#160;Hat OpenShift Container Platform cluster using an account with <code>cluster-admin</code> permissions.</p>
-</li>
-<li>
-<p>You have enabled the <code>TechPreviewNoUpgrade</code> feature set on the cluster.</p>
-</li>
-<li>
-<p>You have created a service account and assigned enough role-based access controls (RBAC) to install, update, and manage the extension. For more information, see "Cluster extension permissions".</p>
-</li>
-<li>
-<p>You have verified the supported install modes for the extension and determined the required <code>watchNamespace</code> configuration.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Create a custom resource (CR) based on where you want the extension to watch for resources:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>To configure the extension to watch its own installation namespace:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: olm.operatorframework.io/v1
-kind: ClusterExtension
-metadata:
-  name: &lt;extension_name&gt;
-spec:
-  namespace: &lt;installation_namespace&gt;
-  config:
-    configType: Inline
-    inline:
-      watchNamespace: &lt;installation_namespace&gt;
-  serviceAccount:
-    name: &lt;service_account&gt;
-  source:
-    sourceType: Catalog
-    catalog:
-      packageName: &lt;package_name&gt;
-      version: &lt;version&gt;
-      upgradeConstraintPolicy: CatalogProvided</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>config.inline.watchNamespace</code></dt>
-<dd>
-<p>Specifies the namespace to watch for resources. For requirements and valid values, see "Extension configuration".</p>
-</dd>
-</dl>
-</div>
-</li>
-<li>
-<p>To configure the extension to watch a different namespace:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: olm.operatorframework.io/v1
-kind: ClusterExtension
-metadata:
-  name: &lt;extension_name&gt;
-spec:
-  namespace: &lt;installation_namespace&gt;
-  config:
-    configType: Inline
-    inline:
-      watchNamespace: &lt;watched_namespace&gt;
-  serviceAccount:
-    name: &lt;service_account&gt;
-  source:
-    sourceType: Catalog
-    catalog:
-      packageName: &lt;package_name&gt;
-      version: &lt;version&gt;
-      upgradeConstraintPolicy: CatalogProvided</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Apply the CR to the cluster by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc apply -f &lt;cluster_extension_cr&gt;.yaml</code></pre>
-</div>
+</div></td>
+</tr>
+</table>
 </div>
 </li>
 </ol>
-</div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>Verify that the extension installed successfully by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get clusterextension &lt;extension_name&gt; -o yaml</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: olm.operatorframework.io/v1
-kind: ClusterExtension
-metadata:
-  name: &lt;extension_name&gt;
-spec:
-  namespace: &lt;installation_namespace&gt;
-  config:
-    configType: Inline
-    inline:
-      watchNamespace: &lt;installation_namespace&gt;
-status:
-  conditions:
-  - type: Installed
-    status: "True"
-    reason: Succeeded</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="olmv1-deleting-an-operator_install-and-delete-cluster-extensions">Deleting an Operator</h4>
-<div class="paragraph _abstract">
-<p>You can delete an Operator and its custom resource definitions (CRDs) by deleting the <code>ClusterExtension</code> custom resource (CR).</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have a catalog installed.</p>
-</li>
-<li>
-<p>You have an Operator installed.</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>Delete an Operator and its CRDs by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc delete clusterextension &lt;operator_name&gt;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">clusterextension.olm.operatorframework.io "&lt;operator_name&gt;" deleted</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>Run the following commands to verify that your Operator and its resources were deleted:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Verify the Operator is deleted by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get clusterextensions</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">No resources found</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify that the Operator&#8217;s system namespace is deleted by running the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ns &lt;operator_name&gt;-system</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">Error from server (NotFound): namespaces "&lt;operator_name&gt;-system" not found</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="enable-fips-cryptography-for-installation-con_enable-fips-cryptography-for-installation.html">Enable FIPS cryptography for installation</a> | ↑ Up: <a href="_install.html">Install</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Container Platform</a> | Next: <a href="manage-kernel-modules-across-cluster-nodes-load-kernel-modules-at-day-1-with-machine-config-con_manage-kernel-modules-across-cluster-nodes-load-kernel-modules-at-day-1-with-machine-config.html">Load kernel modules at Day 1 with Machine Config</a> →</p>
+<p>← Previous: <a href="ocp-map-configure-operator-lifecycle-manager-features-intro_configure-operator-lifecycle-manager-features.html">Configure OLM (Classic) features</a> | ↑ Up: <a href="_extend.html">Extend</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Container Platform</a> | Next: <a href="ocp-map-view-operator-status-intro_view-operator-status.html">Monitor Operators with OLM (Classic)</a> →</p>
 </div>
 </div>
 <div id="footnotes">
@@ -3194,7 +2270,7 @@ status:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-15 11:42:46 -0500
+Last updated 2026-10-15 12:56:17 -0500
 </div>
 </div>
 <style>
