@@ -1362,6 +1362,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="enable-pressure-stall-information-monitoring-con_enable-pressure-stall-information-monitoring.html">Enable Pressure Stall Information monitoring</a>
 </li>
+<li><a href="install-node-observability-operator_install-the-node-observability-operator.html">Installing the Node Observability Operator</a>
+</li>
+<li><a href="requesting-crio-kubelet-profiling-using-noo_profile-node-performance-with-node-observability.html">Requesting CRI-O and Kubelet profiling data using the Node Observability Operator</a>
+</li>
 <li><a href="virt-about-the-overview-dashboard_view-cluster-information-on-the-dashboard.html">About the Red&#160;Hat OpenShift Container Platform dashboards page</a>
 </li>
 <li><a href="virt-about-the-overview-dashboard_view-cluster-resource-inventory.html">About the Red&#160;Hat OpenShift Container Platform dashboards page</a>
@@ -1417,6 +1421,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="about-machine-config-operator_configure-node-changes-on-a-cluster.html">About the Machine Config Operator</a>
 </li>
 <li><a href="nodes-cluster-limit-ranges-about_restrict-resource-consumption-with-limit-ranges.html">About limit ranges</a>
+</li>
+<li><a href="admin-quota-overview_set-resource-quotas-for-a-project.html">Resources managed by quota</a>
+</li>
+<li><a href="container-limits_configure-compute-resource-limits.html">Container limits</a>
 </li>
 <li><a href="optimizing-storage-azure_optimize-infrastructure-for-specific-platforms.html">Optimizing storage performance for Microsoft Azure</a>
 </li>
@@ -1779,7 +1787,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#configuring-persistent-storage_size-monitoring-infrastructure">Configure persistent storage</a></li><li class="level-5"><a href="#persistent-storage-prerequisites_size-monitoring-infrastructure">Persistent storage prerequisites</a></li><li class="level-4"><a href="#calculate-prometheus-storage-requirements-con_calculate-prometheus-storage-requirements">Calculate Prometheus storage requirements</a></li><li class="level-5"><a href="#modifying-retention-time-and-size-for-prometheus-metrics-data_calculate-prometheus-storage-requirements">Modify retention time and size for Prometheus metrics data</a></li><li class="level-4"><a href="#configure-monitoring-storage-con_configure-monitoring-storage">Configure monitoring storage</a></li><li class="level-5"><a href="#configuring-a-persistent-volume-claim_configure-monitoring-storage">Configure a persistent volume claim</a></li><li class="level-6"><a href="#resizing-a-persistent-volume_configure-monitoring-storage">Resize a persistent volume</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#configuring-persistent-storage_size-monitoring-infrastructure">Configure persistent storage</a></li><li class="level-5"><a href="#persistent-storage-prerequisites_size-monitoring-infrastructure">Persistent storage prerequisites</a></li><li class="level-4"><a href="#configuring-cluster-monitoring_size-monitoring-infrastructure">Configuring cluster monitoring</a></li><li class="level-4"><a href="#calculate-prometheus-storage-requirements-con_calculate-prometheus-storage-requirements">Calculate Prometheus storage requirements</a></li><li class="level-5"><a href="#modifying-retention-time-and-size-for-prometheus-metrics-data_calculate-prometheus-storage-requirements">Modify retention time and size for Prometheus metrics data</a></li><li class="level-5"><a href="#prometheus-database-storage-requirements_calculate-prometheus-storage-requirements">Prometheus database storage requirements</a></li><li class="level-4"><a href="#configure-monitoring-storage-con_configure-monitoring-storage">Configure monitoring storage</a></li><li class="level-5"><a href="#configuring-a-persistent-volume-claim_configure-monitoring-storage">Configure a persistent volume claim</a></li><li class="level-6"><a href="#resizing-a-persistent-volume_configure-monitoring-storage">Resize a persistent volume</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
 <h3 id="size-monitoring-infrastructure-con_size-monitoring-infrastructure">Size monitoring infrastructure</h3>
@@ -1881,6 +1889,84 @@ If you want to use an NFS file system for storage, verify with the vendor that t
 </li>
 </ul>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="configuring-cluster-monitoring_size-monitoring-infrastructure">Configuring cluster monitoring</h4>
+<div class="paragraph _abstract">
+<p>You can increase the storage capacity for the Prometheus component in the cluster monitoring stack.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>To increase the storage capacity for Prometheus, create a YAML configuration file, <code>cluster-monitoring-config.yaml</code>, as in the following example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: ConfigMap
+data:
+  config.yaml: |
+    prometheusK8s:
+      retention: &lt;prometheus_retention_period&gt;
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+      volumeClaimTemplate:
+        spec:
+          storageClassName: &lt;storage_class&gt;
+          resources:
+            requests:
+              storage: &lt;prometheus_storage_size&gt;
+    alertmanagerMain:
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+      volumeClaimTemplate:
+        spec:
+          storageClassName: &lt;storage_class&gt;
+          resources:
+            requests:
+              storage: &lt;alertmanager_storage_size&gt;
+metadata:
+  name: cluster-monitoring-config
+  namespace: openshift-monitoring</code></pre>
+</div>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>&lt;prometheus_retention_period&gt;</code> specifies the Prometheus retention period. The default value is <code>15d</code>. Units are measured in time using one of these suffixes: s, m, h, d.</p>
+</li>
+<li>
+<p><code>&lt;storage_class&gt;</code> specifies the storage class for your cluster.</p>
+</li>
+<li>
+<p><code>&lt;prometheus_storage_size&gt;</code> specifies the Prometheus storage size. A typical value is <code>2000Gi</code>. Storage values can be a plain integer or a fixed-point integer using one of these suffixes: E, P, T, G, M, K. You can also use the power-of-two equivalents: Ei, Pi, Ti, Gi, Mi, Ki.</p>
+</li>
+<li>
+<p><code>&lt;alertmanager_storage_size&gt;</code> specifies the Alertmanager storage size. A typical value is <code>20Gi</code>. Storage values can be a plain integer or a fixed-point integer using one of these suffixes: E, P, T, G, M, K. You can also use the power-of-two equivalents: Ei, Pi, Ti, Gi, Mi, Ki.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Add values for the retention period, storage class, and storage sizes.</p>
+</li>
+<li>
+<p>Save the file.</p>
+</li>
+<li>
+<p>Apply the changes by running:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc create -f cluster-monitoring-config.yaml</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect3">
@@ -2002,6 +2088,115 @@ data:
 <p>Save the file to apply the changes. The pods affected by the new configuration are automatically redeployed.</p>
 </li>
 </ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="prometheus-database-storage-requirements_calculate-prometheus-storage-requirements">Prometheus database storage requirements</h5>
+<div class="paragraph _abstract">
+<p>Red&#160;Hat performed various tests for different scale sizes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The following Prometheus storage requirements are not prescriptive and should be used as a reference. Higher resource consumption might be observed in your cluster depending on workload activity and resource density, including the number of pods, containers, routes, or other resources exposing metrics collected by Prometheus.</p>
+</li>
+<li>
+<p>You can configure the size-based data retention policy to suit your storage requirements.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 838. Prometheus Database storage requirements based on number of nodes/pods in the cluster</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Number of nodes</th>
+<th class="tableblock halign-left valign-top">Number of pods (2 containers per pod)</th>
+<th class="tableblock halign-left valign-top">Prometheus storage growth per day</th>
+<th class="tableblock halign-left valign-top">Prometheus storage growth per 15 days</th>
+<th class="tableblock halign-left valign-top">Network (per tsdb chunk)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">50</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1800</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.3 GB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">94 GB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16 MB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3600</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">13 GB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">195 GB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">26 MB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">150</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5400</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">19 GB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">283 GB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">36 MB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7200</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">25 GB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">375 GB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">46 MB</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Approximately 20 percent of the expected size was added as overhead to ensure that the storage requirements do not exceed the calculated value.</p>
+</div>
+<div class="paragraph">
+<p>The above calculation is for the default Red&#160;Hat OpenShift Container Platform Cluster Monitoring Operator.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>CPU utilization has minor impact. The ratio is approximately 1 core out of 40 per 50 nodes and 1800 pods.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Recommendations for Red&#160;Hat OpenShift Container Platform</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use at least two infrastructure (infra) nodes.</p>
+</li>
+<li>
+<p>Use at least three <strong>openshift-container-storage</strong> nodes with non-volatile memory express (SSD or NVMe) drives.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2331,7 +2526,7 @@ data:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-16 11:16:39 -0500
+Last updated 2026-10-16 12:25:07 -0500
 </div>
 </div>
 <style>
