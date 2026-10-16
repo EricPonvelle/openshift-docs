@@ -478,7 +478,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <!-- navmap-right-toc-end -->
 </head>
-<body id="recovering-unhealthy-etcd-cluster-for-hosted-control-planes-con_recovering-unhealthy-etcd-cluster-for-hosted-control-planes" class="book toc2 toc-left navmap-has-right-toc">
+<body id="container-limits_configure-compute-resource-limits" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red Hat OpenShift Container Platform</h1>
 <div id="toc" class="toc2">
@@ -723,6 +723,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="allocate-gpu-resources-to-pods-con_allocate-gpu-resources-to-pods.html">Allocate GPU resources to pods</a>
 </li>
+<li><a href="allocate-gpus-to-pods-with-a-dra-driver-con_allocate-gpus-to-pods-with-a-dra-driver.html">Allocate GPUs to pods with a DRA driver</a>
+</li>
 <li><a href="nodes-cluster-resource-configure_allocate-resources-for-nodes.html">Configure cluster-level overcommit</a>
 </li>
 <li><a href="allow-containers-to-consume-api-objects-con_allow-containers-to-consume-api-objects.html">Allow containers to consume API objects</a>
@@ -856,6 +858,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="add-compute-machines-to-a-bare-metal-cluster-intro_add-compute-machines-to-a-bare-metal-cluster.html">Add compute machines to a bare metal cluster</a>
 </li>
 <li><a href="add-a-worker-node-with-custom-var-partition-in-aws-intro_add-a-worker-node-with-custom-var-partition-in-aws.html">Add a worker node with custom /var partition in AWS</a>
+</li>
+<li><a href="backup-and-restore-etcd-data-con_backup-and-restore-etcd-data.html">Back up and restore etcd data</a>
+</li>
+<li><a href="disaster-recovery-for-control-planes-intro_control-plane-disaster-recovery.html">Control plane disaster recovery</a>
+</li>
+<li><a href="replace-healthy-etcd-member-intro_replace-healthy-etcd-member.html">Replace a healthy etcd member</a>
+</li>
+<li><a href="replace-unhealthy-etcd-member-intro_replace-unhealthy-etcd-members.html">Replace an unhealthy etcd member</a>
+</li>
+<li><a href="graceful-restart-cluster-intro_graceful-cluster-restart.html">Restart the cluster gracefully</a>
+</li>
+<li><a href="graceful-shutdown-cluster-intro_graceful-cluster-shutdown.html">Shut down the cluster gracefully</a>
+</li>
+<li><a href="hibernating-cluster-intro_hibernating-cluster.html">Hibernate a cluster</a>
 </li>
 </ul>
 </li>
@@ -1347,6 +1363,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="enable-pressure-stall-information-monitoring-con_enable-pressure-stall-information-monitoring.html">Enable Pressure Stall Information monitoring</a>
 </li>
+<li><a href="install-node-observability-operator_install-the-node-observability-operator.html">Installing the Node Observability Operator</a>
+</li>
+<li><a href="requesting-crio-kubelet-profiling-using-noo_profile-node-performance-with-node-observability.html">Requesting CRI-O and Kubelet profiling data using the Node Observability Operator</a>
+</li>
 <li><a href="virt-about-the-overview-dashboard_view-cluster-information-on-the-dashboard.html">About the Red&#160;Hat OpenShift Container Platform dashboards page</a>
 </li>
 <li><a href="virt-about-the-overview-dashboard_view-cluster-resource-inventory.html">About the Red&#160;Hat OpenShift Container Platform dashboards page</a>
@@ -1371,7 +1391,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_optimize.html">Optimize</a>
-
 <ul class="sectlevel2">
 <li><a href="about-node-tuning-operator_node-tuning-operator.html">Node Tuning Operator</a>
 </li>
@@ -1395,13 +1414,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="infrastructure-components_create-infrastructure-nodes.html">Red&#160;Hat OpenShift Container Platform infrastructure components</a>
 </li>
-<li><a href="create-a-kubeletconfig-crd-to-edit-kubelet-parameters_make-changes-to-the-kubelet-settings-on-my-nodes.html">Create a KubeletConfig CR to edit kubelet parameters</a>
+<li><a href="nodes-nodes-managing-about_make-changes-to-the-kubelet-settings-on-my-nodes.html">Modifying nodes</a>
 </li>
 <li><a href="nodes-nodes-working-evacuating_evacuate-pods-on-a-node.html">Evacuate pods on nodes</a>
 </li>
 <li><a href="about-machine-config-operator_configure-node-changes-on-a-cluster.html">About the Machine Config Operator</a>
 </li>
 <li><a href="nodes-cluster-limit-ranges-about_restrict-resource-consumption-with-limit-ranges.html">About limit ranges</a>
+</li>
+<li><a href="admin-quota-overview_set-resource-quotas-for-a-project.html">Resources managed by quota</a>
+</li>
+<li><a href="container-limits_configure-compute-resource-limits.html"><span class="toc-current">Container limits</span></a>
 </li>
 <li><a href="optimizing-storage-azure_optimize-infrastructure-for-specific-platforms.html">Optimizing storage performance for Microsoft Azure</a>
 </li>
@@ -1582,6 +1605,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="_troubleshoot.html">Troubleshoot</a>
+
 <ul class="sectlevel2">
 <li><a href="troubleshoot-installation-issues-intro_troubleshoot-installation-issues.html">Troubleshoot installation issues</a>
 </li>
@@ -1595,33 +1619,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="collecting-windows-application-event-logs_gather-information-and-debugging-data-for-windows.html">Collecting Windows application event logs</a>
 </li>
-<li><a href="graceful-shutdown-cluster-intro_graceful-cluster-shutdown.html">Shutting down the cluster gracefully</a>
-</li>
-<li><a href="graceful-restart-cluster-intro_graceful-cluster-restart.html">Restarting the cluster gracefully</a>
-</li>
-<li><a href="hibernating-cluster-intro_hibernating-cluster.html">Hibernating an Red&#160;Hat OpenShift Container Platform cluster</a>
-</li>
 <li><a href="restart-hosted-control-plane-components-and-pause-reconciliation-con_restart-hosted-control-plane-components-and-pause-reconciliation.html">Restart hosted control plane components and pause reconciliation</a>
 </li>
 <li><a href="hcp-ts-internal-subnets_troubleshoot-hosted-clusters-internal-subnets.html">Known limitations for internal subnets for hosted clusters</a>
 </li>
-<li><a href="troubleshoot-hosted-clusters-by-platform-con_troubleshoot-hosted-clusters-by-platform.html">Troubleshoot hosted clusters by platform</a>
+<li><a href="hosted-control-planes-troubleshooting_gather-data-to-troubleshoot-hosted-clusters.html">Gather information to troubleshoot hosted control planes</a>
 </li>
 <li><a href="troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-bare-metal-con_troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-bare-metal.html">Troubleshoot hosted clusters on bare metal</a>
 </li>
 <li><a href="troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-ibmz-con_troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-ibmz.html">Troubleshoot hosted clusters on IBM Z</a>
 </li>
-<li><a href="hcp-ts-ocp-virt_troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-openshift-virtualization.html">Troubleshooting hosted clusters on OpenShift Virtualization</a>
+<li><a href="hcp-ts-ocp-virt_troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-openshift-virtualization.html">Troubleshoot hosted clusters on OpenShift Virtualization</a>
 </li>
-<li><a href="recovering-unhealthy-etcd-cluster-for-hosted-control-planes-con_recovering-unhealthy-etcd-cluster-for-hosted-control-planes.html"><span class="toc-current">Recovering an unhealthy etcd cluster for hosted control planes</span></a>
+<li><a href="recover-unhealthy-etcd-cluster-for-hosted-control-planes-con_recover-unhealthy-etcd-cluster-for-hosted-control-planes.html">Recover an unhealthy etcd cluster for hosted control planes</a>
 </li>
-<li><a href="backup-and-restore-etcd-on-a-hosted-cluster-intro_backup-and-restore-etcd-on-a-hosted-cluster.html">Backing up and restoring etcd on a hosted cluster</a>
+<li><a href="backup-and-restore-etcd-on-a-hosted-cluster-intro_backup-and-restore-etcd-on-a-hosted-cluster.html">Back up and restore etcd on a hosted cluster</a>
 </li>
-<li><a href="backup-and-restore-etcd-on-management-cluster-intro_backup-and-restore-etcd-on-management-cluster.html">Backing up and restoring etcd on the management cluster</a>
+<li><a href="backup-and-restore-etcd-on-management-cluster-intro_backup-and-restore-etcd-on-management-cluster.html">Back up and restore etcd on the management cluster</a>
 </li>
-<li><a href="backup-etcd-data-for-hosted-control-planes-using-etcd-snapshot-intro_backup-etcd-data-for-hosted-control-planes-using-etcd-snapshot.html">Backing up etcd data for hosted control planes by using the etcd snapshot method</a>
+<li><a href="backup-etcd-data-for-hosted-control-planes-using-etcd-snapshot-intro_backup-etcd-data-for-hosted-control-planes-using-etcd-snapshot.html">Back up etcd data for hosted control planes by using the etcd snapshot method</a>
 </li>
-<li><a href="backup-and-restore-hosted-cluster-on-openshift-virtualization-intro_backup-and-restore-hosted-cluster-on-openshift-virtualization.html">Backing up and restoring a hosted cluster on OpenShift Virtualization</a>
+<li><a href="backup-and-restore-hosted-cluster-on-openshift-virtualization-intro_backup-and-restore-hosted-cluster-on-openshift-virtualization.html">Back up and restore a hosted cluster on OpenShift Virtualization</a>
 </li>
 <li><a href="high-availability-for-hosted-control-planes-about_high-availability-and-disaster-recovery-for-hosted-control-planes.html">High availability and disaster recovery for hosted control planes</a>
 </li>
@@ -1635,10 +1653,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="hcp-disaster-recovery-oadp-auto-con_automated-disaster-recovery-for-hosted-control-planes-using-oadp.html">Automated disaster recovery for a hosted cluster by using OADP</a>
 </li>
-<li><a href="control-plane-backup-restore-operations-overview_high-availability-and-disaster-recovery-for-hosted-control-planes-back-up-and-restore-etcd-and-hosted-clusters.html">Control plane backup and restore operations</a>
-</li>
-<li><a href="control-plane-backup-restore-operations-overview_high-availability-and-disaster-recovery-for-hosted-control-planes-automated-disaster-recovery-for-a-hosted-cluster-by-using-oadp.html">Control plane backup and restore operations</a>
-</li>
 <li><a href="post-using-node-tuning-operator_troubleshoot-node-performance-issues.html">Using the Node Tuning Operator</a>
 </li>
 <li><a href="nw-pod-network-connectivity-checks_connectivity-troubleshooting.html">Connection health checks that are performed</a>
@@ -1651,15 +1665,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="troubleshoot-containers-troubleshoot-crio-issues-con_troubleshoot-containers-troubleshoot-crio-issues.html">Troubleshoot CRI-O issues</a>
 </li>
-<li><a href="backup-and-restore-etcd-data-con_backup-and-restore-etcd-data.html">Backing up and restoring etcd data</a>
-</li>
-<li><a href="disaster-recovery-for-control-planes-intro_control-plane-disaster-recovery.html">Control plane disaster recovery</a>
-</li>
 <li><a href="nw-pod-network-connectivity-checks_troubleshoot-network-issues.html">Connection health checks that are performed</a>
 </li>
 <li><a href="troubleshoot-network-issues-diagnose-node-networking-and-ovs-con_troubleshoot-network-issues-diagnose-node-networking-and-ovs.html">Diagnose node networking and Open vSwitch</a>
-</li>
-<li><a href="replace-unhealthy-etcd-member-intro_replace-unhealthy-etcd-members.html">Replacing an unhealthy etcd member</a>
 </li>
 <li><a href="collecting-windows-application-event-logs_view-cluster-events.html">Collecting Windows application event logs</a>
 </li>
@@ -1745,21 +1753,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="post-install-etcd-tasks_defragment-etcd-data-automatically-defragment-etcd-data.html">etcd tasks</a>
 </li>
-<li><a href="restore-identify-unhealthy-etcd-member_defragment-etcd-data-manually-defragment-etcd-data.html">Identifying an unhealthy etcd member</a>
-</li>
-<li><a href="restore-identify-unhealthy-etcd-member_etcd-best-practices-restore-etcd-data.html">Identifying an unhealthy etcd member</a>
-</li>
-<li><a href="replace-healthy-etcd-member-intro_replace-healthy-etcd-member.html">Replacing a healthy etcd member</a>
-</li>
 <li><a href="removing-etcd-member_monitor-control-plane-nodes-identify-an-unhealthy-etcd-member.html">Removing the unhealthy etcd member</a>
 </li>
 <li><a href="removing-etcd-member_monitor-control-plane-nodes-determine-state-of-an-unhealthy-etcd-member.html">Removing the unhealthy etcd member</a>
 </li>
 <li><a href="restore-replace-unhealthy-etcd-member_monitor-control-plane-nodes-replace-unhealthy-etcd-member.html">Replacing the unhealthy etcd member</a>
-</li>
-<li><a href="restore-identify-unhealthy-etcd-member_encrypt-etcd-quorum-restoration-for-high-availability-clusters.html">Identifying an unhealthy etcd member</a>
-</li>
-<li><a href="restore-identify-unhealthy-etcd-member_encrypt-etcd-restore-to-a-previous-cluster-state.html">Identifying an unhealthy etcd member</a>
 </li>
 <li><a href="enabling-etcd-quorum-guard_encrypt-etcd-recover-from-expired-control-plane-certificates.html">Re-enabling the etcd quorum guard</a>
 </li>
@@ -1789,122 +1787,536 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#hosted-cluster-etcd-status_recovering-unhealthy-etcd-cluster-for-hosted-control-planes">Checking the status of an etcd cluster</a></li><li class="level-4"><a href="#hcp-recover-failing-etcd-pods_recovering-unhealthy-etcd-cluster-for-hosted-control-planes">Recovering a failing etcd pod</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#pod-limits_configure-compute-resource-limits">Pod limits</a></li><li class="level-4"><a href="#image-limits_configure-compute-resource-limits">Image limits</a></li><li class="level-4"><a href="#image-stream-limits_configure-compute-resource-limits">Image stream limits</a></li><li class="level-4"><a href="#persistent-volume-claim-limits_configure-compute-resource-limits">PersistentVolumeClaim limits</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="recovering-unhealthy-etcd-cluster-for-hosted-control-planes-con_recovering-unhealthy-etcd-cluster-for-hosted-control-planes">Recovering an unhealthy etcd cluster for hosted control planes</h3>
+<h3 id="container-limits_configure-compute-resource-limits">Container limits</h3>
 <div class="paragraph _abstract">
-<p>In a highly available control plane, three etcd pods run as a part of a stateful set in an etcd cluster. To recover an etcd cluster, identify unhealthy etcd pods by checking the etcd cluster health.</p>
-</div>
-<div class="sect3">
-<h4 id="hosted-cluster-etcd-status_recovering-unhealthy-etcd-cluster-for-hosted-control-planes">Checking the status of an etcd cluster</h4>
-<div class="paragraph _abstract">
-<p>You can check the status of the etcd cluster health by logging into any etcd pod.</p>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Log in to an etcd pod by entering the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc rsh -n clusters-&lt;hosted_cluster_name&gt; -c etcd &lt;etcd_pod_name&gt;</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Print the health status of an etcd cluster by entering the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">sh-4.4# etcdctl endpoint status -w table</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">+------------------------------+-----------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
-|          ENDPOINT            |       ID        | VERSION | DB SIZE | IS LEADER | IS LEARNER | RAFT TERM | RAFT INDEX | RAFT APPLIED INDEX | ERRORS |
-+------------------------------+-----------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
-| https://192.168.1xxx.20:2379 | 8fxxxxxxxxxx    |  3.5.12 |  123 MB |     false |      false |        10 |     180156 |             180156 |        |
-| https://192.168.1xxx.21:2379 | a5xxxxxxxxxx    |  3.5.12 |  122 MB |     false |      false |        10 |     180156 |             180156 |        |
-| https://192.168.1xxx.22:2379 | 7cxxxxxxxxxx    |  3.5.12 |  124 MB |      true |      false |        10 |     180156 |             180156 |        |
-+-----------------------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="hcp-recover-failing-etcd-pods_recovering-unhealthy-etcd-cluster-for-hosted-control-planes">Recovering a failing etcd pod</h4>
-<div class="paragraph _abstract">
-<p>Each etcd pod of a 3-node cluster has its own persistent volume claim (PVC) to store its data. An etcd pod might fail because of corrupted or missing data. You can recover a failing etcd pod and its PVC.</p>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>To confirm that the etcd pod is failing, enter the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -l app=etcd -n clusters-&lt;hosted_cluster_name&gt;</code></pre>
-</div>
+<p>After you create the <code>LimitRange</code> object, you can specify the exact amount of resources that a container can consume.</p>
 </div>
 <div class="paragraph">
-<p>Replace <code>&lt;hosted_cluster_name&gt;</code> with the name of the hosted cluster of the etcd instance.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME     READY   STATUS             RESTARTS     AGE
-etcd-0   2/2     Running            0            64m
-etcd-1   2/2     Running            0            45m
-etcd-2   1/2     CrashLoopBackOff   1 (5s ago)   64m</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The failing etcd pod might have the <code>CrashLoopBackOff</code> or <code>Error</code> status.</p>
-</div>
-</li>
-<li>
-<p>Delete the failing pod and its PVC by entering the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc delete pods &lt;etcd_pod_name&gt; -n clusters-&lt;hosted_cluster_name&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Replace <code>&lt;etcd_pod_name&gt;</code> with the name of the failing pod.</p>
-</div>
-</li>
-</ol>
+<p>The following list shows resources that a container can consume:</p>
 </div>
 <div class="ulist">
-<div class="title">Verification</div>
 <ul>
 <li>
-<p>Verify that a new etcd pod is up and running by entering the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -l app=etcd -n clusters-&lt;hosted_cluster_name&gt;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">NAME     READY   STATUS    RESTARTS   AGE
-etcd-0   2/2     Running   0          67m
-etcd-1   2/2     Running   0          48m
-etcd-2   2/2     Running   0          2m2s</code></pre>
-</div>
-</div>
+<p>CPU</p>
+</li>
+<li>
+<p>Memory</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>The following table shows the supported constraints for a container. If specified, the constraints must hold true for each container.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 868. Supported constraints</caption>
+<colgroup>
+<col style="width: 27.2727%;">
+<col style="width: 72.7273%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Constraint</th>
+<th class="tableblock halign-left valign-top">Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>Min</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>Min[&lt;resource&gt;]</code> less than or equal to <code>container.resources.requests[&lt;resource&gt;]</code> (required) less than or equal to <code>container/resources.limits[&lt;resource&gt;]</code> (optional)</p>
+</div>
+<div class="paragraph">
+<p>If the configuration defines a <code>min</code> CPU, the request value must be greater than the CPU value. If you do not set a <code>min</code> value or you set <code>min</code> to <code>0</code>, the result is no limit and the pod can consume more of the resource than the <code>max</code> value.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>Max</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>container.resources.limits[&lt;resource&gt;]</code> (required) less than or equal to <code>Max[&lt;resource&gt;]</code></p>
+</div>
+<div class="paragraph">
+<p>If the configuration defines a <code>max</code> CPU, you do not need to define a CPU request value. However, you must set a limit that satisfies the maximum CPU constraint that is specified in the limit range.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>MaxLimitRequestRatio</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>MaxLimitRequestRatio[&lt;resource&gt;]</code> less than or equal to (<code>container.resources.limits[&lt;resource&gt;]</code> / <code>container.resources.requests[&lt;resource&gt;]</code>)</p>
+</div>
+<div class="paragraph">
+<p>If the limit range defines a <code>maxLimitRequestRatio</code> constraint, any new containers must have both a <code>request</code> and a <code>limit</code> value. Additionally, Red&#160;Hat OpenShift Container Platform calculates a limit-to-request ratio by dividing the <code>limit</code> by the <code>request</code>. The result should be an integer greater than 1.</p>
+</div>
+<div class="paragraph">
+<p>For example, if a container has <code>cpu: 500</code> in the <code>limit</code> value, and <code>cpu: 100</code> in the <code>request</code> value, the limit-to-request ratio for <code>cpu</code> is <code>5</code>. This ratio must be less than or equal to the <code>maxLimitRequestRatio</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The following list shows default resources that a container can consume:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Default[&lt;resource&gt;]</code>: Defaults <code>container.resources.limit[&lt;resource&gt;]</code> to specified value if none.</p>
+</li>
+<li>
+<p><code>Default Requests[&lt;resource&gt;]</code>: Defaults <code>container.resources.requests[&lt;resource&gt;]</code> to specified value if none.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="pod-limits_configure-compute-resource-limits">Pod limits</h4>
+<div class="paragraph _abstract">
+<p>After you create the <code>LimitRange</code> object, you can specify the exact amount of resources that a pod can consume.</p>
+</div>
+<div class="paragraph">
+<p>A pod can consume the following resources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CPU</p>
+</li>
+<li>
+<p>Memory</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following table shows the supported constraints for a pod. Across all pods, the following behavior must hold true:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.2727%;">
+<col style="width: 72.7273%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Constraint</th>
+<th class="tableblock halign-left valign-top">Enforced behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>Min</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>Min[&lt;resource&gt;]</code> less than or equal to <code>container.resources.requests[&lt;resource&gt;]</code> (required) less than or equal to <code>container.resources.limits[&lt;resource&gt;]</code>. If you do not set a <code>min</code> value or you set <code>min</code> to <code>0</code>, the result is no limit and the pod can consume more of the resource than the <code>max</code> value.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>Max</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>container.resources.limits[&lt;resource&gt;]</code> (required) less than or equal to <code>Max[&lt;resource&gt;]</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>MaxLimitRequestRatio</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>MaxLimitRequestRatio[&lt;resource&gt;]</code> less than or equal to (<code>container.resources.limits[&lt;resource&gt;]</code> / <code>container.resources.requests[&lt;resource&gt;]</code>).</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="image-limits_configure-compute-resource-limits">Image limits</h4>
+<div class="paragraph _abstract">
+<p>After you create the <code>LimitRange</code> object, you can specify the exact amount of resources that an image can consume.</p>
+</div>
+<div class="paragraph">
+<p>An image can consume the following resources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Storage</p>
+</li>
+<li>
+<p><code>openshift.io/Image</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following table shows the supported constraints for an image. If specified, the constraints must hold true for each image.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 869. Image limits</caption>
+<colgroup>
+<col style="width: 27.2727%;">
+<col style="width: 72.7273%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Constraint</th>
+<th class="tableblock halign-left valign-top">Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>Max</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>image.dockerimagemetadata.size</code> less than or equal to <code>Max[&lt;resource&gt;]</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Note">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To prevent blobs that exceed the limit from being uploaded to the registry, you must configure the registry to enforce quota. The <code>REGISTRY_MIDDLEWARE_REPOSITORY_OPENSHIFT_ENFORCEQUOTA</code> environment variable must be set to <code>true</code>. By default, the environment variable is set to <code>true</code> for new deployments.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="image-stream-limits_configure-compute-resource-limits">Image stream limits</h4>
+<div class="paragraph _abstract">
+<p>After you create the <code>LimitRange</code> object, you can specify the exact amount of resources that an image stream can consume.</p>
+</div>
+<div class="paragraph">
+<p>An image stream can consume the following resources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>openshift.io/image-tags</code></p>
+</li>
+<li>
+<p><code>openshift.io/images</code></p>
+</li>
+<li>
+<p><code>openshift.io/ImageStream</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>openshift.io/image-tags</code> limit bounds unique references derived from tag definitions in the <code>imagestream.spec.tags</code> resource. A reference can be an <code>ImageStreamTag</code>, an <code>ImageStreamImage</code>, or a <code>DockerImage</code>. You can use the <code>oc tag</code> and <code>oc import-image</code> commands to create tags. Internal and external references are not distinguished, and each unique reference in the spec is counted once. Updates that would exceed the limit are rejected, including updates from pushes to the internal registry that add or change tag definitions.</p>
+</div>
+<div class="paragraph">
+<p>The <code>openshift.io/images</code> limit bounds unique image identities recorded in <code>imagestream.status.tags</code>. The name is equivalent to the digest for the image. It limits how many distinct images the stream can reference in status, including from registry pushes. Internal and external references are not distinguished.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="data:image/png;base64," alt="Important">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Do not read <code>openshift.io/image-tags</code> and <code>openshift.io/images</code> as "tag names versus images per tag." The first limit is computed from the <code>ImageStream</code> <code>spec.tags</code> resource. The second is computed from the <code>imagestream.status.tags</code> resource. Both limits can cause image stream updates to fail when a push or other operation would exceed them.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following table shows the supported constraints for an image stream. If specified, the constraints must hold true for each image stream.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 27.2727%;">
+<col style="width: 72.7273%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Constraint</th>
+<th class="tableblock halign-left valign-top">Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>Max[openshift.io/image-tags]</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>length( uniqueimagetags( imagestream.spec.tags ) )</code> less than or equal to <code>Max[openshift.io/image-tags]</code></p>
+</div>
+<div class="paragraph">
+<p><code>uniqueimagetags</code> returns unique references to images of given spec tags.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>Max[openshift.io/images]</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>length( uniqueimages( imagestream.status.tags ) )</code> less than or equal to <code>Max[openshift.io/images]</code></p>
+</div>
+<div class="paragraph">
+<p><code>uniqueimages</code> returns unique image names found in status tags. The name is equal to the digest for the image.</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="persistent-volume-claim-limits_configure-compute-resource-limits">PersistentVolumeClaim limits</h4>
+<div class="paragraph _abstract">
+<p>After you create the <code>LimitRange</code> object, you can specify the exact amount of resources that a <code>PersistentVolumeClaim</code> resource can consume.</p>
+</div>
+<div class="paragraph">
+<p>A <code>PersistentVolumeClaim</code> resource can consume storage resources.</p>
+</div>
+<div class="paragraph">
+<p>The following table shows the supported constraints for a persistent volume claim. If specified, the constraints must hold true for each persistent volume claim.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 870. <code>PersistentVolumeClaim</code> resource limits</caption>
+<colgroup>
+<col style="width: 27.2727%;">
+<col style="width: 72.7273%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Constraint</th>
+<th class="tableblock halign-left valign-top">Enforced behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>Min</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Min[&lt;resource&gt;] &lt;= claim.spec.resources.requests[&lt;resource&gt;] (required)</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>Max</code></p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>claim.spec.resources.requests[&lt;resource&gt;] (required) &lt;= Max[&lt;resource&gt;]</p>
+</div>
+<div class="ulist">
+<ul>
+</ul>
+</div>
+<div class="paragraph nav-footer">
+<p></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Limit range object definition example</div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "apiVersion": "v1",
+  "kind": "LimitRange",
+  "metadata": {
+    "name": "pvcs"
+  },
+  "spec": {
+    "limits": [{
+        "type": "PersistentVolumeClaim",
+        "min": {
+          "storage": "2Gi"
+        },
+        "max": {
+          "storage": "50Gi"
+        }
+      }
+    ]
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>metadata.name</code></dt>
+<dd>
+<p>Specifies the name of the limit range object.</p>
+</dd>
+<dt class="hdlist1"><code>limits.min.storage</code></dt>
+<dd>
+<p>Specifies the minimum amount of storage that can be requested in a persistent volume claim.</p>
+</dd>
+<dt class="hdlist1"><code>limits.max.storage</code></dt>
+<dd>
+<p>Specifies the maximum amount of storage that can be requested in a persistent volume claim.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="hcp-ts-ocp-virt_troubleshoot-hosted-clusters-by-platform-troubleshoot-hosted-clusters-on-openshift-virtualization.html">Troubleshooting hosted clusters on OpenShift Virtualization</a> | ↑ Up: <a href="_troubleshoot.html">Troubleshoot</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Container Platform</a> | Next: <a href="backup-and-restore-etcd-on-a-hosted-cluster-intro_backup-and-restore-etcd-on-a-hosted-cluster.html">Backing up and restoring etcd on a hosted cluster</a> →</p>
+<p>← Previous: <a href="admin-quota-overview_set-resource-quotas-for-a-project.html">Resources managed by quota</a> | ↑ Up: <a href="_optimize.html">Optimize</a> | ⌂ Home: <a href="navigation.html">Red Hat OpenShift Container Platform</a> | Next: <a href="optimizing-storage-azure_optimize-infrastructure-for-specific-platforms.html">Optimizing storage performance for Microsoft Azure</a> →</p>
 </div>
 </div>
 <div id="footnotes">
@@ -1915,7 +2327,7 @@ etcd-2   2/2     Running   0          2m2s</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-16 09:23:51 -0500
+Last updated 2026-10-16 17:11:41 -0500
 </div>
 </div>
 <style>

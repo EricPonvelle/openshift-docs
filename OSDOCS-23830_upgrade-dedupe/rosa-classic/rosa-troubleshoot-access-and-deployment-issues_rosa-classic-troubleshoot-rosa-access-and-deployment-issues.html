@@ -571,7 +571,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <!-- navmap-right-toc-end -->
 </head>
-<body id="rosa-classic-troubleshoot-rosa-access-and-deployment-issues_rosa-classic-troubleshoot-rosa-access-and-deployment-issues" class="book toc2 toc-left navmap-has-right-toc">
+<body id="rosa-troubleshoot-access-and-deployment-issues_rosa-classic-troubleshoot-rosa-access-and-deployment-issues" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red&#160;Hat OpenShift Service on AWS (classic architecture)</h1>
 <div id="toc" class="toc2">
@@ -668,11 +668,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_troubleshoot.html">▶</button><a href="_troubleshoot.html">Troubleshoot</a>
 <ul class="sectlevel2">
-<li><a href="rosa-classic-troubleshoot-cluster-infrastructure-issues_rosa-classic-troubleshoot-cluster-infrastructure-issues.html">Troubleshoot cluster infrastructure issues</a>
+<li><a href="rosa-troubleshoot-cluster-infrastructure-issues_rosa-classic-troubleshoot-cluster-infrastructure-issues.html">Troubleshoot cluster infrastructure issues</a>
 </li>
-<li><a href="troubleshoot-component-and-workload-issues_rosa-classic-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a>
+<li><a href="sd-troubleshoot-component-and-workload-issues_rosa-classic-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a>
 </li>
-<li><a href="rosa-classic-troubleshoot-rosa-access-and-deployment-issues_rosa-classic-troubleshoot-rosa-access-and-deployment-issues.html"><span class="toc-current">Troubleshoot ROSA access and deployment issues</span></a>
+<li><a href="rosa-troubleshoot-access-and-deployment-issues_rosa-classic-troubleshoot-rosa-access-and-deployment-issues.html"><span class="toc-current">Troubleshoot Red&#160;Hat OpenShift Service on AWS (classic architecture) access and deployment issues</span></a>
 </li>
 </ul>
 </li>
@@ -709,20 +709,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-classic-troubleshoot-iam-roles_rosa-classic-troubleshoot-iam-roles">Troubleshoot IAM roles</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-troubleshooting_rosa-classic-troubleshoot-iam-roles">Resolve issues with ocm-roles and user-role IAM resources</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-classic-troubleshoot-iam-roles">Create an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-user-role-iam-basic-role_rosa-classic-troubleshoot-iam-roles">Create a user-role IAM role</a></li><li class="level-5"><a href="#rosa-associating-account_rosa-classic-troubleshoot-iam-roles">Associate your AWS account with IAM roles</a></li><li class="level-5"><a href="#rosa-associating-multiple-account_rosa-classic-troubleshoot-iam-roles">Associate multiple AWS accounts with your Red Hat organization</a></li><li class="level-4"><a href="#rosa-classic-troubleshoot-cluster-deployment-failures_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster deployment failures</a></li><li class="level-5"><a href="#rosa-troubleshooting-general-deployment-failure_rosa-classic-troubleshoot-cluster-deployment-failures">Obtain information about a failed cluster</a></li><li class="level-5"><a href="#rosa-troubleshooting-deployment-failure-osdccsadmin_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an osdCcsAdmin error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awsnatgatewaylimitexceeded-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSNATGatewayLimitExceeded error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awsapiratelimitexceeded-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSAPIRateLimitExceeded error</a></li><li class="level-5"><a href="#rosa-troubleshooting-s3bucketslimitexceeded_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an S3BucketsLimitExceeded error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awsvpclimit-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSVPCLimitExceeded error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awsinsufficientcapacity-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSInsufficientCapacity error</a></li><li class="level-5"><a href="#rosa-troubleshooting-toomanyroute53zones-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with a TooManyRoute53Zones error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awssubnetnotexist-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSSubnetDoesNotExist error</a></li><li class="level-5"><a href="#rosa-troubleshooting-invalidkmskey-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an invalidKMSKey error</a></li><li class="level-5"><a href="#rosa-troubleshooting-multipleroute53zonesfound-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with a MultipleRoute53ZonesFound error</a></li><li class="level-5"><a href="#rosa-troubleshooting-invalidinstallconfigsubnet-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an InvalidInstallConfigSubnet error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awsinsufficientpermission-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSInsufficientPermissions error</a></li><li class="level-5"><a href="#rosa-troubleshooting-deleteiamrole-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with a DeletingIAMRole error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awsec2quotaexceeded-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSEC2QuotaExceeded error</a></li><li class="level-5"><a href="#rosa-troubleshooting-pendingverification-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with a PendingVerification error</a></li><li class="level-5"><a href="#rosa-troubleshooting-lblimitexceeded-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an ALoadBalancerLimitExceeded error</a></li><li class="level-5"><a href="#rosa-troubleshooting-elb-service-role_rosa-classic-troubleshoot-cluster-deployment-failures">Create the Elastic Load Balancing (ELB) service-linked role</a></li><li class="level-5"><a href="#rosa-troubleshooting-cluster-deletion_rosa-classic-troubleshoot-cluster-deployment-failures">Repair a cluster that cannot be deleted</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-troubleshoot-iam-roles_rosa-troubleshoot-iam-roles">Troubleshoot IAM roles</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-troubleshooting_rosa-troubleshoot-iam-roles">Resolve issues with ocm-roles and user-role IAM resources</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-troubleshoot-iam-roles">Create an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-user-role-iam-basic-role_rosa-troubleshoot-iam-roles">Create a user-role IAM role</a></li><li class="level-5"><a href="#rosa-associating-account_rosa-troubleshoot-iam-roles">Associate your AWS account with IAM roles</a></li><li class="level-5"><a href="#rosa-associating-multiple-account_rosa-troubleshoot-iam-roles">Associate multiple AWS accounts with your Red Hat organization</a></li><li class="level-4"><a href="#rosa-classic-troubleshoot-cluster-deployment-failures_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster deployment failures</a></li><li class="level-5"><a href="#rosa-troubleshooting-general-deployment-failure_rosa-classic-troubleshoot-cluster-deployment-failures">Obtain information about a failed cluster</a></li><li class="level-5"><a href="#rosa-troubleshooting-deployment-failure-osdccsadmin_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an osdCcsAdmin error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awsnatgatewaylimitexceeded-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSNATGatewayLimitExceeded error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awsapiratelimitexceeded-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSAPIRateLimitExceeded error</a></li><li class="level-5"><a href="#rosa-troubleshooting-s3bucketslimitexceeded_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an S3BucketsLimitExceeded error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awsvpclimit-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSVPCLimitExceeded error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awsinsufficientcapacity-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSInsufficientCapacity error</a></li><li class="level-5"><a href="#rosa-troubleshooting-toomanyroute53zones-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with a TooManyRoute53Zones error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awssubnetnotexist-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSSubnetDoesNotExist error</a></li><li class="level-5"><a href="#rosa-troubleshooting-invalidkmskey-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an invalidKMSKey error</a></li><li class="level-5"><a href="#rosa-troubleshooting-multipleroute53zonesfound-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with a MultipleRoute53ZonesFound error</a></li><li class="level-5"><a href="#rosa-troubleshooting-invalidinstallconfigsubnet-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an InvalidInstallConfigSubnet error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awsinsufficientpermission-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSInsufficientPermissions error</a></li><li class="level-5"><a href="#rosa-troubleshooting-deleteiamrole-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with a DeletingIAMRole error</a></li><li class="level-5"><a href="#rosa-troubleshooting-awsec2quotaexceeded-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an AWSEC2QuotaExceeded error</a></li><li class="level-5"><a href="#rosa-troubleshooting-pendingverification-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with a PendingVerification error</a></li><li class="level-5"><a href="#rosa-troubleshooting-lblimitexceeded-failure-deployment_rosa-classic-troubleshoot-cluster-deployment-failures">Troubleshoot cluster creation with an ALoadBalancerLimitExceeded error</a></li><li class="level-5"><a href="#rosa-troubleshooting-elb-service-role_rosa-classic-troubleshoot-cluster-deployment-failures">Create the Elastic Load Balancing (ELB) service-linked role</a></li><li class="level-5"><a href="#rosa-troubleshooting-cluster-deletion_rosa-classic-troubleshoot-cluster-deployment-failures">Repair a cluster that cannot be deleted</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="rosa-classic-troubleshoot-rosa-access-and-deployment-issues_rosa-classic-troubleshoot-rosa-access-and-deployment-issues">Troubleshoot ROSA access and deployment issues</h3>
+<h3 id="rosa-troubleshoot-access-and-deployment-issues_rosa-classic-troubleshoot-rosa-access-and-deployment-issues">Troubleshoot Red&#160;Hat OpenShift Service on AWS (classic architecture) access and deployment issues</h3>
 <div class="paragraph _abstract">
-<p>Resolve problems that prevent you from accessing or deploying a Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster, including expired access tokens, IAM role misconfiguration, and cluster deployment failures.</p>
+<p>Cluster administrators need to diagnose and resolve access management and deployment problems so that they can authenticate to the Red&#160;Hat OpenShift Service on AWS (classic architecture) service and provision their clusters successfully.</p>
+</div>
+<div class="paragraph">
+<p>Troubleshooting access and deployment helps you:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Restore access</strong>: Identify expired credentials or incorrectly configured IAM roles to resolve problems with authentication and permissions.</p>
+</li>
+<li>
+<p><strong>Unblock cluster creation</strong>: Use reported deployment errors to identify unmet requirements that are necessary for provisioning to proceed.</p>
+</li>
+</ul>
 </div>
 <div class="sect3">
-<h4 id="rosa-classic-troubleshoot-iam-roles_rosa-classic-troubleshoot-iam-roles">Troubleshoot IAM roles</h4>
+<h4 id="rosa-troubleshoot-iam-roles_rosa-troubleshoot-iam-roles">Troubleshoot IAM roles</h4>
 <div class="paragraph _abstract">
 <p>Troubleshoot IAM role issues that prevent proper access to your Red&#160;Hat OpenShift Service on AWS (classic architecture) cluster resources.</p>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-ocm-roles-and-permissions-troubleshooting_rosa-classic-troubleshoot-iam-roles">Resolve issues with ocm-roles and user-role IAM resources</h5>
+<h5 id="rosa-sts-ocm-roles-and-permissions-troubleshooting_rosa-troubleshoot-iam-roles">Resolve issues with ocm-roles and user-role IAM resources</h5>
 <div class="paragraph _abstract">
 <p>You might receive an error when trying to create a cluster by using the ROSA command-line interface (CLI) (<code>rosa</code>). This error means that the <code>user-role</code> IAM role is not linked to your AWS account. The most likely cause of this error is that another user in your Red&#160;Hat organization created the <code>ocm-role</code> IAM role. Your <code>user-role</code> IAM role needs to be created.</p>
 </div>
@@ -779,7 +792,7 @@ ManagedOpenShift-User.osdocs-Role  arn:aws:iam::2066:role/ManagedOpenShift-User.
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-classic-troubleshoot-iam-roles">Create an ocm-role IAM role</h5>
+<h5 id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-troubleshoot-iam-roles">Create an ocm-role IAM role</h5>
 <div class="paragraph _abstract">
 <p>Create the <code>ocm-role</code> Identity and Access Management (IAM) roles by using the ROSA command-line interface (CLI) (<code>rosa</code>) to grant OpenShift Cluster Manager the permissions needed to install and manage your Red&#160;Hat OpenShift Service on AWS (classic architecture) clusters.</p>
 </div>
@@ -975,7 +988,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-user-role-iam-basic-role_rosa-classic-troubleshoot-iam-roles">Create a user-role IAM role</h5>
+<h5 id="rosa-sts-user-role-iam-basic-role_rosa-troubleshoot-iam-roles">Create a user-role IAM role</h5>
 <div class="paragraph _abstract">
 <p>You can create your <code>user-role</code> IAM roles by using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
 </div>
@@ -1073,7 +1086,7 @@ I: Successfully linked role ARN 'arn:aws:iam::2066:role/ManagedOpenShift-User.os
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-associating-account_rosa-classic-troubleshoot-iam-roles">Associate your AWS account with IAM roles</h5>
+<h5 id="rosa-associating-account_rosa-troubleshoot-iam-roles">Associate your AWS account with IAM roles</h5>
 <div class="paragraph _abstract">
 <p>You can associate or link your AWS account with existing IAM roles by using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
 </div>
@@ -1164,7 +1177,7 @@ I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-
 </div>
 </div>
 <div class="sect4">
-<h5 id="rosa-associating-multiple-account_rosa-classic-troubleshoot-iam-roles">Associate multiple AWS accounts with your Red&#160;Hat organization</h5>
+<h5 id="rosa-associating-multiple-account_rosa-troubleshoot-iam-roles">Associate multiple AWS accounts with your Red&#160;Hat organization</h5>
 <div class="paragraph _abstract">
 <p>You can associate multiple AWS accounts with your Red&#160;Hat organization. Associating multiple accounts lets you create Red&#160;Hat OpenShift Service on AWS (classic architecture) clusters on any of the associated AWS accounts from your Red&#160;Hat organization.</p>
 </div>
@@ -2194,12 +2207,12 @@ Operation ID: b0572d6e-fe54-499b-8c97-46bf6890011c</code></pre>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="troubleshoot-component-and-workload-issues_rosa-classic-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a> | ↑ Up: <a href="_troubleshoot.html">Troubleshoot</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Service on AWS (classic architecture)</a> | Next: <a href="_configure.html">Configure</a> →</p>
+<p>← Previous: <a href="sd-troubleshoot-component-and-workload-issues_rosa-classic-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a> | ↑ Up: <a href="_troubleshoot.html">Troubleshoot</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Service on AWS (classic architecture)</a> | Next: <a href="_configure.html">Configure</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-16 09:24:33 -0500
+Last updated 2026-10-16 17:12:26 -0500
 </div>
 </div>
 </body>

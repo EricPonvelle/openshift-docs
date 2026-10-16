@@ -571,7 +571,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <!-- navmap-right-toc-end -->
 </head>
-<body id="rosa-hcp-troubleshoot-rosa-access-and-deployment-issues_rosa-hcp-troubleshoot-rosa-access-and-deployment-issues" class="book toc2 toc-left navmap-has-right-toc">
+<body id="rosa-troubleshoot-cluster-infrastructure-issues_rosa-troubleshoot-cluster-infrastructure-issues" class="book toc2 toc-left navmap-has-right-toc">
 <div id="header">
 <h1>Red&#160;Hat OpenShift Service on AWS</h1>
 <div id="toc" class="toc2">
@@ -690,11 +690,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><button class="toc-toggle" type="button" data-toc-key="_troubleshoot.html">▶</button><a href="_troubleshoot.html">Troubleshoot</a>
 <ul class="sectlevel2">
-<li><a href="rosa-hcp-troubleshoot-cluster-infrastructure-issues_rosa-hcp-troubleshoot-cluster-infrastructure-issues.html">Troubleshoot cluster infrastructure issues</a>
+<li><a href="rosa-troubleshoot-cluster-infrastructure-issues_rosa-troubleshoot-cluster-infrastructure-issues.html"><span class="toc-current">Troubleshoot cluster infrastructure issues</span></a>
 </li>
-<li><a href="rosa-hcp-troubleshoot-component-and-workload-issues_rosa-hcp-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a>
+<li><a href="sd-troubleshoot-component-and-workload-issues_rosa-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a>
 </li>
-<li><a href="rosa-hcp-troubleshoot-rosa-access-and-deployment-issues_rosa-hcp-troubleshoot-rosa-access-and-deployment-issues.html"><span class="toc-current">Troubleshoot ROSA access and deployment issues</span></a>
+<li><a href="rosa-troubleshoot-access-and-deployment-issues_rosa-troubleshoot-rosa-access-and-deployment-issues.html">Troubleshoot Red&#160;Hat OpenShift Service on AWS access and deployment issues</a>
 </li>
 </ul>
 </li>
@@ -723,714 +723,901 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-hcp-troubleshoot-expired-offline-access-tokens_rosa-hcp-troubleshoot-expired-offline-access-tokens">Troubleshoot expired offline access tokens</a></li><li class="level-5"><a href="#rosa-troubleshooting-expired-offline-access-tokens_rosa-hcp-troubleshoot-expired-offline-access-tokens">Troubleshoot expired offline access tokens</a></li><li class="level-4"><a href="#rosa-hcp-troubleshoot-iam-roles_rosa-hcp-troubleshoot-iam-roles">Troubleshoot IAM roles</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-troubleshooting_rosa-hcp-troubleshoot-iam-roles">Resolve issues with ocm-roles and user-role IAM resources</a></li><li class="level-5"><a href="#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-troubleshoot-iam-roles">Create an ocm-role IAM role</a></li><li class="level-5"><a href="#rosa-sts-user-role-iam-basic-role_rosa-hcp-troubleshoot-iam-roles">Create a user-role IAM role</a></li><li class="level-5"><a href="#rosa-associating-account_rosa-hcp-troubleshoot-iam-roles">Associate your AWS account with IAM roles</a></li><li class="level-5"><a href="#rosa-associating-multiple-account_rosa-hcp-troubleshoot-iam-roles">Associate multiple AWS accounts with your Red Hat organization</a></li><li class="level-4"><a href="#rosa-hcp-troubleshoot-cluster-deployments_rosa-hcp-troubleshoot-cluster-deployments">Troubleshoot cluster deployments</a></li><li class="level-5"><a href="#rosa-troubleshooting-general-deployment-failure_rosa-hcp-troubleshoot-cluster-deployments">Obtain information about a failed cluster</a></li><li class="level-5"><a href="#rosa-troubleshooting-deployment-failure-osdccsadmin_rosa-hcp-troubleshoot-cluster-deployments">Troubleshoot cluster creation with an osdCcsAdmin error</a></li><li class="level-5"><a href="#rosa-troubleshooting-elb-service-role_rosa-hcp-troubleshoot-cluster-deployments">Create the Elastic Load Balancing (ELB) service-linked role</a></li><li class="level-5"><a href="#rosa-troubleshooting-cluster-deletion_rosa-hcp-troubleshoot-cluster-deployments">Repair a cluster that cannot be deleted</a></li></ul></aside>
+<aside id="navmap-right-toc" aria-label="On this page"><h2>On this page</h2><ul><li class="level-4"><a href="#rosa-troubleshoot-installations_rosa-troubleshoot-rosa-installations">Troubleshoot Red Hat OpenShift Service on AWS installations</a></li><li class="level-5"><a href="#rosa-troubleshooting-installing_rosa-troubleshoot-rosa-installations">Installation troubleshooting</a></li><li class="level-5"><a href="#rosa-verify-hcp-install_rosa-troubleshoot-rosa-installations">Verify installation of Red Hat OpenShift Service on AWS clusters</a></li><li class="level-5"><a href="#rosa-troubleshoot-hcp-install_rosa-troubleshoot-rosa-installations">Troubleshoot Red Hat OpenShift Service on AWS installation error codes</a></li><li class="level-5"><a href="#rosa-hcp-no-console-access_rosa-troubleshoot-rosa-installations">Troubleshoot access to Red Hat Hybrid Cloud Console</a></li><li class="level-5"><a href="#rosa-hcp-ready-no-console-access_rosa-troubleshoot-rosa-installations">Verify access to Red Hat OpenShift Service on AWS web console for Red Hat OpenShift Service on AWS cluster in ready state</a></li><li class="level-5"><a href="#rosa-hcp-private-ready-no-console-access_rosa-troubleshoot-rosa-installations">Verify access to Red Hat Hybrid Cloud Console for private Red Hat OpenShift Service on AWS clusters</a></li><li class="level-4"><a href="#rosa-troubleshoot-networking_rosa-troubleshoot-networking">Troubleshoot networking</a></li><li class="level-5"><a href="#rosa-troubleshooting-general-deployment-failure_rosa-troubleshoot-networking">Connectivity issues on clusters with private network load balancers</a></li><li class="level-4"><a href="#rosa-troubleshoot-red-hat-build-of-karpenter_rosa-troubleshoot-red-hat-build-of-karpenter">Troubleshoot Red Hat build of Karpenter</a></li><li class="level-5"><a href="#autonode-troubleshooting-overview_rosa-troubleshoot-red-hat-build-of-karpenter">About Red Hat build of Karpenter troubleshooting</a></li><li class="level-6"><a href="#autonode-troubleshooting-diagnostic-workflow_rosa-troubleshoot-red-hat-build-of-karpenter">General diagnostic workflow</a></li><li class="level-6"><a href="#autonode-troubleshooting-escalating_rosa-troubleshoot-red-hat-build-of-karpenter">When to escalate to Red Hat Support</a></li><li class="level-5"><a href="#karpenter-resource-readiness-conditions_rosa-troubleshoot-red-hat-build-of-karpenter">Karpenter resource readiness conditions</a></li><li class="level-6"><a href="#karpenter-resource-readiness-conditions-common-failures_rosa-troubleshoot-red-hat-build-of-karpenter">Common failure messages</a></li><li class="level-6"><a href="#query-ec2nodeclass-condition-status_rosa-troubleshoot-red-hat-build-of-karpenter">Query EC2NodeClass condition status</a></li><li class="level-5"><a href="#verify-karpenter-crds-installed_rosa-troubleshoot-red-hat-build-of-karpenter">Verify Karpenter CRDs are installed</a></li><li class="level-5"><a href="#resolve-ec2nodeclass-not-ready-status_rosa-troubleshoot-red-hat-build-of-karpenter">Resolve EC2NodeClass not ready status</a></li><li class="level-5"><a href="#resolve-iam-permissions-for-tagging_rosa-troubleshoot-red-hat-build-of-karpenter">Resolve IAM permissions for AWS resource tagging</a></li></ul></aside>
 <div id="content">
 <div class="sect2">
-<h3 id="rosa-hcp-troubleshoot-rosa-access-and-deployment-issues_rosa-hcp-troubleshoot-rosa-access-and-deployment-issues">Troubleshoot ROSA access and deployment issues</h3>
+<h3 id="rosa-troubleshoot-cluster-infrastructure-issues_rosa-troubleshoot-cluster-infrastructure-issues">Troubleshoot cluster infrastructure issues</h3>
 <div class="paragraph _abstract">
-<p>Resolve problems that prevent you from accessing or deploying a Red&#160;Hat OpenShift Service on AWS cluster, including expired access tokens, IAM role misconfiguration, and cluster deployment failures.</p>
-</div>
-<div class="sect3">
-<h4 id="rosa-hcp-troubleshoot-expired-offline-access-tokens_rosa-hcp-troubleshoot-expired-offline-access-tokens">Troubleshoot expired offline access tokens</h4>
-<div class="paragraph _abstract">
-<p>Troubleshoot expired offline access tokens that prevent access to your Red&#160;Hat OpenShift Service on AWS cluster.</p>
-</div>
-<div class="sect4">
-<h5 id="rosa-troubleshooting-expired-offline-access-tokens_rosa-hcp-troubleshoot-expired-offline-access-tokens">Troubleshoot expired offline access tokens</h5>
-<div class="paragraph _abstract">
-<p>If you use the Red&#160;Hat OpenShift Service on AWS (ROSA) CLI, <code>rosa</code>, and your api.openshift.com offline access token expires, an error message is displayed. This happens when sso.redhat.com invalidates the token.</p>
+<p>Cluster administrators and Site Reliability Engineering (SRE) teams need to identify and resolve infrastructure-level problems so that their Red&#160;Hat OpenShift Service on AWS clusters stay available and performant.</p>
 </div>
 <div class="paragraph">
-<p>The following example shows the output:</p>
+<p>Troubleshooting cluster infrastructure helps you:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">Can't get tokens ....
-Can't get access tokens ....</code></pre>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Diagnose infrastructure problems</strong>: Investigate installation failures, network connectivity problems, and node-health symptoms to understand what is affecting cluster operation.</p>
+</li>
+<li>
+<p><strong>Minimize downtime</strong>: Restore cluster health before problems affect your workloads.</p>
+</li>
+<li>
+<p><strong>Support cluster recovery</strong>: Address configuration or capacity issues within your control, and gather relevant diagnostics for problems that require escalation to Red&#160;Hat.</p>
+</li>
+</ul>
 </div>
+<div class="sect3">
+<h4 id="rosa-troubleshoot-installations_rosa-troubleshoot-rosa-installations">Troubleshoot Red&#160;Hat OpenShift Service on AWS installations</h4>
+<div class="paragraph _abstract">
+<p>Troubleshoot the installation of Red&#160;Hat OpenShift Service on AWS clusters, including clusters that report a ready state but provide no console access.</p>
+</div>
+<div class="sect4">
+<h5 id="rosa-troubleshooting-installing_rosa-troubleshoot-rosa-installations">Installation troubleshooting</h5>
+<div class="paragraph _abstract">
+<p>This procedure describes how to troubleshoot installation issues for Red&#160;Hat OpenShift Service on AWS clusters.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
 <ul>
 <li>
-<p>Generate a new offline access token at the following URL. The <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> URL generates a new offline access token every time you visit it.</p>
+<p>Inspect install or uninstall logs:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To display install logs, run the following command, replacing <code>&lt;cluster_name&gt;</code> with the name of your cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa logs install --cluster=&lt;cluster_name&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To watch the logs, include the <code>--watch</code> flag:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa logs install --cluster=&lt;cluster_name&gt; --watch</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To display uninstall logs, run the following command, replacing <code>&lt;cluster_name&gt;</code> with the name of your cluster:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa logs uninstall --cluster=&lt;cluster_name&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To watch the logs, include the <code>--watch</code> flag:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa logs uninstall --cluster=&lt;cluster_name&gt; --watch</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Verify your AWS account and quota:</p>
+<div class="paragraph">
+<p>Run the following command to verify you have the available quota on your AWS account:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa verify quota</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>AWS quotas change based on region. Be sure you are verifying your quota for the correct AWS region. If you need to increase your quota, go to your <a href="https://aws.amazon.com/console/">AWS console</a>, and request a quota increase for the service that failed.</p>
+</div>
+</li>
+<li>
+<p>AWS notification emails:</p>
+<div class="paragraph">
+<p>When creating a cluster, the Red&#160;Hat OpenShift Service on AWS service creates small instances in all supported regions. This check ensures the AWS account being used can deploy to each supported region.</p>
+</div>
+<div class="paragraph">
+<p>For AWS accounts that are not using all supported regions, AWS might send one or more emails confirming that "Your Request For Accessing AWS Resources Has Been Validated." Typically the sender of this email is <a href="mailto:aws-verification@amazon.com">aws-verification@amazon.com</a>.</p>
+</div>
+<div class="paragraph">
+<p>This is expected behavior as the Red&#160;Hat OpenShift Service on AWS service is validating your AWS account configuration.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-verify-hcp-install_rosa-troubleshoot-rosa-installations">Verify installation of Red&#160;Hat OpenShift Service on AWS clusters</h5>
+<div class="paragraph _abstract">
+<p>If the Red&#160;Hat OpenShift Service on AWS cluster is in the installing state for over 30 minutes and has not become ready, ensure the AWS account environment is prepared for the required cluster configurations. If the AWS account environment is prepared for the required cluster configurations correctly, try to delete and re-create the cluster. If the problem persists, contact support.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Verify the AWS account environment is prepared for the required cluster configurations.</p>
+</li>
+<li>
+<p>If the AWS account environment is prepared correctly, try to delete and re-create the cluster.</p>
+</li>
+<li>
+<p>If the problem persists, contact support.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-troubleshoot-hcp-install_rosa-troubleshoot-rosa-installations">Troubleshoot Red&#160;Hat OpenShift Service on AWS installation error codes</h5>
+<div class="paragraph _abstract">
+<p>The following table lists Red&#160;Hat OpenShift Service on AWS installation error codes and what you can do to troubleshoot these errors.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 38. Red&#160;Hat OpenShift Service on AWS installation error codes</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Error code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM3999</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unknown error.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check the cluster installation logs for more details, or delete this cluster and retry cluster installation. If this issue persists, contact Red&#160;Hat support. See <em>Additional resources</em> for more information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red&#160;Hat OpenShift Service on AWS cluster provision has failed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check the cluster installation logs for more details, or delete this cluster and retry cluster installation. If this issue persists, contact Red&#160;Hat support. See <em>Additional resources</em> for more information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum resource tag size of 25 has been exceeded.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check the cluster information to determine if you can remove any unnecessary tags you have specified and retry cluster installation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unable to establish an AWS client to provision the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">You must create several role resources on your AWS account to create and manage a Red&#160;Hat OpenShift Service on AWS cluster. Ensure that your provided AWS credentials are correct and retry cluster installation.</p>
+<p class="tableblock">For more information about Red&#160;Hat OpenShift Service on AWS IAM role resources, see <em>ROSA IAM role resources</em> in the <em>Additional resources</em> section.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unable to establish a cross-account AWS client to provision the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">You must create several role resources on your AWS account to create and manage a Red&#160;Hat OpenShift Service on AWS cluster. Ensure that your provided AWS credentials are correct and retry cluster installation.</p>
+<p class="tableblock">For more information about Red&#160;Hat OpenShift Service on AWS IAM role resources, see <em>ROSA IAM role resources</em> in the <em>Additional resources</em> section.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5005</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Failed to retrieve AWS subnets defined for the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Review the provided subnet IDs and retry cluster installation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5006</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">You must configure at least one private AWS subnet for the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Review the provided subnet IDs and retry cluster installation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5007</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unable to create AWS STS prerequisites for the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that account and operator roles have been created and are correct. For more information, see <em>AWS STS and ROSA with HCP explained</em> in the <em>Additional resources</em> section.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5008</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The provided cluster flavour is incorrect.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the provided name or ID is correct when you are using the flavour parameter and retry cluster creation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5009</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The cluster version could not be found.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure that the configured version ID matches a valid Red&#160;Hat OpenShift Service on AWS version.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5010</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Failed to tag subnets for the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confirm that the AWS permissions and the subnet configurations are correct. You must tag at least one private subnet and, if applicable, one public subnet.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCM5011</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cluster installation has failed due to unavailable capacity in the selected region.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Try your cluster installation in another region or retry cluster installation.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://access.redhat.com/support/cases/#/case/list">Red Hat Customer Support</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-hcp-no-console-access_rosa-troubleshoot-rosa-installations">Troubleshoot access to Red Hat Hybrid Cloud Console</h5>
+<div class="paragraph _abstract">
+<p>In Red&#160;Hat OpenShift Service on AWS clusters, the Red&#160;Hat OpenShift Service on AWS OAuth server is hosted in the Red Hat service&#8217;s AWS account while the web console service is published by using the cluster&#8217;s default ingress controller in the cluster&#8217;s AWS account. If you can log in to your cluster by using the OpenShift CLI (oc) but cannot access the Red&#160;Hat OpenShift Service on AWS web console, verify the following criteria are met:</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Verify the console workloads are running.</p>
+</li>
+<li>
+<p>Verify the default ingress controller&#8217;s load balancer is active.</p>
+</li>
+<li>
+<p>Verify you are accessing the console from a machine that has network connectivity to the cluster&#8217;s VPC network.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-hcp-ready-no-console-access_rosa-troubleshoot-rosa-installations">Verify access to Red&#160;Hat OpenShift Service on AWS web console for Red&#160;Hat OpenShift Service on AWS cluster in ready state</h5>
+<div class="paragraph _abstract">
+<p>Red&#160;Hat OpenShift Service on AWS clusters return a <code>ready</code> status when the control plane hosted in the Red&#160;Hat OpenShift Service on AWS service account becomes ready. Cluster console workloads are deployed on the cluster&#8217;s worker nodes. The Red&#160;Hat OpenShift Service on AWS web console will not be available and accessible until the worker nodes have joined the cluster and console workloads are running.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>If your Red&#160;Hat OpenShift Service on AWS cluster is ready but you are unable to access the Red&#160;Hat OpenShift Service on AWS web console for the cluster, wait for the worker nodes to join the cluster and retry accessing the console.</p>
+<div class="paragraph">
+<p>You can either log in to the Red&#160;Hat OpenShift Service on AWS cluster or use the <code>rosa describe machinepool</code> command in the <code>rosa</code> CLI watch the nodes.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="rosa-hcp-private-ready-no-console-access_rosa-troubleshoot-rosa-installations">Verify access to Red Hat Hybrid Cloud Console for private Red&#160;Hat OpenShift Service on AWS clusters</h5>
+<div class="paragraph _abstract">
+<p>The console of the private cluster is private by default. During cluster installation, the default Ingress Controller managed by OpenShift&#8217;s Ingress Operator is configured with an internal AWS Network Load Balancer (NLB).</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>If your private Red&#160;Hat OpenShift Service on AWS cluster shows a <code>ready</code> status but you cannot access the Red&#160;Hat OpenShift Service on AWS web console for the cluster, try accessing the cluster console from either within the cluster VPC or from a network that is connected to the VPC.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="rosa-hcp-troubleshoot-iam-roles_rosa-hcp-troubleshoot-iam-roles">Troubleshoot IAM roles</h4>
+<h4 id="rosa-troubleshoot-networking_rosa-troubleshoot-networking">Troubleshoot networking</h4>
 <div class="paragraph _abstract">
-<p>Troubleshoot IAM role issues that prevent proper access to your Red&#160;Hat OpenShift Service on AWS cluster resources.</p>
+<p>Troubleshoot networking errors on your Red&#160;Hat OpenShift Service on AWS cluster.</p>
 </div>
 <div class="sect4">
-<h5 id="rosa-sts-ocm-roles-and-permissions-troubleshooting_rosa-hcp-troubleshoot-iam-roles">Resolve issues with ocm-roles and user-role IAM resources</h5>
+<h5 id="rosa-troubleshooting-general-deployment-failure_rosa-troubleshoot-networking">Connectivity issues on clusters with private network load balancers</h5>
 <div class="paragraph _abstract">
-<p>You might receive an error when trying to create a cluster by using the ROSA command-line interface (CLI) (<code>rosa</code>). This error means that the <code>user-role</code> IAM role is not linked to your AWS account. The most likely cause of this error is that another user in your Red&#160;Hat organization created the <code>ocm-role</code> IAM role. Your <code>user-role</code> IAM role needs to be created.</p>
+<p>Private AWS NLBs preserve client IP addresses, which can drop connections when the source and destination are on the same host. Workloads on the same node as router pods might not reach the private NLB fronting the ingress controller.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
 <div class="paragraph">
-<p>After any user sets up an <code>ocm-role</code> IAM resource linked to a Red&#160;Hat account, any subsequent users wishing to create a cluster in that Red&#160;Hat organization must have a <code>user-role</code> IAM role to provision a cluster.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>Red&#160;Hat OpenShift Service on AWS clusters created with version {product-version} deploy AWS Network Load Balancers (NLB) by default for the <code>default</code> ingress controller. See the AWS documentation about how to <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-troubleshooting.html#loopback-timeout">Troubleshoot your Network Load Balancer</a>.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
 <ul>
 <li>
-<p>Assess the status of your <code>ocm-role</code> and <code>user-role</code> IAM roles with the following commands:</p>
+<p>To mitigate this impact, reschedule your workloads onto nodes separate from those where the router pods run. Or, rely on the internal pod and service networks for accessing other workloads co-located within the same cluster.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rosa-troubleshoot-red-hat-build-of-karpenter_rosa-troubleshoot-red-hat-build-of-karpenter">Troubleshoot Red Hat build of Karpenter</h4>
+<div class="paragraph _abstract">
+<p>Identify the root cause of Red&#160;Hat build of Karpenter failures and restore automatic scaling capabilities on your Red&#160;Hat OpenShift Service on AWS cluster.</p>
+</div>
+<div class="sect4">
+<h5 id="autonode-troubleshooting-overview_rosa-troubleshoot-red-hat-build-of-karpenter">About Red&#160;Hat build of Karpenter troubleshooting</h5>
+<div class="paragraph _abstract">
+<p>The Red&#160;Hat build of Karpenter uses the Karpenter controller to provide automated node provisioning in OpenShift clusters. When the Red&#160;Hat build of Karpenter fails to provision nodes or reports configuration errors, you can diagnose and resolve issues by examining Karpenter resource status, AWS infrastructure tags, and AWS Identity and Access Management (IAM) permissions.</p>
+</div>
+<div class="paragraph">
+<p>Red&#160;Hat build of Karpenter troubleshooting addresses the main failure categories:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Controller deployment issues</dt>
+<dd>
+<p>Karpenter Custom Resource Definitions (CRDs) do not appear after enabling the Red&#160;Hat build of Karpenter, preventing you from creating or managing Karpenter resources.</p>
+</dd>
+<dt class="hdlist1">AWS resource discovery failures</dt>
+<dd>
+<p>The EC2NodeClass resource cannot discover AWS subnets or security groups because required discovery tags are missing or incorrect.</p>
+</dd>
+<dt class="hdlist1">IAM permission issues</dt>
+<dd>
+<p>The control plane Operator does not have the authorization to create tags on AWS resources, preventing Karpenter from properly configuring security groups.</p>
+</dd>
+</dl>
+</div>
+<div class="sect5">
+<h6 id="autonode-troubleshooting-diagnostic-workflow_rosa-troubleshoot-red-hat-build-of-karpenter">General diagnostic workflow</h6>
+<div class="paragraph">
+<p>Follow this workflow to diagnose and resolve Red&#160;Hat build of Karpenter issues:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Identify the symptom by checking which Karpenter resources are missing or not ready.</p>
+</li>
+<li>
+<p>Gather diagnostic data using <code>oc</code> commands to inspect custom resource status and AWS CLI commands to verify infrastructure configuration.</p>
+</li>
+<li>
+<p>Analyze the root cause by comparing observed resource state with expected configuration.</p>
+</li>
+<li>
+<p>Apply the resolution by adding missing tags, updating IAM policies, or verifying capabilities.</p>
+</li>
+<li>
+<p>Verify the fix by confirming that Karpenter resources reach ready status and automatic scaling functions correctly.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect5">
+<h6 id="autonode-troubleshooting-escalating_rosa-troubleshoot-red-hat-build-of-karpenter">When to escalate to Red&#160;Hat Support</h6>
+<div class="paragraph">
+<p>Escalate to Red&#160;Hat Support in these situations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Karpenter CRDs do not appear after 5 minutes and the Karpenter controller pod is not running.</p>
+</li>
+<li>
+<p>EC2NodeClass remains not ready after adding all required discovery tags and waiting 60 seconds.</p>
+</li>
+<li>
+<p>IAM policies are correctly attached but CloudTrail continues showing authorization errors.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When escalating, provide:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cluster ID</p>
+</li>
+<li>
+<p>Output of <code>rosa describe cluster -c $CLUSTER_ID -o json</code></p>
+</li>
+<li>
+<p>Output of <code>oc get ec2nodeclass/default -o json</code></p>
+</li>
+<li>
+<p>Output of <code>oc get pods -n kube-system</code></p>
+</li>
+<li>
+<p>CloudTrail event details for authorization errors</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="karpenter-resource-readiness-conditions_rosa-troubleshoot-red-hat-build-of-karpenter">Karpenter resource readiness conditions</h5>
+<div class="paragraph _abstract">
+<p>The <code>EC2NodeClass</code> resource reports readiness through status conditions that indicate whether Karpenter successfully discovered and validated AWS resources. Each condition reports a boolean status and explains why the condition is true or false. Understanding these conditions helps you identify which AWS resources require configuration changes.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 39. EC2NodeClass status conditions</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Condition</th>
+<th class="tableblock halign-left valign-top">Status values</th>
+<th class="tableblock halign-left valign-top">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>AMIsReady</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code> or <code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Amazon Machine Images (AMI) selector matched available AMIs in the AWS region.
+If <code>False</code>, the specified AMI selector did not match any AMIs accessible to your AWS account.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SubnetsReady</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code> or <code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The subnet selector matched private subnets with the required Karpenter discovery tag.
+If <code>False</code>, no subnets in your Virtual Private Cloud (VPC) have the <code>karpenter.sh/discovery</code> tag with the value expected by the <code>EC2NodeClass</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SecurityGroupsReady</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code> or <code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The security group selector matched security groups with the required Karpenter discovery tag.
+If <code>False</code>, no security groups have the <code>karpenter.sh/discovery</code> tag with the value expected by the <code>EC2NodeClass</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>InstanceProfileReady</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code> or <code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The IAM instance profile exists and is accessible to Karpenter.
+If <code>False</code>, the specified instance profile name is incorrect or the profile does not exist in your AWS account.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ValidationSucceeded</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code> or <code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The EC2NodeClass specification passed validation.
+If <code>False</code>, the EC2NodeClass contains invalid configuration values or references non-existent resources.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ready</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code> or <code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Overall readiness status.
+This condition is <code>True</code> only when all dependent conditions (<code>AMIsReady</code>, <code>SubnetsReady</code>, <code>SecurityGroupsReady</code>, <code>InstanceProfileReady</code>, <code>ValidationSucceeded</code>) are <code>True</code>.
+If <code>False</code>, the message field lists which conditions are not ready.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect5">
+<h6 id="karpenter-resource-readiness-conditions-common-failures_rosa-troubleshoot-red-hat-build-of-karpenter">Common failure messages</h6>
+<div class="paragraph">
+<p>When EC2NodeClass conditions report <code>False</code> status, the message field provides details about the failure:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>SubnetSelector</code> did not match any Subnets</dt>
+<dd>
+<p>No subnets in your VPC have the required <code>karpenter.sh/discovery</code> tag.
+Add the tag to all private subnets where Karpenter should provision nodes.</p>
+</dd>
+<dt class="hdlist1"><code>SecurityGroupSelector</code> did not match any <code>SecurityGroups</code></dt>
+<dd>
+<p>No security groups have the required <code>karpenter.sh/discovery</code> tag.
+Add the tag to the default security group and any additional security groups Karpenter should use.</p>
+</dd>
+<dt class="hdlist1"><code>UnhealthyDependents</code></dt>
+<dd>
+<p>The <code>Ready</code> condition shows this message when one or more dependent conditions are <code>False</code>.
+The message lists which specific conditions are not ready, for example: <code>SecurityGroupsReady=False, SubnetsReady=False</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect5">
+<h6 id="query-ec2nodeclass-condition-status_rosa-troubleshoot-red-hat-build-of-karpenter">Query EC2NodeClass condition status</h6>
+<div class="paragraph _abstract">
+<p>Use the <code>oc</code> command-line interface to inspect EC2NodeClass status conditions and identify which AWS resources require configuration changes.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>To view the full condition status for an EC2NodeClass, run:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list ocm-role</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq .status.conditions</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output displays all condition types with their status, reason, and explanatory message.</p>
+</div>
+</li>
+<li>
+<p>Optional: To view only the overall <code>Ready</code> condition, run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq '.status.conditions[] | select(.type=="Ready")'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output shows the <code>Ready</code> condition type, status, reason, and message explaining why the condition is in that state.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Review the output to identify which conditions show <code>"status": "False"</code>.</p>
+</li>
+<li>
+<p>Check the <code>message</code> field for each failed condition to determine what AWS resources need configuration changes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="verify-karpenter-crds-installed_rosa-troubleshoot-red-hat-build-of-karpenter">Verify Karpenter CRDs are installed</h5>
+<div class="paragraph _abstract">
+<p>After enabling the Red&#160;Hat build of Karpenter on a Red&#160;Hat OpenShift Service on AWS cluster, the Karpenter controller automatically creates Custom Resource Definitions (CRDs) in your cluster. If Karpenter CRDs do not appear within several minutes, you can check the controller deployment status.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Check for Karpenter CRDs:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get crd | grep karpenter</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example output</div>
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Fetching ocm roles
-ROLE NAME                           ROLE ARN                                          LINKED  ADMIN
-ManagedOpenShift-OCM-Role-1158  arn:aws:iam::2066:role/ManagedOpenShift-OCM-Role-1158   No      No</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">ec2nodeclasses.karpenter.k8s.aws
+nodeclaims.karpenter.sh
+nodepools.karpenter.sh
+openshiftec2nodeclasses.karpenter.hypershift.openshift.io</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p>If CRDs are not present, wait 5 minutes for the Karpenter controller to create them. The controller deployment can take several minutes to complete after enabling the Red&#160;Hat build of Karpenter.</p>
+</li>
+<li>
+<p>After 5 minutes, if CRDs are still not present, check whether the Karpenter controller pod is running:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list user-role</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n kube-system | grep karpenter</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output should show a Karpenter controller pod in <code>Running</code> status.</p>
+</div>
+</li>
+<li>
+<p>If the controller pod is not running or CRDs are still missing after 5 minutes, escalate to Red&#160;Hat Support. Provide the following diagnostic information:</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Your cluster ID</p>
+</li>
+<li>
+<p>Output of <code>rosa describe cluster -c $CLUSTER_ID -o json</code></p>
+</li>
+<li>
+<p>Output of <code>oc get pods -n kube-system</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="resolve-ec2nodeclass-not-ready-status_rosa-troubleshoot-red-hat-build-of-karpenter">Resolve EC2NodeClass not ready status</h5>
+<div class="paragraph _abstract">
+<p>Karpenter discovers AWS subnets and security groups by searching for resources tagged with a cluster-specific discovery tag. When the EC2NodeClass resource reports <code>SubnetsReady</code> or <code>SecurityGroupsReady</code> conditions as <code>False</code>, you need to add the required discovery tag to your AWS Virtual Private Cloud (VPC) resources.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Check the EC2NodeClass status:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq .status.conditions</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command displays all status conditions for the default EC2NodeClass.</p>
+</div>
+</li>
+<li>
+<p>Identify which conditions are not ready by looking for entries with <code>"status": "False"</code>.</p>
+<div class="paragraph">
+<p>Common failures are <code>SubnetsReady</code> and <code>SecurityGroupsReady</code>.</p>
+</div>
+</li>
+<li>
+<p>If <code>SubnetsReady</code> shows <code>False</code> with the message "SubnetSelector did not match any Subnets", private subnets in your VPC are missing the required discovery tag.
+Continue to the next step.</p>
+</li>
+<li>
+<p>If <code>SecurityGroupsReady</code> shows <code>False</code> with message "SecurityGroupSelector did not match any SecurityGroups", security groups are missing the required discovery tag.
+The same resolution process applies for both subnets and security groups.</p>
+</li>
+<li>
+<p>Get the Karpenter discovery tag value from the EC2NodeClass specification:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq -r '.spec.subnetSelectorTerms[0].tags["karpenter.sh/discovery"]'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example output</div>
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Fetching user roles
-ROLE NAME                                   ROLE ARN                                        LINKED
-ManagedOpenShift-User.osdocs-Role  arn:aws:iam::2066:role/ManagedOpenShift-User.osdocs-Role  Yes</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">&lt;discovery_tag_value&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>With the results of these commands, you can create and link the missing IAM resources.</p>
+<p>This cluster-specific value must be added as a tag to AWS resources.</p>
+</div>
+</li>
+<li>
+<p>List private subnets in your cluster VPC:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws ec2 describe-subnets --filters "Name=vpc-id,Values=&lt;vpc_id&gt;" \
+  --query 'Subnets[?MapPublicIpOnLaunch==`false`].[SubnetId,Tags]' --output table</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;vpc_id&gt;</code> with your cluster&#8217;s VPC ID.</p>
+</div>
+</li>
+<li>
+<p>For each private subnet, verify whether the Karpenter discovery tag is present:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws ec2 describe-subnets --subnet-ids &lt;subnet_id&gt; \
+  --query 'Subnets[0].Tags[?Key==`karpenter.sh/discovery`].Value' --output text</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;subnet_id&gt;</code> with the subnet ID to check.</p>
+</div>
+</li>
+<li>
+<p>If the discovery tag is missing, add it to the subnet:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws ec2 create-tags --resources &lt;subnet_id&gt; \
+  --tags Key=karpenter.sh/discovery,Value=&lt;discovery_tag_value&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;subnet_id&gt;</code> with the subnet ID and <code>&lt;discovery_tag_value&gt;</code> with the value from step 5.</p>
+</div>
+</li>
+<li>
+<p>Repeat steps 7 and 8 for all private subnets in your VPC.</p>
+</li>
+<li>
+<p>Verify that the default security group has the discovery tag:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws ec2 describe-security-groups --group-ids &lt;default_sg_id&gt; \
+  --query 'SecurityGroups[0].Tags[?Key==`karpenter.sh/discovery`].Value' --output text</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;default_sg_id&gt;</code> with your cluster&#8217;s default security group ID.</p>
+</div>
+</li>
+<li>
+<p>If the discovery tag is missing from the security group, add it:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws ec2 create-tags --resources &lt;default_sg_id&gt; \
+  --tags Key=karpenter.sh/discovery,Value=&lt;discovery_tag_value&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>&lt;default_sg_id&gt;</code> with the security group ID and <code>&lt;discovery_tag_value&gt;</code> with the value from step 5.</p>
+</div>
+</li>
+<li>
+<p>Wait 30 to 60 seconds for Karpenter to re-scan AWS resources.</p>
+</li>
+<li>
+<p>Verify that the EC2NodeClass Ready condition is now <code>True</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq '.status.conditions[] | select(.type=="Ready")'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output should show <code>"status": "True"</code>.</p>
+</div>
+</li>
+<li>
+<p>If the Ready condition is still <code>False</code>, check for other condition failures in the output and repeat the appropriate steps.</p>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>The EC2NodeClass Ready condition reports <code>True</code> status:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq '.status.conditions[] | select(.type=="Ready")'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The SubnetsReady and SecurityGroupsReady conditions report <code>True</code> status:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get ec2nodeclass/default -o json | jq '.status.conditions[] | select(.type=="SubnetsReady" or .type=="SecurityGroupsReady")'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>All required AWS resources have the correct <code>karpenter.sh/discovery</code> tag:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws ec2 describe-subnets --subnet-ids &lt;subnet_id&gt; \
+  --query 'Subnets[0].Tags[?Key==`karpenter.sh/discovery`].Value' --output text</code></pre>
+</div>
 </div>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect4">
-<h5 id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-hcp-troubleshoot-iam-roles">Create an ocm-role IAM role</h5>
-<div class="paragraph _abstract">
-<p>Create the <code>ocm-role</code> Identity and Access Management (IAM) roles by using the ROSA command-line interface (CLI) (<code>rosa</code>) to grant OpenShift Cluster Manager the permissions needed to install and manage your Red&#160;Hat OpenShift Service on AWS clusters.</p>
-</div>
-<div class="paragraph">
-<p>If you want to create and manage clusters by using only the <code>rosa</code> CLI and the OpenShift CLI (<code>oc</code>), you can use the <code>--no-console</code> profile for the <code>ocm-role</code> IAM resource. For more information about the <code>ocm-role</code> IAM resource permissions profile, see the <em>Additional resources</em>.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>You must create the <code>ocm-role</code> IAM role before you can create your Red&#160;Hat OpenShift Service on AWS cluster.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have an AWS account.</p>
-</li>
-<li>
-<p>You have Red&#160;Hat Organization Administrator privileges in the OpenShift Cluster Manager organization.</p>
-</li>
-<li>
-<p>You have the permissions required to install AWS account-wide roles.</p>
-</li>
-<li>
-<p>You have installed and configured the latest <code>rosa</code> CLI, <code>rosa</code>, on your installation host.</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>Run one of the following commands to create the required <code>ocm-role</code> IAM resource:</p>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The process to change your <code>ocm-role</code> IAM resource profile requires you to unlink and delete the current <code>ocm-role</code> IAM resource and create a new one with the required profile.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>To create an <code>ocm-role</code> IAM role with standard privileges, run the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create ocm-role</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>To create an <code>ocm-role</code> IAM role with admin privileges, run the following command:</p>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The admin profile supports "auto" mode configuration for Red&#160;Hat OpenShift Service on AWS clusters which provisions OIDC Configuration and Operator roles automatically. To achieve this automatic flow, the profile has a wider set of permissions than the standard profile.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create ocm-role --admin</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the <code>rosa</code> CLI (<code>rosa</code>) create your Operator roles and policies.
-See "Methods of account-wide role creation" for more information. The following example shows what your creation flow might look like.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Creating ocm role
-? Role prefix: ManagedOpenShift
-? Enable admin capabilities for the OCM role (optional): No
-? Permissions boundary ARN (optional):
-? Role Path (optional):
-? Role creation mode: auto
-I: Creating role using 'arn:aws:iam::&lt;ARN&gt;:user/&lt;UserName&gt;'
-? Create the 'ManagedOpenShift-OCM-Role-182' role? Yes
-I: Created role 'ManagedOpenShift-OCM-Role-182' with ARN  'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-OCM-Role-182'
-I: Linking OCM role
-? OCM Role ARN: arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-OCM-Role-182
-? Link the 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-OCM-Role-182' role with organization '&lt;AWS ARN&gt;'? Yes
-I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-OCM-Role-182' with organization account '&lt;AWS ARN&gt;'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where:</p>
-</div>
-<div class="openblock">
-<div class="content">
 <div class="dlist">
+<div class="title">Troubleshooting</div>
 <dl>
-<dt class="hdlist1"><code>Role prefix</code></dt>
+<dt class="hdlist1">If adding tags fails with authorization errors</dt>
 <dd>
-<p>A prefix value for all of the created AWS resources. In this example, <code>ManagedOpenShift</code> prepends all of the AWS resources.</p>
+<p>You need to update IAM permissions for the control plane operator.
+See "Resolve IAM permissions for AWS resource tagging".</p>
 </dd>
-<dt class="hdlist1"><code>Enable admin capabilities for the OCM role (optional)</code></dt>
+<dt class="hdlist1">If the EC2NodeClass remains not ready after adding tags</dt>
 <dd>
-<p>Choose if you want this role to have the additional admin permissions.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>You do not see this prompt if you used the <code>--admin</code> option.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</dd>
-<dt class="hdlist1"><code>Permissions boundary ARN (optional)</code></dt>
-<dd>
-<p>The Amazon Resource Name (ARN) of the policy to set permission boundaries.</p>
-</dd>
-<dt class="hdlist1"><code>Role Path (optional)</code></dt>
-<dd>
-<p>Specify an IAM path for the user name.</p>
-</dd>
-<dt class="hdlist1"><code>Role creation mode</code></dt>
-<dd>
-<p>Choose the method to create your AWS roles. By using <code>auto</code>, the <code>rosa</code> CLI generates and links the roles and policies. In the <code>auto</code> mode, you receive some different prompts to create the AWS roles.</p>
-</dd>
-<dt class="hdlist1"><code>Create the 'ManagedOpenShift-OCM-Role-182' role?</code></dt>
-<dd>
-<p>The <code>auto</code> method asks if you want to create a specific <code>ocm-role</code> by using your prefix.</p>
-</dd>
-<dt class="hdlist1"><code>OCM Role ARN</code></dt>
-<dd>
-<p>Confirm that you want to associate your IAM role with your OpenShift Cluster Manager.</p>
-</dd>
-<dt class="hdlist1"><code>Link the 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-OCM-Role-182' role with organization '&lt;AWS ARN&gt;'?</code></dt>
-<dd>
-<p>Links the created role with your AWS organization.</p>
+<p>Verify that the tag value exactly matches the value in the EC2NodeClass specification.
+Tag values are case-sensitive and must match character-for-character.</p>
 </dd>
 </dl>
 </div>
 </div>
-</div>
-</li>
-<li>
-<p>To create an <code>ocm-role</code> IAM role with the minimum required privileges, run the following command:</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>While the <code>no-console</code> profile offers the minimum permissions policy that can still create Red&#160;Hat OpenShift Service on AWS clusters, the permissions are insufficient if you want to use <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> for cluster creation.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create ocm-role --no-console</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
 <div class="sect4">
-<h5 id="rosa-sts-user-role-iam-basic-role_rosa-hcp-troubleshoot-iam-roles">Create a user-role IAM role</h5>
+<h5 id="resolve-iam-permissions-for-tagging_rosa-troubleshoot-red-hat-build-of-karpenter">Resolve IAM permissions for AWS resource tagging</h5>
 <div class="paragraph _abstract">
-<p>You can create your <code>user-role</code> IAM roles by using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
+<p>The Karpenter controller requires permission to create tags on AWS security groups. When the control plane operator IAM role lacks the <code>ec2:CreateTags</code> permission, Karpenter cannot automatically tag security groups with the discovery tag.</p>
 </div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have an AWS account.</p>
-</li>
-<li>
-<p>You have installed and configured the latest <code>rosa</code> CLI, <code>rosa</code>, on your installation host.</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
+<div class="olist arabic">
 <div class="title">Procedure</div>
-<ul>
+<ol class="arabic">
 <li>
-<p>To create a <code>user-role</code> IAM role with basic privileges, run the following command:</p>
+<p>Identify the IAM role used by the control plane operator:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create user-role</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam list-roles | grep kube-system-control-plane-operator</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the <code>rosa</code> CLI (<code>rosa</code>) to create your Operator roles and policies. See "Understanding the auto and manual deployment modes" for more information. The following example shows what your creation flow might look like.</p>
+<p>The role name follows the pattern <code>&lt;cluster_prefix&gt;-kube-system-control-plane-operator</code>.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Creating User role
-? Role prefix: ManagedOpenShift
-? Permissions boundary ARN (optional):
-? Role Path (optional):
-? Role creation mode: auto
-I: Creating ocm user role using 'arn:aws:iam::2066:user'
-? Create the 'ManagedOpenShift-User.osdocs-Role' role? Yes
-I: Created role 'ManagedOpenShift-User.osdocs-Role' with ARN 'arn:aws:iam::2066:role/ManagedOpenShift-User.osdocs-Role'
-I: Linking User role
-? User Role ARN: arn:aws:iam::2066:role/ManagedOpenShift-User.osdocs-Role
-? Link the 'arn:aws:iam::2066:role/ManagedOpenShift-User.osdocs-Role' role with account '1AGE'? Yes
-I: Successfully linked role ARN 'arn:aws:iam::2066:role/ManagedOpenShift-User.osdocs-Role' with account '1AGE'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where:</p>
-</div>
+</li>
+<li>
+<p>Optional: Verify the authorization error in AWS CloudTrail:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Navigate to the AWS CloudTrail console.</p>
+</li>
+<li>
+<p>Search for events matching these criteria:</p>
 <div class="openblock">
 <div class="content">
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>Role prefix</code></dt>
-<dd>
-<p>A prefix value for all of the created AWS resources. In this example, <code>ManagedOpenShift</code> prepends all of the AWS resources.</p>
-</dd>
-<dt class="hdlist1"><code>Permissions boundary ARN (optional)</code></dt>
-<dd>
-<p>The Amazon Resource Name (ARN) of the policy to set permission boundaries.</p>
-</dd>
-<dt class="hdlist1"><code>Role Path (optional)</code></dt>
-<dd>
-<p>Specify an IAM path for the user name.</p>
-</dd>
-<dt class="hdlist1"><code>Role creation mode</code></dt>
-<dd>
-<p>Choose the method to create your AWS roles. By using <code>auto</code>, the <code>rosa</code> CLI generates and links the roles and policies. In the <code>auto</code> mode, you receive some different prompts to create the AWS roles.</p>
-</dd>
-<dt class="hdlist1"><code>Create the 'ManagedOpenShift-User.osdocs-Role' role?</code></dt>
-<dd>
-<p>The <code>auto</code> method asks if you want to create a specific <code>user-role</code> by using your prefix.</p>
-</dd>
-<dt class="hdlist1"><code>Link the 'arn:aws:iam::2066:role/ManagedOpenShift-User.osdocs-Role' role with account '1AGE'?</code></dt>
-<dd>
-<p>Links the created role with your AWS organization.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Important">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If you unlink or delete your <code>user-role</code> IAM role before deleting your cluster, an error prevents you from deleting your cluster. You must create or relink this role to proceed with the deletion process.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="rosa-associating-account_rosa-hcp-troubleshoot-iam-roles">Associate your AWS account with IAM roles</h5>
-<div class="paragraph _abstract">
-<p>You can associate or link your AWS account with existing IAM roles by using the ROSA command-line interface (CLI) (<code>rosa</code>).</p>
-</div>
 <div class="ulist">
-<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have an AWS account.</p>
+<p>Event name: <code>CreateTags</code></p>
 </li>
 <li>
-<p>You have the permissions required to install AWS account-wide roles. See the "Additional resources" of this section for more information.</p>
+<p>Error code: <code>Client.UnauthorizedOperation</code></p>
 </li>
 <li>
-<p>You have installed and configured the latest AWS CLI (<code>aws</code>) and <code>rosa</code> CLI on your installation host.</p>
-</li>
-<li>
-<p>You have created the <code>ocm-role</code> and <code>user-role</code> IAM roles, but have not yet linked them to your AWS account. You can check whether your IAM roles are already linked by running the following commands:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list ocm-role</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa list user-role</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If <code>Yes</code> is displayed in the <code>Linked</code> column for both roles, you have already linked the roles to an AWS account.</p>
-</div>
+<p>User identity: Contains <code>control-plane-operator</code></p>
 </li>
 </ul>
 </div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>In the ROSA CLI, link your <code>ocm-role</code> resource to your Red&#160;Hat organization by using your Amazon Resource Name (ARN):</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>You must have Red&#160;Hat Organization Administrator privileges to run the <code>rosa link</code> command. After you link the <code>ocm-role</code> resource with your AWS account, it takes effect and is visible to all users in the organization.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa link ocm-role --role-arn &lt;arn&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Linking OCM role
-? Link the '&lt;AWS ACCOUNT ID&gt;` role with organization '&lt;ORG ID&gt;'? Yes
-I: Successfully linked role-arn '&lt;AWS ACCOUNT ID&gt;' with organization account '&lt;ORG ID&gt;'</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>In the ROSA CLI, link your <code>user-role</code> resource to your Red&#160;Hat user account by using your Amazon Resource Name (ARN):</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa link user-role --role-arn &lt;arn&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Linking User role
-? Link the 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-User-Role-125' role with organization '&lt;AWS ID&gt;'? Yes
-I: Successfully linked role-arn 'arn:aws:iam::&lt;ARN&gt;:role/ManagedOpenShift-User-Role-125' with organization account '&lt;AWS ID&gt;'</code></pre>
-</div>
+<p>If you find matching events, the error message confirms that the IAM role lacks <code>ec2:CreateTags</code> permission.</p>
 </div>
 </li>
 </ol>
 </div>
+</li>
+<li>
+<p>Create an IAM policy document that allows creating tags:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat &gt; /tmp/create-tags-policy.json &lt;&lt; 'POLICY_EOF'
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowCreateTags",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateTags"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+POLICY_EOF</code></pre>
 </div>
-<div class="sect4">
-<h5 id="rosa-associating-multiple-account_rosa-hcp-troubleshoot-iam-roles">Associate multiple AWS accounts with your Red&#160;Hat organization</h5>
-<div class="paragraph _abstract">
-<p>You can associate multiple AWS accounts with your Red&#160;Hat organization. Associating multiple accounts lets you create Red&#160;Hat OpenShift Service on AWS clusters on any of the associated AWS accounts from your Red&#160;Hat organization.</p>
+</div>
+</li>
+<li>
+<p>Attach the policy to the control plane operator IAM role:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam put-role-policy \
+  --role-name &lt;cluster_prefix&gt;-kube-system-control-plane-operator \
+  --policy-name KarpenterCreateTags \
+  --policy-document file:///tmp/create-tags-policy.json</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>With this capability, you can create clusters on different AWS profiles according to characteristics that make sense for your business, for example, by using one AWS profile for each region to create region-bound environments.</p>
+<p>Replace <code>&lt;cluster_prefix&gt;</code> with your cluster&#8217;s prefix from step 1.</p>
 </div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have an AWS account.</p>
 </li>
 <li>
-<p>You are using <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> to create clusters.</p>
-</li>
-<li>
-<p>You have the permissions required to install AWS account-wide roles.</p>
-</li>
-<li>
-<p>You have installed and configured the latest AWS CLI (<code>aws</code>) and ROSA command-line interface (CLI) (<code>rosa</code>) on your installation host.</p>
-</li>
-<li>
-<p>You have created the <code>ocm-role</code> and <code>user-role</code> IAM roles for Red&#160;Hat OpenShift Service on AWS.</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>To specify an AWS account profile when creating an OpenShift Cluster Manager role:</p>
+<p>Verify that the policy is attached to the role:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create --profile &lt;aws_profile&gt; ocm-role</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam get-role-policy \
+  --role-name &lt;cluster_prefix&gt;-kube-system-control-plane-operator \
+  --policy-name KarpenterCreateTags</code></pre>
 </div>
-</div>
-</li>
-<li>
-<p>To specify an AWS account profile when creating a user role:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create --profile &lt;aws_profile&gt; user-role</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>To specify an AWS account profile when creating the account roles:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create --profile &lt;aws_profile&gt; account-roles</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If you do not specify a profile, the default AWS profile and its associated AWS region are used.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="rosa-hcp-troubleshoot-cluster-deployments_rosa-hcp-troubleshoot-cluster-deployments">Troubleshoot cluster deployments</h4>
-<div class="paragraph _abstract">
-<p>Troubleshoot errors that occur while a Red&#160;Hat OpenShift Service on AWS cluster is being deployed, and repair a cluster that cannot be deleted.</p>
-</div>
-<div class="sect4">
-<h5 id="rosa-troubleshooting-general-deployment-failure_rosa-hcp-troubleshoot-cluster-deployments">Obtain information about a failed cluster</h5>
-<div class="paragraph _abstract">
-<p>If a cluster deployment fails, the cluster is put into an "error" state.</p>
-</div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>Run the following command to get more information:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa describe cluster -c &lt;my_cluster_name&gt; --debug</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="rosa-troubleshooting-deployment-failure-osdccsadmin_rosa-hcp-troubleshoot-cluster-deployments">Troubleshoot cluster creation with an osdCcsAdmin error</h5>
-<div class="paragraph _abstract">
-<p>If a cluster creation action fails, you might receive the following error message.</p>
 </div>
 <div class="paragraph">
-<p>The following example shows the output:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">Failed to create cluster: Unable to create cluster spec: Failed to get access keys for user 'osdCcsAdmin': NoSuchEntity: The user with name osdCcsAdmin cannot be found.</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Delete the stack:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init --delete</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Reinitialize your account:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa init</code></pre>
-</div>
+<p>The output shows the policy document you attached.</p>
 </div>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect4">
-<h5 id="rosa-troubleshooting-elb-service-role_rosa-hcp-troubleshoot-cluster-deployments">Create the Elastic Load Balancing (ELB) service-linked role</h5>
-<div class="paragraph _abstract">
-<p>If you have not created a load balancer in your AWS account, it is possible that the service-linked role for Elastic Load Balancing (ELB) might not exist yet. You might receive the following error:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">Error: Error creating network Load Balancer: AccessDenied: User: arn:aws:sts::xxxxxxxxxxxx:assumed-role/ManagedOpenShift-Installer-Role/xxxxxxxxxxxxxxxxxxx is not authorized to perform: iam:CreateServiceLinkedRole on resource: arn:aws:iam::xxxxxxxxxxxx:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing"</code></pre>
-</div>
-</div>
 <div class="ulist">
-<div class="title">Procedure</div>
+<div class="title">Verification</div>
 <ul>
 <li>
-<p>To resolve this issue, ensure that the role exists on your AWS account. If not, create this role with the following command:</p>
+<p>The IAM policy is successfully attached to the control plane operator role:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">aws iam get-role --role-name "AWSServiceRoleForElasticLoadBalancing" || aws iam create-service-linked-role --aws-service-name "elasticloadbalancing.amazonaws.com"</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ aws iam get-role-policy \
+  --role-name &lt;cluster_prefix&gt;-kube-system-control-plane-operator \
+  --policy-name KarpenterCreateTags</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="data:image/png;base64," alt="Note">
-</td>
-<td class="content">
 <div class="paragraph">
-<p>This command only needs to be executed once per account.</p>
+<p>This command returns the policy document without errors.</p>
 </div>
-</td>
-</tr>
-</table>
-</div>
+</li>
+<li>
+<p>AWS CloudTrail no longer shows <code>Client.UnauthorizedOperation</code> errors for CreateTags operations performed by the control plane operator.</p>
+</li>
+<li>
+<p>If your EC2NodeClass previously showed <code>SecurityGroupsReady = False</code>, you can now manually add the Karpenter discovery tag to the default security group.
+After you add the tag, the authorization error will not recur because the IAM role now has the required permissions.</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="rosa-troubleshooting-cluster-deletion_rosa-hcp-troubleshoot-cluster-deployments">Repair a cluster that cannot be deleted</h5>
-<div class="paragraph _abstract">
-<p>In specific cases, the following error is displayed in <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> if you attempt to delete your cluster:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">Error deleting cluster
-CLUSTERS-MGMT-400: Failed to delete cluster &lt;hash&gt;: sts_user_role is not linked to your account. sts_ocm_role is linked to your organization &lt;org number&gt; which requires sts_user_role to be linked to your Red Hat account &lt;account ID&gt;.Please create a user role and link it to the account: User Account &lt;account ID&gt; is not authorized to perform STS cluster operations
-
-Operation ID: b0572d6e-fe54-499b-8c97-46bf6890011c</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you try to delete your cluster from the CLI, the following error is displayed:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">E: Failed to delete cluster &lt;hash&gt;: sts_user_role is not linked to your account. sts_ocm_role is linked to your organization &lt;org_number&gt; which requires sts_user_role to be linked to your Red Hat account &lt;account_id&gt;.Please create a user role and link it to the account: User Account &lt;account ID&gt; is not authorized to perform STS cluster operations</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This error occurs when the <code>user-role</code> is unlinked or deleted.</p>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Run the following command to create the <code>user-role</code> IAM resource:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rosa create user-role</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>After you see that the role has been created, you can delete the cluster. The following confirms that the role was created and linked:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">I: Successfully linked role ARN &lt;user role ARN&gt; with account &lt;account ID&gt;</code></pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← Previous: <a href="rosa-hcp-troubleshoot-component-and-workload-issues_rosa-hcp-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a> | ↑ Up: <a href="_troubleshoot.html">Troubleshoot</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Service on AWS</a> | Next: <a href="_configure.html">Configure</a> →</p>
+<p>↑ Up: <a href="_troubleshoot.html">Troubleshoot</a> | ⌂ Home: <a href="navigation.html">Red&#160;Hat OpenShift Service on AWS</a> | Next: <a href="sd-troubleshoot-component-and-workload-issues_rosa-troubleshoot-component-and-workload-issues.html">Troubleshoot component and workload issues</a> →</p>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-16 09:24:37 -0500
+Last updated 2026-10-16 17:12:31 -0500
 </div>
 </div>
 </body>
